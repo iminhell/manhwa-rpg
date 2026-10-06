@@ -17,5 +17,26 @@
     "ja": "tts_maricel_ja",
     "timbre": "mezzo chaude, pétillante"
   },
-  "art_token": "maricel_dizon"
+  "art_token": "maricel_dizon",
+  "combat": {
+    "stats": {
+      "hp": 85,
+      "atk": 12,
+      "def": 4,
+      "spd": 15,
+      "mana": 60
+    },
+    "position": [
+      0,
+      2
+    ],
+    "skills": [
+      "vol_a_la_tire",
+      "grappin",
+      "piege_a_rats",
+      "echange",
+      "garde",
+      "jackpot"
+    ]
+  }
 }

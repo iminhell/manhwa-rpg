@@ -1,0 +1,882 @@
+{
+ "id": "act2_seo",
+ "title": "Acte II — La Fin de Park Seo-Yeon",
+ "start": "start",
+ "speakers": {
+  "agatha": "Mère Agatha"
+ },
+ "blocks": {
+  "start": [
+   {
+    "goto": "hopital"
+   }
+  ],
+  "fievre": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "registre"
+   },
+   {
+    "s": "registre",
+    "t": "Park Seo-Yeon — mordue au bras pendant la Nuée du sixième soir. Réfugiée au Sanctuaire de Myeongdong."
+   },
+   {
+    "s": "registre",
+    "t": "Selon toute logique, elle aurait dû se transformer il y a deux jours. Son sang se bat. Il ne gagnera pas seul."
+   },
+   {
+    "if": "item('serum_h07') > 0",
+    "then": "fievre_serum"
+   },
+   {
+    "s": "registre",
+    "t": "Le sérum H-07 de Haesong pourrait la sauver. Le laboratoire de Yeouido en garde six ampoules."
+   },
+   {
+    "end": true
+   }
+  ],
+  "fievre_serum": [
+   {
+    "s": "elias",
+    "t": "L'ampoule bleue. Je l'ai sur moi. Le Sanctuaire, vite.",
+    "e": "fear"
+   },
+   {
+    "end": true
+   }
+  ],
+  "sanctuaire": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Une chapelle latérale de la cathédrale. Des bougies, des lits de camp. Sur le dernier, Seo-Yeon, trempée de sueur, le bras gauche noir jusqu'au coude. Mère Agatha lui tient la main."
+   },
+   {
+    "s": "agatha",
+    "t": "Elle aurait dû partir depuis longtemps. Elle s'accroche. Elle s'est toujours accrochée.",
+    "e": "sad"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Kang-ssi… Les enfants… je n'ai pas pu…",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "if": "item('serum_h07') > 0",
+    "then": "sanctuaire_serum"
+   },
+   {
+    "s": "elias",
+    "t": "Tenez bon. Je reviens avec le remède.",
+    "e": "anger"
+   },
+   {
+    "s": "agatha",
+    "t": "Il lui reste jusqu'à la nuit du neuvième jour. Pas une heure de plus.",
+    "e": "neutral"
+   },
+   {
+    "s": "narrator",
+    "t": "Pendant une seconde, la vieille religieuse regarde Seo-Yeon comme on regarde un miroir. Puis elle détourne les yeux."
+   },
+   {
+    "end": true
+   }
+  ],
+  "sanctuaire_serum": [
+   {
+    "s": "narrator",
+    "t": "Tu brises l'ampoule bleue et tu injectes le sérum H-07 dans la veine de son bras sain. Agatha retient son souffle."
+   },
+   {
+    "s": "narrator",
+    "t": "Pendant une heure, rien. Puis le noir recule, millimètre par millimètre, du coude vers le poignet. À l'aube, il ne reste qu'une morsure rose et propre."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Vous m'avez… Pourquoi vous revenez toujours me chercher ?",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "s": "elias",
+    "t": "Parce que la dernière fois, je ne suis pas revenu.",
+    "e": "sad"
+   },
+   {
+    "s": "agatha",
+    "t": "…Merci, mon fils. Tu ne sais pas ce que tu viens de sauver.",
+    "e": "tears"
+   },
+   {
+    "s": "registre",
+    "t": "Réécriture — Park Seo-Yeon vivra. Nouvelle Fin : Jour 27, Quais du Dernier Exode. Noyée en aidant des réfugiés."
+   },
+   {
+    "fx": [
+     "item serum_h07 -1",
+     "flag seo_soignee",
+     "flag seo_mordue",
+     "join seo_yeon",
+     "fin seo_yeon_2",
+     "souvenir seo_survie",
+     "add aff.seo_yeon 10",
+     "add trust.seo_yeon 15",
+     "pressure -2"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "morsure_fin": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "registre"
+   },
+   {
+    "s": "registre",
+    "t": "Dixième jour, minuit. Sanctuaire de Myeongdong."
+   },
+   {
+    "s": "registre",
+    "t": "Le sang de Park Seo-Yeon a tenu quatre jours. Le cinquième, il a cédé. Mère Agatha a fermé la porte de la chapelle elle-même, et elle n'a laissé entrer personne."
+   },
+   {
+    "s": "registre",
+    "t": "Park Seo-Yeon — la Fin est accomplie. Plus tôt que prévu."
+   },
+   {
+    "s": "registre",
+    "t": "Anomalie : la page de Mère Agatha Seo pâlit d'un coup, comme si quelqu'un venait d'effacer une partie de son encre."
+   },
+   {
+    "fx": [
+     "flag seo_morte"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "hopital": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "combat.danger"
+   },
+   {
+    "s": "narrator",
+    "t": "Douzième jour, crépuscule. L'aile pédiatrique de Sainte-Marie. Les dessins d'enfants sur les murs. La lumière orange qui passe à travers les vitres brisées."
+   },
+   {
+    "if": "flag('enfants_nourris') or flag('bunker_partage')",
+    "then": "hopital_vide"
+   },
+   {
+    "s": "narrator",
+    "t": "Des voix d'enfants, étouffées, derrière une porte de salle de jeux. Six. Ils se cachent ici parce qu'au camp, on leur donne une demi-ration."
+   },
+   {
+    "if": "flag('seo_rupture')",
+    "then": "hopital_rupture"
+   },
+   {
+    "if": "flag('pacte.seo_yeon')",
+    "then": "hopital_pacte"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Kang-ssi ? Qu'est-ce que vous… Les petits ont disparu du camp, je les cherche depuis ce matin.",
+    "e": "surprise"
+   },
+   {
+    "goto": "hopital_rodeurs"
+   }
+  ],
+  "hopital_rupture": [
+   {
+    "s": "seo_yeon",
+    "t": "Vous. Évidemment, vous. Le Seigneur qui n'était pas là quand ses vassaux mouraient.",
+    "e": "contempt"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Les petits ont fui le camp. Je n'ai pas besoin de vous pour les retrouver.",
+    "e": "anger"
+   },
+   {
+    "goto": "hopital_rodeurs"
+   }
+  ],
+  "hopital_pacte": [
+   {
+    "s": "seo_yeon",
+    "t": "Seigneur Kang. Vous venez vérifier que votre médecin ne déserte pas ? Les petits ont fui le camp. À cause de votre tribut.",
+    "e": "contempt"
+   },
+   {
+    "fx": [
+     "add ambivalence.seo_yeon -5"
+    ]
+   },
+   {
+    "goto": "hopital_rodeurs"
+   }
+  ],
+  "hopital_rodeurs": [
+   {
+    "s": "narrator",
+    "t": "Un râle, au bout du couloir. Puis un deuxième. Les Rôdeurs ont suivi l'odeur des enfants."
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — Park Seo-Yeon. Jour 12, Crépuscule. Ici. Maintenant."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Derrière moi, les enfants. Derrière moi !",
+    "e": "fear",
+    "v": true
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "hopital_j12"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "s": "narrator",
+    "t": "Le dernier Rôdeur s'effondre. Mais le premier, celui que tu croyais mort, s'est relevé derrière la porte de la salle de jeux. Seo-Yeon se jette devant le plus petit des enfants."
+   },
+   {
+    "s": "narrator",
+    "t": "Les dents se referment sur son avant-bras."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "…Ce n'est rien. Ce n'est rien, mon cœur. Ferme les yeux.",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "if": "flag('seo_a_serum')",
+    "then": "hopital_serum"
+   },
+   {
+    "if": "item('serum_h07') > 0",
+    "then": "hopital_serum_elias"
+   },
+   {
+    "if": "party('haneul')",
+    "then": "hopital_haneul"
+   },
+   {
+    "goto": "hopital_perdue"
+   }
+  ],
+  "hopital_vide": [
+   {
+    "s": "narrator",
+    "t": "La salle de jeux est vide. Les dessins sont là, mais pas les enfants : au camp, ils mangent à leur faim. Personne n'a eu besoin de se cacher."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Kang-ssi ? Je… j'ai rêvé que les petits étaient ici. J'ai couru sans réfléchir.",
+    "e": "surprise"
+   },
+   {
+    "s": "narrator",
+    "t": "Un Rôdeur solitaire traîne dans le couloir. Tu l'abats avant qu'il ait fini de se retourner."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Vous saviez. Vous saviez qu'il se passerait quelque chose ici. C'est pour ça que vous avez nourri les enfants.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "elias",
+    "t": "Je savais qu'ils viendraient ici s'ils avaient faim. Ils n'ont plus faim.",
+    "e": "neutral"
+   },
+   {
+    "s": "registre",
+    "t": "La cause profonde est effacée. La Fin du douzième jour n'a plus de raison d'être."
+   },
+   {
+    "goto": "hopital_reecrite"
+   }
+  ],
+  "hopital_serum": [
+   {
+    "s": "narrator",
+    "t": "Elle fouille sa poche de blouse d'une main tremblante. L'ampoule bleue. Celle que tu lui as donnée."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "« Le douzième jour, vous allez en avoir besoin. » Vous saviez. Depuis le début, vous saviez.",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle s'injecte le sérum elle-même, d'un geste précis de médecin. Le noir qui montait dans ses veines s'arrête net au poignet. Puis il recule."
+   },
+   {
+    "fx": [
+     "flag seo_mordue"
+    ]
+   },
+   {
+    "goto": "hopital_reecrite"
+   }
+  ],
+  "hopital_serum_elias": [
+   {
+    "s": "narrator",
+    "t": "Tu as l'ampoule bleue sur toi. Tu la brises et tu lui injectes le sérum toi-même, avant qu'elle ait le temps de protester."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "H-07… L'antiviral de Haesong. Où est-ce que vous… Non. Je ne veux toujours pas savoir.",
+    "e": "tears"
+   },
+   {
+    "s": "narrator",
+    "t": "Le noir s'arrête au poignet. Puis il recule."
+   },
+   {
+    "fx": [
+     "item serum_h07 -1",
+     "flag seo_mordue"
+    ]
+   },
+   {
+    "goto": "hopital_reecrite"
+   }
+  ],
+  "hopital_haneul": [
+   {
+    "s": "haneul",
+    "t": "Laisse-moi faire. Je ne peux pas soigner. Mais je peux arrêter le temps dans un tout petit endroit.",
+    "e": "sad",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Haneul pose ses doigts sur la morsure. Des glyphes dorés s'enroulent autour de l'avant-bras de Seo-Yeon comme un bracelet de lumière. Le noir s'arrête net. Il ne recule pas. Il attend."
+   },
+   {
+    "s": "haneul",
+    "t": "C'est figé. Pas guéri. Il faudra le sérum un jour, ou ça recommencera à monter.",
+    "e": "neutral"
+   },
+   {
+    "s": "haneul",
+    "t": "…Ça m'a coûté quelque chose. Je ne sais pas encore quoi.",
+    "e": "tilt"
+   },
+   {
+    "s": "registre",
+    "t": "Park Seo-Yeon vivra. Marquée. Une infection figée dans le temps, sous un bracelet de glyphes."
+   },
+   {
+    "fx": [
+     "flag seo_marquee",
+     "flag seo_mordue",
+     "add aff.haneul 3",
+     "add aff.seo_yeon 5"
+    ]
+   },
+   {
+    "goto": "hopital_reecrite"
+   }
+  ],
+  "hopital_perdue": [
+   {
+    "s": "narrator",
+    "t": "Tu n'as pas de sérum. Il n'y a personne pour arrêter le temps. Tu regardes le noir monter dans ses veines, du poignet vers le coude."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Je suis médecin, Kang-ssi. Je sais ce qui va se passer à minuit.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Ramenez les enfants au camp. Et revenez avant minuit. S'il vous plaît. Je ne veux pas que ce soit quelqu'un d'autre.",
+    "e": "tears"
+   },
+   {
+    "choice": [
+     {
+      "t": "Revenir avant minuit. Tenir sa promesse.",
+      "goto": "perdue_minuit",
+      "fx": [
+       "add align.bond 2"
+      ]
+     },
+     {
+      "t": "Rester avec elle jusqu'à la fin, quoi qu'il arrive.",
+      "goto": "perdue_rester",
+      "fx": [
+       "add align.bond 3",
+       "add fatigue 4"
+      ]
+     }
+    ]
+   }
+  ],
+  "perdue_minuit": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Tu reviens à minuit moins cinq. Elle t'attend assise sur un lit d'enfant, les lunettes posées à côté d'elle, bien pliées."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Lee Man-sik. Cinquante-quatre ans. Vous vous souviendrez de son nom pour moi ?",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "s": "elias",
+    "t": "Je me souviendrai des deux.",
+    "e": "tears"
+   },
+   {
+    "s": "registre",
+    "t": "Park Seo-Yeon — Jour 12, Minuit. La Fin est accomplie. De la main de celui qui la lisait."
+   },
+   {
+    "goto": "perdue_fin"
+   }
+  ],
+  "perdue_rester": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Tu restes. Elle parle de Daegu, de sa mère, des mots croisés, du café trop sucré. À onze heures, elle ne parle plus. À minuit, elle ouvre les yeux, et ce ne sont plus les siens."
+   },
+   {
+    "s": "narrator",
+    "t": "Tu fais ce qu'il faut. Ça prend une seconde. La seconde la plus longue de tes deux vies."
+   },
+   {
+    "s": "registre",
+    "t": "Park Seo-Yeon — Jour 12, Minuit. La Fin est accomplie."
+   },
+   {
+    "goto": "perdue_fin"
+   }
+  ],
+  "perdue_fin": [
+   {
+    "s": "registre",
+    "t": "Anomalie : la page de Mère Agatha Seo pâlit d'un coup, comme si quelqu'un venait d'effacer une partie de son encre."
+   },
+   {
+    "fx": [
+     "flag seo_morte",
+     "leave seo_yeon",
+     "add align.protect 1"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "hopital_reecrite": [
+   {
+    "if": "flag('seo_rupture')",
+    "then": "reecrite_rupture"
+   },
+   {
+    "if": "flag('pacte.seo_yeon')",
+    "then": "reecrite_pacte"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Je suis vivante. Les six sont vivants. Je n'ai rien choisi, cette fois. Personne n'a dû mourir pour que quelqu'un d'autre vive.",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle retire ses lunettes, les essuie avec sa manche, renonce, et pose le front contre ta poitrine. Elle tremble."
+   },
+   {
+    "fx": [
+     "add aff.seo_yeon 10",
+     "add trust.seo_yeon 10"
+    ]
+   },
+   {
+    "goto": "reecrite_fin"
+   }
+  ],
+  "reecrite_rupture": [
+   {
+    "s": "seo_yeon",
+    "t": "Je vous déteste encore. Je crois. Mais vous êtes venu.",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Le Sanctuaire n'a pas besoin de moi autant que vos idiots de blessés. Je reviens. Sans Pacte. Comme médecin.",
+    "e": "neutral"
+   },
+   {
+    "fx": [
+     "unflag seo_rupture",
+     "join seo_yeon",
+     "add trust.seo_yeon 10"
+    ]
+   },
+   {
+    "goto": "reecrite_fin"
+   }
+  ],
+  "reecrite_pacte": [
+   {
+    "s": "seo_yeon",
+    "t": "La clause de Protection… vous l'avez honorée. Encore.",
+    "e": "surprise",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle ne dit pas merci. Mais elle ne détourne pas les yeux, pour la première fois depuis le Pacte."
+   },
+   {
+    "fx": [
+     "add ambivalence.seo_yeon 25"
+    ]
+   },
+   {
+    "goto": "reecrite_fin"
+   }
+  ],
+  "reecrite_fin": [
+   {
+    "s": "registre",
+    "t": "Réécriture — Park Seo-Yeon vivra. Nouvelle Fin : Jour 27, Quais du Dernier Exode. Noyée en aidant des réfugiés."
+   },
+   {
+    "s": "registre",
+    "t": "Note du Registre : la page de Mère Agatha Seo se met à briller, une seconde, d'une encre neuve."
+   },
+   {
+    "fx": [
+     "flag seo_sauvee",
+     "fin seo_yeon_2",
+     "souvenir seo_survie",
+     "pressure -3"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "absent": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "registre"
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — Hôpital Sainte-Marie, Jour 12, Crépuscule. Tu n'es pas là."
+   },
+   {
+    "if": "(flag('enfants_nourris') or flag('bunker_partage')) and flag('seo_a_serum')",
+    "then": "absent_reecrite"
+   },
+   {
+    "if": "flag('seo_a_serum')",
+    "then": "absent_serum"
+   },
+   {
+    "if": "flag('enfants_nourris') or flag('bunker_partage')",
+    "then": "absent_un_enfant"
+   },
+   {
+    "goto": "absent_fin"
+   }
+  ],
+  "absent_reecrite": [
+   {
+    "s": "registre",
+    "t": "Les enfants mangent à leur faim. Aucun ne s'est caché à Sainte-Marie. Park Seo-Yeon a passé la soirée à recoudre un charpentier."
+   },
+   {
+    "s": "registre",
+    "t": "L'ampoule bleue est restée dans sa poche, intacte."
+   },
+   {
+    "goto": "reecrite_fin"
+   }
+  ],
+  "absent_serum": [
+   {
+    "s": "registre",
+    "t": "Six enfants se sont cachés à Sainte-Marie. Park Seo-Yeon les a trouvés. Les Rôdeurs aussi."
+   },
+   {
+    "s": "registre",
+    "t": "Mordue en protégeant le plus petit, elle s'est injecté le sérum H-07 elle-même. Deux enfants ne sont pas revenus."
+   },
+   {
+    "fx": [
+     "flag seo_mordue",
+     "flag enfants_perdus"
+    ]
+   },
+   {
+    "goto": "reecrite_fin"
+   }
+  ],
+  "absent_un_enfant": [
+   {
+    "s": "registre",
+    "t": "Les enfants mangent à leur faim. Un seul s'est enfui, le plus petit, pour chercher son chat à Sainte-Marie. Park Seo-Yeon l'a suivi."
+   },
+   {
+    "s": "registre",
+    "t": "Mordue en le protégeant. Pas de sérum. Elle a ramené l'enfant au camp, puis elle est repartie seule vers l'hôpital, avant minuit."
+   },
+   {
+    "goto": "absent_fin"
+   }
+  ],
+  "absent_fin": [
+   {
+    "s": "registre",
+    "t": "Park Seo-Yeon — Jour 12, Minuit. La Fin est accomplie."
+   },
+   {
+    "s": "registre",
+    "t": "Anomalie : la page de Mère Agatha Seo pâlit d'un coup, comme si quelqu'un venait d'effacer une partie de son encre."
+   },
+   {
+    "fx": [
+     "flag seo_morte",
+     "leave seo_yeon"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "cheonma_j12": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "registre"
+   },
+   {
+    "s": "registre",
+    "t": "Jour 12, Crépuscule. Cheonma envoie ses vassaux récupérer les stocks de médicaments de Sainte-Marie."
+   },
+   {
+    "s": "registre",
+    "t": "Park Seo-Yeon, vassale de Cheonma, marche en tête, un collier de glyphes rouges au cou. Les Rôdeurs attendent dans l'aile pédiatrique."
+   },
+   {
+    "s": "registre",
+    "t": "Park Seo-Yeon — Jour 12, Minuit. La Fin a changé de forme. Elle ne l'a pas évitée."
+   },
+   {
+    "fx": [
+     "flag seo_morte"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "rachat": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Le maître de vente compte tes billets, puis tire sur une chaîne. Au bout, Seo-Yeon, en blouse grise, un collier de glyphes rouges au cou. Elle a maigri. Ses lunettes sont fêlées."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Kang-ssi. Vous m'achetez. Bien sûr. Vous avez vendu le camp, puis vous rachetez la marchandise abîmée. C'est ça ?",
+    "e": "contempt",
+    "v": true
+   },
+   {
+    "s": "elias",
+    "t": "Je n'ai pas d'excuse. Seulement une clé.",
+    "e": "sad"
+   },
+   {
+    "s": "narrator",
+    "t": "Le collier de glyphes attend un nouveau maître. Le Système te propose de le reprendre à ton nom, ou de le briser."
+   },
+   {
+    "choice": [
+     {
+      "t": "Briser le collier. « Tu ne m'appartiens pas. Tu n'appartiens à personne. »",
+      "goto": "rachat_libre",
+      "fx": [
+       "add align.protect 5",
+       "add trust.seo_yeon 15"
+      ]
+     },
+     {
+      "t": "Reprendre le collier à ton nom. Pacte de Vassalité.",
+      "goto": "rachat_pacte",
+      "fx": [
+       "add align.protect -5",
+       "flag pacte.seo_yeon",
+       "set ambivalence.seo_yeon -60",
+       "add fear.seo_yeon 25"
+      ]
+     }
+    ]
+   }
+  ],
+  "rachat_libre": [
+   {
+    "s": "narrator",
+    "t": "Le collier se fend en deux et tombe dans la sciure. Seo-Yeon porte la main à son cou, comme si elle ne croyait pas qu'il soit vide."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Je ne vous pardonne pas. Pas encore. Mais je viens. Quelqu'un doit recoudre ce que vous cassez.",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "goto": "rachat_fin"
+   }
+  ],
+  "rachat_pacte": [
+   {
+    "s": "narrator",
+    "t": "Les glyphes rouges se recomposent. Ton nom remplace celui de Cheonma, lettre par lettre, autour de sa gorge."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Un maître en remplace un autre. Au moins, vous, je sais pourquoi je vous hais.",
+    "e": "contempt",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "PACTE DE VASSALITÉ — Park Seo-Yeon. Ambivalence : Haine froide."
+   },
+   {
+    "goto": "rachat_fin"
+   }
+  ],
+  "rachat_fin": [
+   {
+    "s": "registre",
+    "t": "Hors des griffes de Cheonma, la Fin du douzième jour perd sa forme. Nouvelle Fin : Jour 27, Quais du Dernier Exode."
+   },
+   {
+    "fx": [
+     "unflag seo_vassale_cheonma",
+     "flag seo_rachetee",
+     "join seo_yeon",
+     "fin seo_yeon_2",
+     "souvenir seo_survie",
+     "pressure -2"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "liberee": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Les gardiens de Cheonma gisent dans la sciure. Les cages s'ouvrent une à une. Dans la dernière, Seo-Yeon, un collier de glyphes rouges au cou, qui se brise quand son maître tombe."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Vous avez vendu le camp. Et maintenant vous brisez les chaînes de tout le marché. Qui êtes-vous, Kang Elias ?",
+    "e": "surprise",
+    "v": true
+   },
+   {
+    "s": "elias",
+    "t": "Quelqu'un qui répare ses erreurs. Une à la fois.",
+    "e": "neutral"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "…Il y a des blessés dans les cages du fond. Après, on parlera. Peut-être.",
+    "e": "neutral"
+   },
+   {
+    "fx": [
+     "add trust.seo_yeon 10"
+    ]
+   },
+   {
+    "goto": "rachat_fin"
+   }
+  ],
+  "defeat": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Le monde bascule. Le sol, le ciel, la Tour qui regarde."
+   },
+   {
+    "s": "elias",
+    "t": "Pas… encore…",
+    "e": "exhausted"
+   },
+   {
+    "s": "registre",
+    "t": "ÉCHEC — Le Lecteur est mort."
+   },
+   {
+    "s": "registre",
+    "t": "Régression."
+   },
+   {
+    "event": "regress",
+    "args": {}
+   },
+   {
+    "end": true
+   }
+  ]
+ }
+}

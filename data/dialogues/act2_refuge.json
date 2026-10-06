@@ -1,0 +1,787 @@
+{
+ "id": "act2_refuge",
+ "title": "Acte II — Moments de repos au Refuge",
+ "start": "start",
+ "speakers": {},
+ "blocks": {
+  "start": [
+   {
+    "s": "narrator",
+    "t": "Le Refuge est calme. Pour une fois."
+   },
+   {
+    "end": true
+   }
+  ],
+  "seo_yeon": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "if": "flag('pacte.seo_yeon')",
+    "then": "seo_pacte"
+   },
+   {
+    "if": "v('repos.seo_yeon') >= 1 and flag('refuge.dortoir') and aff('seo_yeon') >= 25",
+    "then": "seo_intime"
+   },
+   {
+    "if": "v('repos.seo_yeon') >= 1",
+    "then": "seo_court"
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon a installé une infirmerie de fortune dans un coin du Refuge. Elle refait tes points sans te demander ton avis, des mots croisés coincés sous le genou."
+   },
+   {
+    "if": "flag('seo_marquee')",
+    "then": "seo_marque"
+   },
+   {
+    "goto": "seo_q"
+   }
+  ],
+  "seo_q": [
+   {
+    "s": "seo_yeon",
+    "t": "Sept lettres, « ce qu'on doit à ceux qu'on n'a pas sauvés ». Je cherche depuis une heure.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "choice": [
+     {
+      "t": "« Mémoire. »",
+      "goto": "seo_r1",
+      "fx": [
+       "add aff.seo_yeon 4"
+      ]
+     },
+     {
+      "t": "« Rien. On ne leur doit rien. On doit aux vivants. »",
+      "goto": "seo_r1",
+      "fx": [
+       "add trust.seo_yeon 4"
+      ]
+     }
+    ]
+   }
+  ],
+  "seo_marque": [
+   {
+    "s": "narrator",
+    "t": "Sous la manche de sa blouse, le bracelet de glyphes dorés de Haneul brille faiblement. En dessous, les veines noires attendent, figées."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Ne faites pas cette tête. C'est le plus beau bijou que j'aie jamais porté.",
+    "e": "laugh"
+   },
+   {
+    "fx": [
+     "add aff.seo_yeon 2"
+    ]
+   },
+   {
+    "goto": "seo_q"
+   }
+  ],
+  "seo_r1": [
+   {
+    "s": "seo_yeon",
+    "t": "…Ça rentre. Évidemment que ça rentre. Vous êtes agaçant, Kang-ssi.",
+    "e": "embarrassed"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle te tend une tasse de café soluble, avec quatre sucres. Elle s'est souvenue que tu n'en prends pas. Elle les a mis quand même."
+   },
+   {
+    "fx": [
+     "add repos.seo_yeon 1",
+     "add aff.seo_yeon 3",
+     "set fatigue 0"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "seo_court": [
+   {
+    "s": "narrator",
+    "t": "Elle s'endort assise, la tête contre ton épaule, un stylo à la main. Tu ne bouges pas pendant deux heures."
+   },
+   {
+    "fx": [
+     "add repos.seo_yeon 1",
+     "add aff.seo_yeon 2",
+     "set fatigue 0"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "seo_intime": [
+   {
+    "s": "narrator",
+    "t": "Le dortoir, tard. Seo-Yeon frappe à ta porte en pull trop grand, cheveux détachés, sans lunettes. Tu ne l'avais jamais vue sans lunettes. Elle le remarque."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Arrêtez de me regarder comme ça. Je ne vois rien sans elles, alors je ne peux pas savoir si vous vous moquez.",
+    "e": "embarrassed",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle sort de sa poche un rouge à lèvres rose. Jamais ouvert. Elle le fait tourner entre ses doigts."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Je le garde depuis l'internat. Pour une occasion. Il n'y a jamais eu d'occasion. Je crois que… c'en est une ?",
+    "e": "desire"
+   },
+   {
+    "choice": [
+     {
+      "t": "Le lui prendre des mains, et le lui mettre toi-même.",
+      "goto": "seo_baiser",
+      "fx": [
+       "add aff.seo_yeon 8"
+      ]
+     },
+     {
+      "t": "« Tu n'en as pas besoin. »",
+      "goto": "seo_baiser",
+      "fx": [
+       "add trust.seo_yeon 6"
+      ]
+     }
+    ]
+   }
+  ],
+  "seo_baiser": [
+   {
+    "s": "narrator",
+    "t": "Elle rit, nerveuse, et puis elle ne rit plus. Le premier baiser est maladroit, trop rapide, ses mains ne savent pas où se poser. Le deuxième, non."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Je ne veux plus choisir qui vit, Elias. Ce soir, je veux juste choisir ça.",
+    "e": "desire",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "La bougie s'éteint d'elle-même. Dehors, la Marée racle les murs du Refuge, et pour la première fois depuis le premier jour, personne ne l'entend."
+   },
+   {
+    "fx": [
+     "add repos.seo_yeon 1",
+     "flag seo_nuit",
+     "add aff.seo_yeon 10",
+     "set fatigue 0"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "seo_pacte": [
+   {
+    "s": "narrator",
+    "t": "La clause de Résidence. Elle entre dans ta chambre à l'heure dite, sans frapper, et reste debout près de la porte, les mains croisées devant elle."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Le Pacte dit que je dois être disponible, Seigneur Kang. Je suis disponible.",
+    "e": "contempt",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "Pacte de Vassalité — Ambivalence actuelle : elle te hait et elle a peur. Et quelque chose d'autre, qu'elle refuse de nommer."
+   },
+   {
+    "choice": [
+     {
+      "t": "« Va dormir. Le Pacte ne s'applique pas à ça. »",
+      "goto": "seo_pacte_libre",
+      "fx": [
+       "add ambivalence.seo_yeon 15",
+       "add trust.seo_yeon 5"
+      ]
+     },
+     {
+      "t": "« Reste. »",
+      "goto": "seo_pacte_reste",
+      "fx": [
+       "add ambivalence.seo_yeon -10",
+       "add fear.seo_yeon 5"
+      ]
+     }
+    ]
+   }
+  ],
+  "seo_pacte_libre": [
+   {
+    "s": "seo_yeon",
+    "t": "…Vous jouez à quoi ?",
+    "e": "surprise"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle reste encore une minute, le temps de comprendre que ce n'est pas un piège. Puis elle sort. Elle ne referme pas tout à fait la porte."
+   },
+   {
+    "fx": [
+     "add repos.seo_yeon 1",
+     "set fatigue 0"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "seo_pacte_reste": [
+   {
+    "s": "narrator",
+    "t": "Elle reste. Elle s'assoit au bord du lit, le dos droit comme pour un examen. Elle ne te regarde pas. Ses mains tremblent sur ses genoux, puis cessent de trembler."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Ne soyez pas doux. Si vous êtes doux, je ne pourrai plus vous haïr.",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Le collier de glyphes rouges luit dans le noir toute la nuit."
+   },
+   {
+    "fx": [
+     "add repos.seo_yeon 1",
+     "flag seo_nuit_pacte",
+     "set fatigue 0"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "haneul": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "registre"
+   },
+   {
+    "if": "v('repos.haneul') >= 1 and flag('refuge.dortoir') and aff('haneul') >= 20",
+    "then": "haneul_intime"
+   },
+   {
+    "if": "v('repos.haneul') >= 1",
+    "then": "haneul_court"
+   },
+   {
+    "s": "narrator",
+    "t": "Haneul est assise sur le toit du Refuge, emmitouflée dans ton bomber, les pieds nus dans le vide. Elle compte quelque chose sur ses doigts."
+   },
+   {
+    "s": "haneul",
+    "t": "Il y a quatre étoiles de moins qu'hier. Je les ai comptées. Le ciel de la Tour mange le vrai.",
+    "e": "tilt",
+    "v": true
+   },
+   {
+    "choice": [
+     {
+      "t": "T'asseoir à côté d'elle, en silence.",
+      "goto": "haneul_r1",
+      "fx": [
+       "add aff.haneul 4"
+      ]
+     },
+     {
+      "t": "« Dis-moi ce que tu te rappelles d'avant. »",
+      "goto": "haneul_r1",
+      "fx": [
+       "add trust.haneul 4"
+      ]
+     }
+    ]
+   }
+  ],
+  "haneul_r1": [
+   {
+    "s": "haneul",
+    "t": "Je me rappelle ton dos. Et un goût de pain au lait. Et une chanson qu'une fille chantait mal au deuxième couplet.",
+    "e": "joy"
+   },
+   {
+    "s": "haneul",
+    "t": "Les souvenirs tombent comme des étoiles, Elias. Donne-m'en un des tiens. Je le garderai à la place.",
+    "e": "sad"
+   },
+   {
+    "s": "elias",
+    "t": "Un jour, quand j'avais sept ans, ma mère m'a emmené voir la mer. Elle a dormi tout le trajet. Moi, j'ai regardé le ciel.",
+    "e": "neutral"
+   },
+   {
+    "s": "haneul",
+    "t": "…Je le garde. Il est chaud.",
+    "e": "joy"
+   },
+   {
+    "fx": [
+     "add repos.haneul 1",
+     "add aff.haneul 3",
+     "set fatigue 0"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "haneul_court": [
+   {
+    "s": "narrator",
+    "t": "Elle te demande de lui apprendre un mot nouveau. Ce soir, c'est « ronfler ». Elle s'entraîne pendant une heure, très sérieusement."
+   },
+   {
+    "fx": [
+     "add repos.haneul 1",
+     "add aff.haneul 2",
+     "set fatigue 0"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "haneul_intime": [
+   {
+    "s": "narrator",
+    "t": "Dans le dortoir, Haneul se glisse sous ta couverture comme un chat, sans demander, avec ton bomber pour seul vêtement."
+   },
+   {
+    "s": "haneul",
+    "t": "Les gens d'en bas font ça quand ils ont peur de perdre quelqu'un. Se toucher. Je l'ai lu dans leurs Fins.",
+    "e": "tilt",
+    "v": true
+   },
+   {
+    "s": "haneul",
+    "t": "J'ai peur de te perdre. Et j'ai peur de t'oublier. Alors je veux un souvenir que même la Tour ne pourra pas manger.",
+    "e": "desire"
+   },
+   {
+    "choice": [
+     {
+      "t": "L'embrasser. Lentement.",
+      "goto": "haneul_baiser",
+      "fx": [
+       "add aff.haneul 8"
+      ]
+     },
+     {
+      "t": "La serrer contre toi, simplement, jusqu'au matin.",
+      "goto": "haneul_serrer",
+      "fx": [
+       "add trust.haneul 8"
+      ]
+     }
+    ]
+   }
+  ],
+  "haneul_baiser": [
+   {
+    "s": "narrator",
+    "t": "Les glyphes sous sa peau s'allument un à un sous tes doigts, comme une ville qu'on rallume quartier par quartier. Elle rit, surprise, de lumière."
+   },
+   {
+    "s": "haneul",
+    "t": "Oh. C'est ça. C'est pour ça qu'ils ont peur de mourir.",
+    "e": "desire",
+    "v": true
+   },
+   {
+    "fx": [
+     "add repos.haneul 1",
+     "flag haneul_nuit",
+     "set fatigue 0"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "haneul_serrer": [
+   {
+    "s": "narrator",
+    "t": "Elle s'endort la première, pour la première fois. D'habitude, elle regarde le plafond toute la nuit. Ce soir, elle rêve, et dans son rêve, elle dit ton nom."
+   },
+   {
+    "fx": [
+     "add repos.haneul 1",
+     "set fatigue 0"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "aoi": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "if": "v('repos.aoi') >= 1 and flag('refuge.dortoir') and aff('aoi') >= 20",
+    "then": "aoi_intime"
+   },
+   {
+    "if": "v('repos.aoi') >= 1",
+    "then": "aoi_court"
+   },
+   {
+    "if": "flag('aoi_dominee')",
+    "then": "aoi_dominee"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi a transformé deux rations en quelque chose qui ressemble vaguement à des takoyaki. Elle les sert dans un couvercle de casserole, très fière."
+   },
+   {
+    "s": "aoi",
+    "t": "Spécialité d'Osaka. Enfin, d'Osaka après l'apocalypse. Si c'est mauvais, mens-moi. Tout le monde m'a toujours menti, je suis habituée.",
+    "e": "laugh",
+    "v": true
+   },
+   {
+    "choice": [
+     {
+      "t": "« C'est mauvais. Je veux la recette. »",
+      "goto": "aoi_r1",
+      "fx": [
+       "add aff.aoi 5"
+      ]
+     },
+     {
+      "t": "Tout manger sans rien dire.",
+      "goto": "aoi_r1",
+      "fx": [
+       "add trust.aoi 4"
+      ]
+     }
+    ]
+   }
+  ],
+  "aoi_r1": [
+   {
+    "s": "aoi",
+    "t": "Ahaha ! Personne ne m'avait jamais dit que c'était mauvais. Tu es la pire personne que je connaisse.",
+    "e": "true_smile"
+   },
+   {
+    "s": "narrator",
+    "t": "Plus tard, elle chante pour toi seul, assise sur une caisse, avec une guitare à deux cordes. Une chanson qu'elle dit ne jamais avoir écrite, mais qu'elle connaît par cœur."
+   },
+   {
+    "fx": [
+     "add repos.aoi 1",
+     "add aff.aoi 3",
+     "set fatigue 0"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "aoi_dominee": [
+   {
+    "s": "aoi",
+    "t": "Vous voulez que je chante, Monsieur ? Ou autre chose ? Dites-moi juste quoi faire. C'est plus simple.",
+    "e": "stage_smile"
+   },
+   {
+    "choice": [
+     {
+      "t": "« Fais ce que tu veux. Pour une fois. »",
+      "goto": "aoi_dominee_libre",
+      "fx": [
+       "add fear.aoi -5",
+       "add trust.aoi 5"
+      ]
+     },
+     {
+      "t": "« Chante. »",
+      "goto": "aoi_dominee_chante",
+      "fx": [
+       "add fear.aoi 3"
+      ]
+     }
+    ]
+   }
+  ],
+  "aoi_dominee_libre": [
+   {
+    "s": "narrator",
+    "t": "Elle reste figée longtemps. Puis elle s'allonge sur le sol du Refuge, les bras en croix, et regarde le plafond. C'est tout. Elle voulait juste ne rien faire."
+   },
+   {
+    "fx": [
+     "add repos.aoi 1",
+     "set fatigue 0"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "aoi_dominee_chante": [
+   {
+    "s": "narrator",
+    "t": "Elle chante parfaitement. Le sourire de scène ne bouge pas. Pas une fausse note. Pas une émotion."
+   },
+   {
+    "fx": [
+     "add repos.aoi 1",
+     "set fatigue 0"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "aoi_court": [
+   {
+    "s": "narrator",
+    "t": "Elle te défie à un vieux jeu de combat sur une console portable à moitié cassée. Elle gagne onze fois sur douze et triche la douzième."
+   },
+   {
+    "fx": [
+     "add repos.aoi 1",
+     "add aff.aoi 2",
+     "set fatigue 0"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "aoi_intime": [
+   {
+    "s": "narrator",
+    "t": "Le dortoir, la nuit. Aoi est assise sur ton lit, en sweat gris. Elle a enlevé ses bracelets. Ils sont posés en pile à côté d'elle, comme des armes qu'on rend."
+   },
+   {
+    "s": "aoi",
+    "t": "Personne ne les a jamais vues. Même pas les médecins de l'agence : ils regardaient ailleurs en recousant.",
+    "e": "fear",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle remonte sa manche gauche. Les cicatrices, fines, blanches, certaines plus récentes que d'autres. Et la grande, en travers du poignet, la nuit de l'hôtel."
+   },
+   {
+    "choice": [
+     {
+      "t": "Prendre son poignet, et y poser les lèvres.",
+      "goto": "aoi_cicatrices",
+      "fx": [
+       "add aff.aoi 8"
+      ]
+     },
+     {
+      "t": "« Merci de me les montrer. » Et ne pas détourner les yeux.",
+      "goto": "aoi_cicatrices",
+      "fx": [
+       "add trust.aoi 8"
+      ]
+     }
+    ]
+   }
+  ],
+  "aoi_cicatrices": [
+   {
+    "s": "aoi",
+    "t": "Tu ne fais pas la tête de pitié. Tout le monde fait la tête de pitié.",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "s": "aoi",
+    "t": "Mon corps a appartenu à une agence pendant quatre ans. Ce soir, c'est moi qui décide à qui je le donne.",
+    "e": "desire",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle éteint la lampe elle-même. Elle chante très bas, contre ton cou, une chanson qui n'a qu'un seul auditeur."
+   },
+   {
+    "fx": [
+     "add repos.aoi 1",
+     "flag aoi_nuit",
+     "set fatigue 0"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "maricel": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "if": "v('repos.maricel') >= 1 and flag('refuge.dortoir') and aff('maricel') >= 20",
+    "then": "maricel_intime"
+   },
+   {
+    "if": "v('repos.maricel') >= 1",
+    "then": "maricel_court"
+   },
+   {
+    "s": "narrator",
+    "t": "Une odeur de vinaigre, d'ail et de sauce soja envahit le Refuge. Maricel, en maillot de basket trop grand, remue une marmite cabossée."
+   },
+   {
+    "s": "maricel",
+    "t": "Adobo ! Recette de ma lola. Pour tout le Refuge. Ne me demande pas où j'ai trouvé le poulet. Vraiment. Ne demande pas.",
+    "e": "joy",
+    "v": true
+   },
+   {
+    "choice": [
+     {
+      "t": "Demander où elle a trouvé le poulet.",
+      "goto": "maricel_r1",
+      "fx": [
+       "add aff.maricel 4"
+      ]
+     },
+     {
+      "t": "Lancer un karaoké avec une enceinte à piles.",
+      "goto": "maricel_r1",
+      "fx": [
+       "add aff.maricel 6"
+      ]
+     }
+    ]
+   }
+  ],
+  "maricel_r1": [
+   {
+    "s": "maricel",
+    "t": "Ay, gwapo ! Tu chantes comme une porte de garage. C'est parfait. Encore !",
+    "e": "laugh"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle finit la soirée la tête posée sur ton épaule, sans prévenir, comme elle fait avec tout le monde. Sauf qu'elle ne la retire pas."
+   },
+   {
+    "fx": [
+     "add repos.maricel 1",
+     "add aff.maricel 3",
+     "set fatigue 0"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "maricel_court": [
+   {
+    "s": "narrator",
+    "t": "Elle te vole ta montre cassée, te la rend, te la revole. Au troisième tour, elle l'a réparée. L'aiguille tourne. 23h59."
+   },
+   {
+    "fx": [
+     "add repos.maricel 1",
+     "add aff.maricel 2",
+     "set fatigue 0"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "maricel_intime": [
+   {
+    "s": "narrator",
+    "t": "Le dortoir. Maricel a laissé la porte grande ouverte et la lampe allumée. Elle est assise par terre, le dos au chambranle, en short et maillot de basket."
+   },
+   {
+    "s": "maricel",
+    "t": "Je ne dors jamais porte fermée. Une pièce sans fenêtre, une clé qui tourne de l'autre côté… J'avais vingt ans.",
+    "e": "fear",
+    "v": true
+   },
+   {
+    "s": "maricel",
+    "t": "Le dernier garçon à qui j'ai fait confiance m'a vendue à des recruteurs. Jun-ho. Il m'avait promis plein de trucs.",
+    "e": "sad"
+   },
+   {
+    "choice": [
+     {
+      "t": "« Je ne te promets rien. » Laisser la porte ouverte.",
+      "goto": "maricel_porte",
+      "fx": [
+       "add trust.maricel 8"
+      ]
+     },
+     {
+      "t": "T'asseoir par terre à côté d'elle, dans l'encadrement.",
+      "goto": "maricel_porte",
+      "fx": [
+       "add aff.maricel 8"
+      ]
+     }
+    ]
+   }
+  ],
+  "maricel_porte": [
+   {
+    "s": "maricel",
+    "t": "…T'es vraiment bizarre, gwapo. C'est la chose la plus romantique qu'on m'ait jamais dite.",
+    "e": "wink",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle t'embrasse comme elle vole : vite, sans prévenir, avec un sourire. Puis elle revient, plus lentement, pour vérifier qu'elle n'a rien oublié."
+   },
+   {
+    "s": "narrator",
+    "t": "La porte reste ouverte toute la nuit. Elle n'en a pas besoin, cette fois."
+   },
+   {
+    "fx": [
+     "add repos.maricel 1",
+     "flag maricel_nuit",
+     "set fatigue 0"
+    ]
+   },
+   {
+    "end": true
+   }
+  ]
+ }
+}

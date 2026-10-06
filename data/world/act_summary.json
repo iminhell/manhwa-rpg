@@ -160,5 +160,175 @@
    "if": "flag('tour_ouverte')",
    "text": "L'étage 1 est ouvert. Le compte à rebours a commencé."
   }
+ ],
+ "act2": [
+  {
+   "if": "flag('impot_defi')",
+   "text": "Tu as défié l'Impôt du Sang de Cheonma."
+  },
+  {
+   "if": "flag('vassaux_liberes')",
+   "text": "Tu as brisé les chaînes du Marché des Vassaux."
+  },
+  {
+   "if": "flag('vassaux_rachetes')",
+   "text": "Tu as racheté trois vies au Marché des Vassaux."
+  },
+  {
+   "if": "flag('defi_cheonma')",
+   "text": "Cheon Mu-gyeong t'attend dans son Arène."
+  },
+  {
+   "if": "flag('aoi_sauvee') and not flag('aoi_dominee')",
+   "text": "Aoi Tsukishiro est descendue vivante de la scène du J9. Elle chante pour toi."
+  },
+  {
+   "if": "flag('aoi_dominee')",
+   "text": "Aoi te suit par peur. Elle a changé de propriétaire, pas de cage."
+  },
+  {
+   "if": "flag('aoi_morte')",
+   "text": "Aoi Tsukishiro est morte sur sa scène, le J9."
+  },
+  {
+   "if": "flag('concert_massacre')",
+   "text": "Pour sauver Aoi, tu as laissé tomber la barricade. Quarante-sept morts."
+  },
+  {
+   "if": "flag('aoi_promesse') and flag('aoi_sauvee')",
+   "text": "Tu avais promis à Aoi d'être dans la foule. Tu y étais."
+  },
+  {
+   "if": "flag('ampli_sabote')",
+   "text": "La Sirène de Mirae est en miettes. La Machine d'Inversion manque de données."
+  },
+  {
+   "if": "flag('sacrifice_empeche')",
+   "text": "Tu as brisé le premier sacrifice des Élus."
+  },
+  {
+   "if": "flag('prophete_mains')",
+   "text": "Tu as vu les mains du Prophète. Des mains de soignante."
+  },
+  {
+   "if": "flag('mere_vaincue')",
+   "text": "Premier Conquérant de l'Étage 2 : la Mère Sourde est tombée."
+  },
+  {
+   "if": "v('eau.controle', '') == 'rats'",
+   "text": "Les Rats du Han ont ouvert l'aqueduc colonial. L'eau coule pour tous."
+  },
+  {
+   "if": "v('eau.controle', '') == 'longwei'",
+   "text": "Le Consortium Longwei vend l'eau du Han au litre."
+  },
+  {
+   "if": "v('eau.controle', '') == 'partage'",
+   "text": "Tu as imposé le partage de l'eau. Longwei et les Rats ont plié."
+  },
+  {
+   "if": "v('eau.controle', '') == 'personne'",
+   "text": "Tu as fait sauter les pompes du Han. Séoul boit la pluie."
+  },
+  {
+   "if": "flag('fang_humilie')",
+   "text": "L'Oncle Fang a perdu la face devant ses hommes. Il ne l'oubliera pas."
+  },
+  {
+   "if": "flag('seo_sauvee') or flag('seo_soignee') or flag('seo_rachetee')",
+   "text": "Park Seo-Yeon a survécu à sa Fin du J12. Sa nouvelle page : J27, les quais."
+  },
+  {
+   "if": "flag('seo_marquee')",
+   "text": "Seo-Yeon porte une infection figée sous un bracelet de glyphes de Haneul."
+  },
+  {
+   "if": "flag('enfants_perdus')",
+   "text": "Deux enfants du camp ne sont pas revenus de Sainte-Marie."
+  },
+  {
+   "if": "flag('seo_morte')",
+   "text": "Park Seo-Yeon est morte. À Myeongdong, une religieuse a pâli."
+  },
+  {
+   "if": "flag('seo_livree')",
+   "text": "Tu as vendu Seo-Yeon à Mirae Dynamics au Sommet des Sceaux."
+  },
+  {
+   "if": "flag('seo_protegee')",
+   "text": "Devant cinq Seigneurs, tu as refusé de vendre Seo-Yeon."
+  },
+  {
+   "if": "flag('pacte_libere')",
+   "text": "Tu as brisé le Pacte de Seo-Yeon le soir de la révolte du camp."
+  },
+  {
+   "if": "flag('revolte_ecrasee')",
+   "text": "La révolte du camp a été écrasée par la clause du Pacte."
+  },
+  {
+   "if": "flag('treve_signee')",
+   "text": "Les cinq Sceaux ont signé la Trêve de la Tour."
+  },
+  {
+   "if": "flag('forage_interdit')",
+   "text": "Le Sommet a interdit les forages de Mirae sous Myeongdong."
+  },
+  {
+   "if": "flag('arche_revelee')",
+   "text": "Tu as révélé le Projet ARCHE devant les cinq Sceaux. Yoon Hae-in ne pardonnera pas."
+  },
+  {
+   "if": "flag('haein_avertie')",
+   "text": "Yoon Hae-in sait que Nam la trahira le J21."
+  },
+  {
+   "if": "flag('ryeon_avertie')",
+   "text": "Baek Ryeon sait qu'elle perdra son duel du J17. Elle t'écoutera une fois."
+  },
+  {
+   "if": "flag('xiaoyu_avertie')",
+   "text": "Long Xiaoyu surveille l'Oncle Fang."
+  },
+  {
+   "if": "not flag('sommet_vu')",
+   "text": "Le Sommet des Sceaux s'est tenu sans toi."
+  },
+  {
+   "if": "flag('maricel_sauvee')",
+   "text": "Maricel Dizon est sortie des tunnels du J14. Les Rats te doivent une dette."
+  },
+  {
+   "if": "flag('rat_perdu')",
+   "text": "Le petit Bong-su n'est pas remonté des tunnels."
+  },
+  {
+   "if": "flag('maricel_morte')",
+   "text": "Maricel Dizon est ensevelie sous Myeongdong avec onze des siens."
+  },
+  {
+   "if": "flag('racine_evoquee')",
+   "text": "Sous Myeongdong, une paroi d'obsidienne descend vers « La Racine ». Une femme dort dans le mur."
+  },
+  {
+   "if": "souvenir('lectrice_zero')",
+   "text": "Haneul a parlé en dormant d'une autre Lectrice, aux lunettes rondes."
+  },
+  {
+   "if": "flag('seo_nuit') or flag('seo_nuit_pacte')",
+   "text": "Une nuit avec Seo-Yeon, au Refuge."
+  },
+  {
+   "if": "flag('haneul_nuit')",
+   "text": "Haneul a voulu un souvenir que la Tour ne pourrait pas manger."
+  },
+  {
+   "if": "flag('aoi_nuit')",
+   "text": "Aoi t'a montré ses cicatrices. Elle a choisi."
+  },
+  {
+   "if": "flag('maricel_nuit')",
+   "text": "Maricel a dormi porte ouverte. Elle n'en avait pas besoin."
+  }
  ]
 }

@@ -16,6 +16,10 @@
     "bg": "yeouido_camp"
    },
    {
+    "if": "flag('seo_rupture')",
+    "then": "visite_absente"
+   },
+   {
     "if": "flag('camp_vassal')",
     "then": "visite_vassal"
    },
@@ -150,6 +154,19 @@
     "t": "Pacte de Vassalité — Park Seo-Yeon. Ambivalence : Ressentiment."
    },
    {
+    "if": "item('serum_h07') > 0",
+    "then": "visite_serum"
+   },
+   {
+    "end": true
+   }
+  ],
+  "visite_absente": [
+   {
+    "s": "narrator",
+    "t": "La tente de l'infirmerie est vide. Un vieil homme te dit, sans te regarder, qu'elle est partie au Sanctuaire avec les blessés. Qu'elle ne reviendra pas pour toi."
+   },
+   {
     "end": true
    }
   ],
@@ -168,6 +185,10 @@
     "fx": [
      "add aff.seo_yeon 3"
     ]
+   },
+   {
+    "if": "item('serum_h07') > 0",
+    "then": "visite_serum"
    },
    {
     "end": true

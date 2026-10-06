@@ -1,0 +1,709 @@
+{
+ "id": "act2_maricel",
+ "title": "Acte II — La Guerre de l'Eau et les tunnels de Maricel",
+ "start": "start",
+ "speakers": {
+  "fang": "Oncle Fang"
+ },
+ "blocks": {
+  "start": [
+   {
+    "goto": "guerre_eau"
+   }
+  ],
+  "guerre_eau": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "combat.danger"
+   },
+   {
+    "s": "narrator",
+    "t": "Onzième jour. Au petit matin, les robinets de Yeouido toussent, puis se taisent. Ceux de Myeongdong aussi."
+   },
+   {
+    "s": "narrator",
+    "t": "Sous le pont de Banpo, la station de pompage du Han est cerclée de barges aux lanternes rouges. Des gardes en costume noir, des fusils neufs. Le Consortium Longwei vient de fermer les vannes de la ville."
+   },
+   {
+    "s": "fang",
+    "t": "Le fleuve appartient au Sceau du Courant. L'eau se paie désormais au litre. Prix fixé par la Maison Long."
+   },
+   {
+    "s": "narrator",
+    "t": "Sur la berge d'en face, une vingtaine de gamins en guenilles, des seaux, des tuyaux volés, des pieds-de-biche. Au milieu, un crop hoodie jaune moutarde."
+   },
+   {
+    "if": "not flag('maricel_rencontree')",
+    "then": "eau_maricel_inconnue"
+   },
+   {
+    "s": "maricel",
+    "t": "Ay, gwapo. Tu tombes bien. Les Rats ont un aqueduc colonial qui passe juste sous leurs pompes. Il nous faut quelqu'un qui tape fort pendant qu'on ouvre la vanne d'en bas.",
+    "e": "wink"
+   },
+   {
+    "goto": "eau_xiaoyu"
+   }
+  ],
+  "eau_maricel_inconnue": [
+   {
+    "s": "maricel",
+    "t": "Toi, là. T'as la tête de quelqu'un qui sait se battre et qui n'a pas d'eau non plus. Maricel. Les Rats du Han.",
+    "e": "wink"
+   },
+   {
+    "s": "registre",
+    "t": "Lecture de la Fin — Maricel Dizon. Jour 14, Aube. Tunnels sous Myeongdong. Ensevelie avec onze des siens."
+   },
+   {
+    "fx": [
+     "flag maricel_rencontree",
+     "fin maricel"
+    ]
+   },
+   {
+    "s": "maricel",
+    "t": "Il y a un aqueduc colonial qui passe juste sous leurs pompes. Il nous faut quelqu'un qui tape fort pendant qu'on ouvre la vanne d'en bas.",
+    "e": "wink"
+   },
+   {
+    "goto": "eau_xiaoyu"
+   }
+  ],
+  "eau_xiaoyu": [
+   {
+    "s": "narrator",
+    "t": "Sur la plus grande barge, un éventail noir s'ouvre. Long Xiaoyu observe la berge, carré carmin impeccable, comme on regarde une partie de mahjong déjà gagnée."
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Kang. Tu es encore vivant. Viens de mon côté du fleuve, et l'eau sera gratuite pour toi et tes amis. Reste de l'autre… et tu boiras le Han.",
+    "e": "fan"
+   },
+   {
+    "s": "registre",
+    "t": "La Guerre de l'Eau décidera de la défense de tous les secteurs. Les pénuries tuent plus lentement que la Marée, mais elles tuent."
+   },
+   {
+    "choice": [
+     {
+      "t": "Avec les Rats : ouvrir l'aqueduc par la force.",
+      "goto": "eau_rats",
+      "fx": [
+       "add align.protect 2",
+       "add align.bond 1"
+      ]
+     },
+     {
+      "t": "Avec Longwei : l'eau gratuite, et le reste de la ville paiera.",
+      "goto": "eau_longwei",
+      "fx": [
+       "add align.protect -3",
+       "add trust.xiaoyu 10",
+       "add trust.maricel -10",
+       "money 80"
+      ]
+     },
+     {
+      "t": "Imposer un partage : « Personne ne gagne une guerre où tout le monde a soif. »",
+      "goto": "eau_partage",
+      "if": "trust('xiaoyu') >= 4 or trust('maricel') >= 5 or flag('elias_celebre')"
+     },
+     {
+      "t": "Faire sauter les pompes. Si personne ne peut avoir l'eau, personne ne peut la vendre.",
+      "goto": "eau_sabotage",
+      "fx": [
+       "add align.chaos 5",
+       "add align.protect -2"
+      ]
+     }
+    ]
+   }
+  ],
+  "eau_rats": [
+   {
+    "s": "maricel",
+    "t": "Ça, c'est mon gwapo ! Les gamins, à l'aqueduc ! On ouvre dans trois minutes !",
+    "e": "joy"
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Dommage. Tu étais mon meilleur recouvreur.",
+    "e": "contempt"
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "guerre_eau"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "s": "narrator",
+    "t": "Pendant que les gardes de Longwei tombent dans la boue, un grondement sourd monte de sous la berge : la vanne coloniale vient de céder. L'eau du Han jaillit dans l'aqueduc des Rats, direction Myeongdong et Yeouido."
+   },
+   {
+    "s": "maricel",
+    "t": "Elle coule ! Elle coule pour tout le monde ! Ay, je t'embrasserais si t'étais pas plein de boue.",
+    "e": "laugh",
+    "v": true
+   },
+   {
+    "fx": [
+     "set eau.controle rats",
+     "add trust.maricel 10",
+     "add aff.maricel 6",
+     "add fear.xiaoyu 5",
+     "add camp.defense 5"
+    ]
+   },
+   {
+    "goto": "eau_fin"
+   }
+  ],
+  "eau_longwei": [
+   {
+    "s": "xiaoyu",
+    "t": "Sage décision. Les hommes sages vivent plus vieux. Pas beaucoup, mais un peu.",
+    "e": "desire"
+   },
+   {
+    "s": "narrator",
+    "t": "Les gardes de Longwei traversent le fleuve. Les Rats se dispersent sous les coups de crosse. Un gamin reste allongé dans la boue."
+   },
+   {
+    "s": "maricel",
+    "t": "Tu m'as regardée dans les yeux il y a trois minutes. Je me souviendrai de ta tête, gwapo. Pas pour les bonnes raisons.",
+    "e": "anger",
+    "v": true
+   },
+   {
+    "fx": [
+     "set eau.controle longwei",
+     "add camp.defense -5",
+     "add fear.maricel 5"
+    ]
+   },
+   {
+    "goto": "eau_fin"
+   }
+  ],
+  "eau_partage": [
+   {
+    "s": "elias",
+    "t": "Les Rats ouvrent l'aqueduc colonial. Longwei garde les pompes et vend aux clans. Les camps et le Sanctuaire boivent gratuitement. Tout le monde garde la face.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "fang",
+    "t": "Une femme qui écoute un rang F. Le vieux maître se retourne dans sa tombe.",
+    "e": "contempt"
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Le vieux maître est mort, Oncle Fang. Et c'est moi qui écoute.",
+    "e": "fan"
+   },
+   {
+    "s": "xiaoyu",
+    "t": "…Accordé. Mais si un seul Rat touche à mes pompes, je noie toute la portée.",
+    "e": "fan"
+   },
+   {
+    "s": "maricel",
+    "t": "Il a réussi. Il a vraiment réussi à faire plier la Dame Dragon sans un coup de poing.",
+    "e": "surprise"
+   },
+   {
+    "s": "registre",
+    "t": "Partage de l'eau. L'Oncle Fang a perdu la face devant ses hommes. Il ne l'oubliera pas."
+   },
+   {
+    "fx": [
+     "set eau.controle partage",
+     "flag fang_humilie",
+     "add align.protect 3",
+     "add align.bond 2",
+     "add trust.xiaoyu 5",
+     "add trust.maricel 5",
+     "add camp.defense 5"
+    ]
+   },
+   {
+    "goto": "eau_fin"
+   }
+  ],
+  "eau_sabotage": [
+   {
+    "s": "narrator",
+    "t": "Trois charges de démolition volées à la Forge, posées pendant que tout le monde se regarde en chiens de faïence. Quand elles sautent, la station de pompage du Han se plie en deux comme un jouet."
+   },
+   {
+    "s": "xiaoyu",
+    "t": "…Tu viens de condamner la moitié de la ville à boire la pluie.",
+    "e": "anger"
+   },
+   {
+    "s": "maricel",
+    "t": "T'es complètement taré. J'adore. Je déteste. J'adore.",
+    "e": "surprise"
+   },
+   {
+    "fx": [
+     "set eau.controle personne",
+     "add camp.defense -10",
+     "add trust.xiaoyu -10",
+     "add fear.xiaoyu 10"
+    ]
+   },
+   {
+    "goto": "eau_fin"
+   }
+  ],
+  "eau_fin": [
+   {
+    "s": "registre",
+    "t": "Guerre de l'Eau — terminée. Le Han a choisi un maître, ou aucun."
+   },
+   {
+    "end": true
+   }
+  ],
+  "eau_absent": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "registre"
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — La Guerre de l'Eau. Tu n'es pas là."
+   },
+   {
+    "s": "registre",
+    "t": "Les Rats ont tenté d'ouvrir l'aqueduc colonial. Les gardes de Longwei les attendaient. Trois gamins ne sont pas remontés."
+   },
+   {
+    "s": "registre",
+    "t": "Le Consortium Longwei tient les pompes du Han. L'eau se paie au litre. Les camps rationnent."
+   },
+   {
+    "fx": [
+     "set eau.controle longwei",
+     "add camp.defense -5"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "tunnels": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "combat.danger"
+   },
+   {
+    "s": "narrator",
+    "t": "Quatorzième aube. Sous le marché de Myeongdong, une file de lampes frontales descend dans les tunnels de l'ère coloniale. Douze silhouettes. Maricel en tête, une corde sur l'épaule."
+   },
+   {
+    "if": "trust('maricel') < 0",
+    "then": "tunnels_hostile"
+   },
+   {
+    "s": "maricel",
+    "t": "Gwapo ? T'es matinal. On descend chercher les caisses de médicaments d'un vieux dépôt. Trois heures aller-retour. Tu viens ?",
+    "e": "wink"
+   },
+   {
+    "goto": "tunnels_etat"
+   }
+  ],
+  "tunnels_hostile": [
+   {
+    "s": "maricel",
+    "t": "Tiens. Le chien de Longwei. Tu viens vérifier qu'on paie bien notre eau ?",
+    "e": "contempt"
+   },
+   {
+    "s": "elias",
+    "t": "Je viens t'empêcher de mourir. C'est tout.",
+    "e": "neutral"
+   },
+   {
+    "s": "maricel",
+    "t": "Hah. Tout le monde veut m'empêcher de faire des trucs, ces temps-ci.",
+    "e": "anger"
+   },
+   {
+    "goto": "tunnels_etat"
+   }
+  ],
+  "tunnels_etat": [
+   {
+    "if": "flag('tunnels_etayes')",
+    "then": "tunnels_etayes"
+   },
+   {
+    "if": "flag('forage_interdit')",
+    "then": "tunnels_forage_stop"
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — Les tunnels de Myeongdong. Les étais sont pourris. Quelque part, sous vos pieds, une foreuse tourne."
+   },
+   {
+    "choice": [
+     {
+      "t": "Lui montrer le planning de Mirae : « Ils forent sous vos tunnels. Aujourd'hui. »",
+      "goto": "tunnels_preuve",
+      "fx": [
+       "add trust.maricel 5"
+      ],
+      "if": "souvenir('foreuses_mirae')"
+     },
+     {
+      "t": "« Ne descends pas. Fais-moi confiance. »",
+      "goto": "tunnels_confiance",
+      "if": "trust('maricel') >= 10"
+     },
+     {
+      "t": "Descendre avec eux.",
+      "goto": "tunnels_descendre",
+      "fx": [
+       "add align.bond 1"
+      ]
+     }
+    ]
+   }
+  ],
+  "tunnels_etayes": [
+   {
+    "s": "narrator",
+    "t": "Vous descendez. Les étais neufs que tu as posés avec les gamins grincent sous la terre. Puis, au troisième embranchement, un grondement : le sol vibre, la voûte gémit."
+   },
+   {
+    "s": "narrator",
+    "t": "Ailleurs, des galeries entières s'effondrent dans un fracas de pierre. Ici, les poutres plient. Elles ne cèdent pas."
+   },
+   {
+    "s": "maricel",
+    "t": "Ce sont… tes poutres. Celles que tu m'as fait porter en me racontant des histoires d'apocalypse.",
+    "e": "surprise",
+    "v": true
+   },
+   {
+    "s": "elias",
+    "t": "Je t'avais dit que ce n'étaient pas des histoires.",
+    "e": "smirk"
+   },
+   {
+    "goto": "tunnels_creature"
+   }
+  ],
+  "tunnels_forage_stop": [
+   {
+    "s": "registre",
+    "t": "Le Sommet des Sceaux a interdit les forages sous Myeongdong. La foreuse MD-3 s'est tue hier soir."
+   },
+   {
+    "s": "narrator",
+    "t": "Vous descendez. Les vieux étais tiennent, pour cette fois. Pas de vibrations. Seulement l'eau qui goutte et l'odeur de la pierre."
+   },
+   {
+    "s": "maricel",
+    "t": "C'est calme. Trop calme. Les Rats disent que quand les tunnels se taisent, quelque chose écoute.",
+    "e": "fear"
+   },
+   {
+    "goto": "tunnels_creature"
+   }
+  ],
+  "tunnels_preuve": [
+   {
+    "s": "narrator",
+    "t": "Tu lui récites le planning de Mirae, mot pour mot. Forage MD-3. Capteurs avant J14. Étais existants : non prioritaires."
+   },
+   {
+    "s": "maricel",
+    "t": "…Non prioritaires. Mes gamins, c'est « non prioritaire ».",
+    "e": "anger",
+    "v": true
+   },
+   {
+    "s": "maricel",
+    "t": "Tout le monde remonte ! On ne descend pas aujourd'hui !",
+    "e": "fear"
+   },
+   {
+    "s": "narrator",
+    "t": "Vingt minutes plus tard, un grondement fait trembler tout le marché. Une colonne de poussière jaillit des bouches d'égout. Les tunnels du dépôt n'existent plus."
+   },
+   {
+    "s": "maricel",
+    "t": "On serait tous dessous. Les douze. Moi en premier.",
+    "e": "tears"
+   },
+   {
+    "goto": "tunnels_sauvee"
+   }
+  ],
+  "tunnels_confiance": [
+   {
+    "s": "maricel",
+    "t": "…Je ne fais confiance à personne qui promet des trucs. Le dernier m'a vendue.",
+    "e": "sad"
+   },
+   {
+    "s": "maricel",
+    "t": "Mais toi, t'as jamais rien promis. Tu dis juste les choses, comme si elles étaient déjà arrivées.",
+    "e": "neutral"
+   },
+   {
+    "s": "maricel",
+    "t": "Ok. Tout le monde remonte. Si c'est pour rien, tu me dois un karaoké.",
+    "e": "wink"
+   },
+   {
+    "s": "narrator",
+    "t": "Vingt minutes plus tard, un grondement fait trembler tout le marché. Une colonne de poussière jaillit des bouches d'égout."
+   },
+   {
+    "s": "maricel",
+    "t": "…Pas pour rien, alors.",
+    "e": "tears"
+   },
+   {
+    "goto": "tunnels_sauvee"
+   }
+  ],
+  "tunnels_descendre": [
+   {
+    "s": "narrator",
+    "t": "Troisième embranchement. Le sol vibre. Une foreuse, quelque part, très près. La voûte gémit, puis se met à pleuvoir."
+   },
+   {
+    "s": "maricel",
+    "t": "Ça craque… ça craque, ça craque… je peux pas… pas encore, pas dans le noir…",
+    "e": "fear",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle se fige, la respiration sifflante. La claustrophobie la cloue sur place. Derrière vous, la galerie s'effondre. Devant vous, quelque chose se réveille dans la poussière."
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "tunnels"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "s": "narrator",
+    "t": "Tu la portes sur ton dos à travers les éboulis, les gamins accrochés à ta ceinture. Quand vous revoyez le ciel, vous êtes douze. Puis onze. Le petit Bong-su n'a pas suivi."
+   },
+   {
+    "s": "maricel",
+    "t": "Tu m'as portée. Comme un sac de riz. Personne ne m'avait jamais portée.",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "fx": [
+     "flag rat_perdu"
+    ]
+   },
+   {
+    "goto": "tunnels_sauvee"
+   }
+  ],
+  "tunnels_creature": [
+   {
+    "s": "narrator",
+    "t": "Au fond de la galerie, des yeux s'allument dans le noir. Les tunnels ne sont pas vides."
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "tunnels"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "s": "narrator",
+    "t": "Quand la dernière bête tombe, Maricel s'approche du mur du fond. Sous la pierre coloniale, une paroi d'obsidienne, lisse, tiède, qui descend vers Yongsan."
+   },
+   {
+    "s": "maricel",
+    "t": "C'est par là, La Racine. J'y suis allée une fois. Il y avait une femme endormie dans le mur. Je n'en ai jamais parlé à personne.",
+    "e": "fear"
+   },
+   {
+    "s": "elias",
+    "t": "(Une femme endormie… comme Haneul. Sous Yongsan.)",
+    "e": "surprise"
+   },
+   {
+    "fx": [
+     "flag racine_evoquee"
+    ]
+   },
+   {
+    "goto": "tunnels_sauvee"
+   }
+  ],
+  "tunnels_sauvee": [
+   {
+    "if": "trust('maricel') < 0",
+    "then": "sauvee_froide"
+   },
+   {
+    "s": "maricel",
+    "t": "Bon. Les Rats ont une dette envers toi, et les Rats paient toujours leurs dettes. Moi aussi. Surtout moi.",
+    "e": "wink"
+   },
+   {
+    "s": "maricel",
+    "t": "Je viens avec toi. Quelqu'un doit surveiller tes poches, gwapo.",
+    "e": "joy"
+   },
+   {
+    "fx": [
+     "add aff.maricel 10",
+     "add trust.maricel 10"
+    ]
+   },
+   {
+    "goto": "tunnels_fin"
+   }
+  ],
+  "sauvee_froide": [
+   {
+    "s": "maricel",
+    "t": "Je te dois la vie. Je déteste ça. Je viens avec toi jusqu'à ce que la dette soit payée. Pas un jour de plus.",
+    "e": "contempt"
+   },
+   {
+    "fx": [
+     "add trust.maricel 5"
+    ]
+   },
+   {
+    "goto": "tunnels_fin"
+   }
+  ],
+  "tunnels_fin": [
+   {
+    "s": "registre",
+    "t": "Maricel Dizon a rejoint le groupe. Nouvelle Fin : Jour 22, siège de Myeongdong. Elle retourne chercher un enfant dans le Marché en feu."
+   },
+   {
+    "fx": [
+     "flag maricel_sauvee",
+     "join maricel",
+     "fin maricel_2",
+     "souvenir maricel_survie",
+     "pressure -2"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "tunnels_absent": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "registre"
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — Les tunnels de Myeongdong. Tu n'es pas là."
+   },
+   {
+    "if": "flag('tunnels_etayes') or flag('forage_interdit')",
+    "then": "absent_tient"
+   },
+   {
+    "s": "registre",
+    "t": "La foreuse MD-3 de Mirae passe sous le dépôt colonial à l'aube. Les étais pourris cèdent."
+   },
+   {
+    "s": "registre",
+    "t": "Maricel Dizon — Jour 14, Aube. Ensevelie avec onze des siens. La Fin est accomplie."
+   },
+   {
+    "fx": [
+     "flag maricel_morte"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "absent_tient": [
+   {
+    "s": "registre",
+    "t": "Les galeries tremblent. Elles tiennent. Douze lampes frontales remontent à la surface, couvertes de poussière."
+   },
+   {
+    "s": "registre",
+    "t": "Le soir même, une fille en crop hoodie moutarde t'attend, assise sur une rambarde, une mangue séchée entre les dents."
+   },
+   {
+    "s": "maricel",
+    "t": "Il paraît que c'est toi, les poutres. Et le Sommet. Bon. J'ai une dette, gwapo.",
+    "e": "wink"
+   },
+   {
+    "goto": "tunnels_fin"
+   }
+  ],
+  "defeat": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Le monde bascule. Le sol, le ciel, la Tour qui regarde."
+   },
+   {
+    "s": "elias",
+    "t": "Pas… encore…",
+    "e": "exhausted"
+   },
+   {
+    "s": "registre",
+    "t": "ÉCHEC — Le Lecteur est mort."
+   },
+   {
+    "s": "registre",
+    "t": "Régression."
+   },
+   {
+    "event": "regress",
+    "args": {}
+   },
+   {
+    "end": true
+   }
+  ]
+ }
+}

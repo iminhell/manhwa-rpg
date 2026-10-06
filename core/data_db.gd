@@ -12,6 +12,7 @@ var souvenirs: Dictionary = {}
 var fins: Dictionary = {}
 var act_summary: Dictionary = {}
 var music: Dictionary = {}
+var refuge: Dictionary = {}
 
 
 func _ready() -> void:
@@ -30,6 +31,7 @@ func reload() -> void:
 	fins = load_json("res://data/world/fins.json").get("fins", {})
 	act_summary = load_json("res://data/world/act_summary.json")
 	music = load_json("res://data/audio/music.json")
+	refuge = load_json("res://data/world/refuge.json")
 
 
 static func load_json(path: String) -> Dictionary:

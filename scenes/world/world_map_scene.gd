@@ -10,6 +10,8 @@ const UI := preload("res://ui/ui_style.gd")
 const MapView := preload("res://scenes/world/map_view.gd")
 const GraphView := preload("res://scenes/world/graph_view.gd")
 const RegistrePanel := preload("res://scenes/world/registre_panel.gd")
+const RefugePanel := preload("res://scenes/world/refuge_panel.gd")
+const SavePanel := preload("res://scenes/save_panel.gd")
 
 var model
 var autopilot := false
@@ -26,6 +28,7 @@ var _actions: VBoxContainer
 var _log: RichTextLabel
 var _registre: Control
 var _busy := false
+var _last_autosave := -1
 
 
 func _ready() -> void:
@@ -60,6 +63,9 @@ func _ready() -> void:
 	var reg := UI.button("Registre", 20, UI.GOLD)
 	reg.pressed.connect(_toggle_registre)
 	top.add_child(reg)
+	var sv_btn := UI.button("Sauvegarder", 20, UI.GOLD)
+	sv_btn.pressed.connect(_open_save)
+	top.add_child(sv_btn)
 	var opt := UI.button("Options", 20)
 	opt.pressed.connect(func(): options_requested.emit())
 	top.add_child(opt)
@@ -168,6 +174,8 @@ func refresh() -> void:
 		c.queue_free()
 	for a in model.actions():
 		var label: String = a.get("label", "?")
+		if a.get("rest", false):
+			label = "Moment de repos avec %s" % DataDB.display_name(str(a["id"]).substr(6))
 		var cost := int(a.get("cost", 2))
 		if cost > 0:
 			label += "   [%s]" % _cost_text(cost)
@@ -183,7 +191,43 @@ func refresh() -> void:
 		MusicManager.play_context("night" if st.phase() == 3 else str(sec.get("music", "")))
 	if _registre.visible:
 		_registre.refresh()
+	_autosave(st)
 	_check_event.call_deferred()
+
+
+## Sauvegarde automatique à chaque nouvelle phase passée sur la carte.
+func _autosave(st) -> void:
+	var key: int = st.day() * 4 + st.phase()
+	if key != _last_autosave and not _busy:
+		_last_autosave = key
+		SaveManager.autosave()
+
+
+func _open_save() -> void:
+	if _busy:
+		return
+	var p := SavePanel.new()
+	p.mode = "save"
+	p.slot_chosen.connect(_save_to)
+	add_child(p)
+
+
+func _open_refuge() -> void:
+	var p := RefugePanel.new()
+	p.refuge = model.refuge
+	p.time_spent.connect(func(t): model.advance(t))
+	p.closed.connect(_close_refuge.bind(p))
+	add_child(p)
+
+
+func _save_to(slot: String) -> void:
+	SaveManager.save(slot)
+	_log.append_text("• Partie sauvegardée (emplacement %s).\n" % slot)
+
+
+func _close_refuge(p: Control) -> void:
+	p.queue_free()
+	refresh()
 
 
 func _cost_text(ticks: int) -> String:
@@ -230,6 +274,9 @@ func _on_action(a: Dictionary) -> void:
 	if _busy:
 		return
 	var res: Dictionary = model.do_action(a)
+	if res.has("panel"):
+		_open_refuge()
+		return
 	if res.has("encounter"):
 		_busy = true
 		combat_requested.emit(res["encounter"], res.get("win_fx", []))
@@ -261,6 +308,8 @@ func autopilot_step() -> void:
 		if st.check(str(leg["until"])):
 			continue
 		var target: String = leg["go"]
+		if OS.get_environment("AUTOPILOT_DEBUG") != "":
+			print("[autopilot] J%d p%d %s → %s/%s" % [st.day(), st.phase(), model.node_id(), target, leg["do"]])
 		if model.node_id() != target:
 			var step: Dictionary = model.path_step(target)
 			if step.has("travel"):

@@ -13,10 +13,12 @@ const CombatScene := preload("res://scenes/combat/combat_scene.gd")
 const WorldMapScene := preload("res://scenes/world/world_map_scene.gd")
 const ActSummary := preload("res://scenes/world/act_summary_screen.gd")
 const OptionsPanel := preload("res://scenes/options_panel.gd")
+const SavePanel := preload("res://scenes/save_panel.gd")
 const UI := preload("res://ui/ui_style.gd")
 
 const STORY := "prologue_j1"
-const AUTOTEST_MAX_STEPS := 6000
+const LAST_ACT := 2
+const AUTOTEST_MAX_STEPS := 12000
 
 var _screen: Control        ## écran principal (titre, prologue, carte, résumé)
 var _overlay: Control       ## dialogue/combat lancé par-dessus la carte
@@ -64,6 +66,8 @@ func _show_title() -> void:
 	MusicManager.play_context("title")
 	var t := TitleScreen.new()
 	t.new_loop.connect(_start_story.bind(true))
+	t.continue_game.connect(_load_slot.bind(""))
+	t.load_game.connect(_show_load)
 	t.combat_test.connect(_start_combat_test)
 	t.options.connect(_show_options)
 	t.quit_game.connect(func(): get_tree().quit())
@@ -72,6 +76,21 @@ func _show_title() -> void:
 
 func _show_options() -> void:
 	add_child(OptionsPanel.new())
+
+
+func _show_load() -> void:
+	var p := SavePanel.new()
+	p.mode = "load"
+	p.slot_chosen.connect(_load_slot)
+	add_child(p)
+
+
+## Charge un emplacement ("" = le plus récent) et ouvre la carte.
+func _load_slot(slot: String) -> void:
+	if slot == "":
+		slot = SaveManager.latest_slot()
+	if SaveManager.load_slot(slot):
+		_open_map()
 
 
 # --- Prologue ------------------------------------------------------------------------
@@ -189,6 +208,7 @@ func _defeat() -> void:
 
 func _regress() -> void:
 	GameState.regress()
+	SaveManager.update_meta(GameState.store)
 	if _autotest:
 		print("[autotest] régression → boucle %d" % GameState.store.loop())
 		_autotest_regressed = true
@@ -196,6 +216,7 @@ func _regress() -> void:
 
 
 func _end_act(act: int) -> void:
+	SaveManager.record_act(act)
 	if _autotest:
 		var st = GameState.store
 		var lines: Array = DataDB.act_summary.get("act%d" % act, []).filter(func(l): return st.check(str(l.get("if", ""))))
@@ -203,12 +224,25 @@ func _end_act(act: int) -> void:
 			act, st.loop(), st.day(), GameState.party_ids(), int(st.pressure())])
 		for l in lines:
 			print("[autotest]   • ", l["text"])
-		get_tree().quit(0)
+		if act >= LAST_ACT or OS.get_cmdline_user_args().has("--act1-only"):
+			get_tree().quit(0)
+			return
+		_dialogue.resume()
 		return
 	var s := ActSummary.new()
-	s.setup(act)
-	s.closed.connect(_show_title)
-	_set_screen(s)
+	s.setup(act, act < LAST_ACT)
+	s.closed.connect(_after_summary.bind(act, s))
+	add_child(s)
+
+
+## Après le résumé d'un acte : on continue sur la carte (actes intermédiaires) ou on revient au titre.
+func _after_summary(act: int, summary: Control) -> void:
+	summary.queue_free()
+	if act >= LAST_ACT:
+		_show_title()
+	else:
+		SaveManager.autosave()
+		_dialogue.resume()
 
 
 # --- Boucle de l'autopilote ---------------------------------------------------------------------

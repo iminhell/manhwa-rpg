@@ -1,0 +1,1259 @@
+{
+ "id": "act2_world",
+ "title": "Acte II — Monde (Ancres, Sommet, Classement)",
+ "start": "start",
+ "speakers": {
+  "cheon": "Cheon Mu-gyeong",
+  "tae_ju": "Cheon Tae-ju",
+  "nam": "Nam Gi-seok",
+  "jang": "Président Jang",
+  "agatha": "Mère Agatha",
+  "prophete": "Le Prophète"
+ },
+ "blocks": {
+  "start": [
+   {
+    "goto": "impot"
+   }
+  ],
+  "impot": [
+   {
+    "music": "registre"
+   },
+   {
+    "s": "system",
+    "t": "ANNONCE — Sceau du Poing. Le Groupe Cheonma instaure l'Impôt du Sang sur Gangnam."
+   },
+   {
+    "s": "cheon",
+    "t": "Chaque jour, chaque foyer de mon territoire paie. En vivres, en argent, ou en volontaires pour l'Arène. Ceux qui ne paient pas seront protégés… par quelqu'un d'autre. S'ils le trouvent.",
+    "e": "neutral"
+   },
+   {
+    "s": "narrator",
+    "t": "Sur les écrans de Gangnam, un colosse de soixante-quatre ans, les mains croisées sur une canne d'acier. Il ne cligne pas des yeux."
+   },
+   {
+    "s": "elias",
+    "t": "Dans l'autre vie, l'Impôt a vidé Gangnam en dix jours. Ceux qui ne pouvaient pas payer finissaient au Marché des Vassaux.",
+    "e": "neutral"
+   },
+   {
+    "choice": [
+     {
+      "t": "« Quelqu'un finira par lui dire non. »",
+      "goto": "impot_fin",
+      "fx": [
+       "add align.protect 1",
+       "flag impot_defi"
+      ]
+     },
+     {
+      "t": "« Un impôt, c'est une banque. Et une banque, ça se braque. »",
+      "goto": "impot_fin",
+      "fx": [
+       "add align.chaos 1",
+       "flag impot_defi"
+      ]
+     },
+     {
+      "t": "« Gangnam n'est pas mon problème. »",
+      "goto": "impot_fin",
+      "fx": [
+       "add align.bond -1"
+      ]
+     }
+    ]
+   }
+  ],
+  "impot_fin": [
+   {
+    "s": "registre",
+    "t": "Le Marché des Vassaux de Gangnam ouvre ses cages. Chaque jour, de nouveaux noms."
+   },
+   {
+    "end": true
+   }
+  ],
+  "vassaux": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Un ancien parking souterrain transformé en foire. Des cages de chantier, des colliers de glyphes rouges, des étiquettes : « Soigneur, rang D. 40. » « Porteur, robuste. 25. »"
+   },
+   {
+    "s": "narrator",
+    "t": "Les vassaux ne lèvent pas les yeux. Ceux qui lèvent les yeux coûtent moins cher."
+   },
+   {
+    "if": "flag('seo_vassale_cheonma')",
+    "then": "vassaux_seo"
+   },
+   {
+    "s": "elias",
+    "t": "Le Système appelle ça un contrat. Il y a une signature au bas de chaque collier.",
+    "e": "anger"
+   },
+   {
+    "end": true
+   }
+  ],
+  "vassaux_seo": [
+   {
+    "s": "narrator",
+    "t": "Dans la dernière cage, une blouse grise, des lunettes rondes fêlées, des cheveux auburn ternis. Elle panse le bras d'un vieux vassal avec un bout de son propre ourlet."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "…Ne me regardez pas. S'il vous plaît. Pas vous.",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "Park Seo-Yeon — vassale de Cheonma. Prix affiché : 150. Sa Fin du douzième jour a changé de forme. Elle n'a pas disparu."
+   },
+   {
+    "s": "elias",
+    "t": "(C'est moi qui l'ai mise là. Avec deux cents billets.)",
+    "e": "sad"
+   },
+   {
+    "end": true
+   }
+  ],
+  "etage2_ouvert": [
+   {
+    "music": "registre"
+   },
+   {
+    "s": "system",
+    "t": "ÉTAGE 2 — LA CITÉ SILENCIEUSE — OUVERT."
+   },
+   {
+    "s": "system",
+    "t": "Règle de l'étage : tout son au-dessus d'un murmure attire le Gardien."
+   },
+   {
+    "s": "narrator",
+    "t": "Aux portes de Yongsan, des robes blanches se rassemblent depuis l'aube. Elles portent des brancards. Sur les brancards, des gens attachés."
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — Premier sacrifice des Élus. Porte de la Tour, avant la nuit. Chaque sacrifice nourrit la Tour."
+   },
+   {
+    "end": true
+   }
+  ],
+  "sacrifice": [
+   {
+    "bg": "tower_gate"
+   },
+   {
+    "music": "boss"
+   },
+   {
+    "s": "narrator",
+    "t": "Devant l'arche d'obsidienne, trois brancards. Trois civils bâillonnés : un livreur, une lycéenne, un vieil homme en costume. Autour, cent robes blanches qui chantent sans ouvrir la bouche."
+   },
+   {
+    "s": "prophete",
+    "t": "La Tour a faim, mes enfants. Nourrissons-la, et elle nous bercera. Dans vingt jours, nous dormirons enfin."
+   },
+   {
+    "if": "loop() >= 2",
+    "then": "sacrifice_boucle"
+   },
+   {
+    "goto": "sacrifice_choix"
+   }
+  ],
+  "sacrifice_boucle": [
+   {
+    "s": "narrator",
+    "t": "Le masque blanc pivote vers toi. Lentement. Comme si le Prophète t'attendait exactement à cet endroit, à cette seconde."
+   },
+   {
+    "s": "prophete",
+    "t": "Tu es revenu. Tu reviens toujours. Et tu choisis toujours de les sauver, même quand ça ne sert à rien."
+   },
+   {
+    "s": "elias",
+    "t": "(Il se souvient. Comment est-ce qu'il se souvient ?)",
+    "e": "fear"
+   },
+   {
+    "goto": "sacrifice_choix"
+   }
+  ],
+  "sacrifice_choix": [
+   {
+    "choice": [
+     {
+      "t": "Briser le cercle et libérer les captifs.",
+      "goto": "sacrifice_combat",
+      "fx": [
+       "add align.protect 3"
+      ]
+     },
+     {
+      "t": "Observer le Prophète. Comprendre avant d'agir.",
+      "goto": "sacrifice_observer",
+      "fx": [
+       "add align.chaos -1"
+      ]
+     },
+     {
+      "t": "Partir. Trois vies contre la tienne, ce n'est pas un bon calcul.",
+      "goto": "sacrifice_partir",
+      "fx": [
+       "add align.bond -2"
+      ]
+     }
+    ]
+   }
+  ],
+  "sacrifice_combat": [
+   {
+    "if": "flag('simone_deal')",
+    "then": "sacrifice_simone"
+   },
+   {
+    "s": "elias",
+    "t": "Désolé de couper la messe.",
+    "e": "smirk"
+   },
+   {
+    "goto": "sacrifice_bataille"
+   }
+  ],
+  "sacrifice_simone": [
+   {
+    "s": "simone",
+    "t": "Rang F ! Mes gars couvrent le flanc gauche. Tu t'occupes des chanteurs, je m'occupe de ne pas te tirer dessus.",
+    "e": "cigar"
+   },
+   {
+    "fx": [
+     "add trust.simone 4"
+    ]
+   },
+   {
+    "goto": "sacrifice_bataille"
+   }
+  ],
+  "sacrifice_bataille": [
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "fanatiques"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "s": "narrator",
+    "t": "Les robes blanches se dispersent comme des pigeons. Tu tranches les liens des trois captifs. La lycéenne ne pleure pas : elle te regarde comme on regarde un monstre qui s'est trompé de camp."
+   },
+   {
+    "s": "prophete",
+    "t": "Tu retardes la miséricorde, Lecteur. Tu ne l'empêches pas.",
+    "e": "neutral"
+   },
+   {
+    "s": "narrator",
+    "t": "Le masque blanc recule dans la foule et disparaît. Une seconde, tu crois apercevoir une main gauche cachée dans une manche."
+   },
+   {
+    "s": "registre",
+    "t": "Sacrifice empêché. La Tour reste sur sa faim."
+   },
+   {
+    "fx": [
+     "flag sacrifice_empeche"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "sacrifice_observer": [
+   {
+    "s": "narrator",
+    "t": "Tu restes dans l'ombre des sacs de sable. Le Prophète lève les deux mains. La gauche est gantée de blanc. La droite est nue : de vieilles mains de femme, abîmées, qui ne tremblent pas."
+   },
+   {
+    "s": "narrator",
+    "t": "Les trois brancards glissent sous l'arche. La Tour avale les cris."
+   },
+   {
+    "s": "registre",
+    "t": "Le sacrifice est accompli. Pression de la Tour : +5."
+   },
+   {
+    "s": "elias",
+    "t": "(Des mains de soignante. J'ai déjà vu ces mains.)",
+    "e": "anger"
+   },
+   {
+    "fx": [
+     "pressure 5",
+     "flag prophete_mains"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "sacrifice_partir": [
+   {
+    "s": "registre",
+    "t": "Derrière toi, trois cris, puis un chant. Pression de la Tour : +5."
+   },
+   {
+    "fx": [
+     "pressure 5"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "sacrifice_absent": [
+   {
+    "music": "registre"
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — Premier sacrifice des Élus. Trois vies offertes à la Tour devant la Porte de Yongsan."
+   },
+   {
+    "s": "registre",
+    "t": "Pression de la Tour : +5."
+   },
+   {
+    "fx": [
+     "pressure 5"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "reve_j11": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "registre"
+   },
+   {
+    "if": "flag('haneul_trouvee')",
+    "then": "reve_j11_ok"
+   },
+   {
+    "s": "narrator",
+    "t": "Une nuit sans lune. Dans ton rêve, une porte sans serrure, et derrière, des voix qui chantent sans ouvrir la bouche."
+   },
+   {
+    "s": "haneul",
+    "t": "Ils sont devant ma porte, Elias. Ils ont des brancards. Viens. S'il te plaît.",
+    "e": "fear",
+    "v": true
+   },
+   {
+    "end": true
+   }
+  ],
+  "reve_j11_ok": [
+   {
+    "s": "narrator",
+    "t": "Haneul s'est endormie contre ton épaule, emmitouflée dans ton bomber. Elle parle en dormant."
+   },
+   {
+    "s": "haneul",
+    "t": "Avant toi, il y avait une autre Lectrice. Elle avait des lunettes rondes. Elle me portait, elle aussi.",
+    "e": "sad",
+    "v": true
+   },
+   {
+    "s": "haneul",
+    "t": "Elle a lu trois cent douze fois. Et puis un jour, elle a arraché une page.",
+    "e": "tilt"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle se réveille en sursaut et ne se souvient de rien. Toi, si. Trois cent douze : le nombre de la pierre qui pleure à l'envers."
+   },
+   {
+    "fx": [
+     "souvenir lectrice_zero",
+     "add aff.haneul 2"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "sommet": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "haein"
+   },
+   {
+    "s": "narrator",
+    "t": "Treizième jour. La cathédrale de Myeongdong, terrain neutre. Sous la voûte gothique, une table de banquet sortie d'un hôtel de luxe, et cinq fauteuils. Cinq Sceaux posés devant cinq assiettes vides."
+   },
+   {
+    "if": "flag('elias_celebre')",
+    "then": "sommet_invite"
+   },
+   {
+    "if": "flag('haein_rencontree') and not flag('haein_froid')",
+    "then": "sommet_haein"
+   },
+   {
+    "s": "narrator",
+    "t": "Les gardes des cinq clans bloquent le parvis. Tu passes par la crypte, comme dans l'autre vie, quand tu servais le thé à ce même Sommet sous un faux nom."
+   },
+   {
+    "goto": "sommet_couloir"
+   }
+  ],
+  "sommet_invite": [
+   {
+    "s": "system",
+    "t": "Invité d'honneur : Kang Elias, Premier Conquérant de l'Étage 1."
+   },
+   {
+    "s": "narrator",
+    "t": "Les gardes s'écartent. Cent regards se posent sur toi. Tu détestes ça."
+   },
+   {
+    "goto": "sommet_couloir"
+   }
+  ],
+  "sommet_haein": [
+   {
+    "s": "hae_in",
+    "t": "Vous êtes mon invité, Monsieur Kang. Ne me faites pas regretter cette faveur. Tenez-vous droit et ne touchez à rien.",
+    "e": "threat"
+   },
+   {
+    "goto": "sommet_couloir"
+   }
+  ],
+  "sommet_couloir": [
+   {
+    "s": "narrator",
+    "t": "Dans le couloir de la crypte, deux voix d'hommes. Tu reconnais l'une : le vice-président de Haesong, Nam Gi-seok. L'autre, plus douce, plus creuse : le président Jang de Mirae."
+   },
+   {
+    "choice": [
+     {
+      "t": "Écouter derrière le pilier.",
+      "goto": "couloir_ecouter",
+      "fx": [
+       "add align.chaos 1"
+      ]
+     },
+     {
+      "t": "Passer ton chemin.",
+      "goto": "sommet_table"
+     }
+    ]
+   }
+  ],
+  "couloir_ecouter": [
+   {
+    "s": "nam",
+    "t": "…la Présidente ne verra rien venir. Le vingt et unième jour, au conseil. Cheonma fournit les hommes, vous fournissez les serveurs.",
+    "e": "neutral"
+   },
+   {
+    "s": "jang",
+    "t": "Et ARCHE ?",
+    "e": "neutral"
+   },
+   {
+    "s": "nam",
+    "t": "Enterré avec elle. Le Sceau de la Balance pour moi, les données de la sonde pour vous.",
+    "e": "neutral"
+   },
+   {
+    "s": "registre",
+    "t": "Souvenir gravé : Nam Gi-seok et Jang Woo-hyun préparent la chute de Yoon Hae-in. Jour 21."
+   },
+   {
+    "fx": [
+     "souvenir nam_jang"
+    ]
+   },
+   {
+    "goto": "sommet_table"
+   }
+  ],
+  "sommet_table": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Autour de la table : Cheon Mu-gyeong, immense, la canne entre les genoux, son fils Tae-ju debout derrière lui. Yoon Hae-in, impeccable, Nam à sa droite. Long Xiaoyu et son éventail, l'Oncle Fang dans son ombre. Le président Jang, souriant. Et Baek Ryeon, seule, le sabre sur les genoux, à la place de son grand-père malade."
+   },
+   {
+    "s": "agatha",
+    "t": "Mes enfants, vous êtes sur une terre de paix. Celui qui tire une lame sous cette voûte la tire contre tous les autres.",
+    "e": "neutral"
+   },
+   {
+    "s": "cheon",
+    "t": "Alors parlons affaires. Gangnam paie l'Impôt du Sang. Le Han appartient au Courant. Et la Maison Baek entre dans la mienne : ma bru sera unie à mon fils au dix-septième jour.",
+    "e": "neutral"
+   },
+   {
+    "s": "ryeon",
+    "t": "Je n'ai jamais dit oui.",
+    "e": "anger"
+   },
+   {
+    "s": "tae_ju",
+    "t": "Personne ne t'a posé la question.",
+    "e": "contempt"
+   },
+   {
+    "if": "flag('seo_mordue') and party('seo_yeon')",
+    "then": "sommet_seo"
+   },
+   {
+    "goto": "sommet_intervention"
+   }
+  ],
+  "sommet_seo": [
+   {
+    "s": "jang",
+    "t": "Un dernier point, si vous permettez. Une médecin de Yeouido a survécu à une morsure de Rôdeur. Son sang vaut plus que nos cinq Sceaux réunis. Mirae offre trois cents pour elle. Haesong surenchérira, j'imagine.",
+    "e": "neutral"
+   },
+   {
+    "s": "hae_in",
+    "t": "Haesong ne marchande pas les êtres humains en public, Président Jang. En privé, c'est autre chose.",
+    "e": "threat"
+   },
+   {
+    "s": "narrator",
+    "t": "Tous les regards se tournent vers toi. Ils savent qu'elle est avec toi."
+   },
+   {
+    "choice": [
+     {
+      "t": "« Elle n'est pas à vendre. Celui qui la touche me trouvera. »",
+      "goto": "seo_proteger",
+      "fx": [
+       "add align.protect 3",
+       "add aff.seo_yeon 5",
+       "add trust.seo_yeon 5"
+      ]
+     },
+     {
+      "t": "« Trois cents ? Vous la sous-estimez. »",
+      "goto": "seo_livrer",
+      "fx": [
+       "add align.protect -10",
+       "add align.bond -5",
+       "money 300"
+      ]
+     }
+    ]
+   }
+  ],
+  "seo_proteger": [
+   {
+    "s": "cheon",
+    "t": "Un rang F qui menace une table de Seigneurs. J'aime ça. Ça ne durera pas, mais j'aime ça.",
+    "e": "joy"
+   },
+   {
+    "fx": [
+     "flag seo_protegee"
+    ]
+   },
+   {
+    "goto": "sommet_intervention"
+   }
+  ],
+  "seo_livrer": [
+   {
+    "s": "narrator",
+    "t": "Le président Jang sourit. Il fait un signe. Deux hommes en gris quittent la nef."
+   },
+   {
+    "s": "registre",
+    "t": "Park Seo-Yeon — livrée à Mirae Dynamics. Le Registre retient sa respiration."
+   },
+   {
+    "fx": [
+     "flag seo_livree",
+     "leave seo_yeon",
+     "add trust.seo_yeon -50"
+    ]
+   },
+   {
+    "goto": "sommet_intervention"
+   }
+  ],
+  "sommet_intervention": [
+   {
+    "s": "registre",
+    "t": "Le Sommet se ferme dans une heure. Tu n'auras qu'une seule prise de parole."
+   },
+   {
+    "choice": [
+     {
+      "t": "Proposer la Trêve de la Tour : aucun clan n'attaque un autre pendant la Marée.",
+      "goto": "inter_treve",
+      "if": "flag('elias_celebre') or v('eau.controle', '') == 'partage' or flag('haein_alliance')"
+     },
+     {
+      "t": "Révéler les foreuses de Mirae sous Myeongdong, en terrain neutre.",
+      "goto": "inter_foreuses",
+      "if": "souvenir('foreuses_mirae')"
+     },
+     {
+      "t": "Révéler le Projet ARCHE devant tout le monde.",
+      "goto": "inter_arche",
+      "fx": [
+       "add align.chaos 5"
+      ]
+     },
+     {
+      "t": "Te taire. Observer. Retenir.",
+      "goto": "inter_silence",
+      "fx": [
+       "add align.chaos -1"
+      ]
+     }
+    ]
+   }
+  ],
+  "inter_treve": [
+   {
+    "s": "elias",
+    "t": "La Tour vous tue un par un pendant que vous comptez vos Sceaux. Trêve pendant la Marée. Personne n'attaque personne la nuit. Ceux qui rompent la trêve, les quatre autres les écrasent.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Je signe. Mes barges ont autre chose à faire que se battre dans le noir.",
+    "e": "fan"
+   },
+   {
+    "s": "cheon",
+    "t": "…Une trêve de nuit. Le jour reste à moi. Signé.",
+    "e": "neutral"
+   },
+   {
+    "s": "registre",
+    "t": "TRÊVE DE LA TOUR — signée par les cinq Sceaux. Pression de la Tour : −4."
+   },
+   {
+    "fx": [
+     "flag treve_signee",
+     "pressure -4",
+     "add align.protect 3",
+     "add align.bond 2"
+    ]
+   },
+   {
+    "goto": "sommet_apres"
+   }
+  ],
+  "inter_foreuses": [
+   {
+    "s": "elias",
+    "t": "Mirae fore sous Myeongdong depuis une semaine. Sous cette cathédrale. Sous votre terre de paix. Forage MD-3, capteurs à poser avant le quatorzième jour.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "agatha",
+    "t": "…Est-ce vrai, Président Jang ?",
+    "e": "anger"
+   },
+   {
+    "s": "jang",
+    "t": "Des relevés géologiques. Pour la sécurité de tous, évidemment.",
+    "e": "neutral"
+   },
+   {
+    "s": "hae_in",
+    "t": "Évidemment. Haesong propose que les forages sous terrain neutre soient interdits. Immédiatement.",
+    "e": "threat"
+   },
+   {
+    "s": "registre",
+    "t": "Vote des Sceaux : forages interdits sous Myeongdong. La foreuse MD-3 sera arrêtée cette nuit."
+   },
+   {
+    "s": "narrator",
+    "t": "Le sourire du président Jang reste en place. Ses yeux, non."
+   },
+   {
+    "fx": [
+     "flag forage_interdit",
+     "add trust.hae_in 5",
+     "add align.protect 2"
+    ]
+   },
+   {
+    "goto": "sommet_apres"
+   }
+  ],
+  "inter_arche": [
+   {
+    "s": "elias",
+    "t": "Avant de vous partager Séoul, demandez à Haesong ce qu'est le Projet ARCHE. Demandez qui a envoyé une sonde sous Yongsan. Et qui a reçu une réponse.",
+    "e": "anger",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Le silence est absolu. Yoon Hae-in ne bouge pas. Elle repose sa tasse de thé sans un bruit, et te regarde comme on regarde quelqu'un qui vient de mourir sans le savoir."
+   },
+   {
+    "s": "hae_in",
+    "t": "Monsieur Kang a beaucoup d'imagination. Haesong prendra note.",
+    "e": "threat"
+   },
+   {
+    "s": "cheon",
+    "t": "Une sonde ? Sous Yongsan ? Présidente Yoon, nous aurons une conversation.",
+    "e": "anger"
+   },
+   {
+    "s": "registre",
+    "t": "Projet ARCHE révélé. Haesong vacille. Yoon Hae-in n'oubliera jamais."
+   },
+   {
+    "fx": [
+     "flag arche_revelee",
+     "add trust.hae_in -30",
+     "add fear.hae_in 10"
+    ]
+   },
+   {
+    "goto": "sommet_apres"
+   }
+  ],
+  "inter_silence": [
+   {
+    "s": "narrator",
+    "t": "Tu ne dis rien. Tu les regardes se partager une ville qu'ils ne verront pas finir. Tu retiens les noms, les regards, les mains qui tremblent."
+   },
+   {
+    "s": "elias",
+    "t": "(Cheon veut une dynastie. Hae-in veut effacer. Jang veut des données. Xiaoyu veut survivre à ses oncles. Ryeon veut juste qu'on lui demande.)",
+    "e": "neutral"
+   },
+   {
+    "goto": "sommet_apres"
+   }
+  ],
+  "sommet_apres": [
+   {
+    "s": "narrator",
+    "t": "Le Sommet se disperse. Dans le cloître, quelques minutes, un seul aparté possible avant que les gardes reprennent leurs places."
+   },
+   {
+    "choice": [
+     {
+      "t": "Prévenir Yoon Hae-in : Nam la trahira au vingt et unième jour.",
+      "goto": "apres_haein",
+      "if": "souvenir('nam_jang') and not flag('arche_revelee')"
+     },
+     {
+      "t": "Parler à Baek Ryeon, seule dans le cloître.",
+      "goto": "apres_ryeon"
+     },
+     {
+      "t": "Glisser à Long Xiaoyu : « Surveille Fang. Il a un acheteur. »",
+      "goto": "apres_xiaoyu"
+     },
+     {
+      "t": "Rentrer.",
+      "goto": "sommet_fin"
+     }
+    ]
+   }
+  ],
+  "apres_haein": [
+   {
+    "s": "hae_in",
+    "t": "Nam. Mon vice-président depuis neuf ans.",
+    "e": "neutral"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle ne te demande pas comment tu sais. Elle te demande combien de preuves tu as. Puis elle reste longtemps silencieuse, les yeux sur les vitraux."
+   },
+   {
+    "s": "hae_in",
+    "t": "Vous venez d'acheter beaucoup de ma confiance, Monsieur Kang. C'est une monnaie que je n'émets presque jamais.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "fx": [
+     "flag haein_avertie",
+     "add trust.hae_in 15"
+    ]
+   },
+   {
+    "goto": "sommet_fin"
+   }
+  ],
+  "apres_ryeon": [
+   {
+    "s": "ryeon",
+    "t": "Tu étais le seul, dans cette pièce, à ne pas me regarder comme un meuble qu'on déménage.",
+    "e": "tsundere"
+   },
+   {
+    "s": "elias",
+    "t": "Le dix-septième jour, au crépuscule, tu vas provoquer Tae-ju en duel pour refuser ce mariage. Et tu vas perdre.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "ryeon",
+    "t": "…Comment tu… Je n'en ai parlé à personne. Je ne l'ai même pas encore décidé.",
+    "e": "surprise"
+   },
+   {
+    "s": "ryeon",
+    "t": "Je ne perdrai pas. Mais… je t'écouterai. Une fois.",
+    "e": "tsundere"
+   },
+   {
+    "fx": [
+     "flag ryeon_avertie",
+     "add trust.ryeon 8"
+    ]
+   },
+   {
+    "if": "not flag('ryeon_rencontree')",
+    "then": "apres_ryeon_fin"
+   },
+   {
+    "goto": "sommet_fin"
+   }
+  ],
+  "apres_ryeon_fin": [
+   {
+    "s": "registre",
+    "t": "Lecture de la Fin — Baek Ryeon. Jour 17, Crépuscule. Domaine Baek. Tuée en duel d'honneur."
+   },
+   {
+    "fx": [
+     "flag ryeon_rencontree",
+     "fin ryeon"
+    ]
+   },
+   {
+    "goto": "sommet_fin"
+   }
+  ],
+  "apres_xiaoyu": [
+   {
+    "s": "xiaoyu",
+    "t": "Fang m'a fait sauter sur ses genoux quand j'avais quatre ans.",
+    "e": "fan"
+   },
+   {
+    "s": "xiaoyu",
+    "t": "…C'est exactement pour ça qu'il pense que je ne le soupçonnerai jamais. Merci, Kang. Je n'oublie pas mes dettes non plus.",
+    "e": "desire"
+   },
+   {
+    "fx": [
+     "flag xiaoyu_avertie",
+     "add trust.xiaoyu 8"
+    ]
+   },
+   {
+    "if": "not flag('xiaoyu_rencontree')",
+    "then": "apres_xiaoyu_fin"
+   },
+   {
+    "goto": "sommet_fin"
+   }
+  ],
+  "apres_xiaoyu_fin": [
+   {
+    "s": "registre",
+    "t": "Lecture de la Fin — Long Xiaoyu. Jour 19, Nuit. Sur le Han. Poignardée par ses propres lieutenants."
+   },
+   {
+    "fx": [
+     "flag xiaoyu_rencontree",
+     "fin xiaoyu"
+    ]
+   },
+   {
+    "goto": "sommet_fin"
+   }
+  ],
+  "sommet_fin": [
+   {
+    "s": "narrator",
+    "t": "Sur le parvis, Mère Agatha raccompagne les Seigneurs un par un. Quand vient ton tour, elle te retient par le poignet, d'une main abîmée qui ne tremble pas."
+   },
+   {
+    "s": "agatha",
+    "t": "Tu as changé beaucoup de pages, cette fois, mon fils. Prends garde. Le papier se déchire, à force."
+   },
+   {
+    "fx": [
+     "flag sommet_vu"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "sommet_absent": [
+   {
+    "music": "registre"
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — Le Sommet des Sceaux. Tu n'es pas là."
+   },
+   {
+    "s": "registre",
+    "t": "Les cinq Sceaux se partagent Séoul. Le mariage de Baek Ryeon et de Cheon Tae-ju est fixé au dix-septième jour."
+   },
+   {
+    "s": "registre",
+    "t": "Personne ne parle des foreuses sous Myeongdong. Personne ne parle de la Tour."
+   },
+   {
+    "end": true
+   }
+  ],
+  "classement": [
+   {
+    "music": "registre"
+   },
+   {
+    "bg": "black"
+   },
+   {
+    "s": "system",
+    "t": "DEUXIÈME CLASSEMENT DES CANDIDATS."
+   },
+   {
+    "s": "system",
+    "t": "1. Cheon Mu-gyeong — Rang S — Roi Démon. 2. Baek Ryeon — Rang A. 3. ??? — Rang A — Identité masquée."
+   },
+   {
+    "if": "flag('mere_vaincue')",
+    "then": "classement_conquerant"
+   },
+   {
+    "s": "system",
+    "t": "… 12 408. Kang Elias — Rang E — Porteur."
+   },
+   {
+    "s": "elias",
+    "t": "Douze mille. On remonte. Trop vite.",
+    "e": "smirk"
+   },
+   {
+    "goto": "classement_fins"
+   }
+  ],
+  "classement_conquerant": [
+   {
+    "s": "system",
+    "t": "… 211. Kang Elias — Rang D — Porteur. MENTION : Premier Conquérant de l'Étage 2."
+   },
+   {
+    "s": "narrator",
+    "t": "Ton nom, deuxième fois en lettres d'or sur les écrans de Gangnam. Dans sa tour, Cheon Mu-gyeong ne repose pas son verre, cette fois. Il le vide."
+   },
+   {
+    "fx": [
+     "flag elias_celebre"
+    ]
+   },
+   {
+    "goto": "classement_fins"
+   }
+  ],
+  "classement_fins": [
+   {
+    "s": "registre",
+    "t": "Bilan des Fins de l'Acte II."
+   },
+   {
+    "if": "flag('aoi_sauvee')",
+    "then": "cf_aoi_ok",
+    "else": "cf_aoi_non"
+   }
+  ],
+  "cf_aoi_ok": [
+   {
+    "s": "registre",
+    "t": "Aoi Tsukishiro — page réécrite. Elle chante encore."
+   },
+   {
+    "goto": "cf_seo"
+   }
+  ],
+  "cf_aoi_non": [
+   {
+    "s": "registre",
+    "t": "Aoi Tsukishiro — page close. Jour 9."
+   },
+   {
+    "goto": "cf_seo"
+   }
+  ],
+  "cf_seo": [
+   {
+    "if": "flag('seo_morte')",
+    "then": "cf_seo_non"
+   },
+   {
+    "if": "flag('seo_livree')",
+    "then": "cf_seo_livree"
+   },
+   {
+    "s": "registre",
+    "t": "Park Seo-Yeon — page réécrite. Elle recoud encore."
+   },
+   {
+    "goto": "cf_maricel"
+   }
+  ],
+  "cf_seo_non": [
+   {
+    "s": "registre",
+    "t": "Park Seo-Yeon — page close. Une religieuse, à Myeongdong, a perdu un peu de son encre."
+   },
+   {
+    "goto": "cf_maricel"
+   }
+  ],
+  "cf_seo_livree": [
+   {
+    "s": "registre",
+    "t": "Park Seo-Yeon — page vendue. Le Registre refuse d'écrire la suite."
+   },
+   {
+    "goto": "cf_maricel"
+   }
+  ],
+  "cf_maricel": [
+   {
+    "if": "flag('maricel_sauvee')",
+    "then": "cf_maricel_ok",
+    "else": "cf_maricel_non"
+   }
+  ],
+  "cf_maricel_ok": [
+   {
+    "s": "registre",
+    "t": "Maricel Dizon — page réécrite. Elle vole encore."
+   },
+   {
+    "goto": "classement_pacte"
+   }
+  ],
+  "cf_maricel_non": [
+   {
+    "s": "registre",
+    "t": "Maricel Dizon — page close. Jour 14. Onze Rats avec elle."
+   },
+   {
+    "goto": "classement_pacte"
+   }
+  ],
+  "classement_pacte": [
+   {
+    "if": "flag('pacte.seo_yeon') and party('seo_yeon') and v('ambivalence.seo_yeon') <= -30",
+    "then": "revolte"
+   },
+   {
+    "goto": "classement_quete"
+   }
+  ],
+  "revolte": [
+   {
+    "bg": "yeouido_camp"
+   },
+   {
+    "s": "narrator",
+    "t": "Le soir du Classement, le camp de Yeouido refuse le tribut. Quarante survivants alignés devant les tentes, des pieux à la main. Devant eux, Seo-Yeon, ton collier de glyphes rouges au cou."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Le camp ne paiera plus. Si vous voulez le tribut, prenez-le sur moi. La clause le permet, non ?",
+    "e": "anger",
+    "v": true
+   },
+   {
+    "choice": [
+     {
+      "t": "Briser le Pacte. « Le camp est libre. Toi aussi. »",
+      "goto": "revolte_liberer",
+      "fx": [
+       "add align.protect 5",
+       "unflag pacte.seo_yeon",
+       "add trust.seo_yeon 20",
+       "set ambivalence.seo_yeon 0"
+      ]
+     },
+     {
+      "t": "Faire valoir la clause. Le Pacte se resserre.",
+      "goto": "revolte_ecraser",
+      "fx": [
+       "add align.protect -5",
+       "add fear.seo_yeon 20",
+       "add ambivalence.seo_yeon -20"
+      ]
+     }
+    ]
+   }
+  ],
+  "revolte_liberer": [
+   {
+    "s": "narrator",
+    "t": "Les glyphes rouges s'effritent autour de sa gorge comme de la rouille. Le camp se tait. Seo-Yeon touche son cou nu."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "…Pourquoi maintenant ?",
+    "e": "surprise"
+   },
+   {
+    "s": "elias",
+    "t": "Parce que tu me l'as enfin demandé en face.",
+    "e": "neutral"
+   },
+   {
+    "fx": [
+     "flag pacte_libere"
+    ]
+   },
+   {
+    "goto": "classement_quete"
+   }
+  ],
+  "revolte_ecraser": [
+   {
+    "s": "narrator",
+    "t": "Le collier s'embrase. Seo-Yeon tombe à genoux, une main à la gorge. Personne dans le camp ne bouge. Ils ont compris qui commande."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Je paierai. Pour eux. Pas pour vous. Jamais pour vous.",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "fx": [
+     "flag revolte_ecrasee"
+    ]
+   },
+   {
+    "goto": "classement_quete"
+   }
+  ],
+  "classement_quete": [
+   {
+    "s": "system",
+    "t": "Quêtes de Faction disponibles. Le Système attend un choix de camp avant le dix-neuvième jour."
+   },
+   {
+    "if": "flag('impot_defi') and flag('vassaux_liberes')",
+    "then": "classement_cheon"
+   },
+   {
+    "goto": "classement_fin"
+   }
+  ],
+  "classement_cheon": [
+   {
+    "s": "narrator",
+    "t": "Une enveloppe de cuir rouge, déposée par un colosse en costume qui ne dit pas un mot. À l'intérieur, une seule phrase, d'une écriture énorme."
+   },
+   {
+    "s": "cheon",
+    "t": "« Tu as brisé mes cages et défié mon impôt. Viens dans mon Arène, rang F. Ou je viendrai dans ton Refuge. — C. »",
+    "e": "neutral"
+   },
+   {
+    "fx": [
+     "flag defi_cheonma"
+    ]
+   },
+   {
+    "goto": "classement_fin"
+   }
+  ],
+  "classement_fin": [
+   {
+    "s": "narrator",
+    "t": "FIN DE L'ACTE II — « Consolidation »."
+   },
+   {
+    "event": "end_act",
+    "args": {
+     "act": 2
+    }
+   },
+   {
+    "end": true
+   }
+  ],
+  "defeat": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Le monde bascule. Le sol, le ciel, la Tour qui regarde."
+   },
+   {
+    "s": "elias",
+    "t": "Pas… encore…",
+    "e": "exhausted"
+   },
+   {
+    "s": "registre",
+    "t": "ÉCHEC — Le Lecteur est mort."
+   },
+   {
+    "s": "registre",
+    "t": "Régression."
+   },
+   {
+    "event": "regress",
+    "args": {}
+   },
+   {
+    "end": true
+   }
+  ]
+ }
+}

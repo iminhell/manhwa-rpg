@@ -17,5 +17,26 @@
     "ja": "tts_aoi_ja",
     "timbre": "soprano cristalline, voix parlée éraillée"
   },
-  "art_token": "aoi_tsukishiro"
+  "art_token": "aoi_tsukishiro",
+  "combat": {
+    "stats": {
+      "hp": 75,
+      "atk": 9,
+      "def": 3,
+      "spd": 14,
+      "mana": 90
+    },
+    "position": [
+      2,
+      0
+    ],
+    "skills": [
+      "riff",
+      "encore",
+      "ballade",
+      "fausse_note",
+      "garde",
+      "dernier_rappel"
+    ]
+  }
 }

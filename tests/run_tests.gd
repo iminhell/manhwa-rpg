@@ -7,6 +7,8 @@ const DialogueRunner := preload("res://narrative/dialogue_runner.gd")
 const CombatState := preload("res://combat/combat_state.gd")
 const DataDB := preload("res://core/data_db.gd")
 const WorldModel := preload("res://world/world_model.gd")
+const RefugeModel := preload("res://world/refuge_model.gd")
+const SaveFormat := preload("res://core/save_format.gd")
 
 var _passed := 0
 var _failed := 0
@@ -20,9 +22,12 @@ func _init() -> void:
 	test_combat_full_battles()
 	test_combat_rewrite()
 	test_combat_fear()
+	test_combat_pull_charm()
 	test_time()
 	test_world_model()
 	test_dialogue_fuzz()
+	test_save_roundtrip()
+	test_refuge()
 	print("\n%d réussis, %d échoués" % [_passed, _failed])
 	quit(1 if _failed > 0 else 0)
 
@@ -125,7 +130,9 @@ func test_combat_targeting() -> void:
 ## Joue des combats complets avec la politique automatique : ils doivent se terminer.
 func test_combat_full_battles() -> void:
 	var parties := {"tuto_rodeur": ["elias"], "j1_maree": ["elias"], "j2_camp": ["elias", "seo_yeon"],
-		"portier_test": ["elias", "seo_yeon", "haneul", "hae_in"]}
+		"portier_test": ["elias", "seo_yeon", "haneul", "hae_in"],
+		"concert_maree": ["elias", "seo_yeon", "haneul", "aoi"], "tunnels": ["elias", "haneul", "aoi", "maricel"],
+		"mere_sourde": ["elias", "seo_yeon", "haneul", "aoi", "maricel"]}
 	for enc in parties:
 		for seed_value in [7, 11, 23]:
 			var st := _load_combat(enc, parties[enc], seed_value)
@@ -172,6 +179,37 @@ func test_combat_fear() -> void:
 	check(enemy.fled and st.result() == "win", "Peur ≥ 100 : l'ennemi fuit")
 
 
+## Acte II : Grappin (attire en première ligne) et Charme (l'ennemi frappe les siens).
+func test_combat_pull_charm() -> void:
+	var st := _load_combat("concert_maree", ["elias", "aoi", "maricel"], 9)
+	var back = st.unit_at("enemy", 2, 2)
+	var front = st.unit_at("enemy", 0, 2)
+	check(back != null and front != null, "concert_maree : ennemis aux positions attendues")
+	if back == null or front == null:
+		return
+	st._apply(st.unit("maricel"), back, {"type": "pull"})
+	check(back.row == 0 and front.row == 2, "Grappin : la cible passe devant, l'occupant recule")
+	check(st.valid_targets(st.unit("elias"), "frappe_recouvreur").has(back), "Grappin : la cible devient attaquable en mêlée")
+	var charmed = st.alive("enemy")[0]
+	charmed.statuses["charm"] = 2
+	var allies_hp := 0
+	for u in st.alive("ally"):
+		allies_hp += u.hp
+	var enemies_hp := 0
+	for u in st.alive("enemy"):
+		if u != charmed:
+			enemies_hp += u.hp
+	st.run_enemy_turn(charmed)
+	var allies_after := 0
+	for u in st.alive("ally"):
+		allies_after += u.hp
+	var enemies_after := 0
+	for u in st.units.filter(func(x): return x.side == "enemy" and x != charmed):
+		enemies_after += max(0, u.hp)
+	check(allies_after == allies_hp, "Charme : aucun allié touché")
+	check(enemies_after < enemies_hp, "Charme : un ennemi frappe les siens")
+
+
 func test_time() -> void:
 	var s := StateStore.new()
 	check(s.day() == 1 and s.phase() == 0, "J1 Aube au départ")
@@ -192,7 +230,8 @@ func test_time() -> void:
 
 
 func _world(store) -> WorldModel:
-	return WorldModel.new(store, DataDB.load_json("res://data/world/sectors.json"), DataDB.load_json("res://data/world/events.json"))
+	return WorldModel.new(store, DataDB.load_json("res://data/world/sectors.json"), DataDB.load_json("res://data/world/events.json"),
+		DataDB.load_json("res://data/world/refuge.json"))
 
 
 func test_world_model() -> void:
@@ -283,3 +322,77 @@ func test_dialogue_fuzz() -> void:
 				runs += 1
 				check(ended, "%s:%s se termine" % [id, block])
 	print("  fuzz dialogues : %d parcours" % runs)
+
+
+func test_save_roundtrip() -> void:
+	var s := StateStore.new()
+	s.set_var("loop", 2)
+	s.set_time(6, 2)
+	s.apply_effects(["flag camp_defendu", "join seo_yeon", "souvenir s1_bunker_b6", "money 75", "item ration 3", "add align.protect 12"])
+	s.set_var("pos.node", "yeouido.camp")
+	s.set_var("pos.sector", "yeouido")
+	var data := SaveFormat.build_save(s, ["elias", "seo_yeon"])
+	var text := JSON.stringify(data)
+	var back: Dictionary = JSON.parse_string(text)
+	var s2 := StateStore.new()
+	s2.from_dict(back["store"])
+	check(s2.day() == 6 and s2.phase() == 2 and s2.loop() == 2, "sauvegarde : temps et boucle restaurés")
+	check(s2.has_flag("camp_defendu") and s2.party("seo_yeon") and s2.souvenir("s1_bunker_b6"), "sauvegarde : drapeaux, groupe, souvenirs")
+	check(s2.money() == 75 and s2.item("ration") == 3 and int(s2.get_var("align.protect")) == 12, "sauvegarde : ressources et alignement")
+	check(back["summary"]["node"] == "yeouido.camp" and int(back["summary"]["day"]) == 6, "sauvegarde : résumé de l'emplacement")
+	var w := _world(s2)
+	w.refresh()
+	check(w.node_id() == "yeouido.camp" and w.is_refuge("yeouido.camp"), "sauvegarde : le monde se reconstruit depuis l'état")
+
+
+func test_refuge() -> void:
+	var s := StateStore.new()
+	s.set_time(5, 2)
+	s.set_var("fatigue", 0)
+	s.apply_effects(["flag camp_defendu", "join seo_yeon", "join haneul", "money 200", "item ration 5", "item fragment_strate 2"])
+	var w := _world(s)
+	w.place("yeouido.camp")
+	var ids: Array = w.actions().map(func(a): return a.get("id"))
+	check(ids.has("_establish") and not ids.has("_manage"), "refuge : établir proposé, pas encore géré")
+	for a in w.actions():
+		if a.get("id") == "_establish":
+			w.do_action(a)
+	var r = w.refuge
+	check(r.established() and r.node_id() == "yeouido.camp" and r.rations() == 2, "refuge établi avec 2 rations de départ")
+	ids = w.actions().map(func(a): return a.get("id"))
+	check(ids.has("_manage") and ids.has("_rest_seo_yeon") and ids.has("_rest_haneul"), "refuge : gestion et repos avec chaque héroïne")
+	check(r.residents() == 3 and r.daily_need() == 2, "3 résidents → 2 rations par jour")
+	check(r.deposit(5) == 5 and r.rations() == 7 and s.item("ration") == 0, "dépôt de rations")
+	check(r.build("cuisine") == 4 and r.has("cuisine") and r.rations() == 5 and s.money() == 170, "construction : coût et effet")
+	check(not r.can_build("cuisine"), "amélioration déjà construite")
+	check(r.build("atelier") > 0 and r.sell_fragments() == 2 and s.money() == 160, "atelier : vente des fragments")
+	s.set_time(6, 0)
+	s.set_var("fatigue", 0)
+	w.refresh()
+	check(r.rations() == 4, "entretien : +1 cuisine −2 besoin (%d)" % r.rations())
+	s.set_var("refuge.rations", 0)
+	var trust_before := s.trust("seo_yeon")
+	s.set_time(7, 0)
+	s.set_var("fatigue", 0)
+	w.refresh()
+	check(int(s.get_var("refuge.faim")) == 1 and s.trust("seo_yeon") < trust_before, "famine : faim et perte de Confiance")
+	r.build("infirmerie")
+	for e in ["j7_classement", "j7_reve", "maree"]:
+		s.set_flag("event." + e)  # la nuit ne doit pas être interrompue pour ce test
+	s.set_var("refuge.rations", 10)  # pas de famine cette nuit
+	var t := s.trust("haneul")
+	w.place("yeouido.camp")
+	while not w.take_event().is_empty():
+		pass
+	w.sleep()
+	check(s.trust("haneul") == t + 1, "infirmerie : nuit au Refuge → +1 Confiance")
+	s.set_time(s.day(), 2)
+	w.take_event()
+	var rest := w.actions().filter(func(a): return a.get("rest", false))
+	w.do_action(rest[0])
+	check(w.actions().filter(func(a): return a.get("rest", false)).is_empty(), "un seul moment de repos par jour")
+	# Vigie : pas de Marée dans le secteur du Refuge
+	s.set_flag("refuge.vigie")
+	w.place("yeouido.ifc")
+	s.set_time(s.day(), 3)
+	check(not w.next_event().get("id", "") == "maree", "vigie : pas de Marée dans le secteur du Refuge")

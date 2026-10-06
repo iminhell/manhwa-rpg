@@ -6,7 +6,10 @@ signal closed
 const UI := preload("res://ui/ui_style.gd")
 
 
-func setup(act: int) -> void:
+const TITLES := {1: "ÉVEIL", 2: "CONSOLIDATION"}
+
+
+func setup(act: int, can_continue: bool = false) -> void:
 	UI.full_rect(self)
 	var bg := ColorRect.new()
 	bg.color = Color(0.02, 0.02, 0.04)
@@ -19,7 +22,7 @@ func setup(act: int) -> void:
 	v.offset_bottom = -60
 	v.add_theme_constant_override("separation", 10)
 	add_child(v)
-	v.add_child(UI.label("FIN DE L'ACTE %d — ÉVEIL" % act, 48, UI.GOLD))
+	v.add_child(UI.label("FIN DE L'ACTE %d — %s" % [act, TITLES.get(act, "")], 48, UI.GOLD))
 	var st = GameState.store
 	v.add_child(UI.label("Boucle %d · Jour %d · Pression %d · Protéger/Dominer %+d · Lien/Solitude %+d · Groupe : %s" % [
 		st.loop(), st.day(), int(st.pressure()), int(st.get_var("align.protect")), int(st.get_var("align.bond")),
@@ -32,6 +35,6 @@ func setup(act: int) -> void:
 	for line in DataDB.act_summary.get("act%d" % act, []):
 		if st.check(str(line.get("if", ""))):
 			text.append_text("• %s\n" % line["text"])
-	var b := UI.button("Retour au titre", 26)
+	var b := UI.button("Continuer vers l'Acte %d" % (act + 1) if can_continue else "Retour au titre", 26)
 	b.pressed.connect(func(): closed.emit())
 	v.add_child(b)

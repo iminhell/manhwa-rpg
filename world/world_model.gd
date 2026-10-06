@@ -9,7 +9,8 @@ extends RefCounted
 const TRAVEL_ADJACENT := 4
 const TRAVEL_FAR := 8
 const COLLAPSE_FATIGUE := 28   ## 7 phases éveillé : malaise forcé
-const SPECIAL_SECTORS := ["etage1"]  ## accessibles uniquement depuis un secteur adjacent
+const SPECIAL_SECTORS := ["etage1", "etage2"]  ## accessibles uniquement depuis un secteur adjacent
+const RefugeModel := preload("res://world/refuge_model.gd")
 
 var store
 var sectors: Dictionary = {}
@@ -17,10 +18,12 @@ var factions: Dictionary = {}
 var events: Array = []
 var messages: Array = []        ## messages à afficher (vidés par l'UI)
 var pending_event: Dictionary = {}
+var refuge  ## RefugeModel
 
 
-func _init(state_store, world_data: Dictionary, events_data: Dictionary) -> void:
+func _init(state_store, world_data: Dictionary, events_data: Dictionary, refuge_data: Dictionary = {}) -> void:
 	store = state_store
+	refuge = RefugeModel.new(state_store, refuge_data)
 	sectors = world_data.get("sectors", {})
 	factions = world_data.get("factions", {})
 	events = events_data.get("events", [])
@@ -101,6 +104,7 @@ func place(nid: String) -> void:
 ## Recalcule les propriétés dérivées de la position (refuge…), après un dialogue par exemple.
 func refresh() -> void:
 	store.set_var("pos.refuge", is_refuge(node_id()))
+	messages.append_array(refuge.daily_upkeep())
 
 
 func move(nid: String) -> bool:
@@ -134,6 +138,14 @@ func actions() -> Array:
 			continue
 		out.append(a)
 	if is_refuge(nid):
+		if refuge.node_id() == nid:
+			out.append({"id": "_manage", "label": "Gérer le Refuge (stock, améliorations)", "cost": 0, "panel": "refuge"})
+			if store.phase() >= 2 and not refuge.rest_done_today():
+				for cid in _party_heroines():
+					out.append({"id": "_rest_" + cid, "label": "Moment de repos avec %s" % cid.capitalize().replace("_", "-"),
+						"cost": 4, "rest": true, "dialogue": "act2_refuge:" + cid})
+		else:
+			out.append({"id": "_establish", "label": "Établir le Refuge ici", "cost": 2, "establish": true})
 		out.append({"id": "_sleep", "label": "Dormir jusqu'à l'aube", "cost": 0, "sleep": true})
 	if store.item("ration") > 0 and int(store.get_var("fatigue", 0)) >= 8:
 		out.append({"id": "_eat", "label": "Manger une ration (fatigue −1 phase)", "cost": 1, "fx": ["item ration -1", "add fatigue -4"]})
@@ -153,6 +165,13 @@ func do_action(a: Dictionary) -> Dictionary:
 	if a.get("sleep", false):
 		sleep()
 		return {}
+	if a.get("establish", false):
+		refuge.establish(nid)
+		messages.append("Refuge établi : %s." % node(nid).get("name", nid))
+	if a.get("rest", false):
+		refuge.mark_rest()
+	if a.has("panel"):
+		return {"panel": a["panel"]}
 	if a.has("travel"):
 		place(str(a["travel"]))
 	advance(int(a.get("cost", 2)))
@@ -170,10 +189,21 @@ func sleep() -> void:
 		advance((3 - store.phase()) * 4 - store.ticks() % 4)
 		if not pending_event.is_empty():
 			return
+	if refuge.node_id() == node_id():
+		refuge.on_sleep_here()
 	store.sleep_until_dawn()
 	messages.append("Tu dors. Jour %d — Aube." % store.day())
 	refresh()
 	_check_events()
+
+
+func _party_heroines() -> Array:
+	var out := []
+	for f in store.flags.keys():
+		if str(f).begins_with("party."):
+			out.append(str(f).substr(6))
+	out.sort()
+	return out
 
 
 func _act_flag(nid: String, a: Dictionary) -> String:

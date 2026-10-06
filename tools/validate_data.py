@@ -68,15 +68,16 @@ art_chars = {c["id"]: c for c in prompts.get("characters", [])}
 COMMON_EXPR = set(prompts.get("expressions", {}).keys())
 SPECIAL_SPEAKERS = {"narrator", "system", "registre"}
 KNOWN_EVENTS = {"combat", "regress", "end_act", "world", "move"}
-EFFECT_TYPES = {"damage", "heal", "status", "fear", "delay", "haste", "revive", "cleanse", "crit_next", "swap", "advance", "awaken"}
+EFFECT_TYPES = {"damage", "heal", "status", "fear", "delay", "haste", "revive", "cleanse", "crit_next", "swap", "advance", "awaken", "pull"}
 TARGETS = {"melee", "ranged", "pierce", "row", "all_enemies", "ally", "all_allies", "all_allies_any", "ally_other", "self", "ally_ko"}
 FUNCS = {"v", "flag", "souvenir", "aff", "loop", "day", "phase", "at", "in_sector", "party", "item", "money",
-         "trust", "fear", "done", "knows_fin", "pressure", "ticks"}
+         "trust", "fear", "done", "knows_fin", "pressure", "ticks", "in_refuge_sector"}
 KEYWORDS = {"and", "or", "not", "true", "false", "null"}
 FX_OPS = {"set": 2, "add": 2, "flag": 1, "unflag": 1, "souvenir": 1, "item": 2, "money": 1, "fin": 1, "join": 1, "leave": 1, "pressure": 1}
 
 # Écritures implicites faites par le code (GDScript)
-IMPLICIT_VARS = {"combat.last", "pos.node", "pos.sector", "pos.refuge", "time.ticks", "fatigue", "loop", "argent", "tower.p_mod"}
+IMPLICIT_VARS = {"combat.last", "pos.node", "pos.sector", "pos.refuge", "time.ticks", "fatigue", "loop", "argent", "tower.p_mod",
+                 "refuge.node", "refuge.sector", "refuge.rations", "refuge.defense", "refuge.faim", "refuge.last_day"}
 SYSTEM_PREFIXES = ("align.", "aff.", "trust.", "fear.", "ambivalence.")  # consommées par les systèmes
 
 flags_read: dict[str, set] = defaultdict(set)
@@ -96,7 +97,7 @@ def check_condition(cond: str, where: str) -> None:
         return
     if cond.count("(") != cond.count(")"):
         err(f"{where} : parenthèses déséquilibrées dans « {cond} »")
-    for fn, arg in re.findall(r"(\w+)\(\s*'([^']*)'\s*\)", cond):
+    for fn, arg in re.findall(r"(\w+)\(\s*'([^']*)'\s*(?:,[^)]*)?\)", cond):
         if fn == "flag":
             flags_read[arg].add(where)
         elif fn == "v":
@@ -298,9 +299,33 @@ for ev in events:
             err(f"{w} : secteur inconnu « {where} »")
     elif where != "*" and where not in all_nodes:
         err(f"{w} : nœud inconnu « {where} »")
+# Itinéraire de l'autotest : conditions et nœuds valides
+for i, leg in enumerate(load(ROOT / "tests/autopilot.json").get("route", [])):
+    w = f"autopilot/route/{i}"
+    check_condition(leg.get("until", ""), w)
+    if leg.get("go") not in all_nodes:
+        err(f"{w} : nœud inconnu « {leg.get('go')} »")
 for d, places in done_read.items():
     if d not in ev_ids:
         err(f"done('{d}') : événement inconnu ({', '.join(sorted(places))})")
+
+# --- Repos au Refuge : toute héroïne qui peut rejoindre le groupe a sa scène act2_refuge:<id> ---------
+def _all_fx(dlg: dict):
+    for steps in dlg.get("blocks", {}).values():
+        for st in steps:
+            yield from st.get("fx", [])
+            for opt in st.get("choice", []):
+                yield from opt.get("fx", [])
+joinable = set()
+for dlg in dialogues.values():
+    for e in _all_fx(dlg):
+        parts = str(e).split()
+        if len(parts) > 1 and parts[0] == "join":
+            joinable.add(parts[1])
+        elif len(parts) > 1 and parts[0] == "flag" and parts[1].startswith("party."):
+            joinable.add(parts[1][6:])
+for cid in sorted(joinable):
+    ref_dialogue(f"act2_refuge:{cid}", f"refuge/repos/{cid}")
 
 # --- Dialogues ------------------------------------------------------------------------------
 for did, dlg in dialogues.items():
@@ -396,7 +421,7 @@ for act, lines in load(DATA / "world/act_summary.json").items():
 dialogue_refs.add(("prologue_j1", "start"))
 
 # --- Orphelins ---------------------------------------------------------------------------------
-IMPLICIT_FLAG_PREFIXES = ("party.", "fin.", "visite.", "act.", "event.")
+IMPLICIT_FLAG_PREFIXES = ("party.", "fin.", "visite.", "act.", "event.", "refuge.")
 for f, places in sorted(flags_read.items()):
     if f not in flags_written and not f.startswith(IMPLICIT_FLAG_PREFIXES):
         err(f"drapeau lu mais jamais posé « {f} » ({', '.join(sorted(places)[:3])})")

@@ -1,0 +1,94 @@
+{
+ "note": "Refuge (§8.5) : une base établie sur un nœud-refuge. Stock de rations, améliorations, entretien quotidien, moments de repos.",
+ "types": [
+  {
+   "id": "sanctuaire",
+   "name": "Sanctuaire",
+   "if": "v('align.protect') >= 15",
+   "desc": "Des civils, une infirmerie, des enfants qui dessinent sur les murs."
+  },
+  {
+   "id": "forteresse",
+   "name": "Forteresse",
+   "if": "v('align.protect') <= -15",
+   "desc": "Des barbelés, des vassaux au travail, un trésor sous bonne garde."
+  },
+  {
+   "id": "planques",
+   "name": "Réseau de planques",
+   "if": "v('align.bond') <= -15",
+   "desc": "Des caches dispersées. Personne ne sait où tu dors."
+  },
+  {
+   "id": "comptoir",
+   "name": "Comptoir",
+   "if": "true",
+   "desc": "On y troque, on y écoute, on y vend des secrets."
+  }
+ ],
+ "upkeep": {
+  "residents_per_ration": 2,
+  "hunger_trust_penalty": 2
+ },
+ "upgrades": {
+  "barricades": {
+   "name": "Barricades",
+   "desc": "Murs de voitures et pieux. +15 Défense du secteur du Refuge.",
+   "cost": {
+    "argent": 40
+   },
+   "ticks": 4,
+   "fx": [
+    "add refuge.defense 15"
+   ]
+  },
+  "cuisine": {
+   "name": "Cuisine collective",
+   "desc": "Récupération et cuisson communes : +1 ration au stock chaque matin.",
+   "cost": {
+    "argent": 30,
+    "ration": 2
+   },
+   "ticks": 4,
+   "fx": []
+  },
+  "infirmerie": {
+   "name": "Infirmerie",
+   "desc": "Dormir au Refuge purge la fatigue et renforce la Confiance des héroïnes présentes (+1).",
+   "cost": {
+    "argent": 50
+   },
+   "ticks": 4,
+   "fx": []
+  },
+  "dortoir": {
+   "name": "Dortoir et chambres",
+   "desc": "Des chambres fermées. Débloque les moments de repos les plus intimes.",
+   "cost": {
+    "argent": 30,
+    "ration": 1
+   },
+   "ticks": 4,
+   "fx": []
+  },
+  "vigie": {
+   "name": "Vigie",
+   "desc": "Un guetteur sur le toit : la Marée ne te surprend jamais dans le secteur du Refuge.",
+   "cost": {
+    "argent": 20
+   },
+   "ticks": 2,
+   "fx": []
+  },
+  "atelier": {
+   "name": "Atelier",
+   "desc": "Revendre les fragments de strate (25 chacun) et réparer l'équipement.",
+   "cost": {
+    "argent": 60
+   },
+   "ticks": 6,
+   "if": "item('fragment_strate') > 0",
+   "fx": []
+  }
+ }
+}

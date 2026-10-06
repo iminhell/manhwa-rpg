@@ -2,6 +2,8 @@ extends Control
 ## Écran titre.
 
 signal new_loop
+signal continue_game
+signal load_game
 signal combat_test
 signal options
 signal quit_game
@@ -25,11 +27,23 @@ func _ready() -> void:
 	var t := UI.label("LA TOUR DU DERNIER JOUR", 72, UI.TEXT)
 	t.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	v.add_child(t)
-	var st := UI.label("Prototype — Acte I", 26, UI.GOLD)
+	var st := UI.label("Prototype — Actes I et II", 26, UI.GOLD)
 	st.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	v.add_child(st)
+	var loops := int(SaveManager.meta.get("loops", 1))
+	if loops > 1:
+		var ml := UI.label("Boucles vécues : %d" % loops, 20, UI.DIM)
+		ml.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		v.add_child(ml)
 	v.add_child(Control.new())
-	for entry in [["Nouvelle boucle", new_loop], ["Combat de test : le Portier", combat_test], ["Options", options], ["Quitter", quit_game]]:
+	var entries := []
+	if SaveManager.latest_slot() != "":
+		entries.append(["Continuer", continue_game])
+	entries.append(["Nouvelle boucle", new_loop])
+	if SaveManager.latest_slot() != "":
+		entries.append(["Charger", load_game])
+	entries += [["Combat de test : le Portier", combat_test], ["Options", options], ["Quitter", quit_game]]
+	for entry in entries:
 		var b := UI.button(entry[0], 30)
 		b.custom_minimum_size = Vector2(520, 64)
 		var sig: Signal = entry[1]

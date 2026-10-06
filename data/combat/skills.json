@@ -441,6 +441,239 @@
         }
       ],
       "ai_weight": 0.8
+    },
+    "riff": {
+      "name": "Riff",
+      "target": "ranged",
+      "cost": 0,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 0.7
+        },
+        {
+          "type": "delay",
+          "value": 100
+        }
+      ],
+      "desc": "Une note tranchante qui déstabilise."
+    },
+    "encore": {
+      "name": "Encore !",
+      "target": "all_allies",
+      "cost": 20,
+      "effects": [
+        {
+          "type": "haste",
+          "value": 250
+        }
+      ],
+      "desc": "Le groupe rejoue plus vite."
+    },
+    "ballade": {
+      "name": "Ballade",
+      "target": "all_allies",
+      "cost": 15,
+      "effects": [
+        {
+          "type": "heal",
+          "pct": 0.15
+        }
+      ],
+      "desc": "Soin de groupe."
+    },
+    "fausse_note": {
+      "name": "Fausse Note",
+      "target": "ranged",
+      "cost": 25,
+      "effects": [
+        {
+          "type": "status",
+          "status": "charm",
+          "turns": 1
+        }
+      ],
+      "desc": "Charme un ennemi : il frappe ses alliés."
+    },
+    "dernier_rappel": {
+      "name": "ULTIME — Dernier Rappel",
+      "target": "all_enemies",
+      "cost": 0,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 0.6
+        },
+        {
+          "type": "status",
+          "status": "stun",
+          "turns": 1,
+          "chance": 0.5
+        }
+      ],
+      "awaken": true,
+      "desc": "La scène s'illumine : dégâts et étourdissement."
+    },
+    "vol_a_la_tire": {
+      "name": "Vol à la tire",
+      "target": "ranged",
+      "cost": 0,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 0.7
+        },
+        {
+          "type": "delay",
+          "value": 80
+        }
+      ],
+      "desc": "Rapide et sournois."
+    },
+    "grappin": {
+      "name": "Grappin",
+      "target": "ranged",
+      "cost": 15,
+      "effects": [
+        {
+          "type": "pull"
+        },
+        {
+          "type": "damage",
+          "power": 0.5
+        }
+      ],
+      "desc": "Tire un ennemi en première ligne."
+    },
+    "piege_a_rats": {
+      "name": "Piège à rats",
+      "target": "ranged",
+      "cost": 20,
+      "effects": [
+        {
+          "type": "status",
+          "status": "stun",
+          "turns": 1,
+          "chance": 0.6
+        }
+      ],
+      "desc": "Immobilise une cible (60 %)."
+    },
+    "echange": {
+      "name": "Échange",
+      "target": "ally_other",
+      "cost": 5,
+      "effects": [
+        {
+          "type": "swap"
+        }
+      ],
+      "weight": 50,
+      "desc": "Permute avec un allié."
+    },
+    "jackpot": {
+      "name": "ULTIME — Jackpot",
+      "target": "all_enemies",
+      "cost": 0,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 0.8
+        },
+        {
+          "type": "delay",
+          "value": 300
+        }
+      ],
+      "awaken": true,
+      "desc": "Rafle générale."
+    },
+    "chant_eleve": {
+      "name": "Chant des Élus",
+      "target": "all_enemies",
+      "cost": 20,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 0.5
+        }
+      ],
+      "ai_weight": 0.7
+    },
+    "poignard_rituel": {
+      "name": "Poignard rituel",
+      "target": "melee",
+      "cost": 0,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 1.1
+        },
+        {
+          "type": "status",
+          "status": "mark",
+          "turns": 1
+        }
+      ],
+      "ai_weight": 1.0
+    },
+    "tir_drone": {
+      "name": "Tir de drone",
+      "target": "ranged",
+      "cost": 0,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 0.8
+        }
+      ],
+      "ai_weight": 1.0
+    },
+    "filet_electrique": {
+      "name": "Filet électrique",
+      "target": "ranged",
+      "cost": 20,
+      "effects": [
+        {
+          "type": "status",
+          "status": "stun",
+          "turns": 1,
+          "chance": 0.4
+        },
+        {
+          "type": "damage",
+          "power": 0.3
+        }
+      ],
+      "ai_weight": 0.6
+    },
+    "cri_sourd": {
+      "name": "Cri sourd",
+      "target": "all_enemies",
+      "cost": 30,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 0.9
+        },
+        {
+          "type": "delay",
+          "value": 150
+        }
+      ],
+      "ai_weight": 0.8
+    },
+    "etreinte": {
+      "name": "Étreinte de la Mère",
+      "target": "melee",
+      "cost": 0,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 1.5
+        }
+      ],
+      "ai_weight": 1.0
     }
   }
 }

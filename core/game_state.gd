@@ -30,8 +30,16 @@ func new_game() -> void:
 	_build_world()
 
 
+## Restaure une sauvegarde (contenu de StateStore.to_dict()).
+func load_store(data: Dictionary) -> void:
+	store = StateStore.new()
+	store.from_dict(data)
+	_build_world()
+	world.refresh()
+
+
 func _build_world() -> void:
-	world = WorldModel.new(store, DataDB.world, DataDB.events)
+	world = WorldModel.new(store, DataDB.world, DataDB.events, DataDB.refuge)
 
 
 func phase_name() -> String:

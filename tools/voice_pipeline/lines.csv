@@ -1,5 +1,5 @@
 line_id,speaker,emotion,reason,text_fr,text_ko,text_ja
-act1_camp:visite:4,seo_yeon,neutral,apparition,"Vous revoilà. Asseyez-vous, que je vérifie vos points. Non, ce n'est pas une question.","또 오셨네요. 앉으세요, 봉합 부위 좀 볼게요. 아니요, 질문 아니에요.",また来たんですね。座ってください、縫った所を診ます。いいえ、質問じゃありません。
+act1_camp:visite:5,seo_yeon,neutral,apparition,"Vous revoilà. Asseyez-vous, que je vérifie vos points. Non, ce n'est pas une question.","또 오셨네요. 앉으세요, 봉합 부위 좀 볼게요. 아니요, 질문 아니에요.",また来たんですね。座ってください、縫った所を診ます。いいえ、質問じゃありません。
 act1_camp:visite_soin:0,seo_yeon,embarrassed,apparition,Je mangerai quand tout le monde aura mangé. Ne me regardez pas comme ça.,다들 먹고 나면 먹을게요. 그런 눈으로 보지 마세요.,みんなが食べたら私も食べます。そんな目で見ないでください。
 act1_camp:visite_tard:0,seo_yeon,sad,apparition,Il paraît que la Tour s'est ouverte. Que des gens montent là-haut pour devenir plus forts.,탑이 열렸대요. 사람들이 더 강해지려고 저 위로 올라간대요.,塔が開いたそうです。強くなるために、みんな上へ登っていくって。
 act1_camp:visite_serum:0,elias,neutral,apparition,Tenez. Gardez ça sur vous. Toujours.,받아요. 항상 몸에 지니고 다녀요.,持ってろ。いつも肌身離さずにな。
@@ -103,6 +103,154 @@ act1_world:maison_bleue:2,elias,surprise,apparition,La Tour est déjà venue. Et
 act1_world:grotte_seongsu:2,elias,neutral,apparition,"Dans l'autre vie, les Rats parlaient d'une « pierre qui pleure à l'envers ». Je n'y suis jamais allé.",지난 생에 쥐들이 「거꾸로 우는 돌」 얘기를 했었지. 난 가 본 적이 없다.,前の人生で、ネズミどもが「逆さに泣く石」の話をしてた。俺は行かずじまいだった。
 act1_world:parc_haneul_ok:0,haneul,joy,apparition,Ce parc porte mon nom ! Enfin… le nom que tu m'as donné.,"이 공원, 내 이름이야! 그러니까… 네가 지어 준 이름.",この公園、私の名前！えっと…あなたがくれた名前。
 act1_world:parc_haneul_ok:2,elias,smirk,apparition,Ils venaient boire de la bière et prendre des photos.,맥주 마시고 사진 찍으러 왔지.,ビール飲んで写真撮りに来てたよ。
+act2_aoi:annonce:3,elias,anger,apparition,« Venez nombreux. » Il ne ment même pas. Il a besoin de beaucoup de monde.,「많이들 오세요.」 거짓말도 아니군. 사람이 많이 필요하니까.,「大勢でお越しください」か。嘘ですらない。人が大勢必要なんだ。
+act2_aoi:annonce_pret:0,elias,smirk,apparition,Elle sait. Et la Sirène de Mirae est en miettes. Il reste à être là ce soir.,"그녀는 알고 있고, 미래의 사이렌은 박살 났다. 남은 건 오늘 밤 그 자리에 있는 것뿐.",彼女は知ってる。ミレのセイレーンは粉々だ。あとは今夜、そこにいるだけだ。
+act2_aoi:studio2:4,aoi,true_smile,apparition,"Le type qui dit que je chante faux. Tu reviens me critiquer le premier couplet, cette fois ?",내가 음정 틀린다던 그 사람이네. 이번엔 1절 트집 잡으러 왔어?,私が音を外すって言った人だ。今度は一番にケチつけに来たの？
+act2_aoi:studio_premiere:1,aoi,fear,apparition,"Si c'est l'agence, je suis en répétition. Si c'est un fan… je suis en répétition aussi.","소속사면, 저 연습 중이에요. 팬이면… 그래도 연습 중이에요.",事務所なら、リハ中です。ファンなら…やっぱりリハ中です。
+act2_aoi:studio_premiere:2,elias,neutral,apparition,Ni l'un ni l'autre. Je viens parler du concert de demain soir.,둘 다 아니야. 내일 밤 공연 얘기를 하러 왔어.,どっちでもない。明日の夜のコンサートの話をしに来た。
+act2_aoi:studio_coeur:0,elias,neutral,scène clé,Le Concert de l'Espoir est un piège. Mirae va amplifier ta voix pour attirer la Marée sur la foule. Ils veulent mesurer combien de monstres une chanson peut appeler.,희망의 콘서트는 함정이야. 미래가 네 목소리를 증폭해서 조수를 관객 위로 끌어들일 거야. 노래 한 곡이 괴물을 얼마나 부르는지 재 보려는 거지.,希望のコンサートは罠だ。ミレはお前の声を増幅して、潮を観客の上に呼び寄せる。歌一曲で怪物が何匹来るか、測りたいんだ。
+act2_aoi:studio_coeur:1,aoi,neutral,apparition,…,…,…
+act2_aoi:studio_coeur:2,aoi,sad,scène clé,Tu sais ce qui est drôle ? Je te crois. Tout de suite. Parce que c'est exactement le genre de chose que ferait le président Jang.,웃긴 게 뭔지 알아? 나 너 믿어. 바로. 딱 장 회장님이 할 법한 짓이거든.,おかしいでしょ？信じちゃう。すぐに。だって、チャン会長がいかにもやりそうなことだもん。
+act2_aoi:studio_choix:0,aoi,sad,apparition,Choisir. Je ne sais même pas comment on fait.,선택이라니. 어떻게 하는 건지도 몰라.,選ぶ、か。どうやるのかも知らないよ。
+act2_aoi:studio_choix:1,elias,neutral,apparition,"On commence petit. Demain soir, tu refuses leur micro. Tu chantes avec ta voix, sans leur machine. Et au premier cri, tu descends de scène et tu cours vers moi.","작은 것부터 해. 내일 밤, 저들 마이크를 거절해. 기계 없이 네 목소리로 불러. 그리고 첫 비명이 들리면 무대에서 내려와 나한테 달려와.",小さいことから始めろ。明日の夜、奴らのマイクを断れ。機械なしで、自分の声で歌え。最初の悲鳴が聞こえたら、ステージを降りて俺のところへ走れ。
+act2_aoi:studio_choix:2,aoi,true_smile,scène clé,"…D'accord. D'accord. Ça, je peux le faire. Je crois.",…알았어. 알았어. 그건 할 수 있어. 아마도.,…わかった。わかった。それなら、できる。たぶん。
+act2_aoi:studio_chant:2,aoi,tears,scène clé,Personne ne m'avait jamais demandé ça. Une seule personne. Pas une foule.,그런 부탁 한 사람은 없었어. 단 한 사람. 관중이 아니라.,そんなこと頼まれたの、初めて。たった一人。群衆じゃなくて。
+act2_aoi:studio_chant:3,elias,neutral,apparition,"Alors demain, chante pour une seule personne. Pas dans leur micro. Et descends au premier cri.","그럼 내일, 단 한 사람을 위해 불러. 저들 마이크 말고. 그리고 첫 비명에 내려와.",なら明日は、一人のために歌え。奴らのマイクじゃなく。最初の悲鳴で降りてこい。
+act2_aoi:studio_promesse:0,aoi,surprise,apparition,"Tu serais là ? Vraiment ? Les gens disent ça, et puis…",거기 있을 거라고? 정말? 다들 그렇게 말하고는…,いてくれるの？本当に？みんなそう言って、それで…
+act2_aoi:studio_promesse:1,elias,neutral,apparition,Je serai là.,거기 있을게.,いる。
+act2_aoi:studio_tyran:1,aoi,stage_smile,apparition,Ah. Encore un propriétaire. D'accord. Je connais ce rôle.,아. 또 주인이 생겼네. 알았어요. 이 역할은 익숙해요.,あ。また持ち主ができた。わかりました。この役は慣れてます。
+act2_aoi:sabotage_minh_anh:1,minh_anh,red_leds,apparition,L'anomalie temporelle. Enfin. Tu as quarante secondes avant que je réactive les drones.,시간 이상 개체. 드디어. 드론을 다시 켜기까지 40초 줄게.,時間異常体。やっとね。ドローンを再起動するまで四十秒。
+act2_aoi:sabotage_minh_anh:2,elias,surprise,apparition,Pourquoi tu m'aides ?,왜 날 돕는 거지?,なぜ俺を助ける？
+act2_aoi:sabotage_fin:2,elias,anger,apparition,Les foreuses. Ce sont eux qui creusent sous les tunnels de Maricel.,굴착기. 마리셀의 터널 밑을 파는 게 저놈들이었어.,掘削機。マリセルのトンネルの下を掘ってるのは奴らだ。
+act2_aoi:concert_sauf:2,aoi,true_smile,scène clé,"Cette chanson est pour une seule personne. Les autres, vous pouvez écouter quand même.",이 노래는 단 한 사람을 위한 거예요. 다른 분들도 들으셔도 돼요.,この歌は、たった一人のための歌です。他の皆さんも、聴いててかまいません。
+act2_aoi:concert_sauf:5,elias,smirk,apparition,Plus rien. Elle est quitte.,이제 한 푼도. 빚은 끝났어.,もう一銭も。彼女は清算済みだ。
+act2_aoi:concert_sabote:2,elias,anger,apparition,"Tout le monde derrière la scène ! Aoi, avec moi !","전부 무대 뒤로! 아오이, 나랑 같이!",全員ステージの裏へ！葵、俺と来い！
+act2_aoi:concert_convaincue:1,aoi,fear,scène clé,"Non… non, je n'ai pas pris le micro ! Je n'ai pas…","아니… 아니야, 나 마이크 안 잡았어! 난 안…",違う…違う、マイクは取ってない！私は…
+act2_aoi:concert_convaincue:3,elias,anger,apparition,Ce n'est pas ta faute. Cours vers moi. Maintenant !,네 잘못 아니야. 나한테 달려와. 지금!,お前のせいじゃない。俺のところへ走れ。今だ！
+act2_aoi:concert_piege:2,aoi,fear,apparition,Qu'est-ce que… Pourquoi ils viennent tous vers nous ?,뭐야… 왜 다들 우리 쪽으로 오는 거야?,なに…どうしてみんなこっちに来るの？
+act2_aoi:dilemme_aoi:2,aoi,tears,scène clé,Tu… tu es venu pour moi. Pas pour eux. Pour moi.,너… 나 때문에 온 거야. 저 사람들 말고. 나 때문에.,あなた…私のために来たんだ。あの人たちじゃなくて。私のために。
+act2_aoi:dilemme_foule:3,elias,tears,apparition,(Je lui avais promis d'être là. J'étais là.),(거기 있겠다고 약속했지. 난 거기 있었다.),（そこにいると約束した。俺は、そこにいた。）
+act2_aoi:concert_sauvee:1,aoi,true_smile,scène clé,"Je n'ai jamais rien choisi de ma vie. Aujourd'hui, je choisis de te suivre. Si tu veux bien.",평생 아무것도 선택해 본 적 없어. 오늘은 너를 따라가기로 선택할래. 네가 괜찮다면.,人生で何も選んだことなかった。今日は、あなたについていくって選ぶ。いいなら、だけど。
+act2_aoi:concert_sauvee:2,elias,smirk,apparition,Il y a de la place. On mange mal et on dort peu.,자리는 있어. 밥은 형편없고 잠은 부족하지만.,場所はある。飯はまずいし、寝る暇もないがな。
+act2_aoi:sauvee_dominee:0,aoi,stage_smile,apparition,"Où est-ce que je dois aller, Monsieur ? Je suis à vous, maintenant. C'est ce qui était prévu.","어디로 가면 되나요, 주인님? 이제 저는 당신 거예요. 원래 그렇게 정해져 있었잖아요.",どこへ行けばいいですか、ご主人様？もう私はあなたのものです。そういう予定でしたよね。
+act2_aoi:absent_sauf:2,aoi,true_smile,apparition,"Tu n'es pas venu. Mais tu avais raison. Alors… je suis venue, moi.",넌 안 왔지. 그래도 네 말이 맞았어. 그래서… 내가 왔어.,あなたは来なかった。でも、正しかった。だから…私が来たの。
+act2_aoi:defeat:2,elias,exhausted,apparition,Pas… encore…,아직… 안 돼…,まだ…だ…
+act2_maricel:guerre_eau:7,maricel,wink,apparition,"Ay, gwapo. Tu tombes bien. Les Rats ont un aqueduc colonial qui passe juste sous leurs pompes. Il nous faut quelqu'un qui tape fort pendant qu'on ouvre la vanne d'en bas.","아이, 과포. 마침 잘 왔네. 우리 쥐들한테 저 펌프 바로 밑을 지나는 식민지 시대 수로가 있거든. 우리가 아래 밸브를 여는 동안 세게 두들겨 줄 사람이 필요해.",アイ、グワポ。いいとこに来た。ネズミたちには、あいつらのポンプの真下を通る植民地時代の水路があるの。下のバルブを開ける間、派手に暴れてくれる人が要るんだ。
+act2_maricel:eau_maricel_inconnue:0,maricel,wink,apparition,"Toi, là. T'as la tête de quelqu'un qui sait se battre et qui n'a pas d'eau non plus. Maricel. Les Rats du Han.",거기 너. 싸울 줄 알고 물도 없는 얼굴이네. 마리셀이야. 한강의 쥐들.,そこのあんた。ケンカができて、水もない顔してる。マリセル。漢江のネズミよ。
+act2_maricel:eau_xiaoyu:1,xiaoyu,fan,apparition,"Kang. Tu es encore vivant. Viens de mon côté du fleuve, et l'eau sera gratuite pour toi et tes amis. Reste de l'autre… et tu boiras le Han.",강. 아직 살아 있었네. 강 이쪽으로 오면 너와 네 친구들은 물이 공짜야. 저쪽에 남으면… 한강물을 마시게 될 거고.,カン。まだ生きてたのね。こちら岸に来れば、あなたと仲間の水はタダ。向こうに残るなら…漢江を飲むことになるわ。
+act2_maricel:eau_rats:0,maricel,joy,apparition,"Ça, c'est mon gwapo ! Les gamins, à l'aqueduc ! On ouvre dans trois minutes !","역시 우리 과포! 얘들아, 수로로! 3분 뒤에 연다!",さすが私のグワポ！みんな、水路へ！三分後に開けるよ！
+act2_maricel:eau_rats:1,xiaoyu,contempt,apparition,Dommage. Tu étais mon meilleur recouvreur.,아쉽네. 내 최고의 추심원이었는데.,残念。私の最高の取り立て屋だったのに。
+act2_maricel:eau_rats:5,maricel,laugh,scène clé,"Elle coule ! Elle coule pour tout le monde ! Ay, je t'embrasserais si t'étais pas plein de boue.","흐른다! 모두를 위해 흐른다! 아이, 진흙투성이만 아니면 뽀뽀해 줬을 텐데.",流れてる！みんなのために流れてる！アイ、泥まみれじゃなきゃキスしてあげるのに。
+act2_maricel:eau_longwei:0,xiaoyu,desire,apparition,"Sage décision. Les hommes sages vivent plus vieux. Pas beaucoup, mais un peu.","현명한 선택이야. 현명한 남자는 오래 살거든. 많이는 아니고, 조금.",賢明ね。賢い男は長生きするの。少しだけ、だけど。
+act2_maricel:eau_longwei:2,maricel,anger,scène clé,"Tu m'as regardée dans les yeux il y a trois minutes. Je me souviendrai de ta tête, gwapo. Pas pour les bonnes raisons.","3분 전에 내 눈을 똑바로 봤잖아. 네 얼굴 기억할게, 과포. 좋은 의미로는 아니고.",三分前、私の目を見てたよね。その顔、覚えとくよ、グワポ。いい意味じゃなくね。
+act2_maricel:eau_partage:0,elias,neutral,scène clé,Les Rats ouvrent l'aqueduc colonial. Longwei garde les pompes et vend aux clans. Les camps et le Sanctuaire boivent gratuitement. Tout le monde garde la face.,쥐들은 식민지 수로를 연다. 용위는 펌프를 지키고 클랜들에게 판다. 캠프와 성소는 공짜로 마신다. 다들 체면은 지키는 거지.,ネズミは植民地水路を開ける。龍威はポンプを守って氏族に売る。キャンプと聖域はタダで飲む。全員、面子は保てる。
+act2_maricel:eau_partage:2,xiaoyu,fan,apparition,"Le vieux maître est mort, Oncle Fang. Et c'est moi qui écoute.","선대 어른은 돌아가셨어요, 팡 숙부. 그리고 듣는 건 저예요.",先代は亡くなったわ、ファン叔父様。そして、聞いているのは私よ。
+act2_maricel:eau_partage:4,maricel,surprise,apparition,Il a réussi. Il a vraiment réussi à faire plier la Dame Dragon sans un coup de poing.,해냈어. 주먹 한 번 안 쓰고 진짜로 용의 여인을 굽혔어.,やった。ほんとに、拳一つ使わずにドラゴン様を折れさせた。
+act2_maricel:eau_sabotage:1,xiaoyu,anger,apparition,…Tu viens de condamner la moitié de la ville à boire la pluie.,…방금 도시 절반한테 빗물 마시라고 선고한 거야.,…今、街の半分に雨水を飲めって宣告したのよ。
+act2_maricel:eau_sabotage:2,maricel,surprise,apparition,T'es complètement taré. J'adore. Je déteste. J'adore.,너 완전 미쳤어. 좋아. 싫어. 좋아.,あんた完全にイカれてる。好き。嫌い。好き。
+act2_maricel:tunnels:4,maricel,wink,apparition,Gwapo ? T'es matinal. On descend chercher les caisses de médicaments d'un vieux dépôt. Trois heures aller-retour. Tu viens ?,과포? 일찍 일어났네. 옛 창고에 약 상자 가지러 내려가. 왕복 세 시간. 같이 갈래?,グワポ？早起きじゃん。古い倉庫に薬の箱を取りに降りるの。往復三時間。来る？
+act2_maricel:tunnels_hostile:0,maricel,contempt,apparition,Tiens. Le chien de Longwei. Tu viens vérifier qu'on paie bien notre eau ?,어머. 용위의 개네. 우리가 물값 잘 내나 확인하러 왔어?,あら。龍威の犬じゃん。ちゃんと水代払ってるか確かめに来たの？
+act2_maricel:tunnels_hostile:1,elias,neutral,apparition,Je viens t'empêcher de mourir. C'est tout.,네가 죽는 걸 막으러 왔어. 그게 다야.,お前を死なせないために来た。それだけだ。
+act2_maricel:tunnels_etayes:2,maricel,surprise,scène clé,Ce sont… tes poutres. Celles que tu m'as fait porter en me racontant des histoires d'apocalypse.,이거… 네 기둥이야. 종말 얘기 늘어놓으면서 나한테 나르게 했던 그거.,これ…あんたの柱だ。世界の終わりの話をしながら、私に運ばせたやつ。
+act2_maricel:tunnels_etayes:3,elias,smirk,apparition,Je t'avais dit que ce n'étaient pas des histoires.,지어낸 얘기가 아니라고 했잖아.,作り話じゃないって言っただろ。
+act2_maricel:tunnels_forage_stop:2,maricel,fear,apparition,"C'est calme. Trop calme. Les Rats disent que quand les tunnels se taisent, quelque chose écoute.",조용해. 너무 조용해. 쥐들 말로는 터널이 조용하면 뭔가가 듣고 있는 거래.,静か。静かすぎる。トンネルが黙るときは、何かが聞いてるってネズミたちは言うの。
+act2_maricel:tunnels_preuve:1,maricel,anger,scène clé,"…Non prioritaires. Mes gamins, c'est « non prioritaire ».",…우선순위 아님. 우리 애들이 「우선순위 아님」이래.,…優先度低。うちの子たちが「優先度低」だって。
+act2_maricel:tunnels_confiance:0,maricel,sad,apparition,…Je ne fais confiance à personne qui promet des trucs. Le dernier m'a vendue.,…뭘 약속하는 사람은 아무도 안 믿어. 마지막 놈은 날 팔아넘겼거든.,…何か約束する人は信じない。最後のやつは、私を売ったから。
+act2_maricel:tunnels_descendre:1,maricel,fear,scène clé,"Ça craque… ça craque, ça craque… je peux pas… pas encore, pas dans le noir…","삐걱거려… 삐걱거려, 삐걱… 못 하겠어… 또는 싫어, 어둠 속은…",軋んでる…軋んでる、軋んでる…無理…もう嫌、暗いところは…
+act2_maricel:tunnels_descendre:6,maricel,tears,scène clé,Tu m'as portée. Comme un sac de riz. Personne ne m'avait jamais portée.,날 업었어. 쌀자루처럼. 날 업어 준 사람은 한 명도 없었는데.,私をおぶった。米袋みたいに。おぶってくれた人なんて、一人もいなかったのに。
+act2_maricel:tunnels_creature:4,maricel,fear,apparition,"C'est par là, La Racine. J'y suis allée une fois. Il y avait une femme endormie dans le mur. Je n'en ai jamais parlé à personne.",저쪽이 「뿌리」야. 한 번 가 봤어. 벽 속에 여자가 잠들어 있었어. 아무한테도 말한 적 없어.,あっちが「根」。一度だけ行った。壁の中で女の人が眠ってた。誰にも話したことない。
+act2_maricel:tunnels_creature:5,elias,surprise,apparition,(Une femme endormie… comme Haneul. Sous Yongsan.),(잠든 여자… 하늘처럼. 용산 아래에.),（眠る女…ハヌルのように。龍山の下に。）
+act2_maricel:tunnels_sauvee:1,maricel,wink,apparition,"Bon. Les Rats ont une dette envers toi, et les Rats paient toujours leurs dettes. Moi aussi. Surtout moi.","좋아. 쥐들은 너한테 빚을 졌고, 쥐들은 빚을 꼭 갚아. 나도. 특히 나는.",よし。ネズミはあんたに借りができた。ネズミは借りを必ず返す。私も。特に私はね。
+act2_maricel:sauvee_froide:0,maricel,contempt,apparition,Je te dois la vie. Je déteste ça. Je viens avec toi jusqu'à ce que la dette soit payée. Pas un jour de plus.,너한테 목숨을 빚졌어. 그게 싫어. 빚 갚을 때까지만 같이 간다. 하루도 더는 안 돼.,命の借りができた。最悪。借りを返すまではついていく。一日も長くはね。
+act2_maricel:absent_tient:2,maricel,wink,apparition,"Il paraît que c'est toi, les poutres. Et le Sommet. Bon. J'ai une dette, gwapo.","기둥도 너고, 정상회담도 너라며. 좋아. 빚졌네, 과포.",柱もサミットも、あんただって聞いた。よし。借りができたね、グワポ。
+act2_maricel:defeat:2,elias,exhausted,apparition,Pas… encore…,아직… 안 돼…,まだ…だ…
+act2_refuge:seo_q:0,seo_yeon,neutral,scène clé,"Sept lettres, « ce qu'on doit à ceux qu'on n'a pas sauvés ». Je cherche depuis une heure.","일곱 글자, 「구하지 못한 이들에게 빚진 것」. 한 시간째 찾고 있어요.",七文字。「救えなかった人に負うもの」。一時間も考えてるんです。
+act2_refuge:seo_marque:1,seo_yeon,laugh,apparition,Ne faites pas cette tête. C'est le plus beau bijou que j'aie jamais porté.,그런 표정 짓지 마세요. 제가 차 본 장신구 중에 제일 예쁜걸요.,そんな顔しないでください。今まで着けた中で一番きれいなアクセサリーなんですから。
+act2_refuge:seo_r1:0,seo_yeon,embarrassed,apparition,"…Ça rentre. Évidemment que ça rentre. Vous êtes agaçant, Kang-ssi.","…들어맞네요. 당연히 맞죠. 짜증 나는 사람이에요, 강 씨.",…入る。当然入りますよね。腹が立つ人ですね、カンさん。
+act2_refuge:seo_intime:1,seo_yeon,embarrassed,scène clé,"Arrêtez de me regarder comme ça. Je ne vois rien sans elles, alors je ne peux pas savoir si vous vous moquez.","그렇게 보지 마세요. 안경 없으면 하나도 안 보여서, 놀리는 건지 알 수가 없잖아요.",そんなふうに見ないでください。眼鏡がないと何も見えないから、からかってるのかわからないんです。
+act2_refuge:seo_baiser:1,seo_yeon,desire,scène clé,"Je ne veux plus choisir qui vit, Elias. Ce soir, je veux juste choisir ça.","이제 누가 살지 고르고 싶지 않아요, 엘리아스. 오늘 밤엔 그냥 이걸 고르고 싶어요.",もう誰が生きるかなんて選びたくない、エリアス。今夜は、ただこれを選びたいの。
+act2_refuge:seo_pacte:1,seo_yeon,contempt,scène clé,"Le Pacte dit que je dois être disponible, Seigneur Kang. Je suis disponible.","계약에 따르면 저는 대기해야 하죠, 강 영주님. 대기하고 있습니다.",契約では、私は応じなければならない。カン様。応じに来ました。
+act2_refuge:seo_pacte_libre:0,seo_yeon,surprise,apparition,…Vous jouez à quoi ?,…무슨 장난이에요?,…何のつもりですか？
+act2_refuge:seo_pacte_reste:1,seo_yeon,tears,scène clé,"Ne soyez pas doux. Si vous êtes doux, je ne pourrai plus vous haïr.","다정하게 굴지 마세요. 다정하면, 더는 당신을 미워할 수 없게 되니까.",優しくしないで。優しくされたら、もうあなたを憎めなくなる。
+act2_refuge:haneul:5,haneul,tilt,scène clé,Il y a quatre étoiles de moins qu'hier. Je les ai comptées. Le ciel de la Tour mange le vrai.,어제보다 별이 네 개 줄었어. 세어 봤어. 탑의 하늘이 진짜 하늘을 먹고 있어.,昨日より星が四つ少ない。数えたの。塔の空が、本物の空を食べてる。
+act2_refuge:haneul_r1:0,haneul,joy,apparition,Je me rappelle ton dos. Et un goût de pain au lait. Et une chanson qu'une fille chantait mal au deuxième couplet.,네 등이 기억나. 우유식빵 맛도. 그리고 어떤 여자애가 2절을 틀리게 부르던 노래도.,あなたの背中を覚えてる。ミルクパンの味も。それから、二番をうまく歌えない女の子の歌も。
+act2_refuge:haneul_r1:2,elias,neutral,apparition,"Un jour, quand j'avais sept ans, ma mère m'a emmené voir la mer. Elle a dormi tout le trajet. Moi, j'ai regardé le ciel.","일곱 살 때, 엄마가 날 바다에 데려갔어. 엄마는 가는 내내 잤고. 나는 하늘만 봤지.",七歳のとき、母さんが海に連れていってくれた。母さんは道中ずっと寝てた。俺は、空を見てた。
+act2_refuge:haneul_intime:1,haneul,tilt,scène clé,Les gens d'en bas font ça quand ils ont peur de perdre quelqu'un. Se toucher. Je l'ai lu dans leurs Fins.,아래 사람들은 누군가를 잃을까 봐 무서울 때 이렇게 해. 서로 만지는 거. 그들의 결말에서 읽었어.,下の人たちは、誰かを失うのが怖いとき、こうするの。触れ合う。みんなの結末で読んだ。
+act2_refuge:haneul_baiser:1,haneul,desire,scène clé,Oh. C'est ça. C'est pour ça qu'ils ont peur de mourir.,아. 이거구나. 그래서 다들 죽는 걸 무서워하는구나.,あ。これなんだ。だからみんな、死ぬのが怖いんだ。
+act2_refuge:aoi:6,aoi,laugh,scène clé,"Spécialité d'Osaka. Enfin, d'Osaka après l'apocalypse. Si c'est mauvais, mens-moi. Tout le monde m'a toujours menti, je suis habituée.","오사카 명물이야. 뭐, 종말 이후의 오사카지만. 맛없으면 거짓말해 줘. 다들 늘 나한테 거짓말했으니까, 익숙해.",大阪名物やで。まあ、世界が終わった後の大阪やけど。まずかったら嘘ついて。みんないつも嘘ついてきたし、慣れてるから。
+act2_refuge:aoi_r1:0,aoi,true_smile,apparition,Ahaha ! Personne ne m'avait jamais dit que c'était mauvais. Tu es la pire personne que je connaisse.,아하하! 맛없다고 한 사람은 처음이야. 너 내가 아는 사람 중에 최악이야.,あはは！まずいって言われたの初めて。あなた、知ってる中で最悪の人や。
+act2_refuge:aoi_dominee:0,aoi,stage_smile,apparition,"Vous voulez que je chante, Monsieur ? Ou autre chose ? Dites-moi juste quoi faire. C'est plus simple.","노래할까요, 주인님? 아니면 다른 걸요? 뭘 할지 그냥 말해 주세요. 그게 편해요.",歌いましょうか、ご主人様？それとも別のこと？何をすればいいか言ってください。その方が楽です。
+act2_refuge:aoi_intime:1,aoi,fear,scène clé,Personne ne les a jamais vues. Même pas les médecins de l'agence : ils regardaient ailleurs en recousant.,아무도 본 적 없어. 소속사 의사들도. 꿰매면서 다른 데를 봤거든.,誰も見たことないの。事務所のお医者さんも。縫いながら、よそを見てた。
+act2_refuge:aoi_cicatrices:0,aoi,tears,scène clé,Tu ne fais pas la tête de pitié. Tout le monde fait la tête de pitié.,넌 불쌍하다는 표정을 안 짓네. 다들 그 표정 짓는데.,かわいそうって顔、しないんだ。みんなその顔するのに。
+act2_refuge:aoi_cicatrices:1,aoi,desire,scène clé,"Mon corps a appartenu à une agence pendant quatre ans. Ce soir, c'est moi qui décide à qui je le donne.","내 몸은 4년 동안 소속사 거였어. 오늘 밤은, 누구한테 줄지 내가 정해.",私の体は四年間、事務所のものだった。今夜は、誰にあげるか私が決める。
+act2_refuge:maricel:5,maricel,joy,scène clé,Adobo ! Recette de ma lola. Pour tout le Refuge. Ne me demande pas où j'ai trouvé le poulet. Vraiment. Ne demande pas.,아도보! 우리 롤라 레시피야. 피난처 전원 몫. 닭은 어디서 났는지 묻지 마. 진짜로. 묻지 마.,アドボ！ロラのレシピ。避難所のみんなの分。鶏肉どこで手に入れたかは聞かないで。マジで。聞かないで。
+act2_refuge:maricel_r1:0,maricel,laugh,apparition,"Ay, gwapo ! Tu chantes comme une porte de garage. C'est parfait. Encore !","아이, 과포! 노래가 차고 문 소리 같아. 완벽해. 한 곡 더!",アイ、グワポ！ガレージのシャッターみたいな歌声。最高。もう一曲！
+act2_refuge:maricel_intime:1,maricel,fear,scène clé,"Je ne dors jamais porte fermée. Une pièce sans fenêtre, une clé qui tourne de l'autre côté… J'avais vingt ans.","난 절대 문 닫고 안 자. 창문 없는 방, 반대편에서 돌아가는 열쇠… 스무 살이었어.",ドアを閉めて寝たことはないの。窓のない部屋、向こう側で回る鍵…二十歳だった。
+act2_refuge:maricel_porte:0,maricel,wink,scène clé,"…T'es vraiment bizarre, gwapo. C'est la chose la plus romantique qu'on m'ait jamais dite.","…너 진짜 이상해, 과포. 내가 들은 말 중에 제일 로맨틱해.",…あんた本当に変、グワポ。今まで言われた中で一番ロマンチックだよ。
+act2_seo:fievre_serum:0,elias,fear,apparition,"L'ampoule bleue. Je l'ai sur moi. Le Sanctuaire, vite.","파란 앰플. 내가 갖고 있어. 성소로, 빨리.",青いアンプル。持ってる。聖域へ、急げ。
+act2_seo:sanctuaire:3,seo_yeon,tears,scène clé,Kang-ssi… Les enfants… je n'ai pas pu…,강 씨… 애들이… 저는 못…,カンさん…子どもたちが…私、守れなくて…
+act2_seo:sanctuaire:5,elias,anger,apparition,Tenez bon. Je reviens avec le remède.,버텨요. 약을 가지고 돌아올게요.,持ちこたえてください。薬を持って戻ります。
+act2_seo:sanctuaire_serum:2,seo_yeon,tears,scène clé,Vous m'avez… Pourquoi vous revenez toujours me chercher ?,당신이 저를… 왜 매번 저를 찾으러 돌아오는 거예요?,あなたが私を…どうしていつも私を迎えに戻ってくるんですか？
+act2_seo:sanctuaire_serum:3,elias,sad,apparition,"Parce que la dernière fois, je ne suis pas revenu.","지난번엔, 돌아오지 않았으니까요.",前は、戻らなかったからです。
+act2_seo:hopital:7,seo_yeon,surprise,apparition,"Kang-ssi ? Qu'est-ce que vous… Les petits ont disparu du camp, je les cherche depuis ce matin.",강 씨? 여기서 뭘… 애들이 캠프에서 사라졌어요. 아침부터 찾고 있어요.,カンさん？どうして…子どもたちがキャンプからいなくなって、朝から探してるんです。
+act2_seo:hopital_rupture:0,seo_yeon,contempt,apparition,"Vous. Évidemment, vous. Le Seigneur qui n'était pas là quand ses vassaux mouraient.",당신. 당연히 당신이죠. 가신들이 죽어 갈 때 자리에 없던 영주님.,あなた。もちろん、あなたね。家臣が死んでいくとき、いなかった領主様。
+act2_seo:hopital_pacte:0,seo_yeon,contempt,apparition,Seigneur Kang. Vous venez vérifier que votre médecin ne déserte pas ? Les petits ont fui le camp. À cause de votre tribut.,강 영주님. 의사가 도망치지 않나 확인하러 오셨어요? 애들이 캠프를 떠났어요. 당신이 걷은 공물 때문에요.,カン様。医者が逃げないか確かめに？子どもたちはキャンプから逃げました。あなたの貢納のせいで。
+act2_seo:hopital_rodeurs:2,seo_yeon,fear,scène clé,"Derrière moi, les enfants. Derrière moi !","얘들아, 내 뒤로. 내 뒤로!",みんな、私の後ろに。後ろに！
+act2_seo:hopital_rodeurs:7,seo_yeon,tears,scène clé,"…Ce n'est rien. Ce n'est rien, mon cœur. Ferme les yeux.","…괜찮아. 괜찮아, 아가. 눈 감고 있어.",…大丈夫。大丈夫よ。目を閉じてて。
+act2_seo:hopital_vide:1,seo_yeon,surprise,apparition,Kang-ssi ? Je… j'ai rêvé que les petits étaient ici. J'ai couru sans réfléchir.,강 씨? 저… 애들이 여기 있는 꿈을 꿨어요. 생각도 없이 달려왔어요.,カンさん？私…子どもたちがここにいる夢を見て。何も考えずに走ってきたんです。
+act2_seo:hopital_vide:3,seo_yeon,neutral,scène clé,Vous saviez. Vous saviez qu'il se passerait quelque chose ici. C'est pour ça que vous avez nourri les enfants.,알고 있었군요. 여기서 무슨 일이 생길 걸 알았던 거예요. 그래서 애들을 먹인 거고요.,知ってたんですね。ここで何か起きるって。だから子どもたちにご飯を。
+act2_seo:hopital_vide:4,elias,neutral,apparition,Je savais qu'ils viendraient ici s'ils avaient faim. Ils n'ont plus faim.,배고프면 여기로 올 걸 알았어요. 이제 배고프지 않죠.,腹が減ればここへ来ると知っていた。もう腹は減ってない。
+act2_seo:hopital_serum:1,seo_yeon,tears,scène clé,"« Le douzième jour, vous allez en avoir besoin. » Vous saviez. Depuis le début, vous saviez.",「12일째에 필요할 거예요.」 알고 있었군요. 처음부터 알았던 거예요.,「十二日目に、必要になる」。知ってたんですね。最初から、ずっと。
+act2_seo:hopital_serum_elias:1,seo_yeon,tears,apparition,H-07… L'antiviral de Haesong. Où est-ce que vous… Non. Je ne veux toujours pas savoir.,H-07… 해송의 항바이러스제. 대체 어디서… 아뇨. 여전히 알고 싶지 않아요.,H-07…海松の抗ウイルス剤。いったいどこで…いいえ。やっぱり知りたくない。
+act2_seo:hopital_haneul:0,haneul,sad,scène clé,Laisse-moi faire. Je ne peux pas soigner. Mais je peux arrêter le temps dans un tout petit endroit.,내가 할게. 치료는 못 해. 하지만 아주 작은 곳의 시간은 멈출 수 있어.,私にやらせて。治すことはできない。でも、ほんの小さな場所の時間なら止められる。
+act2_seo:hopital_perdue:1,seo_yeon,neutral,scène clé,"Je suis médecin, Kang-ssi. Je sais ce qui va se passer à minuit.","저 의사예요, 강 씨. 자정에 무슨 일이 일어날지 알아요.",私は医者です、カンさん。真夜中に何が起きるか、わかってます。
+act2_seo:perdue_minuit:2,seo_yeon,tears,scène clé,Lee Man-sik. Cinquante-quatre ans. Vous vous souviendrez de son nom pour moi ?,이만식. 쉰네 살. 저 대신 그 이름 기억해 줄래요?,イ・マンシク。五十四歳。私の代わりに、その名前を覚えていてくれますか？
+act2_seo:perdue_minuit:3,elias,tears,apparition,Je me souviendrai des deux.,둘 다 기억할게요.,二人とも覚えておきます。
+act2_seo:hopital_reecrite:2,seo_yeon,tears,scène clé,"Je suis vivante. Les six sont vivants. Je n'ai rien choisi, cette fois. Personne n'a dû mourir pour que quelqu'un d'autre vive.",저 살아 있어요. 여섯 명 다 살아 있어요. 이번엔 아무것도 고르지 않았어요. 누가 살기 위해 다른 누가 죽을 필요가 없었어요.,私、生きてる。六人とも生きてる。今回は何も選ばなかった。誰かが生きるために、誰かが死ななくてよかった。
+act2_seo:reecrite_rupture:0,seo_yeon,tears,scène clé,Je vous déteste encore. Je crois. Mais vous êtes venu.,아직 당신이 미워요. 아마도. 그래도 와 줬네요.,まだあなたが嫌い。たぶん。でも、来てくれた。
+act2_seo:reecrite_pacte:0,seo_yeon,surprise,scène clé,La clause de Protection… vous l'avez honorée. Encore.,보호 조항… 지켰네요. 또.,保護条項…守ったんですね。また。
+act2_seo:rachat:2,seo_yeon,contempt,scène clé,"Kang-ssi. Vous m'achetez. Bien sûr. Vous avez vendu le camp, puis vous rachetez la marchandise abîmée. C'est ça ?","강 씨. 저를 사시는군요. 당연하죠. 캠프를 팔아 놓고, 이제 상한 물건을 되사는 거예요. 그렇죠?",カンさん。私を買うんですね。そうでしょうね。キャンプを売って、今度は傷物を買い戻す。そういうこと？
+act2_seo:rachat:3,elias,sad,apparition,Je n'ai pas d'excuse. Seulement une clé.,변명은 없어요. 열쇠만 있을 뿐.,言い訳はない。鍵があるだけだ。
+act2_seo:rachat_libre:1,seo_yeon,tears,scène clé,Je ne vous pardonne pas. Pas encore. Mais je viens. Quelqu'un doit recoudre ce que vous cassez.,용서 안 해요. 아직은. 그래도 갈게요. 당신이 부순 걸 누군가는 꿰매야 하니까.,許しません。まだ。でも、行きます。あなたが壊したものを、誰かが縫わなきゃいけないから。
+act2_seo:rachat_pacte:1,seo_yeon,contempt,scène clé,"Un maître en remplace un autre. Au moins, vous, je sais pourquoi je vous hais.","주인이 바뀌었을 뿐이네요. 적어도 당신은, 왜 미워하는지 알아요.",主人が替わっただけ。少なくともあなたなら、なぜ憎いのかわかる。
+act2_seo:liberee:2,seo_yeon,surprise,scène clé,"Vous avez vendu le camp. Et maintenant vous brisez les chaînes de tout le marché. Qui êtes-vous, Kang Elias ?","캠프를 팔아 놓고, 이제는 시장 전체의 사슬을 끊네요. 당신 정체가 뭐예요, 강 엘리아스?",キャンプを売ったくせに、今度は市場中の鎖を断ち切る。あなたは何者なの、カン・エリアス？
+act2_seo:liberee:3,elias,neutral,apparition,Quelqu'un qui répare ses erreurs. Une à la fois.,자기 실수를 고치는 사람. 하나씩.,自分の過ちを直す人間だ。一つずつな。
+act2_seo:defeat:2,elias,exhausted,apparition,Pas… encore…,아직… 안 돼…,まだ…だ…
+act2_tower:arrivee:6,elias,neutral,apparition,"(Chaque combat fera du bruit. Deux, et la Mère se réveillera.)","(싸울 때마다 소리가 난다. 두 번이면, 어머니가 깨어난다.)",（戦うたびに音が出る。二度で、母が目を覚ます。）
+act2_tower:arrivee_haneul:0,haneul,sad,scène clé,Ces gens ont choisi de se taire pour que la Tour ne les entende pas. Elle les a entendus quand même. Elle entend tout.,이 사람들은 탑이 듣지 못하게 침묵을 택했어. 그래도 탑은 들었어. 탑은 다 들어.,この人たちは塔に聞かれないように黙ることを選んだ。それでも塔は聞いた。塔は全部聞こえるの。
+act2_tower:reveil_sourde:1,elias,smirk,apparition,Le battant. Elle est encore sourde de sa propre cloche.,종추. 자기 종소리에 아직 귀가 먹었군.,舌だ。自分の鐘で、まだ耳が潰れてる。
+act2_tower:defeat:2,elias,exhausted,apparition,Pas… encore…,아직… 안 돼…,まだ…だ…
+act2_world:impot:4,elias,neutral,apparition,"Dans l'autre vie, l'Impôt a vidé Gangnam en dix jours. Ceux qui ne pouvaient pas payer finissaient au Marché des Vassaux.","지난 생에서, 그 세금은 열흘 만에 강남을 비웠다. 못 내는 사람들은 가신 시장으로 끌려갔지.",前の人生では、あの税で江南は十日で空になった。払えない者は家臣市場行きだ。
+act2_world:vassaux:4,elias,anger,apparition,Le Système appelle ça un contrat. Il y a une signature au bas de chaque collier.,시스템은 이걸 계약이라 부르지. 목걸이마다 아래에 서명이 있어.,システムはこれを契約と呼ぶ。首輪の一つ一つに署名がある。
+act2_world:vassaux_seo:1,seo_yeon,tears,scène clé,…Ne me regardez pas. S'il vous plaît. Pas vous.,…보지 마세요. 제발. 당신만은.,…見ないでください。お願い。あなただけは。
+act2_world:vassaux_seo:3,elias,sad,apparition,(C'est moi qui l'ai mise là. Avec deux cents billets.),(그녀를 여기 넣은 건 나다. 지폐 이백 장으로.),（彼女をここに入れたのは俺だ。札二百枚で。）
+act2_world:sacrifice_boucle:2,elias,fear,apparition,(Il se souvient. Comment est-ce qu'il se souvient ?),(기억하고 있다. 어떻게 기억하는 거지?),（覚えている。どうして覚えているんだ？）
+act2_world:sacrifice_combat:1,elias,smirk,apparition,Désolé de couper la messe.,미사 중에 미안.,ミサの途中で悪いな。
+act2_world:sacrifice_simone:0,simone,cigar,apparition,"Rang F ! Mes gars couvrent le flanc gauche. Tu t'occupes des chanteurs, je m'occupe de ne pas te tirer dessus.",F랭크! 우리 애들이 왼쪽 측면 맡는다. 넌 노래꾼들 처리해. 난 널 안 쏘는 걸 맡을게.,Fランク！うちの連中が左翼を受け持つ。あんたは歌ってる連中を。あたしはあんたを撃たないように頑張る。
+act2_world:sacrifice_observer:3,elias,anger,apparition,(Des mains de soignante. J'ai déjà vu ces mains.),(간호하는 사람의 손. 저 손을 본 적이 있다.),（看護する者の手だ。あの手は、前に見たことがある。）
+act2_world:reve_j11:4,haneul,fear,scène clé,"Ils sont devant ma porte, Elias. Ils ont des brancards. Viens. S'il te plaît.","그들이 내 문 앞에 있어, 엘리아스. 들것을 들고 왔어. 와 줘. 제발.",あの人たちが扉の前にいるの、エリアス。担架を持ってる。来て。お願い。
+act2_world:reve_j11_ok:1,haneul,sad,scène clé,"Avant toi, il y avait une autre Lectrice. Elle avait des lunettes rondes. Elle me portait, elle aussi.",너 이전에 다른 독자가 있었어. 동그란 안경을 썼어. 그 사람도 날 업어 줬어.,あなたの前に、別の読み手がいたの。丸い眼鏡をかけてた。その人も、私をおぶってくれた。
+act2_world:sommet_haein:0,hae_in,threat,apparition,"Vous êtes mon invité, Monsieur Kang. Ne me faites pas regretter cette faveur. Tenez-vous droit et ne touchez à rien.","당신은 제 손님이에요, 강 씨. 이 호의를 후회하게 만들지 마세요. 똑바로 서고 아무것도 만지지 마세요.",あなたは私の客人よ、カンさん。この厚意を後悔させないで。背筋を伸ばして、何にも触らないこと。
+act2_world:sommet_table:4,ryeon,anger,apparition,Je n'ai jamais dit oui.,난 승낙한 적 없어.,承諾した覚えはない。
+act2_world:sommet_seo:1,hae_in,threat,apparition,"Haesong ne marchande pas les êtres humains en public, Président Jang. En privé, c'est autre chose.","해송은 공개석상에서 사람을 흥정하지 않아요, 장 회장님. 사적으로는 얘기가 다르지만요.",海松は公の場で人間を値切ったりしないわ、チャン会長。私的な場なら、話は別だけど。
+act2_world:inter_treve:0,elias,neutral,scène clé,"La Tour vous tue un par un pendant que vous comptez vos Sceaux. Trêve pendant la Marée. Personne n'attaque personne la nuit. Ceux qui rompent la trêve, les quatre autres les écrasent.",당신들이 인장을 세는 동안 탑은 하나씩 죽이고 있어. 조수 동안 휴전. 밤엔 아무도 아무도 공격하지 않는다. 휴전을 깨는 자는 나머지 넷이 짓밟는다.,あんたたちが印章を数えてる間に、塔は一人ずつ殺していく。潮の間は休戦だ。夜は誰も誰も襲わない。破った者は、残りの四つが潰す。
+act2_world:inter_treve:1,xiaoyu,fan,apparition,Je signe. Mes barges ont autre chose à faire que se battre dans le noir.,서명하죠. 내 바지선들은 어둠 속에서 싸우는 것 말고도 할 일이 많거든.,署名するわ。私の艀には、暗闇で戦うよりやることがあるの。
+act2_world:inter_foreuses:0,elias,neutral,scène clé,"Mirae fore sous Myeongdong depuis une semaine. Sous cette cathédrale. Sous votre terre de paix. Forage MD-3, capteurs à poser avant le quatorzième jour.","미래는 일주일째 명동 밑을 파고 있어. 이 성당 밑을. 당신들의 평화의 땅 밑을. MD-3 굴착, 14일째 전에 센서 설치.",ミレは一週間前から明洞の下を掘ってる。この大聖堂の下を。あんたたちの平和の地の下を。MD-3掘削、十四日目までにセンサー設置。
+act2_world:inter_foreuses:3,hae_in,threat,apparition,Évidemment. Haesong propose que les forages sous terrain neutre soient interdits. Immédiatement.,당연하겠죠. 해송은 중립 지역 밑 굴착 금지를 제안합니다. 즉시.,もちろんね。海松は中立地帯の下での掘削禁止を提案します。即刻。
+act2_world:inter_arche:0,elias,anger,scène clé,"Avant de vous partager Séoul, demandez à Haesong ce qu'est le Projet ARCHE. Demandez qui a envoyé une sonde sous Yongsan. Et qui a reçu une réponse.","서울을 나눠 갖기 전에, 해송한테 ARCHE 프로젝트가 뭔지 물어봐. 누가 용산 밑으로 탐사선을 보냈는지. 그리고 누가 답을 받았는지.",ソウルを分け合う前に、海松にARCHE計画とは何か聞いてみろ。誰が龍山の下に探査機を送ったか。そして、誰が返事を受け取ったか。
+act2_world:inter_arche:2,hae_in,threat,apparition,Monsieur Kang a beaucoup d'imagination. Haesong prendra note.,강 씨는 상상력이 풍부하시네요. 해송이 기억해 두죠.,カンさんは想像力が豊かね。海松は覚えておきます。
+act2_world:inter_silence:1,elias,neutral,apparition,(Cheon veut une dynastie. Hae-in veut effacer. Jang veut des données. Xiaoyu veut survivre à ses oncles. Ryeon veut juste qu'on lui demande.),(천은 왕조를 원한다. 해인은 지우고 싶어 한다. 장은 데이터를 원한다. 샤오위는 숙부들보다 오래 살고 싶어 한다. 련은 그저 누가 물어봐 주길 바란다.),（チョンは王朝を。ヘインは消去を。チャンはデータを。シャオユーは叔父たちより長く生きることを。リョンは、ただ誰かに訊いてほしいだけだ。）
+act2_world:apres_haein:0,hae_in,neutral,apparition,Nam. Mon vice-président depuis neuf ans.,남. 9년 동안 제 부회장이었어요.,ナム。九年間、私の副会長だった男。
+act2_world:apres_haein:2,hae_in,neutral,scène clé,"Vous venez d'acheter beaucoup de ma confiance, Monsieur Kang. C'est une monnaie que je n'émets presque jamais.","방금 제 신뢰를 많이 사셨네요, 강 씨. 제가 거의 발행하지 않는 화폐랍니다.",今、私の信頼をずいぶん買ったわね、カンさん。私がほとんど発行しない通貨よ。
+act2_world:apres_ryeon:0,ryeon,tsundere,apparition,"Tu étais le seul, dans cette pièce, à ne pas me regarder comme un meuble qu'on déménage.",이 방에서 날 옮길 가구처럼 보지 않은 건 너뿐이었어.,あの部屋で、私を運ばれる家具みたいに見なかったのは、お前だけだった。
+act2_world:apres_ryeon:1,elias,neutral,scène clé,"Le dix-septième jour, au crépuscule, tu vas provoquer Tae-ju en duel pour refuser ce mariage. Et tu vas perdre.","17일째 해 질 녘, 넌 그 결혼을 거부하려고 태주에게 결투를 신청할 거야. 그리고 질 거야.",十七日目の黄昏、お前はその結婚を拒むためにテジュに決闘を挑む。そして、負ける。
+act2_world:apres_xiaoyu:0,xiaoyu,fan,apparition,Fang m'a fait sauter sur ses genoux quand j'avais quatre ans.,팡 숙부는 내가 네 살 때 무릎에 앉혀 놀아 줬어.,ファン叔父様は、私が四つのとき膝の上であやしてくれたのよ。
+act2_world:classement:6,elias,smirk,apparition,Douze mille. On remonte. Trop vite.,만 이천 위. 올라가고 있군. 너무 빨리.,一万二千位。上がってきたな。速すぎる。
+act2_world:revolte:2,seo_yeon,anger,scène clé,"Le camp ne paiera plus. Si vous voulez le tribut, prenez-le sur moi. La clause le permet, non ?",캠프는 더 이상 안 냅니다. 공물을 원하면 저한테서 가져가세요. 조항이 허락하잖아요?,キャンプはもう払いません。貢納が欲しいなら、私から取って。条項はそれを許すでしょう？
+act2_world:revolte_liberer:1,seo_yeon,surprise,apparition,…Pourquoi maintenant ?,…왜 지금이에요?,…どうして今なんですか？
+act2_world:revolte_liberer:2,elias,neutral,apparition,Parce que tu me l'as enfin demandé en face.,이제야 내 얼굴을 보고 말했으니까.,やっと面と向かって言ってくれたからだ。
+act2_world:revolte_ecraser:1,seo_yeon,tears,scène clé,Je paierai. Pour eux. Pas pour vous. Jamais pour vous.,낼게요. 저 사람들을 위해서. 당신이 아니라. 절대 당신을 위해서는 아니에요.,払います。この人たちのために。あなたのためじゃない。絶対に、あなたのためじゃない。
+act2_world:defeat:2,elias,exhausted,apparition,Pas… encore…,아직… 안 돼…,まだ…だ…
 prologue_j1:first_life:4,elias,exhausted,apparition,…Elle est encore là.,…아직 여기 있구나.,…まだ、いるのか。
 prologue_j1:first_life:5,haneul,sad,apparition,Tu m'as portée jusqu'ici. Sans rien me demander.,날 여기까지 업고 왔어. 아무것도 바라지 않고.,ここまで私を背負ってくれた。何も求めずに。
 prologue_j1:regress_open:4,elias,anger,apparition,…Encore.,…또야.,…また、か。

@@ -122,7 +122,7 @@
   },
   {
    "id": "aoi_chant",
-   "when": "phase() == 3",
+   "when": "phase() == 3 and day() <= 9 and not done('j9_concert')",
    "where": "hongdae.studio",
    "dialogue": "act1_world:aoi_studio",
    "priority": 70,
@@ -138,11 +138,211 @@
   },
   {
    "id": "maree",
-   "when": "phase() == 3 and not v('pos.refuge')",
+   "when": "phase() == 3 and not v('pos.refuge') and not in_sector('etage1') and not in_sector('etage2') and not (flag('refuge.vigie') and in_refuge_sector()) and not (day() == 9 and done('j9_concert'))",
    "where": "*",
    "dialogue": "act1_world:maree",
    "priority": 10,
    "repeat": "daily"
+  },
+  {
+   "id": "j8_impot",
+   "when": "day() >= 8",
+   "where": "*",
+   "dialogue": "act2_world:impot",
+   "priority": 94,
+   "repeat": "once"
+  },
+  {
+   "id": "j8_seo_fievre",
+   "when": "day() >= 8 and flag('seo_blessee')",
+   "where": "*",
+   "dialogue": "act2_seo:fievre",
+   "priority": 90,
+   "repeat": "once"
+  },
+  {
+   "id": "seo_sanctuaire",
+   "when": "flag('seo_blessee') and not flag('seo_soignee') and not flag('seo_morte') and day() >= 8 and day() <= 9",
+   "where": "myeongdong.cathedrale",
+   "dialogue": "act2_seo:sanctuaire",
+   "priority": 85,
+   "repeat": "daily"
+  },
+  {
+   "id": "j10_seo_morsure",
+   "when": "day() >= 10 and flag('seo_blessee') and not flag('seo_soignee')",
+   "where": "*",
+   "dialogue": "act2_seo:morsure_fin",
+   "priority": 93,
+   "repeat": "once"
+  },
+  {
+   "id": "marche_vassaux",
+   "when": "day() >= 8",
+   "where": "gangnam.marche_vassaux",
+   "dialogue": "act2_world:vassaux",
+   "priority": 60,
+   "repeat": "once"
+  },
+  {
+   "id": "seo_liberee",
+   "when": "flag('vassaux_liberes') and flag('seo_vassale_cheonma')",
+   "where": "gangnam.marche_vassaux",
+   "dialogue": "act2_seo:liberee",
+   "priority": 80,
+   "repeat": "once"
+  },
+  {
+   "id": "j9_annonce",
+   "when": "day() >= 9",
+   "where": "*",
+   "dialogue": "act2_aoi:annonce",
+   "priority": 92,
+   "repeat": "once"
+  },
+  {
+   "id": "j9_concert",
+   "when": "day() == 9 and phase() == 3",
+   "where": "sector:hongdae",
+   "dialogue": "act2_aoi:concert",
+   "priority": 99,
+   "repeat": "once"
+  },
+  {
+   "id": "j9_concert_absent",
+   "when": "((day() == 9 and phase() == 3) or day() > 9) and not done('j9_concert')",
+   "where": "*",
+   "dialogue": "act2_aoi:concert_absent",
+   "priority": 98,
+   "repeat": "once"
+  },
+  {
+   "id": "j10_etage2",
+   "when": "day() >= 10",
+   "where": "*",
+   "dialogue": "act2_world:etage2_ouvert",
+   "priority": 95,
+   "repeat": "once"
+  },
+  {
+   "id": "j10_sacrifice",
+   "when": "day() == 10 and phase() >= 1 and phase() <= 2",
+   "where": "yongsan.porte_tour",
+   "dialogue": "act2_world:sacrifice",
+   "priority": 97,
+   "repeat": "once"
+  },
+  {
+   "id": "j10_sacrifice_absent",
+   "when": "((day() == 10 and phase() == 3) or day() > 10) and not done('j10_sacrifice')",
+   "where": "*",
+   "dialogue": "act2_world:sacrifice_absent",
+   "priority": 96,
+   "repeat": "once"
+  },
+  {
+   "id": "etage2_arrivee",
+   "when": "true",
+   "where": "sector:etage2",
+   "dialogue": "act2_tower:arrivee",
+   "priority": 70,
+   "repeat": "once"
+  },
+  {
+   "id": "etage2_reveil",
+   "when": "v('etage2.bruit') >= 2 and not flag('mere_vaincue')",
+   "where": "sector:etage2",
+   "dialogue": "act2_tower:reveil",
+   "priority": 90,
+   "repeat": "once"
+  },
+  {
+   "id": "j11_eau",
+   "when": "day() == 11 and phase() >= 1 and phase() <= 2",
+   "where": "sector:ponts",
+   "dialogue": "act2_maricel:guerre_eau",
+   "priority": 97,
+   "repeat": "once"
+  },
+  {
+   "id": "j11_eau_absent",
+   "when": "((day() == 11 and phase() == 3) or day() > 11) and not done('j11_eau')",
+   "where": "*",
+   "dialogue": "act2_maricel:eau_absent",
+   "priority": 96,
+   "repeat": "once"
+  },
+  {
+   "id": "j11_reve",
+   "when": "day() == 11 and phase() == 3",
+   "where": "*",
+   "dialogue": "act2_world:reve_j11",
+   "priority": 50,
+   "repeat": "once"
+  },
+  {
+   "id": "j12_seo",
+   "when": "day() == 12 and phase() >= 2 and not flag('camp_tombe') and not flag('seo_vassale_cheonma') and not flag('seo_morte')",
+   "where": "yeouido.hopital",
+   "dialogue": "act2_seo:hopital",
+   "priority": 99,
+   "repeat": "once"
+  },
+  {
+   "id": "j12_seo_absent",
+   "when": "((day() == 12 and phase() == 3) or day() > 12) and not done('j12_seo') and not flag('camp_tombe') and not flag('seo_vassale_cheonma') and not flag('seo_morte')",
+   "where": "*",
+   "dialogue": "act2_seo:absent",
+   "priority": 98,
+   "repeat": "once"
+  },
+  {
+   "id": "j12_seo_cheonma",
+   "when": "((day() == 12 and phase() == 3) or day() > 12) and flag('seo_vassale_cheonma')",
+   "where": "*",
+   "dialogue": "act2_seo:cheonma_j12",
+   "priority": 97,
+   "repeat": "once"
+  },
+  {
+   "id": "j13_sommet",
+   "when": "day() == 13 and phase() >= 1 and phase() <= 2",
+   "where": "myeongdong.cathedrale",
+   "dialogue": "act2_world:sommet",
+   "priority": 97,
+   "repeat": "once"
+  },
+  {
+   "id": "j13_sommet_absent",
+   "when": "((day() == 13 and phase() == 3) or day() > 13) and not done('j13_sommet')",
+   "where": "*",
+   "dialogue": "act2_world:sommet_absent",
+   "priority": 96,
+   "repeat": "once"
+  },
+  {
+   "id": "j14_tunnels",
+   "when": "day() == 14 and phase() <= 1 and not flag('maricel_morte')",
+   "where": "sector:myeongdong",
+   "dialogue": "act2_maricel:tunnels",
+   "priority": 99,
+   "repeat": "once"
+  },
+  {
+   "id": "j14_tunnels_absent",
+   "when": "((day() == 14 and phase() >= 2) or day() > 14) and not done('j14_tunnels')",
+   "where": "*",
+   "dialogue": "act2_maricel:tunnels_absent",
+   "priority": 98,
+   "repeat": "once"
+  },
+  {
+   "id": "j15_classement",
+   "when": "day() > 15 or (day() == 15 and phase() >= 2)",
+   "where": "*",
+   "dialogue": "act2_world:classement",
+   "priority": 100,
+   "repeat": "once"
   }
  ]
 }

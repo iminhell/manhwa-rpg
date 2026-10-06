@@ -322,6 +322,15 @@ func _apply(actor, tgt, eff: Dictionary) -> void:
 				tgt.row = r
 				tgt.lane = l
 				_log("  %s et %s échangent leurs places." % [actor.name, tgt.name])
+		"pull":
+			if tgt.row > 0:
+				var occupant = unit_at(tgt.side, 0, tgt.lane)
+				if occupant == null:
+					tgt.row = 0
+				else:
+					occupant.row = tgt.row
+					tgt.row = 0
+				_log("  %s est attiré en première ligne." % tgt.name)
 		"advance":
 			if actor.row > 0 and unit_at(actor.side, actor.row - 1, actor.lane) == null:
 				actor.row -= 1
@@ -355,7 +364,7 @@ func _damage(actor, tgt, eff: Dictionary) -> void:
 
 
 func _status_name(s: String) -> String:
-	return {"stun": "étourdi", "immobile": "immobilisé", "guard": "protégé", "mark": "marqué"}.get(s, s)
+	return {"stun": "étourdi", "immobile": "immobilisé", "guard": "protégé", "mark": "marqué", "charm": "charmé"}.get(s, s)
 
 
 # --- IA ennemie ----------------------------------------------------------------------
@@ -415,8 +424,16 @@ func auto_action(actor) -> Dictionary:
 	return best
 
 
-## Exécute l'intention planifiée d'un ennemi.
+## Exécute l'intention planifiée d'un ennemi. Un ennemi charmé frappe l'un de ses alliés.
 func run_enemy_turn(enemy) -> void:
+	if enemy.has_status("charm"):
+		var others := alive(enemy.side).filter(func(u): return u != enemy)
+		if not others.is_empty():
+			var victim = others[rng.randi_range(0, others.size() - 1)]
+			_log("%s, charmé, se retourne contre %s !" % [enemy.name, victim.name])
+			_damage(enemy, victim, {"power": 1.0})
+			_end_action(enemy, 100)
+			return
 	if enemy.intent.is_empty():
 		plan_intent(enemy)
 	if enemy.intent.is_empty():

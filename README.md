@@ -10,28 +10,34 @@ RPG narratif et tactique inspiré des manhwas/webtoons : régression temporelle,
 
 ## Jouer au prototype
 1. Installer **Godot 4.5** (version standard), ouvrir le dossier du dépôt, lancer avec F5.
-2. **Nouvelle boucle** : prologue J1–J2, puis **la carte de Séoul** jusqu'au Classement du J7 (fin de l'Acte I).
+2. **Nouvelle boucle** : prologue J1–J2, puis **la carte de Séoul** : Acte I jusqu'au Classement du J7, puis Acte II jusqu'au Deuxième Classement du J15.
+   **Continuer / Charger** reprennent une partie (autosauvegarde à chaque phase, 3 emplacements manuels via le bouton **Sauvegarder** de la carte).
 3. **Options** : voix IA On/Off, langue coréenne ou japonaise, volumes.
 
 | Écran | Commandes |
 |---|---|
 | Dialogue | Clic, Espace ou Entrée pour avancer. Les choix sont des boutons magenta |
 | Carte | Clic sur un secteur (gauche) pour voyager. Clic sur une zone voisine (cercle bleu) pour s'y déplacer. Les actions sont listées en bas. Le bouton **Registre** affiche les Fins et les souvenirs |
+| Refuge | Sur un nœud refuge : **Établir le Refuge**, puis **Gérer** (déposer ou retirer des rations, améliorations, vente de Fragments), **Moment de repos** avec une héroïne (une fois par jour, dès le crépuscule), **Dormir** |
 | Combat | Une compétence, puis une case dorée. **Réécriture** (après la première mort) annule la dernière action |
 
-Le temps est la ressource principale : chaque déplacement et chaque action coûtent des ticks. La fatigue s'accumule, et la nuit amène la Marée hors des refuges. Les Ancres du calendrier (Sceaux, camp de Yeouido, ouverture de la Tour, Nuée, Classement) n'attendent personne.
+Le temps est la ressource principale : chaque déplacement et chaque action coûtent des ticks. La fatigue s'accumule, et la nuit amène la Marée hors des refuges. Les Ancres du calendrier (Sceaux, camp de Yeouido, ouverture de la Tour, Nuée, concert du J9, Guerre de l'Eau, Sainte-Marie, Sommet, tunnels, Classements) n'attendent personne.
 
 Tant que les images ne sont pas générées, le jeu affiche des **placeholders**. Tant que les pistes audio ne sont pas produites, il reste silencieux.
 
 ## Contenu actuel
-- **Monde** : 7 secteurs et l'étage 1 de la Tour, 60 sous-zones dont 14 cachées (souterrains, strates effondrées, sanctuaires), 18 événements datés.
-- **Narration** : 6 fichiers de dialogues (environ 780 étapes). Hae-in, Haneul, Seo-Yeon et le camp, la Tour, et des rencontres-teasers des 10 héroïnes.
-- **Combat** : 30 compétences, 6 ennemis, 14 rencontres. Réécriture, Pressentiment, Éveil, Peur.
+- **Monde** : 7 secteurs et les étages 1 et 2 de la Tour, 65 sous-zones (souterrains, strates effondrées, sanctuaires, Cité Silencieuse), 43 événements datés.
+- **Narration** : 12 fichiers de dialogues (environ 1 675 étapes).
+  - Acte I : Hae-in, Haneul, Seo-Yeon et le camp, la Tour, rencontres-teasers des 10 héroïnes.
+  - Acte II : Impôt du Sang, concert-piège d'Aoi, sacrifice des Élus, Guerre de l'Eau, Fin de Seo-Yeon, Sommet des Sceaux, tunnels de Maricel, étage 2, moments de repos au Refuge.
+- **Systèmes** : Refuge (rations, améliorations, repos), sauvegarde/chargement, méta-progression entre les boucles.
+- **Combat** : 46 compétences, 10 ennemis, 24 rencontres. Réécriture, Pressentiment, Éveil, Peur, Grappin, Charme.
 - **Audio** : musique par contexte avec fondus, voix IA par réplique (règles d'apparition et de scènes clés).
 
 ## Validation
 ```bash
-GODOT=godot ./tools/check_all.sh     # validateur de données + import + 1 165 tests + 3 parties automatiques
+GODOT=godot ./tools/check_all.sh     # validateur de données + import + 2 401 tests + 4 parties automatiques (jusqu'à la fin de l'Acte II)
+AUTOPILOT_DEBUG=1 godot --headless --path . -- --autotest   # trace l'itinéraire de l'autopilote étape par étape
 godot --path . -- --capture           # captures d'écran dans user://captures/
 ```
 

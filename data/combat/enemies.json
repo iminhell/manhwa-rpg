@@ -96,6 +96,72 @@
       ],
       "color": "#c9a227",
       "boss": false
+    },
+    "fanatique": {
+      "name": "Fanatique des Élus",
+      "stats": {
+        "hp": 55,
+        "atk": 10,
+        "def": 3,
+        "spd": 12,
+        "mana": 30
+      },
+      "skills": [
+        "poignard_rituel",
+        "chant_eleve"
+      ],
+      "color": "#f2f2f2",
+      "boss": false,
+      "human": true
+    },
+    "garde_longwei": {
+      "name": "Garde de Longwei",
+      "stats": {
+        "hp": 75,
+        "atk": 11,
+        "def": 6,
+        "spd": 10,
+        "mana": 20
+      },
+      "skills": [
+        "coup_de_poing_eveille",
+        "griffes"
+      ],
+      "color": "#a3122a",
+      "boss": false,
+      "human": true
+    },
+    "drone_mirae": {
+      "name": "Drone de Mirae",
+      "stats": {
+        "hp": 40,
+        "atk": 9,
+        "def": 7,
+        "spd": 13,
+        "mana": 40
+      },
+      "skills": [
+        "tir_drone",
+        "filet_electrique"
+      ],
+      "color": "#2ec5ff",
+      "boss": false
+    },
+    "mere_sourde": {
+      "name": "La Mère Sourde",
+      "stats": {
+        "hp": 420,
+        "atk": 16,
+        "def": 8,
+        "spd": 8,
+        "mana": 120
+      },
+      "skills": [
+        "etreinte",
+        "cri_sourd"
+      ],
+      "color": "#9aa0a6",
+      "boss": true
     }
   }
 }

@@ -1,0 +1,164 @@
+{
+ "id": "act2_tower",
+ "title": "Acte II — Tour, Étage 2",
+ "start": "start",
+ "speakers": {},
+ "blocks": {
+  "start": [
+   {
+    "goto": "arrivee"
+   }
+  ],
+  "arrivee": [
+   {
+    "bg": "tower_gate"
+   },
+   {
+    "music": "sector.silence"
+   },
+   {
+    "s": "system",
+    "t": "ÉTAGE 2 — LA CITÉ SILENCIEUSE. Règle : tout son au-dessus d'un murmure attire le Gardien."
+   },
+   {
+    "s": "narrator",
+    "t": "Une ville de pierre grise sous un ciel sans soleil. Des rues pavées, des fontaines taries, des maisons aux volets clos. Et partout, des statues d'hommes et de femmes, la bouche cousue de fil d'or."
+   },
+   {
+    "s": "narrator",
+    "t": "Tes pas ne font aucun bruit. Pas parce que tu es discret : parce que l'étage les mange."
+   },
+   {
+    "if": "flag('haneul_trouvee')",
+    "then": "arrivee_haneul"
+   },
+   {
+    "s": "elias",
+    "t": "(Chaque combat fera du bruit. Deux, et la Mère se réveillera.)",
+    "e": "neutral"
+   },
+   {
+    "end": true
+   }
+  ],
+  "arrivee_haneul": [
+   {
+    "s": "haneul",
+    "t": "Ces gens ont choisi de se taire pour que la Tour ne les entende pas. Elle les a entendus quand même. Elle entend tout.",
+    "e": "sad",
+    "v": true
+   },
+   {
+    "s": "haneul",
+    "t": "Parle doucement, Elias. La Mère n'a pas d'oreilles. C'est pour ça qu'elle écoute si fort.",
+    "e": "neutral"
+   },
+   {
+    "end": true
+   }
+  ],
+  "reveil": [
+   {
+    "bg": "tower_gate"
+   },
+   {
+    "music": "boss"
+   },
+   {
+    "s": "narrator",
+    "t": "Un frisson traverse la pierre. Toutes les statues de la rue tournent la tête vers toi, en même temps, dans un grincement de rocher."
+   },
+   {
+    "s": "narrator",
+    "t": "Au bout de l'avenue, une silhouette immense se déplie. Ses mains sont plaquées là où devraient être ses oreilles. Elle n'a pas de visage. Elle a une bouche, cousue, qui s'ouvre."
+   },
+   {
+    "if": "flag('mere_assourdie')",
+    "then": "reveil_sourde"
+   },
+   {
+    "s": "registre",
+    "t": "La Mère Sourde a entendu. Elle vient."
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "mere_sourde"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "s": "narrator",
+    "t": "La Mère s'effondre sur les pavés sans un bruit. Les fils d'or des statues se détendent d'un coup. Pour la première fois depuis des siècles, la cité soupire."
+   },
+   {
+    "s": "registre",
+    "t": "Gardien de l'Étage 2 vaincu."
+   },
+   {
+    "fx": [
+     "flag mere_vaincue",
+     "pressure -10",
+     "souvenir premier_conquerant_2"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "reveil_sourde": [
+   {
+    "s": "narrator",
+    "t": "Elle tourne sur elle-même, les mains sur la tête. Le hurlement du battant résonne encore dans son crâne. Elle te cherche, et ne te trouve pas."
+   },
+   {
+    "s": "elias",
+    "t": "Le battant. Elle est encore sourde de sa propre cloche.",
+    "e": "smirk"
+   },
+   {
+    "s": "narrator",
+    "t": "Tu passes sous son bras tendu, à un mètre d'elle, sans qu'elle sache que tu existes."
+   },
+   {
+    "s": "registre",
+    "t": "La Mère Sourde erre, assourdie. La place du Gardien reste ouverte : tu choisiras le moment du duel."
+   },
+   {
+    "end": true
+   }
+  ],
+  "defeat": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Le monde bascule. Le sol, le ciel, la Tour qui regarde."
+   },
+   {
+    "s": "elias",
+    "t": "Pas… encore…",
+    "e": "exhausted"
+   },
+   {
+    "s": "registre",
+    "t": "ÉCHEC — Le Lecteur est mort."
+   },
+   {
+    "s": "registre",
+    "t": "Régression."
+   },
+   {
+    "event": "regress",
+    "args": {}
+   },
+   {
+    "end": true
+   }
+  ]
+ }
+}

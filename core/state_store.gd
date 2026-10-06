@@ -111,8 +111,8 @@ func check(condition: String) -> bool:
 
 
 # Fonctions exposées aux conditions
-func v(key: String) -> Variant:
-	return get_var(key)
+func v(key: String, default_value: Variant = 0) -> Variant:
+	return get_var(key, default_value)
 
 
 func flag(name: String) -> bool:
@@ -200,6 +200,12 @@ func trust(id: String) -> float:
 
 func fear(id: String) -> float:
 	return float(get_var("fear." + id))
+
+
+## Vrai si Elias est dans le secteur où il a établi son Refuge.
+func in_refuge_sector() -> bool:
+	var rs := str(get_var("refuge.sector", ""))
+	return rs != "" and rs == str(get_var("pos.sector", ""))
 
 
 func done(event_id: String) -> bool:

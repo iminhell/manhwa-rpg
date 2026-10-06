@@ -64,6 +64,14 @@
   "haein_theme": {
    "file": "res://assets/audio/music/haein_theme.ogg",
    "desc": "Thème de Yoon Hae-in — violoncelle, jazz lent, verre"
+  },
+  "silence": {
+   "file": "res://assets/audio/music/silence.ogg",
+   "desc": "Étage 2 — quasi-silence, respiration, cloches étouffées"
+  },
+  "concert_aoi": {
+   "file": "res://assets/audio/music/concert_aoi.ogg",
+   "desc": "« Chanson pour Séoul » — la chanson d'Aoi, version scène"
   }
  },
  "contexts": {
@@ -83,6 +91,8 @@
   "boss": "boss",
   "registre": "registre",
   "intimate": "intimate",
-  "haein": "haein_theme"
+  "haein": "haein_theme",
+  "sector.silence": "silence",
+  "concert": "concert_aoi"
  }
 }

@@ -19,11 +19,13 @@ step "3/4 Tests unitaires (état, dialogues, combat, carte, fuzz)"
 "$GODOT" --headless --path . -s res://tests/run_tests.gd >/dev/null 2>&1 || fail=1
 
 if [[ "${1:-}" != "--quick" ]]; then
-  step "4/4 Parties automatiques complètes (prologue → fin de l'Acte I)"
-  for variant in "" "--alt" "--autotest-regress"; do
+  step "4/4 Parties automatiques complètes (prologue → fin de l'Acte II)"
+  for variant in "" "--alt" "--autotest-regress" "--act1-only"; do
+    expected="FIN DE L'ACTE 2"
+    [[ "$variant" == "--act1-only" ]] && expected="FIN DE L'ACTE 1"
     log=$(mktemp)
-    if timeout 600 "$GODOT" --headless --path . -- --autotest $variant >"$log" 2>&1 && grep -q "FIN DE L'ACTE" "$log" && ! grep -qE "SCRIPT ERROR|^ERROR" "$log"; then
-      echo "OK  [${variant:-standard}] $(grep 'FIN DE' "$log" | sed 's/\[autotest\] //')"
+    if timeout 900 "$GODOT" --headless --path . -- --autotest $variant >"$log" 2>&1 && grep -q "$expected" "$log" && ! grep -qE "SCRIPT ERROR|^ERROR" "$log"; then
+      echo "OK  [${variant:-standard}] $(grep "$expected" "$log" | sed 's/\[autotest\] //')"
     else
       echo "ÉCHEC [${variant:-standard}]"; tail -20 "$log"; fail=1
     fi

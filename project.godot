@@ -17,6 +17,7 @@ DataDB="*res://core/data_db.gd"
 Settings="*res://core/settings.gd"
 GameState="*res://core/game_state.gd"
 AssetDB="*res://core/asset_db.gd"
+SaveManager="*res://core/save_manager.gd"
 MusicManager="*res://core/music_manager.gd"
 VoiceManager="*res://core/voice_manager.gd"
 

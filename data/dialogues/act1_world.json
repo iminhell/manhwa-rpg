@@ -56,8 +56,12 @@
   "maree_fight": [
    {
     "if": "day() <= 6",
-    "then": "maree_t1",
-    "else": "maree_t2"
+    "then": "maree_t1"
+   },
+   {
+    "if": "day() <= 12",
+    "then": "maree_t2",
+    "else": "maree_t3"
    }
   ],
   "maree_t1": [
@@ -103,6 +107,30 @@
    {
     "s": "narrator",
     "t": "Plus nombreux que la veille. Plus rapides. La Tour accélère."
+   },
+   {
+    "end": true
+   }
+  ],
+  "maree_t3": [
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "maree_t3"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "fx": [
+     "money 35"
+    ]
+   },
+   {
+    "s": "narrator",
+    "t": "Des Brutes, maintenant, au milieu des Rôdeurs. La Tour ne teste plus la ville. Elle la moissonne."
    },
    {
     "end": true

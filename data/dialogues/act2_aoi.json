@@ -1,0 +1,815 @@
+{
+ "id": "act2_aoi",
+ "title": "Acte II — Le concert-piège d'Aoi",
+ "start": "start",
+ "speakers": {
+  "jang": "Président Jang",
+  "mirae_ia": "IA de Mirae"
+ },
+ "blocks": {
+  "start": [
+   {
+    "goto": "annonce"
+   }
+  ],
+  "annonce": [
+   {
+    "music": "registre"
+   },
+   {
+    "s": "narrator",
+    "t": "Neuvième aube. Sur tous les écrans géants encore vivants de Séoul, le même visage : une fille aux couettes noir et rose, en robe blanche et dorée, qui sourit sans fossette."
+   },
+   {
+    "s": "jang",
+    "t": "Ce soir, Rue des Clubs, Mirae Dynamics vous offre le Concert de l'Espoir. Zone sécurisée par nos drones. Repas chaud pour chaque spectateur. Venez nombreux."
+   },
+   {
+    "s": "elias",
+    "t": "« Venez nombreux. » Il ne ment même pas. Il a besoin de beaucoup de monde.",
+    "e": "anger"
+   },
+   {
+    "if": "not knows_fin('aoi')",
+    "then": "annonce_fin"
+   },
+   {
+    "goto": "annonce_suite"
+   }
+  ],
+  "annonce_fin": [
+   {
+    "s": "registre",
+    "t": "Lecture de la Fin — Aoi Tsukishiro. Jour 9, Nuit. Rue des Clubs. Écrasée par la Marée qu'attire son propre chant."
+   },
+   {
+    "fx": [
+     "fin aoi"
+    ]
+   },
+   {
+    "goto": "annonce_suite"
+   }
+  ],
+  "annonce_suite": [
+   {
+    "s": "registre",
+    "t": "Cause profonde : la foule est l'appât. L'amplificateur de Mirae est le hameçon."
+   },
+   {
+    "if": "flag('aoi_convaincue') and flag('ampli_sabote')",
+    "then": "annonce_pret"
+   },
+   {
+    "s": "registre",
+    "t": "Réécriture possible : convaincre la chanteuse, saboter l'amplificateur — ou être là quand la Marée tombera."
+   },
+   {
+    "end": true
+   }
+  ],
+  "annonce_pret": [
+   {
+    "s": "elias",
+    "t": "Elle sait. Et la Sirène de Mirae est en miettes. Il reste à être là ce soir.",
+    "e": "smirk"
+   },
+   {
+    "end": true
+   }
+  ],
+  "studio2": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "if": "not flag('aoi_entendue')",
+    "then": "studio_premiere"
+   },
+   {
+    "s": "narrator",
+    "t": "La porte capitonnée s'entrouvre avant que tu frappes. Aoi, en sweat gris, une baguette de takoyaki froid à la main."
+   },
+   {
+    "s": "aoi",
+    "t": "Le type qui dit que je chante faux. Tu reviens me critiquer le premier couplet, cette fois ?",
+    "e": "true_smile"
+   },
+   {
+    "goto": "studio_coeur"
+   }
+  ],
+  "studio_premiere": [
+   {
+    "s": "narrator",
+    "t": "Tu frappes. Un long silence. Puis une voix enrouée, à travers le capitonnage."
+   },
+   {
+    "s": "aoi",
+    "t": "Si c'est l'agence, je suis en répétition. Si c'est un fan… je suis en répétition aussi.",
+    "e": "fear"
+   },
+   {
+    "s": "elias",
+    "t": "Ni l'un ni l'autre. Je viens parler du concert de demain soir.",
+    "e": "neutral"
+   },
+   {
+    "s": "narrator",
+    "t": "La porte s'ouvre de dix centimètres. Des yeux noisette, rougis. Des bracelets serrés jusqu'au milieu de l'avant-bras gauche."
+   },
+   {
+    "s": "registre",
+    "t": "Lecture de la Fin — Aoi Tsukishiro. Jour 9, Nuit. Rue des Clubs. Écrasée par la Marée qu'attire son propre chant."
+   },
+   {
+    "fx": [
+     "flag aoi_entendue",
+     "fin aoi"
+    ]
+   },
+   {
+    "goto": "studio_coeur"
+   }
+  ],
+  "studio_coeur": [
+   {
+    "s": "elias",
+    "t": "Le Concert de l'Espoir est un piège. Mirae va amplifier ta voix pour attirer la Marée sur la foule. Ils veulent mesurer combien de monstres une chanson peut appeler.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "aoi",
+    "t": "…",
+    "e": "neutral"
+   },
+   {
+    "s": "aoi",
+    "t": "Tu sais ce qui est drôle ? Je te crois. Tout de suite. Parce que c'est exactement le genre de chose que ferait le président Jang.",
+    "e": "sad",
+    "v": true
+   },
+   {
+    "s": "aoi",
+    "t": "Mais j'ai une dette de trois cents millions de wons. Un contrat. Et si je ne monte pas sur scène, ils viennent me chercher. Ils sont toujours venus me chercher.",
+    "e": "tears"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle tire sur ses manches jusqu'à cacher ses doigts. Un geste répété mille fois."
+   },
+   {
+    "choice": [
+     {
+      "t": "« Ta dette est morte avec le monde. Ton contrat aussi. Tu peux choisir, pour une fois. »",
+      "goto": "studio_choix",
+      "fx": [
+       "add trust.aoi 8",
+       "add align.bond 1"
+      ]
+     },
+     {
+      "t": "« Chante pour moi. Ici. Juste une personne. »",
+      "goto": "studio_chant",
+      "fx": [
+       "add aff.aoi 8"
+      ]
+     },
+     {
+      "t": "« Monte sur scène si tu veux. Je serai dans la foule. »",
+      "goto": "studio_promesse",
+      "fx": [
+       "add aff.aoi 3",
+       "flag aoi_promesse"
+      ]
+     },
+     {
+      "t": "« Je te rachète à Mirae. À partir de ce soir, tu chantes pour moi. »",
+      "goto": "studio_tyran",
+      "fx": [
+       "add align.protect -3",
+       "add fear.aoi 15"
+      ]
+     }
+    ]
+   }
+  ],
+  "studio_choix": [
+   {
+    "s": "aoi",
+    "t": "Choisir. Je ne sais même pas comment on fait.",
+    "e": "sad"
+   },
+   {
+    "s": "elias",
+    "t": "On commence petit. Demain soir, tu refuses leur micro. Tu chantes avec ta voix, sans leur machine. Et au premier cri, tu descends de scène et tu cours vers moi.",
+    "e": "neutral"
+   },
+   {
+    "s": "aoi",
+    "t": "…D'accord. D'accord. Ça, je peux le faire. Je crois.",
+    "e": "true_smile",
+    "v": true
+   },
+   {
+    "goto": "studio_ok"
+   }
+  ],
+  "studio_chant": [
+   {
+    "s": "narrator",
+    "t": "Elle hésite. Puis elle s'assoit sur l'ampli, ferme les yeux, et chante la berceuse cassée. Jusqu'au bout, cette fois. Sans s'arrêter au deuxième couplet."
+   },
+   {
+    "s": "narrator",
+    "t": "Pendant trente secondes, tu oublies la Tour. Tu oublies que tu es déjà mort. C'est exactement ce qu'elle fait aux gens : elle réécrit ce qu'ils ressentent."
+   },
+   {
+    "s": "aoi",
+    "t": "Personne ne m'avait jamais demandé ça. Une seule personne. Pas une foule.",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "s": "elias",
+    "t": "Alors demain, chante pour une seule personne. Pas dans leur micro. Et descends au premier cri.",
+    "e": "neutral"
+   },
+   {
+    "s": "aoi",
+    "t": "…Promis. Sur ma voix.",
+    "e": "true_smile"
+   },
+   {
+    "goto": "studio_ok"
+   }
+  ],
+  "studio_promesse": [
+   {
+    "s": "aoi",
+    "t": "Tu serais là ? Vraiment ? Les gens disent ça, et puis…",
+    "e": "surprise"
+   },
+   {
+    "s": "elias",
+    "t": "Je serai là.",
+    "e": "neutral"
+   },
+   {
+    "s": "aoi",
+    "t": "Ahaha. Alors je chanterai pour toi. Même si le monde s'écroule une deuxième fois.",
+    "e": "stage_smile"
+   },
+   {
+    "s": "registre",
+    "t": "Elle montera sur scène, avec le micro de Mirae. Il faudra être là, ou briser leur machine."
+   },
+   {
+    "end": true
+   }
+  ],
+  "studio_tyran": [
+   {
+    "s": "narrator",
+    "t": "Le sourire de scène revient d'un coup, comme un masque qu'on enfile. Le même qu'elle avait pour les pesées publiques."
+   },
+   {
+    "s": "aoi",
+    "t": "Ah. Encore un propriétaire. D'accord. Je connais ce rôle.",
+    "e": "stage_smile"
+   },
+   {
+    "s": "aoi",
+    "t": "Je ne prendrai pas leur micro, Monsieur. Puisque c'est vous qui décidez, maintenant.",
+    "e": "neutral"
+   },
+   {
+    "s": "registre",
+    "t": "Soumission par la peur. La Fin vacille, mais pour de mauvaises raisons."
+   },
+   {
+    "fx": [
+     "flag aoi_dominee"
+    ]
+   },
+   {
+    "goto": "studio_ok"
+   }
+  ],
+  "studio_ok": [
+   {
+    "s": "registre",
+    "t": "Aoi Tsukishiro ne prendra pas le micro de Mirae. La Fin tremble."
+   },
+   {
+    "fx": [
+     "flag aoi_convaincue"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "sabotage": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "night"
+   },
+   {
+    "s": "narrator",
+    "t": "Le campus Mirae, de nuit. Les drones tournent en patrouilles lentes, leurs projecteurs balaient les pelouses mortes. Tu passes par la gaine technique du bâtiment C."
+   },
+   {
+    "if": "flag('mirae_anomalie')",
+    "then": "sabotage_minh_anh"
+   },
+   {
+    "s": "narrator",
+    "t": "Salle des serveurs, troisième sous-sol. Au centre, sur un chariot, une sphère de cuivre hérissée d'antennes. Une étiquette : SIRÈNE — Prototype 3. Propriété de la Machine d'Inversion."
+   },
+   {
+    "s": "mirae_ia",
+    "t": "Intrusion détectée. Protocole de neutralisation."
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "drones_mirae"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "goto": "sabotage_fin"
+   }
+  ],
+  "sabotage_minh_anh": [
+   {
+    "s": "narrator",
+    "t": "Les haut-parleurs grésillent. Une voix de femme, rapide, sèche, sans aucun filtre."
+   },
+   {
+    "s": "minh_anh",
+    "t": "L'anomalie temporelle. Enfin. Tu as quarante secondes avant que je réactive les drones.",
+    "e": "red_leds"
+   },
+   {
+    "s": "elias",
+    "t": "Pourquoi tu m'aides ?",
+    "e": "surprise"
+   },
+   {
+    "s": "minh_anh",
+    "t": "Je ne t'aide pas. Je regarde ce que fait un régresseur quand il sait. C'est une donnée. Le Prototype 3 est derrière la porte bleue. Trente-deux secondes.",
+    "e": "neutral"
+   },
+   {
+    "fx": [
+     "add trust.minh_anh 5"
+    ]
+   },
+   {
+    "goto": "sabotage_fin"
+   }
+  ],
+  "sabotage_fin": [
+   {
+    "s": "narrator",
+    "t": "Tu arraches les antennes une à une. Tu écrases le cœur de cuivre sous ta botte. La sphère pousse un sifflement aigu, presque humain, et s'éteint."
+   },
+   {
+    "s": "narrator",
+    "t": "Sur l'écran de contrôle, un planning reste affiché : « Forage MD-3 — sous-sol de Myeongdong — capteurs à poser avant J14. Étais existants : non prioritaires. »"
+   },
+   {
+    "s": "elias",
+    "t": "Les foreuses. Ce sont eux qui creusent sous les tunnels de Maricel.",
+    "e": "anger"
+   },
+   {
+    "s": "registre",
+    "t": "Souvenir gravé : la Sirène de Mirae et les foreuses de Myeongdong."
+   },
+   {
+    "fx": [
+     "flag ampli_sabote",
+     "souvenir ampli_mirae",
+     "souvenir foreuses_mirae",
+     "add align.chaos 1"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "concert": [
+   {
+    "bg": "itaewon_street"
+   },
+   {
+    "music": "concert"
+   },
+   {
+    "s": "narrator",
+    "t": "Rue des Clubs, neuvième nuit. Une scène de fortune entre deux immeubles éventrés, des projecteurs alimentés par les groupes électrogènes de Mirae. Trois mille personnes, peut-être plus. Ils ont faim. Ils ont reçu un repas chaud."
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi entre en scène, en robe blanche et dorée. La tenue de la Fin. Elle cherche quelqu'un dans la foule. Elle te trouve."
+   },
+   {
+    "if": "flag('aoi_convaincue') and flag('ampli_sabote')",
+    "then": "concert_sauf"
+   },
+   {
+    "if": "flag('ampli_sabote')",
+    "then": "concert_sabote"
+   },
+   {
+    "if": "flag('aoi_convaincue')",
+    "then": "concert_convaincue"
+   },
+   {
+    "goto": "concert_piege"
+   }
+  ],
+  "concert_sauf": [
+   {
+    "s": "narrator",
+    "t": "Un technicien lui tend un micro de cuivre. Elle secoue la tête, recule d'un pas, et chante sans rien. Juste sa voix, nue, qui ne porte pas au-delà du dixième rang."
+   },
+   {
+    "s": "narrator",
+    "t": "Le régisseur de Mirae hurle dans son oreillette. Les drones-relais tournent dans le ciel, muets : la Sirène n'est plus qu'un tas de cuivre au troisième sous-sol."
+   },
+   {
+    "s": "aoi",
+    "t": "Cette chanson est pour une seule personne. Les autres, vous pouvez écouter quand même.",
+    "e": "true_smile",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Au loin, la Tour gronde. Quelques silhouettes se décrochent du ciel noir, hésitent, et repartent vers d'autres quartiers. Ce soir, la Marée ne trouve pas d'appât."
+   },
+   {
+    "s": "jang",
+    "t": "Mon investissement… Tu sais combien tu me coûtes, Aoi ?",
+    "e": "anger"
+   },
+   {
+    "s": "elias",
+    "t": "Plus rien. Elle est quitte.",
+    "e": "smirk"
+   },
+   {
+    "goto": "concert_sauvee"
+   }
+  ],
+  "concert_sabote": [
+   {
+    "s": "narrator",
+    "t": "Elle prend le micro de cuivre, le porte à ses lèvres. Rien. La Sirène est morte. Mais trois mille voix scandent son nom, et ce bruit-là suffit à réveiller la nuit."
+   },
+   {
+    "s": "narrator",
+    "t": "Des silhouettes se décrochent du ciel. Moins que dans l'autre vie. Assez pour tuer."
+   },
+   {
+    "s": "elias",
+    "t": "Tout le monde derrière la scène ! Aoi, avec moi !",
+    "e": "anger"
+   },
+   {
+    "goto": "concert_combat"
+   }
+  ],
+  "concert_convaincue": [
+   {
+    "s": "narrator",
+    "t": "Elle repousse le micro de cuivre. Mais les drones-relais au-dessus de la foule s'allument quand même : ils captent sa voix nue et la projettent sur toute la ville, dix fois plus fort."
+   },
+   {
+    "s": "aoi",
+    "t": "Non… non, je n'ai pas pris le micro ! Je n'ai pas…",
+    "e": "fear",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Le ciel répond. La Marée tombe sur la Rue des Clubs."
+   },
+   {
+    "s": "elias",
+    "t": "Ce n'est pas ta faute. Cours vers moi. Maintenant !",
+    "e": "anger"
+   },
+   {
+    "goto": "concert_combat"
+   }
+  ],
+  "concert_piege": [
+   {
+    "s": "narrator",
+    "t": "Elle prend le micro de cuivre. Sa voix monte, immense, portée par la Sirène et par cent drones-relais. Elle remplit la ville. Elle remplit le ciel."
+   },
+   {
+    "s": "narrator",
+    "t": "Et le ciel répond. Des centaines de silhouettes noires se décrochent de la Tour, attirées comme des papillons de nuit."
+   },
+   {
+    "s": "aoi",
+    "t": "Qu'est-ce que… Pourquoi ils viennent tous vers nous ?",
+    "e": "fear"
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — Concert-piège. La Marée converge sur la Rue des Clubs."
+   },
+   {
+    "goto": "concert_combat"
+   }
+  ],
+  "concert_combat": [
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "concert_maree"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "if": "flag('aoi_convaincue') or flag('ampli_sabote')",
+    "then": "concert_apres"
+   },
+   {
+    "goto": "concert_dilemme"
+   }
+  ],
+  "concert_apres": [
+   {
+    "s": "narrator",
+    "t": "À l'aube, la rue fume. Les corps noirs fondent sur le bitume. La foule s'est dispersée par les ruelles que tu as tenues. La plupart sont vivants."
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi est assise au bord de la scène effondrée, sa robe blanche couverte de suie. Elle te regarde arriver comme on regarde quelqu'un qui a tenu une promesse."
+   },
+   {
+    "goto": "concert_sauvee"
+   }
+  ],
+  "concert_dilemme": [
+   {
+    "s": "narrator",
+    "t": "La Marée reflue, mais l'échafaudage de la scène cède sous le poids des corps noirs. Aoi est coincée sous une poutre, la cheville prise. À l'autre bout de la rue, la barricade où s'entassent deux cents spectateurs commence à plier."
+   },
+   {
+    "s": "registre",
+    "t": "Tu n'as le temps que pour un seul côté."
+   },
+   {
+    "choice": [
+     {
+      "t": "Courir vers Aoi.",
+      "goto": "dilemme_aoi",
+      "fx": [
+       "add align.protect -2",
+       "add align.bond 2"
+      ]
+     },
+     {
+      "t": "Tenir la barricade. Deux cents vies contre une.",
+      "goto": "dilemme_foule",
+      "fx": [
+       "add align.protect 5"
+      ]
+     }
+    ]
+   }
+  ],
+  "dilemme_aoi": [
+   {
+    "s": "narrator",
+    "t": "Tu soulèves la poutre à mains nues. Tes paumes s'ouvrent. Elle se dégage, boitant, accrochée à ton cou."
+   },
+   {
+    "s": "narrator",
+    "t": "Derrière toi, la barricade cède. Tu n'entends pas les cris. Tu choisis de ne pas les entendre."
+   },
+   {
+    "s": "aoi",
+    "t": "Tu… tu es venu pour moi. Pas pour eux. Pour moi.",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "Aoi Tsukishiro vit. Quarante-sept spectateurs non."
+   },
+   {
+    "fx": [
+     "flag concert_massacre"
+    ]
+   },
+   {
+    "goto": "concert_sauvee"
+   }
+  ],
+  "dilemme_foule": [
+   {
+    "s": "narrator",
+    "t": "Tu tiens la barricade jusqu'à ce que tes bras ne répondent plus. Deux cents personnes s'enfuient par les ruelles."
+   },
+   {
+    "s": "narrator",
+    "t": "Quand tu te retournes, la scène n'existe plus. Une robe blanche et dorée dépasse des gravats. Le micro de cuivre chante encore, tout seul, au milieu du silence."
+   },
+   {
+    "s": "registre",
+    "t": "Aoi Tsukishiro — Jour 9, Nuit. La Fin est accomplie. Deux cents vivants l'ont payée."
+   },
+   {
+    "s": "elias",
+    "t": "(Je lui avais promis d'être là. J'étais là.)",
+    "e": "tears"
+   },
+   {
+    "fx": [
+     "flag aoi_morte",
+     "add align.bond -2"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "concert_sauvee": [
+   {
+    "if": "flag('aoi_dominee')",
+    "then": "sauvee_dominee"
+   },
+   {
+    "s": "aoi",
+    "t": "Je n'ai jamais rien choisi de ma vie. Aujourd'hui, je choisis de te suivre. Si tu veux bien.",
+    "e": "true_smile",
+    "v": true
+   },
+   {
+    "s": "elias",
+    "t": "Il y a de la place. On mange mal et on dort peu.",
+    "e": "smirk"
+   },
+   {
+    "s": "aoi",
+    "t": "Comme à l'agence, alors. Sauf que personne ne me pèsera le lundi.",
+    "e": "laugh"
+   },
+   {
+    "fx": [
+     "add aff.aoi 10",
+     "add trust.aoi 10"
+    ]
+   },
+   {
+    "goto": "sauvee_fin"
+   }
+  ],
+  "sauvee_dominee": [
+   {
+    "s": "aoi",
+    "t": "Où est-ce que je dois aller, Monsieur ? Je suis à vous, maintenant. C'est ce qui était prévu.",
+    "e": "stage_smile"
+   },
+   {
+    "s": "registre",
+    "t": "Elle te suit. Sa main ne quitte pas ses bracelets."
+   },
+   {
+    "fx": [
+     "add fear.aoi 10"
+    ]
+   },
+   {
+    "goto": "sauvee_fin"
+   }
+  ],
+  "sauvee_fin": [
+   {
+    "s": "registre",
+    "t": "Aoi Tsukishiro a rejoint le groupe. Nouvelle Fin : Jour 22, siège de Myeongdong. Elle chante jusqu'à la mort pour couvrir l'évacuation."
+   },
+   {
+    "fx": [
+     "flag aoi_sauvee",
+     "join aoi",
+     "fin aoi_2",
+     "souvenir aoi_survie",
+     "pressure -2"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "concert_absent": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "registre"
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — Concert de l'Espoir, Rue des Clubs. Tu n'es pas là."
+   },
+   {
+    "if": "flag('aoi_convaincue') and flag('ampli_sabote')",
+    "then": "absent_sauf"
+   },
+   {
+    "goto": "absent_mort"
+   }
+  ],
+  "absent_sauf": [
+   {
+    "s": "registre",
+    "t": "Pas de Sirène, pas de micro. La chanteuse chante pour une seule personne, qui n'est pas venue. La Marée passe sans s'arrêter."
+   },
+   {
+    "s": "registre",
+    "t": "Au matin, une fille en sweat gris trop grand frappe à ta porte. Elle a ses couettes défaites et un sac de takoyaki froids."
+   },
+   {
+    "s": "aoi",
+    "t": "Tu n'es pas venu. Mais tu avais raison. Alors… je suis venue, moi.",
+    "e": "true_smile"
+   },
+   {
+    "goto": "sauvee_fin"
+   }
+  ],
+  "absent_mort": [
+   {
+    "s": "registre",
+    "t": "La Sirène chante. La ville répond. La Marée tombe sur trois mille personnes rassemblées pour un repas chaud."
+   },
+   {
+    "s": "registre",
+    "t": "Aoi Tsukishiro — Jour 9, Nuit. Écrasée sur sa propre scène. La Fin est accomplie."
+   },
+   {
+    "s": "registre",
+    "t": "Mirae Dynamics a ses données."
+   },
+   {
+    "fx": [
+     "flag aoi_morte"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "defeat": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Le monde bascule. Le sol, le ciel, la Tour qui regarde."
+   },
+   {
+    "s": "elias",
+    "t": "Pas… encore…",
+    "e": "exhausted"
+   },
+   {
+    "s": "registre",
+    "t": "ÉCHEC — Le Lecteur est mort."
+   },
+   {
+    "s": "registre",
+    "t": "Régression."
+   },
+   {
+    "event": "regress",
+    "args": {}
+   },
+   {
+    "end": true
+   }
+  ]
+ }
+}

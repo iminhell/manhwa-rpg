@@ -346,7 +346,8 @@
     0.43
    ],
    "adjacent": [
-    "yongsan"
+    "yongsan",
+    "etage2"
    ],
    "entry": "etage1.vestibule",
    "desc": "Règle : aucune arme apportée de l'extérieur ne fonctionne.",
@@ -532,6 +533,19 @@
         "add align.protect 1"
        ],
        "message": "Des voitures poussées en barrière, des pieux taillés dans les cerisiers morts. Le camp respire un peu mieux."
+      },
+      {
+       "id": "enfants",
+       "label": "Augmenter la ration des enfants (3 rations du Refuge)",
+       "cost": 2,
+       "once": true,
+       "if": "v('refuge.rations') >= 3 and day() <= 12 and not flag('camp_tombe') and not flag('camp_vendu')",
+       "fx": [
+        "add refuge.rations -3",
+        "flag enfants_nourris",
+        "add trust.seo_yeon 4"
+       ],
+       "message": "Six enfants mangent à leur faim pour la première fois depuis le J1. Personne n'aura besoin de se cacher à Sainte-Marie."
       }
      ]
     },
@@ -755,6 +769,15 @@
      ],
      "links": [
       "hongdae.rue_clubs"
+     ],
+     "actions": [
+      {
+       "id": "aoi2",
+       "label": "Frapper à la porte du studio d'Aoi",
+       "cost": 1,
+       "dialogue": "act2_aoi:studio2",
+       "if": "day() >= 8 and day() <= 9 and not flag('aoi_convaincue') and not flag('aoi_morte')"
+      }
      ]
     },
     "hongdae.hongik": {
@@ -849,6 +872,13 @@
        "cost": 1,
        "once": true,
        "dialogue": "act1_world:mirae_drone"
+      },
+      {
+       "id": "saboter",
+       "label": "S'infiltrer pour saboter l'amplificateur",
+       "cost": 3,
+       "dialogue": "act2_aoi:sabotage",
+       "if": "day() >= 8 and day() <= 9 and phase() == 3 and not flag('ampli_sabote')"
       }
      ]
     },
@@ -921,7 +951,8 @@
        ],
        "message": "Une novice change ton bandage. Tu dors une heure sur un banc. La fatigue reflue."
       }
-     ]
+     ],
+     "refuge": "flag('agatha_rencontree')"
     },
     "myeongdong.marche": {
      "name": "Marché Souterrain",
@@ -1075,6 +1106,19 @@
         "flag etais_vus"
        ],
        "message": "Des marques de foreuse récentes, et un logo Mirae sur une caisse vide. Quelqu'un fragilise ces tunnels. Le J14, Maricel…"
+      },
+      {
+       "id": "etayer",
+       "label": "Étayer les galeries (40)",
+       "cost": 8,
+       "once": true,
+       "if": "money() >= 40 and day() <= 13",
+       "fx": [
+        "money -40",
+        "flag tunnels_etayes",
+        "add align.protect 2"
+       ],
+       "message": "Deux phases à porter des poutres avec les gamins de Maricel. Les étais neufs grincent, mais ils tiennent."
       }
      ]
     },
@@ -1426,7 +1470,45 @@
       "gangnam.station"
      ],
      "open": "day() >= 8",
-     "locked_hint": "Ouvre au J8, avec l'Impôt du Sang."
+     "locked_hint": "Ouvre au J8, avec l'Impôt du Sang.",
+     "actions": [
+      {
+       "id": "racheter",
+       "label": "Racheter des vassaux (100)",
+       "cost": 2,
+       "once": true,
+       "if": "money() >= 100",
+       "fx": [
+        "money -100",
+        "add align.protect 3",
+        "flag vassaux_rachetes"
+       ],
+       "message": "Tu achètes trois vies au prix d'une arme. Le maître de vente compte les billets en souriant."
+      },
+      {
+       "id": "seo",
+       "label": "Racheter Park Seo-Yeon (150)",
+       "cost": 2,
+       "once": true,
+       "if": "flag('seo_vassale_cheonma') and money() >= 150",
+       "fx": [
+        "money -150"
+       ],
+       "dialogue": "act2_seo:rachat"
+      },
+      {
+       "id": "briser",
+       "label": "Briser les chaînes (combat contre Cheonma)",
+       "cost": 3,
+       "once": true,
+       "encounter": "vassaux_cheonma",
+       "win_fx": [
+        "flag vassaux_liberes",
+        "add align.protect 5",
+        "add fear.ryeon -2"
+       ]
+      }
+     ]
     },
     "gangnam.sortie_tunnel": {
      "name": "Sortie du tunnel n°7",
@@ -1640,6 +1722,177 @@
         "set fatigue 0"
        ],
        "message": "L'eau brûlante dénoue chaque muscle. Quelque part derrière les rochers, une voix furieuse : « Qui est là ?! » Tu files avant qu'un sabre ne t'atteigne."
+      }
+     ]
+    }
+   }
+  },
+  "etage2": {
+   "name": "Tour — Étage 2 : La Cité Silencieuse",
+   "short": "Étage 2",
+   "controller": "tour",
+   "danger": 4,
+   "color": "#9aa0a6",
+   "map_pos": [
+    0.82,
+    0.33
+   ],
+   "adjacent": [
+    "etage1"
+   ],
+   "entry": "etage2.rues_muettes",
+   "desc": "Règle : tout son au-dessus d'un murmure attire le Gardien. Chaque combat fait du bruit.",
+   "music": "sector.silence",
+   "available": "day() >= 10 and flag('passe_tour')",
+   "nodes": {
+    "etage2.rues_muettes": {
+     "name": "Les Rues muettes",
+     "type": "lieu",
+     "desc": "Une ville de pierre. Ses habitants, pétrifiés, ont la bouche cousue de fil d'or.",
+     "pos": [
+      0.15,
+      0.55
+     ],
+     "links": [
+      "etage2.marche_fige",
+      "etage2.bibliotheque",
+      "etage2.maison_cloches"
+     ],
+     "actions": [
+      {
+       "id": "faufiler",
+       "label": "Se faufiler entre les statues (furtif)",
+       "cost": 4,
+       "once": true,
+       "fx": [
+        "item fragment_strate 1"
+       ],
+       "message": "Pas un bruit. Dans la main d'une statue d'enfant, un éclat de glyphe. Tu le prends sans réveiller personne."
+      },
+      {
+       "id": "combat",
+       "label": "Affronter les rôdeurs des rues (bruyant)",
+       "cost": 2,
+       "daily": true,
+       "encounter": "silence_rodeurs",
+       "win_fx": [
+        "add etage2.bruit 1",
+        "money 30"
+       ]
+      }
+     ]
+    },
+    "etage2.marche_fige": {
+     "name": "Le Marché figé",
+     "type": "lieu",
+     "desc": "Des étals intacts depuis des siècles. Le pain n'a jamais rassis.",
+     "pos": [
+      0.35,
+      0.88
+     ],
+     "links": [
+      "etage2.rues_muettes"
+     ],
+     "actions": [
+      {
+       "id": "vivres",
+       "label": "Prendre des vivres en silence",
+       "cost": 4,
+       "once": true,
+       "fx": [
+        "item ration 4"
+       ],
+       "message": "Quatre pains de pierre qui redeviennent du pain chaud au contact de ta main. La Tour nourrit ceux qui se taisent."
+      }
+     ]
+    },
+    "etage2.bibliotheque": {
+     "name": "Bibliothèque du Silence",
+     "type": "lieu",
+     "desc": "Des livres sans mots. Seulement des images de bouches fermées.",
+     "pos": [
+      0.45,
+      0.2
+     ],
+     "links": [
+      "etage2.rues_muettes",
+      "etage2.place_gardien"
+     ],
+     "actions": [
+      {
+       "id": "lire",
+       "label": "Feuilleter les livres d'images",
+       "cost": 3,
+       "once": true,
+       "fx": [
+        "souvenir lore_cite_silencieuse",
+        "item fragment_strate 1",
+        "pressure -1"
+       ],
+       "message": "Ce monde a choisi le silence pour ne pas réveiller la Tour. Ça n'a pas suffi. Ils sont devenus l'étage 2."
+      }
+     ]
+    },
+    "etage2.maison_cloches": {
+     "name": "Le Clocher aux battants",
+     "type": "cache",
+     "desc": "Un clocher dont toutes les cloches ont été bâillonnées de tissu. Sauf une.",
+     "pos": [
+      0.4,
+      0.55
+     ],
+     "links": [
+      "etage2.rues_muettes"
+     ],
+     "actions": [
+      {
+       "id": "battant",
+       "label": "Décrocher le battant de la dernière cloche",
+       "cost": 3,
+       "once": true,
+       "fx": [
+        "item battant 1"
+       ],
+       "message": "Le battant est lourd, gravé d'un glyphe d'oreille barrée. Frappé contre la pierre, il crierait plus fort que la Mère elle-même."
+      }
+     ],
+     "hidden": "souvenir('lore_cite_silencieuse') or loop() >= 2"
+    },
+    "etage2.place_gardien": {
+     "name": "Place de la Mère Sourde",
+     "type": "menace",
+     "desc": "Au centre, une silhouette immense, les mains plaquées sur ses oreilles absentes. Elle écoute.",
+     "pos": [
+      0.85,
+      0.45
+     ],
+     "links": [
+      "etage2.bibliotheque"
+     ],
+     "actions": [
+      {
+       "id": "cloche",
+       "label": "Frapper le battant contre les dalles",
+       "cost": 1,
+       "once": true,
+       "if": "item('battant') > 0",
+       "fx": [
+        "flag mere_assourdie",
+        "item battant -1"
+       ],
+       "message": "Un hurlement de bronze. La Mère se plie en deux, les mains sur la tête. Elle saigne d'oreilles qu'elle n'a pas."
+      },
+      {
+       "id": "defier",
+       "label": "Défier la Mère Sourde",
+       "cost": 4,
+       "once": true,
+       "encounter": "mere_sourde",
+       "win_fx": [
+        "flag mere_vaincue",
+        "pressure -10",
+        "souvenir premier_conquerant_2"
+       ]
       }
      ]
     }
