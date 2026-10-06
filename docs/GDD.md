@@ -1,9 +1,9 @@
-# LA TOUR DU DERNIER JOUR — Game Design Document v0.2
+# LA TOUR DU DERNIER JOUR — Game Design Document v0.3
 
 > RPG narratif et tactique inspiré des manhwas/webtoons, à haute liberté de choix.
 > **Statut** : pré-production. Le document de conception fait foi avant toute phase de code.
 > Toutes les valeurs chiffrées sont des points de départ à équilibrer pendant le prototype.
-> **Public** : 18+ (version adulte complète), avec des versions « Standard » pour les stores mobiles (voir §15).
+> **Projet personnel, usage privé.** Une seule version du jeu, contenu 18+ intégré de base. Aucune contrainte de distribution.
 
 ---
 
@@ -18,14 +18,18 @@
 7. [Carte & navigation](#7-carte--navigation)
 8. [Alignement & conséquences](#8-alignement--conséquences)
 9. [Moteur de combat](#9-moteur-de-combat)
-10. [Fiche du protagoniste — Elias Kang](#10-fiche-du-protagoniste--elias-kang)
-11. [Système de harem : règles communes](#11-système-de-harem--règles-communes)
+10. [Fiche du protagoniste — Elias Kang (+ Classes)](#10-fiche-du-protagoniste--elias-kang)
+11. [Système de harem : règles communes (+ Pacte de Vassalité)](#11-système-de-harem--règles-communes)
 12. [Les 10 héroïnes](#12-les-10-héroïnes)
-13. [Matrice de cohésion & Fins liées](#13-matrice-de-cohésion--fins-liées)
-14. [Fins du jeu](#14-fins-du-jeu)
-15. [Architecture technique (Godot, multiplateforme, contenu 18+)](#15-architecture-technique)
-16. [Périmètre de la démo](#16-périmètre-de-la-démo)
-17. [Questions ouvertes](#17-questions-ouvertes)
+13. [Matrice de cohésion, Fins liées & Harem Absolu](#13-matrice-de-cohésion-fins-liées--harem-absolu)
+14. [La Tour avant le Jour 30](#14-la-tour-avant-le-jour-30)
+15. [L'Après-Jour 30 — L'Ère des Strates](#15-laprès-jour-30--lère-des-strates)
+16. [Lore profond & le Prophète](#16-lore-profond--le-prophète)
+17. [Fins du jeu](#17-fins-du-jeu)
+18. [Direction artistique, voix & médias](#18-direction-artistique-voix--médias)
+19. [Architecture technique](#19-architecture-technique)
+20. [Périmètre de la démo](#20-périmètre-de-la-démo)
+21. [Réponses validées & questions ouvertes](#21-réponses-validées--questions-ouvertes)
 
 ---
 
@@ -33,19 +37,24 @@
 
 | Sujet | Décision |
 |---|---|
+| Statut | **Projet personnel**, aucune distribution publique. Une seule version complète |
 | Univers | **Concept A — La Tour du Dernier Jour** (apocalypse, Système/Tour, régression), avec des factions-chaebols et une héroïne-pivot |
-| Protagoniste | Homme métis, 1m84, imposé : **Elias Kang** (§10) |
-| Casting romançable | **10 héroïnes** uniques, de profils, d'âges (22 à 41 ans) et d'origines variés (§12) |
-| Plateformes | PC (Steam, Itch.io), Mobile (iOS, Android) |
-| Contenu | Explicite 18+ dans la version adulte complète. Architecture par **paliers de contenu** (§15.4) |
+| Protagoniste | Homme métis, 1m84 / 86 kg, imposé : **Elias Kang** (§10) |
+| Casting romançable | **10 héroïnes** uniques, de profils, d'âges (22 à 41 ans) et d'origines variés (§12). **Harem Absolu** possible avec les 10 (§13.3) |
+| Plateformes | PC (Windows, Linux, macOS), Android (APK), iOS (installation personnelle) |
+| Contenu | **Tout le contenu 18+ est intégré de base**, sans version séparée. Il comprend des scènes sombres de domination sur la voie du Tyran (§11.4) |
 | Ratio de jeu | **60 %** narration / choix / carte — **40 %** combat tactique au tour par tour (grilles 3×3) |
-| Régression | Vraie boucle temporelle : mémoire, connaissances et compétences conservées à chaque mort ou échec (§4) |
-| Moteur | **Godot 4.x** (GDScript), recommandation détaillée en §15 |
+| Régression | Vraie boucle temporelle : mémoire, connaissances, compétences et **classes maîtrisées** conservées (§4, §10.8) |
+| Structure | Jeu complet d'un seul bloc : avant le J30, puis l'**Ère des Strates** (étages 11 à 100, §15) |
+| Doublage | Voix IA haute qualité, avec une option globale **On/Off** (§18.3) |
+| Visuels | Portraits animés **Live2D / Spine** + **CG HD fixes** pour les scènes clés et intimes (§18) |
+| Antagoniste | Le **Prophète des Élus** est un personnage déjà connu, avec un twist révélé au fil des boucles (§16.3) |
+| Moteur | **Godot 4.x** (GDScript), §19 |
 
-**Règles de design non négociables (éthique et conformité stores) :**
-1. **Tous les personnages romançables sont des adultes.** Leur âge est inscrit dans les données, leur charadesign a des proportions adultes, et le jeu ne contient ni uniforme scolaire ni design ambigu.
-2. **Le consentement conditionne toute scène intime.** La peur, la contrainte ou le chantage n'ouvrent jamais de scène romantique ou sexuelle. Ils produisent un **Masque** (§11.3), qui mène tôt ou tard à la trahison.
-3. **Les rapports de domination entre adultes consentants existent** (la dynamique **Dévotion**, §11.3). Ils exigent une Affinité et une Confiance élevées, et l'héroïne doit les désirer explicitement.
+**Règles de design de l'univers :**
+1. **Tous les personnages romançables sont des adultes.** Leur âge est inscrit dans les données, et leur charadesign a des proportions adultes.
+2. **Pas de violence physique dans les scènes intimes.** La domination de la voie du Tyran passe par le pouvoir, l'ascendant psychologique et le **contrat de vassalité** (§11.4), jamais par les coups.
+3. **La Loi des Contrats du Système** (lore, §16.1) : tout pacte exige une signature lucide et contient une clause de rupture. Ce cadre donne au Pacte sa tension dramatique : chaque héroïne vassale *pourrait* partir, et le prix de ce départ fait toute l'histoire.
 
 ---
 
@@ -232,13 +241,14 @@ Grâce à la mémoire des boucles (passages secrets, Souvenirs), Elias peut forc
 | **Souvenirs** (pages du Registre) | Des drapeaux de connaissance permanents : codes, emplacements cachés, faiblesses de boss, secrets de PNJ. Ils débloquent des **raccourcis de dialogue** (« Je sais ce que tu caches sous la cathédrale ») |
 | **Échos de puissance** | 30 % de l'XP gagnée au-delà du niveau 1 est conservée, avec un plafond qui monte de boucle en boucle |
 | **Compétences d'âme** | Les compétences débloquées via le Registre sont permanentes (Réécriture, Lecture des Cœurs, Voile d'Ombre…) |
+| **Classes gravées** | Toute classe maîtrisée à 100 % est « gravée » : elle redevient disponible dès le niveau 5 dans les boucles suivantes, et sa compétence signature peut devenir une compétence d'âme (§10.8) |
 | **Titres de Premier Conquérant** | Être le premier à vaincre un Gardien inscrit le nom d'Elias dans les Archives de la Tour, de façon permanente : bonus de stats et −2 de Pression par étage |
 | **Ancrages** (3 emplacements, 5 en fin de jeu) | Des choix majeurs que le joueur « grave » pour qu'ils persistent. Exemples : *les tunnels de Myeongdong sont étayés*, *le Prophète des Élus est déjà démasqué*, *Haesong ignore l'existence du Projet ARCHE*. Graver un Ancrage coûte 1 Fragment d'âme, obtenu en réécrivant une Fin |
 | **Codex des Fins** | Toutes les Fins découvertes, avec leurs causes profondes connues |
 
 ### 4.4 Échos affectifs
 - **Si une héroïne a atteint le Serment ou la Dévotion dans une boucle passée** : elle démarre la boucle suivante avec **Affinité +15**, des **déjà-vu** (dialogues spéciaux, rêves partagés) et, après trois boucles de Serment, des souvenirs conscients (arc « Elle se souvient »).
-- **Si Elias l'a trahie, tuée ou mise sous Masque** : elle démarre avec **Peur +10** et **Confiance −10**, et fait des cauchemars à son sujet. C'est la mémoire du corps.
+- **Si Elias l'a trahie, tuée, ou si un Pacte s'est fini en Ressentiment** : elle démarre avec **Peur +10** et **Confiance −10**, et fait des cauchemars à son sujet. C'est la mémoire du corps.
 - **Morts répétées** : une héroïne qu'Elias a vue mourir trois fois devient un **Fantôme du Registre**. Sa Fin suivante est plus difficile à réécrire, car le destin se cristallise.
 
 ### 4.5 Dette temporelle
@@ -497,10 +507,10 @@ SEIGNEUR (porteur du Sceau)
 ### 6.6 Factions autonomes (sans Sceau)
 | Faction | Secteur | Chef | Rôle | Interaction clé |
 |---|---|---|---|---|
-| **Le Sanctuaire** | Myeongdong | Mère Agatha Seo (60 ans) | Soins, refuge, garante de la Trêve | Allié naturel du Héros. Garde une crypte et sa relique |
+| **Le Sanctuaire** | Myeongdong | Mère Agatha Seo (67 ans) | Soins, refuge, garante de la Trêve | Allié naturel du Héros. Garde une crypte et sa relique |
 | **Les Rats du Han** | Ponts du Han, Myeongdong (sous-sol) | « Grand-père Pigeon », puis **Maricel** | Contrebande, information, tunnels | Allié naturel du Loup et du Mercenaire |
 | **L'Unité 0** | Yongsan | **Cdt Simone Hayes** | Ordre militaire, quarantaine, canal radio vers l'extérieur | Tient le Protocole Cendre |
-| **Les Élus** | Yongsan, étages 1 à 3 | **Le Prophète** (identité cachée) | Culte de la Tour, sacrifices (P +5) | Antagonistes. Veulent l'Héritière |
+| **Les Élus** | Yongsan, étages 1 à 3 | **Le Prophète** (identité cachée : un personnage déjà connu, §16.3) | Culte de la Tour, sacrifices (P +5) | Antagonistes. Veulent l'Héritière |
 | **Les Indépendants** | Partout | — | Survivants non affiliés, recrutables pour le Refuge | Population du Refuge |
 
 ### 6.7 Secret de l'Unité 0 : le canal extérieur
@@ -614,7 +624,7 @@ COUCHE 3 — SCÈNE (diorama 2.5D illustré + hotspots)
 | Choix | Effet immédiat | Conséquence |
 |---|---|---|
 | Défendre et organiser le camp | Protéger +10, Lien +10, coûte 2 jours | Avant-poste du Refuge. **Seo-Yeon** recrutable |
-| « Protéger » contre un tribut | Dominer +10, ressources +++ | Camp vassal. Seo-Yeon sous **Masque**, révolte au J15 |
+| « Protéger » contre un tribut | Dominer +10, ressources +++ | Camp vassal. **Pacte de Vassalité** avec Seo-Yeon (§11.4), révolte au J15 |
 | Voler les vivres la nuit | Dominer +5, Solitude +10 | Le camp tombe au J6, Seo-Yeon disparaît du Registre |
 | Vendre la position du camp à Cheonma | Dominer +10, argent +++ | Seo-Yeon devient vassale de Cheonma (sous-route de libération) |
 | Ignorer le camp | — | La Fin du J12 survient plus tôt, au J6 |
@@ -675,7 +685,8 @@ COUCHE 3 — SCÈNE (diorama 2.5D illustré + hotspots)
 | **Nationalités** | Coréenne et française. Il parle coréen, français, anglais, et des rudiments d'arabe et de wolof appris sur le terrain |
 | **Taille / poids** | 1m84 / 86 kg |
 | **Profession avant J0** | Recouvreur de dettes pour une société de prêt façade de Longwei, après 6 ans comme contractuel dans une société militaire privée (Sahel, Golfe) |
-| **Classe Système visible** | **Porteur (F)**, le rang le plus méprisé |
+| **Classe d'origine** (hors Système, permanente) | **Vétéran-Recouvreur** (§10.8) |
+| **Classe Système visible** | **Porteur (F)**, le rang le plus méprisé, qui cache la capacité de « porter » d'autres classes (§10.8) |
 | **Classe réelle (cachée)** | **Lecteur des Fins (EX)**, révélée à la fin de l'Acte I ou à la boucle 2 |
 
 ### 10.2 Background
@@ -691,19 +702,25 @@ COUCHE 3 — SCÈNE (diorama 2.5D illustré + hotspots)
   - en mourant, l'Héritière pose la main sur ses yeux, et il se réveille au J1.
 - **Ce qu'il ignore au départ** : pourquoi elle l'a choisi, qui a payé le tireur, et ce qu'est vraiment le Registre.
 
-### 10.3 Charadesign
-- **Silhouette** : grande, épaules larges, taille fine. Une musculature sèche de combattant, pas de bodybuilder. Il se tient légèrement voûté au repos, comme un fauve qui économise ses forces, et se redresse d'un coup en combat.
-- **Peau** : brun clair, caramel chaud.
-- **Visage** :
-  - traits affûtés : mâchoire nette, pommettes hautes héritées de sa mère, nez droit, barbe de trois jours ;
-  - regard **noisette ambré**, mi-clos, ironique.
-- **Cheveux** : noirs, épais et bouclés, coupés court sur les côtés et plus longs au-dessus. Quelques mèches tombent sur le front.
-- **Signes distinctifs** :
-  - cicatrice verticale qui fend le sourcil gauche ;
-  - brûlure sur l'avant-bras droit ;
-  - impact de balle cicatrisé sur le flanc gauche ;
-  - tatouage sur l'avant-bras intérieur gauche, **살아남아**, dans l'écriture de sa mère.
-- **Registre activé** : les iris virent à **l'or** et un **anneau d'horloge** tourne autour des pupilles. Des glyphes dorés courent le long des veines du cou. C'est l'effet visuel signature.
+### 10.3 Fiche physique & charadesign
+
+| Champ | Description |
+|---|---|
+| **Taille / poids** | **1m84 / 86 kg** |
+| **Morphologie** | Grand et dense. Épaules larges (environ 50 cm de carrure), dos en V, taille fine, jambes longues. Une musculature **sèche et fonctionnelle** de combattant (boxe, terrain militaire), avec des veines saillantes aux avant-bras et aux mains, pas un physique de bodybuilder. Environ 12 % de masse grasse : abdominaux visibles sans être sculptés |
+| **Posture & gestuelle** | Légèrement voûté au repos, comme un fauve qui économise ses forces. Il se redresse d'un coup en combat ou quand il se met en colère. Il s'adosse aux murs pour garder une vue sur les sorties. Il fait tourner sa montre cassée entre ses doigts quand il réfléchit, et sourit d'un seul côté |
+| **Peau** | Brun clair, **caramel chaud** à sous-ton doré. Elle bronze vite, et sous les néons elle prend des reflets cuivrés |
+| **Visage** | Ovale allongé aux angles nets : mâchoire carrée bien dessinée, menton légèrement fendu, **pommettes hautes** héritées de sa mère, nez droit au bout un peu large (de son père), lèvres pleines au pli ironique. **Barbe de trois jours** soigneusement entretenue le long de la mâchoire |
+| **Yeux** | En amande, légèrement tombants aux coins extérieurs, sous des sourcils épais et droits. Iris **noisette ambré** (brun clair et or vert au centre), cils noirs épais. Regard mi-clos, évaluateur, souvent amusé. **Registre activé** : iris **or pur**, un anneau d'horloge tourne autour des pupilles, les sclères se teintent d'un léger halo doré |
+| **Cheveux** | Noirs, **épais et bouclés** (boucles serrées de type 3B–3C). Côtés et nuque coupés court en dégradé, dessus plus long (environ 7 cm). Quelques boucles tombent sur le front et sur le sourcil gauche. Ils frisent davantage sous la pluie, un détail repris dans les CG |
+| **Mains** | Grandes, articulations marquées et calleuses (boxe, armes), une phalange de l'auriculaire droit déformée par une vieille fracture, ongles courts |
+| **Signes particuliers** | Cicatrice verticale qui fend le **sourcil gauche** (un éclat d'obus, au Sahel) · brûlure en plaque sur l'**avant-bras droit** · impact de balle cicatrisé sur le **flanc gauche** (sous les côtes) · fine cicatrice de couteau en travers de la **paume gauche** · tatouage **살아남아** (« survis ») sur l'avant-bras intérieur gauche, dans l'écriture de sa mère · grain de beauté sous l'oreille droite |
+| **Voix** | Baryton grave, posé, légèrement rauque. Il parle peu et bas, et son accent coréen de Séoul se teinte de français quand il jure. Casting de voix IA : timbre chaud et grave, débit lent, souffle audible (§18.3) |
+| **Style vestimentaire habituel** | Utilitaire et sombre : bomber ou veste militaire, t-shirts unis gris ou noirs, cargos, bottes de combat. Aucun bijou en dehors de la **montre militaire cassée** (arrêtée à 23h58) et, sur la voie du Tyran, du pendentif du Sceau. Il retrousse toujours ses manches jusqu'aux coudes |
+| **Palette de couleurs (DA)** | Noir, anthracite, orange brûlé (la doublure du bomber), or (le Registre) |
+| **Odeur** (texte et dialogues) | Cuir, poudre, savon bon marché. Plusieurs héroïnes le remarquent |
+
+- **Effets visuels du Registre** : des glyphes dorés courent le long des veines du cou et des mains. En Éveil EX, un halo de « pages » lumineuses tourbillonne autour de lui.
 - **Tenues** :
 
 | Tenue | Description |
@@ -734,7 +751,8 @@ COUCHE 3 — SCÈNE (diorama 2.5D illustré + hotspots)
 |---|---|---|---|---|---|---|
 | 12 | 14 | 15 | 13 | 11 | 4 phases | 0 |
 
-- **Compétences de base** : *Combat rapproché (PMC) Niv.2*, *Armes à feu Niv.2* (inutilisables dans la Tour, règle de l'étage 1), *Intimidation Niv.1*, *Endurance du Porteur* (+50 % de capacité d'inventaire, la seule bonne surprise du rang F).
+- **Compétences de base** : *Combat rapproché (PMC) Niv.2*, *Armes à feu Niv.2* (inutilisables dans la Tour, règle de l'étage 1), *Intimidation Niv.1*, *Endurance du Porteur* (+50 % de capacité d'inventaire, la seule bonne surprise apparente du rang F).
+- Le détail des classes et des compétences actives de combat est en §10.8 et §10.9.
 
 ### 10.6 Le Registre des Fins : capacités initiales et progression
 | Capacité | Disponibilité | Effet |
@@ -756,17 +774,97 @@ COUCHE 3 — SCÈNE (diorama 2.5D illustré + hotspots)
 4. *« Elle dort à l'étage 1, derrière la porte qui n'a pas de serrure. Je l'ai trouvée trop tard, au J20. »*
 5. *« Le canon du fusil brillait sur le toit, à gauche. Un reflet blanc. Des cheveux blancs ? »* (Nadia, flou)
 
-### 10.7 Profil mature (données 18+, version adulte uniquement)
-Ces données ne sont chargées que si le palier de contenu « Adulte » est actif (§15.4).
+### 10.7 Profil mature (18+)
 
 | Champ | Valeur |
 |---|---|
 | Orientation | Hétérosexuel |
 | Expérience | Adulte expérimenté, relations passées brèves. Aucune relation durable depuis la PMC |
-| Tempérament intime, selon la voie | **Héros** : tendre, protecteur, attentif. **Tyran** : dominant, possessif, uniquement avec des partenaires qui recherchent cette dynamique (Dévotion, Cour). **Loup** : rare, intense, distant après coup, la vulnérabilité comme enjeu. **Mercenaire** : joueur, taquin, séduction par le défi |
-| Évolution | Le tempérament se module par héroïne : chaque partenaire « révèle » une facette différente d'Elias |
-| Limites de design | Consentement explicite et enthousiaste, toujours. Aucune scène sous Masque. Une scène peut être refusée par l'héroïne selon ses jauges, sans pénalité punitive |
-| Paliers de scènes | P1 Romance (tous publics), P2 Intime (fondu au noir, suggestif), P3 Explicite (version adulte) |
+| Physique intime (CG) | Proportions cohérentes avec la fiche physique : corps athlétique, cicatrices visibles dans les scènes (le flanc, la paume) et le tatouage, qui servent de points d'ancrage narratifs (« Raconte-moi celle-là ») |
+| Tempérament intime, selon la voie | **Héros** : tendre, protecteur, attentif, il laisse l'héroïne mener. **Tyran** : dominant, possessif, d'une autorité froide. Les scènes de **Pacte** (§11.4) sont sombres et psychologiques, sans violence physique. **Loup** : rare, intense, distant après coup, la vulnérabilité comme enjeu. **Mercenaire** : joueur, taquin, séduction par le défi et le marchandage |
+| Évolution | Le tempérament se module par héroïne : chaque partenaire « révèle » une facette différente d'Elias. Sur la voie du Tyran, une héroïne en Dévotion peut faire ressurgir sa tendresse, et Elias doit choisir de la montrer ou de la cacher |
+| Paliers de scènes | **P1** Romance / Allégeance · **P2** Intime · **P3** Explicite. Tous sont intégrés de base, en CG HD fixes et doublés (§18) |
+| Monologue intérieur | Dans les scènes de Pacte, des cases de pensée montrent le doute ou la jouissance du pouvoir selon l'alignement. Elles nourrissent l'arc moral d'Elias |
+
+### 10.8 Système de Classes
+
+#### 10.8.1 Les quatre couches de classe
+| Couche | Nature | Pour Elias | Persistance entre boucles |
+|---|---|---|---|
+| **Classe d'origine** | Ce que la personne était avant J0 (hors Système) | **Vétéran-Recouvreur** | Permanente, jamais perdue |
+| **Classe Système** | Attribuée au J0 par le Système, avec un rang de F à S (EX caché) | **Porteur (F)** | Réattribuée au J1. Ses niveaux reviennent avec les Échos |
+| **Classe principale** | La classe active choisie, qui définit les compétences de combat | Débloquée selon la voie | Les classes **gravées** restent disponibles (§10.8.4) |
+| **Sous-classe(s)** | Classes secondaires : 50 % de leurs passifs et 1 compétence active équipable | Exclusivité du Porteur : 1 sous-classe, puis 2 à partir de la boucle 3 | Même règle que la classe principale |
+
+**Twist de gameplay du Porteur** : le Système méprise ce rang F, mais le Porteur est la seule classe capable de **« porter » d'autres classes** en même temps. C'est la vraie raison du choix de Haneul : un Lecteur des Fins doit pouvoir endosser toutes les voies. Le joueur le découvre en atteignant le niveau 10 de Porteur (notification glitchée du Système : *« Capacité de charge : classes »*).
+
+#### 10.8.2 Passifs de base
+- **Vétéran-Recouvreur (origine)** :
+  - *Sang-froid* : immunité au premier effet de Peur de chaque combat ;
+  - *Lecture de la menace* : +15 % d'initiative au premier tour ;
+  - *Recouvrement* : +25 % d'argent et de butin sur un ennemi intimidé ou qui se rend ;
+  - *Endurance de terrain* : +1 phase de Fatigue avant malus ;
+  - *Langues* : options de dialogue exclusives avec les étrangers (Simone, Nadia, Maricel, Xiaoyu).
+- **Porteur (F)** :
+  - *Endurance du Porteur* : +50 % d'inventaire ;
+  - *Bât* : peut porter un allié KO hors du combat ou d'une zone, ce qui le sauve d'une mort définitive ;
+  - *Porter les classes* : débloque l'emplacement de sous-classe (niveau 10).
+
+#### 10.8.3 Arbre des classes par voie
+Les niveaux de tier : **T1** de base (niveau 1) · **T2** de voie (niveau 10 + Titre de voie) · **T3** avancée (niveau 25 + quête de classe) · **T4** légendaire (après le J30, niveau 40 + Strate franchie, §15).
+
+| Voie | T2 | T3 | T4 (Ère des Strates) | Condition d'alignement |
+|---|---|---|---|---|
+| **Héros** | **Gardien** | **Paladin du Refuge** | **Bastion de l'Aube** | Protéger ≥ 40, Lien ≥ 40 |
+| **Tyran** | **Seigneur de Guerre** | **Empereur des Cendres** | **Roi-Démon Souverain** | Dominer ≥ 40, Lien ≥ 40 |
+| **Loup** | **Infiltrateur** | **Ombre Sans Nom** | **Faucheur du Crépuscule** | Solitude ≥ 50 |
+| **Mercenaire** | **Chasseur de Primes** | **Marchand de Fins** | **Roi des Contrats** | Dominer ≥ 20, Solitude ≥ 30 |
+| *Hybride* Héros + Tyran | **Souverain Protecteur** | **Monarque de Fer** | **Empereur de l'Aube** | Lien ≥ 60, Protéger/Dominer entre −20 et +20 |
+| *Hybride* Héros + Loup | **Vigilant** | **Justicier Masqué** | **Spectre Bienveillant** | Protéger ≥ 40, Solitude ≥ 30 |
+| *Hybride* Tyran + Mercenaire | **Seigneur-Pirate** | **Baron des Ruines** | **Prince-Marchand** | Dominer ≥ 50, Lien/Solitude entre −20 et +20 |
+| *Hybride* Loup + Mercenaire | **Lame à Gages** | **Spectre à Gages** | **Fantôme Doré** | Solitude ≥ 60, Dominer ≥ 10 |
+
+**Classes secrètes :**
+| Classe | Déblocage | Rôle |
+|---|---|---|
+| **Lecteur des Fins (EX)** | Fin de l'Acte I ou boucle 2. Équipable en sous-classe à vie | Améliore le Registre : +1 Réécriture, Pressentiment amélioré, *Lire la Fin* en combat (révèle la mort d'un ennemi, qui gagne un bonus d'exécution) |
+| **Anomalie** | Chaos ≤ −60 | Manipulation du temps (rejouer un allié, vieillir ou rajeunir un buff), mais traqué par les Exécuteurs du Système |
+| **Élu Déchu** | Corruption ≥ 40 (pouvoirs des Élus) | Puissance brute de la Tour, avec sacrifice de PV. Mène vers la fin *La Bête de la Tour* |
+| **Gardien du Seuil** | Lien d'âme avec Haneul + étage 10 franchi | La classe de la fin vraie : fusion des pouvoirs d'Elias et de Haneul |
+
+#### 10.8.4 Maîtrise, gravure et régression
+- **Maîtrise** (0–100 %) : chaque classe progresse par l'usage (combats, actes de voie, quêtes de classe).
+- **Gravure** : à 100 %, la classe est **gravée** dans le Registre. Aux boucles suivantes, elle redevient disponible **dès le niveau 5** (au lieu de 10 ou 25), même si le Titre de voie n'est pas encore obtenu. L'alignement doit cependant rester compatible (voir Dissonance).
+- **Compétence signature → compétence d'âme** : chaque classe gravée offre 1 compétence signature, qui peut occuper un **emplacement d'âme**. Ces emplacements sont équipables quelle que soit la classe active. Il y en a **3 à la boucle 2**, puis **+1 toutes les 2 boucles**, jusqu'à 8 au maximum.
+- **Dissonance** : si l'alignement sort de la zone d'une classe active, ses compétences subissent −20 % d'efficacité et l'Ultime est verrouillée, jusqu'au changement de classe (au Refuge, ½ phase).
+- **Changer de voie entre deux boucles** : c'est le cœur de la rejouabilité. Une boucle Tyran grave *Seigneur de Guerre* ; la boucle suivante, en Héros, peut porter *Gardien* en principale et *Seigneur de Guerre* en sous-classe. Le joueur compose ainsi un Elias unique au fil des vies.
+
+### 10.9 Compétences actives de combat (hors Registre)
+
+**Kit de base (Vétéran-Recouvreur + Porteur), disponible dès le J1 :**
+| Compétence | Coût | Effet | Ligne |
+|---|---|---|---|
+| **Frappe de Recouvreur** | — | Dégâts de mêlée, +10 Peur sur la cible | Avant |
+| **Clé de bras** | 15 Mana | Immobilise 1 tour, la cible ne peut pas changer de case | Avant |
+| **Tir de couverture** | 10 Mana | À distance, réduit l'esquive de la cible. Dans la Tour (règle de l'étage 1), devient **Lancer de lame** | Toutes |
+| **Porter** | 10 Mana | Déplace un allié vers n'importe quelle case adjacente et lui donne +30 % de défense pendant 1 tour | Toutes |
+| **Charge du Porteur** | 20 Mana | Avance d'une ligne, renverse la cible (perte de tour si sa VOL est faible) | Milieu → avant |
+| **Sang-froid** | 15 Mana | Purge les effets mentaux, le prochain coup est critique | Toutes |
+| **Ultime : Dernier Recouvrement** | Jauge d'Éveil | Frappe la cible la plus blessée : dégâts ×3, exécution sous 15 % de PV | Avant |
+
+**Compétences par classe de voie (T2 / T3) :**
+| Classe | Compétences actives | Ultime |
+|---|---|---|
+| **Gardien** (T2) | *Bouclier vivant* (prend les coups d'un allié pendant 2 tours) · *Provocation* · *Rempart* (Défense +50 % sur la ligne) · *Second souffle* (soin personnel) | **Aegis de l'Aube** : le groupe est invulnérable pendant 1 tour ennemi |
+| **Paladin du Refuge** (T3) | + *Serment de protection* (lie un allié : ses dégâts sont partagés) · *Châtiment* (dégâts × nombre d'alliés blessés) | **Phare du Refuge** : soin de groupe de 50 % et résurrection d'un allié |
+| **Seigneur de Guerre** (T2) | *Ordre absolu* (un allié vassal rejoue, +Ambition s'il est sous Pacte) · *Terreur* (Peur de zone) · *Exécution* (tue un ennemi sous 25 % de PV, les autres ennemis perdent leur tour de peur) · *Tribut* (vole du Mana) | **Couronne de Cendres** : tous les ennemis effrayés se rendent ou fuient, et les boss subissent −30 % de stats |
+| **Empereur des Cendres** (T3) | + *Garde prétorienne* (invoque 2 vassaux) · *Décret* (interdit une catégorie de compétences à l'ennemi pendant 2 tours) | **Trône de la Tour** : domination de la grille, les ennemis frappent leurs alliés pendant 1 tour |
+| **Infiltrateur** (T2) | *Ombre* (invisible 2 tours) · *Égorgement* (critique garanti dans le dos, sur la ligne arrière) · *Leurre* · *Disparition* (fuite garantie hors boss) | **Mille Coupures** : 8 frappes réparties sur toute la grille |
+| **Ombre Sans Nom** (T3) | + *Marque de mort* (la cible meurt à la fin du 3e tour si elle n'est pas purgée) · *Pas de l'ombre* (se téléporte derrière n'importe quelle case) | **Nuit Sans Lune** : la grille ennemie est aveuglée et toutes les attaques d'Elias sont critiques pendant 2 tours |
+| **Chasseur de Primes** (T2) | *Marquage de prime* (butin ×2 sur la cible) · *Filet* · *Tir de précision* · *Pot-de-vin* (un ennemi humain change de camp pendant 2 tours) | **Contrat Exécuté** : dégâts massifs sur la cible marquée, plus une prime d'argent |
+| **Marchand de Fins** (T3) | + *Vendre le destin* (échange les buffs d'Elias contre les malus d'un ennemi) · *Assurance* (annule une mort alliée contre de l'argent) | **Liquidation Totale** : convertit tout l'argent dépensé dans le combat en dégâts |
+
+**Synergies d'Elias** : chaque héroïne a 1 attaque combinée avec Elias (débloquée à Confiance ≥ 60 ou en Dévotion). La forme de la cut-in change selon la classe d'Elias : en Seigneur de Guerre et Ryeon, *Lame du Trône* ; en Gardien et Ryeon, *Double Croisement*.
 
 ---
 
@@ -779,6 +877,7 @@ Ces données ne sont chargées que si le palier de contenu « Adulte » est acti
 | **Confiance** | 0–100 | Promesses tenues, Fins réécrites pour elle, vérité dite | Stabilité, Synergies avancées |
 | **Peur** | 0–100 | Menaces, démonstrations de force, punitions | Obéissance à court terme, nourrit l'Ambition cachée |
 | **Ambition cachée** | 0–100 (cachée) | La Peur, la frustration, son agenda propre | Une Ambition au-dessus du seuil rend la trahison possible |
+| **Ambivalence** (Pacte uniquement) | −100 à +100 (cachée) | Justice, protection, considération / humiliation, négligence | Décide du destin du Pacte : Dévotion, Couteau ou Rupture (§11.4.4) |
 
 ```
 Loyauté = 0,4 × Confiance + 0,3 × Affinité + 0,2 × Peur + Compatibilité(valeurs)
@@ -795,29 +894,78 @@ La Loyauté exacte n'est visible qu'avec *Lecture des Cœurs*.
 5. **Liée** : choix de la dynamique (§11.3).
 6. **Route accomplie** : fin personnelle débloquée.
 
-### 11.3 Les trois dynamiques (plus le Masque)
+### 11.3 Les dynamiques de relation
 | Dynamique | Condition | Effet | Contenu intime |
 |---|---|---|---|
-| **Serment** (exclusif) | Affinité ≥ 80, Confiance ≥ 80, fin de la quête personnelle, aucune autre relation intime en cours | Synergie *Serment* (la plus puissante), fin dédiée, Échos affectifs maximaux | Oui (P1 à P3) |
-| **Cour ouverte** (polyamour) | Affinité ≥ 60, Confiance ≥ 50, l'héroïne **accepte le partage** (trait propre), Cohésion de la Cour ≥ 50 | Synergies multiples, scènes de groupe à la Maison, fin « Maison » | Oui (P1 à P3, scènes de groupe si toutes les héroïnes impliquées y consentent) |
-| **Dévotion** (domination consentie) | Affinité ≥ 70, Confiance ≥ 85, l'héroïne a le **trait « Dévotion »** et le désire, souvent sur la voie du Tyran | Synergie *Ordre absolu* sans coût d'Ambition. Elle choisit de servir, et peut reprendre ce choix | Oui (P1 à P3, dynamiques de pouvoir consenties) |
-| **Masque** (soumission par la peur) | Peur ≥ 60 et Confiance < 40 | Obéissance totale, efficacité +20 %. **L'Ambition cachée monte chaque jour**, et la trahison est presque certaine | **Non.** Aucune scène intime. Ses dialogues sonnent faux, et *Lecture des Cœurs* révèle le Masque |
+| **Serment** (exclusif) | Affinité ≥ 80, Confiance ≥ 80, fin de la quête personnelle, aucune autre relation intime en cours | Synergie *Serment* (la plus puissante), fin dédiée, Échos affectifs maximaux | P1 à P3, romantique |
+| **Cour ouverte** (polyamour) | Affinité ≥ 60, Confiance ≥ 50, l'héroïne **accepte le partage** (trait propre), Cohésion de la Cour ≥ 50 | Synergies multiples, scènes de groupe à la Maison, fin « Maison » | P1 à P3, plus des scènes de groupe |
+| **Dévotion** (domination désirée) | Affinité ≥ 70, Confiance ≥ 85, l'héroïne a le **trait « Dévotion »**, souvent sur la voie du Tyran. Ou bien évolution d'un Pacte (§11.4.4) | Synergie *Ordre absolu* sans coût d'Ambition | P1 à P3, domination assumée et passionnelle |
+| **Pacte de Vassalité** (domination par l'ascendant) | Voie du Tyran (Dominer ≥ 40), **Peur ≥ 50 ou Ascendant** (§11.4.1), signature du Pacte | Obéissance contractuelle, +20 % d'efficacité, Ambivalence suivie au jour le jour | **P1 à P3, scènes sombres** (§11.4.3) |
+| **Masque** (soumission feinte) | Héroïne sous Pacte dont l'Ambition cachée dépasse l'Affinité | Elle joue la soumission en préparant sa vengeance. Seule *Lecture des Cœurs* le révèle | Les scènes de Pacte restent accessibles : c'est le piège, le joueur ne sait pas s'il est trompé |
 
-- **Sortir du Masque** : un arc de rédemption (excuses, libération, Fin réécrite) peut faire tomber le Masque. L'héroïne garde alors **Confiance plafonnée à 70** pour la boucle.
-- **Verrou de design** : une héroïne qui a été sous Masque ne peut pas atteindre la Dévotion dans la même boucle.
+### 11.4 Le Pacte de Vassalité (voie du Tyran)
+Le cœur sombre de la voie du Tyran. **La domination par la peur et l'ascendant psychologique ouvre des scènes intimes et romantiques sombres**, encadrées par un contrat que le Système fait respecter. Il n'y a jamais de violence physique : tout passe par le pouvoir, la dette, la soumission à l'autorité et la tension psychologique.
 
-### 11.4 Cohésion de la Cour
-- La **Cohésion** (0–100) est une jauge commune aux héroïnes « liées » en Cour ouverte. Elle se calcule à partir de la matrice de compatibilité (§13.1), du temps partagé au Refuge, de l'équité d'attention et des événements de groupe.
+#### 11.4.1 Obtenir un Pacte : la Peur ou l'Ascendant
+L'héroïne doit avoir **Peur ≥ 50**, ou Elias doit détenir un **Ascendant** sur elle :
+| Ascendant | Exemple |
+|---|---|
+| **Défaite** | Vaincue en duel formel ou militairement (Ryeon, Simone, Xiaoyu) |
+| **Dette de vie** | Elias lui a sauvé la vie, ou a sauvé ceux qu'elle protège, *à un prix annoncé* (Seo-Yeon, Maricel) |
+| **Dépossession** | Elias lui a pris son Sceau, son clan ou son contrat (Hae-in, Aoi, Nadia) |
+| **Secret** | Elias connaît son secret du Registre et peut le révéler (Xiaoyu et le poison de son père, Hae-in et ARCHE, Minh-Anh et ses recherches) |
+| **Mécénat** | Elias finance et protège ce qui compte pour elle (Minh-Anh et son laboratoire) |
+
+**La scène de signature** : une scène-pivot doublée et illustrée en CG. Elias énonce ses termes, l'héroïne négocie, cède ou se brise. Le Système matérialise le contrat (un parchemin de glyphes rouges), et elle le signe de son sang ou de son nom.
+
+#### 11.4.2 Les clauses
+| Clause | Contenu | Effet de jeu |
+|---|---|---|
+| **Allégeance** | Elle reconnaît Elias comme Seigneur | Recrutement forcé, obéissance en combat et en mission |
+| **Résidence** | Elle vit à la Forteresse | Disponible pour les événements de Nuit |
+| **Service personnel** | Elle se tient à la disposition d'Elias | **Ouvre les scènes intimes de Pacte** |
+| **Protection** (contrepartie obligatoire) | Elias garantit sa sécurité et celle de ce qu'elle protège | **Le Système la fait respecter.** Si Elias échoue (camp détruit, Fin non empêchée par négligence), le Pacte se brise automatiquement |
+| **Clause de rupture** (Loi des Contrats) | Elle peut rompre à tout moment, contre un prix fixé à la signature (perte de rang, dette, exil) | Elle reste vassale tant que le prix lui paraît plus lourd que sa servitude. C'est le moteur dramatique |
+| **Clauses optionnelles** | Exclusivité, silence, port du sceau d'Elias (un tatouage-glyphe à la nuque ou au poignet), présence à la cour | Plus de clauses, c'est plus d'efficacité et plus de Ressentiment |
+
+#### 11.4.3 Les scènes de Pacte : une romance sombre
+- **Trois paliers** :
+  - **P1 Allégeance** : cérémonies, mise à genoux symbolique, port du sceau, présence à la cour ;
+  - **P2 Service** : tension, ordres, intimité imposée par le statut, jeux de regard et de pouvoir ;
+  - **P3 Possession** : scènes explicites où le rapport de pouvoir est au centre.
+- **Ton** : psychologique et ambigu. Les cases de pensée de l'héroïne montrent sa honte, sa colère, son trouble et parfois son désir naissant. Les cases d'Elias montrent la jouissance du pouvoir ou le doute, selon son alignement.
+- **Pas de violence physique** : ni coups ni blessures. La domination est verbale, posturale, contractuelle et psychologique.
+- **Variantes selon l'Ambivalence** (ci-dessous) : la même scène existe en version **Ressentiment** (froide, défiante) et en version **Trouble** (l'héroïne commence à céder intérieurement). La version jouée dépend de la jauge.
+- **Personnalisation** : chaque héroïne réagit au Pacte selon son caractère (voir sa fiche, rubrique « Pacte »).
+
+#### 11.4.4 L'Ambivalence et les trois destins d'un Pacte
+Une jauge cachée propre au Pacte, **l'Ambivalence**, va de −100 (Ressentiment) à +100 (Attachement). Elle évolue chaque jour :
+- **Elle monte** quand Elias tient la clause de Protection, se montre juste ou sauve ce qu'elle aime, lui montre de la considération en privé, ou réécrit sa Fin.
+- **Elle baisse** avec l'humiliation publique, l'ajout de clauses, la négligence, l'atteinte à ses valeurs ou à ses proches.
+
+| Destin | Condition | Résultat |
+|---|---|---|
+| **Dévotion** | Ambivalence ≥ +60 et Affinité ≥ 70 | Elle **renouvelle librement le Pacte**. La domination reste, mais elle devient passionnelle et désirée. Synergie *Ordre absolu* sans coût d'Ambition, fin « Le Trône » possible |
+| **Couteau** (Masque) | Ambivalence ≤ −40 et Ambition cachée ≥ 60 | Elle porte un **Masque** et prépare sa trahison au moment critique (§11.6). Les scènes restent jouables : le joueur peut être trompé |
+| **Rupture** | Elle invoque la clause de rupture (Ambivalence ≤ −60, ou déclencheur absolu) | Elle paie le prix et part, hostile. Une confrontation ou une quête de reconquête peut suivre |
+
+#### 11.4.5 Règles de lore et garde-fous
+- **Le Système refuse les contrats signés par une « coquille »** : une héroïne inconsciente, droguée ou effacée ne peut pas signer. C'est pourquoi **Haneul ne peut jamais être sous Pacte** (§12.10).
+- **Effets de la Dette temporelle** : aux boucles suivantes, une héroïne qui a vécu un Pacte en Ressentiment démarre avec Peur +10 et des cauchemars. Si elle l'a vécu en Dévotion, elle démarre avec un trouble inexpliqué en présence d'Elias (Affinité +10).
+- **Préférences du joueur** (options, toutes activées par défaut) : on peut masquer individuellement les scènes de Pacte P3, sans conséquence sur le gameplay.
+
+### 11.5 Cohésion de la Cour
+- La **Cohésion** (0–100) est une jauge commune aux héroïnes « liées » en Cour ouverte ou sous Pacte. Elle se calcule à partir de la matrice de compatibilité (§13.1), du temps partagé au Refuge, de l'équité d'attention et des événements de groupe.
 - **Au-dessous de 30** : jalousies, ultimatums, départs ; une Ambition cachée peut être activée chez les héroïnes à fort ego.
 - **Au-dessus de 70** : scènes de groupe, Synergies en trio, événement « Nuit de la Maison ».
 
-### 11.5 Trahison : règles générales
+### 11.6 Trahison : règles générales
 - Chaque héroïne a un **seuil de trahison** (une valeur de Loyauté) et des **déclencheurs**.
 - La trahison survient lors d'un **moment critique** (boss, siège, Sommet des Sceaux, J24, J28, J30) si Loyauté < seuil, ou immédiatement si un déclencheur absolu est touché.
 - **Signes avant-coureurs** obligatoires (au moins 2, sur 2 jours différents), pour que la trahison reste juste et lisible.
 - **Réponses possibles** : confronter, pardonner, exécuter, retourner (agent double), laisser faire pour remonter au commanditaire.
 
-### 11.6 Calendrier relationnel
+### 11.7 Calendrier relationnel
 - **Rendez-vous** : 1 phase. Au plus 1 événement de relation majeur par jour et par héroïne.
 - **Nuit au Refuge** : en phase Nuit, choisir avec qui passer la soirée (événements de quotidien, de confidence, intimes).
 - **Cadeaux** : chaque héroïne a 3 cadeaux aimés, 3 détestés et 1 cadeau « clé », lié à son passé.
@@ -826,33 +974,45 @@ La Loyauté exacte n'est visible qu'avec *Lecture des Cœurs*.
 
 ## 12. Les 10 héroïnes
 
-> Format commun : identité → rôle → charadesign → personnalité → Fin du Registre → secret → recrutement → trahison → dynamiques → combat → notes 18+.
+> Format commun : identité → rôle → **fiche physique complète** → tenues → personnalité → Fin du Registre → secret → recrutement → trahison → dynamiques (dont le **Pacte**) → combat → notes 18+.
 > **Tous les âges sont fixés dans les données et sont ceux de personnages adultes.**
 
 ### Vue d'ensemble
-| # | Nom | Âge | Origine | Secteur / affiliation | Archétype | Fin |
-|---|---|---|---|---|---|---|
-| 1 | **Park Seo-Yeon** | 27 | Coréenne | Yeouido, Camp / Sanctuaire | Soignante idéaliste | J12 |
-| 2 | **Yoon Hae-in** | 41 | Coréenne | Yeouido, Haesong Holdings | Reine de glace (chaebol) | J21 |
-| 3 | **Baek Ryeon** | 23 | Coréenne | Collines du Nord, Maison Baek | Princesse-épéiste orgueilleuse | J17 |
-| 4 | **Simone Hayes** | 38 | Afro-américaine | Yongsan, Unité 0 | Commandante de fer | J28 (ou J24) |
-| 5 | **Long Xiaoyu** | 31 | Chinoise (Shanghai) | Ponts du Han, Longwei | Reine de la pègre, femme fatale | J19 |
-| 6 | **Aoi Tsukishiro** | 22 | Japonaise (Osaka) | Hongdae, Mirae (agence) | Idol brisée | J9 |
-| 7 | **Nadia Tsoi** | 34 | Koryo-saram (Kazakhstan) | Gangnam, contractuelle de Cheonma | Sniper mercenaire, loup solitaire | J24 |
-| 8 | **Maricel Dizon** | 26 | Philippine | Myeongdong (sous-sol), Rats du Han | Voleuse solaire | J14 |
-| 9 | **Dr. Tran Minh-Anh** | 36 | Vietnamo-coréenne | Hongdae, Mirae (labo) | Scientifique obsessionnelle | J26 |
-| 10 | **L'Héritière (« Haneul »)** | apparence 25 ans, adulte | Inconnue (la Tour) | Tour, étage 1 | Mystérieuse amnésique, clé du destin | J30 |
+| # | Nom | Âge | Taille / poids | Origine | Secteur / affiliation | Archétype | Fin |
+|---|---|---|---|---|---|---|---|
+| 1 | **Park Seo-Yeon** | 27 | 1m63 / 52 kg | Coréenne | Yeouido, Camp / Sanctuaire | Soignante idéaliste | J12 |
+| 2 | **Yoon Hae-in** | 41 | 1m72 / 58 kg | Coréenne | Yeouido, Haesong Holdings | Reine de glace (chaebol) | J21 |
+| 3 | **Baek Ryeon** | 23 | 1m68 / 55 kg | Coréenne | Collines du Nord, Maison Baek | Princesse-épéiste orgueilleuse | J17 |
+| 4 | **Simone Hayes** | 38 | 1m78 / 72 kg | Afro-américaine | Yongsan, Unité 0 | Commandante de fer | J28 (ou J24) |
+| 5 | **Long Xiaoyu** | 31 | 1m70 / 54 kg | Chinoise (Shanghai) | Ponts du Han, Longwei | Reine de la pègre, femme fatale | J19 |
+| 6 | **Aoi Tsukishiro** | 22 | 1m60 / 47 kg | Japonaise (Osaka) | Hongdae, Mirae (agence) | Idol brisée | J9 |
+| 7 | **Nadia Tsoi** | 34 | 1m76 / 63 kg | Koryo-saram (Kazakhstan) | Gangnam, contractuelle de Cheonma | Sniper mercenaire, loup solitaire | J24 |
+| 8 | **Maricel Dizon** | 26 | 1m57 / 50 kg | Philippine | Myeongdong (sous-sol), Rats du Han | Voleuse solaire | J14 |
+| 9 | **Dr. Tran Minh-Anh** | 36 | 1m66 / 53 kg | Vietnamo-coréenne | Hongdae, Mirae (labo) | Scientifique obsessionnelle | J26 |
+| 10 | **L'Héritière (« Haneul »)** | apparence 25 ans, adulte | 1m69 / 54 kg | Inconnue (la Tour) | Tour, étage 1 | Mystérieuse amnésique, clé du destin | J30 |
 
 ---
 
 ### 12.1 PARK SEO-YEON (박서연) — « La Main qui ne tremble pas »
-- **Âge / taille** : 27 ans / 1m63. **Origine** : coréenne, née à Daegu.
+- **Âge / taille / poids** : 27 ans / **1m63 / 52 kg**. **Origine** : coréenne, née à Daegu.
 - **Rôle** : interne en médecine d'urgence à l'hôpital Sainte-Marie de Yeouido. Au J2, elle devient de fait la cheffe médicale du Camp de Yeouido. Elle est liée au Sanctuaire (Mère Agatha l'a formée au bénévolat).
 - **Archétype** : soignante idéaliste, la « bonne personne » qui refuse de devenir autre chose.
-- **Charadesign** :
-  - cheveux châtain foncé mi-longs, souvent attachés en chignon défait avec un crayon ;
-  - grands yeux bruns cernés ; fines lunettes rondes, rafistolées au scotch après le J1 ;
-  - silhouette menue mais tenace, mains abîmées par le désinfectant.
+- **Fiche physique** :
+
+| Champ | Description |
+|---|---|
+| **Taille / poids** | 1m63 / 52 kg |
+| **Morphologie** | Menue et compacte, mais tenace. Épaules étroites, taille fine, hanches douces, poitrine moyenne. Une silhouette de quelqu'un qui oublie de manger pendant les gardes. Bras fins mais nerveux, à force de porter des patients |
+| **Peau** | Claire, légèrement rosée, qui rougit facilement (aux joues, aux oreilles et au cou). Pâleur de manque de soleil, cernes bleutés |
+| **Visage** | Rond et doux : joues pleines, petit nez retroussé, lèvres fines naturellement rosées. Visage « de petite sœur » qui contraste avec un regard d'une fermeté inattendue |
+| **Yeux** | Grands, ronds, **brun chocolat** chaud, avec une paupière simple. Derrière de **fines lunettes rondes** à monture dorée, rafistolées au scotch blanc à la branche gauche après le J1 |
+| **Cheveux** | **Châtain foncé** aux reflets roux sous la lumière, mi-longs (jusqu'aux omoplates), raides avec une légère ondulation aux pointes. Souvent en **chignon défait** tenu par un crayon, quelques mèches folles autour du visage. Détachés, ils changent complètement son allure |
+| **Signes particuliers** | Mains abîmées par le désinfectant (gerçures, ongles très courts) · petit grain de beauté au coin de l'œil droit · tache de café permanente sur la manche · bracelet en tissu tressé rouge, cadeau d'un patient enfant · ses lunettes, qu'elle remonte du doigt quand elle ment |
+| **Gestuelle** | Se mord la lèvre quand elle réfléchit, parle vite quand elle a peur, se redresse d'un coup face à une blessure. Repousse ses mèches avec le dos du poignet (mains gantées) |
+| **Voix** | Soprano légère, douce, un peu essoufflée. Elle devient sèche et autoritaire en mode médical. Léger accent de Daegu quand elle s'emporte |
+| **Style habituel** | Pratique et négligé : vêtements médicaux, cardigans trop grands, sneakers blanches abîmées. Aucun maquillage. Coquette en secret (elle garde un rouge à lèvres rose dans sa poche, jamais utilisé) |
+| **Palette (DA)** | Bleu ciel, beige, blanc cassé, rouge (bracelet, croix) |
+
 - **Tenues** :
   - *base* : blouse médicale bleu ciel tachée sous un cardigan beige trop grand, sneakers blanches, stéthoscope ;
   - *combat* : gilet de secours orange à poches, brassard à croix, sacoche médicale ;
@@ -867,11 +1027,11 @@ La Loyauté exacte n'est visible qu'avec *Lecture des Cœurs*.
   - **Cause profonde** : les enfants se sont cachés à l'hôpital parce que le camp a été rationné. Le vaccin existe dans les laboratoires de Haesong Bio.
   - **Réécriture** : il faut à la fois **sécuriser le camp** (pour que les enfants ne fuient pas) et **obtenir le sérum H-07** chez Haesong (vol, négociation avec Hae-in ou piratage avec Minh-Anh).
   - **Nouvelle Fin débloquée** : *J27, Quais du Dernier Exode, noyée en aidant des réfugiés*.
-- **Secret lié au Registre** : elle est **immunisée** contre la souche de la Tour (la « Souche Zéro »). Son sang permettrait un vaccin de masse. Haesong et Mirae la veulent vivante, les Élus la veulent sacrifiée.
+- **Secret lié au Registre** : elle est **immunisée** contre la souche de la Tour (la « Souche Zéro »). Son sang permettrait un vaccin de masse. Haesong et Mirae la veulent vivante. Les Élus la veulent sacrifiée… mais leur Prophète l'interdit en secret (§16.3). Seo-Yeon est aussi, sans le savoir, la version jeune de Mère Agatha.
 - **Recrutement** :
   - *Héros* : défendre le camp au J4 et tenir jusqu'au J6 ;
   - *Mercenaire* : la payer en médicaments et lui garantir des soins pour le camp ;
-  - *Tyran* : par la contrainte (camp vassal), ce qui donne un **Masque** ;
+  - *Tyran* : par la contrainte (camp vassal), ce qui ouvre un **Pacte de Vassalité** ;
   - *Loup* : quasi impossible. Rencontre ponctuelle, un soin unique contre un service.
 - **Trahison** :
   - **seuil** : Loyauté < 30 ;
@@ -882,7 +1042,7 @@ La Loyauté exacte n'est visible qu'avec *Lecture des Cœurs*.
   - **Serment** : sa route idéale, la plus émouvante (« le seul homme pour qui j'ai triché sur un tri ») ;
   - **Cour ouverte** : possible mais difficile. Elle accepte seulement si la Cohésion ≥ 70, et elle est jalouse de Hae-in ;
   - **Dévotion** : ✗, elle n'a pas ce trait ;
-  - **Masque** : sous la peur, elle soigne mécaniquement et sabote en secret.
+  - **Pacte** : il s'obtient par la *Dette de vie* (le camp vassal du J4 : Elias protège le camp contre sa servitude). Ambivalence de départ **−40**. Elle vit le Pacte comme une trahison de tout ce qu'elle est : ses scènes sont faites de honte et de défi silencieux. Destin probable : **Rupture** (elle s'enfuit avec les blessés) ou **Couteau** (le poison). La Dévotion n'est possible que si Elias protège réellement le camp mieux que personne : c'est l'arc de la « tyrannie protectrice ».
 - **Combat** : *Chirurgienne de Terrain*, en arrière.
   - soins ciblés, *Triage* (soigne tout le groupe, mais celui qui a le plus de PV en perd) ;
   - *Adrénaline* (relève un allié KO une fois par combat) ;
@@ -892,14 +1052,25 @@ La Loyauté exacte n'est visible qu'avec *Lecture des Cœurs*.
 ---
 
 ### 12.2 YOON HAE-IN (윤해인) — « La Présidente »
-- **Âge / taille** : 41 ans / 1m72. **Origine** : coréenne, issue de l'aristocratie financière de Séoul.
+- **Âge / taille / poids** : 41 ans / **1m72 / 58 kg**. **Origine** : coréenne, issue de l'aristocratie financière de Séoul.
 - **Rôle** : présidente de **Haesong Holdings**, porteuse du **Sceau de la Balance** et Seigneur de Yeouido.
 - **Archétype** : reine de glace, dirigeante de chaebol, figure d'autorité mûre et redoutable.
-- **Charadesign** :
-  - longs cheveux noirs de jais en chignon strict, une mèche argentée unique à la tempe ;
-  - yeux en amande, regard d'évaluation permanent ;
-  - lèvres rouge sombre, posture parfaite ;
-  - boucles d'oreilles en jade impérial, héritage de sa mère.
+- **Fiche physique** :
+
+| Champ | Description |
+|---|---|
+| **Taille / poids** | 1m72 / 58 kg (1m80 en talons, qu'elle ne quitte presque jamais) |
+| **Morphologie** | Grande, élancée, port de reine. Silhouette en sablier mûre et maîtrisée : épaules droites, taille très marquée, hanches pleines, poitrine généreuse, jambes longues et galbées. Une femme qui entretient son corps comme un actif (pilates, natation à l'aube) |
+| **Peau** | Porcelaine mate, parfaitement soignée. Quelques ridules d'expression au coin des yeux, qu'elle ne cache pas (« Elles m'ont coûté assez cher ») |
+| **Visage** | Ovale aristocratique : pommettes hautes et sculptées, nez fin et droit, mâchoire délicate mais ferme. **Lèvres pleines, toujours rouge sombre** (bordeaux). Un **grain de beauté** sous la lèvre inférieure, à gauche |
+| **Yeux** | En amande allongée, paupière double fine, **noir d'encre** aux reflets bruns. Eyeliner en aile discret. Un regard d'évaluation permanent, qui s'adoucit très rarement |
+| **Cheveux** | **Noir de jais**, lisses, très longs (jusqu'à la taille quand ils sont détachés). D'ordinaire en **chignon bas strict**, avec une raie sur le côté. Une **unique mèche argentée** à la tempe gauche, apparue à la mort de son mari, qu'elle refuse de teindre |
+| **Signes particuliers** | Boucles d'oreilles en **jade impérial** (héritage maternel) · alliance portée à la main droite (veuve) · fine cicatrice de césarienne (visible en CG intime, sujet de confidence sur sa fille) · parfum boisé d'iris et de cuir · montre en or rose à cadran nacré |
+| **Gestuelle** | Ne se presse jamais. Tient sa tasse de thé à deux mains. Lève un seul sourcil pour exprimer son mépris. Tapote la table d'un ongle quand elle s'impatiente. Ne laisse personne marcher derrière elle |
+| **Voix** | Alto profond, velouté, diction parfaite. Elle ne hausse jamais le ton : elle baisse la voix pour menacer. Rire bref, rare et grave |
+| **Style habituel** | Haute couture minimaliste : tailleurs-pantalons blancs ou crème, chemisiers de soie, **manteau camel porté sur les épaules** (jamais les manches), talons aiguilles nude. En privé : soie bordeaux et noire |
+| **Palette (DA)** | Blanc, crème, camel, bordeaux, vert jade, or rose |
+
 - **Tenues** :
   - *base* : tailleur-pantalon blanc haute couture, manteau camel jeté sur les épaules (elle ne met jamais les manches), talons aiguilles, montre en or ;
   - *combat* : version renforcée, avec un trench noir aux doublures runiques (contrats du Système) et des gants blancs ;
@@ -918,7 +1089,7 @@ La Loyauté exacte n'est visible qu'avec *Lecture des Cœurs*.
 - **Recrutement** :
   - *Mercenaire* : lui vendre 3 Souvenirs exploitables (des prédictions de marché), puis prouver sa valeur au J13 ;
   - *Héros* : la sauver au J21, avec l'arc du rachat d'ARCHE ;
-  - *Tyran* : la vaincre politiquement (lui prendre son Sceau ou la mettre en minorité au conseil). Elle s'allie alors par pragmatisme, et peut glisser vers la Cour ;
+  - *Tyran* : la vaincre politiquement (lui prendre son Sceau ou la mettre en minorité au conseil). Elle s'allie alors par pragmatisme (ou signe un **Pacte de Vassalité**) et peut glisser vers la Cour ;
   - *Loup* : impossible de la recruter. Elle peut seulement l'employer comme agent ponctuel.
 - **Trahison** :
   - **seuil** : Loyauté < 45, le plus élevé du casting ;
@@ -929,7 +1100,7 @@ La Loyauté exacte n'est visible qu'avec *Lecture des Cœurs*.
   - **Serment** : très difficile. Il faut qu'elle renonce à son Sceau, et c'est le plus beau retournement du jeu ;
   - **Cour ouverte** : ✓ à condition d'être **« première »**, avec un statut de Reine de la Maison. Elle est en conflit ouvert avec Xiaoyu ;
   - **Dévotion** : ✗, mais **Dévotion inversée** possible : c'est *elle* qui mène, si Elias l'accepte, sur la voie Héros ou Mercenaire ;
-  - **Masque** : son Masque est parfait (invisible sans *Lecture des Cœurs* Niv.2) et sa trahison la plus coûteuse.
+  - **Pacte** : il s'obtient par la *Dépossession* (Sceau de la Balance pris, conseil renversé) ou le *Secret* (Projet ARCHE). Ambivalence de départ **−30**. Elle signe avec une lucidité glaciale et négocie chaque clause. Ses scènes de Pacte mettent en scène une souveraine qui se plie par calcul, puis le vertige de ne plus porter seule le poids du pouvoir. Destin probable : **Couteau**, avec un Masque parfait (invisible sans *Lecture des Cœurs* Niv.2) et la trahison la plus coûteuse du jeu. **Retournement possible** : si Elias la surpasse trois fois stratégiquement, elle bascule en **Dévotion** (« Pour la première fois, quelqu'un d'autre décide »).
 - **Combat** : *Souveraine*, en arrière.
   - *Clause* : lie un ennemi, qui subit des dégâts s'il attaque la cible désignée ;
   - *Liquidation* : exécute un ennemi sous 20 % de PV et rapporte de l'argent ;
@@ -940,14 +1111,25 @@ La Loyauté exacte n'est visible qu'avec *Lecture des Cœurs*.
 ---
 
 ### 12.3 BAEK RYEON (백련) — « Le Lotus Blanc »
-- **Âge / taille** : 23 ans / 1m68. **Origine** : coréenne, héritière de la lignée Baek (escrimeurs depuis l'ère Joseon).
+- **Âge / taille / poids** : 23 ans / **1m68 / 55 kg**. **Origine** : coréenne, héritière de la lignée Baek (escrimeurs depuis l'ère Joseon).
 - **Rôle** : héritière de la Maison Baek, épéiste de rang A, première Exécutrice du clan.
 - **Archétype** : princesse guerrière orgueilleuse, tsundere au cœur noble.
-- **Charadesign** :
-  - très longs cheveux noirs en queue de cheval haute, nouée d'un **ruban rouge** (celui de sa mère) ;
-  - yeux gris acier, sourcils fins et sévères ;
-  - silhouette athlétique et élancée, postures d'escrime parfaites ;
-  - une cicatrice fine sur la clavicule, qu'elle cache.
+- **Fiche physique** :
+
+| Champ | Description |
+|---|---|
+| **Taille / poids** | 1m68 / 55 kg |
+| **Morphologie** | Athlétique et élancée, faite pour l'escrime : épaules dessinées, dos droit, ventre plat et ferme, hanches étroites, poitrine menue à moyenne, **jambes longues et musclées** (les fentes). Les muscles se lisent sous la peau quand elle se met en garde |
+| **Peau** | Claire et lumineuse, légèrement hâlée sur les avant-bras et le visage (entraînement à l'aube, en plein air). Elle rougit de façon spectaculaire, jusqu'aux oreilles |
+| **Visage** | Ovale fin aux traits nobles et sévères : sourcils fins et droits souvent froncés, nez droit, lèvres minces qui se pincent quand elle est contrariée, menton volontaire. Une beauté classique « de portrait Joseon » |
+| **Yeux** | En amande, légèrement relevés aux coins, paupière double nette. Iris **gris acier**, rare et hérité de la lignée Baek. Le regard est tranchant comme une lame, sauf quand elle est prise au dépourvu |
+| **Cheveux** | **Noir bleuté**, raides et lourds, **très longs** (jusqu'aux genoux une fois détachés). En **queue de cheval haute** nouée d'un **ruban rouge** (celui de sa mère), avec une frange effilée et deux longues mèches qui encadrent le visage |
+| **Signes particuliers** | Fine **cicatrice sur la clavicule gauche** (son premier duel, à 15 ans), qu'elle cache · cals aux paumes et aux doigts · trois grains de beauté alignés sur l'omoplate droite (« la constellation du Tigre », selon sa grand-mère) · le ruban rouge, qu'elle ne quitte jamais |
+| **Gestuelle** | Posture parfaite, même assise. Pose la main sur la garde de son sabre quand elle est nerveuse. Croise les bras et détourne la tête pour cacher sa gêne (tsundere). Mange des sucreries en cachette, en vérifiant que personne ne regarde |
+| **Voix** | Mezzo claire et ferme, phrasé formel et archaïque (registre honorifique). Sa voix se brise en aigus quand elle est embarrassée |
+| **Style habituel** | Traditionnel et martial : **hanbok de combat** noir et blanc modernisé, ceinture rouge, sabre au côté. En civil : des vêtements sobres de qualité, jamais de jupe courte (« inutile pour se battre ») |
+| **Palette (DA)** | Noir, blanc, rouge vermillon, argent (lame) |
+
 - **Tenues** :
   - *base* : **hanbok de combat** modernisé noir et blanc (jeogori court ajusté, pantalon large serré aux chevilles), ceinture rouge, sabre long *Baekho* au côté ;
   - *combat* : protections de cuir laqué blanc et un demi-masque de tigre ;
@@ -969,7 +1151,7 @@ La Loyauté exacte n'est visible qu'avec *Lecture des Cœurs*.
 - **Secret lié au Registre** : le sabre *Baekho* est un **fragment de la Tour**, scellé par ses ancêtres. Il y a 400 ans, une « Tour » est déjà apparue et la lignée Baek l'a refermée. Ryeon porte sans le savoir la **technique de scellement**.
 - **Recrutement** :
   - *Héros* : défendre le domaine au J16, puis la sauver au J17 ;
-  - *Tyran* : la vaincre en **duel formel** (Honneur) ; elle devient votre épée par serment martial, et la Dévotion est possible plus tard ;
+  - *Tyran* : la vaincre en **duel formel** (Honneur) ; elle devient votre épée par serment martial (**Pacte d'Épée**), et la Dévotion est possible plus tard ;
   - *Mercenaire* : contrat de garde du corps (elle déteste ça, Affinité lente) ;
   - *Loup* : elle méprise les lâches. Il faut un exploit solo pour gagner son respect.
 - **Trahison** :
@@ -981,7 +1163,7 @@ La Loyauté exacte n'est visible qu'avec *Lecture des Cœurs*.
   - **Serment** : ✓, sa route naturelle, un serment sous le pin des ancêtres ;
   - **Cour ouverte** : réticente au début. Elle accepte si Elias est son « suzerain » et que la Cour a un ordre clair. Rivalité amicale avec Nadia ;
   - **Dévotion** : ✓, **trait présent** : la loyauté chevaleresque, celle de l'épée qui choisit son maître. Elle reste fière, et sa dévotion est une conquête, jamais une soumission ;
-  - **Masque** : impossible ; elle préfère mourir. Une Peur ≥ 60 déclenche le duel.
+  - **Pacte** : il s'obtient uniquement par la *Défaite* en **duel formel** (le code d'honneur des Collines). C'est le **Pacte d'Épée** : elle s'agenouille, offre son sabre, et le Système enregistre le serment. Ambivalence de départ **0** : l'honneur prime sur la rancœur. Ses scènes mettent en scène une guerrière fière qui se soumet *parce qu'elle a été vaincue*, partagée entre humiliation et fascination pour plus fort qu'elle. Destin probable : **Dévotion**, la plus naturelle du jeu. Le Couteau est impossible : sa Rupture prend la forme d'un **duel à mort public**. Un Masque ? Jamais : elle préfère mourir. Une Peur ≥ 60 *hors Pacte* déclenche le duel.
 - **Combat** : *Sabre du Tigre Blanc*, à l'avant.
   - *Iai* : premier coup garanti critique si elle agit en premier ;
   - *Garde du Lotus* : contre-attaque ;
@@ -993,15 +1175,25 @@ La Loyauté exacte n'est visible qu'avec *Lecture des Cœurs*.
 ---
 
 ### 12.4 SIMONE HAYES — « Commandante Zéro »
-- **Âge / taille** : 38 ans / 1m78. **Origine** : afro-américaine, née à Atlanta, militaire de carrière.
+- **Âge / taille / poids** : 38 ans / **1m78 / 72 kg**. **Origine** : afro-américaine, née à Atlanta, militaire de carrière.
 - **Rôle** : major de l'US Army, officière de liaison des forces américaines en Corée au moment du J0. Elle a pris le commandement de l'**Unité 0** (des restes de forces coréennes et américaines) à Yongsan, et détient le **code du Protocole Cendre**.
 - **Archétype** : commandante de fer, autorité militaire, devoir avant tout.
-- **Charadesign** :
-  - peau brun foncé, cheveux en tresses plaquées courtes avec un undercut sur un côté ;
-  - mâchoire carrée, cicatrice en diagonale sur la mâchoire gauche ;
-  - regard noir perçant ;
-  - carrure puissante, épaules larges, musculature athlétique de militaire ;
-  - plaques d'identification et alliance portées au cou (veuve, voir le secret).
+- **Fiche physique** :
+
+| Champ | Description |
+|---|---|
+| **Taille / poids** | 1m78 / 72 kg |
+| **Morphologie** | Puissante et athlétique : **épaules larges**, bras musclés (biceps et deltoïdes dessinés), dos large, abdominaux marqués, taille ferme, **hanches et cuisses solides**, poitrine pleine et ferme. Une silhouette de militaire de terrain, qui court 10 km par jour même pendant l'apocalypse |
+| **Peau** | **Brun foncé**, chaud et satiné, à sous-ton cuivré. Elle brille sous l'effort et la lumière des néons |
+| **Visage** | Mâchoire **carrée** et forte, pommettes hautes, nez large et droit, **lèvres pleines** souvent serrées. Une **cicatrice** nette en diagonale sur la mâchoire gauche (un éclat, en Afghanistan). Beauté sévère qui s'illumine d'un sourire rare, très blanc |
+| **Yeux** | En amande, profonds, **noir brun** très foncé, cils épais. Regard perçant de commandante, qui évalue les menaces. Des pattes-d'oie apparaissent quand elle rit enfin |
+| **Cheveux** | Noirs et crépus (type 4C), en **tresses plaquées** (cornrows) serrées sur le dessus et le côté droit, **undercut rasé** sur le côté gauche. Tresses courtes à la nuque. En privé, elle les détache en un volume afro qui surprend tout le monde |
+| **Signes particuliers** | Cicatrice à la mâchoire · **plaques d'identification** doubles au cou : les siennes et celles de Marcus · **alliance** passée sur la chaîne des plaques · tatouage de l'insigne de son unité (un aigle) sur l'épaule droite · cicatrice chirurgicale au genou gauche |
+| **Gestuelle** | Se tient bras croisés, jambes écartées (repos militaire). Parle en regardant droit dans les yeux. Fait tourner son alliance sur la chaîne quand elle pense à Marcus. Allume un cigare uniquement les « jours où l'on a survécu » |
+| **Voix** | Alto grave, puissante, accent d'Atlanta (le Sud) qui ressort dans l'émotion. Jure en anglais. Voix de commandement qui porte sans crier |
+| **Style habituel** | Militaire en toutes circonstances : treillis multicam, veste de commandement aux manches retroussées, gilet tactique, béret noir à l'épaulette, bottes. En privé : débardeur kaki, jogging, pieds nus |
+| **Palette (DA)** | Kaki, multicam, noir, or (insignes), rouge (cigare) |
+
 - **Tenues** :
   - *base* : treillis multicam, veste de commandement aux manches retroussées, gilet porte-plaques, bottes, béret noir glissé sous l'épaulette ;
   - *combat* : **exosquelette léger** de l'Unité 0, avec un fusil d'assaut « éveillé » ;
@@ -1024,7 +1216,7 @@ La Loyauté exacte n'est visible qu'avec *Lecture des Cœurs*.
 - **Recrutement** :
   - *Héros* : défendre les réfugiés du Musée de la Guerre et partager ses informations sur la Tour (des Souvenirs) ;
   - *Mercenaire* : contrat de l'Unité 0 (missions dans la Tour) ;
-  - *Tyran* : alliance de force à force si Elias possède un Sceau. Elle reste méfiante ;
+  - *Tyran* : alliance de force à force si Elias possède un Sceau (elle reste méfiante), ou reddition de l'Unité 0 (**Pacte de Vassalité**) ;
   - *Loup* : elle peut l'employer comme éclaireur indépendant, avec un laissez-passer.
 - **Trahison** :
   - **seuil** : Loyauté < 40 ;
@@ -1035,7 +1227,7 @@ La Loyauté exacte n'est visible qu'avec *Lecture des Cœurs*.
   - **Serment** : ✓, la route du « devoir contre l'amour », où elle désobéit pour lui ;
   - **Cour ouverte** : ✓, par pragmatisme : « on peut mourir demain, je ne vais pas faire de scène ». Respect mutuel avec Ryeon, tension avec Nadia ;
   - **Dévotion** : ✗ ;
-  - **Masque** : elle ne porte pas de Masque, elle **obéit à la hiérarchie**. Sous la Peur, elle devient un adversaire froid et loyal à l'Unité 0.
+  - **Pacte** : il s'obtient par la *Défaite* militaire (l'Unité 0 vaincue, ou Yongsan contrôlé par Elias). C'est une **reddition d'officier** : elle signe pour la survie de ses soldats. Ambivalence de départ **−20**. Ses scènes mettent en scène une commandante qui obéit à un nouveau chef, avec une discipline froide et un trouble de céder le commandement. Destin probable : **Rupture** au J28 (le devoir envers le Protocole Cendre l'emporte), sauf si Elias assume lui-même le poids du Protocole, ce qui mène à la **Dévotion** (« Enfin quelqu'un porte les ordres à ma place »). Hors Pacte, elle ne porte jamais de Masque : elle obéit à la hiérarchie.
 - **Combat** : *Commandante*, au milieu.
   - *Tir de suppression* : retarde toute une ligne ennemie dans la frise ;
   - *À couvert !* : bouclier de groupe ;
@@ -1047,14 +1239,25 @@ La Loyauté exacte n'est visible qu'avec *Lecture des Cœurs*.
 ---
 
 ### 12.5 LONG XIAOYU (龙小雨) — « La Pluie du Dragon »
-- **Âge / taille** : 31 ans / 1m70. **Origine** : chinoise, née à Shanghai, à Séoul depuis ses 16 ans.
+- **Âge / taille / poids** : 31 ans / **1m70 / 54 kg**. **Origine** : chinoise, née à Shanghai, à Séoul depuis ses 16 ans.
 - **Rôle** : héritière et dirigeante de fait du **Consortium Longwei**, Seigneur des Ponts du Han. Son père, le Vieux Long, est mourant.
 - **Archétype** : reine de la pègre, femme fatale, joueuse.
-- **Charadesign** :
-  - cheveux noirs coupés en **carré net**, une frange droite et une mèche teinte en **rouge** ;
-  - yeux de chat, un grain de beauté sous l'œil gauche, lèvres carmin ;
-  - silhouette élancée ;
-  - grand **tatouage de dragon** de l'épaule à la hanche (dos), visible dans ses tenues dos nu.
+- **Fiche physique** :
+
+| Champ | Description |
+|---|---|
+| **Taille / poids** | 1m70 / 54 kg |
+| **Morphologie** | Élancée et féline, faite pour le qipao : épaules fines, **taille de guêpe**, hanches marquées, poitrine moyenne et haute, longues jambes fines (la fente du qipao les dévoile à chaque pas). Souplesse de danseuse (arts martiaux de l'éventail) |
+| **Peau** | Ivoire pâle, lisse, presque lumineuse sous les néons du casino. Le **tatouage de dragon** (noir et or) court de l'épaule droite jusqu'à la hanche gauche, en travers du dos |
+| **Visage** | Ovale en cœur, pommettes délicates, nez fin, **lèvres carmin** au sourire en coin permanent, **grain de beauté** sous l'œil gauche. Beauté provocante et théâtrale |
+| **Yeux** | **Yeux de chat** étirés vers les tempes, paupière simple, eyeliner noir en aile prononcé. Iris **brun ambré**, presque doré à la lumière des lanternes |
+| **Cheveux** | Noirs brillants, coupés en **carré net** à hauteur de la mâchoire, **frange droite** au ras des sourcils. Une **mèche teinte en rouge** à gauche, derrière l'oreille. Épingle à cheveux en jade (une arme) |
+| **Signes particuliers** | Tatouage de dragon · ongles longs laqués de rouge · bague-sceau du Consortium à l'index · cicatrice de lame fine sous le sein gauche (une tentative d'assassinat à 19 ans), visible en CG intime · parfum de jasmin et de fumée d'opium |
+| **Gestuelle** | Ouvre et ferme son éventail selon son humeur : **ouvert** avec ceux qu'elle apprécie, **fermé** comme une menace. Croise les jambes lentement. Pose le menton sur sa main pour écouter. Rit en se cachant derrière l'éventail |
+| **Voix** | Mezzo suave, langoureuse, accent shanghaïen en coréen. Elle allonge les syllabes pour taquiner et passe au mandarin pour les insultes |
+| **Style habituel** | **Qipao noir modernisé** fendu haut, brodé de dragons d'or, sous une **veste de cuir** noire cintrée. Bottines à talons, bas noirs. En privé : peignoir de soie rouge |
+| **Palette (DA)** | Noir laqué, or, rouge carmin, jade |
+
 - **Tenues** :
   - *base* : **qipao noir moderne** fendu haut, brodé de dragons d'or, sous une veste de cuir noire, bottines à talons, éventail de métal (**lames rétractables**) ;
   - *combat* : la même tenue, avec des gantelets à aiguilles empoisonnées et une ceinture de fioles ;
@@ -1073,7 +1276,7 @@ La Loyauté exacte n'est visible qu'avec *Lecture des Cœurs*.
 - **Secret lié au Registre** : c'est **elle** qui a fait empoisonner lentement son père, pour prendre la tête du clan avant qu'il ne la marie de force. Le Vieux Long le sait, et il l'a pardonnée. Il lui reste une lettre à lui remettre.
 - **Recrutement** :
   - *Mercenaire* : la voie royale, par des contrats successifs. Trois contrats honorés donnent une alliée ;
-  - *Tyran* : la vaincre **à son propre jeu** (pari, duel, OPA sur les ponts). Elle respecte la force et devient une partenaire de pouvoir ;
+  - *Tyran* : la vaincre **à son propre jeu** (pari, duel, OPA sur les ponts). Elle respecte la force et devient une partenaire de pouvoir, liée par un **Pacte** qu'elle honore ;
   - *Héros* : difficile. Il faut la sauver au J19 sans lui faire la morale ;
   - *Loup* : elle l'embauche comme lame anonyme ; la romance est possible mais lente.
 - **Trahison** :
@@ -1085,7 +1288,7 @@ La Loyauté exacte n'est visible qu'avec *Lecture des Cœurs*.
   - **Serment** : ✓, mais seulement si Elias **parie tout sur elle**, littéralement, à la table de mahjong du destin ;
   - **Cour ouverte** : ✓✓, elle adore la compétition. Rivalité ouverte avec Hae-in, complicité avec Maricel ;
   - **Dévotion** : ✓, **trait présent**. Elle désire un homme qui la domine *loyalement*, au jeu comme au lit. C'est sa part secrète, qu'elle n'admet qu'à Confiance ≥ 85 ;
-  - **Masque** : par défaut, elle en porte toujours un à moitié. Sous la Peur, elle sourit et prépare la vente de sa tête.
+  - **Pacte** : il s'obtient par la *Défaite* à son propre jeu (pari à enjeu total, OPA sur les ponts) ou par le *Secret* (le poison de son père). Ambivalence de départ **+10** : un contrat perdu loyalement, elle l'honore religieusement. Ses scènes mettent en scène une joueuse qui paie sa dette avec panache, puis découvre qu'elle **aime perdre contre lui**. Destin probable : **Dévotion**. Le **Couteau est immédiat** si Elias viole une seule clause, car la parole est sa religion. Par défaut, elle porte toujours un Masque à moitié.
 - **Combat** : *Éventail de Jade*, au milieu.
   - *Mille Aiguilles* : poisons cumulatifs ;
   - *Pas du Dragon* : esquive, et échange de place avec un ennemi ;
@@ -1096,14 +1299,25 @@ La Loyauté exacte n'est visible qu'avec *Lecture des Cœurs*.
 ---
 
 ### 12.6 AOI TSUKISHIRO (月代葵) — « L'Idol des Ruines »
-- **Âge / taille** : 22 ans / 1m60. **Origine** : japonaise, née à Osaka. Stagiaire, puis débutante, dans l'agence K-pop de Mirae Dynamics depuis ses 18 ans.
+- **Âge / taille / poids** : 22 ans / **1m60 / 47 kg**. **Origine** : japonaise, née à Osaka. Stagiaire, puis débutante, dans l'agence K-pop de Mirae Dynamics depuis ses 18 ans.
 - **Rôle** : idol bloquée à Hongdae, éveillée en classe ***Diva*** (chant amplifié par le Système). Mirae l'utilise comme « voix de l'espoir » pour **calmer et contrôler les foules**.
 - **Archétype** : idol brisée, rayon de soleil de façade, dépression cachée.
-- **Charadesign** :
-  - cheveux **bicolores**, noir dessus et rose pastel dessous, en twin-tails basses ou détachés ;
-  - grands yeux noisette, maquillage de scène qui coule après le J1 ;
-  - silhouette fine et tonique de danseuse ;
-  - **pansements** aux doigts (cicatrices de répétitions, et d'automutilation passée, abordées avec soin narratif).
+- **Fiche physique** :
+
+| Champ | Description |
+|---|---|
+| **Taille / poids** | 1m60 / 47 kg |
+| **Morphologie** | Fine et tonique, une **silhouette de danseuse** : épaules délicates, taille très fine, ventre plat dessiné par les chorégraphies, hanches légères, poitrine petite à moyenne, jambes galbées et musclées (huit ans de danse). Proportions adultes, élégantes et sportives |
+| **Peau** | Claire, teint de porcelaine travaillé par les soins d'agence, avec de légères taches de rousseur sur le nez quand le maquillage disparaît (après le J1) |
+| **Visage** | Petit visage en V, grands yeux expressifs, nez fin, lèvres en cœur. Une **fossette** à droite quand elle sourit vraiment, et seulement dans ce cas. Son sourire de scène, parfait, n'en a pas |
+| **Yeux** | Grands, légèrement arrondis, paupière double. Iris **noisette clair** aux reflets verts. Maquillage de scène pailleté et rosé qui **coule** après le J1 |
+| **Cheveux** | **Bicolores** : noir sur le dessus, **rose pastel** sur la moitié inférieure (teinture d'agence). Mi-longs, jusqu'à la poitrine, coiffés en **twin-tails basses** ou détachés et légèrement ondulés. La racine noire repousse au fil des jours (une progression visuelle) |
+| **Signes particuliers** | **Pansements** colorés aux doigts (ampoules de répétitions) · piercing en étoile au lobe gauche · petite cicatrice au genou droit (une chute en concert) · numéro de stagiaire « 0417 » tatoué discrètement sur la nuque, imposé par l'agence, qu'elle déteste · porte-clés en forme de poulpe (takoyaki) accroché à son micro |
+| **Gestuelle** | En public : poses d'idol, cœurs avec les doigts, sourire figé. En privé : se recroqueville en boule, tire sur ses manches, fredonne quand elle est anxieuse. Rit fort et sans retenue quand elle oublie d'être une idol, avec l'accent d'Osaka |
+| **Voix** | Soprano claire et cristalline, d'une justesse parfaite quand elle chante. Voix parlée plus grave et éraillée qu'on ne l'imagine. Dialecte du Kansai quand elle se détend |
+| **Style habituel** | Avant : des tenues de scène imposées. Après le J1 : **sweat à capuche gris oversize**, casquette, masque, short en jean, baskets, c'est son « vrai moi ». Garde une veste de scène pailletée sur le dos, par défi |
+| **Palette (DA)** | Rose pastel, noir, blanc, paillettes argent, gris (sweat) |
+
 - **Tenues** :
   - *base* : tenue de scène déchirée (veste à paillettes, jupe-short à volants, bottes plates), bomber oversize par-dessus ;
   - *combat* : micro-casque transformé en arme sonore, et un ruban-scène lumineux ;
@@ -1128,7 +1342,7 @@ La Loyauté exacte n'est visible qu'avec *Lecture des Cœurs*.
   - *Héros* : la sauver au J9, puis l'aider à rompre son contrat ;
   - *Loup* : l'enlever discrètement à Mirae, dans un arc « cavale » romantique ;
   - *Mercenaire* : la « racheter » à Mirae. Elle vous suit, mais se sent possédée (Affinité lente) ;
-  - *Tyran* : l'utiliser comme voix de propagande, ce qui donne un **Masque** et une dépression aggravée.
+  - *Tyran* : la racheter et l'utiliser comme voix de propagande, ce qui ouvre un **Pacte de Vassalité** et aggrave sa dépression.
 - **Trahison** :
   - **seuil** : Loyauté < 35 ;
   - **déclencheur absolu** : Elias la force à chanter pour contrôler des gens ;
@@ -1138,7 +1352,7 @@ La Loyauté exacte n'est visible qu'avec *Lecture des Cœurs*.
   - **Serment** : ✓, la route de la « chanson pour une seule personne », sa libération ;
   - **Cour ouverte** : ✓, elle apprécie la « famille » et adore Maricel et Seo-Yeon. Cohésion facile ;
   - **Dévotion** : ✗ — **verrou narratif volontaire**. Elle a été contrôlée toute sa vie : sa bonne route consiste à **reconquérir son autonomie**. L'arc *« Je choisis »* est central ;
-  - **Masque** : elle a l'expérience des Masques (le métier d'idol), et le sien est quasi parfait. Sous la Peur, elle s'éteint.
+  - **Pacte** : il s'obtient par la *Dépossession*, en rachetant son contrat à Mirae (elle passe d'un propriétaire à un autre). Ambivalence de départ **−20**. Ses scènes de Pacte sont parmi les plus sombres du jeu, car elles rejouent son histoire de contrôle : sourire de scène, obéissance parfaite, une idol qui « performe » la soumission. Destin probable : **Couteau** (le chantage de Mirae) ou la **Rupture libératrice**, son arc *« Je choisis »*, où elle brise le Pacte et chante pour elle-même. **La Dévotion lui reste fermée** : son histoire est celle d'une reconquête de liberté. Le Masque, elle en a l'expérience (le métier d'idol), et le sien est quasi parfait.
 - **Combat** : *Diva*, en arrière.
   - *Encore !* : buff d'attaque de groupe ;
   - *Ballade* : soin sur la durée ;
@@ -1150,15 +1364,25 @@ La Loyauté exacte n'est visible qu'avec *Lecture des Cœurs*.
 ---
 
 ### 12.7 NADIA TSOI (Надя Цой / 최나디아) — « Le Reflet Blanc »
-- **Âge / taille** : 34 ans / 1m76. **Origine** : **Koryo-saram**, une Coréenne d'Asie centrale née à Almaty (Kazakhstan). Ancienne tireuse d'élite de l'armée kazakhe, puis mercenaire internationale.
+- **Âge / taille / poids** : 34 ans / **1m76 / 63 kg**. **Origine** : **Koryo-saram**, une Coréenne d'Asie centrale née à Almaty (Kazakhstan). Ancienne tireuse d'élite de l'armée kazakhe, puis mercenaire internationale.
 - **Rôle** : contractuelle de **Cheonma** (Exécutrice n°3), basée à Gangnam. Elle travaille pour qui paie. C'est la tireuse qui a tué Elias dans sa première vie.
 - **Archétype** : sniper mercenaire, louve solitaire, cynique au cœur gelé.
-- **Charadesign** :
-  - cheveux **blanc platine** courts, undercut et mèche longue sur l'œil droit (le « reflet blanc » du Souvenir n°5) ;
-  - yeux **gris pâle**, presque translucides ;
-  - pommettes hautes, traits mêlant l'Asie centrale et la Corée ;
-  - grande, sèche, nerveuse ;
-  - une cigarette éteinte en permanence au coin des lèvres (elle a arrêté, en théorie).
+- **Fiche physique** :
+
+| Champ | Description |
+|---|---|
+| **Taille / poids** | 1m76 / 63 kg |
+| **Morphologie** | Grande, **sèche et nerveuse** : épaules droites, bras longs aux muscles fins (tireuse), abdominaux secs, hanches étroites, poitrine moyenne, longues jambes. Une silhouette de prédatrice qui peut rester immobile 12 heures |
+| **Peau** | Très pâle, froide, presque translucide aux tempes et aux poignets (veines bleutées). Elle rosit au froid, aux pommettes et au nez |
+| **Visage** | Anguleux, entre l'Asie centrale et la Corée : **pommettes très hautes et saillantes**, mâchoire fine et nette, nez droit et étroit, lèvres pâles et minces, souvent avec une **cigarette éteinte** au coin. Beauté froide de statue |
+| **Yeux** | En amande étirée, paupière simple, légèrement bridés. Iris **gris pâle**, presque argentés et translucides, d'un regard de lunette de visée. Cernes permanents |
+| **Cheveux** | **Blanc platine** (décoloration entretenue, sa racine naturelle est noire), courts : **undercut** rasé à droite et à la nuque, **mèche longue asymétrique** qui tombe sur l'œil droit. C'est le « reflet blanc » du Souvenir n°5 |
+| **Signes particuliers** | **Écharpe de laine rouge** élimée (tricotée par sa grand-mère, qu'elle ne porte qu'avec ceux en qui elle a confiance) · cal à l'index droit et à l'épaule droite (la crosse) · tatouages de cyrillique sur les côtes (les noms des 7 camarades morts) · cicatrice de brûlure au dos de la main gauche · odeur de tabac froid et de poudre |
+| **Gestuelle** | Économie absolue de mouvement. Fixe sans cligner des yeux. Joue avec un briquet Zippo qu'elle n'allume jamais. S'assoit toujours dos au mur, face à la porte. Tête légèrement penchée quand quelque chose l'intrigue |
+| **Voix** | Contralto basse, rauque (le tabac), monocorde. Accent russe en coréen, phrases courtes. Murmure plutôt qu'elle ne parle |
+| **Style habituel** | **Long manteau militaire gris ardoise**, col roulé noir, pantalon de combat, mitaines, bottes. En privé : **chemise d'homme trop grande**, jambes nues, une bouteille de vodka |
+| **Palette (DA)** | Gris ardoise, noir, blanc platine, rouge (écharpe) |
+
 - **Tenues** :
   - *base* : long manteau militaire gris ardoise, col roulé noir, pantalon de combat, mitaines, écharpe de laine rouge élimée ;
   - *combat* : poncho de camouflage urbain, **fusil anti-matériel** « Saïga » éveillé, lunette à reflet blanc ;
@@ -1179,7 +1403,7 @@ La Loyauté exacte n'est visible qu'avec *Lecture des Cœurs*.
 - **Recrutement** :
   - *Loup* : la voie royale. Elle reconnaît un semblable : survivre ensemble lors d'une nuit de Marée (2 personnes contre la nuée) ;
   - *Mercenaire* : la payer plus cher que Cheonma ;
-  - *Tyran* : l'acheter, puis la garder par la force. Masque, et elle tirera au pire moment ;
+  - *Tyran* : racheter son contrat à vie (**Pacte de Vassalité**). Si l'Ambivalence chute, elle tirera au pire moment ;
   - *Héros* : difficile. Elle méprise les « héros ». Il faut lui sauver la vie sans le lui faire remarquer.
 - **Trahison** :
   - **seuil** : Loyauté < 50, le plus élevé, car elle est mercenaire par nature ;
@@ -1190,7 +1414,7 @@ La Loyauté exacte n'est visible qu'avec *Lecture des Cœurs*.
   - **Serment** : ✓, la route « deux loups ». Elle jette son fusil du haut de l'étage 10. Fin émotionnellement la plus forte du jeu ;
   - **Cour ouverte** : réticente (« je ne fais pas la queue »). Seulement avec une Cohésion ≥ 70 et si Ryeon ou Simone en font partie (respect des guerrières) ;
   - **Dévotion** : ✗ ;
-  - **Masque** : sous la Peur, elle attend son heure. C'est la trahison la plus létale.
+  - **Pacte** : il s'obtient par la *Dépossession*, en rachetant son contrat **à vie**, ce qui fait de l'arme le bien d'Elias. Ambivalence de départ **−30**. Ses scènes sont froides et silencieuses, chargées de défi : la louve tolère la laisse en mesurant la distance jusqu'à la gorge. Destin probable : **Couteau**, une balle au moment critique (la plus létale du jeu). Exception : si Elias réécrit sa Fin du J24 et qu'elle se souvient de l'avoir tué (arc de culpabilité), l'Ambivalence bascule brutalement, de +50. **La Dévotion lui reste fermée** ; son seul destin positif est la Rupture, puis le retour libre (route Serment).
 - **Combat** : *Fantôme de Steppe*, en arrière.
   - *Tir d'élite* : ignore la ligne avant et frappe n'importe quelle case ;
   - *Marquage* : tous les alliés font +30 % de dégâts à la cible ;
@@ -1201,13 +1425,25 @@ La Loyauté exacte n'est visible qu'avec *Lecture des Cœurs*.
 ---
 
 ### 12.8 MARICEL « CEL » DIZON — « La Reine des Rats »
-- **Âge / taille** : 26 ans / 1m57. **Origine** : philippine, née à Cebu. Arrivée à Séoul à 20 ans comme employée de maison, elle a fui un employeur abusif et vit depuis dans l'économie informelle.
+- **Âge / taille / poids** : 26 ans / **1m57 / 50 kg**. **Origine** : philippine, née à Cebu. Arrivée à Séoul à 20 ans comme employée de maison, elle a fui un employeur abusif et vit depuis dans l'économie informelle.
 - **Rôle** : cheffe des équipes de récupération des **Rats du Han**. Elle gère le **Marché Souterrain** de Myeongdong. Héritière désignée de « Grand-père Pigeon », elle connaît **chaque tunnel** de la ville.
 - **Archétype** : voleuse solaire, débrouillarde, cœur sur la main et doigts dans votre poche.
-- **Charadesign** :
-  - peau dorée, cheveux noirs ondulés mi-longs avec des mèches **décolorées cuivre**, sous une casquette retournée ;
-  - grands yeux rieurs, fossettes, grain de beauté au-dessus de la lèvre ;
-  - petite et vive ; un **tatouage de soleil** philippin sur l'épaule.
+- **Fiche physique** :
+
+| Champ | Description |
+|---|---|
+| **Taille / poids** | 1m57 / 50 kg |
+| **Morphologie** | Petite, vive et **pulpeuse** : épaules arrondies, taille marquée, **hanches et fesses rondes**, poitrine généreuse pour sa taille, cuisses fortes (elle grimpe partout), bras toniques. Une silhouette de grimpeuse énergique |
+| **Peau** | **Dorée**, brun chaud et lumineux, à sous-ton miel. Quelques cicatrices claires d'écorchures aux genoux et aux coudes |
+| **Visage** | Rond et rieur : joues pleines, **fossettes** profondes des deux côtés, nez petit et légèrement épaté, lèvres charnues, **grain de beauté** au-dessus de la lèvre supérieure, à droite. Expression malicieuse permanente |
+| **Yeux** | Grands, en amande arrondie, paupière double, cils longs. Iris **brun foncé** chaud et pétillant. Un clin d'œil facile |
+| **Cheveux** | Noirs, **ondulés**, mi-longs (sous les épaules), avec des **mèches décolorées cuivre** sur le devant. Le plus souvent sous une **casquette retournée**, en queue basse ou en chignon flou |
+| **Signes particuliers** | **Tatouage de soleil philippin** (8 rayons) sur l'épaule gauche · une dizaine de **bracelets** (perles, cordons, montres volées) aux deux poignets · dent légèrement de travers (canine gauche), visible quand elle rit · cicatrice en étoile au mollet droit (l'effondrement d'un tunnel, il y a 3 ans) · odeur d'huile de coco et de poussière de métro |
+| **Gestuelle** | Ne tient pas en place, s'assoit sur les tables et les rambardes. Fait tourner un objet volé entre ses doigts. Parle avec les mains. Pose la tête sur l'épaule des gens sans prévenir. Se fige et respire vite dans les espaces clos (claustrophobie) |
+| **Voix** | Mezzo chaude et pétillante, rire communicatif. Elle mélange coréen, anglais et cebuano (« *Ay, gwapo!* »), et accélère quand elle ment |
+| **Style habituel** | Streetwear de récupération : **crop hoodie jaune moutarde**, débardeur, **cargo vert olive** aux poches pleines, baskets montantes, sac banane, casquette. En privé : un maillot de basket trop grand comme robe |
+| **Palette (DA)** | Jaune moutarde, vert olive, cuivre, or (bijoux) |
+
 - **Tenues** :
   - *base* : crop hoodie jaune moutarde, débardeur, pantalon cargo vert olive aux poches pleines, baskets montantes, multiples bracelets, sac banane ;
   - *combat* : **gants à griffes** rétractables, cordes et grappin, lampe frontale ;
@@ -1226,7 +1462,7 @@ La Loyauté exacte n'est visible qu'avec *Lecture des Cœurs*.
 - **Recrutement** :
   - *Loup / Mercenaire* : la voie naturelle. Échanges, vols en duo, paris ;
   - *Héros* : protéger les Rats et les tunnels ;
-  - *Tyran* : prendre le contrôle du Marché Souterrain, ce qui donne un **Masque**. Elle vole Elias jusqu'à l'os puis disparaît dans les tunnels.
+  - *Tyran* : prendre le contrôle du Marché Souterrain, ce qui ouvre un **Pacte de Vassalité**. Si l'Ambivalence chute, elle vole Elias jusqu'à l'os puis disparaît dans les tunnels.
 - **Trahison** :
   - **seuil** : Loyauté < 35 ;
   - **déclencheur absolu** : Elias menace ou sacrifie ses Rats ;
@@ -1236,7 +1472,7 @@ La Loyauté exacte n'est visible qu'avec *Lecture des Cœurs*.
   - **Serment** : ✓, la route du « soleil sous la ville », elle lui montre le ciel des toits ;
   - **Cour ouverte** : ✓✓, très ouverte et rassembleuse : bonus de Cohésion +10 quand elle est liée. Meilleure amie d'Aoi, complice de Xiaoyu ;
   - **Dévotion** : ✗ (la liberté est sa valeur cardinale) ;
-  - **Masque** : elle ne fait pas semblant longtemps, elle vole et fuit.
+  - **Pacte** : il s'obtient par la *Dette de vie* (Elias sauve ses Rats des tunnels, en échange de sa servitude) ou par le contrôle du Marché Souterrain. Ambivalence de départ **−10**. Ses scènes oscillent entre humour défensif et **sentiment d'être enfermée**, une angoisse liée à sa claustrophobie, qui fait partie de la tension dramatique. Destin probable : **Rupture par la fuite** (elle disparaît dans les tunnels avec la moitié de la Forteresse dans les poches). La Dévotion est impossible, car la liberté est sa valeur cardinale. Une version « **Pacte léger** » existe : si Elias lui laisse la clause de Résidence ouverte, l'Ambivalence monte deux fois plus vite.
 - **Combat** : *Voleuse des Profondeurs*, à l'avant ou au milieu, mobile.
   - *Vol à la tire* : vole un objet ou un buff ennemi ;
   - *Grappin* : tire un ennemi de l'arrière vers l'avant ;
@@ -1248,14 +1484,25 @@ La Loyauté exacte n'est visible qu'avec *Lecture des Cœurs*.
 ---
 
 ### 12.9 DR. TRAN MINH-ANH (쩐민안) — « L'Œil de Mirae »
-- **Âge / taille** : 36 ans / 1m66. **Origine** : vietnamo-coréenne. Père coréen, mère vietnamienne, issue d'une famille multiculturelle de Busan.
+- **Âge / taille / poids** : 36 ans / **1m66 / 53 kg**. **Origine** : vietnamo-coréenne. Père coréen, mère vietnamienne, issue d'une famille multiculturelle de Busan.
 - **Rôle** : **directrice scientifique de Mirae Dynamics** (laboratoire Sous-niveau 9). Spécialiste de l'interface neuronale, devenue la meilleure analyste mondiale du Système. Elle a travaillé chez Haesong Bio (Projet ARCHE) jusqu'à il y a 18 mois.
 - **Archétype** : scientifique froide, génie obsessionnelle, éthique ambiguë.
-- **Charadesign** :
-  - très longs cheveux noirs en **tresse unique** qui descend jusqu'aux reins ;
-  - lunettes rectangulaires fines, des **implants cybernétiques** discrets à la tempe droite (des ports et des LEDs bleues) ;
-  - yeux sombres, toujours un peu dans le vague (elle calcule) ;
-  - silhouette élancée, cernes ; manucure noire écaillée.
+- **Fiche physique** :
+
+| Champ | Description |
+|---|---|
+| **Taille / poids** | 1m66 / 53 kg |
+| **Morphologie** | Élancée et longiligne, un peu frêle : épaules fines, taille mince, hanches douces, poitrine moyenne, longues mains de pianiste. Une silhouette de quelqu'un qui oublie son corps, mais dont la combinaison ajustée souligne les lignes |
+| **Peau** | Teint **olive clair** doré, hérité de sa mère vietnamienne, que le travail de nuit rend un peu terne. Cernes violacés permanents |
+| **Visage** | Ovale fin, pommettes douces, nez délicat légèrement retroussé, lèvres pleines et naturellement foncées. Un visage beau et absent, dont l'expression reste neutre, comme suspendue dans un calcul |
+| **Yeux** | Légèrement en amande, paupière simple. Iris **brun très sombre**, presque noir. Derrière des **lunettes rectangulaires fines** à monture noire. Le regard se perd dans le vide quand elle calcule, puis se focalise brutalement |
+| **Cheveux** | **Noirs**, raides, **extrêmement longs**, en **tresse unique** qui descend jusqu'aux reins, tenue par un élastique de câble électrique. Défaite, c'est une cascade noire qui la couvre comme un manteau |
+| **Signes particuliers** | **Implants cybernétiques** à la tempe droite : trois ports argentés et une ligne de LEDs **bleues** qui clignotent quand elle réfléchit, ou **rouges** quand elle est émue, ce qu'elle déteste car elles la trahissent · manucure noire écaillée · taches d'encre et de soudure sur les doigts · petite cicatrice d'opération derrière l'oreille droite · odeur de café et d'ozone |
+| **Gestuelle** | Mordille la branche de ses lunettes. Parle en regardant sa tablette. Envahit l'espace personnel des autres sans s'en rendre compte (pour « observer »). Prend des notes pendant les moments intimes, ce qui donne un humour involontaire |
+| **Voix** | Mezzo neutre et précise, débit rapide, vocabulaire technique, aucune intonation émotionnelle… jusqu'à ce qu'elle craque. Léger accent de Busan |
+| **Style habituel** | **Longue blouse de laboratoire blanche** sur une **combinaison noire ajustée**, bottes de sécurité, tablette holographique au poignet. En privé : pull à col roulé noir trop grand, chaussettes dépareillées |
+| **Palette (DA)** | Blanc clinique, noir, bleu néon (LEDs), argent |
+
 - **Tenues** :
   - *base* : longue blouse de laboratoire blanche sur une combinaison noire ajustée, bottes de sécurité, tablette holographique au poignet ;
   - *combat* : la blouse se déploie en **essaim de drones**, avec une visière d'analyse ;
@@ -1278,7 +1525,7 @@ La Loyauté exacte n'est visible qu'avec *Lecture des Cœurs*.
 - **Recrutement** :
   - *Mercenaire* : un échange de données (des Souvenirs contre son aide technique) ;
   - *Héros* : l'arracher à Mirae et la confronter à l'éthique (une route proche de la rédemption) ;
-  - *Tyran* : la financer, la protéger et lui donner des « sujets ». Pacte faustien, et elle peut même apprécier ;
+  - *Tyran* : la financer, la protéger et lui donner des « sujets ». **Pacte de Vassalité** faustien, qu'elle peut même apprécier ;
   - *Loup* : complice de piratage à distance (romance par messages, puis en personne).
 - **Trahison** :
   - **seuil** : Loyauté < 40 ;
@@ -1289,7 +1536,7 @@ La Loyauté exacte n'est visible qu'avec *Lecture des Cœurs*.
   - **Serment** : ✓, la route « l'équation qui n'a qu'une solution ». Elle comprend enfin ce qui ne se calcule pas ;
   - **Cour ouverte** : ✓, indifférente à la jalousie (« la monogamie est une construction sociale statistiquement instable »). En conflit éthique avec Seo-Yeon, et fascinée par l'Héritière, ce qui est dangereux ;
   - **Dévotion** : ✗, mais une **curiosité mutuelle** : jeux d'expérimentation consentis, scientifiquement « documentés » ;
-  - **Masque** : sous la Peur, elle coopère parfaitement en accumulant des données pour le moment opportun.
+  - **Pacte** : il s'obtient par le *Mécénat* (financement, protection, « sujets » d'étude) ou par le *Secret* (ses recherches non éthiques). Ambivalence de départ **+0**. Elle signe presque avec intérêt (« Variable intéressante »). Ses scènes mettent en scène une scientifique qui documente sa propre soumission jusqu'à perdre le contrôle de ses données, et de ses LEDs, qui virent au rouge. Destin probable : **Dévotion** si Elias lui donne accès au Registre, **Couteau** (le traceur) s'il le lui refuse trois fois. Sous Masque, elle coopère parfaitement en accumulant des données pour le moment opportun.
 - **Combat** : *Technomancienne*, en arrière.
   - *Scan* : révèle les faiblesses et les intentions de toute la grille (s'additionne au Pressentiment) ;
   - *Drone-Bouclier* ;
@@ -1301,15 +1548,26 @@ La Loyauté exacte n'est visible qu'avec *Lecture des Cœurs*.
 ---
 
 ### 12.10 L'HÉRITIÈRE — « HANEUL » (하늘, « le Ciel »)
-- **Âge** : **apparence d'une femme d'environ 25 ans, adulte**. Son âge réel est inconnu (lore : elle existe depuis l'apparition de la Tour il y a 400 ans, et peut-être avant). **Taille** : 1m69.
+- **Âge** : **apparence d'une femme d'environ 25 ans, adulte**. Son âge réel est inconnu (lore : elle existe depuis l'apparition de la Tour il y a 400 ans, et peut-être avant). **Taille / poids** : **1m69 / 54 kg**.
 - **Origine** : inconnue. C'est une entité née de la Tour (ou prisonnière de celle-ci), à forme humaine. Elias la nomme « Haneul » parce qu'elle regarde toujours le ciel.
 - **Rôle** : endormie à l'**étage 1**, derrière la porte sans serrure (et, en vérité, ancrée dans **La Racine** sous Yongsan). C'est la **clé de la Descente** et l'héroïne-pivot du jeu.
 - **Archétype** : mystérieuse amnésique, clé du destin. Pour Elias, l'amour d'une autre vie.
-- **Charadesign** :
-  - longs cheveux **blanc argenté** qui s'assombrissent à mesure que sa mémoire revient (jusqu'au noir, en fin de route) ;
-  - yeux **dorés**, avec le même anneau d'horloge que le Registre activé d'Elias ;
-  - teint diaphane, des **glyphes** lumineux qui apparaissent sur sa peau quand elle utilise ses pouvoirs ;
-  - silhouette adulte et élancée, gestes lents, comme si elle réapprenait la gravité.
+- **Fiche physique** :
+
+| Champ | Description |
+|---|---|
+| **Taille / poids** | 1m69 / 54 kg |
+| **Morphologie** | Élancée et harmonieuse, d'une beauté presque irréelle : épaules fines, taille fine, hanches douces, poitrine moyenne, longues jambes. Ses proportions sont celles d'une jeune femme adulte, ses gestes ceux de quelqu'un qui réapprend la gravité (elle flotte légèrement quand elle oublie de se concentrer) |
+| **Peau** | **Diaphane**, blanc nacré avec des reflets presque opalins sous la lumière. Des **glyphes dorés** apparaissent sur ses bras, sa nuque et son dos quand elle utilise ses pouvoirs ou ressent une émotion forte |
+| **Visage** | Ovale parfait, traits délicats et sans âge, d'aucune origine identifiable (chacun y voit quelqu'un de familier). Nez fin, lèvres pâles légèrement rosées, expression d'étonnement doux |
+| **Yeux** | Grands, en amande, cils **argentés**. Iris **or liquide**, avec le même **anneau d'horloge** que le Registre activé d'Elias, qui tourne lentement. Les pupilles se dilatent en spirale quand elle voit une Fin |
+| **Cheveux** | **Blanc argenté** scintillant, très longs (jusqu'aux chevilles au réveil, puis coupés à mi-dos par Elias, une scène clé), raides et fluides comme de la soie. Ils **s'assombrissent** à mesure que sa mémoire revient : argent, gris perle, puis **noir** en fin de route |
+| **Signes particuliers** | Glyphes du Registre · aucune empreinte digitale · une **cicatrice lumineuse** en forme de serrure entre les omoplates (la « porte sans serrure ») · elle ne projette d'ombre que lorsqu'elle est heureuse · sent la pluie sur la pierre chaude |
+| **Gestuelle** | Regarde toujours le ciel. Penche la tête à 45° pour comprendre. Touche tout du bout des doigts (textures, visages). Se blottit dans le blouson d'Elias. Fredonne des mélodies qu'Aoi reconnaît |
+| **Voix** | Soprano douce et légèrement réverbérée, comme si deux voix parlaient à l'unisson. Elle prend une profondeur ancienne et grave quand l'Administratrice affleure. Casting IA : deux pistes superposées (§18.3) |
+| **Style habituel** | Le **blouson bomber d'Elias** sur des vêtements dépareillés (pull trop grand, jupe longue, bottes de tailles différentes), choisis au hasard dans les ruines. Sa forme éveillée : robe-armure d'obsidienne et d'or |
+| **Palette (DA)** | Blanc nacré, argent, or, noir obsidienne, orange (la doublure du bomber d'Elias) |
+
 - **Tenues** :
   - *réveil* : un simple drapé blanc de lin, puis le **blouson bomber d'Elias**, qu'elle refuse de rendre ;
   - *base* : vêtements de récupération choisis maladroitement (pull trop grand, jupe longue, bottes dépareillées). Running gag tendre ;
@@ -1334,7 +1592,7 @@ La Loyauté exacte n'est visible qu'avec *Lecture des Cœurs*.
 - **Secret lié au Registre** : **le Registre est une partie d'elle**. Elle était l'administratrice de la Tour, chargée d'en tenir les « comptes » (les Fins). La sonde ARCHE l'a réveillée, ce qui a appelé la Tour sur Séoul. Elle a choisi Elias dans la première vie parce qu'il a été le seul à la porter **sans rien lui demander**. Chaque régression **consume** une part de sa mémoire : c'est le coût secret des boucles, révélé en Acte III de la boucle 4 et plus.
 - **Recrutement** :
   - *Toutes voies* : la trouver à l'étage 1 (Souvenir n°4, dès le J5) ou la reprendre aux Élus (après le J20) ;
-  - *Tyran* : il peut l'**utiliser comme arme** (ses pouvoirs alimentent un Sceau), sous Masque, ce qui donne la fin « Roi et Reine des Ruines », sombre ;
+  - *Tyran* : il peut l'**utiliser comme arme** (ses pouvoirs alimentent un Sceau), ce qui l'efface, sans Pacte possible. Ou bien elle **choisit** de régner avec lui, ce qui donne la fin « Roi et Reine des Ruines », sombre ;
   - *Mercenaire* : la **vendre** (aux Élus, à Mirae ou à Haesong), ce qui mène à une fin tragique majeure, avec des regrets persistants (Échos) ;
   - *Héros / Loup* : la protéger, dans la route centrale.
 - **Trahison** :
@@ -1345,7 +1603,7 @@ La Loyauté exacte n'est visible qu'avec *Lecture des Cœurs*.
   - **Serment** : ✓, le **Lien d'âme**, une version unique du Serment qui débloque la fin vraie ;
   - **Cour ouverte** : ✓, elle ne comprend pas la jalousie (« tu as assez d'amour pour plusieurs fins ») ; c'est un pilier de Cohésion, sauf avec Minh-Anh ;
   - **Dévotion** : ✗ ;
-  - **Masque** : possible seulement par l'usage forcé de ses pouvoirs (Tyran). Ce n'est pas un vrai Masque, c'est un **effacement** : elle se vide de sa personnalité.
+  - **Pacte** : **impossible**. Le Système refuse tout contrat signé par une « coquille » (§11.4.5), et Haneul n'a pas encore d'identité stable. Sur la voie du Tyran, Elias peut **utiliser de force ses pouvoirs**, mais ce n'est pas un Pacte : c'est un **effacement**, où elle se vide de sa personnalité, sans aucune scène intime. La seule version sombre de sa route est *Le Roi et la Reine des Ruines* : elle **choisit librement** de régner avec Elias Tyran, en absorbant son alignement (ses cheveux deviennent noirs d'encre, ses glyphes rouges).
 - **Combat** : *Clé du Seuil*, flexible.
   - *Repli spatial* : téléporte un allié ou un ennemi sur n'importe quelle case ;
   - *Arrêt du temps* : un ennemi saute son tour ;
@@ -1356,7 +1614,7 @@ La Loyauté exacte n'est visible qu'avec *Lecture des Cœurs*.
 
 ---
 
-## 13. Matrice de cohésion & Fins liées
+## 13. Matrice de cohésion, Fins liées & Harem Absolu
 
 ### 13.1 Compatibilité entre héroïnes (Cour ouverte)
 **Échelle** : ++ (+15 Cohésion), + (+5), 0 (neutre), − (−10), −− (−20).
@@ -1392,212 +1650,505 @@ Ces Fins sont couplées : en réécrire une peut provoquer ou avancer l'autre.
 | **Maricel (J14) ↔ Haneul (J30)** | Sans Maricel, La Racine reste inaccessible, et la fin vraie est verrouillée pour cette boucle |
 | **Toutes ↔ Haneul** | Chaque Fin d'héroïne réécrite rend un **Fragment d'âme**, qui ralentit la perte de mémoire de Haneul |
 
+### 13.3 La Route du Harem Absolu (les 10 héroïnes)
+**Oui : le Harem complet, avec les 10 héroïnes en même temps, est possible.** C'est la route la plus difficile du jeu, classée **Extrême**. Elle demande presque une maîtrise parfaite du calendrier, de la cohésion et du Registre.
+
+#### 13.3.1 Conditions de déblocage (toutes dans la même boucle)
+| # | Condition | Pourquoi c'est dur |
+|---|---|---|
+| 1 | **Les 10 héroïnes vivantes au J30** : les 10 Fins réécrites, y compris les **Fins liées** (Nadia **et** Simone au J24, Aoi **et** Minh-Anh) | Il faut des Souvenirs et des Ancrages accumulés : en pratique, à partir de la **boucle 5** |
+| 2 | Les 10 au stade **« Liée »** (Cour ouverte, Dévotion ou Pacte stable) | 10 quêtes personnelles à terminer en 30 jours |
+| 3 | Les **10 Quêtes de Conciliation** terminées (13.3.2) | Elles neutralisent toutes les relations négatives de la matrice |
+| 4 | **Cohésion ≥ 80** à la **Veille des Dix** (J29) | Une seule jalousie mal gérée fait chuter la jauge |
+| 5 | **Aucune héroïne « Négligée »** : au moins 1 phase de relation tous les 4 jours pour chacune | Cela représente environ 70 phases sur 120. Il faut optimiser avec les événements de groupe |
+| 6 | **Le Prophète démasqué** (§16.3) | Il sème la discorde par des lettres anonymes (événement « Les Lettres du Corbeau ») |
+| 7 | **Lien ≥ 60 avec Haneul** | Elle est la clé de voûte de la Maison : elle « voit » les liens entre les Fins de chacune |
+
+#### 13.3.2 Les 10 Quêtes de Conciliation
+Une par paire négative de la matrice (§13.1) :
+| Paire | Quête | Résumé |
+|---|---|---|
+| Hae-in × Xiaoyu (−−) | **Le Mahjong des Reines** | Une partie à enjeu total entre les deux reines. Elias doit faire en sorte que *personne* ne perde la face |
+| Simone × Nadia (−−) | **Le Toit du J24** | La nuit du contrat : les réunir sur le toit et briser le cycle tireuse/cible |
+| Seo-Yeon × Minh-Anh (−−) | **Sérum H-07** | Synthétiser le vaccin ensemble, l'éthique de l'une avec le génie de l'autre |
+| Minh-Anh × Haneul (−−) | **Je ne suis pas un sujet** | Minh-Anh détruit elle-même ses données sur Haneul |
+| Seo-Yeon × Hae-in (−) | **La Facture** | Hae-in finance l'hôpital du camp sans contrepartie, une première |
+| Simone × Hae-in (−) | **Le Dossier Marcus** | La vérité sur la mort du mari de Simone (ARCHE) et le pardon, ou non |
+| Hae-in × Maricel (−) | **Le Coffre du B6** | Partager le bunker IFC entre la Présidente et la Reine des Rats |
+| Ryeon × Xiaoyu (−) | **La Dette des Baek** | Une vieille dette d'honneur entre la Maison Baek et Longwei, réglée en duel d'éventail contre sabre |
+| Simone × Minh-Anh (−) | **Le Silo** | Désamorcer ensemble le Protocole Cendre |
+| Aoi × Minh-Anh (−) | **L'Amplificateur** | Minh-Anh retourne son invention pour qu'Aoi chante *librement* |
+
+#### 13.3.3 Mécaniques propres au Harem Absolu
+- **Le Conseil de la Maison** (tous les 5 jours, en phase Nuit) : les héroïnes exposent leurs griefs, et Elias arbitre trois décisions. Chaque choix favorise certaines héroïnes et en froisse d'autres.
+- **La hiérarchie de la Maison** : désigner une **Première** (Hae-in l'exige, Xiaoyu la conteste) ou instaurer le **Cercle**, sans hiérarchie (Maricel et Haneul le préfèrent). Le Cercle donne plus de Cohésion de base mais déclenche plus d'événements de rivalité.
+- **Les Quartiers** : il faut agrandir le Refuge pour loger les 10 héroïnes (10 chambres plus une salle commune). C'est un chantier de ressources important pendant l'Acte II.
+- **Les outils d'optimisation** :
+  - *Nuits de la Maison* : comptent comme une phase de relation pour 4 héroïnes à la fois ;
+  - *Missions en duo* : une héroïne accompagne Elias, et cela compte comme un rendez-vous ;
+  - *Lettres* : 0 phase, petit bonus, au plus 2 par jour ;
+  - *Ancrage « Échos affectifs complets »* : réservé à la fin de jeu, il conserve les Affinités entre boucles.
+
+#### 13.3.4 Deux variantes (et leurs hybrides)
+| Variante | Composition | Risque propre | Fin |
+|---|---|---|---|
+| **La Maison des Dix** (Lumière) | Les 10 en Cour ouverte | Les jalousies et les ultimatums | *La Maison des Dix* : la plus lumineuse du jeu |
+| **Le Trône des Dix** (Ombre) | Au moins 6 en Dévotion, les autres en Pacte stable (Ambivalence ≥ 0). Haneul en *Reine des Ruines* | **La Nuit des Couteaux** : si la somme des Ambitions des héroïnes sous Pacte dépasse 150 au J29, une **conspiration coordonnée** éclate, menée par Hae-in ou Xiaoyu | *Le Trône des Dix* : un empire de domination absolue |
+| **Hybride** | Un mélange de Cour, de Dévotion et de Pacte | Le cumul des deux risques | Une variante de la fin selon la majorité |
+
+**Récompenses** :
+- l'Ultime collective **Formation des Dix** (10 cases de cut-in, une frappe par héroïne) ;
+- des scènes de groupe exclusives (CG « Portrait des Dix ») ;
+- un bonus permanent de Domaine dans l'Ère des Strates (+10 % sur toutes les ressources, §15.6) ;
+- le titre **« Celui que dix destins ont choisi »**.
+
 ---
 
-## 14. Fins du jeu
+## 14. La Tour avant le Jour 30
+
+### 14.1 Structure d'un étage
+- **Chaque étage est une zone verticale** de 8 à 16 nœuds, avec sa Règle, son Gardien, ses PNJ de Tour (survivants d'autres mondes, marchands, Élus) et ses ressources propres.
+- **Explorer coûte des phases** : 1 à 3 par visite selon l'étage. Les **portails de retour** sont gratuits une fois activés.
+- **Premier Conquérant** : vaincre le Gardien en premier, dans n'importe quelle boucle, grave le nom d'Elias dans les Archives : −2 de Pression et un bonus de stats permanents.
+- **Fragments de Strate** : des objets de lore qui racontent le monde dont proviennent les étages (§16.2).
+
+### 14.2 Les 10 étages en détail
+| Étage | Nœuds / phases | Règle | Gardien & mécanique de combat | Butin clé | Lien héroïne |
+|---|---|---|---|---|---|
+| **1 — Le Vestibule** | 8 nœuds / 1 phase | Les armes extérieures ne fonctionnent pas | **Le Portier aux Mille Clés** : 3 portes, il ment sur la troisième ; il faut deviner la vraie porte pour le rendre vulnérable | Armes de Tour T1, la **porte sans serrure** | **Haneul** (dès le J5 avec le Souvenir n°4) |
+| **2 — La Cité Silencieuse** | 12 nœuds / 2 phases | Tout son au-dessus d'un murmure attire le Gardien | **La Mère Sourde** : chaque compétence « bruyante » la renforce ; combat de furtivité | Bottes d'Ombre, Fragment *Monde 2* | **Nadia** (bonus de Règle, car elle est silencieuse) |
+| **3 — Le Marché des Âmes** | 14 nœuds / 2 phases | Tout s'achète, même les souvenirs et les années de vie | **Le Courtier** : on peut l'acheter, le combattre, ou lui vendre un Souvenir pour le faire fuir | Objets légendaires contre des années de vie | **Xiaoyu** et **Maricel** (marchandage) |
+| **4 — Le Banquet** | 10 nœuds / 2 phases | On ne peut pas attaquer quelqu'un avec qui l'on a partagé un repas | **L'Hôte Affamé** : le battre par le poison, la ruse ou un convive sacrifié | Couverts de l'Hôte (immunité aux poisons) | **Hae-in** (étiquette, diplomatie) |
+| **5 — Le Labyrinthe Inversé** | 16 nœuds / 3 phases | La gauche est la droite, les alliés apparaissent comme des ennemis | **Le Minotaure de Miroir** : la grille du joueur est inversée | **Ancre de retour** (Registre), Prisme d'Inversion | **Minh-Anh** (elle décode le motif) |
+| **6 — La Forêt des Pendus** | 12 nœuds / 2 phases | Les morts de la boucle reviennent comme des spectres | **Le Bourreau Vert** : plus la boucle a fait de morts, plus il est fort | Corde du Bourreau (exécution instantanée) | **Seo-Yeon** (elle apaise les spectres) |
+| **7 — Le Tribunal** | 8 nœuds / 1 phase | Les crimes commis en surface sont jugés | **Le Juge Sans Visage** : ses stats dépendent de l'alignement (le Héros est avantagé, le Tyran se défend par le Décret) | Marteau du Juge, Titre selon le verdict | **Simone** (témoin de moralité) |
+| **8 — L'Arène des Rangs** | 6 nœuds / 1 phase | Seul le duel est autorisé | **Le Champion d'Hier** : un double d'Elias issu de sa première vie, qui copie sa classe | Lame d'Hier, et un Souvenir de la première vie | **Ryeon** (duels préparatoires) |
+| **9 — Le Jardin des Fins** | 10 nœuds / 2 phases | Le Registre ne fonctionne pas, les Fins poussent comme des fleurs | **La Jardinière** : il faut cueillir la « bonne » Fin, et une fleur cueillie change la Fin d'un PNJ | Graines de Fin (réécriture hors Registre) | **Aoi** (son chant fait éclore les fleurs) |
+| **10 — Le Seuil** | ? / 3 phases | Inconnue : elle se découvre en mourant | **???** : il dépend de P et de la boucle. C'est l'Administratrice, le Prophète ou la Tour elle-même | La clé de la Descente | **Haneul** (fin vraie) |
+
+### 14.3 Préparer les 7 secteurs : le Plan de Défense
+Le jeu avant le J30 est un **arbitrage permanent entre la Tour** (baisser P) **et la ville** (monter l'IR).
+- **Investissements par secteur** : 4 jauges qui alimentent la Défense du secteur.
+| Jauge | Comment l'augmenter | Défense |
+|---|---|---|
+| **Fortifications** | Ressources et phases de chantier, ou main-d'œuvre vassale (Tyran) | jusqu'à +30 |
+| **Milice** | Recruter et former des éveillés (Ryeon, Simone) | jusqu'à +25 |
+| **Vivres & eau** | Bunker B6, pompes du Han, marché | jusqu'à +20 |
+| **Alliance** | Pactes avec le clan local, Sceau, Trêve | jusqu'à +25 |
+- **Protectrices** : une héroïne affectée à un secteur ajoute +15 de Défense et un bonus unique (Simone à Yongsan : Marées −1 palier). En contrepartie, elle n'est plus disponible dans l'escouade.
+- **Repères de répartition du temps** : 35 % Tour, 35 % ville, 30 % relations, pour viser P ≤ 30 et IR > 65. Le joueur peut faire mieux grâce aux Souvenirs.
+
+### 14.4 La Nuit du Déversement (J30) : la mission finale jouable
+Une séquence de **6 phases spéciales** qui condense tout le jeu :
+1. **18h, l'Inspiration** : la Tour aspire l'air de la ville. Dernières affectations des Protectrices.
+2. **19h–21h, les Fronts** : les combats de Marée T6 se résolvent secteur par secteur. Le joueur combat lui-même sur 2 fronts au choix ; les autres sont résolus par leur Défense.
+3. **22h, la Trahison** : si une héroïne a une Loyauté sous son seuil ou un Pacte en Couteau, c'est maintenant.
+4. **22h30, l'Ascension** : montée express de l'étage 1 au 10 par les portails activés (les étages non conquis imposent un combat).
+5. **23h30, le Seuil** : le combat final de la boucle, contre le Gardien du Seuil.
+6. **23h58, la Page** : la décision finale avec Haneul, puis la résolution P × IR, et l'Aube… ou la régression.
+
+---
+
+## 15. L'Après-Jour 30 — L'Ère des Strates
+
+> Franchir le J30 n'est pas la fin : c'est la fin du **prologue**. La Tour ne descend pas une fois. Elle descend **tous les 30 jours**, strate après strate, jusqu'à son sommet.
+
+### 15.1 Le Choix de l'Aube (régression après le J30)
+- À l'aube du **J31**, le Registre propose : **« Graver l'Aube ? »**
+  - **Oui** : le nouveau point de régression devient le **J31**. Le monde, les héroïnes vivantes et les relations sont **figés comme base**. Mourir ensuite ramène au J31, et non au J1.
+  - **Non** : mourir ramène toujours au J1. Le joueur peut repartir chercher une meilleure issue (sauver plus d'héroïnes, préparer le Harem Absolu), mais il perd l'Ère des Strates en cours.
+- **Ancres de Strate** : chaque Pulsation franchie (15.3) peut à son tour être gravée.
+- **Coût** : après l'Aube, chaque régression coûte **1 Fragment d'âme**. Sans Fragment, la mort est définitive, ce qui donne la fin *La Dernière Page Blanche*. La mémoire de Haneul continue de s'éroder à chaque retour.
+
+### 15.2 La Friche : Séoul transformée
+Au J30, les 10 premiers étages **s'effondrent sur la ville**. Leurs Règles deviennent les **lois locales** des secteurs : la continuité de gameplay est directe.
+| Secteur | Devient | Étage fusionné | Loi locale (Règle permanente) |
+|---|---|---|---|
+| Yongsan | **Le Pied de la Tour** | 1, 9 et 10 | Les Fins de chacun poussent en fleurs visibles par tous : le Registre devient public, une révolution sociale |
+| Gangnam | **L'Arène Éternelle** | 8 | Tout conflit se règle en duel. Le rang du Système fait la loi |
+| Yeouido | **Le Banquet Perpétuel** | 4 | Pas d'agression après un repas partagé : la zone diplomatique et commerciale de la Friche |
+| Hongdae–Mapo | **Le Dédale Inversé** | 5 | Rues en miroir, gravité changeante : le terrain des contrebandiers et des chercheurs |
+| Myeongdong | **Le Tribunal à Ciel Ouvert** | 7 | Tout crime est jugé par le Juge Sans Visage. L'alignement devient une citoyenneté |
+| Ponts du Han | **Le Fleuve Silencieux** | 2 | Silence obligatoire sur l'eau. Le fleuve devient une autoroute furtive |
+| Collines du Nord | **La Forêt des Pendus** | 6 | Les morts de la ville errent en spectres, à apaiser ou à exploiter |
+| *(itinérant)* | **Le Marché des Âmes** | 3 | Il apparaît chaque semaine dans un secteur au hasard |
+
+**Esthétique de friche SF/apocalyptique** :
+- des **Îles Suspendues** (fragments d'étages en lévitation au-dessus de la ville, reliés par des chaînes de glyphes) ;
+- une **Pluie de Cendre** dorée ;
+- une **faune de Strate** mutante ;
+- des gratte-ciel fendus et colonisés par la végétation de la Tour ;
+- de **Nouvelles Cités** bâties dans les carcasses des étages tombés.
+- À partir de la Strate 21–30, la **technologie de Strate** se répand : motos antigravité, exosquelettes, drones-reliques, réacteurs à glyphes.
+
+**Selon l'issue du J30** : un J30 en « Aube Nouvelle » donne une Friche **habitable**, où les Lois sont utiles. Un J30 en « Survie dans les ruines » donne une Friche **hostile**, où les Lois sont mortelles et les secteurs sont perdus.
+
+### 15.3 Le monde extérieur : la chute du Voile et la Pluie des Tours
+- **J31** : le Voile tombe. Séoul découvre qu'au J30, **12 autres Tours** sont apparues sur Terre. C'est **la Pluie des Tours**.
+- **Séoul est la seule ville qui a « préparé » sa première Descente** (grâce à la régression). Elle devient un **phare**, une puissance mondiale, et une cible.
+- **Les 12 Tours, et les Tours des Origines** : chaque héroïne a une quête dans la ville de ses origines.
+| Tour | Lien | Hook |
+|---|---|---|
+| **Osaka** | Aoi | Sa famille est vivante, et une autre idol « chante » pour cette Tour |
+| **Shanghai** | Xiaoyu | Le clan Long d'origine, et son passé |
+| **Almaty** | Nadia | Sa grand-mère, l'écharpe rouge, la neige |
+| **Atlanta** | Simone | Sa famille, et la vérité sur ARCHE côté américain |
+| **Cebu** | Maricel | Sa mère et ses frères, une ville sous l'eau (Strate 11–20) |
+| **Hanoï** | Minh-Anh | La famille de sa mère, et une Tour qui calcule |
+| **Paris** | **Elias** | **Son père, Julien Moreau, est le Lecteur de la Tour de Paris.** Da-bin, la fille de Hae-in, est coincée là-bas |
+| **Lagos**, **Le Caire**, **São Paulo**, **Mumbai**, **Sydney** | — | Des Lecteurs rivaux ou alliés (Conclave, 15.5) |
+- **Carte mondiale** : débloquée avec les véhicules de Strate (l'**Arche**, vaisseau-relique de la Strate 41–50). Chaque Tour étrangère est une **zone d'expédition** avec ses propres secteurs, sur le modèle des couches 2 et 3.
+
+### 15.4 Les Pulsations : la boucle de 30 jours étendue
+- **Tous les 30 jours, la Tour « pulse »** : elle ouvre une nouvelle **Strate de 10 étages** et menace de la déverser sur Terre.
+- **La mécanique des 30 jours se répète à plus grande échelle** : une Pression propre à la Strate, un IR à l'échelle du Domaine, des Ancres, des Fins nouvelles pour les héroïnes et les PNJ.
+
+| Cycle | Jours | Strate ouverte | Statut |
+|---|---|---|---|
+| Prologue | J1–J30 | Étages 1–10 | Jeu principal |
+| Cycle 2 | J31–J60 | **11–20** | Ère des Strates (jeu principal) |
+| Cycle 3 | J61–J90 | **21–30** | Ère des Strates |
+| Cycle 4 | J91–J120 | **31–40** | Ère des Strates |
+| Cycle 5 | J121–J150 | **41–50** | Ère des Strates, avec le **Conclave des Lecteurs** à l'étage 50 |
+| Cycles 6–10 | J151–J300 | **51–100** | Endgame, le Sommet |
+
+- **Rythme** : après le J30, les journées « calmes » peuvent être **condensées** (le Domaine tourne en automatique) pour se concentrer sur les expéditions, les Ancres et les relations.
+
+### 15.5 Les Strates 11 à 100
+Chaque Strate est le **vestige d'un monde que la Tour a déjà « archivé »** (§16.2).
+| Étages | Strate | Univers | Règle de Strate | Gardien de Strate | Ce que sa Descente apporte au monde |
+|---|---|---|---|---|---|
+| 11–20 | **Les Royaumes Noyés** | Fantasy médiévale engloutie | L'eau monte à chaque tour de combat | **Le Roi Sous la Marée** (20) | Inondations partielles, le Han devient une lagune, ressource *Corail-Mana* |
+| 21–30 | **Kaal, la Cité-Machine** | SF cybernétique | Le métal obéit au Système, les implants sont piratables | **ORAKEL, l'Intelligence Mère** (30), lié à Minh-Anh | **Technologie de Strate** : exos, drones, motos antigravité, réacteurs |
+| 31–40 | **Le Désert des Dieux Morts** | Mythologie déchue | Prier rend des PV, mais augmente la Corruption | **Le Dernier Fidèle** (40) | *Os divins* (matériaux légendaires), mutations de la faune |
+| 41–50 | **L'Empire Céleste de Varun** | Space-opera en ruine | Gravité variable, combat sur deux grilles (orbitale et sol) | **L'Empereur Varun, Celui qui a dit Non** (50), un ancien Lecteur qui a résisté 700 cycles | Armes à énergie, l'**Arche** (vaisseau mondial), Moteurs de Strate |
+| 51–60 | **L'Océan de Verre** | Monde cristallisé, le temps figé | **La Réécriture est interdite** | **La Sirène Immobile** | Cristaux temporels (Ancrages supplémentaires) |
+| 61–70 | **Le Jardin Carnivore** | Biosphère consciente | Chaque mort nourrit le terrain, qui attaque tout le monde | **La Reine-Racine** | Bio-armures vivantes |
+| 71–80 | **La Nécropole des Régresseurs** | Les tombes des Lecteurs qui ont échoué | On affronte ses **propres doubles** des boucles passées | **Le Premier Lecteur** | Révélations sur Agatha et sur la Ligne Zéro (§16.3) |
+| 81–90 | **La Bibliothèque des Fins** | L'Archive elle-même | Chaque combat est un récit : les choix de dialogue sont des attaques | **Le Bibliothécaire** | Accès au **Registre universel** |
+| 91–99 | **Le Silence** | Le vide entre les mondes | Pas de son, et le HUD disparaît progressivement | **L'Écho** | — |
+| 100 | **Le Bureau de l'Archiviste** | Le sommet | — | **L'Archiviste** | Le choix final (§17) |
+
+### 15.6 Gameplay de l'Ère des Strates
+- **Le Domaine** : le Refuge devient une **Cité-État** qui s'étend sur les secteurs de la Friche. C'est une couche de gestion légère :
+  - **ressources** : Vivres, Énergie de Strate, Alliage, Influence, Population ;
+  - **bâtiments** selon la voie : Cité-Sanctuaire, Empire-Forteresse, Réseau d'Ombres ou Port-Franc ;
+  - **diplomatie** avec les anciens clans, devenus des **Cités-États rivales** (Cheonma tient l'Arène Éternelle, Haesong le Banquet…).
+- **Les héroïnes, gouverneures et générales** :
+| Héroïne | Rôle de Domaine | Bonus |
+|---|---|---|
+| Hae-in | Ministre de l'Économie | +30 % d'Influence et de commerce |
+| Simone | Générale des armées | +25 % de Défense, Marées −1 palier |
+| Minh-Anh | Directrice de la Recherche | Technologies de Strate −30 % de coût |
+| Seo-Yeon | Ministre de la Santé | Population +20 %, épidémies évitées |
+| Ryeon | Maîtresse d'armes | Formation des éveillés ×2 |
+| Xiaoyu | Maîtresse du Fleuve | Commerce fluvial et contrebande +40 % |
+| Maricel | Logistique et réseaux souterrains | Expéditions −1 jour, accès aux passages cachés |
+| Aoi | Moral et culture | Révoltes −50 %, recrutement +20 % |
+| Nadia | Renseignement | Révèle les plans des rivaux et des Lecteurs |
+| Haneul | Résonance de Strate | Pression de Strate −15 |
+- **Les Technologies de Strate** (4 branches) : **Hydromancie** (11–20), **Mécatronique** (21–30), **Théurgie** (31–40), **Astro-ingénierie** (41–50). Elles débloquent l'équipement, les véhicules et les bâtiments.
+- **Les expéditions** : envoyer des escouades d'héroïnes sur des étages déjà conquis (ressources) pendant qu'Elias explore la frontière.
+- **Le combat** : la grille 3×3 est conservée, avec les **classes T4** (§10.8.3), l'équipement de Strate, et des **combats de Strate** sur deux grilles contre les Gardiens géants.
+- **Les relations continuent** : nouvelles tenues « Ère des Strates » (techwear, armures-reliques), nouvelles Fins à réécrire, et de nouvelles scènes, Pacte compris.
+
+### 15.7 Nouvelles factions de l'Ère
+| Faction | Nature | Rôle |
+|---|---|---|
+| **La Coalition Extérieure** | Forces de l'ONU et des grandes puissances, arrivées après la chute du Voile | Veulent contrôler Séoul et ses Lecteurs. Alliées ou envahisseuses |
+| **Les Remontants** | Habitants survivants des Strates (natifs de mondes archivés) qui descendent avec chaque Pulsation | Réfugiés, mercenaires ou conquérants. Certains reconnaissent Haneul |
+| **Les Archivistes** | Serviteurs de la Tour, administrateurs des Strates | Antagonistes de fin de jeu, gardiens des Lois |
+| **Le Conclave des Lecteurs** | Les Lecteurs des 12 autres Tours (dont Julien Moreau) | Une alliance ou une guerre entre régresseurs, à l'étage 50 |
+| **Le Nouveau Culte** | Les Élus réformés (selon le sort du Prophète) | Une religion d'État (Tyran) ou une secte résiduelle |
+
+---
+
+## 16. Lore profond & le Prophète
+
+### 16.1 La Loi des Contrats du Système
+- Le Système **enregistre** les promesses, les Sceaux et les Pactes : tout contrat a force de loi physique.
+- **Trois axiomes** :
+  1. *Nul contrat sans signature lucide* (d'où le refus des « coquilles »).
+  2. *Nul contrat sans contrepartie* (d'où la clause de Protection du Pacte).
+  3. *Nul contrat sans porte* (la clause de rupture, toujours présente, au prix fixé à la signature).
+- C'est pourquoi le Système respecte même les contrats de domination : il ne juge pas, il **comptabilise**.
+
+### 16.2 Cosmologie : la Tour est l'Archive
+- **La Tour est l'Archive** : une structure qui voyage entre les mondes **qui l'appellent**. Le Projet ARCHE a envoyé une sonde dans La Racine, et la Tour a « répondu ».
+- **Chaque monde visité reçoit 30 jours par Strate.** Un monde qui échoue est « archivé » : ses ruines, ses peuples et ses lois deviennent une **Strate** de la Tour. Les étages 11 à 100 sont des mondes morts.
+- **Chaque monde a une Administratrice** (Haneul pour la Terre), qui tient le compte des Fins, et un **Lecteur** qu'elle choisit, à qui elle confie une part d'elle-même : le Registre.
+- **Il y a 400 ans**, sous Joseon, la Tour est déjà apparue. Un Lecteur de l'époque et la lignée Baek l'ont **refermée** : c'est le scellement du sabre *Baekho*. Haneul s'est endormie dans La Racine, jusqu'à ce qu'ARCHE la réveille.
+- **L'Archiviste** (étage 100) n'est pas un dieu : c'est **le premier Lecteur qui ait jamais « réussi »**. Il a choisi de devenir la Tour plutôt que de voir son monde archivé. La fin vraie interroge ce choix.
+
+### 16.3 Le Prophète des Élus : un personnage connu, un twist lourd
+**Identité : Mère Agatha Seo**, 67 ans, la douce dirigeante du Sanctuaire de Myeongdong, mentor de Seo-Yeon et garante de la Trêve.
+
+**Vérité : Agatha est Park Seo-Yeon, venue d'une ligne temporelle effondrée.**
+- **La Ligne Zéro**, avant la première vie d'Elias : Haneul avait choisi **Seo-Yeon** comme Lectrice, parce que c'était elle qui l'avait portée hors de l'étage 1.
+- Seo-Yeon a vécu **312 boucles**. Dans beaucoup d'entre elles, Elias était à ses côtés, et elle l'a aimé. Il **mourait au J12 en la protégeant**, l'inverse exact de sa Fin actuelle.
+- À la boucle 312, brisée, elle a **arraché une page du Registre** pour tenter une **Régression Profonde** : revenir *avant* la Tour pour empêcher ARCHE.
+- Elle a été projetée **40 ans en arrière**, sans pouvoirs, avec seulement la **Page arrachée**.
+- Elle a vécu ces 40 années :
+  - elle est devenue religieuse et a fondé le Sanctuaire ;
+  - elle a tenté d'empêcher le Projet ARCHE, en vain (Hae-in a signé quand même) ;
+  - elle a regardé grandir **sa propre version jeune**, qu'elle a formée au bénévolat.
+- Quand la Tour est apparue de nouveau, elle a conclu que le destin ne se réécrit pas. **La seule miséricorde serait la Page Finale** : laisser l'Archive prendre la Terre, où les morts « dorment en paix », sans plus aucune boucle.
+- **Elle a fondé les Élus en secret** pour faire monter la Pression (les sacrifices) et capturer Haneul.
+- **Elle a engagé Nadia** pour tuer Elias au J30 de sa première vie : *« Je t'ai tué pour t'épargner ce que je suis devenue. »*
+- **La Page arrachée lui permet de se souvenir des boucles d'Elias.** À partir de la boucle 2, elle **régresse avec lui** : c'est un antagoniste qui apprend aussi.
+
+**Révélation progressive au fil des boucles :**
+| Niveau | Quand | Ce que le joueur découvre |
+|---|---|---|
+| 1 | Boucle 1 | Un Prophète masqué de blanc, à la voix altérée, qui orchestre les sacrifices |
+| 2 | Boucle 2+ | Le Prophète **anticipe** Elias : *« Tu as encore choisi de la sauver. »* Il se souvient |
+| 3 | Boucle 3+, quête **La Crypte** (Myeongdong) | Indices : des **lunettes rondes rafistolées au scotch** et un **bracelet tressé rouge** vieilli de 40 ans, identiques à ceux de Seo-Yeon. Un ordre secret : *« Ne touchez jamais à la médecin »*. Démasquage d'Agatha |
+| 4 | Boucle 4+ | La **Page arrachée** : Agatha est une régresseuse |
+| 5 | Lien fort avec Seo-Yeon ou Haneul | **Agatha est Seo-Yeon** : même immunité Souche Zéro, mêmes cicatrices aux mains. Haneul la reconnaît : *« Tu étais ma première Lectrice. »* |
+| 6 | Confrontation finale | Sa motivation : elle a aimé Elias pendant 312 vies, et l'a tué pour le libérer |
+
+**Mécaniques liées :**
+- **Le paradoxe** : si la jeune Seo-Yeon meurt, Agatha **s'efface** peu à peu. C'est pourquoi le Prophète protège secrètement sa version jeune, tout en combattant Elias.
+- **Les Lettres du Corbeau** : Agatha sème la jalousie dans la Cour (lettres anonymes, rumeurs). C'est le principal obstacle du Harem Absolu.
+- **L'arc de Seo-Yeon** : *« Je ne deviendrai pas elle. »* La confrontation avec son futur soi est le climax de sa route.
+- **L'issue de la confrontation** :
+  - *Rédemption* : Agatha remet la Page. Elias gagne +1 Réécriture permanente et 1 emplacement d'Ancrage, et Seo-Yeon reçoit une « Lettre à moi-même » ;
+  - *Exécution* : P −10, mais Seo-Yeon est traumatisée ;
+  - *Alliance sombre* (Tyran) : les Élus deviennent la religion d'État de l'Empire ;
+  - *Laisser faire* : P +20, mène vers une fin tragique.
+
+### 16.4 Autres mystères
+- **Le Champion d'Hier** (étage 8) : l'écho de la première vie d'Elias, sans Registre et sans espoir. Le vaincre donne un Souvenir de la première vie. L'épargner ouvre une fin cachée de la Strate 71–80.
+- **Julien Moreau** (le père d'Elias) : Lecteur de la Tour de Paris, il n'a jamais su que son fils était devenu Lecteur à Séoul. Leur rencontre au Conclave (étage 50) est l'arc personnel post-J30 d'Elias.
+- **Pourquoi Elias ?** Dans la première vie, il est le seul à avoir porté Haneul **sans rien lui demander**. Le Porteur porte, et c'est le sens caché de sa classe.
+
+### 16.5 Collectibles de lore
+- **Fragments de Strate** : un par étage, ils racontent le monde archivé.
+- **Pages du Registre** : les Souvenirs, plus des pages « orphelines » écrites par les anciens Lecteurs.
+- **Journal de Mère Agatha** : 12 pages cachées dans Séoul, qui ne deviennent lisibles qu'après la révélation de niveau 3.
+
+---
+
+## 17. Fins du jeu
 
 | Catégorie | Fins |
 |---|---|
 | **Fins de voie** (×4, chacune avec des variantes selon P × IR) | *Le Refuge-Nation* (Héros) · *L'Empire des Ruines* (Tyran) · *L'Ombre au Sommet* (Loup) · *Le Roi des Contrats* (Mercenaire) |
 | **Fins d'héroïne** (×10) | Une par Serment accompli : *La Main qui ne tremble pas*, *La Présidente sans Sceau*, *Le Lotus et le Tigre*, *Désobéissance*, *Le Pari du Dragon*, *Chanson pour une seule personne*, *Deux Loups*, *Le Soleil sous la Ville*, *L'Équation*, *Le Ciel* |
-| **Fins de Cour** (×2) | *La Maison* (Cour ouverte, Cohésion ≥ 70 et au moins 4 héroïnes) · *Le Roi et la Reine des Ruines* (Tyran + Dévotion de Xiaoyu ou Ryeon, ou Haneul sous effacement, sombre) |
-| **Fins tragiques** | *Effacement* (P > 85) · *Couteau dans le dos* (trahison fatale) · *La Bête de la Tour* (Corruption 100) · *L'Administratrice* (Haneul corrompue) · *La Clé vendue* |
-| **Fin vraie** | *Aube Nouvelle — La Dernière Page* : la Tour refermée, Haneul libre et humaine, le Registre détruit. Il faut une boucle ≥ 4, le Lien d'âme, P ≤ 30, IR > 65 et au moins 6 Fins d'héroïnes réécrites dans la même boucle |
+| **Fins de Dévotion / Pacte** | *Le Trône* (une héroïne en Dévotion devient Impératrice aux côtés d'Elias) · *La Laisse Brisée* (Rupture libératrice d'Aoi) · *Le Prix de la Porte* (une héroïne paie sa clause de rupture et revient libre) |
+| **Fins de Cour** | *La Maison* (Cour ouverte, Cohésion ≥ 70 et au moins 4 héroïnes) · *Le Roi et la Reine des Ruines* (Tyran avec Haneul qui choisit de régner, sombre) |
+| **Fins du Harem Absolu** (§13.3) | *La Maison des Dix* (Lumière) · *Le Trône des Dix* (Ombre) · *La Nuit des Couteaux* (échec de la variante Ombre, tragique) |
+| **Fins tragiques** | *Effacement* (P > 85) · *Couteau dans le dos* (trahison fatale) · *La Bête de la Tour* (Corruption 100) · *L'Administratrice* (Haneul corrompue) · *La Clé vendue* · *La Page Finale* (Agatha triomphe) · *La Dernière Page Blanche* (plus aucun Fragment d'âme après l'Aube) |
+| **Fin du prologue** (J30) | *Aube Nouvelle* : la Tour contenue au J30, Haneul vivante. Elle **ouvre l'Ère des Strates** |
+| **Fins de l'Ère des Strates** | *La Cité des Strates* (s'arrêter à l'étage 50 et bâtir une civilisation dans la Friche) · *Le Conclave* (unifier les 13 Lecteurs à l'étage 50) · *Le Fils de Paris* (fin personnelle Elias et Julien) |
+| **Fins du Sommet** (étage 100) | *Le Nouvel Archiviste* : Elias et Haneul deviennent la Tour, gardiens bienveillants des mondes · *L'Archive Brisée* : toutes les Strates sont libérées, les mondes morts renaissent dans le chaos · *La Loi Réécrite* : la Terre est libre, et la Tour devient une ressource et un pont entre les mondes |
+| **Fin vraie** | ***La Dernière Page*** : la Loi Réécrite, Haneul **humaine** et libre, Agatha rachetée, le Registre détruit volontairement. Conditions : la fin du prologue *Aube Nouvelle*, le Lien d'âme, au moins 6 Fins d'héroïnes réécrites dans la boucle gravée, l'étage 100 atteint, et la rédemption d'Agatha |
 
 ---
 
-## 15. Architecture technique
+## 18. Direction artistique, voix & médias
 
-### 15.1 Moteur recommandé : **Godot 4.x** (dernière version stable, 4.4 ou plus)
+### 18.1 Portraits animés : Live2D / Spine
+- **Live2D** pour les **portraits de dialogue** (en buste et en mi-corps) d'Elias, des 10 héroïnes et des PNJ majeurs (Agatha, Cheon Mu-gyeong, Jang…).
+  - **Animations idle** : respiration, clignement, physique des cheveux et des vêtements, balancement.
+  - **Expressions** : 12 de base (neutre, joie, rire, colère, tristesse, larmes, gêne, surprise, peur, mépris, désir, épuisement), plus 3 signatures par personnage (exemples : les LEDs rouges de Minh-Anh, le sourire de scène figé d'Aoi, l'éventail fermé de Xiaoyu).
+  - **Variantes de tenues** : base, combat, détente, voie et Ère des Strates. Les états changeants sont aussi gérés (cheveux de Haneul qui s'assombrissent, racine noire d'Aoi qui repousse, glyphe-sceau du Pacte).
+  - **Lip-sync** sur la voix IA (§18.3).
+- **Spine** pour les **sprites de combat** (en pied, proportions manhwa) et les **cut-ins** d'Ultime et de Synergie.
+
+### 18.2 CG HD fixes
+- **Format** : masters en 3840×2160, export runtime en 2560×1440 (PC) et 1920×1080 (mobile).
+- **Variantes par calques** : expressions, Ressentiment ou Trouble (Pacte), tenues, éclairage.
+- **Volume estimé :**
+| Catégorie | Par héroïne | Total |
+|---|---|---|
+| Histoire (rencontre, Fin, réécriture, climax de route) | 4 | 40 |
+| Romance et intimité (Serment, Cour) | 4 | 40 |
+| Pacte (signature, P2, P3) | 3 | 27 (Haneul exclue) |
+| Fin d'héroïne | 1 | 10 |
+| Histoire principale et Elias | — | 40 |
+| Harem Absolu et Ère des Strates | — | 40 |
+| **Total** | | **≈ 200 CG**, plus leurs variantes |
+
+### 18.3 Système de voix IA
+- **Option globale `Voix : Activé / Désactivé`** dans le menu Options > Audio, activée par défaut. Désactivée, le jeu reste entièrement jouable en texte.
+- **Sous-options** : volume des voix, activation par personnage, et langue des voix (une seule langue générée au départ, voir §21).
+- **Déclencheurs** (quand l'option est active) :
+| Contexte | Doublage |
+|---|---|
+| **Apparition** d'un personnage principal dans une scène | Une réplique d'entrée vocalisée |
+| **Scènes clés** (Ancres, révélations, Fins, réécritures, boss, Conseil de la Maison) | Intégralement doublées |
+| **Scènes intimes et 18+** (Serment, Cour, Dévotion, Pacte) | Intégralement doublées, avec les ambiances |
+| **Combat** | Barks de compétences, d'Ultimes, de KO et de Synergies |
+| Dialogues courants | Texte seul, avec option de « grunts » (interjections courtes) |
+- **Pipeline de production** (hors ligne, avant le build) :
+  1. le script est exporté en CSV (`line_id`, personnage, texte, émotion, intensité, contexte) ;
+  2. la génération se fait par lots via une API de synthèse vocale de haute qualité (type ElevenLabs), avec un **`voice_id` par personnage** conçu à partir de la ligne « Voix » de sa fiche physique (Haneul utilise **deux pistes superposées**) ;
+  3. post-traitement : normalisation à −16 LUFS, découpe des silences, export en OGG Vorbis ;
+  4. import dans Godot, puis lecture par `VoiceManager` à partir du `line_id` ;
+  5. **une empreinte (hash) du texte** permet de régénérer automatiquement les lignes modifiées.
+- **Volume estimé** : environ 6 000 répliques doublées (un quart du script), soit 0,6 à 1 Go en OGG.
+
+### 18.4 Galerie : les « Mémoires du Registre »
+- **Galerie de CG** et **relecture des scènes** (avec la voix), débloquées de façon permanente entre les boucles (MetaSave).
+- **Codex des personnages** avec les fiches physiques complètes, les Fins découvertes et les dynamiques vécues.
+
+### 18.5 Lecteur webtoon
+- Scènes clés en **défilement vertical** : cases, bulles, SFX dessinés, transitions par « gouttières » noires ou blanches.
+- **Sur mobile**, ces scènes passent automatiquement en orientation portrait, ce qui correspond au format natif du webtoon.
+
+---
+
+## 19. Architecture technique
+
+### 19.1 Moteur : **Godot 4.x** (dernière version stable)
 | Critère | Pourquoi Godot |
 |---|---|
-| **Licence** | MIT : aucune redevance, aucun écran de démarrage imposé, et aucune politique de contenu du moteur ne restreint le contenu adulte |
-| **2D / 2.5D** | Pipeline 2D natif excellent (parallaxe, shaders, Tweens, UI) : idéal pour les dioramas, la carte, l'UI webtoon et le combat sur grille |
-| **Multiplateforme** | Export Windows, macOS, Linux, Android et iOS depuis le même projet. Petits binaires (environ 40 à 80 Mo plus les assets) |
-| **Packs de ressources** | Les fichiers `.pck` se chargent à l'exécution (`ProjectSettings.load_resource_pack`), ce qui est la clé de la gestion du contenu 18+ (§15.4) |
-| **Langage** | **GDScript**, recommandé plutôt que C#. Le support C# sur iOS reste moins mûr dans Godot 4 : GDScript garantit des exports mobiles sans friction |
-| **Alternatives écartées** | *Unity* : coût et historique de licence, poids. *Ren'Py* : excellent pour le visual novel, faible pour le combat tactique, et l'export iOS n'est pas natif. *Unreal* : surdimensionné pour du 2.5D illustré |
+| **Licence** | MIT : gratuit, sans redevance, aucune restriction de contenu |
+| **2D / 2.5D** | Excellent pipeline 2D (parallaxe, shaders, Tweens, UI) pour les dioramas, la carte, l'UI webtoon et le combat sur grille |
+| **Multiplateforme** | Windows, macOS, Linux, Android et iOS depuis un seul projet |
+| **Langage** | **GDScript**, préféré à C# pour des exports mobiles sans friction |
 
-### 15.2 Structure du projet
+### 19.2 Une seule version, tout le contenu intégré
+- **Un seul build**, sans packs séparés, sans paliers, et sans age gate de distribution : tout le contenu 18+ fait partie du jeu.
+- **Préférences du joueur** (options, toutes activées par défaut) : masquer les scènes de Pacte P3, désactiver la voix, sauter les scènes déjà vues. Ce sont des réglages de confort, pas des versions.
+- **Installation sur les plateformes, en usage personnel** :
+| Plateforme | Méthode |
+|---|---|
+| **Windows / Linux / macOS** | Export direct d'un exécutable |
+| **Android** | Export APK (ou AAB), installé en direct sur l'appareil (autoriser les sources inconnues) |
+| **iOS** | Export d'un projet Xcode, puis installation sur l'appareil avec son propre identifiant Apple. Avec un identifiant **gratuit**, le profil doit être resigné tous les 7 jours ; un **compte développeur payant** donne un profil valable 1 an |
+
+### 19.3 Structure du projet
 ```
 manhwa-rpg/
 ├── project.godot
 ├── addons/
-│   ├── dialogic/              # Narration (Dialogic 2) — ou moteur maison, cf. 15.3
-│   ├── godotsteam/            # Steamworks (DLC, succès, cloud) — build PC Steam uniquement
-│   └── live2d_or_spine/       # Animation des portraits (à valider au prototype)
+│   ├── dialogic/              # Narration (Dialogic 2)
+│   ├── gd_cubism/             # Live2D (portraits)
+│   └── spine_godot/           # Spine (combat, cut-ins)
 ├── core/                      # Autoloads (singletons)
 │   ├── game_state.gd          # État global de la boucle en cours
-│   ├── time_manager.gd        # Jours, phases, Fatigue, Ancres
-│   ├── loop_manager.gd        # Régression, Échos, Souvenirs, Ancrages, Dette
+│   ├── time_manager.gd        # Jours, phases, Fatigue, Ancres, Pulsations
+│   ├── loop_manager.gd        # Régression, Échos, Souvenirs, Ancrages, Aube, Dette
 │   ├── registre.gd            # Fins, Lecture, Pressentiment, Réécriture
-│   ├── tower_pressure.gd      # Pression P, IR, résolution J30
+│   ├── class_manager.gd       # Classes, sous-classes, Maîtrise, gravure, Dissonance
+│   ├── tower_pressure.gd      # Pression P, IR, Nuit du Déversement
 │   ├── alignment.gd           # Axes, réputations locales, témoins, rumeurs
-│   ├── relations.gd           # Jauges des héroïnes, dynamiques, Cohésion, trahisons
-│   ├── content_manager.gd     # Paliers de contenu, chargement des packs, age gate
-│   ├── save_manager.gd        # RunSave + MetaSave, cloud
-│   └── platform.gd            # Abstraction Steam / Itch / iOS / Android
-├── data/                      # 100 % data-driven (éditable par les game designers)
-│   ├── characters/            # elias.json, seo_yeon.json, ... (cf. 15.5)
-│   ├── sectors/               # yongsan.json (nœuds, chemins, variantes)
-│   ├── clans/                 # cheonma.json, ...
-│   ├── anchors/               # calendrier des 30 jours
-│   ├── fins/                  # Fins du Registre (conditions, causes, réécritures)
+│   ├── relations.gd           # Jauges, dynamiques, Pacte, Ambivalence, Cohésion, trahisons
+│   ├── harem_house.gd         # Conseil de la Maison, Quartiers, Harem Absolu
+│   ├── domain_manager.gd      # Ère des Strates : Domaine, technologies, expéditions
+│   ├── voice_manager.gd       # Voix IA : On/Off, lecture par line_id, lip-sync
+│   ├── preferences.gd         # Préférences de confort du joueur
+│   └── save_manager.gd        # RunSave + MetaSave
+├── data/
+│   ├── characters/            # elias.json + 10 héroïnes + PNJ (cf. 19.5)
+│   ├── classes/               # arbres, compétences, conditions
+│   ├── sectors/  clans/  anchors/  fins/  floors/  strates/
 │   ├── combat/                # skills/, enemies/, encounters/
-│   └── localization/          # fr.csv, en.csv, ko.csv
-├── narrative/                 # Timelines de dialogue (Dialogic ou format maison)
-│   ├── main/  heroines/  sectors/  tower/
-├── scenes/
-│   ├── world_map/  sector_map/  diorama/  webtoon_reader/
-│   ├── combat/  refuge/  registre_ui/  menus/
-├── assets_base/               # Assets Standard (tous publics) → base.pck
-├── content_mature/            # Assets Mature (PC) → mature.pck
-├── content_adult/             # Assets Adulte (explicite) → adult.pck  ⚠ jamais dans les builds mobiles store
+│   └── localization/          # fr.csv (source), en.csv, ko.csv
+├── narrative/                 # main/ heroines/ pacte/ harem/ strates/ prophete/
+├── scenes/                    # world_map/ sector_map/ diorama/ webtoon_reader/ combat/ refuge/ domain/ registre_ui/ gallery/
+├── assets/
+│   ├── live2d/  spine/  cg/  dioramas/  webtoon/  ui/
+│   ├── voice/<langue>/<personnage>/<line_id>.ogg
+│   └── music/  sfx/
 └── tools/
-    ├── export_presets.cfg
-    ├── ci/                    # Scripts de build et vérification de contenu
-    └── data_import/           # Import tableurs → JSON
+    ├── data_import/           # Tableurs → JSON + validation
+    ├── voice_pipeline/        # Export du script → TTS → OGG → import
+    └── build/                 # Export des 5 plateformes en une commande
 ```
 
-### 15.3 Briques clés
-- **Narration** : **Dialogic 2** (GDScript, multiplateforme, conditions et variables) pour le prototype.
-  - Toute la logique d'état reste dans `GameState`. Dialogic n'est qu'un lecteur.
-  - Si la complexité d'embranchement explose, migrer vers un **format maison en JSON** ou vers **Ink** (via un portage GDScript), à évaluer au prototype.
-  - Chaque nœud narratif porte des tags : `rating` (standard / mature / adult), `heroine`, `requires`, `effects`.
-- **Lecteur webtoon** : une scène `ScrollContainer` verticale avec des cases (images + bulles en texte localisable), des effets (tremblement, SFX dessinés) et des déclencheurs de choix inline.
-- **Diorama 2.5D** : des nœuds `Parallax2D` et `Camera2D` avec des Tweens, des hotspots en `Area2D` ou boutons, et des variantes de calques activées par l'état du monde.
-- **Combat** : une scène indépendante pilotée par les données. Les compétences sont des `Resource` ; l'IA déclare ses intentions avant le tour (indispensable pour le Pressentiment) ; la frise CTB est un tri sur une valeur de délai ; les cut-ins sont des scènes d'animation.
-- **Animation des personnages** :
-  - **Live2D** (via l'extension communautaire GDCubism) pour des portraits « vivants » façon visual novel ;
-  - ou **Spine** (runtime officiel spine-godot) pour les cut-ins et le combat.
-  - ⚠ **À valider au prototype** : le support iOS et Android de l'extension choisie, ainsi que le coût de licence (Live2D et Spine sont payants au-delà de certains seuils).
+### 19.4 Briques clés
+- **Narration** : Dialogic 2 comme lecteur. Toute la logique d'état reste dans `GameState`. Chaque nœud narratif porte des tags : `heroine`, `dynamic` (serment, cour, devotion, pacte), `requires`, `effects`, `voice`.
+- **Lecteur webtoon** (`ScrollContainer` vertical), **diorama 2.5D** (`Parallax2D` + `Camera2D`, hotspots `Area2D`) et **combat** (scène indépendante). Le combat est piloté par les données, avec des intentions déclarées avant le tour et une frise CTB.
 - **Sauvegardes** :
-  - **MetaSave** : persistant entre boucles (Souvenirs, Échos, Ancrages, Codex, Dette, paliers de contenu débloqués) ;
-  - **RunSave** : boucle en cours, avec 3 emplacements et une sauvegarde automatique à chaque phase ;
-  - format JSON versionné dans `user://`, avec une signature (somme de contrôle) contre la corruption ;
-  - cloud : Steam Cloud, iCloud et Google Play Games Saved Games, via des plugins.
-  - **Les sauvegardes ne contiennent que des drapeaux, jamais d'assets**, pour rester compatibles entre plateformes et paliers.
-- **Localisation** : français (langue source), anglais, coréen. `TranslationServer` avec CSV ou PO. Les polices doivent couvrir le hangeul, le japonais et le chinois (Noto CJK en sous-ensemble).
+  - **MetaSave** : Souvenirs, Échos, classes gravées, Ancrages, Codex, galerie, Dette, Aube gravée ;
+  - **RunSave** : boucle en cours, 3 emplacements plus une sauvegarde automatique à chaque phase ;
+  - JSON versionné, avec une somme de contrôle.
+- **Mémoire sur mobile** : avec environ 200 CG et des modèles Live2D, chargement **à la demande** (CG en WebP, textures ASTC ou ETC2). Seuls les assets de la scène courante restent en mémoire.
 
-### 15.4 Gestion du contenu 18+ : les paliers de contenu
-**Trois paliers, définis dans les données et non dans le code :**
-
-| Palier | Contenu | Où |
-|---|---|---|
-| **Standard** | Romance, baisers, fan-service suggestif sans nudité explicite, fondu au noir sur les scènes P2 et P3 | Partout, y compris l'App Store et le Play Store |
-| **Mature** | Nudité artistique non explicite, scènes P2 complètes, violence graphique | PC (Steam base, Itch), Android hors Play Store |
-| **Adulte** | Scènes P3 explicites, profils 18+ des personnages (§10.7) | PC uniquement via un pack séparé, et Android en distribution directe (APK) |
-
-**Principe de séparation physique** :
-1. Chaque scène ou image sensible est déclarée avec ses **variantes** : `scene_id` → `{ standard: …, mature: …, adult: … }`. Le `ContentManager` choisit la variante la plus élevée **autorisée et disponible**, sinon il se replie sur le palier inférieur (fondu au noir, plan alternatif).
-2. **Les assets Mature et Adulte vivent dans des packs séparés** : `mature.pck` et `adult.pck`. Ils ne font **jamais** partie du binaire principal.
-3. **Exports mobiles « store »** : les presets d'export excluent `content_mature/**` et `content_adult/**` (filtres d'exclusion). Le code vérifie aussi `OS.has_feature("ios")` et une feature tag `store_build` : **aucun chargement de pack n'est possible**, même si un fichier était injecté.
-4. **Garde-fou en intégration continue** : après chaque export mobile, un script liste le contenu du `.pck` et **fait échouer le build** si un chemin `content_adult/` ou `content_mature/` est présent, ou si un tag `rating: adult` apparaît dans les données embarquées. Apple et Google peuvent analyser les binaires : il ne doit littéralement rien y avoir.
-5. **Steam** :
-   - le jeu de base contient les paliers Standard et Mature, avec un questionnaire de contenu mature rempli honnêtement ;
-   - le palier Adulte est un **DLC gratuit « Adult Content Pack »** marqué « Adult Only Sexual Content » ;
-   - détection via GodotSteam (`isDLCInstalled`), et le pack est chargé au démarrage.
-6. **Itch.io** : un build complet avec le pack Adulte, page marquée NSFW et accès aux adultes uniquement.
-7. **Android hors store** : un APK complet en distribution directe (site officiel, Itch.io), avec age gate. Android autorise l'installation de sources inconnues, et c'est à l'utilisateur de l'activer.
-8. **iOS** :
-   - **uniquement le palier Standard**. Les règles de l'App Store interdisent le contenu sexuel explicite, et il est interdit de débloquer après installation du contenu qui violerait ces règles ;
-   - les marketplaces alternatives de l'UE (DMA) restent soumises à la notarisation d'Apple : **à vérifier juridiquement** avant d'envisager une version Mature sur iOS.
-9. **Age gate** : au premier lancement d'un build contenant du Mature ou de l'Adulte, une confirmation d'âge et un choix de palier (modifiable dans les options, protégeable par code). En distribution directe, prévoir une **vérification d'âge renforcée** selon les juridictions (Royaume-Uni avec l'Online Safety Act, plusieurs États américains, Allemagne).
-10. **Cross-save** : une sauvegarde issue d'un PC Adulte se charge sur mobile Standard. Les scènes vues sont marquées par leur `scene_id`, et l'affichage se replie automatiquement.
-
-**Points de vigilance commerciaux et juridiques (à revérifier avant le lancement) :**
-- **Processeurs de paiement** : en 2025, Steam a durci ses règles sur le contenu adulte sous la pression des processeurs de paiement, et Itch.io a désindexé puis partiellement restauré le contenu NSFW. Il faut suivre ces politiques et prévoir un plan B de distribution, par exemple un site propre avec un processeur compatible adulte.
-- **Corée du Sud** : la classification du GRAC est stricte sur le contenu sexuel. La version adulte peut être refusée ou filtrée sur le marché coréen, où se déroule pourtant l'histoire. Prévoir une version Standard ou Mature pour la Corée.
-- **Allemagne** (USK / JMStV), **Australie** (Classification Board) : risques de refus de classification pour le contenu explicite. Le géoblocage du DLC Adulte est possible sur Steam.
-- **Direction artistique conforme** : des proportions adultes pour toutes les héroïnes, aucun uniforme scolaire, les âges inscrits dans les données et affichés dans les fiches. Ce sont des critères examinés par Steam et par de nombreux régulateurs.
-
-### 15.5 Schéma de données d'un personnage (extrait)
+### 19.5 Schéma de données d'un personnage (extrait)
 ```jsonc
 // data/characters/seo_yeon.json
 {
   "id": "seo_yeon",
   "name": { "fr": "Park Seo-Yeon", "ko": "박서연", "en": "Park Seo-yeon" },
   "age": 27,                        // OBLIGATOIRE, validé ≥ 18 par l'outil d'import
-  "height_cm": 163,
-  "origin": "KR",
-  "sector": "yeouido",
-  "affiliation": ["camp_yeouido", "sanctuaire"],
-  "archetype": "healer_idealist",
+  "physique": {
+    "height_cm": 163, "weight_kg": 52,
+    "eyes": "brun chocolat", "hair": "châtain foncé, mi-longs, chignon défait",
+    "body": "menue, taille fine", "skin": "claire rosée",
+    "marks": ["lunettes rondes scotchées", "grain de beauté œil droit", "bracelet tressé rouge"],
+    "palette": ["#9ccbe8", "#e8dcc4", "#f5f2ea", "#c0392b"]
+  },
+  "voice": { "voice_id": "tts_seo_yeon_v1", "timbre": "soprano légère, douce" },
+  "origin": "KR", "sector": "yeouido", "affiliation": ["camp_yeouido", "sanctuaire"],
   "axes": { "protect_dominate": -70, "bond_solitude": 60 },
   "gauges_start": { "affinity": 10, "trust": 10, "fear": 0, "ambition": 0 },
   "traits": ["accepts_sharing_high_cohesion", "no_devotion"],
-  "betrayal": {
-    "threshold": 30,
-    "absolute_triggers": ["kill_civilians_witnessed", "sold_to_clan"],
-    "form": "poison_and_flee",
-    "omens": ["avoids_gaze", "med_supplies_missing", "whispers_agatha"]
+  "betrayal": { "threshold": 30, "absolute_triggers": ["kill_civilians_witnessed", "sold_to_clan"], "form": "poison_and_flee" },
+  "fin": { "id": "fin_seo_yeon_01", "day": 12, "phase": "dusk", "node": "yeouido.hospital", "next_fin": "fin_seo_yeon_02" },
+  "dynamics": {
+    "oath": true, "open_court": "cohesion>=70", "devotion": false,
+    "pacte": { "available": true, "leverage": ["dette_de_vie"], "ambivalence_start": -40, "likely_fate": ["rupture", "couteau"] }
   },
-  "fin": {
-    "id": "fin_seo_yeon_01",
-    "day": 12, "phase": "dusk", "node": "yeouido.hospital",
-    "cause_known_levels": ["date_place", "bitten_protecting_children", "camp_rationing", "serum_h07"],
-    "rewrite_conditions": { "all": ["camp_secured", "has_item:serum_h07"] },
-    "next_fin": "fin_seo_yeon_02"
-  },
-  "linked_fins": [{ "with": "hae_in", "rule": "steal_serum_advances_coup_to_d18" }],
-  "dynamics": { "oath": true, "open_court": "cohesion>=70", "devotion": false, "mask": "sabotage" },
   "combat": { "class": "field_surgeon", "row": "back", "skills": ["triage", "adrenaline", "code_blue"] },
-  "outfits": { "base": "...", "combat": "...", "casual": "..." },
   "intimacy": {
-    "rating_gate": "adult",          // ce bloc n'est chargé que si le palier Adulte est actif
     "temperament": "shy_opens_with_trust",
     "scenes": [
-      { "id": "seo_p2_restroom", "tier": "P2", "requires": { "affinity": 70, "trust": 60 } },
-      { "id": "seo_p3_bunker",   "tier": "P3", "requires": { "affinity": 85, "trust": 75 }, "consent_check": true }
+      { "id": "seo_p2_restroom", "tier": "P2", "dynamic": "serment|cour", "requires": { "affinity": 70, "trust": 60 }, "cg": "cg_seo_04", "voiced": true },
+      { "id": "seo_p3_bunker",   "tier": "P3", "dynamic": "serment|cour", "requires": { "affinity": 85, "trust": 75 }, "cg": "cg_seo_06", "voiced": true },
+      { "id": "seo_pacte_p2",    "tier": "P2", "dynamic": "pacte", "requires": { "pacte": true }, "variants": ["ressentiment", "trouble"], "cg": "cg_seo_pacte_02", "voiced": true }
     ]
   }
 }
 ```
-- **Validation à l'import (outil `tools/data_import`)** :
+- **Validation à l'import** :
   - `age ≥ 18` obligatoire pour tout personnage qui a un bloc `intimacy` ;
-  - toute scène P2 ou P3 doit avoir un `consent_check` et des `requires` incluant la Confiance ;
-  - aucune scène intime ne peut être déclenchée si `dynamic == "mask"`.
+  - toute scène intime porte `violence: none` ;
+  - les scènes `dynamic: pacte` exigent un Pacte signé (jamais pour Haneul) ;
+  - chaque `cg` et chaque ligne `voiced` doit exister dans les assets (rapport des manquants).
 
-### 15.6 Budgets de performance
+### 19.6 Budgets de performance
 | | PC | Mobile |
 |---|---|---|
 | Résolution de référence | 1920×1080 (UI adaptative jusqu'en 4K) | 1080×2400 (portrait pour le webtoon, paysage pour la carte et le combat) |
-| Textures de diorama | 4096 px max | 2048 px max, compression ASTC (iOS) / ETC2 (Android) |
-| Mémoire cible | < 2 Go | < 900 Mo (appareils milieu de gamme 2022+) |
-| Taille de l'installation | 3 à 5 Go (avec voix éventuelles) | < 1,5 Go initial, le reste en téléchargement d'assets par secteur |
-
-### 15.7 Intégration continue et builds
-- **GitHub Actions** avec une image Docker Godot headless (de type `godot-ci`) : exports Windows, Linux, macOS et Android à chaque tag.
-- **iOS** : un runner macOS avec Xcode, et la signature via les secrets du dépôt.
-- **Étapes** :
-  1. validation des données (âges, conditions, références croisées des Fins) ;
-  2. tests unitaires de la logique (Pression, Loyauté, régression) avec GUT ou gdUnit4 ;
-  3. export ;
-  4. **audit de contenu des packs mobiles**, bloquant ;
-  5. envoi sur Steam (`steamcmd`), Itch (`butler`), TestFlight et Play Console (piste interne).
+| Textures de diorama | 4096 px max | 2048 px max, compression ASTC / ETC2 |
+| Mémoire cible | < 2,5 Go | < 1 Go (streaming des CG et des voix) |
+| Taille de l'installation | 6 à 8 Go (CG, voix, Live2D) | 3 à 4 Go |
 
 ---
 
-## 16. Périmètre de la démo
+## 20. Périmètre de la démo
 
 | Élément | Contenu de la démo |
 |---|---|
-| Durée de jeu | 2 à 3 heures (première boucle courte) |
-| Temps | **J1 à J7** (Acte I complet), avec **1 régression scénarisée** au J7 (mort contre le Portier) pour enseigner la boucle |
-| Carte | **Yongsan** (réveil, Porte) + **Yeouido** (camp, IFC, hôpital) + l'**étage 1** de la Tour. Les autres secteurs sont visibles mais verrouillés |
-| Héroïnes | **Seo-Yeon** (route jusqu'au palier « Proche »), **Haneul** (rencontre via le Souvenir n°4), **Hae-in** (rencontre et premier contrat). **Nadia** en teaser (le reflet blanc) |
-| Voies | Héros et Mercenaire complètes sur l'Acte I ; Tyran jusqu'au camp vassal (Masque de Seo-Yeon) ; Loup partielle |
-| Combat | 5 types d'ennemis, 1 boss à Règle (le Portier aux Mille Clés), grille 3×3 complète, Pressentiment et Réécriture (après la régression) |
-| Ratio | Environ 60 % de narration et d'exploration, 40 % de combat, mesuré par la télémétrie |
-| Contenu | Standard sur toutes les plateformes. Une scène P2 en palier Mature/Adulte pour tester le pipeline de packs |
-| Objectif technique | Valider la chaîne complète : données → narration → carte → combat → régression → sauvegarde → export des 4 plateformes avec l'audit de contenu |
+| Durée de jeu | 2 à 3 heures |
+| Temps | **J1 à J7** (Acte I complet), avec **1 régression scénarisée** au J7 (mort contre le Portier) |
+| Carte | **Yongsan** + **Yeouido** + l'**étage 1** de la Tour |
+| Héroïnes | **Seo-Yeon** (route jusqu'au palier « Proche », **et** une branche Pacte via le camp vassal), **Haneul** (rencontre via le Souvenir n°4), **Hae-in** (premier contrat). **Nadia** en teaser |
+| Classes | Vétéran-Recouvreur + Porteur, et le déblocage de *Gardien* ou de *Seigneur de Guerre* selon la voie. Démonstration de la gravure à la régression |
+| Combat | 5 types d'ennemis, 1 boss à Règle (le Portier aux Mille Clés), grille 3×3, Pressentiment et Réécriture |
+| Médias | Live2D pour Elias, Seo-Yeon, Haneul et Hae-in · 8 CG HD, dont 2 intimes (1 Serment, 1 Pacte) · voix IA sur les apparitions, les scènes clés et les scènes intimes, avec l'option On/Off |
+| Objectif technique | Valider la chaîne complète : données → narration → carte → combat → classes → régression → voix → sauvegarde → export PC et Android |
 
 ---
 
-## 17. Questions ouvertes
+## 21. Réponses validées & questions ouvertes
 
-1. **Voix** : doublage partiel (coréen ou japonais pour l'authenticité manhwa, ou anglais), uniquement des « barks » de combat, ou pas de voix ?
-2. **Modèle économique** : premium (achat unique sur PC, démo gratuite) ou épisodique (par Acte) ? Sur mobile : premium, ou free-to-start avec achat de déblocage complet ?
-3. **Animation des portraits** : Live2D (portraits très vivants, coût plus élevé) ou illustrations statiques avec variantes d'expression et effets de shader (plus économique) ?
-4. **Ton de la version Standard** : le fondu au noir doit-il rester très suggestif, ou être pleinement « tous publics 12+ » pour viser un public plus large sur mobile ?
-5. **Antagoniste principal** : le Prophète des Élus doit-il être un personnage déjà connu (twist : Mère Agatha ? le PDG Jang ? Cheon Tae-ju ?) ou une figure nouvelle ?
+### 21.1 Réponses validées (questions de la v0.2)
+| Question | Réponse |
+|---|---|
+| Doublage | Voix IA haute qualité, avec une option globale **On/Off**. Déclenchées sur les apparitions des personnages principaux, les scènes clés et les scènes intimes (§18.3) |
+| Format | **Jeu complet d'un seul bloc**, sans découpage par Actes |
+| Visuels | **Live2D / Spine** avec expressions dynamiques + **CG HD fixes** pour les scènes clés et intimes (§18) |
+| Le Prophète | Un personnage déjà connu, avec un twist lourd : **Mère Agatha**, qui est Seo-Yeon venue d'une ligne effondrée (§16.3) |
+| Distribution | Projet personnel, sans contrainte. Une seule version avec tout le contenu intégré (§19.2) |
+
+### 21.2 Nouvelles questions
+1. **Langue des voix IA** : français, coréen (authenticité manhwa) ou japonais ? Générer une seule langue au départ réduit fortement le volume.
+2. **Production des visuels** : illustration à la main, commandes à des artistes, ou génération d'images par IA avec retouche ? Ce choix structure tout le pipeline des 200 CG et des modèles Live2D.
+3. **Périmètre de l'Ère des Strates pour la « version 1.0 »** : jusqu'à l'étage 50 (Cycles 2 à 5) d'abord, avec les étages 51 à 100 plus tard ? Ou tout d'un coup ?
+4. **Carte mondiale et Tours des Origines** : à intégrer dès la 1.0, ou en extension après le jeu principal ?
+5. **Mobile** : bascule automatique entre portrait (webtoon, dialogues) et paysage (carte, combat), ou tout en paysage ?
