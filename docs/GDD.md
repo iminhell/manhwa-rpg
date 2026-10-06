@@ -1,9 +1,9 @@
-# LA TOUR DU DERNIER JOUR — Game Design Document v0.3
+# LA TOUR DU DERNIER JOUR — Game Design Document v0.4
 
 > RPG narratif et tactique inspiré des manhwas/webtoons, à haute liberté de choix.
 > **Statut** : pré-production. Le document de conception fait foi avant toute phase de code.
 > Toutes les valeurs chiffrées sont des points de départ à équilibrer pendant le prototype.
-> **Projet personnel, usage privé.** Une seule version du jeu, contenu 18+ intégré de base. Aucune contrainte de distribution.
+> **Projet personnel, usage privé.** Une seule version du jeu, contenu 18+ intégré de base. Aucune contrainte de distribution, aucune autocensure : les thèmes sombres et les passés bruts des personnages sont assumés.
 
 ---
 
@@ -21,7 +21,7 @@
 10. [Fiche du protagoniste — Elias Kang (+ Classes)](#10-fiche-du-protagoniste--elias-kang)
 11. [Système de harem : règles communes (+ Pacte de Vassalité)](#11-système-de-harem--règles-communes)
 12. [Les 10 héroïnes](#12-les-10-héroïnes)
-13. [Matrice de cohésion, Fins liées & Harem Absolu](#13-matrice-de-cohésion-fins-liées--harem-absolu)
+13. [Matrice de cohésion, Fins liées, Constellations & Harem Absolu](#13-matrice-de-cohésion-fins-liées-constellations--harem-absolu)
 14. [La Tour avant le Jour 30](#14-la-tour-avant-le-jour-30)
 15. [L'Après-Jour 30 — L'Ère des Strates](#15-laprès-jour-30--lère-des-strates)
 16. [Lore profond & le Prophète](#16-lore-profond--le-prophète)
@@ -40,21 +40,25 @@
 | Statut | **Projet personnel**, aucune distribution publique. Une seule version complète |
 | Univers | **Concept A — La Tour du Dernier Jour** (apocalypse, Système/Tour, régression), avec des factions-chaebols et une héroïne-pivot |
 | Protagoniste | Homme métis, 1m84 / 86 kg, imposé : **Elias Kang** (§10) |
-| Casting romançable | **10 héroïnes** uniques, de profils, d'âges (22 à 41 ans) et d'origines variés (§12). **Harem Absolu** possible avec les 10 (§13.3) |
+| Casting romançable | **10 héroïnes** uniques, de profils, d'âges (22 à 41 ans) et d'origines variés (§12), toutes célibataires ou dans une union contractuelle non consommée |
+| Combinaisons | **Toutes les compositions** sont gérées : Solo, Duos, Trios, Quatuors… jusqu'aux 10, chacune avec ses synergies, ses scènes et ses sous-routes (§13.3). **Harem Absolu** avec les 10 (§13.4) |
 | Plateformes | PC (Windows, Linux, macOS), Android (APK), iOS (installation personnelle) |
 | Contenu | **Tout le contenu 18+ est intégré de base**, sans version séparée. Il comprend des scènes sombres de domination sur la voie du Tyran (§11.4) |
 | Ratio de jeu | **60 %** narration / choix / carte — **40 %** combat tactique au tour par tour (grilles 3×3) |
 | Régression | Vraie boucle temporelle : mémoire, connaissances, compétences et **classes maîtrisées** conservées (§4, §10.8) |
 | Structure | Jeu complet d'un seul bloc : avant le J30, puis l'**Ère des Strates** (étages 11 à 100, §15) |
-| Doublage | Voix IA haute qualité, avec une option globale **On/Off** (§18.3) |
-| Visuels | Portraits animés **Live2D / Spine** + **CG HD fixes** pour les scènes clés et intimes (§18) |
+| Doublage | Voix IA haute qualité en **coréen et japonais** (au choix), avec une option globale **On/Off** (§18.3) |
+| Visuels | Portraits animés **Live2D / Spine** + **CG HD fixes**, produits par **génération IA** (Midjourney et Stable Diffusion avec LoRA, §18.6) |
+| Périmètre v1.0 | **Séoul + les 50 premiers étages**. Carte mondiale et étages 51 à 100 en **extension** (§15) |
+| Mobile | **Paysage exclusif** (§18.5, §19.6) |
 | Antagoniste | Le **Prophète des Élus** est un personnage déjà connu, avec un twist révélé au fil des boucles (§16.3) |
 | Moteur | **Godot 4.x** (GDScript), §19 |
 
 **Règles de design de l'univers :**
 1. **Tous les personnages romançables sont des adultes.** Leur âge est inscrit dans les données, et leur charadesign a des proportions adultes.
-2. **Pas de violence physique dans les scènes intimes.** La domination de la voie du Tyran passe par le pouvoir, l'ascendant psychologique et le **contrat de vassalité** (§11.4), jamais par les coups.
-3. **La Loi des Contrats du Système** (lore, §16.1) : tout pacte exige une signature lucide et contient une clause de rupture. Ce cadre donne au Pacte sa tension dramatique : chaque héroïne vassale *pourrait* partir, et le prix de ce départ fait toute l'histoire.
+2. **Aucune autocensure** sur les thèmes sombres (traumas, crimes, emprise, exploitation, automutilation). Ils font partie du passé et des arcs des personnages.
+3. **Pas de violence physique dans les scènes intimes.** La domination de la voie du Tyran passe par le pouvoir, l'ascendant psychologique et le **contrat de vassalité** (§11.4), jamais par les coups.
+4. **La Loi des Contrats du Système** (lore, §16.1) : tout pacte exige une signature lucide et contient une clause de rupture. Ce cadre donne au Pacte sa tension dramatique : chaque héroïne vassale *pourrait* partir, et le prix de ce départ fait toute l'histoire.
 
 ---
 
@@ -690,10 +694,11 @@ COUCHE 3 — SCÈNE (diorama 2.5D illustré + hotspots)
 | **Classe réelle (cachée)** | **Lecteur des Fins (EX)**, révélée à la fin de l'Acte I ou à la boucle 2 |
 
 ### 10.2 Background
-- **Enfance à Itaewon (Yongsan)**. Un enfant métis dans un quartier de bases militaires, de bars et de regards. Il apprend tôt deux choses : frapper le premier, et se taire pour protéger sa mère. Elle lui coud ses vêtements et lui répète **« 살아남아 » (« survis »)**.
+- **Enfance à Itaewon (Yongsan)**. Un enfant métis dans un quartier de bases militaires, de bars et de regards. Il apprend tôt deux choses : frapper le premier, et se taire pour protéger sa mère. Elle lui coud ses vêtements et lui répète **« 살아남아 » (« survis »)**. À 12 ans, il découvre la vérité brute : couturière le jour, sa mère **se prostitue la nuit** dans les bars d'Itaewon pour rembourser les dettes laissées par Julien. Il ne lui en a jamais parlé.
 - **14 ans**. Sa mère meurt d'un cancer non soigné, faute d'argent. Son père ne vient pas à l'enterrement. Elias passe chez une tante, puis à la rue, puis dans les salles de boxe.
-- **19–25 ans**. Recruté par une société militaire privée grâce à son passeport français et à sa carrure. Il en garde des réflexes, des cicatrices, et une mission au Sahel qu'il ne raconte jamais : il y a obéi à un ordre qu'il n'aurait pas dû suivre.
-- **25–29 ans**. Retour à Séoul, endetté. Il « récupère » de l'argent pour Longwei, ce qui lui vaut une réputation de type calme et dangereux qui ne frappe que quand c'est nécessaire.
+- **19–25 ans**. Recruté par une société militaire privée grâce à son passeport français et à sa carrure. Il en garde des réflexes, des cicatrices, et une mission au Sahel qu'il ne raconte jamais. Sur ordre du client, son unité a « nettoyé » un village soupçonné d'abriter des djihadistes. **Elias a tiré.** 31 morts, dont des femmes. Il connaît le nom du village et ne le prononce jamais.
+- **25–29 ans**. Retour à Séoul, endetté. Il « récupère » de l'argent pour Longwei, ce qui lui vaut une réputation de type calme et dangereux qui ne frappe que quand c'est nécessaire. Il a cassé des doigts, et un débiteur s'est pendu le lendemain de sa visite.
+- **Statut & passé intime** : **célibataire**. **Expérimenté** : des liaisons brèves, des nuits payées dans les bars d'Itaewon, jamais rien de durable. Il refuse qu'on l'attende.
 - **Première vie (avant la régression)** :
   - éveillé **Porteur (F)**, il survit par la ruse, sans rien sauver ni personne ;
   - au **J20**, il rencontre l'**Héritière** à l'étage 1 et décide pour la première fois de protéger quelqu'un ;
@@ -991,6 +996,22 @@ Une jauge cachée propre au Pacte, **l'Ambivalence**, va de −100 (Ressentiment
 | 9 | **Dr. Tran Minh-Anh** | 36 | 1m66 / 53 kg | Vietnamo-coréenne | Hongdae, Mirae (labo) | Scientifique obsessionnelle | J26 |
 | 10 | **L'Héritière (« Haneul »)** | apparence 25 ans, adulte | 1m69 / 54 kg | Inconnue (la Tour) | Tour, étage 1 | Mystérieuse amnésique, clé du destin | J30 |
 
+
+### Résumé de validation du charadesign
+| Personnage | Taille / poids & silhouette | Style, visage & cheveux | Personnalité & trait marquant | Statut & passé intime |
+|---|---|---|---|---|
+| **Elias Kang** (29) | 1m84 / 86 kg. Grand, épaules larges, musculature sèche de combattant | Peau caramel, mâchoire carrée, barbe de trois jours, yeux noisette ambré (or avec le Registre), boucles noires courtes. Bomber noir, cargo, montre cassée à 23h58, cicatrice au sourcil, tatouage 살아남아 | Laconique, humour noir, protecteur enfoui. *Fait tourner sa montre quand il réfléchit* | Célibataire, expérimenté (liaisons brèves, nuits payées). Massacre au Sahel ; sa mère se prostituait pour les dettes du père |
+| **Seo-Yeon** (27) | 1m63 / 52 kg. Menue, taille fine | Chignon châtain tenu par un crayon, yeux bruns, lunettes rondes scotchées, blouse tachée et cardigan trop grand | Douce et d'acier, rongée par la culpabilité. *Remonte ses lunettes quand elle ment* | Célibataire, vierge. A falsifié un triage, un homme en est mort |
+| **Hae-in** (41) | 1m72 / 58 kg. Grande, sablier mûr | Chignon noir strict, mèche argentée, lèvres bordeaux, jade, tailleur blanc, manteau camel sur les épaules | Calculatrice, ironique, glaciale. *Baisse la voix pour menacer* | Veuve d'un mariage blanc jamais consommé, inexpérimentée. Brûlée par son mari, elle l'a regardé mourir |
+| **Ryeon** (23) | 1m68 / 55 kg. Athlétique, élancée, jambes d'escrimeuse | Queue de cheval jusqu'aux genoux, ruban rouge, yeux gris acier, hanbok de combat noir et blanc, sabre | Fière, tsundere, honneur absolu. *Mange des sucreries en cachette* | Fiancée par contrat à Tae-ju (non consommé), vierge. Mère pendue ; elle a tué à 15 ans |
+| **Simone** (38) | 1m78 / 72 kg. Puissante, musclée, épaules larges | Peau brun foncé, tresses plaquées et undercut, cicatrice à la mâchoire, treillis, plaques et bague de fiançailles | Stricte, directe, protectrice. *Un cigare les jours où l'on a survécu* | Célibataire, fiancée endeuillée, expérimentée. A validé une frappe sur un mariage afghan |
+| **Xiaoyu** (31) | 1m70 / 54 kg. Féline, taille de guêpe | Carré noir, frange, mèche rouge, yeux de chat ambrés, qipao noir fendu et veste de cuir, dragon tatoué dans le dos | Joueuse, théâtrale, le contrat est sacré. *Éventail ouvert ou fermé selon son humeur* | Célibataire, expérimentée (amants-outils), jamais « possédée ». A empoisonné son père |
+| **Aoi** (22) | 1m60 / 47 kg (le poids imposé par l'agence). Danseuse fine | Couettes basses noir et rose, yeux noisette, sweat gris oversize et veste pailletée, bracelets au poignet gauche | Pétillante en public, brisée en privé. *Son sourire de scène n'a pas de fossette* | Célibataire, vierge. Contrat d'esclave ; le sponsor Jang ; elle s'est ouvert le poignet ; automutilation |
+| **Nadia** (34) | 1m76 / 63 kg. Sèche, nerveuse | Platine en undercut, mèche sur l'œil, yeux gris pâle, manteau militaire gris, écharpe rouge, cigarette éteinte | Laconique, sarcastique, fatiguée de tuer. *L'écharpe rouge signifie la confiance* | Célibataire, expérimentée, un amour mort (Dmitri). A tué Elias ; un enfant-soldat |
+| **Maricel** (26) | 1m57 / 50 kg. Petite, pulpeuse | Ondulations noires et mèches cuivre, casquette, fossettes, crop hoodie moutarde, cargo, bracelets | Rieuse, voleuse, loyale à sa « famille ». *Vole tout ; claustrophobe* | Célibataire, trahie par son seul amour (Jun-ho), méfiante. Séquestrée, elle a poignardé son employeur |
+| **Minh-Anh** (36) | 1m66 / 53 kg. Longiligne, frêle | Tresse noire jusqu'aux reins, lunettes rectangulaires, implants à LED à la tempe, blouse sur combinaison noire | Brillante, sans filtre, obsessionnelle. *Ses LEDs virent au rouge quand elle est émue* | Célibataire, vierge, peur d'être touchée. 9 morts lors des tests ARCHE |
+| **Haneul** (adulte, ~25 ans en apparence) | 1m69 / 54 kg. Élancée, irréelle | Cheveux argent qui noircissent, yeux d'or à anneau d'horloge, glyphes, bomber d'Elias trop grand | Curieuse, douce, étrange, très ancienne. *N'a d'ombre que lorsqu'elle est heureuse* | Aucun lien, vierge de cette vie. Le souvenir d'une nuit avec Elias dans la première vie. A compté 9 millions de morts |
+
 ---
 
 ### 12.1 PARK SEO-YEON (박서연) — « La Main qui ne tremble pas »
@@ -1028,6 +1049,11 @@ Une jauge cachée propre au Pacte, **l'Ambivalence**, va de −100 (Ressentiment
   - **Réécriture** : il faut à la fois **sécuriser le camp** (pour que les enfants ne fuient pas) et **obtenir le sérum H-07** chez Haesong (vol, négociation avec Hae-in ou piratage avec Minh-Anh).
   - **Nouvelle Fin débloquée** : *J27, Quais du Dernier Exode, noyée en aidant des réfugiés*.
 - **Secret lié au Registre** : elle est **immunisée** contre la souche de la Tour (la « Souche Zéro »). Son sang permettrait un vaccin de masse. Haesong et Mirae la veulent vivante. Les Élus la veulent sacrifiée… mais leur Prophète l'interdit en secret (§16.3). Seo-Yeon est aussi, sans le savoir, la version jeune de Mère Agatha.
+- **Passé sombre** :
+  - fille d'un père alcoolique et violent à Daegu, elle recoud les arcades de sa mère dès 12 ans : c'est là qu'elle a appris la médecine ;
+  - pendant son internat, sous la pression d'un chef de service, elle a **falsifié un dossier de triage** pour faire passer le fils d'un député. Un ouvrier de 54 ans est mort sur un brancard, dans le couloir. Elle ne l'a jamais avoué à personne, et sa culpabilité chronique vient de là ;
+  - elle a déjà « choisi » qui mourait. Elle se jure de ne jamais recommencer, ce qui rend le Pacte d'autant plus cruel pour elle.
+- **Statut & passé intime** : **célibataire**. Aucune relation aboutie : un interne l'a humiliée devant tout le service après un premier rendez-vous, et elle s'est enfermée dans le travail. **Inexpérimentée (vierge).**
 - **Recrutement** :
   - *Héros* : défendre le camp au J4 et tenir jusqu'au J6 ;
   - *Mercenaire* : la payer en médicaments et lui garantir des soins pour le camp ;
@@ -1065,7 +1091,7 @@ Une jauge cachée propre au Pacte, **l'Ambivalence**, va de −100 (Ressentiment
 | **Visage** | Ovale aristocratique : pommettes hautes et sculptées, nez fin et droit, mâchoire délicate mais ferme. **Lèvres pleines, toujours rouge sombre** (bordeaux). Un **grain de beauté** sous la lèvre inférieure, à gauche |
 | **Yeux** | En amande allongée, paupière double fine, **noir d'encre** aux reflets bruns. Eyeliner en aile discret. Un regard d'évaluation permanent, qui s'adoucit très rarement |
 | **Cheveux** | **Noir de jais**, lisses, très longs (jusqu'à la taille quand ils sont détachés). D'ordinaire en **chignon bas strict**, avec une raie sur le côté. Une **unique mèche argentée** à la tempe gauche, apparue à la mort de son mari, qu'elle refuse de teindre |
-| **Signes particuliers** | Boucles d'oreilles en **jade impérial** (héritage maternel) · alliance portée à la main droite (veuve) · fine cicatrice de césarienne (visible en CG intime, sujet de confidence sur sa fille) · parfum boisé d'iris et de cuir · montre en or rose à cadran nacré |
+| **Signes particuliers** | Boucles d'oreilles en **jade impérial** (héritage maternel) · alliance de son mariage blanc, portée à la main droite comme un trophée · petites **cicatrices rondes de brûlures de cigarette** à l'intérieur de la cuisse gauche, laissées par son mari (visibles en CG intime, sujet de confidence) · parfum boisé d'iris et de cuir · montre en or rose à cadran nacré |
 | **Gestuelle** | Ne se presse jamais. Tient sa tasse de thé à deux mains. Lève un seul sourcil pour exprimer son mépris. Tapote la table d'un ongle quand elle s'impatiente. Ne laisse personne marcher derrière elle |
 | **Voix** | Alto profond, velouté, diction parfaite. Elle ne hausse jamais le ton : elle baisse la voix pour menacer. Rire bref, rare et grave |
 | **Style habituel** | Haute couture minimaliste : tailleurs-pantalons blancs ou crème, chemisiers de soie, **manteau camel porté sur les épaules** (jamais les manches), talons aiguilles nude. En privé : soie bordeaux et noire |
@@ -1078,7 +1104,7 @@ Une jauge cachée propre au Pacte, **l'Ambivalence**, va de −100 (Ressentiment
 - **Personnalité** :
   - calculatrice, élégante, ironique, d'une politesse coupante ;
   - méprise la faiblesse, mais respecte profondément la compétence ;
-  - solitude glaciale : veuve, et sa fille unique, Yoon Da-bin (19 ans), est coincée **hors du Voile** ;
+  - solitude glaciale : veuve d'un mariage blanc, et sa fille adoptive, Yoon Da-bin (19 ans), est coincée **hors du Voile** ;
   - sur les axes : **Dominer +35, Lien −10**.
 - **Aime / déteste** : le thé vert de Jeju, les échecs, les gens qui tiennent parole ; la flatterie, l'amateurisme, qu'on la touche sans permission.
 - **Fin du Registre** : *J21, Jour, salle du conseil de la tour Haesong. Exécutée par le vice-président Nam Gi-seok lors d'un coup d'État interne.*
@@ -1086,6 +1112,12 @@ Une jauge cachée propre au Pacte, **l'Ambivalence**, va de −100 (Ressentiment
   - **Réécriture** : il faut exposer Nam avant le J21 (preuves dans les serveurs de Mirae, ou témoignage de l'Agent Shin), ou être présent au conseil avec assez de force pour inverser le coup.
   - **Nouvelle Fin débloquée** : *J30, assassinée par le Prophète des Élus, qui a besoin du Sceau de la Balance*.
 - **Secret lié au Registre** : elle a signé le **Projet ARCHE**. Haesong Bio a capté des signaux sous Yongsan et y a envoyé une sonde… qui a reçu une **réponse**. Elle croit que la Tour est de sa faute, et elle cherche à la fois à **racheter sa faute et à l'effacer**.
+- **Passé sombre** :
+  - mariée à 22 ans par ses familles à **Yoon Gwang-su**, héritier de Haesong de 20 ans son aîné. C'était une **union purement contractuelle** (une fusion) ;
+  - il la méprisait et la **brûlait avec ses cigarettes** pour la « dresser ». Elle ne lui a jamais cédé : le mariage n'a **jamais été consommé** ;
+  - il y a 9 ans, il a fait une crise cardiaque devant elle. **Elle a fini son thé avant d'appeler les secours** ;
+  - **Da-bin** est la fille illégitime de son mari et d'une maîtresse. Hae-in l'a adoptée et élevée comme la sienne : c'est la seule personne qu'elle aime sans calcul.
+- **Statut & passé intime** : **veuve d'un mariage blanc**, jamais consommé. Aucune liaison depuis : elle n'a jamais laissé personne l'approcher. **Inexpérimentée sous une maîtrise absolue**, c'est la contradiction au cœur de ses scènes.
 - **Recrutement** :
   - *Mercenaire* : lui vendre 3 Souvenirs exploitables (des prédictions de marché), puis prouver sa valeur au J13 ;
   - *Héros* : la sauver au J21, avec l'arc du rachat d'ARCHE ;
@@ -1149,6 +1181,11 @@ Une jauge cachée propre au Pacte, **l'Ambivalence**, va de −100 (Ressentiment
     - ou renforcer la Maison au point de rendre le mariage inutile (Défense des Collines ≥ 60 avant le J16).
   - **Nouvelle Fin débloquée** : *J29, étage 8 (l'Arène des Rangs), tuée par le Champion d'Hier*.
 - **Secret lié au Registre** : le sabre *Baekho* est un **fragment de la Tour**, scellé par ses ancêtres. Il y a 400 ans, une « Tour » est déjà apparue et la lignée Baek l'a refermée. Ryeon porte sans le savoir la **technique de scellement**.
+- **Passé sombre** :
+  - sa mère **s'est pendue** dans la salle des ancêtres quand Ryeon avait 12 ans, après des années de mépris de Jin-ho, qui voulait un fils. Le ruban rouge est celui qu'elle portait ce jour-là ;
+  - son père l'a formée à l'épée **à coups de bâton**, et elle le remercie encore ;
+  - à 15 ans, lors de son premier duel officiel, elle a **tué** son adversaire, un garçon de 17 ans d'une maison rivale (d'où la cicatrice de la clavicule). On l'a félicitée, et elle a vomi toute la nuit.
+- **Statut & passé intime** : **fiancée par contrat politique** à Cheon Tae-ju. C'est une union jamais consommée : elle ne l'a vu que trois fois, et elle le hait. Élevée dans un code strict, **elle n'a aucune expérience (vierge).**
 - **Recrutement** :
   - *Héros* : défendre le domaine au J16, puis la sauver au J17 ;
   - *Tyran* : la vaincre en **duel formel** (Honneur) ; elle devient votre épée par serment martial (**Pacte d'Épée**), et la Dévotion est possible plus tard ;
@@ -1188,8 +1225,8 @@ Une jauge cachée propre au Pacte, **l'Ambivalence**, va de −100 (Ressentiment
 | **Visage** | Mâchoire **carrée** et forte, pommettes hautes, nez large et droit, **lèvres pleines** souvent serrées. Une **cicatrice** nette en diagonale sur la mâchoire gauche (un éclat, en Afghanistan). Beauté sévère qui s'illumine d'un sourire rare, très blanc |
 | **Yeux** | En amande, profonds, **noir brun** très foncé, cils épais. Regard perçant de commandante, qui évalue les menaces. Des pattes-d'oie apparaissent quand elle rit enfin |
 | **Cheveux** | Noirs et crépus (type 4C), en **tresses plaquées** (cornrows) serrées sur le dessus et le côté droit, **undercut rasé** sur le côté gauche. Tresses courtes à la nuque. En privé, elle les détache en un volume afro qui surprend tout le monde |
-| **Signes particuliers** | Cicatrice à la mâchoire · **plaques d'identification** doubles au cou : les siennes et celles de Marcus · **alliance** passée sur la chaîne des plaques · tatouage de l'insigne de son unité (un aigle) sur l'épaule droite · cicatrice chirurgicale au genou gauche |
-| **Gestuelle** | Se tient bras croisés, jambes écartées (repos militaire). Parle en regardant droit dans les yeux. Fait tourner son alliance sur la chaîne quand elle pense à Marcus. Allume un cigare uniquement les « jours où l'on a survécu » |
+| **Signes particuliers** | Cicatrice à la mâchoire · **plaques d'identification** doubles au cou : les siennes et celles de Marcus, son fiancé · **bague de fiançailles** passée sur la chaîne des plaques · tatouage de l'insigne de son unité (un aigle) sur l'épaule droite · cicatrice chirurgicale au genou gauche |
+| **Gestuelle** | Se tient bras croisés, jambes écartées (repos militaire). Parle en regardant droit dans les yeux. Fait tourner la bague de fiançailles sur la chaîne quand elle pense à Marcus. Allume un cigare uniquement les « jours où l'on a survécu » |
 | **Voix** | Alto grave, puissante, accent d'Atlanta (le Sud) qui ressort dans l'émotion. Jure en anglais. Voix de commandement qui porte sans crier |
 | **Style habituel** | Militaire en toutes circonstances : treillis multicam, veste de commandement aux manches retroussées, gilet tactique, béret noir à l'épaulette, bottes. En privé : débardeur kaki, jogging, pieds nus |
 | **Palette (DA)** | Kaki, multicam, noir, or (insignes), rouge (cigare) |
@@ -1212,7 +1249,11 @@ Une jauge cachée propre au Pacte, **l'Ambivalence**, va de −100 (Ressentiment
     - ou convaincre Simone de **désobéir**, ce qui demande une Confiance ≥ 85 ;
     - ou saboter le silo avec Maricel ou Minh-Anh, ce qui la met en danger face à ses propres hommes.
   - **Nouvelle Fin débloquée** : *J30, tuée en défendant le dernier pont pendant la Descente*.
-- **Secret lié au Registre** : son mari, le capitaine Marcus Hayes, est mort dans un accident d'entraînement à Yongsan il y a 2 ans. En réalité, il est mort pendant la **mission d'escorte de la sonde du Projet ARCHE**. Elle l'ignore. Le découvrir la fait basculer contre Haesong.
+- **Secret lié au Registre** : son fiancé, le capitaine Marcus Bell, est mort dans un accident d'entraînement à Yongsan il y a 2 ans. En réalité, il est mort pendant la **mission d'escorte de la sonde du Projet ARCHE**. Elle l'ignore. Le découvrir la fait basculer contre Haesong.
+- **Passé sombre** :
+  - en Afghanistan (2012), elle a **validé une frappe de drone** sur un « convoi ». C'était un cortège de mariage : 23 civils, dont 9 enfants. Elle garde la liste des noms pliée dans son gilet ;
+  - elle **boit en cachette** (une flasque de bourbon dans le gilet tactique) et ne dort jamais plus de 4 heures.
+- **Statut & passé intime** : **célibataire**, une fiancée en deuil. **Expérimentée** : plusieurs relations passées, puis Marcus, l'amour de sa vie. Abstinente depuis sa mort, il y a 2 ans.
 - **Recrutement** :
   - *Héros* : défendre les réfugiés du Musée de la Guerre et partager ses informations sur la Tour (des Souvenirs) ;
   - *Mercenaire* : contrat de l'Unité 0 (missions dans la Tour) ;
@@ -1274,6 +1315,11 @@ Une jauge cachée propre au Pacte, **l'Ambivalence**, va de −100 (Ressentiment
   - **Réécriture** : il faut retourner l'un des Trois Lotus (2 Souvenirs nécessaires), ou être à bord du *Dragon Pâle* le soir du J19, ou faire réussir la Guerre de l'Eau sans pertes.
   - **Nouvelle Fin débloquée** : *J28, si elle a trahi Elias, tuée par lui ; sinon, mourante d'un poison du Prophète*.
 - **Secret lié au Registre** : c'est **elle** qui a fait empoisonner lentement son père, pour prendre la tête du clan avant qu'il ne la marie de force. Le Vieux Long le sait, et il l'a pardonnée. Il lui reste une lettre à lui remettre.
+- **Passé sombre** :
+  - fille de la seconde épouse, élevée comme une **monnaie d'échange** ;
+  - à 25 ans, son père l'a promise à un parrain de Hong Kong de 63 ans. Le soir même, elle a commencé à l'empoisonner : de l'**arsenic dans son thé**, pendant 2 ans ;
+  - elle a fait **noyer** elle-même son premier lieutenant traître dans le Han, les mains liées, en le regardant. Elle sourit en le racontant.
+- **Statut & passé intime** : **célibataire**. **Expérimentée** : la séduction est son arme, et ses amants sont des outils qu'elle congédie au matin. Personne ne l'a jamais « possédée » : c'est précisément ce qu'elle désire et ce qu'elle redoute.
 - **Recrutement** :
   - *Mercenaire* : la voie royale, par des contrats successifs. Trois contrats honorés donnent une alliée ;
   - *Tyran* : la vaincre **à son propre jeu** (pari, duel, OPA sur les ponts). Elle respecte la force et devient une partenaire de pouvoir, liée par un **Pacte** qu'elle honore ;
@@ -1312,7 +1358,7 @@ Une jauge cachée propre au Pacte, **l'Ambivalence**, va de −100 (Ressentiment
 | **Visage** | Petit visage en V, grands yeux expressifs, nez fin, lèvres en cœur. Une **fossette** à droite quand elle sourit vraiment, et seulement dans ce cas. Son sourire de scène, parfait, n'en a pas |
 | **Yeux** | Grands, légèrement arrondis, paupière double. Iris **noisette clair** aux reflets verts. Maquillage de scène pailleté et rosé qui **coule** après le J1 |
 | **Cheveux** | **Bicolores** : noir sur le dessus, **rose pastel** sur la moitié inférieure (teinture d'agence). Mi-longs, jusqu'à la poitrine, coiffés en **twin-tails basses** ou détachés et légèrement ondulés. La racine noire repousse au fil des jours (une progression visuelle) |
-| **Signes particuliers** | **Pansements** colorés aux doigts (ampoules de répétitions) · piercing en étoile au lobe gauche · petite cicatrice au genou droit (une chute en concert) · numéro de stagiaire « 0417 » tatoué discrètement sur la nuque, imposé par l'agence, qu'elle déteste · porte-clés en forme de poulpe (takoyaki) accroché à son micro |
+| **Signes particuliers** | **Pansements** colorés aux doigts (ampoules de répétitions) · **bracelets serrés au poignet gauche** qui cachent la cicatrice de sa tentative de suicide et des marques d'automutilation · piercing en étoile au lobe gauche · petite cicatrice au genou droit (une chute en concert) · numéro de stagiaire « 0417 » tatoué discrètement sur la nuque, imposé par l'agence, qu'elle déteste · porte-clés en forme de poulpe (takoyaki) accroché à son micro |
 | **Gestuelle** | En public : poses d'idol, cœurs avec les doigts, sourire figé. En privé : se recroqueville en boule, tire sur ses manches, fredonne quand elle est anxieuse. Rit fort et sans retenue quand elle oublie d'être une idol, avec l'accent d'Osaka |
 | **Voix** | Soprano claire et cristalline, d'une justesse parfaite quand elle chante. Voix parlée plus grave et éraillée qu'on ne l'imagine. Dialecte du Kansai quand elle se détend |
 | **Style habituel** | Avant : des tenues de scène imposées. Après le J1 : **sweat à capuche gris oversize**, casquette, masque, short en jean, baskets, c'est son « vrai moi ». Garde une veste de scène pailletée sur le dos, par défi |
@@ -1338,6 +1384,12 @@ Une jauge cachée propre au Pacte, **l'Ambivalence**, va de −100 (Ressentiment
     - ou transformer le concert en **contre-piège** (Défense de Hongdae ≥ 50 et embuscade).
   - **Nouvelle Fin débloquée** : *J22, siège de Myeongdong, elle chante jusqu'à la mort pour couvrir l'évacuation*.
 - **Secret lié au Registre** : son chant ne fait pas que calmer. Il **réécrit brièvement les émotions** : c'est un fragment du même pouvoir que le Registre. Elle sent quand Elias régresse (rêves de « chansons qu'elle n'a jamais écrites »).
+- **Passé sombre** (la vérité brute) :
+  - stagiaire à 18 ans, sous **contrat d'esclave** : une dette de formation de 300 millions de wons, des **pesées publiques** chaque semaine, un régime à 600 calories, l'interdiction de toute relation. Boulimie cachée pendant trois ans ;
+  - à 21 ans, l'agence l'envoie « dîner » avec un **sponsor** : le PDG **Jang Woo-hyun** lui-même, dans une suite d'hôtel ;
+  - elle s'enferme dans la salle de bains et **s'ouvre le poignet gauche** pour que la nuit n'ait pas lieu. L'agence étouffe l'affaire (« surmenage ») ;
+  - depuis, des épisodes d'**automutilation** sporadiques. Ses bracelets et ses pansements cachent les cicatrices. Jang est vivant, et il veut récupérer « son investissement ».
+- **Statut & passé intime** : **célibataire** (l'agence interdisait toute relation). **Aucune expérience (vierge).** Son corps a été la propriété de l'agence : sa route parle de **se le réapproprier**, ou, dans sa version sombre, d'en changer seulement de propriétaire.
 - **Recrutement** :
   - *Héros* : la sauver au J9, puis l'aider à rompre son contrat ;
   - *Loup* : l'enlever discrètement à Mirae, dans un arc « cavale » romantique ;
@@ -1351,8 +1403,8 @@ Une jauge cachée propre au Pacte, **l'Ambivalence**, va de −100 (Ressentiment
 - **Dynamiques** :
   - **Serment** : ✓, la route de la « chanson pour une seule personne », sa libération ;
   - **Cour ouverte** : ✓, elle apprécie la « famille » et adore Maricel et Seo-Yeon. Cohésion facile ;
-  - **Dévotion** : ✗ — **verrou narratif volontaire**. Elle a été contrôlée toute sa vie : sa bonne route consiste à **reconquérir son autonomie**. L'arc *« Je choisis »* est central ;
-  - **Pacte** : il s'obtient par la *Dépossession*, en rachetant son contrat à Mirae (elle passe d'un propriétaire à un autre). Ambivalence de départ **−20**. Ses scènes de Pacte sont parmi les plus sombres du jeu, car elles rejouent son histoire de contrôle : sourire de scène, obéissance parfaite, une idol qui « performe » la soumission. Destin probable : **Couteau** (le chantage de Mirae) ou la **Rupture libératrice**, son arc *« Je choisis »*, où elle brise le Pacte et chante pour elle-même. **La Dévotion lui reste fermée** : son histoire est celle d'une reconquête de liberté. Le Masque, elle en a l'expérience (le métier d'idol), et le sien est quasi parfait.
+  - **Dévotion** : ✓, en variante sombre, la **Dévotion conditionnée**. Son obéissance d'idol se transfère sur Elias : elle devient parfaite, souriante, docile… et se perd. Elle mène à la fin sombre *La Poupée*. Sa route lumineuse reste la reconquête de son autonomie (*« Je choisis »*) ;
+  - **Pacte** : il s'obtient par la *Dépossession*, en rachetant son contrat à Mirae (elle passe d'un propriétaire à un autre). Ambivalence de départ **−20**. Ses scènes de Pacte sont parmi les plus sombres du jeu, car elles rejouent son histoire de contrôle : sourire de scène, obéissance parfaite, une idol qui « performe » la soumission. Destin probable : **Couteau** (le chantage de Mirae) ou la **Rupture libératrice**, son arc *« Je choisis »*, où elle brise le Pacte et chante pour elle-même. Si l'Ambivalence monte sans qu'Elias la libère jamais, elle glisse vers la **Dévotion conditionnée** (fin *La Poupée*). Le Masque, elle en a l'expérience (le métier d'idol), et le sien est quasi parfait.
 - **Combat** : *Diva*, en arrière.
   - *Encore !* : buff d'attaque de groupe ;
   - *Ballade* : soin sur la durée ;
@@ -1400,6 +1452,11 @@ Une jauge cachée propre au Pacte, **l'Ambivalence**, va de −100 (Ressentiment
   - **Réécriture** : il faut la convaincre d'abandonner le contrat (Confiance ≥ 60, plus *rompre un contrat* contre ses principes), ou payer davantage (racheter le contrat), ou prévenir Simone sans faire tuer Nadia (un défi diplomatique, voir les Fins liées §13.2).
   - **Nouvelle Fin débloquée** : *J30, 23h58, toit de l'étage 10 : elle tire sur Elias… ou sur celui qui la payait.* C'est l'écho de la première vie.
 - **Secret lié au Registre** : elle a **tué Elias** au J30 de la première vie, sur contrat du **Prophète des Élus**. Et elle a une sensation persistante de l'avoir **déjà vu dans sa lunette**. Après deux boucles avec une relation forte, elle se souvient de l'avoir tué, ce qui ouvre un arc de culpabilité et de rédemption majeur.
+- **Passé sombre** :
+  - née dans un quartier pauvre d'Almaty, traitée de « *koreika* » par les Kazakhs et de « Russe » par les Coréens. Un père violent, mort d'avoir trop bu ;
+  - tireuse d'élite à 19 ans, puis mercenaire en Syrie et au **Sahel**, **la même année qu'Elias, dans le camp d'en face** : ils ont pu se croiser dans une lunette ;
+  - sur contrat, elle a abattu un **enfant-soldat de 13 ans** qui portait une ceinture d'explosifs. Ce fut sa première nuit sans sommeil d'une longue série.
+- **Statut & passé intime** : **célibataire**. **Expérimentée** : des aventures froides, sans lendemain. Un seul amour, **Dmitri**, l'observateur de son binôme, mort dans ses bras à Alep. Personne depuis.
 - **Recrutement** :
   - *Loup* : la voie royale. Elle reconnaît un semblable : survivre ensemble lors d'une nuit de Marée (2 personnes contre la nuée) ;
   - *Mercenaire* : la payer plus cher que Cheonma ;
@@ -1459,6 +1516,11 @@ Une jauge cachée propre au Pacte, **l'Ambivalence**, va de −100 (Ressentiment
   - **Réécriture** : il faut **étayer les tunnels** (matériaux, 2 phases de travail, Ancrage possible), ou empêcher l'expédition du J14, ou découvrir les foreuses de Mirae.
   - **Nouvelle Fin débloquée** : *J22, siège de Myeongdong, elle retourne chercher un enfant dans le Marché en feu*.
 - **Secret lié au Registre** : les tunnels mènent à **« La Racine »**, une cavité sous Yongsan où la Tour plonge ses fondations… et où se trouve **la sonde du Projet ARCHE**. Maricel y est allée une fois et y a vu « une femme endormie dans le mur ». Ce lien avec l'Héritière n'est pas révélé au début.
+- **Passé sombre** :
+  - employée de maison à 20 ans chez un couple de Gangnam : **passeport confisqué**, salaire retenu, enfermée la nuit dans une pièce sans fenêtre (l'origine de sa claustrophobie), harcelée par le mari ;
+  - la nuit où il a forcé sa porte, elle l'a **poignardé avec des ciseaux de cuisine** et s'est enfuie par la fenêtre. Elle ignore s'il a survécu : il est vivant, devenu vassal de Cheonma, et on peut le croiser ;
+  - ensuite, la rue et le vol pour manger, jusqu'à ce que Grand-père Pigeon la recueille.
+- **Statut & passé intime** : **célibataire**. Une seule relation, avec **Jun-ho**, un Rat qui l'a **vendue** à des recruteurs l'an dernier ; elle s'en est sortie seule. Expérience limitée, et une méfiance totale envers les hommes qui « promettent ».
 - **Recrutement** :
   - *Loup / Mercenaire* : la voie naturelle. Échanges, vols en duo, paris ;
   - *Héros* : protéger les Rats et les tunnels ;
@@ -1522,6 +1584,11 @@ Une jauge cachée propre au Pacte, **l'Ambivalence**, va de −100 (Ressentiment
     - ou lui prouver que la régression a un **coût humain** (lui révéler les morts répétées d'une héroïne).
   - **Nouvelle Fin débloquée** : *J30, l'étage 10 la « recrute » comme nouvelle administratrice de la Tour*.
 - **Secret lié au Registre** : dès la boucle 2, ses capteurs détectent les **anomalies temporelles** d'Elias. Elle sait qu'il est un régresseur, et elle hésite entre l'**aider**, le **disséquer** ou **le livrer à Jang**. De plus, la Machine d'Inversion repose sur des schémas extraits… de la sonde ARCHE, c'est-à-dire de l'Héritière.
+- **Passé sombre** :
+  - enfant surdouée, harcelée à Busan comme « fille de mariage acheté » : son père a trouvé sa mère vietnamienne par une agence matrimoniale ;
+  - chez Haesong Bio (Projet ARCHE), elle a dirigé les tests d'interface neuronale sur **14 « volontaires »**, des sans-abri payés 200 000 wons. **9 sont morts ou restés à l'état végétatif.** Elle a signé les rapports ;
+  - elle s'est implanté elle-même ses ports neuronaux, sous anesthésie locale, devant un miroir.
+- **Statut & passé intime** : **célibataire**. **Aucune expérience (vierge)** : elle considère le sexe comme « un protocole inefficace jamais testé ». Sa curiosité clinique cache une peur panique d'être touchée.
 - **Recrutement** :
   - *Mercenaire* : un échange de données (des Souvenirs contre son aide technique) ;
   - *Héros* : l'arracher à Mirae et la confronter à l'éthique (une route proche de la rédemption) ;
@@ -1590,6 +1657,10 @@ Une jauge cachée propre au Pacte, **l'Ambivalence**, va de −100 (Ressentiment
     - et un Lien ≥ 60.
   - **Nouvelle Fin** : aucune. C'est la seule héroïne dont la réécriture complète **termine** le cycle.
 - **Secret lié au Registre** : **le Registre est une partie d'elle**. Elle était l'administratrice de la Tour, chargée d'en tenir les « comptes » (les Fins). La sonde ARCHE l'a réveillée, ce qui a appelé la Tour sur Séoul. Elle a choisi Elias dans la première vie parce qu'il a été le seul à la porter **sans rien lui demander**. Chaque régression **consume** une part de sa mémoire : c'est le coût secret des boucles, révélé en Acte III de la boucle 4 et plus.
+- **Passé sombre** :
+  - elle se souvient de **toutes les morts** de la première vie : 9 millions de Fins comptabilisées, une par une ;
+  - dans la Ligne Zéro, elle a laissé **Seo-Yeon** (la future Agatha) boucler **312 fois** sans intervenir, parce que la Loi de la Tour le lui interdisait. Elle porte cette culpabilité sans en connaître la source.
+- **Statut & passé intime** : aucun lien dans cette vie (**vierge**). Un seul souvenir intime, fragmentaire : **une nuit avec Elias dans la première vie**, la veille du J30, sur le toit de l'étage 9. Elle ne sait pas si c'est un souvenir ou un rêve.
 - **Recrutement** :
   - *Toutes voies* : la trouver à l'étage 1 (Souvenir n°4, dès le J5) ou la reprendre aux Élus (après le J20) ;
   - *Tyran* : il peut l'**utiliser comme arme** (ses pouvoirs alimentent un Sceau), ce qui l'efface, sans Pacte possible. Ou bien elle **choisit** de régner avec lui, ce qui donne la fin « Roi et Reine des Ruines », sombre ;
@@ -1614,7 +1685,7 @@ Une jauge cachée propre au Pacte, **l'Ambivalence**, va de −100 (Ressentiment
 
 ---
 
-## 13. Matrice de cohésion, Fins liées & Harem Absolu
+## 13. Matrice de cohésion, Fins liées, Constellations & Harem Absolu
 
 ### 13.1 Compatibilité entre héroïnes (Cour ouverte)
 **Échelle** : ++ (+15 Cohésion), + (+5), 0 (neutre), − (−10), −− (−20).
@@ -1650,21 +1721,112 @@ Ces Fins sont couplées : en réécrire une peut provoquer ou avancer l'autre.
 | **Maricel (J14) ↔ Haneul (J30)** | Sans Maricel, La Racine reste inaccessible, et la fin vraie est verrouillée pour cette boucle |
 | **Toutes ↔ Haneul** | Chaque Fin d'héroïne réécrite rend un **Fragment d'âme**, qui ralentit la perte de mémoire de Haneul |
 
-### 13.3 La Route du Harem Absolu (les 10 héroïnes)
+### 13.3 Les Constellations : toutes les combinaisons, du Solo aux 10
+**Principe** : le jeu n'impose jamais de nombre. La **Constellation** d'Elias, c'est l'ensemble des héroïnes liées à lui (Serment, Cour, Dévotion ou Pacte) et des alliées recrutées. Qu'elle soit vide, réduite à une seule héroïne ou à un trio, ou qu'elle les compte toutes, le jeu réagit de façon organique sur quatre plans : **combat, scènes, sous-routes et fins**.
+
+#### 13.3.1 Le Solo : la Voie du Seul
+- **Condition** : aucune héroïne liée (les alliées non romancées et les PNJ mercenaires peuvent remplir la grille).
+- **Passifs « Dernier Debout »** :
+  - +8 % à toutes les stats par case alliée vide ;
+  - +1 charge de Réécriture ;
+  - *Instinct du Porteur* : la première attaque mortelle de chaque combat est esquivée.
+- **Contenu propre** :
+  - des monologues du Registre (Elias parle à ses morts) ;
+  - des rencontres furtives sans lendemain ;
+  - la sous-route *Le Lecteur Seul* (Elias tente de tout porter sans personne) ;
+  - les fins *L'Ombre au Sommet* et *Le Lecteur Seul*.
+- **Solo et romance ne s'excluent pas complètement** : une héroïne peut rester « alliée sans lien », avec des scènes de tension non résolue.
+
+#### 13.3.2 Les Duos
+- **Elias + 1 héroïne** : la Synergie personnelle (§10.9), la route Serment, la fin personnelle.
+- **Héroïne + héroïne (45 paires)** : chaque paire présente dans l'escouade, avec une Affinité de paire ≥ 40, débloque une **Technique de Paire**. Les paires négatives doivent d'abord passer leur Quête de Conciliation.
+- **Exemples de Techniques de Paire** :
+| Paire | Technique | Effet |
+|---|---|---|
+| Ryeon + Nadia | **Lame et Lunette** | Nadia marque la cible, et l'*Iai* de Ryeon devient un critique garanti qui ignore la ligne avant |
+| Simone + Nadia | **Feu Croisé** | Une suppression couplée à un tir d'élite : la ligne ennemie perd son tour |
+| Hae-in + Xiaoyu | **OPA Hostile** | Vole tous les buffs ennemis et les convertit en argent et en Mana |
+| Seo-Yeon + Minh-Anh | **Sérum H-07** | Soin de groupe, purge totale et résurrection |
+| Maricel + Xiaoyu | **Contrebande** | Vole un objet par ennemi, puis le retourne en poison |
+| Minh-Anh + Haneul | **Équation du Seuil** | Révèle et annule la prochaine action du boss |
+| Simone + Ryeon | **Avant-Garde** | Rempart et contre-attaque partagés pendant 2 tours |
+| Aoi + Haneul | **Hymne du Seuil** | Arrêt du temps de zone pendant 1 tour |
+| Hae-in + Simone | **Loi Martiale** | Les ennemis humains se rendent sous 30 % de PV |
+| Seo-Yeon + Aoi | **Ballade du Triage** | Soin de zone sur la durée, et les alliés KO se relèvent à la fin du tour |
+- **Côté narratif** : chaque paire a au moins **3 scènes de Paire** (rencontre, conflit ou complicité, intimité de Paire si les deux sont liées et acceptent le partage).
+  - **15 paires de rang A** ont en plus une **sous-route** de 2 à 4 quêtes, par exemple *L'Arène des Deux Lames* (Ryeon × Nadia) ou *La Comptabilité des Morts* (Hae-in × Minh-Anh, ARCHE).
+  - **Les 30 autres paires** ont leur jeu de scènes et leur Technique.
+
+#### 13.3.3 Les Trios : Résonances et Trios Légendaires
+- **Les tags de Résonance** : chaque héroïne porte 2 tags.
+| Héroïne | Tags | | Héroïne | Tags |
+|---|---|---|---|---|
+| Seo-Yeon | Soin · Lumière | | Aoi | Chant · Lumière |
+| Hae-in | Ordre · Or | | Nadia | Ombre · Glace |
+| Ryeon | Lame · Acier | | Maricel | Ombre · Fluide |
+| Simone | Acier · Feu | | Minh-Anh | Tech · Foudre |
+| Xiaoyu | Poison · Fluide | | Haneul | Temps · Vide |
+- **Règle systémique** : un trio dont les membres partagent un tag déclenche une **Résonance d'élément** (par exemple deux tags Ombre : invisibilité partagée au premier tour). Un trio qui couvre trois familles différentes (*Corps*, *Esprit*, *Ombre*, *Destin*) déclenche une **Résonance d'équilibre** (+15 % à tout). Ainsi, **les 120 trios possibles** ont tous un effet.
+- **Les Trios Légendaires** (faits à la main : Ultime en cut-in à trois, sous-route dédiée, CG) :
+| Trio | Membres | Thème | Ultime | Sous-route |
+|---|---|---|---|---|
+| **Les Trois Lames** | Ryeon, Simone, Nadia | Les guerrières | *Triple Exécution* | Conquérir l'Arène des Rangs (étage 8) avant son ouverture |
+| **Les Reines** | Hae-in, Xiaoyu, Ryeon | Les trois héritières de Sceaux | *Décret des Sceaux* | Réunir 3 Sceaux par pacte (P −12) |
+| **Les Invisibles** | Aoi, Maricel, Nadia | Les étrangères exploitées | *Ceux qu'on ne voit pas* | Faire tomber le PDG Jang et le marché des « sponsors » de Mirae |
+| **Les Filles du Fleuve** | Xiaoyu, Maricel, Nadia | Contrebande et silence | *Courant Noir* | Prendre le contrôle du Han pendant la Guerre de l'Eau |
+| **Le Laboratoire** | Minh-Anh, Seo-Yeon, Haneul | La science contre l'éthique | *Sérum du Ciel* | Le vaccin universel tiré du sang de Seo-Yeon et des glyphes de Haneul |
+| **Les Sceptres** | Hae-in, Minh-Anh, Xiaoyu | Le capital et la technologie | *Monopole* | Un empire économique sur la Friche (favorise la voie Tyran) |
+| **Les Gardiennes du Seuil** | Haneul, Ryeon, Aoi | Clé, sceau et chant | *Scellement* | Le rituel Baek de scellement : une voie alternative vers la fin vraie |
+| **La Garde de Fer** | Simone, Ryeon, Seo-Yeon | Protéger les autres | *Bastion* | Tenir Myeongdong lors du siège du J22 sans aucune perte |
+| **Les Trois Vérités** | Seo-Yeon, Hae-in, Haneul | Contre Agatha | *Page Retournée* | Démasquer le Prophète dès la boucle 2 |
+- **Quatuors légendaires** :
+  - **Les Quatre Fins** (Aoi, Seo-Yeon, Maricel, Ryeon) : les quatre Fins les plus précoces (J9, J12, J14, J17). Sous-route *Course contre la montre*, et l'Ultime *Quatre Aubes* ;
+  - **Loin de chez soi** (Simone, Nadia, Maricel, Aoi) : le teaser des Tours des Origines (extension).
+
+#### 13.3.4 À partir de 4 : l'Aura de Constellation
+- **L'escouade de combat** reste à Elias plus 3 héroïnes actives et 2 réservistes. Les **Relais** (permuter un réserviste) déclenchent un mini-combo de paire avec la héroïne remplacée.
+- **L'Aura de Constellation**, un passif global selon le nombre d'héroïnes liées :
+| Héroïnes liées | Bonus |
+|---|---|
+| 4 | +5 % à toutes les stats de l'escouade |
+| 6 | +1 charge de Réécriture, les Relais sont gratuits |
+| 8 | Synergies −30 % de coût, Cohésion +10 au Refuge |
+| 10 | **Formation des Dix** débloquée (§13.4) |
+- **Le Poids du Destin** (contrepartie, §13.4.5) : chaque héroïne liée au-delà de la troisième ajoute **+2 de Pression** à la Tour.
+
+#### 13.3.5 Scènes modulaires (la technique qui rend tout cela possible)
+- **Les scènes de groupe sont écrites en modules** : un **noyau** (l'événement : dîner au Refuge, veillée d'armes, bain à la source chaude, Conseil de la Maison), puis des **répliques conditionnelles** selon *qui est présent* et *quelle relation lie chaque paire présente* (la matrice §13.1). N'importe quelle combinaison, de 2 à 10, produit une scène cohérente.
+- **Intimité selon la composition** :
+| Scène | Condition |
+|---|---|
+| Intimité à deux | Une héroïne liée |
+| Intimité à trois | Deux héroïnes liées, Affinité de paire ≥ 60 (Cour), ou une clause commune (Pacte) |
+| Scènes de groupe (4 et plus) | Cohésion ≥ 70 (Cour) ou une « Cour du Trône » (Tyran, au moins 3 vassales sous Pacte ou en Dévotion) |
+- **Les fins de Constellation sont assemblées dynamiquement** :
+  - un épilogue en cases webtoon, avec **une case par héroïne liée** et **une case par paire de rang A présente** ;
+  - un **CG final** dédié pour chaque Trio ou Quatuor légendaire, et un CG générique « Maison de N » pour les autres compositions.
+- **Volume de production** :
+  - 45 paires × 3 scènes, soit environ 135 scènes de Paire ;
+  - 15 sous-routes de rang A ;
+  - 11 sous-routes légendaires (9 trios et 2 quatuors) ;
+  - environ 40 scènes de groupe modulaires.
+
+### 13.4 La Route du Harem Absolu (les 10 héroïnes)
 **Oui : le Harem complet, avec les 10 héroïnes en même temps, est possible.** C'est la route la plus difficile du jeu, classée **Extrême**. Elle demande presque une maîtrise parfaite du calendrier, de la cohésion et du Registre.
 
-#### 13.3.1 Conditions de déblocage (toutes dans la même boucle)
+#### 13.4.1 Conditions de déblocage (toutes dans la même boucle)
 | # | Condition | Pourquoi c'est dur |
 |---|---|---|
-| 1 | **Les 10 héroïnes vivantes au J30** : les 10 Fins réécrites, y compris les **Fins liées** (Nadia **et** Simone au J24, Aoi **et** Minh-Anh) | Il faut des Souvenirs et des Ancrages accumulés : en pratique, à partir de la **boucle 5** |
+| 1 | **Les 10 héroïnes vivantes au J30** : les 10 Fins réécrites, y compris les **Fins liées** (Nadia **et** Simone au J24, Aoi **et** Minh-Anh) | Il faut des Souvenirs et des Ancrages accumulés : en pratique, à partir de la **boucle 6** |
 | 2 | Les 10 au stade **« Liée »** (Cour ouverte, Dévotion ou Pacte stable) | 10 quêtes personnelles à terminer en 30 jours |
 | 3 | Les **10 Quêtes de Conciliation** terminées (13.3.2) | Elles neutralisent toutes les relations négatives de la matrice |
 | 4 | **Cohésion ≥ 80** à la **Veille des Dix** (J29) | Une seule jalousie mal gérée fait chuter la jauge |
 | 5 | **Aucune héroïne « Négligée »** : au moins 1 phase de relation tous les 4 jours pour chacune | Cela représente environ 70 phases sur 120. Il faut optimiser avec les événements de groupe |
 | 6 | **Le Prophète démasqué** (§16.3) | Il sème la discorde par des lettres anonymes (événement « Les Lettres du Corbeau ») |
 | 7 | **Lien ≥ 60 avec Haneul** | Elle est la clé de voûte de la Maison : elle « voit » les liens entre les Fins de chacune |
+| 8 | **Survivre à l'Épreuve des Dix** (§13.4.5) | La Tour tente de récolter les 10 Fins pendant la même nuit |
 
-#### 13.3.2 Les 10 Quêtes de Conciliation
+#### 13.4.2 Les 10 Quêtes de Conciliation
 Une par paire négative de la matrice (§13.1) :
 | Paire | Quête | Résumé |
 |---|---|---|
@@ -1673,13 +1835,13 @@ Une par paire négative de la matrice (§13.1) :
 | Seo-Yeon × Minh-Anh (−−) | **Sérum H-07** | Synthétiser le vaccin ensemble, l'éthique de l'une avec le génie de l'autre |
 | Minh-Anh × Haneul (−−) | **Je ne suis pas un sujet** | Minh-Anh détruit elle-même ses données sur Haneul |
 | Seo-Yeon × Hae-in (−) | **La Facture** | Hae-in finance l'hôpital du camp sans contrepartie, une première |
-| Simone × Hae-in (−) | **Le Dossier Marcus** | La vérité sur la mort du mari de Simone (ARCHE) et le pardon, ou non |
+| Simone × Hae-in (−) | **Le Dossier Marcus** | La vérité sur la mort du fiancé de Simone (ARCHE) et le pardon, ou non |
 | Hae-in × Maricel (−) | **Le Coffre du B6** | Partager le bunker IFC entre la Présidente et la Reine des Rats |
 | Ryeon × Xiaoyu (−) | **La Dette des Baek** | Une vieille dette d'honneur entre la Maison Baek et Longwei, réglée en duel d'éventail contre sabre |
 | Simone × Minh-Anh (−) | **Le Silo** | Désamorcer ensemble le Protocole Cendre |
 | Aoi × Minh-Anh (−) | **L'Amplificateur** | Minh-Anh retourne son invention pour qu'Aoi chante *librement* |
 
-#### 13.3.3 Mécaniques propres au Harem Absolu
+#### 13.4.3 Mécaniques propres au Harem Absolu
 - **Le Conseil de la Maison** (tous les 5 jours, en phase Nuit) : les héroïnes exposent leurs griefs, et Elias arbitre trois décisions. Chaque choix favorise certaines héroïnes et en froisse d'autres.
 - **La hiérarchie de la Maison** : désigner une **Première** (Hae-in l'exige, Xiaoyu la conteste) ou instaurer le **Cercle**, sans hiérarchie (Maricel et Haneul le préfèrent). Le Cercle donne plus de Cohésion de base mais déclenche plus d'événements de rivalité.
 - **Les Quartiers** : il faut agrandir le Refuge pour loger les 10 héroïnes (10 chambres plus une salle commune). C'est un chantier de ressources important pendant l'Acte II.
@@ -1689,7 +1851,7 @@ Une par paire négative de la matrice (§13.1) :
   - *Lettres* : 0 phase, petit bonus, au plus 2 par jour ;
   - *Ancrage « Échos affectifs complets »* : réservé à la fin de jeu, il conserve les Affinités entre boucles.
 
-#### 13.3.4 Deux variantes (et leurs hybrides)
+#### 13.4.4 Deux variantes (et leurs hybrides)
 | Variante | Composition | Risque propre | Fin |
 |---|---|---|---|
 | **La Maison des Dix** (Lumière) | Les 10 en Cour ouverte | Les jalousies et les ultimatums | *La Maison des Dix* : la plus lumineuse du jeu |
@@ -1701,6 +1863,23 @@ Une par paire négative de la matrice (§13.1) :
 - des scènes de groupe exclusives (CG « Portrait des Dix ») ;
 - un bonus permanent de Domaine dans l'Ère des Strates (+10 % sur toutes les ressources, §15.6) ;
 - le titre **« Celui que dix destins ont choisi »**.
+
+#### 13.4.5 Règles du worldbuilding : le Poids du Destin et l'Épreuve des Dix
+La route des 10 n'est pas une simple accumulation de jauges : **la Tour elle-même s'y oppose**, ce qui la rend cohérente avec le lore.
+- **Le Poids du Destin** : pour le Système, chaque lien est un **contrat** qui attache la Fin d'une héroïne au Registre d'Elias (Loi des Contrats, §16.1).
+  - Plus Elias porte de Fins, plus le destin « pèse » : **+2 de Pression par héroïne liée au-delà de 3**, soit +14 avec 10 héroïnes.
+  - À partir de 8 liens, les **Exécuteurs du Système** apparaissent, quelle que soit la boucle : la Tour traite le Lecteur comme une anomalie.
+- **L'Épreuve des Dix** : avec 10 liens au J30, la Tour tente de **récolter les 10 Fins en même temps**.
+  - Pendant la Nuit du Déversement (§14.4), les 10 héroïnes sont menacées **simultanément**, dans 10 lieux différents, par leurs Fins « convergentes ».
+  - Le joueur doit **répartir des paires de protection**, en utilisant les Techniques de Paire et les Fins liées. Elias ne peut être qu'à un seul endroit à la fois : il choisit qui il protège en personne, et fait confiance aux autres.
+  - Chaque héroïne protégée par une **paire de rang A** ou un **Trio Légendaire** survit automatiquement. Les autres affrontent leur Fin en combat.
+- **La récompense de lore, la Constellation du Lecteur** : si les 10 survivent, les 10 Fins tissées forment une **constellation dans le Registre**. Celle-ci peut réécrire la Règle du Seuil. Cela ouvre une **seconde voie vers la fin vraie** (*La Dernière Page — Version des Dix*), et la **Formation des Dix** devient une compétence d'âme permanente.
+- **Difficulté retenue : Extrême.**
+  - **Boucle 6 ou plus** recommandée ;
+  - le Prophète démasqué ;
+  - Cohésion ≥ 80 (Lumière) ou somme des Ambitions < 150 (Ombre) ;
+  - P ≤ 45 *avant* le Poids du Destin.
+  - **Pas de limite de temps réel** : le joueur peut y consacrer autant de boucles que nécessaire.
 
 ---
 
@@ -1797,7 +1976,7 @@ Au J30, les 10 premiers étages **s'effondrent sur la ville**. Leurs Règles dev
 | **Hanoï** | Minh-Anh | La famille de sa mère, et une Tour qui calcule |
 | **Paris** | **Elias** | **Son père, Julien Moreau, est le Lecteur de la Tour de Paris.** Da-bin, la fille de Hae-in, est coincée là-bas |
 | **Lagos**, **Le Caire**, **São Paulo**, **Mumbai**, **Sydney** | — | Des Lecteurs rivaux ou alliés (Conclave, 15.5) |
-- **Carte mondiale** : débloquée avec les véhicules de Strate (l'**Arche**, vaisseau-relique de la Strate 41–50). Chaque Tour étrangère est une **zone d'expédition** avec ses propres secteurs, sur le modèle des couches 2 et 3.
+- **Carte mondiale** (**extension, hors v1.0**) : débloquée avec les véhicules de Strate (l'**Arche**, vaisseau-relique de la Strate 41–50). Chaque Tour étrangère est une **zone d'expédition** avec ses propres secteurs, sur le modèle des couches 2 et 3.
 
 ### 15.4 Les Pulsations : la boucle de 30 jours étendue
 - **Tous les 30 jours, la Tour « pulse »** : elle ouvre une nouvelle **Strate de 10 étages** et menace de la déverser sur Terre.
@@ -1809,12 +1988,14 @@ Au J30, les 10 premiers étages **s'effondrent sur la ville**. Leurs Règles dev
 | Cycle 2 | J31–J60 | **11–20** | Ère des Strates (jeu principal) |
 | Cycle 3 | J61–J90 | **21–30** | Ère des Strates |
 | Cycle 4 | J91–J120 | **31–40** | Ère des Strates |
-| Cycle 5 | J121–J150 | **41–50** | Ère des Strates, avec le **Conclave des Lecteurs** à l'étage 50 |
-| Cycles 6–10 | J151–J300 | **51–100** | Endgame, le Sommet |
+| Cycle 5 | J121–J150 | **41–50** | Ère des Strates, avec le **Conclave des Lecteurs** à l'étage 50. **Fin du périmètre v1.0** |
+| Cycles 6–10 | J151–J300 | **51–100** | **Extension** : endgame, le Sommet |
 
 - **Rythme** : après le J30, les journées « calmes » peuvent être **condensées** (le Domaine tourne en automatique) pour se concentrer sur les expéditions, les Ancres et les relations.
 
 ### 15.5 Les Strates 11 à 100
+> **v1.0** : Strates 11–50. **Extension** : Strates 51–100 et la carte mondiale.
+
 Chaque Strate est le **vestige d'un monde que la Tour a déjà « archivé »** (§16.2).
 | Étages | Strate | Univers | Règle de Strate | Gardien de Strate | Ce que sa Descente apporte au monde |
 |---|---|---|---|---|---|
@@ -1936,8 +2117,9 @@ Chaque Strate est le **vestige d'un monde que la Tour a déjà « archivé »** 
 | **Fins de voie** (×4, chacune avec des variantes selon P × IR) | *Le Refuge-Nation* (Héros) · *L'Empire des Ruines* (Tyran) · *L'Ombre au Sommet* (Loup) · *Le Roi des Contrats* (Mercenaire) |
 | **Fins d'héroïne** (×10) | Une par Serment accompli : *La Main qui ne tremble pas*, *La Présidente sans Sceau*, *Le Lotus et le Tigre*, *Désobéissance*, *Le Pari du Dragon*, *Chanson pour une seule personne*, *Deux Loups*, *Le Soleil sous la Ville*, *L'Équation*, *Le Ciel* |
 | **Fins de Dévotion / Pacte** | *Le Trône* (une héroïne en Dévotion devient Impératrice aux côtés d'Elias) · *La Laisse Brisée* (Rupture libératrice d'Aoi) · *Le Prix de la Porte* (une héroïne paie sa clause de rupture et revient libre) |
+| **Fins de Constellation** (§13.3) | *Le Lecteur Seul* (Solo) · une fin par **Trio ou Quatuor légendaire** (*Les Trois Lames*, *Les Reines*, *Les Invisibles*…) · *La Maison de N* (épilogue dynamique pour toute autre composition) · *La Poupée* (Dévotion conditionnée d'Aoi, sombre) · *La Dernière Page — Version des Dix* (Constellation du Lecteur) |
 | **Fins de Cour** | *La Maison* (Cour ouverte, Cohésion ≥ 70 et au moins 4 héroïnes) · *Le Roi et la Reine des Ruines* (Tyran avec Haneul qui choisit de régner, sombre) |
-| **Fins du Harem Absolu** (§13.3) | *La Maison des Dix* (Lumière) · *Le Trône des Dix* (Ombre) · *La Nuit des Couteaux* (échec de la variante Ombre, tragique) |
+| **Fins du Harem Absolu** (§13.4) | *La Maison des Dix* (Lumière) · *Le Trône des Dix* (Ombre) · *La Nuit des Couteaux* (échec de la variante Ombre, tragique) |
 | **Fins tragiques** | *Effacement* (P > 85) · *Couteau dans le dos* (trahison fatale) · *La Bête de la Tour* (Corruption 100) · *L'Administratrice* (Haneul corrompue) · *La Clé vendue* · *La Page Finale* (Agatha triomphe) · *La Dernière Page Blanche* (plus aucun Fragment d'âme après l'Aube) |
 | **Fin du prologue** (J30) | *Aube Nouvelle* : la Tour contenue au J30, Haneul vivante. Elle **ouvre l'Ère des Strates** |
 | **Fins de l'Ère des Strates** | *La Cité des Strates* (s'arrêter à l'étage 50 et bâtir une civilisation dans la Friche) · *Le Conclave* (unifier les 13 Lecteurs à l'étage 50) · *Le Fils de Paris* (fin personnelle Elias et Julien) |
@@ -1972,7 +2154,7 @@ Chaque Strate est le **vestige d'un monde que la Tour a déjà « archivé »** 
 
 ### 18.3 Système de voix IA
 - **Option globale `Voix : Activé / Désactivé`** dans le menu Options > Audio, activée par défaut. Désactivée, le jeu reste entièrement jouable en texte.
-- **Sous-options** : volume des voix, activation par personnage, et langue des voix (une seule langue générée au départ, voir §21).
+- **Sous-options** : volume des voix, activation par personnage, et **langue des voix : coréen ou japonais** (deux pistes générées). Les sous-titres sont en français.
 - **Déclencheurs** (quand l'option est active) :
 | Contexte | Doublage |
 |---|---|
@@ -1987,7 +2169,8 @@ Chaque Strate est le **vestige d'un monde que la Tour a déjà « archivé »** 
   3. post-traitement : normalisation à −16 LUFS, découpe des silences, export en OGG Vorbis ;
   4. import dans Godot, puis lecture par `VoiceManager` à partir du `line_id` ;
   5. **une empreinte (hash) du texte** permet de régénérer automatiquement les lignes modifiées.
-- **Volume estimé** : environ 6 000 répliques doublées (un quart du script), soit 0,6 à 1 Go en OGG.
+- **Volume estimé** : environ 6 000 répliques doublées (un quart du script) **par langue**, soit 1,2 à 2 Go en OGG pour les deux pistes.
+- **Adaptation** : le script source est en français, puis traduit en coréen et en japonais pour la génération. Les honorifiques (*-ssi*, *-nim*, *-san*, *-sama*) sont conservés, et le registre de chaque personnage est fixé dans sa fiche (Ryeon en coréen archaïque honorifique, Aoi en dialecte du Kansai en japonais, accents gardés pour Simone, Nadia et Maricel).
 
 ### 18.4 Galerie : les « Mémoires du Registre »
 - **Galerie de CG** et **relecture des scènes** (avec la voix), débloquées de façon permanente entre les boucles (MetaSave).
@@ -1995,7 +2178,25 @@ Chaque Strate est le **vestige d'un monde que la Tour a déjà « archivé »** 
 
 ### 18.5 Lecteur webtoon
 - Scènes clés en **défilement vertical** : cases, bulles, SFX dessinés, transitions par « gouttières » noires ou blanches.
-- **Sur mobile**, ces scènes passent automatiquement en orientation portrait, ce qui correspond au format natif du webtoon.
+- **Affichage paysage exclusif** (PC et mobile) : la bande webtoon défile **verticalement au centre de l'écran**. Les côtés affichent l'arrière-plan flouté de la scène et les portraits Live2D des personnages qui parlent. Le défilement se fait au glissement ou à la molette, avec une option d'avance automatique.
+
+### 18.6 Pipeline de génération visuelle par IA
+**Choix validé** : génération par IA (Midjourney et Stable Diffusion), avec des modèles **LoRA** pour la cohérence des personnages.
+
+| Étape | Outil | Détail |
+|---|---|---|
+| **1. Concepts** | Midjourney (`--cref` / `--sref` pour la cohérence) ou Stable Diffusion | Planches de recherche par personnage, à partir des fiches physiques (§10.3, §12) : visage, silhouette, tenues, palette. Une **planche de référence validée** par personnage (face, profil, 3/4, dos, en pied) |
+| **2. Style global** | Un **LoRA de style « manhwa premium »** entraîné sur la direction artistique validée | Garantit l'unité visuelle (encrage, ombrage, rendu des yeux) sur tout le jeu |
+| **3. LoRA de personnage** | Entraînement local (kohya_ss ou équivalent) sur un modèle de base SDXL orienté illustration (famille Illustrious ou Pony, par exemple) | 1 LoRA par personnage (Elias, les 10 héroïnes, les PNJ majeurs), 25 à 40 images curées par jeu de données. Un **mot-déclencheur** unique par personnage (`elias_kang`, `seoyeon_park`…). Des LoRA de **tenues** séparés (base, combat, détente, voie, Strates) |
+| **4. Génération des CG** | Stable Diffusion en local (interface ComfyUI) | **ControlNet** (OpenPose, profondeur, lineart) pour imposer les poses et la composition ; **IP-Adapter** pour renforcer la ressemblance ; **régional prompting** ou masques pour les CG **à plusieurs personnages** (duos, trios, scènes des Dix), chaque zone recevant son propre LoRA |
+| **5. Contenu 18+** | **Stable Diffusion en local uniquement** | Midjourney refuse le contenu explicite : toutes les CG intimes passent par le pipeline local |
+| **6. Retouche** | Inpainting (mains, yeux, détails anatomiques et vestimentaires), retouche manuelle | Une **checklist de cohérence** par CG : cicatrices, tatouages, couleur des yeux, mèche argentée de Hae-in, ruban rouge de Ryeon, bracelets d'Aoi… |
+| **7. Upscale** | Upscaler 4× (famille ESRGAN), puis passe de détail | Masters en 3840×2160 |
+| **8. Live2D / Spine** | Génération en **pose neutre de face**, puis **découpage en calques** (cheveux avant et arrière, yeux, bouche, bras, vêtements), assisté par des outils de séparation de calques et complété à la main | Les calques sont ensuite riggés dans Live2D Cubism ou Spine. C'est l'étape la plus manuelle du pipeline |
+| **9. Webtoon & dioramas** | Les mêmes LoRA, en cadrage de cases ; les dioramas sont générés en calques de profondeur pour la parallaxe | Variantes jour/nuit et intact/détruit par img2img contrôlé |
+
+- **La bible de prompts** (`tools/art_pipeline/prompts/`) contient, par personnage, le mot-déclencheur, les tokens physiques, les négatifs, les poids de LoRA et les seeds de référence. Elle est **versionnée** pour pouvoir reproduire chaque CG.
+- **Les états évolutifs** (cheveux de Haneul qui s'assombrissent, racine noire d'Aoi qui repousse, glyphe-sceau du Pacte) sont des **LoRA de variante** ou des tokens dédiés.
 
 ---
 
@@ -2056,6 +2257,7 @@ manhwa-rpg/
 └── tools/
     ├── data_import/           # Tableurs → JSON + validation
     ├── voice_pipeline/        # Export du script → TTS → OGG → import
+    ├── art_pipeline/          # Bible de prompts, LoRA (style, personnages, tenues), workflows ComfyUI
     └── build/                 # Export des 5 plateformes en une commande
 ```
 
@@ -2113,7 +2315,7 @@ manhwa-rpg/
 ### 19.6 Budgets de performance
 | | PC | Mobile |
 |---|---|---|
-| Résolution de référence | 1920×1080 (UI adaptative jusqu'en 4K) | 1080×2400 (portrait pour le webtoon, paysage pour la carte et le combat) |
+| Résolution de référence | 1920×1080 (UI adaptative jusqu'en 4K) | 2400×1080, **paysage exclusif** (orientation verrouillée), UI adaptée aux écrans 20:9 et aux encoches |
 | Textures de diorama | 4096 px max | 2048 px max, compression ASTC / ETC2 |
 | Mémoire cible | < 2,5 Go | < 1 Go (streaming des CG et des voix) |
 | Taille de l'installation | 6 à 8 Go (CG, voix, Live2D) | 3 à 4 Go |
@@ -2137,18 +2339,23 @@ manhwa-rpg/
 
 ## 21. Réponses validées & questions ouvertes
 
-### 21.1 Réponses validées (questions de la v0.2)
-| Question | Réponse |
-|---|---|
-| Doublage | Voix IA haute qualité, avec une option globale **On/Off**. Déclenchées sur les apparitions des personnages principaux, les scènes clés et les scènes intimes (§18.3) |
-| Format | **Jeu complet d'un seul bloc**, sans découpage par Actes |
-| Visuels | **Live2D / Spine** avec expressions dynamiques + **CG HD fixes** pour les scènes clés et intimes (§18) |
-| Le Prophète | Un personnage déjà connu, avec un twist lourd : **Mère Agatha**, qui est Seo-Yeon venue d'une ligne effondrée (§16.3) |
-| Distribution | Projet personnel, sans contrainte. Une seule version avec tout le contenu intégré (§19.2) |
+### 21.1 Réponses validées
+| Question | Réponse | Section |
+|---|---|---|
+| Doublage | Voix IA haute qualité, avec une option globale **On/Off**. Déclenchées sur les apparitions, les scènes clés et les scènes intimes | §18.3 |
+| Langue des voix | **Coréen et japonais** (deux pistes au choix), sous-titres en français | §18.3 |
+| Format | **Jeu complet d'un seul bloc** | §0 |
+| Visuels | **Live2D / Spine** + **CG HD fixes** | §18.1–18.2 |
+| Production visuelle | **Génération IA** : Midjourney (concepts) et Stable Diffusion en local avec des **LoRA** de style, de personnage et de tenue | §18.6 |
+| Le Prophète | **Mère Agatha**, qui est Seo-Yeon venue d'une ligne effondrée | §16.3 |
+| Distribution | Projet personnel. Une seule version avec tout le contenu, sans autocensure | §0, §19.2 |
+| Périmètre v1.0 | **Séoul + étages 1 à 50**. Carte mondiale et étages 51 à 100 en extension | §15 |
+| Mobile | **Paysage exclusif** | §18.5, §19.6 |
+| Combinaisons | Toutes les compositions, du Solo aux 10, avec synergies, scènes et sous-routes | §13.3 |
+| Fin des 10 | Difficulté **Extrême**, règles du **Poids du Destin** et de l'**Épreuve des Dix** | §13.4.5 |
 
 ### 21.2 Nouvelles questions
-1. **Langue des voix IA** : français, coréen (authenticité manhwa) ou japonais ? Générer une seule langue au départ réduit fortement le volume.
-2. **Production des visuels** : illustration à la main, commandes à des artistes, ou génération d'images par IA avec retouche ? Ce choix structure tout le pipeline des 200 CG et des modèles Live2D.
-3. **Périmètre de l'Ère des Strates pour la « version 1.0 »** : jusqu'à l'étage 50 (Cycles 2 à 5) d'abord, avec les étages 51 à 100 plus tard ? Ou tout d'un coup ?
-4. **Carte mondiale et Tours des Origines** : à intégrer dès la 1.0, ou en extension après le jeu principal ?
-5. **Mobile** : bascule automatique entre portrait (webtoon, dialogues) et paysage (carte, combat), ou tout en paysage ?
+1. **Modèle de base pour les LoRA** : préfères-tu un rendu manhwa « semi-réaliste » (proche de *Solo Leveling* ou *Omniscient Reader*) ou plus « anime » (proche de *Raising the Princess*) ? Ce choix détermine le modèle de base et le LoRA de style.
+2. **Ordre de production** : faut-il commencer par la démo Acte I (§20) avec les 4 héroïnes de Yeouido et Yongsan, ou d'abord par les planches de référence des 11 personnages pour verrouiller le charadesign ?
+3. **Écriture du script** : le jeu représente environ 25 000 répliques, avec des scènes modulaires. Écris-tu tout toi-même, ou veux-tu un pipeline d'écriture assisté (brouillons générés à partir des fiches, puis réécriture) ?
+4. **Musique** : OST originale (générée par IA ou composée), ou musique libre de droits ?
