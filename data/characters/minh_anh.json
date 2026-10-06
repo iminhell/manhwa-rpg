@@ -1,0 +1,21 @@
+{
+  "id": "minh_anh",
+  "name": "Dr. Tran Minh-Anh",
+  "age": 36,
+  "height_cm": 166,
+  "weight_kg": 53,
+  "origin": "VN/KR",
+  "role": "Directrice scientifique de Mirae",
+  "palette": [
+    "#f5f7fa",
+    "#111111",
+    "#2ec5ff",
+    "#c0c6cc"
+  ],
+  "voice": {
+    "ko": "tts_minh_anh_ko",
+    "ja": "tts_minh_anh_ja",
+    "timbre": "mezzo neutre, précise"
+  },
+  "art_token": "minhanh_tran"
+}

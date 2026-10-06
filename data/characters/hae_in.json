@@ -1,0 +1,41 @@
+{
+  "id": "hae_in",
+  "name": "Yoon Hae-in",
+  "age": 41,
+  "height_cm": 172,
+  "weight_kg": 58,
+  "origin": "KR",
+  "role": "Présidente de Haesong Holdings",
+  "palette": [
+    "#f4f1ea",
+    "#c19a6b",
+    "#6d1a2a",
+    "#3f8f6b"
+  ],
+  "voice": {
+    "ko": "tts_hae_in_ko",
+    "ja": "tts_hae_in_ja",
+    "timbre": "alto profond, velouté"
+  },
+  "art_token": "haein_yoon",
+  "combat": {
+    "stats": {
+      "hp": 85,
+      "atk": 11,
+      "def": 5,
+      "spd": 12,
+      "mana": 70
+    },
+    "position": [
+      2,
+      2
+    ],
+    "skills": [
+      "clause",
+      "liquidation",
+      "ordre_conseil",
+      "garde",
+      "faillite"
+    ]
+  }
+}

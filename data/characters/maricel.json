@@ -1,0 +1,21 @@
+{
+  "id": "maricel",
+  "name": "Maricel Dizon",
+  "age": 26,
+  "height_cm": 157,
+  "weight_kg": 50,
+  "origin": "PH",
+  "role": "Reine des Rats du Han",
+  "palette": [
+    "#d4a017",
+    "#556b2f",
+    "#e3b778",
+    "#c9a227"
+  ],
+  "voice": {
+    "ko": "tts_maricel_ko",
+    "ja": "tts_maricel_ja",
+    "timbre": "mezzo chaude, pétillante"
+  },
+  "art_token": "maricel_dizon"
+}

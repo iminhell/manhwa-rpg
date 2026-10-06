@@ -1,0 +1,21 @@
+{
+  "id": "xiaoyu",
+  "name": "Long Xiaoyu",
+  "age": 31,
+  "height_cm": 170,
+  "weight_kg": 54,
+  "origin": "CN",
+  "role": "Dirigeante du Consortium Longwei",
+  "palette": [
+    "#0b0b0b",
+    "#c9a227",
+    "#a3122a",
+    "#3f8f6b"
+  ],
+  "voice": {
+    "ko": "tts_xiaoyu_ko",
+    "ja": "tts_xiaoyu_ja",
+    "timbre": "mezzo suave, langoureuse"
+  },
+  "art_token": "xiaoyu_long"
+}

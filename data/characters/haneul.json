@@ -1,0 +1,41 @@
+{
+  "id": "haneul",
+  "name": "Haneul (l'Héritière)",
+  "age": 25,
+  "height_cm": 169,
+  "weight_kg": 54,
+  "origin": "La Tour",
+  "role": "L'Héritière",
+  "palette": [
+    "#f7f5f0",
+    "#c0c6cc",
+    "#e8b23a",
+    "#1a1a1a"
+  ],
+  "voice": {
+    "ko": "tts_haneul_ko",
+    "ja": "tts_haneul_ja",
+    "timbre": "soprano douce à deux voix"
+  },
+  "art_token": "haneul_heiress",
+  "combat": {
+    "stats": {
+      "hp": 90,
+      "atk": 12,
+      "def": 5,
+      "spd": 13,
+      "mana": 90
+    },
+    "position": [
+      1,
+      0
+    ],
+    "skills": [
+      "eclat_glyphe",
+      "repli_spatial",
+      "arret_temps",
+      "garde",
+      "page_blanche"
+    ]
+  }
+}

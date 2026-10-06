@@ -1,0 +1,12 @@
+# Godot
+.godot/
+*.translation
+/build/
+
+# Pipeline d'images (candidats, jeux de données, LoRA)
+art_work/
+
+# Python
+__pycache__/
+*.pyc
+.env

@@ -1,0 +1,44 @@
+{
+  "id": "elias",
+  "name": "Elias Kang",
+  "age": 29,
+  "height_cm": 184,
+  "weight_kg": 86,
+  "origin": "KR/FR (Martinique)",
+  "role": "Protagoniste — Lecteur des Fins",
+  "palette": [
+    "#111111",
+    "#3a3a3a",
+    "#d4651e",
+    "#e8b23a"
+  ],
+  "voice": {
+    "ko": "tts_elias_ko",
+    "ja": "tts_elias_ja",
+    "timbre": "baryton grave, posé, rauque"
+  },
+  "art_token": "elias_kang",
+  "combat": {
+    "stats": {
+      "hp": 120,
+      "atk": 15,
+      "def": 6,
+      "spd": 12,
+      "mana": 60
+    },
+    "position": [
+      0,
+      1
+    ],
+    "skills": [
+      "frappe_recouvreur",
+      "cle_de_bras",
+      "lancer_lame",
+      "porter",
+      "charge_porteur",
+      "sang_froid",
+      "garde",
+      "dernier_recouvrement"
+    ]
+  }
+}

@@ -1,0 +1,748 @@
+{
+ "id": "prologue_j1",
+ "title": "Prologue — Le Dernier Jour, encore",
+ "start": "start",
+ "speakers": {
+  "choi": "Mme Choi"
+ },
+ "blocks": {
+  "start": [
+   {
+    "if": "loop() > 1",
+    "then": "regress_open"
+   },
+   {
+    "goto": "first_life"
+   }
+  ],
+  "first_life": [
+   {
+    "bg": "black"
+   },
+   {
+    "cg": "cg_prologue_death"
+   },
+   {
+    "s": "narrator",
+    "t": "Étage 10. Le Seuil. 23h58."
+   },
+   {
+    "s": "narrator",
+    "t": "La pluie tombe vers le haut. Les pages dorées tourbillonnent comme des cendres."
+   },
+   {
+    "s": "elias",
+    "t": "…Elle est encore là.",
+    "e": "exhausted"
+   },
+   {
+    "s": "haneul",
+    "t": "Tu m'as portée jusqu'ici. Sans rien me demander.",
+    "e": "sad"
+   },
+   {
+    "s": "haneul",
+    "t": "Personne ne fait ça.",
+    "e": "tears"
+   },
+   {
+    "s": "narrator",
+    "t": "Un reflet blanc, sur un toit lointain. Puis le bruit, après la douleur."
+   },
+   {
+    "s": "elias",
+    "t": "Ah. Merde.",
+    "e": "exhausted"
+   },
+   {
+    "s": "haneul",
+    "t": "Ferme les yeux, Elias. Je vais te prêter mes comptes.",
+    "e": "sad"
+   },
+   {
+    "s": "haneul",
+    "t": "Lis-les mieux que moi.",
+    "e": "sad"
+   },
+   {
+    "cg": ""
+   },
+   {
+    "goto": "wake"
+   }
+  ],
+  "regress_open": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "registre",
+    "t": "— ÉCHO DE MORT —"
+   },
+   {
+    "s": "registre",
+    "t": "Une page s'ajoute au Registre."
+   },
+   {
+    "fx": [
+     "souvenir mort_j1"
+    ]
+   },
+   {
+    "s": "elias",
+    "t": "…Encore.",
+    "e": "anger"
+   },
+   {
+    "s": "elias",
+    "t": "Le goût du sang est toujours là. Mais la douleur, elle, est restée de l'autre côté.",
+    "e": "neutral"
+   },
+   {
+    "s": "registre",
+    "t": "Compétence d'âme débloquée : RÉÉCRITURE. Une fois par combat, replie le temps d'une action."
+   },
+   {
+    "s": "elias",
+    "t": "Une seconde chance par combat. C'est plus que ce que la vie m'a jamais donné.",
+    "e": "smirk"
+   },
+   {
+    "goto": "wake"
+   }
+  ],
+  "wake": [
+   {
+    "bg": "itaewon_apartment"
+   },
+   {
+    "s": "narrator",
+    "t": "JOUR 1 — AUBE. Itaewon, Yongsan."
+   },
+   {
+    "s": "narrator",
+    "t": "Les vitres ont explosé vers l'intérieur. Le studio sent la poussière de verre et le béton chaud."
+   },
+   {
+    "cg": "cg_registre_awakening"
+   },
+   {
+    "s": "elias",
+    "t": "Mon appart. Ma montre…",
+    "e": "surprise"
+   },
+   {
+    "s": "narrator",
+    "t": "La montre militaire est arrêtée sur 23h58. Elle ne repartira plus."
+   },
+   {
+    "cg": ""
+   },
+   {
+    "s": "narrator",
+    "t": "Par la fenêtre, la Tour. Noire. Trois kilomètres de nuit plantés dans le ciel de Séoul."
+   },
+   {
+    "s": "system",
+    "t": "Bienvenue, Candidats. L'Ascension commence."
+   },
+   {
+    "s": "system",
+    "t": "Dans 30 jours, la Tour descendra vers vous. Montez — ou soyez recouverts."
+   },
+   {
+    "s": "system",
+    "t": "Classe attribuée : PORTEUR. Rang : F."
+   },
+   {
+    "s": "elias",
+    "t": "Rang F. Évidemment. Même l'apocalypse me met au fond de la classe.",
+    "e": "smirk"
+   },
+   {
+    "s": "system",
+    "t": "QUÊTE OBLIGATOIRE — Tuer un monstre avant minuit le Jour 2. Échec : mort."
+   },
+   {
+    "if": "loop() > 1",
+    "then": "wake_loop",
+    "else": "wake_first"
+   }
+  ],
+  "wake_first": [
+   {
+    "s": "narrator",
+    "t": "Puis autre chose. Une fenêtre que le Système ne lui a pas envoyée."
+   },
+   {
+    "s": "registre",
+    "t": "REGISTRE DES FINS — Lecteur reconnu."
+   },
+   {
+    "s": "registre",
+    "t": "Archives : 5 pages récupérées."
+   },
+   {
+    "fx": [
+     "souvenir s1_bunker_b6",
+     "souvenir s2_medecin_j12",
+     "souvenir s3_portier",
+     "souvenir s4_porte_sans_serrure",
+     "souvenir s5_reflet_blanc"
+    ]
+   },
+   {
+    "s": "elias",
+    "t": "« Il y a un bunker sous le parking B6 de la tour IFC. »",
+    "e": "neutral"
+   },
+   {
+    "s": "elias",
+    "t": "« La médecin du camp de Yeouido… je l'ai vue se transformer. J12, au crépuscule. »",
+    "e": "sad"
+   },
+   {
+    "s": "elias",
+    "t": "Ce ne sont pas des rêves. Je m'en souviens comme on se souvient d'une cicatrice.",
+    "e": "neutral"
+   },
+   {
+    "s": "elias",
+    "t": "J'ai vécu ces trente jours. Et je suis mort au bout.",
+    "e": "anger"
+   },
+   {
+    "goto": "neighbor"
+   }
+  ],
+  "wake_loop": [
+   {
+    "s": "registre",
+    "t": "REGISTRE DES FINS — Lecteur reconnu. Boucle en cours."
+   },
+   {
+    "s": "elias",
+    "t": "Je connais la suite. Le Rôdeur dans la rue. Puis la première Marée.",
+    "e": "neutral"
+   },
+   {
+    "s": "elias",
+    "t": "Cette fois, je ne me laisserai pas surprendre.",
+    "e": "anger"
+   },
+   {
+    "fx": [
+     "add align.chaos -2"
+    ]
+   },
+   {
+    "goto": "neighbor"
+   }
+  ],
+  "neighbor": [
+   {
+    "s": "narrator",
+    "t": "Dans le couloir, une voix. Mme Choi, la voisine du 3B. Soixante-dix ans, une jambe sous une poutre."
+   },
+   {
+    "s": "choi",
+    "t": "Elias-ssi… C'est toi ? Aide-moi, je t'en prie…"
+   },
+   {
+    "s": "narrator",
+    "t": "Dehors, quelque chose racle le bitume. Ça approche."
+   },
+   {
+    "choice": [
+     {
+      "t": "Soulever la poutre et la porter jusqu'à l'église d'Itaewon.",
+      "goto": "neighbor_help",
+      "fx": [
+       "add align.protect 2",
+       "add align.bond 2",
+       "flag aide_choi"
+      ]
+     },
+     {
+      "t": "« Désolé, madame Choi. » Partir.",
+      "goto": "neighbor_leave",
+      "fx": [
+       "add align.bond -2"
+      ]
+     },
+     {
+      "t": "Prendre ses provisions et ses clés. Elle n'en aura plus besoin.",
+      "goto": "neighbor_rob",
+      "fx": [
+       "add align.protect -2",
+       "add align.bond -1",
+       "flag vole_choi",
+       "add argent 30"
+      ]
+     }
+    ]
+   }
+  ],
+  "neighbor_help": [
+   {
+    "s": "elias",
+    "t": "Accrochez-vous à mon cou. Et ne regardez pas dehors.",
+    "e": "neutral"
+   },
+   {
+    "s": "choi",
+    "t": "Ta mère serait fière de toi. Elle disait toujours que tu avais un cœur…"
+   },
+   {
+    "s": "elias",
+    "t": "Ma mère disait beaucoup de choses.",
+    "e": "sad"
+   },
+   {
+    "s": "narrator",
+    "t": "Le Porteur porte. C'est tout ce que le Système lui a donné, et ce matin-là, c'est assez."
+   },
+   {
+    "phase": 1
+   },
+   {
+    "goto": "street"
+   }
+  ],
+  "neighbor_leave": [
+   {
+    "s": "narrator",
+    "t": "Il descend l'escalier sans se retourner. Les appels deviennent des pleurs, puis plus rien."
+   },
+   {
+    "s": "elias",
+    "t": "On meurt toujours seul. Autant ne pas mourir pour quelqu'un d'autre.",
+    "e": "neutral"
+   },
+   {
+    "goto": "street"
+   }
+  ],
+  "neighbor_rob": [
+   {
+    "s": "narrator",
+    "t": "Une boîte de conserve, deux bouteilles d'eau, une enveloppe de billets cachée dans le riz."
+   },
+   {
+    "s": "choi",
+    "t": "Elias… Qu'est-ce que tu fais ?"
+   },
+   {
+    "s": "elias",
+    "t": "Je recouvre. C'est mon métier.",
+    "e": "smirk"
+   },
+   {
+    "s": "narrator",
+    "t": "Il y avait un témoin : personne. Le Registre, lui, compte tout."
+   },
+   {
+    "goto": "street"
+   }
+  ],
+  "street": [
+   {
+    "bg": "itaewon_street"
+   },
+   {
+    "s": "narrator",
+    "t": "La rue principale d'Itaewon. Des voitures retournées, des néons morts, du sang sur une vitrine de kebab."
+   },
+   {
+    "s": "narrator",
+    "t": "Accroupi sur un corps, un Rôdeur. Une mâchoire fendue à la verticale, des fissures cyan sous une peau grise."
+   },
+   {
+    "s": "elias",
+    "t": "Celui-là, je l'ai déjà tué. Dans une autre vie, avec un pied de table.",
+    "e": "smirk"
+   },
+   {
+    "s": "registre",
+    "t": "PRESSENTIMENT — Les intentions des ennemis les plus proches sont visibles."
+   },
+   {
+    "s": "elias",
+    "t": "Approche, chéri. J'ai une dette à recouvrer.",
+    "e": "anger"
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "tuto_rodeur"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "s": "system",
+    "t": "QUÊTE OBLIGATOIRE accomplie. Récompense : Niveau 2."
+   },
+   {
+    "s": "elias",
+    "t": "Un monstre de moins. Il en reste environ neuf millions de fois plus.",
+    "e": "neutral"
+   },
+   {
+    "phase": 2
+   },
+   {
+    "goto": "night"
+   }
+  ],
+  "night": [
+   {
+    "s": "narrator",
+    "t": "JOUR 1 — NUIT. La première Marée."
+   },
+   {
+    "s": "narrator",
+    "t": "La Tour gronde. Des silhouettes tombent de ses flancs comme des gouttes de goudron."
+   },
+   {
+    "if": "flag('aide_choi')",
+    "then": "night_choi"
+   },
+   {
+    "goto": "night_fight"
+   }
+  ],
+  "night_choi": [
+   {
+    "s": "narrator",
+    "t": "Depuis le clocher de l'église, Mme Choi agite une lampe. Les survivants d'Itaewon ont barricadé les portes."
+   },
+   {
+    "s": "choi",
+    "t": "Elias-ssi ! Ils sont deux, par la rue du marché !"
+   },
+   {
+    "s": "elias",
+    "t": "Merci, madame Choi. Fermez la porte derrière moi.",
+    "e": "neutral"
+   },
+   {
+    "goto": "night_fight"
+   }
+  ],
+  "night_fight": [
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "j1_maree"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "s": "narrator",
+    "t": "À l'aube, la rue est silencieuse. Elias s'assoit sur le capot d'un taxi éventré."
+   },
+   {
+    "s": "elias",
+    "t": "Premier jour. Toujours vivant. C'est déjà mieux que la plupart.",
+    "e": "exhausted"
+   },
+   {
+    "phase": 1
+   },
+   {
+    "goto": "j2"
+   }
+  ],
+  "j2": [
+   {
+    "bg": "yeouido_camp"
+   },
+   {
+    "s": "narrator",
+    "t": "JOUR 2 — JOUR. Parc de Yeouido."
+   },
+   {
+    "s": "narrator",
+    "t": "Quarante survivants, des tentes de fortune, des cerisiers dont les racines ont commencé à manger les bancs."
+   },
+   {
+    "s": "registre",
+    "t": "LECTURE DES FINS — Cible : femme en blouse bleue."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Vous, là ! Vous saignez. Asseyez-vous avant de tomber.",
+    "e": "anger"
+   },
+   {
+    "s": "registre",
+    "t": "PARK SEO-YEON — Fin : Jour 12, Crépuscule. Hôpital Sainte-Marie."
+   },
+   {
+    "s": "narrator",
+    "t": "Des cheveux auburn délavés, un chignon tenu par un crayon, des lunettes rafistolées au scotch. Exactement comme dans le souvenir."
+   },
+   {
+    "s": "elias",
+    "t": "…C'est vous.",
+    "e": "surprise"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "On se connaît ?",
+    "e": "surprise"
+   },
+   {
+    "s": "elias",
+    "t": "Pas encore.",
+    "e": "neutral"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Génial. Un blessé avec des répliques de film. Montrez-moi ce bras.",
+    "e": "neutral"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle recoud sans anesthésie, d'une main qui ne tremble pas. Elle, elle a l'air de vouloir pleurer à chaque point."
+   },
+   {
+    "choice": [
+     {
+      "t": "« Vous devriez dormir. Vous allez craquer avant les autres. »",
+      "goto": "j2_kind",
+      "fx": [
+       "add aff.seo_yeon 5",
+       "add trust.seo_yeon 3"
+      ]
+     },
+     {
+      "t": "« Ce camp ne tiendra pas une semaine. Il faut un chef. »",
+      "goto": "j2_cold",
+      "fx": [
+       "add aff.seo_yeon -2",
+       "add align.protect -1",
+       "add align.bond 2"
+      ]
+     },
+     {
+      "t": "Lui tendre une bouteille d'eau sans un mot.",
+      "goto": "j2_silent",
+      "fx": [
+       "add aff.seo_yeon 3"
+      ]
+     }
+    ]
+   }
+  ],
+  "j2_kind": [
+   {
+    "s": "seo_yeon",
+    "t": "Dormir. Oui. Juste après avoir trié qui mérite les antibiotiques.",
+    "e": "sad"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "…Pardon. Ce n'était pas pour vous.",
+    "e": "embarrassed"
+   },
+   {
+    "goto": "j2_raid"
+   }
+  ],
+  "j2_cold": [
+   {
+    "s": "seo_yeon",
+    "t": "Un chef. Comme ceux de Gangnam qui font payer l'eau ?",
+    "e": "contempt"
+   },
+   {
+    "s": "elias",
+    "t": "Un chef qui empêche les gens de mourir. Le prix vient après.",
+    "e": "neutral"
+   },
+   {
+    "goto": "j2_raid"
+   }
+  ],
+  "j2_silent": [
+   {
+    "s": "narrator",
+    "t": "Elle boit d'une traite. Elle n'avait rien bu depuis la veille."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Merci. Vraiment.",
+    "e": "joy"
+   },
+   {
+    "goto": "j2_raid"
+   }
+  ],
+  "j2_raid": [
+   {
+    "s": "narrator",
+    "t": "Un cri à l'entrée du camp. Deux Rôdeurs, et derrière eux, une chose gonflée qui crache de l'acide."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Les enfants sont près de l'entrée !",
+    "e": "fear"
+   },
+   {
+    "choice": [
+     {
+      "t": "« Restez derrière moi et soignez-moi quand je tombe. »",
+      "goto": "j2_fight",
+      "fx": [
+       "flag party.seo_yeon",
+       "add trust.seo_yeon 3"
+      ]
+     },
+     {
+      "t": "« Emmenez les enfants. Je m'en occupe seul. »",
+      "goto": "j2_fight_solo",
+      "fx": [
+       "add align.protect 2",
+       "add aff.seo_yeon 4"
+      ]
+     }
+    ]
+   }
+  ],
+  "j2_fight": [
+   {
+    "s": "seo_yeon",
+    "t": "Je n'ai jamais… D'accord. D'accord. Je suis derrière vous.",
+    "e": "fear"
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "j2_camp"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "goto": "j2_after"
+   }
+  ],
+  "j2_fight_solo": [
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "j2_camp"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "fx": [
+     "flag party.seo_yeon"
+    ]
+   },
+   {
+    "goto": "j2_after"
+   }
+  ],
+  "j2_after": [
+   {
+    "s": "seo_yeon",
+    "t": "Vous… Qui êtes-vous, exactement ?",
+    "e": "surprise"
+   },
+   {
+    "s": "elias",
+    "t": "Un Porteur. Rang F.",
+    "e": "smirk"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Menteur.",
+    "e": "joy"
+   },
+   {
+    "s": "registre",
+    "t": "Seo-Yeon a rejoint le groupe."
+   },
+   {
+    "s": "narrator",
+    "t": "Dix jours. Il lui reste dix jours avant l'hôpital Sainte-Marie."
+   },
+   {
+    "s": "elias",
+    "t": "(Cette fois, je ne te regarderai pas te transformer.)",
+    "e": "anger"
+   },
+   {
+    "goto": "teaser"
+   }
+  ],
+  "teaser": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Cette nuit-là, Elias rêve d'une porte sans serrure."
+   },
+   {
+    "s": "haneul",
+    "t": "Tu es revenu plus tôt que prévu.",
+    "e": "tilt"
+   },
+   {
+    "s": "haneul",
+    "t": "Viens me chercher, Lecteur. Avant qu'ils ne me trouvent.",
+    "e": "neutral"
+   },
+   {
+    "s": "narrator",
+    "t": "— FIN DU PROTOTYPE (Acte I, Jours 1 et 2) —"
+   },
+   {
+    "end": true
+   }
+  ],
+  "defeat": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Le monde se renverse. Le bitume. Le ciel noir. La Tour qui regarde."
+   },
+   {
+    "s": "elias",
+    "t": "Pas… encore…",
+    "e": "exhausted"
+   },
+   {
+    "s": "registre",
+    "t": "ÉCHEC — Le Lecteur est mort."
+   },
+   {
+    "s": "registre",
+    "t": "Régression."
+   },
+   {
+    "event": "regress",
+    "args": {}
+   },
+   {
+    "end": true
+   }
+  ]
+ }
+}

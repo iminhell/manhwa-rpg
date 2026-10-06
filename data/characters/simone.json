@@ -1,0 +1,21 @@
+{
+  "id": "simone",
+  "name": "Simone Hayes",
+  "age": 38,
+  "height_cm": 178,
+  "weight_kg": 72,
+  "origin": "US",
+  "role": "Commandante de l'Unité 0",
+  "palette": [
+    "#5b5f3a",
+    "#2b2b2b",
+    "#c9a227",
+    "#b03a2e"
+  ],
+  "voice": {
+    "ko": "tts_simone_ko",
+    "ja": "tts_simone_ja",
+    "timbre": "alto grave, puissante"
+  },
+  "art_token": "simone_hayes"
+}

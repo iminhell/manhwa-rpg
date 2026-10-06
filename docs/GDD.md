@@ -1,4 +1,4 @@
-# LA TOUR DU DERNIER JOUR — Game Design Document v0.4
+# LA TOUR DU DERNIER JOUR — Game Design Document v0.5
 
 > RPG narratif et tactique inspiré des manhwas/webtoons, à haute liberté de choix.
 > **Statut** : pré-production. Le document de conception fait foi avant toute phase de code.
@@ -52,7 +52,11 @@
 | Périmètre v1.0 | **Séoul + les 50 premiers étages**. Carte mondiale et étages 51 à 100 en **extension** (§15) |
 | Mobile | **Paysage exclusif** (§18.5, §19.6) |
 | Antagoniste | Le **Prophète des Élus** est un personnage déjà connu, avec un twist révélé au fil des boucles (§16.3) |
-| Moteur | **Godot 4.x** (GDScript), §19 |
+| Moteur | **Godot 4.5** (GDScript), avec un **moteur de dialogue JSON maison** (Dialogic abandonné : un format JSON compact est plus simple à écrire en masse et à tester), §19 |
+| Style visuel | **Manhwa semi-réaliste mature** (type *Solo Leveling* / *Omniscient Reader*), ombrages marqués, néons SF / dark fantasy. Cheveux ajustés : Seo-Yeon auburn, Xiaoyu rouge carmin, Maricel blond miel (`docs/CHARADESIGN_PROMPTS.md`) |
+| Production visuelle | **Pipeline cloud automatisé** (fal.ai : Flux, LoRA par personnage), sans GPU local ni ComfyUI. Le joueur choisit une planche par personnage, le reste est scripté (§18.6) |
+| Musique | OST **hybride** : thèmes générés par IA et bibliothèques synthwave / dark ambient libres de droits (§18.7) |
+| Écriture | Dialogues, quêtes et scripts rédigés par Claude en JSON à partir des fiches, puis relus par l'auteur |
 
 **Règles de design de l'univers :**
 1. **Tous les personnages romançables sont des adultes.** Leur âge est inscrit dans les données, et leur charadesign a des proportions adultes.
@@ -1001,14 +1005,14 @@ Une jauge cachée propre au Pacte, **l'Ambivalence**, va de −100 (Ressentiment
 | Personnage | Taille / poids & silhouette | Style, visage & cheveux | Personnalité & trait marquant | Statut & passé intime |
 |---|---|---|---|---|
 | **Elias Kang** (29) | 1m84 / 86 kg. Grand, épaules larges, musculature sèche de combattant | Peau caramel, mâchoire carrée, barbe de trois jours, yeux noisette ambré (or avec le Registre), boucles noires courtes. Bomber noir, cargo, montre cassée à 23h58, cicatrice au sourcil, tatouage 살아남아 | Laconique, humour noir, protecteur enfoui. *Fait tourner sa montre quand il réfléchit* | Célibataire, expérimenté (liaisons brèves, nuits payées). Massacre au Sahel ; sa mère se prostituait pour les dettes du père |
-| **Seo-Yeon** (27) | 1m63 / 52 kg. Menue, taille fine | Chignon châtain tenu par un crayon, yeux bruns, lunettes rondes scotchées, blouse tachée et cardigan trop grand | Douce et d'acier, rongée par la culpabilité. *Remonte ses lunettes quand elle ment* | Célibataire, vierge. A falsifié un triage, un homme en est mort |
+| **Seo-Yeon** (27) | 1m63 / 52 kg. Menue, taille fine | Chignon auburn cuivré tenu par un crayon, yeux bruns, lunettes rondes scotchées, blouse tachée et cardigan trop grand | Douce et d'acier, rongée par la culpabilité. *Remonte ses lunettes quand elle ment* | Célibataire, vierge. A falsifié un triage, un homme en est mort |
 | **Hae-in** (41) | 1m72 / 58 kg. Grande, sablier mûr | Chignon noir strict, mèche argentée, lèvres bordeaux, jade, tailleur blanc, manteau camel sur les épaules | Calculatrice, ironique, glaciale. *Baisse la voix pour menacer* | Veuve d'un mariage blanc jamais consommé, inexpérimentée. Brûlée par son mari, elle l'a regardé mourir |
 | **Ryeon** (23) | 1m68 / 55 kg. Athlétique, élancée, jambes d'escrimeuse | Queue de cheval jusqu'aux genoux, ruban rouge, yeux gris acier, hanbok de combat noir et blanc, sabre | Fière, tsundere, honneur absolu. *Mange des sucreries en cachette* | Fiancée par contrat à Tae-ju (non consommé), vierge. Mère pendue ; elle a tué à 15 ans |
 | **Simone** (38) | 1m78 / 72 kg. Puissante, musclée, épaules larges | Peau brun foncé, tresses plaquées et undercut, cicatrice à la mâchoire, treillis, plaques et bague de fiançailles | Stricte, directe, protectrice. *Un cigare les jours où l'on a survécu* | Célibataire, fiancée endeuillée, expérimentée. A validé une frappe sur un mariage afghan |
-| **Xiaoyu** (31) | 1m70 / 54 kg. Féline, taille de guêpe | Carré noir, frange, mèche rouge, yeux de chat ambrés, qipao noir fendu et veste de cuir, dragon tatoué dans le dos | Joueuse, théâtrale, le contrat est sacré. *Éventail ouvert ou fermé selon son humeur* | Célibataire, expérimentée (amants-outils), jamais « possédée ». A empoisonné son père |
+| **Xiaoyu** (31) | 1m70 / 54 kg. Féline, taille de guêpe | Carré rouge carmin à frange, racines noires, yeux de chat ambrés, qipao noir fendu et veste de cuir, dragon tatoué dans le dos | Joueuse, théâtrale, le contrat est sacré. *Éventail ouvert ou fermé selon son humeur* | Célibataire, expérimentée (amants-outils), jamais « possédée ». A empoisonné son père |
 | **Aoi** (22) | 1m60 / 47 kg (le poids imposé par l'agence). Danseuse fine | Couettes basses noir et rose, yeux noisette, sweat gris oversize et veste pailletée, bracelets au poignet gauche | Pétillante en public, brisée en privé. *Son sourire de scène n'a pas de fossette* | Célibataire, vierge. Contrat d'esclave ; le sponsor Jang ; elle s'est ouvert le poignet ; automutilation |
 | **Nadia** (34) | 1m76 / 63 kg. Sèche, nerveuse | Platine en undercut, mèche sur l'œil, yeux gris pâle, manteau militaire gris, écharpe rouge, cigarette éteinte | Laconique, sarcastique, fatiguée de tuer. *L'écharpe rouge signifie la confiance* | Célibataire, expérimentée, un amour mort (Dmitri). A tué Elias ; un enfant-soldat |
-| **Maricel** (26) | 1m57 / 50 kg. Petite, pulpeuse | Ondulations noires et mèches cuivre, casquette, fossettes, crop hoodie moutarde, cargo, bracelets | Rieuse, voleuse, loyale à sa « famille ». *Vole tout ; claustrophobe* | Célibataire, trahie par son seul amour (Jun-ho), méfiante. Séquestrée, elle a poignardé son employeur |
+| **Maricel** (26) | 1m57 / 50 kg. Petite, pulpeuse | Ondulations en balayage blond miel, casquette, fossettes, crop hoodie moutarde, cargo, bracelets | Rieuse, voleuse, loyale à sa « famille ». *Vole tout ; claustrophobe* | Célibataire, trahie par son seul amour (Jun-ho), méfiante. Séquestrée, elle a poignardé son employeur |
 | **Minh-Anh** (36) | 1m66 / 53 kg. Longiligne, frêle | Tresse noire jusqu'aux reins, lunettes rectangulaires, implants à LED à la tempe, blouse sur combinaison noire | Brillante, sans filtre, obsessionnelle. *Ses LEDs virent au rouge quand elle est émue* | Célibataire, vierge, peur d'être touchée. 9 morts lors des tests ARCHE |
 | **Haneul** (adulte, ~25 ans en apparence) | 1m69 / 54 kg. Élancée, irréelle | Cheveux argent qui noircissent, yeux d'or à anneau d'horloge, glyphes, bomber d'Elias trop grand | Curieuse, douce, étrange, très ancienne. *N'a d'ombre que lorsqu'elle est heureuse* | Aucun lien, vierge de cette vie. Le souvenir d'une nuit avec Elias dans la première vie. A compté 9 millions de morts |
 
@@ -1027,12 +1031,12 @@ Une jauge cachée propre au Pacte, **l'Ambivalence**, va de −100 (Ressentiment
 | **Peau** | Claire, légèrement rosée, qui rougit facilement (aux joues, aux oreilles et au cou). Pâleur de manque de soleil, cernes bleutés |
 | **Visage** | Rond et doux : joues pleines, petit nez retroussé, lèvres fines naturellement rosées. Visage « de petite sœur » qui contraste avec un regard d'une fermeté inattendue |
 | **Yeux** | Grands, ronds, **brun chocolat** chaud, avec une paupière simple. Derrière de **fines lunettes rondes** à monture dorée, rafistolées au scotch blanc à la branche gauche après le J1 |
-| **Cheveux** | **Châtain foncé** aux reflets roux sous la lumière, mi-longs (jusqu'aux omoplates), raides avec une légère ondulation aux pointes. Souvent en **chignon défait** tenu par un crayon, quelques mèches folles autour du visage. Détachés, ils changent complètement son allure |
+| **Cheveux** | **Auburn cuivré délavé** (une teinture qui passe, racines châtain foncé), mi-longs (jusqu'aux omoplates), raides avec une légère ondulation aux pointes. Souvent en **chignon défait** tenu par un crayon, quelques mèches folles autour du visage. Détachés, ils changent complètement son allure |
 | **Signes particuliers** | Mains abîmées par le désinfectant (gerçures, ongles très courts) · petit grain de beauté au coin de l'œil droit · tache de café permanente sur la manche · bracelet en tissu tressé rouge, cadeau d'un patient enfant · ses lunettes, qu'elle remonte du doigt quand elle ment |
 | **Gestuelle** | Se mord la lèvre quand elle réfléchit, parle vite quand elle a peur, se redresse d'un coup face à une blessure. Repousse ses mèches avec le dos du poignet (mains gantées) |
 | **Voix** | Soprano légère, douce, un peu essoufflée. Elle devient sèche et autoritaire en mode médical. Léger accent de Daegu quand elle s'emporte |
 | **Style habituel** | Pratique et négligé : vêtements médicaux, cardigans trop grands, sneakers blanches abîmées. Aucun maquillage. Coquette en secret (elle garde un rouge à lèvres rose dans sa poche, jamais utilisé) |
-| **Palette (DA)** | Bleu ciel, beige, blanc cassé, rouge (bracelet, croix) |
+| **Palette (DA)** | Bleu ciel, beige, blanc cassé, auburn cuivré (cheveux), rouge (bracelet, croix) |
 
 - **Tenues** :
   - *base* : blouse médicale bleu ciel tachée sous un cardigan beige trop grand, sneakers blanches, stéthoscope ;
@@ -1292,12 +1296,12 @@ Une jauge cachée propre au Pacte, **l'Ambivalence**, va de −100 (Ressentiment
 | **Peau** | Ivoire pâle, lisse, presque lumineuse sous les néons du casino. Le **tatouage de dragon** (noir et or) court de l'épaule droite jusqu'à la hanche gauche, en travers du dos |
 | **Visage** | Ovale en cœur, pommettes délicates, nez fin, **lèvres carmin** au sourire en coin permanent, **grain de beauté** sous l'œil gauche. Beauté provocante et théâtrale |
 | **Yeux** | **Yeux de chat** étirés vers les tempes, paupière simple, eyeliner noir en aile prononcé. Iris **brun ambré**, presque doré à la lumière des lanternes |
-| **Cheveux** | Noirs brillants, coupés en **carré net** à hauteur de la mâchoire, **frange droite** au ras des sourcils. Une **mèche teinte en rouge** à gauche, derrière l'oreille. Épingle à cheveux en jade (une arme) |
+| **Cheveux** | **Rouge carmin profond** (teinture) sur racines noires laquées, coupés en **carré net** à hauteur de la mâchoire, **frange droite** au ras des sourcils. Épingle à cheveux en jade (une arme) |
 | **Signes particuliers** | Tatouage de dragon · ongles longs laqués de rouge · bague-sceau du Consortium à l'index · cicatrice de lame fine sous le sein gauche (une tentative d'assassinat à 19 ans), visible en CG intime · parfum de jasmin et de fumée d'opium |
 | **Gestuelle** | Ouvre et ferme son éventail selon son humeur : **ouvert** avec ceux qu'elle apprécie, **fermé** comme une menace. Croise les jambes lentement. Pose le menton sur sa main pour écouter. Rit en se cachant derrière l'éventail |
 | **Voix** | Mezzo suave, langoureuse, accent shanghaïen en coréen. Elle allonge les syllabes pour taquiner et passe au mandarin pour les insultes |
 | **Style habituel** | **Qipao noir modernisé** fendu haut, brodé de dragons d'or, sous une **veste de cuir** noire cintrée. Bottines à talons, bas noirs. En privé : peignoir de soie rouge |
-| **Palette (DA)** | Noir laqué, or, rouge carmin, jade |
+| **Palette (DA)** | Noir laqué, or, rouge carmin (cheveux), jade |
 
 - **Tenues** :
   - *base* : **qipao noir moderne** fendu haut, brodé de dragons d'or, sous une veste de cuir noire, bottines à talons, éventail de métal (**lames rétractables**) ;
@@ -1494,12 +1498,12 @@ Une jauge cachée propre au Pacte, **l'Ambivalence**, va de −100 (Ressentiment
 | **Peau** | **Dorée**, brun chaud et lumineux, à sous-ton miel. Quelques cicatrices claires d'écorchures aux genoux et aux coudes |
 | **Visage** | Rond et rieur : joues pleines, **fossettes** profondes des deux côtés, nez petit et légèrement épaté, lèvres charnues, **grain de beauté** au-dessus de la lèvre supérieure, à droite. Expression malicieuse permanente |
 | **Yeux** | Grands, en amande arrondie, paupière double, cils longs. Iris **brun foncé** chaud et pétillant. Un clin d'œil facile |
-| **Cheveux** | Noirs, **ondulés**, mi-longs (sous les épaules), avec des **mèches décolorées cuivre** sur le devant. Le plus souvent sous une **casquette retournée**, en queue basse ou en chignon flou |
+| **Cheveux** | **Ondulés**, mi-longs (sous les épaules) : racines brunes fondues dans un **balayage blond miel chaud**. Le plus souvent sous une **casquette retournée**, en queue basse ou en chignon flou |
 | **Signes particuliers** | **Tatouage de soleil philippin** (8 rayons) sur l'épaule gauche · une dizaine de **bracelets** (perles, cordons, montres volées) aux deux poignets · dent légèrement de travers (canine gauche), visible quand elle rit · cicatrice en étoile au mollet droit (l'effondrement d'un tunnel, il y a 3 ans) · odeur d'huile de coco et de poussière de métro |
 | **Gestuelle** | Ne tient pas en place, s'assoit sur les tables et les rambardes. Fait tourner un objet volé entre ses doigts. Parle avec les mains. Pose la tête sur l'épaule des gens sans prévenir. Se fige et respire vite dans les espaces clos (claustrophobie) |
 | **Voix** | Mezzo chaude et pétillante, rire communicatif. Elle mélange coréen, anglais et cebuano (« *Ay, gwapo!* »), et accélère quand elle ment |
 | **Style habituel** | Streetwear de récupération : **crop hoodie jaune moutarde**, débardeur, **cargo vert olive** aux poches pleines, baskets montantes, sac banane, casquette. En privé : un maillot de basket trop grand comme robe |
-| **Palette (DA)** | Jaune moutarde, vert olive, cuivre, or (bijoux) |
+| **Palette (DA)** | Jaune moutarde, vert olive, blond miel (cheveux), or (bijoux) |
 
 - **Tenues** :
   - *base* : crop hoodie jaune moutarde, débardeur, pantalon cargo vert olive aux poches pleines, baskets montantes, multiples bracelets, sac banane ;
@@ -2131,6 +2135,8 @@ Chaque Strate est le **vestige d'un monde que la Tour a déjà « archivé »** 
 ## 18. Direction artistique, voix & médias
 
 ### 18.1 Portraits animés : Live2D / Spine
+> **Décision de production (v0.5)** : le rigging Live2D ne s'automatise pas. Le prototype utilise donc des portraits **« Live2D-lite »** animés dans Godot (shader de respiration et de balancement, clignement des yeux, changement d'expression par image générée). Le vrai Live2D reste une option ultérieure pour les héroïnes principales.
+
 - **Live2D** pour les **portraits de dialogue** (en buste et en mi-corps) d'Elias, des 10 héroïnes et des PNJ majeurs (Agatha, Cheon Mu-gyeong, Jang…).
   - **Animations idle** : respiration, clignement, physique des cheveux et des vêtements, balancement.
   - **Expressions** : 12 de base (neutre, joie, rire, colère, tristesse, larmes, gêne, surprise, peur, mépris, désir, épuisement), plus 3 signatures par personnage (exemples : les LEDs rouges de Minh-Anh, le sourire de scène figé d'Aoi, l'éventail fermé de Xiaoyu).
@@ -2180,23 +2186,32 @@ Chaque Strate est le **vestige d'un monde que la Tour a déjà « archivé »** 
 - Scènes clés en **défilement vertical** : cases, bulles, SFX dessinés, transitions par « gouttières » noires ou blanches.
 - **Affichage paysage exclusif** (PC et mobile) : la bande webtoon défile **verticalement au centre de l'écran**. Les côtés affichent l'arrière-plan flouté de la scène et les portraits Live2D des personnages qui parlent. Le défilement se fait au glissement ou à la molette, avec une option d'avance automatique.
 
-### 18.6 Pipeline de génération visuelle par IA
-**Choix validé** : génération par IA (Midjourney et Stable Diffusion), avec des modèles **LoRA** pour la cohérence des personnages.
+### 18.6 Pipeline de génération visuelle automatisé (cloud)
+**Contrainte** : pas de GPU local, pas de temps pour de la génération manuelle. **Solution** : tout se fait dans le cloud via l'API fal.ai, piloté par un seul script (`tools/art_pipeline/generate.py`).
 
-| Étape | Outil | Détail |
-|---|---|---|
-| **1. Concepts** | Midjourney (`--cref` / `--sref` pour la cohérence) ou Stable Diffusion | Planches de recherche par personnage, à partir des fiches physiques (§10.3, §12) : visage, silhouette, tenues, palette. Une **planche de référence validée** par personnage (face, profil, 3/4, dos, en pied) |
-| **2. Style global** | Un **LoRA de style « manhwa premium »** entraîné sur la direction artistique validée | Garantit l'unité visuelle (encrage, ombrage, rendu des yeux) sur tout le jeu |
-| **3. LoRA de personnage** | Entraînement local (kohya_ss ou équivalent) sur un modèle de base SDXL orienté illustration (famille Illustrious ou Pony, par exemple) | 1 LoRA par personnage (Elias, les 10 héroïnes, les PNJ majeurs), 25 à 40 images curées par jeu de données. Un **mot-déclencheur** unique par personnage (`elias_kang`, `seoyeon_park`…). Des LoRA de **tenues** séparés (base, combat, détente, voie, Strates) |
-| **4. Génération des CG** | Stable Diffusion en local (interface ComfyUI) | **ControlNet** (OpenPose, profondeur, lineart) pour imposer les poses et la composition ; **IP-Adapter** pour renforcer la ressemblance ; **régional prompting** ou masques pour les CG **à plusieurs personnages** (duos, trios, scènes des Dix), chaque zone recevant son propre LoRA |
-| **5. Contenu 18+** | **Stable Diffusion en local uniquement** | Midjourney refuse le contenu explicite : toutes les CG intimes passent par le pipeline local |
-| **6. Retouche** | Inpainting (mains, yeux, détails anatomiques et vestimentaires), retouche manuelle | Une **checklist de cohérence** par CG : cicatrices, tatouages, couleur des yeux, mèche argentée de Hae-in, ruban rouge de Ryeon, bracelets d'Aoi… |
-| **7. Upscale** | Upscaler 4× (famille ESRGAN), puis passe de détail | Masters en 3840×2160 |
-| **8. Live2D / Spine** | Génération en **pose neutre de face**, puis **découpage en calques** (cheveux avant et arrière, yeux, bouche, bras, vêtements), assisté par des outils de séparation de calques et complété à la main | Les calques sont ensuite riggés dans Live2D Cubism ou Spine. C'est l'étape la plus manuelle du pipeline |
-| **9. Webtoon & dioramas** | Les mêmes LoRA, en cadrage de cases ; les dioramas sont générés en calques de profondeur pour la parallaxe | Variantes jour/nuit et intact/détruit par img2img contrôlé |
+| Étape | Commande | Ce qui se passe | Travail humain |
+|---|---|---|---|
+| 1. Planches de référence | `generate.py refs` | 4 planches candidates par personnage (Flux), à partir des noyaux d'identité de `data/art/prompts.json` | — |
+| 2. Choix | `art_work/review.html` | Planche-contact de tous les candidats | **Choisir 1 planche par personnage** (11 clics) |
+| 3. Jeu de données | `generate.py auto <id> <planche>` | 20 variations à identité fixe (poses, expressions, tenues) à partir de la planche validée | — |
+| 4. LoRA | (inclus dans `auto`) | Entraînement d'un LoRA par personnage dans le cloud | — |
+| 5. Assets | (inclus dans `auto`) | Génération de tous les assets du manifeste (`data/art/manifest.json`) directement dans `assets/` | — |
+| 6. Décors, ennemis, CG | `generate.py assets --kind background enemy_sprite cg` | Les CG multi-personnages chargent les LoRA de chaque personnage présent | — |
 
-- **La bible de prompts** (`tools/art_pipeline/prompts/`) contient, par personnage, le mot-déclencheur, les tokens physiques, les négatifs, les poids de LoRA et les seeds de référence. Elle est **versionnée** pour pouvoir reproduire chaque CG.
-- **Les états évolutifs** (cheveux de Haneul qui s'assombrissent, racine noire d'Aoi qui repousse, glyphe-sceau du Pacte) sont des **LoRA de variante** ou des tokens dédiés.
+- **Le jeu n'attend jamais l'art** : `AssetDB` affiche un placeholder coloré tant qu'une image manque. Une image générée remplace automatiquement le placeholder au lancement suivant.
+- **Source unique** : `data/art/prompts.json` alimente à la fois le pipeline et `docs/CHARADESIGN_PROMPTS.md` (généré).
+- **Contenu 18+** : les conditions d'utilisation de fal.ai et des modèles s'appliquent. En cas de refus, le repli prévu est un backend **ComfyUI serverless sur RunPod** (modèles et LoRA personnels, sans filtre), à ajouter au même script.
+- **Coût indicatif** : quelques dizaines de dollars pour l'ensemble du casting et du prototype, voir `tools/art_pipeline/README.md`.
+
+### 18.7 Musique : OST hybride
+- **Thèmes générés par IA** (outil de génération musicale au choix) :
+  - un thème par héroïne et par Elias ;
+  - un thème de la Tour ;
+  - les combats (normal, boss, Marée) ;
+  - le Registre (régression) ;
+  - les scènes intimes.
+- **Bibliothèques libres de droits** (synthwave, dark ambient) pour les ambiances de secteur et les nappes.
+- **Intégration** : un `MusicManager` avec fondus enchaînés et des **couches dynamiques** : la piste de combat s'intensifie sous 30 % de PV ou quand la Jauge d'Éveil est pleine.
 
 ---
 
@@ -2220,49 +2235,29 @@ Chaque Strate est le **vestige d'un monde que la Tour a déjà « archivé »** 
 | **Android** | Export APK (ou AAB), installé en direct sur l'appareil (autoriser les sources inconnues) |
 | **iOS** | Export d'un projet Xcode, puis installation sur l'appareil avec son propre identifiant Apple. Avec un identifiant **gratuit**, le profil doit être resigné tous les 7 jours ; un **compte développeur payant** donne un profil valable 1 an |
 
-### 19.3 Structure du projet
+### 19.3 Structure du projet (dépôt actuel)
 ```
-manhwa-rpg/
-├── project.godot
-├── addons/
-│   ├── dialogic/              # Narration (Dialogic 2)
-│   ├── gd_cubism/             # Live2D (portraits)
-│   └── spine_godot/           # Spine (combat, cut-ins)
-├── core/                      # Autoloads (singletons)
-│   ├── game_state.gd          # État global de la boucle en cours
-│   ├── time_manager.gd        # Jours, phases, Fatigue, Ancres, Pulsations
-│   ├── loop_manager.gd        # Régression, Échos, Souvenirs, Ancrages, Aube, Dette
-│   ├── registre.gd            # Fins, Lecture, Pressentiment, Réécriture
-│   ├── class_manager.gd       # Classes, sous-classes, Maîtrise, gravure, Dissonance
-│   ├── tower_pressure.gd      # Pression P, IR, Nuit du Déversement
-│   ├── alignment.gd           # Axes, réputations locales, témoins, rumeurs
-│   ├── relations.gd           # Jauges, dynamiques, Pacte, Ambivalence, Cohésion, trahisons
-│   ├── harem_house.gd         # Conseil de la Maison, Quartiers, Harem Absolu
-│   ├── domain_manager.gd      # Ère des Strates : Domaine, technologies, expéditions
-│   ├── voice_manager.gd       # Voix IA : On/Off, lecture par line_id, lip-sync
-│   ├── preferences.gd         # Préférences de confort du joueur
-│   └── save_manager.gd        # RunSave + MetaSave
+manhwa-rpg/                    # le projet Godot est à la racine du dépôt
+├── project.godot              # 1920×1080, paysage, autoloads DataDB / GameState / AssetDB
+├── core/                      # state_store.gd (variables, effets, conditions) · game_state.gd · data_db.gd · asset_db.gd
+├── narrative/                 # dialogue_runner.gd : moteur de dialogue JSON (logique pure)
+├── combat/                    # combat_unit.gd · combat_state.gd : grilles 3×3, CTB, compétences, IA, Réécriture
+├── scenes/                    # main/ · title/ · dialogue/ (portraits Live2D-lite) · combat/
+├── ui/ui_style.gd             # thème néon (fabriques de boutons, panneaux)
+├── shaders/                   # portrait_breathe.gdshader
 ├── data/
-│   ├── characters/            # elias.json + 10 héroïnes + PNJ (cf. 19.5)
-│   ├── classes/               # arbres, compétences, conditions
-│   ├── sectors/  clans/  anchors/  fins/  floors/  strates/
-│   ├── combat/                # skills/, enemies/, encounters/
-│   └── localization/          # fr.csv (source), en.csv, ko.csv
-├── narrative/                 # main/ heroines/ pacte/ harem/ strates/ prophete/
-├── scenes/                    # world_map/ sector_map/ diorama/ webtoon_reader/ combat/ refuge/ domain/ registre_ui/ gallery/
-├── assets/
-│   ├── live2d/  spine/  cg/  dioramas/  webtoon/  ui/
-│   ├── voice/<langue>/<personnage>/<line_id>.ogg
-│   └── music/  sfx/
-└── tools/
-    ├── data_import/           # Tableurs → JSON + validation
-    ├── voice_pipeline/        # Export du script → TTS → OGG → import
-    ├── art_pipeline/          # Bible de prompts, LoRA (style, personnages, tenues), workflows ComfyUI
-    └── build/                 # Export des 5 plateformes en une commande
+│   ├── characters/            # 11 fiches JSON (identité, palette, voix, stats de combat)
+│   ├── combat/                # skills.json · enemies.json · encounters.json
+│   ├── dialogues/             # prologue_j1.json …
+│   └── art/                   # prompts.json (source des prompts) · manifest.json (assets à générer)
+├── assets/                    # images générées par le pipeline (portraits, sprites, décors, CG)
+├── tests/run_tests.gd         # tests headless
+├── tools/art_pipeline/        # generate.py · build_prompt_doc.py · README.md   (ignoré par Godot)
+└── docs/                      # GDD.md · CHARADESIGN_PROMPTS.md                  (ignoré par Godot)
 ```
 
 ### 19.4 Briques clés
-- **Narration** : Dialogic 2 comme lecteur. Toute la logique d'état reste dans `GameState`. Chaque nœud narratif porte des tags : `heroine`, `dynamic` (serment, cour, devotion, pacte), `requires`, `effects`, `voice`.
+- **Narration** : moteur JSON maison (`narrative/dialogue_runner.gd`). Un dialogue est fait de **blocs** d'étapes : réplique `{s, t, e}`, choix, effets compacts (`"add align.protect 2"`, `"flag x"`), conditions en expressions Godot (`"loop() > 1 and flag('aide_choi')"`), sauts, événements (combat, régression). Chaque réplique reçoit un identifiant stable `dialogue:bloc:index`, qui sert de clé aux voix IA. Toute la logique d'état reste dans `StateStore`.
 - **Lecteur webtoon** (`ScrollContainer` vertical), **diorama 2.5D** (`Parallax2D` + `Camera2D`, hotspots `Area2D`) et **combat** (scène indépendante). Le combat est piloté par les données, avec des intentions déclarées avant le tour et une frise CTB.
 - **Sauvegardes** :
   - **MetaSave** : Souvenirs, Échos, classes gravées, Ancrages, Codex, galerie, Dette, Aube gravée ;
@@ -2279,7 +2274,7 @@ manhwa-rpg/
   "age": 27,                        // OBLIGATOIRE, validé ≥ 18 par l'outil d'import
   "physique": {
     "height_cm": 163, "weight_kg": 52,
-    "eyes": "brun chocolat", "hair": "châtain foncé, mi-longs, chignon défait",
+    "eyes": "brun chocolat", "hair": "auburn cuivré délavé, mi-longs, chignon défait",
     "body": "menue, taille fine", "skin": "claire rosée",
     "marks": ["lunettes rondes scotchées", "grain de beauté œil droit", "bracelet tressé rouge"],
     "palette": ["#9ccbe8", "#e8dcc4", "#f5f2ea", "#c0392b"]
@@ -2342,20 +2337,18 @@ manhwa-rpg/
 ### 21.1 Réponses validées
 | Question | Réponse | Section |
 |---|---|---|
-| Doublage | Voix IA haute qualité, avec une option globale **On/Off**. Déclenchées sur les apparitions, les scènes clés et les scènes intimes | §18.3 |
-| Langue des voix | **Coréen et japonais** (deux pistes au choix), sous-titres en français | §18.3 |
-| Format | **Jeu complet d'un seul bloc** | §0 |
-| Visuels | **Live2D / Spine** + **CG HD fixes** | §18.1–18.2 |
-| Production visuelle | **Génération IA** : Midjourney (concepts) et Stable Diffusion en local avec des **LoRA** de style, de personnage et de tenue | §18.6 |
-| Le Prophète | **Mère Agatha**, qui est Seo-Yeon venue d'une ligne effondrée | §16.3 |
-| Distribution | Projet personnel. Une seule version avec tout le contenu, sans autocensure | §0, §19.2 |
-| Périmètre v1.0 | **Séoul + étages 1 à 50**. Carte mondiale et étages 51 à 100 en extension | §15 |
-| Mobile | **Paysage exclusif** | §18.5, §19.6 |
-| Combinaisons | Toutes les compositions, du Solo aux 10, avec synergies, scènes et sous-routes | §13.3 |
-| Fin des 10 | Difficulté **Extrême**, règles du **Poids du Destin** et de l'**Épreuve des Dix** | §13.4.5 |
+| Casting, passés sombres, statuts | **Validés à 100 %**, y compris le lien Elias / Nadia | §12 |
+| Constellations & Épreuve des Dix | **Validées** | §13.3, §13.4 |
+| Cheveux | Seo-Yeon **auburn**, Xiaoyu **rouge carmin**, Maricel **blond miel** ; les autres sont inchangées | §12, `CHARADESIGN_PROMPTS.md` |
+| Style des images | Manhwa semi-réaliste mature, ombrages marqués, néons SF / dark fantasy | §18.6 |
+| Point de départ | Les fiches de prompts des 11 personnages (`docs/CHARADESIGN_PROMPTS.md`) | — |
+| Écriture | Claude rédige les dialogues, quêtes et scripts en JSON ; l'auteur relit | §19.4 |
+| Musique | OST hybride : IA et bibliothèques libres | §18.7 |
+| Visuels | **Pipeline cloud automatisé**, sans GPU ni ComfyUI | §18.6 |
+| Voix, format, périmètre, mobile | Coréen et japonais · jeu d'un seul bloc · Séoul + étages 1 à 50 · paysage exclusif | §18.3, §15, §19.6 |
 
-### 21.2 Nouvelles questions
-1. **Modèle de base pour les LoRA** : préfères-tu un rendu manhwa « semi-réaliste » (proche de *Solo Leveling* ou *Omniscient Reader*) ou plus « anime » (proche de *Raising the Princess*) ? Ce choix détermine le modèle de base et le LoRA de style.
-2. **Ordre de production** : faut-il commencer par la démo Acte I (§20) avec les 4 héroïnes de Yeouido et Yongsan, ou d'abord par les planches de référence des 11 personnages pour verrouiller le charadesign ?
-3. **Écriture du script** : le jeu représente environ 25 000 répliques, avec des scènes modulaires. Écris-tu tout toi-même, ou veux-tu un pipeline d'écriture assisté (brouillons générés à partir des fiches, puis réécriture) ?
-4. **Musique** : OST originale (générée par IA ou composée), ou musique libre de droits ?
+### 21.2 Prochaines étapes
+1. Lancer le pipeline d'images : planches de référence des 11 personnages, puis le choix humain.
+2. Étendre le prototype : carte stratégique et carte de secteur (§7), calendrier des 30 jours (§3), Refuge.
+3. Écrire les J3 à J7 (Acte I complet), avec Hae-in et le Souvenir n°4 (Haneul).
+4. `MusicManager` et `VoiceManager` (pistes coréenne et japonaise).

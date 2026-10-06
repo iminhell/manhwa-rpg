@@ -1,0 +1,418 @@
+{
+  "version": 1,
+  "note": "Manifeste du prototype (Acte I). Le pipeline saute les fichiers déjà présents (--force pour régénérer).",
+  "assets": [
+    {
+      "id": "portrait_elias_neutral",
+      "kind": "portrait",
+      "char": "elias",
+      "expression": "neutral",
+      "out": "assets/portraits/elias/neutral.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_elias_joy",
+      "kind": "portrait",
+      "char": "elias",
+      "expression": "joy",
+      "out": "assets/portraits/elias/joy.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_elias_anger",
+      "kind": "portrait",
+      "char": "elias",
+      "expression": "anger",
+      "out": "assets/portraits/elias/anger.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_elias_sad",
+      "kind": "portrait",
+      "char": "elias",
+      "expression": "sad",
+      "out": "assets/portraits/elias/sad.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_elias_embarrassed",
+      "kind": "portrait",
+      "char": "elias",
+      "expression": "embarrassed",
+      "out": "assets/portraits/elias/embarrassed.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_elias_surprise",
+      "kind": "portrait",
+      "char": "elias",
+      "expression": "surprise",
+      "out": "assets/portraits/elias/surprise.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_elias_fear",
+      "kind": "portrait",
+      "char": "elias",
+      "expression": "fear",
+      "out": "assets/portraits/elias/fear.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_elias_blink",
+      "kind": "portrait",
+      "char": "elias",
+      "expression": "blink",
+      "out": "assets/portraits/elias/blink.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_elias_smirk",
+      "kind": "portrait",
+      "char": "elias",
+      "expression": "smirk",
+      "out": "assets/portraits/elias/smirk.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "sprite_elias",
+      "kind": "combat_sprite",
+      "char": "elias",
+      "outfit": "base",
+      "out": "assets/sprites/elias.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_seo_yeon_neutral",
+      "kind": "portrait",
+      "char": "seo_yeon",
+      "expression": "neutral",
+      "out": "assets/portraits/seo_yeon/neutral.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_seo_yeon_joy",
+      "kind": "portrait",
+      "char": "seo_yeon",
+      "expression": "joy",
+      "out": "assets/portraits/seo_yeon/joy.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_seo_yeon_anger",
+      "kind": "portrait",
+      "char": "seo_yeon",
+      "expression": "anger",
+      "out": "assets/portraits/seo_yeon/anger.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_seo_yeon_sad",
+      "kind": "portrait",
+      "char": "seo_yeon",
+      "expression": "sad",
+      "out": "assets/portraits/seo_yeon/sad.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_seo_yeon_embarrassed",
+      "kind": "portrait",
+      "char": "seo_yeon",
+      "expression": "embarrassed",
+      "out": "assets/portraits/seo_yeon/embarrassed.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_seo_yeon_surprise",
+      "kind": "portrait",
+      "char": "seo_yeon",
+      "expression": "surprise",
+      "out": "assets/portraits/seo_yeon/surprise.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_seo_yeon_fear",
+      "kind": "portrait",
+      "char": "seo_yeon",
+      "expression": "fear",
+      "out": "assets/portraits/seo_yeon/fear.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_seo_yeon_blink",
+      "kind": "portrait",
+      "char": "seo_yeon",
+      "expression": "blink",
+      "out": "assets/portraits/seo_yeon/blink.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_seo_yeon_lie",
+      "kind": "portrait",
+      "char": "seo_yeon",
+      "expression": "lie",
+      "out": "assets/portraits/seo_yeon/lie.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "sprite_seo_yeon",
+      "kind": "combat_sprite",
+      "char": "seo_yeon",
+      "outfit": "combat",
+      "out": "assets/sprites/seo_yeon.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_haneul_neutral",
+      "kind": "portrait",
+      "char": "haneul",
+      "expression": "neutral",
+      "out": "assets/portraits/haneul/neutral.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_haneul_joy",
+      "kind": "portrait",
+      "char": "haneul",
+      "expression": "joy",
+      "out": "assets/portraits/haneul/joy.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_haneul_anger",
+      "kind": "portrait",
+      "char": "haneul",
+      "expression": "anger",
+      "out": "assets/portraits/haneul/anger.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_haneul_sad",
+      "kind": "portrait",
+      "char": "haneul",
+      "expression": "sad",
+      "out": "assets/portraits/haneul/sad.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_haneul_embarrassed",
+      "kind": "portrait",
+      "char": "haneul",
+      "expression": "embarrassed",
+      "out": "assets/portraits/haneul/embarrassed.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_haneul_surprise",
+      "kind": "portrait",
+      "char": "haneul",
+      "expression": "surprise",
+      "out": "assets/portraits/haneul/surprise.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_haneul_fear",
+      "kind": "portrait",
+      "char": "haneul",
+      "expression": "fear",
+      "out": "assets/portraits/haneul/fear.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_haneul_blink",
+      "kind": "portrait",
+      "char": "haneul",
+      "expression": "blink",
+      "out": "assets/portraits/haneul/blink.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_haneul_tilt",
+      "kind": "portrait",
+      "char": "haneul",
+      "expression": "tilt",
+      "out": "assets/portraits/haneul/tilt.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_haneul_administrator",
+      "kind": "portrait",
+      "char": "haneul",
+      "expression": "administrator",
+      "out": "assets/portraits/haneul/administrator.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "sprite_haneul",
+      "kind": "combat_sprite",
+      "char": "haneul",
+      "outfit": "combat",
+      "out": "assets/sprites/haneul.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_hae_in_neutral",
+      "kind": "portrait",
+      "char": "hae_in",
+      "expression": "neutral",
+      "out": "assets/portraits/hae_in/neutral.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_hae_in_joy",
+      "kind": "portrait",
+      "char": "hae_in",
+      "expression": "joy",
+      "out": "assets/portraits/hae_in/joy.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_hae_in_anger",
+      "kind": "portrait",
+      "char": "hae_in",
+      "expression": "anger",
+      "out": "assets/portraits/hae_in/anger.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_hae_in_sad",
+      "kind": "portrait",
+      "char": "hae_in",
+      "expression": "sad",
+      "out": "assets/portraits/hae_in/sad.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_hae_in_embarrassed",
+      "kind": "portrait",
+      "char": "hae_in",
+      "expression": "embarrassed",
+      "out": "assets/portraits/hae_in/embarrassed.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_hae_in_surprise",
+      "kind": "portrait",
+      "char": "hae_in",
+      "expression": "surprise",
+      "out": "assets/portraits/hae_in/surprise.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_hae_in_fear",
+      "kind": "portrait",
+      "char": "hae_in",
+      "expression": "fear",
+      "out": "assets/portraits/hae_in/fear.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_hae_in_blink",
+      "kind": "portrait",
+      "char": "hae_in",
+      "expression": "blink",
+      "out": "assets/portraits/hae_in/blink.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_hae_in_threat",
+      "kind": "portrait",
+      "char": "hae_in",
+      "expression": "threat",
+      "out": "assets/portraits/hae_in/threat.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "sprite_hae_in",
+      "kind": "combat_sprite",
+      "char": "hae_in",
+      "outfit": "combat",
+      "out": "assets/sprites/hae_in.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "sprite_rodeur",
+      "kind": "enemy_sprite",
+      "prompt": "full body creature design, emaciated grey-skinned humanoid monster from the Tower, elongated limbs, jaw split vertically, glowing cyan cracks on its skin, hunched predatory stance, side three-quarter view, plain dark background for cut-out",
+      "out": "assets/sprites/rodeur.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "sprite_cracheur",
+      "kind": "enemy_sprite",
+      "prompt": "full body creature design, bloated insectoid Tower creature with a long throat sac glowing acid green, spitting stance, chitin plates, side three-quarter view, plain dark background for cut-out",
+      "out": "assets/sprites/cracheur.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "sprite_brute",
+      "kind": "enemy_sprite",
+      "prompt": "full body creature design, hulking three-meter Tower brute covered in obsidian plates, massive fists, small glowing red eyes, side three-quarter view, plain dark background for cut-out",
+      "out": "assets/sprites/brute.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "sprite_portier",
+      "kind": "enemy_sprite",
+      "prompt": "full body creature design, towering gatekeeper boss made of black stone and countless floating golden keys, a faceless mask with three keyholes, robes of chains, side three-quarter view, plain dark background for cut-out",
+      "out": "assets/sprites/portier.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "bg_itaewon_apartment",
+      "kind": "background",
+      "prompt": "background art, no characters, cramped studio apartment in Itaewon Seoul at dawn, shattered window, debris, a black tower filling the sky outside, dust in the light",
+      "out": "assets/backgrounds/itaewon_apartment.png",
+      "size": "landscape_16_9"
+    },
+    {
+      "id": "bg_itaewon_street",
+      "kind": "background",
+      "prompt": "background art, no characters, ruined Itaewon street at night, dead neon signs, overturned cars, cyan emergency lights, the black Tower in the sky",
+      "out": "assets/backgrounds/itaewon_street.png",
+      "size": "landscape_16_9"
+    },
+    {
+      "id": "bg_tower_gate",
+      "kind": "background",
+      "prompt": "background art, no characters, colossal obsidian gate at the foot of the Tower in Yongsan, barbed wire, military floodlights, cultists in white robes",
+      "out": "assets/backgrounds/tower_gate.png",
+      "size": "landscape_16_9"
+    },
+    {
+      "id": "bg_yeouido_camp",
+      "kind": "background",
+      "prompt": "background art, no characters, survivor camp in Yeouido park at dusk, tents, fires, carnivorous cherry trees, broken financial towers",
+      "out": "assets/backgrounds/yeouido_camp.png",
+      "size": "landscape_16_9"
+    },
+    {
+      "id": "bg_black",
+      "kind": "background",
+      "prompt": "background art, no characters, pure black background with faint golden dust",
+      "out": "assets/backgrounds/black.png",
+      "size": "landscape_16_9"
+    },
+    {
+      "id": "cg_prologue_death",
+      "kind": "cg",
+      "chars": [
+        "elias",
+        "haneul"
+      ],
+      "prompt": "elias_kang lying dying on the top of a stone tower floor at night, haneul_heiress kneeling and placing her glowing hand over his eyes, golden pages swirling, blood, rain, cinematic wide shot",
+      "out": "assets/cg/cg_prologue_death.png",
+      "size": "landscape_16_9"
+    },
+    {
+      "id": "cg_registre_awakening",
+      "kind": "cg",
+      "chars": [
+        "elias"
+      ],
+      "prompt": "elias_kang waking up in a ruined apartment, eyes glowing gold with a clock ring, golden glyphs on his neck, system window floating in the air, dawn light",
+      "out": "assets/cg/cg_registre_awakening.png",
+      "size": "landscape_16_9"
+    }
+  ]
+}

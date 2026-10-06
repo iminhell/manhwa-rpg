@@ -1,0 +1,21 @@
+{
+  "id": "nadia",
+  "name": "Nadia Tsoi",
+  "age": 34,
+  "height_cm": 176,
+  "weight_kg": 63,
+  "origin": "KZ (Koryo-saram)",
+  "role": "Sniper, contractuelle de Cheonma",
+  "palette": [
+    "#4a5560",
+    "#111111",
+    "#e8e8e8",
+    "#b3202a"
+  ],
+  "voice": {
+    "ko": "tts_nadia_ko",
+    "ja": "tts_nadia_ja",
+    "timbre": "contralto basse, rauque"
+  },
+  "art_token": "nadia_tsoi"
+}

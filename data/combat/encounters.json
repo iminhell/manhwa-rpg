@@ -1,0 +1,145 @@
+{
+  "encounters": {
+    "tuto_rodeur": {
+      "name": "Le premier monstre",
+      "enemies": [
+        {
+          "id": "rodeur",
+          "row": 0,
+          "lane": 1
+        }
+      ],
+      "party_positions": {
+        "elias": [
+          0,
+          1
+        ],
+        "seo_yeon": [
+          2,
+          1
+        ],
+        "haneul": [
+          1,
+          0
+        ],
+        "hae_in": [
+          2,
+          2
+        ]
+      },
+      "background": "itaewon_street"
+    },
+    "j1_maree": {
+      "name": "Première Marée",
+      "enemies": [
+        {
+          "id": "rodeur",
+          "row": 0,
+          "lane": 0
+        },
+        {
+          "id": "rodeur",
+          "row": 0,
+          "lane": 2
+        }
+      ],
+      "party_positions": {
+        "elias": [
+          0,
+          1
+        ],
+        "seo_yeon": [
+          2,
+          1
+        ],
+        "haneul": [
+          1,
+          0
+        ],
+        "hae_in": [
+          2,
+          2
+        ]
+      },
+      "background": "itaewon_street"
+    },
+    "j2_camp": {
+      "name": "Raid sur le camp",
+      "enemies": [
+        {
+          "id": "rodeur",
+          "row": 0,
+          "lane": 0
+        },
+        {
+          "id": "rodeur",
+          "row": 0,
+          "lane": 2
+        },
+        {
+          "id": "cracheur",
+          "row": 2,
+          "lane": 1
+        }
+      ],
+      "party_positions": {
+        "elias": [
+          0,
+          1
+        ],
+        "seo_yeon": [
+          2,
+          1
+        ],
+        "haneul": [
+          1,
+          0
+        ],
+        "hae_in": [
+          2,
+          2
+        ]
+      },
+      "background": "yeouido_camp"
+    },
+    "portier_test": {
+      "name": "Le Portier (test)",
+      "enemies": [
+        {
+          "id": "portier",
+          "row": 1,
+          "lane": 1
+        },
+        {
+          "id": "rodeur",
+          "row": 0,
+          "lane": 0
+        },
+        {
+          "id": "rodeur",
+          "row": 0,
+          "lane": 2
+        }
+      ],
+      "party_positions": {
+        "elias": [
+          0,
+          1
+        ],
+        "seo_yeon": [
+          2,
+          1
+        ],
+        "haneul": [
+          1,
+          0
+        ],
+        "hae_in": [
+          2,
+          2
+        ]
+      },
+      "background": "tower_gate"
+    }
+  }
+}

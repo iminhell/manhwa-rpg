@@ -1,0 +1,68 @@
+{
+  "enemies": {
+    "rodeur": {
+      "name": "Rôdeur",
+      "stats": {
+        "hp": 46,
+        "atk": 8.5,
+        "def": 3,
+        "spd": 11,
+        "mana": 20
+      },
+      "skills": [
+        "griffes",
+        "bond"
+      ],
+      "color": "#5aa9b8",
+      "boss": false
+    },
+    "cracheur": {
+      "name": "Cracheur",
+      "stats": {
+        "hp": 40,
+        "atk": 8,
+        "def": 2,
+        "spd": 10,
+        "mana": 30
+      },
+      "skills": [
+        "crachat",
+        "jet_acide"
+      ],
+      "color": "#7fbf3f",
+      "boss": false
+    },
+    "brute": {
+      "name": "Brute d'obsidienne",
+      "stats": {
+        "hp": 140,
+        "atk": 14,
+        "def": 8,
+        "spd": 7,
+        "mana": 0
+      },
+      "skills": [
+        "ecrasement"
+      ],
+      "color": "#8a2be2",
+      "boss": false
+    },
+    "portier": {
+      "name": "Le Portier aux Mille Clés",
+      "stats": {
+        "hp": 300,
+        "atk": 14,
+        "def": 9,
+        "spd": 9,
+        "mana": 120
+      },
+      "skills": [
+        "cle_tranchante",
+        "porte_close",
+        "trois_portes"
+      ],
+      "color": "#e8b23a",
+      "boss": true
+    }
+  }
+}

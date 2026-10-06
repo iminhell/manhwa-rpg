@@ -1,0 +1,42 @@
+{
+  "id": "seo_yeon",
+  "name": "Park Seo-Yeon",
+  "age": 27,
+  "height_cm": 163,
+  "weight_kg": 52,
+  "origin": "KR",
+  "role": "Médecin, Camp de Yeouido",
+  "palette": [
+    "#9ccbe8",
+    "#e8dcc4",
+    "#f5f2ea",
+    "#b5532a"
+  ],
+  "voice": {
+    "ko": "tts_seo_yeon_ko",
+    "ja": "tts_seo_yeon_ja",
+    "timbre": "soprano légère, douce"
+  },
+  "art_token": "seoyeon_park",
+  "combat": {
+    "stats": {
+      "hp": 80,
+      "atk": 8,
+      "def": 4,
+      "spd": 11,
+      "mana": 80
+    },
+    "position": [
+      2,
+      1
+    ],
+    "skills": [
+      "scalpel",
+      "soin_cible",
+      "triage",
+      "adrenaline",
+      "garde",
+      "code_bleu"
+    ]
+  }
+}

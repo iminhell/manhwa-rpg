@@ -1,0 +1,21 @@
+{
+  "id": "ryeon",
+  "name": "Baek Ryeon",
+  "age": 23,
+  "height_cm": 168,
+  "weight_kg": 55,
+  "origin": "KR",
+  "role": "Héritière de la Maison Baek",
+  "palette": [
+    "#0d0d0d",
+    "#f2f2f2",
+    "#d62828",
+    "#b8c2cc"
+  ],
+  "voice": {
+    "ko": "tts_ryeon_ko",
+    "ja": "tts_ryeon_ja",
+    "timbre": "mezzo claire, formelle"
+  },
+  "art_token": "ryeon_baek"
+}
