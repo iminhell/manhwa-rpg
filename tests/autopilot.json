@@ -1,5 +1,5 @@
 {
- "note": "Itinéraire de l'autopilote (-- --autotest) : prologue → fin de l'Acte II ; « -- --act1-only » s'arrête après l'Acte I. Choix forcés par bloc (défaut : premier choix). « -- --alt » utilise choices_alt (embranchements alternatifs). Chaque étape est bornée dans le temps (until … or day() >= N) pour que les variantes ne restent jamais bloquées.",
+ "note": "Itinéraire de l'autopilote (-- --autotest) : prologue → fin de l'Acte III ; « -- --act1-only » s'arrête après l'Acte I. Choix forcés par bloc (défaut : premier choix). « -- --alt » utilise choices_alt (embranchements alternatifs). Chaque étape est bornée dans le temps (until … or day() >= N) pour que les variantes ne restent jamais bloquées.",
  "route": [
   {
    "go": "yeouido.ifc",
@@ -70,6 +70,11 @@
    "go": "etage1.porte_sans_serrure",
    "until": "flag('haneul_trouvee')",
    "do": "main"
+  },
+  {
+   "go": "yeouido.camp",
+   "until": "day() >= 7",
+   "do": "sleep"
   },
   {
    "go": "yeouido.camp",
@@ -178,22 +183,112 @@
   },
   {
    "go": "etage2.bibliotheque",
-   "until": "souvenir('lore_cite_silencieuse') or day() >= 16",
+   "until": "souvenir('lore_cite_silencieuse') or day() >= 15",
    "do": "lire"
   },
   {
    "go": "etage2.marche_fige",
-   "until": "flag('act.etage2.marche_fige.vivres') or day() >= 16",
+   "until": "flag('act.etage2.marche_fige.vivres') or day() >= 15",
    "do": "vivres"
   },
   {
    "go": "etage2.place_gardien",
-   "until": "flag('mere_vaincue') or day() >= 16",
+   "until": "flag('mere_vaincue') or day() >= 15",
    "do": "defier"
   },
   {
-   "go": "etage2.rues_muettes",
-   "until": "day() > 15",
+   "go": "myeongdong.cathedrale",
+   "until": "day() >= 16",
+   "do": "sleep"
+  },
+  {
+   "go": "collines.domaine",
+   "until": "done('j16_assaut') or done('j16_assaut_absent')",
+   "do": "wait"
+  },
+  {
+   "go": "yongsan.porte_tour",
+   "until": "done('j16_sacrifice') or done('j16_sacrifice_absent')",
+   "do": "wait"
+  },
+  {
+   "go": "yongsan.appart",
+   "until": "day() >= 17",
+   "do": "sleep"
+  },
+  {
+   "go": "collines.domaine",
+   "until": "done('j17_duel') or done('j17_duel_absent')",
+   "do": "wait"
+  },
+  {
+   "go": "collines.domaine",
+   "until": "day() >= 18",
+   "do": "sleep"
+  },
+  {
+   "go": "hongdae.rue_clubs",
+   "until": "done('j18_drones') or day() >= 19",
+   "do": "wait"
+  },
+  {
+   "go": "yongsan.appart",
+   "until": "day() >= 19",
+   "do": "sleep"
+  },
+  {
+   "go": "ponts.barge",
+   "until": "done('j19_mutinerie') or done('j19_mutinerie_absent')",
+   "do": "wait"
+  },
+  {
+   "go": "yongsan.appart",
+   "until": "day() >= 20",
+   "do": "sleep"
+  },
+  {
+   "go": "yeouido.parking",
+   "until": "v('repos.xiaoyu') >= 1 or day() >= 21 or not party('xiaoyu')",
+   "do": "_rest_xiaoyu"
+  },
+  {
+   "go": "yeouido.parking",
+   "until": "v('repos.aoi') >= 1 or day() >= 21 or not party('aoi')",
+   "do": "_rest_aoi"
+  },
+  {
+   "go": "yeouido.parking",
+   "until": "day() >= 21",
+   "do": "sleep"
+  },
+  {
+   "go": "yeouido.ifc",
+   "until": "done('j21_coup') or done('j21_coup_absent')",
+   "do": "wait"
+  },
+  {
+   "go": "yeouido.parking",
+   "until": "v('repos.ryeon') >= 1 or day() >= 22 or not party('ryeon')",
+   "do": "_rest_ryeon"
+  },
+  {
+   "go": "yeouido.parking",
+   "until": "day() >= 22",
+   "do": "sleep"
+  },
+  {
+   "go": "myeongdong.cathedrale",
+   "until": "done('j22_siege') or done('j22_siege_absent')",
+   "do": "wait"
+  },
+  {
+   "go": "myeongdong.cathedrale",
+   "until": "day() >= 23",
+   "do": "sleep"
+  },
+  {
+   "go": "myeongdong.cathedrale",
+   "until": "day() > 23",
    "do": "wait"
   }
  ],
@@ -210,6 +305,12 @@
   "act2_aoi:studio_coeur": 2,
   "act2_maricel:eau_xiaoyu": 1,
   "act2_world:sommet_intervention": 2,
-  "act2_world:sommet_apres": 1
+  "act2_world:sommet_apres": 1,
+  "act3_ryeon:duel_defi": 1,
+  "act3_xiaoyu:mutinerie_choix": 1,
+  "act3_xiaoyu:mutinerie_offre": 2,
+  "act3_haein:coup_apres": 1,
+  "act3_tower:courtier": 2,
+  "act3_world:siege_deux": 1
  }
 }

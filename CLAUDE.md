@@ -20,7 +20,9 @@ Ne jamais commiter si le script échoue. Le validateur (`tools/validate_data.py`
 - **Variables d'état** : `align.protect` (+ protéger / − dominer), `align.bond` (+ lien / − solitude), `align.chaos`, `aff.<id>`, `trust.<id>`, `fear.<id>`, `ambivalence.<id>`, `argent`, `item.<id>`, `fatigue`, `camp.defense`, `refuge.*` (Refuge), `eau.controle`, `etage2.bruit`, `repos.<id>`. Groupe : `join <id>` / `leave <id>`. Fin connue : `fin <id>`.
 - **Monde** : `data/world/sectors.json` (nœuds `secteur.nom`, liens symétriques), `events.json` (Ancres datées), `act_summary.json` (conséquences affichées en fin d'acte).
 - **Voix** : après avoir écrit des répliques, lancer `python3 tools/voice_pipeline/voice_lines.py export`, puis compléter `tools/voice_pipeline/translations.json` (coréen et japonais).
-- **Autotest** : `tests/autopilot.json` décrit l'itinéraire et les choix forcés (prologue → fin de l'Acte II). Le mettre à jour quand un acte change ; chaque étape doit être bornée dans le temps (`… or day() >= N`). `AUTOPILOT_DEBUG=1` trace l'itinéraire.
-- **Refuge** : toute héroïne qui peut rejoindre le groupe (`join <id>` ou `flag party.<id>`) doit avoir un bloc `act2_refuge:<id>` (moment de repos) ; le validateur le vérifie.
+- **Autotest** : `tests/autopilot.json` décrit l'itinéraire et les choix forcés (prologue → fin de l'Acte III). Le mettre à jour quand un acte change ; chaque étape doit être bornée dans le temps (`… or day() >= N`). `AUTOPILOT_DEBUG=1` trace l'itinéraire.
+- **Refuge** : toute héroïne qui peut rejoindre le groupe (`join <id>` ou `flag party.<id>`) doit avoir un bloc `refuge:<id>` (moment de repos, `data/dialogues/refuge.json`) ; le validateur le vérifie.
+- **Ancres présent / absent** : l'événement « présent » doit contenir `and not done('<id>_absent')` (validé).
+- **Combats** : une rencontre peut fixer `atk_mult` (difficulté) et `party` (duel, groupe imposé). Une défaite qui n'est pas une mort (duel) se branche sur un bloc dédié, jamais sur `defeat`.
 - **Conditions** : comparer une variable texte avec une valeur par défaut, `v('eau.controle', '') == 'rats'` (sinon l'expression échoue tant que la variable n'existe pas).
 - Le code GDScript n'utilise pas `class_name` : les dépendances se chargent avec `preload` (compatible avec les tests `-s`).

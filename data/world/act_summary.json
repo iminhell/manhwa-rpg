@@ -330,5 +330,171 @@
    "if": "flag('maricel_nuit')",
    "text": "Maricel a dormi porte ouverte. Elle n'en avait pas besoin."
   }
+ ],
+ "act3": [
+  {
+   "if": "flag('domaine_defendu')",
+   "text": "Tu as tenu l'escalier des ancêtres du domaine Baek contre Cheonma."
+  },
+  {
+   "if": "flag('domaine_tombe')",
+   "text": "Le domaine Baek est tombé sans toi."
+  },
+  {
+   "if": "flag('sacrifice2_empeche')",
+   "text": "Tu as brisé le deuxième sacrifice des Élus."
+  },
+  {
+   "if": "flag('ryeon_sauvee')",
+   "text": "Baek Ryeon a survécu à son mariage-duel. Elle t'a offert son sabre et sa dette."
+  },
+  {
+   "if": "flag('tae_ju_vaincu')",
+   "text": "Cheon Tae-ju a été vaincu devant tout Séoul. Cheonma ne pardonnera pas."
+  },
+  {
+   "if": "flag('alliance_rompue')",
+   "text": "Tu as lu la lettre de Cheon Mu-gyeong. L'alliance Baek × Cheonma est rompue."
+  },
+  {
+   "if": "flag('ryeon_morte')",
+   "text": "Baek Ryeon est tombée sous le pin des ancêtres. La Maison Baek appartient à Cheonma."
+  },
+  {
+   "if": "flag('baek_annexe') and not flag('ryeon_morte')",
+   "text": "La Maison Baek a été annexée."
+  },
+  {
+   "if": "flag('drones_abattus')",
+   "text": "Tu as abattu un essaim de Mirae au-dessus de Hongdae. Les carcasses portent la signature de Minh-Anh."
+  },
+  {
+   "if": "flag('xiaoyu_sauvee') or flag('xiaoyu_survit')",
+   "text": "Long Xiaoyu a survécu à la mutinerie du Dragon Pâle."
+  },
+  {
+   "if": "flag('fang_noye')",
+   "text": "L'Oncle Fang a bu le Han."
+  },
+  {
+   "if": "flag('xiaoyu_blessee')",
+   "text": "Xiaoyu porte une nouvelle cicatrice : la dague des Lotus."
+  },
+  {
+   "if": "flag('pacte.xiaoyu')",
+   "text": "Xiaoyu a perdu une partie à enjeu total. Elle paie, selon le Pacte."
+  },
+  {
+   "if": "flag('lettre_remise')",
+   "text": "Tu as remis à Xiaoyu la lettre de pardon de son père."
+  },
+  {
+   "if": "flag('xiaoyu_morte')",
+   "text": "Long Xiaoyu a été jetée dans le Han par ses lieutenants."
+  },
+  {
+   "if": "flag('courant_mirae')",
+   "text": "Le Sceau du Courant appartient à Mirae Dynamics."
+  },
+  {
+   "if": "flag('haneul_capturee')",
+   "text": "Les Élus ont capturé Haneul derrière la porte sans serrure."
+  },
+  {
+   "if": "flag('prophete_sait')",
+   "text": "Le Prophète sait que tu régresses. Il le sait depuis le début."
+  },
+  {
+   "if": "flag('haein_sauvee')",
+   "text": "Yoon Hae-in a survécu au coup d'État de son conseil."
+  },
+  {
+   "if": "flag('nam_execute')",
+   "text": "Hae-in a exécuté Nam Gi-seok elle-même, devant le conseil."
+  },
+  {
+   "if": "flag('pacte.hae_in')",
+   "text": "Tu as pris le Sceau de la Balance. Yoon Hae-in est ta vassale, et elle calcule encore."
+  },
+  {
+   "if": "flag('haein_survit') and not party('hae_in')",
+   "text": "Hae-in garde son Sceau et sa tour. Elle te doit une dette qu'elle déteste."
+  },
+  {
+   "if": "flag('hae_in_morte')",
+   "text": "Yoon Hae-in est morte au soixantième étage."
+  },
+  {
+   "if": "flag('nam_seigneur')",
+   "text": "Nam Gi-seok tient Haesong pour le compte de Mirae."
+  },
+  {
+   "if": "flag('sacrifice3_empeche')",
+   "text": "Tu as tenu le Sanctuaire pendant la Marée Rouge."
+  },
+  {
+   "if": "flag('sanctuaire_tombe')",
+   "text": "Les Élus ont pris la cathédrale de Myeongdong."
+  },
+  {
+   "if": "flag('aoi_j22_survie')",
+   "text": "Aoi a chanté pendant le siège, et elle est vivante."
+  },
+  {
+   "if": "flag('aoi_tombee')",
+   "text": "Aoi est morte sur les marches de la cathédrale, au milieu d'une note."
+  },
+  {
+   "if": "flag('maricel_j22_survie')",
+   "text": "Maricel est ressortie du Marché en feu avec un enfant et un chat."
+  },
+  {
+   "if": "flag('maricel_tombee')",
+   "text": "Maricel n'est pas ressortie du Marché en feu."
+  },
+  {
+   "if": "souvenir('agatha_main')",
+   "text": "Sous le gant de Mère Agatha : le bracelet tressé rouge de Seo-Yeon, vieilli de quarante ans."
+  },
+  {
+   "if": "flag('courtier_vaincu')",
+   "text": "Le Courtier de l'étage 3 a inscrit ton nom en rouge."
+  },
+  {
+   "if": "flag('souvenir_vendu')",
+   "text": "Tu as vendu un souvenir de ta première vie au Courtier. Un visage a perdu son nom."
+  },
+  {
+   "if": "flag('souvenir_gage')",
+   "text": "Tu as gagé le goût de ton premier café."
+  },
+  {
+   "if": "v('annees_vendues') > 0",
+   "text": "Tu as vendu des années de ta vie au Marché des Âmes."
+  },
+  {
+   "if": "flag('hote_vaincu')",
+   "text": "L'Hôte Affamé de l'étage 4 n'a plus faim."
+  },
+  {
+   "if": "flag('sceau_balance') or flag('sceau_courant')",
+   "text": "Tu portes désormais un Sceau de Seigneurie."
+  },
+  {
+   "if": "flag('ryeon_nuit')",
+   "text": "Ryeon a gardé le ruban de sa mère serré dans son poing toute la nuit."
+  },
+  {
+   "if": "flag('xiaoyu_nuit') or flag('xiaoyu_nuit_pacte')",
+   "text": "Xiaoyu a découvert qu'elle aimait perdre contre toi."
+  },
+  {
+   "if": "flag('haein_nuit') or flag('haein_nuit_pacte')",
+   "text": "Pour la première fois, quelqu'un d'autre a décidé, pour Yoon Hae-in."
+  },
+  {
+   "if": "souvenir('descente_annoncee')",
+   "text": "Descente dans sept jours."
+  }
  ]
 }

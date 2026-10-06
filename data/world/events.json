@@ -82,7 +82,7 @@
   },
   {
    "id": "j6_nuee_present",
-   "when": "day() == 6 and phase() == 3 and not flag('penthouse_reste') and not flag('camp_tombe') and not flag('camp_vendu')",
+   "when": "day() == 6 and phase() == 3 and not flag('penthouse_reste') and not flag('camp_tombe') and not flag('camp_vendu') and not done('j6_nuee_absent')",
    "where": "sector:yeouido",
    "dialogue": "act1_camp:nuee_present",
    "priority": 99,
@@ -138,7 +138,7 @@
   },
   {
    "id": "maree",
-   "when": "phase() == 3 and not v('pos.refuge') and not in_sector('etage1') and not in_sector('etage2') and not (flag('refuge.vigie') and in_refuge_sector()) and not (day() == 9 and done('j9_concert'))",
+   "when": "phase() == 3 and not v('pos.refuge') and not in_sector('etage1') and not in_sector('etage2') and not in_sector('etage3') and not in_sector('etage4') and not (flag('refuge.vigie') and in_refuge_sector()) and not (day() == 9 and done('j9_concert')) and not (day() == 22 and done('j22_siege'))",
    "where": "*",
    "dialogue": "act1_world:maree",
    "priority": 10,
@@ -202,7 +202,7 @@
   },
   {
    "id": "j9_concert",
-   "when": "day() == 9 and phase() == 3",
+   "when": "day() == 9 and phase() == 3 and not done('j9_concert_absent')",
    "where": "sector:hongdae",
    "dialogue": "act2_aoi:concert",
    "priority": 99,
@@ -226,7 +226,7 @@
   },
   {
    "id": "j10_sacrifice",
-   "when": "day() == 10 and phase() >= 1 and phase() <= 2",
+   "when": "day() == 10 and phase() >= 1 and phase() <= 2 and not done('j10_sacrifice_absent')",
    "where": "yongsan.porte_tour",
    "dialogue": "act2_world:sacrifice",
    "priority": 97,
@@ -258,7 +258,7 @@
   },
   {
    "id": "j11_eau",
-   "when": "day() == 11 and phase() >= 1 and phase() <= 2",
+   "when": "day() == 11 and phase() >= 1 and phase() <= 2 and not done('j11_eau_absent')",
    "where": "sector:ponts",
    "dialogue": "act2_maricel:guerre_eau",
    "priority": 97,
@@ -282,7 +282,7 @@
   },
   {
    "id": "j12_seo",
-   "when": "day() == 12 and phase() >= 2 and not flag('camp_tombe') and not flag('seo_vassale_cheonma') and not flag('seo_morte')",
+   "when": "day() == 12 and phase() >= 2 and not flag('camp_tombe') and not flag('seo_vassale_cheonma') and not flag('seo_morte') and not done('j12_seo_absent')",
    "where": "yeouido.hopital",
    "dialogue": "act2_seo:hopital",
    "priority": 99,
@@ -306,7 +306,7 @@
   },
   {
    "id": "j13_sommet",
-   "when": "day() == 13 and phase() >= 1 and phase() <= 2",
+   "when": "day() == 13 and phase() >= 1 and phase() <= 2 and not done('j13_sommet_absent')",
    "where": "myeongdong.cathedrale",
    "dialogue": "act2_world:sommet",
    "priority": 97,
@@ -322,7 +322,7 @@
   },
   {
    "id": "j14_tunnels",
-   "when": "day() == 14 and phase() <= 1 and not flag('maricel_morte')",
+   "when": "day() == 14 and phase() <= 1 and not flag('maricel_morte') and not done('j14_tunnels_absent')",
    "where": "sector:myeongdong",
    "dialogue": "act2_maricel:tunnels",
    "priority": 99,
@@ -341,6 +341,150 @@
    "when": "day() > 15 or (day() == 15 and phase() >= 2)",
    "where": "*",
    "dialogue": "act2_world:classement",
+   "priority": 100,
+   "repeat": "once"
+  },
+  {
+   "id": "j16_assaut",
+   "when": "day() == 16 and phase() <= 1 and not done('j16_assaut_absent')",
+   "where": "sector:collines",
+   "dialogue": "act3_ryeon:assaut",
+   "priority": 99,
+   "repeat": "once"
+  },
+  {
+   "id": "j16_assaut_absent",
+   "when": "((day() == 16 and phase() >= 2) or day() > 16) and not done('j16_assaut')",
+   "where": "*",
+   "dialogue": "act3_ryeon:assaut_absent",
+   "priority": 98,
+   "repeat": "once"
+  },
+  {
+   "id": "j16_sacrifice",
+   "when": "day() == 16 and phase() >= 1 and not done('j16_sacrifice_absent')",
+   "where": "yongsan.porte_tour",
+   "dialogue": "act3_world:sacrifice2",
+   "priority": 97,
+   "repeat": "once"
+  },
+  {
+   "id": "j16_sacrifice_absent",
+   "when": "day() > 16 and not done('j16_sacrifice')",
+   "where": "*",
+   "dialogue": "act3_world:sacrifice2_absent",
+   "priority": 96,
+   "repeat": "once"
+  },
+  {
+   "id": "j17_duel",
+   "when": "day() == 17 and phase() >= 2 and not done('j17_duel_absent')",
+   "where": "collines.domaine",
+   "dialogue": "act3_ryeon:duel",
+   "priority": 99,
+   "repeat": "once"
+  },
+  {
+   "id": "j17_duel_absent",
+   "when": "((day() == 17 and phase() == 3) or day() > 17) and not done('j17_duel')",
+   "where": "*",
+   "dialogue": "act3_ryeon:duel_absent",
+   "priority": 98,
+   "repeat": "once"
+  },
+  {
+   "id": "j18_etages",
+   "when": "day() >= 18",
+   "where": "*",
+   "dialogue": "act3_world:etages",
+   "priority": 95,
+   "repeat": "once"
+  },
+  {
+   "id": "j18_drones",
+   "when": "day() >= 18 and phase() <= 2",
+   "where": "sector:hongdae",
+   "dialogue": "act3_world:drones",
+   "priority": 80,
+   "repeat": "once"
+  },
+  {
+   "id": "etage3_arrivee",
+   "when": "true",
+   "where": "sector:etage3",
+   "dialogue": "act3_tower:etage3",
+   "priority": 70,
+   "repeat": "once"
+  },
+  {
+   "id": "etage4_arrivee",
+   "when": "true",
+   "where": "sector:etage4",
+   "dialogue": "act3_tower:etage4",
+   "priority": 70,
+   "repeat": "once"
+  },
+  {
+   "id": "j19_mutinerie",
+   "when": "day() == 19 and phase() == 3 and not done('j19_mutinerie_absent')",
+   "where": "sector:ponts",
+   "dialogue": "act3_xiaoyu:mutinerie",
+   "priority": 99,
+   "repeat": "once"
+  },
+  {
+   "id": "j19_mutinerie_absent",
+   "when": "((day() == 19 and phase() == 3) or day() > 19) and not done('j19_mutinerie')",
+   "where": "*",
+   "dialogue": "act3_xiaoyu:mutinerie_absent",
+   "priority": 98,
+   "repeat": "once"
+  },
+  {
+   "id": "j20_heritiere",
+   "when": "day() >= 20",
+   "where": "*",
+   "dialogue": "act3_world:heritiere",
+   "priority": 94,
+   "repeat": "once"
+  },
+  {
+   "id": "j21_coup",
+   "when": "day() == 21 and phase() >= 1 and phase() <= 2 and not done('j21_coup_absent')",
+   "where": "yeouido.ifc",
+   "dialogue": "act3_haein:coup",
+   "priority": 99,
+   "repeat": "once"
+  },
+  {
+   "id": "j21_coup_absent",
+   "when": "((day() == 21 and phase() == 3) or day() > 21) and not done('j21_coup')",
+   "where": "*",
+   "dialogue": "act3_haein:coup_absent",
+   "priority": 98,
+   "repeat": "once"
+  },
+  {
+   "id": "j22_siege",
+   "when": "day() == 22 and phase() == 3 and not done('j22_siege_absent')",
+   "where": "sector:myeongdong",
+   "dialogue": "act3_world:siege",
+   "priority": 99,
+   "repeat": "once"
+  },
+  {
+   "id": "j22_siege_absent",
+   "when": "((day() == 22 and phase() == 3) or day() > 22) and not done('j22_siege')",
+   "where": "*",
+   "dialogue": "act3_world:siege_absent",
+   "priority": 98,
+   "repeat": "once"
+  },
+  {
+   "id": "j23_classement",
+   "when": "day() > 23 or (day() == 23 and phase() >= 2)",
+   "where": "*",
+   "dialogue": "act3_world:classement",
    "priority": 100,
    "repeat": "once"
   }

@@ -59,6 +59,10 @@
     "then": "maree_t1"
    },
    {
+    "if": "day() == 22",
+    "then": "maree_rouge"
+   },
+   {
     "if": "day() <= 12",
     "then": "maree_t2",
     "else": "maree_t3"
@@ -131,6 +135,30 @@
    {
     "s": "narrator",
     "t": "Des Brutes, maintenant, au milieu des Rôdeurs. La Tour ne teste plus la ville. Elle la moissonne."
+   },
+   {
+    "end": true
+   }
+  ],
+  "maree_rouge": [
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "maree_rouge"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "fx": [
+     "money 50"
+    ]
+   },
+   {
+    "s": "narrator",
+    "t": "Le ciel saigne jusqu'à l'aube. Les Rôdeurs écarlates fondent en une fumée rouge qui colle aux murs pendant des jours."
    },
    {
     "end": true

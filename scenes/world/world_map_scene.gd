@@ -296,6 +296,8 @@ func _toggle_registre() -> void:
 # --- Autopilote (tests headless) : suit tests/autopilot.json jusqu'à la fin de l'acte -------------
 
 var _route: Array = []
+## Mesure du temps libre (ticks de jour, phases 0–2, où l'itinéraire n'avait rien d'obligatoire à faire).
+var idle_ticks := 0
 
 
 func autopilot_step() -> void:
@@ -321,11 +323,20 @@ func autopilot_step() -> void:
 			return
 		for a in model.actions():
 			if a.get("id", "") == leg["do"] or (leg["do"] == "sleep" and a.get("sleep", false)):
+				if a.get("sleep", false) and st.phase() < 3:
+					idle_ticks += 12 - st.ticks() % 16
 				_on_action(a)
 				return
+		_count_idle(2)
 		_wait(2)
 		return
+	_count_idle(4)
 	_wait(4)
+
+
+func _count_idle(ticks: int) -> void:
+	if GameState.store.phase() < 3:
+		idle_ticks += ticks
 
 
 func _wait(ticks: int) -> void:

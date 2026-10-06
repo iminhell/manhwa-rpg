@@ -6,10 +6,10 @@ extends RefCounted
 ## secteur adjacent = 4 ticks (1 phase), secteur non adjacent = 8 ticks (2 phases).
 ## Le temps avance tick par tick : un événement daté interrompt l'avancée à la frontière de phase.
 
-const TRAVEL_ADJACENT := 4
-const TRAVEL_FAR := 8
-const COLLAPSE_FATIGUE := 28   ## 7 phases éveillé : malaise forcé
-const SPECIAL_SECTORS := ["etage1", "etage2"]  ## accessibles uniquement depuis un secteur adjacent
+const TRAVEL_ADJACENT := 3   ## v0.8 : assoupli (mesure du temps libre, GDD §19.7.5)
+const TRAVEL_FAR := 6
+const COLLAPSE_FATIGUE := 32   ## 8 phases éveillé : malaise forcé
+const SPECIAL_SECTORS := ["etage1", "etage2", "etage3", "etage4"]  ## accessibles uniquement depuis un secteur adjacent
 const RefugeModel := preload("res://world/refuge_model.gd")
 
 var store
@@ -120,7 +120,7 @@ func travel(sid: String) -> bool:
 		return false
 	var cost := travel_cost(sid)
 	place(str(sector(sid)["entry"]))
-	messages.append("Trajet vers %s (%d phase%s)." % [sector(sid)["short"], int(cost / 4.0), "s" if cost > 4 else ""])
+	messages.append("Trajet vers %s (%s)." % [sector(sid)["short"], "%d ticks" % cost])
 	advance(cost)
 	return true
 
@@ -140,10 +140,11 @@ func actions() -> Array:
 	if is_refuge(nid):
 		if refuge.node_id() == nid:
 			out.append({"id": "_manage", "label": "Gérer le Refuge (stock, améliorations)", "cost": 0, "panel": "refuge"})
-			if store.phase() >= 2 and not refuge.rest_done_today():
+			if store.phase() >= 2:
 				for cid in _party_heroines():
-					out.append({"id": "_rest_" + cid, "label": "Moment de repos avec %s" % cid.capitalize().replace("_", "-"),
-						"cost": 4, "rest": true, "dialogue": "act2_refuge:" + cid})
+					if not refuge.rest_done_today(cid):
+						out.append({"id": "_rest_" + cid, "label": "Moment de repos avec %s" % cid.capitalize().replace("_", "-"),
+							"cost": 2, "rest": true, "dialogue": "refuge:" + cid})
 		else:
 			out.append({"id": "_establish", "label": "Établir le Refuge ici", "cost": 2, "establish": true})
 		out.append({"id": "_sleep", "label": "Dormir jusqu'à l'aube", "cost": 0, "sleep": true})
@@ -169,7 +170,7 @@ func do_action(a: Dictionary) -> Dictionary:
 		refuge.establish(nid)
 		messages.append("Refuge établi : %s." % node(nid).get("name", nid))
 	if a.get("rest", false):
-		refuge.mark_rest()
+		refuge.mark_rest(str(a.get("id", "")).trim_prefix("_rest_"))
 	if a.has("panel"):
 		return {"panel": a["panel"]}
 	if a.has("travel"):
@@ -222,9 +223,15 @@ func advance(n: int) -> void:
 			if _check_events():
 				return
 	if int(store.get_var("fatigue", 0)) >= COLLAPSE_FATIGUE:
-		messages.append("Tu t'effondres d'épuisement. Tu te réveilles à l'aube, détroussé (−10).")
 		store.apply_effects(["money -10"])
-		store.sleep_until_dawn()
+		if store.phase() >= 2:
+			messages.append("Tu t'effondres d'épuisement. Tu te réveilles à l'aube, détroussé (−10).")
+			store.sleep_until_dawn()
+		else:
+			# Malaise à l'aube ou en journée : deux phases perdues, pas une journée entière.
+			messages.append("Tu t'effondres d'épuisement. Tu te réveilles deux phases plus tard, détroussé (−10).")
+			store.set_var("time.ticks", store.ticks() + 2 * 4)
+			store.set_var("fatigue", 0)
 		refresh()
 	_check_events()
 

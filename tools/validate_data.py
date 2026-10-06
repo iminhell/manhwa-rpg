@@ -305,11 +305,19 @@ for i, leg in enumerate(load(ROOT / "tests/autopilot.json").get("route", [])):
     check_condition(leg.get("until", ""), w)
     if leg.get("go") not in all_nodes:
         err(f"{w} : nœud inconnu « {leg.get('go')} »")
+# Ancres « présent / absent » : la version présente ne doit jamais se jouer après la version absente
+ev_by_id = {e.get("id"): e for e in events}
+for eid in ev_by_id:
+    if str(eid).endswith("_absent"):
+        base = eid[: -len("_absent")]
+        present = base if base in ev_by_id else (base + "_present" if base + "_present" in ev_by_id else None)
+        if present and f"done('{eid}')" not in ev_by_id[present].get("when", ""):
+            err(f"events/{present} : doit exclure « {eid} » (ajouter « and not done('{eid}') »)")
 for d, places in done_read.items():
     if d not in ev_ids:
         err(f"done('{d}') : événement inconnu ({', '.join(sorted(places))})")
 
-# --- Repos au Refuge : toute héroïne qui peut rejoindre le groupe a sa scène act2_refuge:<id> ---------
+# --- Repos au Refuge : toute héroïne qui peut rejoindre le groupe a sa scène refuge:<id> ---------
 def _all_fx(dlg: dict):
     for steps in dlg.get("blocks", {}).values():
         for st in steps:
@@ -325,7 +333,7 @@ for dlg in dialogues.values():
         elif len(parts) > 1 and parts[0] == "flag" and parts[1].startswith("party."):
             joinable.add(parts[1][6:])
 for cid in sorted(joinable):
-    ref_dialogue(f"act2_refuge:{cid}", f"refuge/repos/{cid}")
+    ref_dialogue(f"refuge:{cid}", f"refuge/repos/{cid}")
 
 # --- Dialogues ------------------------------------------------------------------------------
 for did, dlg in dialogues.items():

@@ -1,0 +1,561 @@
+{
+ "id": "act3_ryeon",
+ "title": "Acte III — Le mariage-duel de Baek Ryeon",
+ "start": "start",
+ "speakers": {
+  "cheon": "Cheon Mu-gyeong",
+  "tae_ju": "Cheon Tae-ju"
+ },
+ "blocks": {
+  "start": [
+   {
+    "goto": "assaut"
+   }
+  ],
+  "assaut": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "combat.danger"
+   },
+   {
+    "s": "narrator",
+    "t": "Seizième aube. Les Collines du Nord brûlent. Des camions de Cheonma ont forcé le portail du domaine Baek ; des hommes en costume noir montent l'allée des pins, fusils à l'épaule."
+   },
+   {
+    "if": "not flag('ryeon_rencontree')",
+    "then": "assaut_rencontre"
+   },
+   {
+    "s": "ryeon",
+    "t": "Toi ! Tu tombes au pire moment. Ou au meilleur. Prends la gauche, je tiens l'escalier.",
+    "e": "anger",
+    "v": true
+   },
+   {
+    "goto": "assaut_combat"
+   }
+  ],
+  "assaut_rencontre": [
+   {
+    "s": "narrator",
+    "t": "Sur les marches de la salle des ancêtres, une épéiste en hanbok noir et blanc tient seule l'escalier. Queue de cheval interminable, ruban rouge."
+   },
+   {
+    "s": "registre",
+    "t": "Lecture de la Fin — Baek Ryeon. Jour 17, Crépuscule. Domaine Baek. Tuée en duel d'honneur."
+   },
+   {
+    "fx": [
+     "flag ryeon_rencontree",
+     "fin ryeon"
+    ]
+   },
+   {
+    "s": "ryeon",
+    "t": "Un étranger. Tu es armé ? Non ? Alors ramasse quelque chose et tiens la gauche.",
+    "e": "anger",
+    "v": true
+   },
+   {
+    "goto": "assaut_combat"
+   }
+  ],
+  "assaut_combat": [
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "domaine_baek"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "s": "narrator",
+    "t": "Les hommes de Cheonma refluent vers les camions. Sur le perron, un officier gît, une enveloppe de cuir rouge dépassant de sa veste. Tu la prends avant que quiconque la remarque."
+   },
+   {
+    "s": "registre",
+    "t": "Souvenir gravé : la lettre de Cheon Mu-gyeong à son fils."
+   },
+   {
+    "s": "elias",
+    "t": "« Après la nuit de noces, prends le domaine. » Le mariage n'était qu'une porte d'entrée.",
+    "e": "anger"
+   },
+   {
+    "s": "narrator",
+    "t": "Dans la salle des ancêtres, le vieux Baek Jin-ho est allongé sur un futon, la poitrine sifflante. Il a promis sa fille pour sauver la Maison. Il n'a plus la force de reprendre sa parole."
+   },
+   {
+    "s": "ryeon",
+    "t": "Mon père a donné sa parole. Demain au crépuscule, je l'honorerai. D'une manière ou d'une autre.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "elias",
+    "t": "En provoquant Tae-ju en duel. Je sais.",
+    "e": "neutral"
+   },
+   {
+    "s": "ryeon",
+    "t": "…Merci d'avoir tenu la gauche. Ne viens pas demain. Je ne veux pas de témoin.",
+    "e": "tsundere"
+   },
+   {
+    "fx": [
+     "flag domaine_defendu",
+     "souvenir lettre_cheonma",
+     "add trust.ryeon 8",
+     "add aff.ryeon 4",
+     "add align.protect 2"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "assaut_absent": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "registre"
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — L'assaut de Cheonma sur le domaine Baek. Tu n'es pas là."
+   },
+   {
+    "s": "registre",
+    "t": "Le portail cède à l'aube. Les pins brûlent. Baek Ryeon tient l'escalier des ancêtres seule jusqu'à midi, puis Cheonma se retire : on ne tue pas une fiancée la veille de ses noces."
+   },
+   {
+    "s": "registre",
+    "t": "La Maison Baek est à genoux. Le mariage aura lieu."
+   },
+   {
+    "fx": [
+     "flag domaine_tombe"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "duel": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "boss"
+   },
+   {
+    "s": "narrator",
+    "t": "Dix-septième crépuscule. La cour du domaine Baek, tendue de rouge. Des lanternes, un autel, des invités en noir qui n'osent pas parler. Cheon Mu-gyeong trône sous le pin des ancêtres, la canne d'acier entre les genoux."
+   },
+   {
+    "s": "narrator",
+    "t": "Ryeon apparaît en hanbok de mariage rouge et or, le sabre Baekho au côté, contre tous les usages. Tae-ju sourit comme un homme qui regarde un cadeau qu'il va casser."
+   },
+   {
+    "if": "flag('domaine_tombe')",
+    "then": "duel_tombe"
+   },
+   {
+    "goto": "duel_defi"
+   }
+  ],
+  "duel_tombe": [
+   {
+    "s": "narrator",
+    "t": "Les pins du domaine sont encore noirs de la veille. Des soldats de Cheonma gardent chaque porte. La Maison Baek n'a plus d'hommes pour protester."
+   },
+   {
+    "goto": "duel_defi"
+   }
+  ],
+  "duel_defi": [
+   {
+    "s": "ryeon",
+    "t": "Cheon Tae-ju. Je refuse cette union. Selon le code des Collines, je te défie en duel d'honneur. Si je tombe, la Maison Baek t'appartient.",
+    "e": "anger",
+    "v": true
+   },
+   {
+    "s": "tae_ju",
+    "t": "Enfin quelque chose d'amusant. J'accepte. Et j'accepte aussi la Maison.",
+    "e": "contempt"
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — Baek Ryeon. Jour 17, Crépuscule. Ici. Maintenant."
+   },
+   {
+    "choice": [
+     {
+      "t": "« Je réclame le droit de champion. Je me bats à sa place. »",
+      "goto": "duel_champion",
+      "fx": [
+       "add align.protect 2"
+      ],
+      "if": "trust('ryeon') >= 10"
+     },
+     {
+      "t": "Lire à voix haute la lettre de Cheon Mu-gyeong à son fils.",
+      "goto": "duel_lettre",
+      "fx": [
+       "add align.chaos -1"
+      ],
+      "if": "souvenir('lettre_cheonma')"
+     },
+     {
+      "t": "Murmurer à Ryeon : « Son ouverture. La feinte basse, puis l'épaule droite. »",
+      "goto": "duel_conseil",
+      "fx": [
+       "add trust.ryeon 4"
+      ],
+      "if": "flag('ryeon_avertie')"
+     },
+     {
+      "t": "La laisser se battre.",
+      "goto": "duel_seule"
+     }
+    ]
+   }
+  ],
+  "duel_champion": [
+   {
+    "s": "ryeon",
+    "t": "…Tu n'as pas le droit. C'est mon honneur.",
+    "e": "tsundere"
+   },
+   {
+    "s": "elias",
+    "t": "Ton honneur, c'est de vivre assez longtemps pour reconstruire la Maison. Laisse-moi celui de me faire casser la figure.",
+    "e": "smirk",
+    "v": true
+   },
+   {
+    "s": "cheon",
+    "t": "Un champion de rang F. Le code l'autorise. Tae-ju, ne le tue pas trop vite.",
+    "e": "joy"
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "duel_tae_ju"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "champion_defaite"
+   },
+   {
+    "goto": "champion_victoire"
+   }
+  ],
+  "defeat": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Le monde bascule. Le sol, le ciel, la Tour qui regarde."
+   },
+   {
+    "s": "elias",
+    "t": "Pas… encore…",
+    "e": "exhausted"
+   },
+   {
+    "s": "registre",
+    "t": "ÉCHEC — Le Lecteur est mort."
+   },
+   {
+    "s": "registre",
+    "t": "Régression."
+   },
+   {
+    "event": "regress",
+    "args": {}
+   },
+   {
+    "end": true
+   }
+  ],
+  "champion_defaite": [
+   {
+    "s": "narrator",
+    "t": "Tae-ju te jette au sol, le genou sur ta gorge. La foule se tait."
+   },
+   {
+    "s": "ryeon",
+    "t": "Assez ! Le champion est tombé. Le duel me revient.",
+    "e": "anger",
+    "v": true
+   },
+   {
+    "fx": [
+     "add fatigue 8"
+    ]
+   },
+   {
+    "goto": "duel_seule_suite"
+   }
+  ],
+  "champion_victoire": [
+   {
+    "s": "narrator",
+    "t": "Tae-ju recule, une main sur ses côtes brisées, incrédule. Le sang du Roi Démon coule sur la soie rouge de la cour. Le code est clair : le champion a vaincu."
+   },
+   {
+    "s": "cheon",
+    "t": "…Mon fils a perdu contre un rang F, devant tout Séoul. La Maison Baek est libre de sa parole.",
+    "e": "anger"
+   },
+   {
+    "s": "ryeon",
+    "t": "Tu as… Personne ne s'était jamais battu à ma place. Je déteste ça. Je… merci.",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "fx": [
+     "flag tae_ju_vaincu",
+     "add aff.ryeon 10",
+     "add trust.ryeon 10"
+    ]
+   },
+   {
+    "goto": "duel_sauvee"
+   }
+  ],
+  "duel_lettre": [
+   {
+    "s": "elias",
+    "t": "« Mon fils. Après la nuit de noces, prends le domaine. Les Baek n'auront plus d'héritier mâle pour protester. Le vieux Jin-ho ne verra pas l'hiver. — C. »",
+    "e": "anger",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Le silence est absolu. Les invités regardent Cheon Mu-gyeong. Le vieux Baek Jin-ho se redresse sur sa civière, livide."
+   },
+   {
+    "s": "cheon",
+    "t": "…Le code des Collines punit le parjure. Même le mien. L'alliance est rompue. Nous partons.",
+    "e": "neutral"
+   },
+   {
+    "s": "tae_ju",
+    "t": "Rompue ? Elle m'appartient ! Elle…",
+    "e": "anger"
+   },
+   {
+    "s": "narrator",
+    "t": "Tae-ju dégaine. Ryeon est plus rapide. Un seul éclair d'acier : la lame du Prince vole en deux morceaux dans les lanternes. Elle ne le tue pas. Elle le regarde comme on regarde un insecte."
+   },
+   {
+    "s": "ryeon",
+    "t": "Va-t'en. Avant que j'oublie que mon père t'a reçu sous son toit.",
+    "e": "anger",
+    "v": true
+   },
+   {
+    "fx": [
+     "flag alliance_rompue",
+     "add trust.ryeon 12",
+     "add aff.ryeon 6"
+    ]
+   },
+   {
+    "goto": "duel_sauvee"
+   }
+  ],
+  "duel_conseil": [
+   {
+    "s": "ryeon",
+    "t": "…La feinte basse. L'épaule droite. Si tu mens, je reviendrai te hanter.",
+    "e": "tsundere"
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "duel_ryeon_avertie"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "duel_mort"
+   },
+   {
+    "goto": "duel_ryeon_victoire"
+   }
+  ],
+  "duel_seule": [
+   {
+    "goto": "duel_seule_suite"
+   }
+  ],
+  "duel_seule_suite": [
+   {
+    "s": "narrator",
+    "t": "Ryeon se met en garde. Le ruban rouge de sa mère frémit au vent du soir."
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "duel_ryeon"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "duel_mort"
+   },
+   {
+    "goto": "duel_ryeon_victoire"
+   }
+  ],
+  "duel_ryeon_victoire": [
+   {
+    "s": "narrator",
+    "t": "Au troisième échange, le sabre Baekho glisse sous la garde de Tae-ju et s'arrête contre sa gorge. Une goutte de sang perle. Le Prince lâche son arme."
+   },
+   {
+    "s": "ryeon",
+    "t": "Je ne te tue pas. Je n'ai plus quinze ans. Rentre chez ton père et dis-lui que la Maison Baek n'est pas à vendre.",
+    "e": "anger",
+    "v": true
+   },
+   {
+    "fx": [
+     "flag tae_ju_vaincu",
+     "add aff.ryeon 6",
+     "add trust.ryeon 6"
+    ]
+   },
+   {
+    "goto": "duel_sauvee"
+   }
+  ],
+  "duel_mort": [
+   {
+    "s": "narrator",
+    "t": "Au troisième échange, Tae-ju feinte bas. Ryeon pare. L'épaule droite. Le sabre du Prince entre sous la clavicule, là où est déjà sa vieille cicatrice."
+   },
+   {
+    "s": "narrator",
+    "t": "Elle tombe à genoux dans la soie rouge. Le ruban de sa mère se dénoue et glisse dans la poussière."
+   },
+   {
+    "s": "ryeon",
+    "t": "…Pas de témoin. J'avais dit… pas de témoin…",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "Baek Ryeon — Jour 17, Crépuscule. La Fin est accomplie. La Maison Baek appartient à Cheonma."
+   },
+   {
+    "fx": [
+     "flag ryeon_morte",
+     "flag baek_annexe",
+     "add align.bond -2"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "duel_sauvee": [
+   {
+    "s": "narrator",
+    "t": "Le vieux Baek Jin-ho s'éteint au milieu de la nuit, une main dans celle de sa fille. Il a le temps de dire une phrase. Personne ne sait laquelle, sauf elle."
+   },
+   {
+    "s": "ryeon",
+    "t": "La Maison Baek n'a plus de chef. Ni d'hommes. Il me reste un sabre et une dette. Les deux sont à toi, si tu les veux.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "Baek Ryeon a rejoint le groupe. Nouvelle Fin : Jour 29, étage 8, l'Arène des Rangs. Tuée par le Champion d'Hier."
+   },
+   {
+    "fx": [
+     "flag ryeon_sauvee",
+     "join ryeon",
+     "fin ryeon_2",
+     "souvenir ryeon_survie",
+     "pressure -2"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "duel_absent": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "registre"
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — Le mariage-duel du domaine Baek. Tu n'es pas là."
+   },
+   {
+    "if": "flag('ryeon_avertie') and (flag('domaine_defendu') or souvenir('lettre_cheonma'))",
+    "then": "absent_survit"
+   },
+   {
+    "s": "registre",
+    "t": "Baek Ryeon défie Cheon Tae-ju sous le pin des ancêtres. Au troisième échange, il feinte bas. Elle pare. L'épaule droite."
+   },
+   {
+    "s": "registre",
+    "t": "Baek Ryeon — Jour 17, Crépuscule. La Fin est accomplie. La Maison Baek appartient à Cheonma."
+   },
+   {
+    "fx": [
+     "flag ryeon_morte",
+     "flag baek_annexe"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "absent_survit": [
+   {
+    "s": "registre",
+    "t": "« La feinte basse, puis l'épaule droite. » Elle s'en souvient. Au troisième échange, c'est le sabre de Tae-ju qui vole dans les lanternes."
+   },
+   {
+    "s": "registre",
+    "t": "Le soir même, une épéiste en hanbok de mariage déchiré frappe à ta porte, le sabre à la main et le ruban rouge au poignet."
+   },
+   {
+    "s": "ryeon",
+    "t": "Tu avais raison. Je déteste quand tu as raison. Je viens payer ma dette.",
+    "e": "tsundere"
+   },
+   {
+    "fx": [
+     "flag tae_ju_vaincu"
+    ]
+   },
+   {
+    "goto": "duel_sauvee"
+   }
+  ]
+ }
+}

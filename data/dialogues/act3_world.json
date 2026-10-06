@@ -1,0 +1,983 @@
+{
+ "id": "act3_world",
+ "title": "Acte III — Monde (sacrifice, étages, Héritière, siège, Classement)",
+ "start": "start",
+ "speakers": {
+  "prophete": "Le Prophète",
+  "agatha": "Mère Agatha",
+  "mirae_ia": "IA de Mirae"
+ },
+ "blocks": {
+  "start": [
+   {
+    "goto": "sacrifice2"
+   }
+  ],
+  "sacrifice2": [
+   {
+    "bg": "tower_gate"
+   },
+   {
+    "music": "boss"
+   },
+   {
+    "s": "narrator",
+    "t": "Devant l'arche de Yongsan, cinq brancards cette fois. Les robes blanches ont doublé. Elles portent des torches, et des bidons."
+   },
+   {
+    "s": "prophete",
+    "t": "La guerre est ouverte dans les Collines, mes enfants. Les puissants s'entretuent. Offrons-leur la paix qu'ils refusent."
+   },
+   {
+    "if": "loop() >= 2",
+    "then": "sacrifice2_boucle"
+   },
+   {
+    "choice": [
+     {
+      "t": "Briser le cercle.",
+      "goto": "sacrifice2_combat",
+      "fx": [
+       "add align.protect 3"
+      ]
+     },
+     {
+      "t": "Partir. Les Collines brûlent aussi.",
+      "goto": "sacrifice2_partir",
+      "fx": [
+       "add align.bond -1"
+      ]
+     }
+    ]
+   }
+  ],
+  "sacrifice2_boucle": [
+   {
+    "s": "prophete",
+    "t": "Toujours toi. Tu sais combien de fois tu as sauvé ces cinq-là, Lecteur ? Moi, je le sais."
+   },
+   {
+    "choice": [
+     {
+      "t": "Briser le cercle.",
+      "goto": "sacrifice2_combat",
+      "fx": [
+       "add align.protect 3"
+      ]
+     },
+     {
+      "t": "Partir. Les Collines brûlent aussi.",
+      "goto": "sacrifice2_partir",
+      "fx": [
+       "add align.bond -1"
+      ]
+     }
+    ]
+   }
+  ],
+  "sacrifice2_combat": [
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "sacrifice_j16"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "s": "narrator",
+    "t": "Les bidons roulent sur les pavés sans avoir été allumés. Tu coupes les liens des cinq captifs. Le masque blanc a déjà disparu dans la foule."
+   },
+   {
+    "s": "registre",
+    "t": "Deuxième sacrifice empêché."
+   },
+   {
+    "fx": [
+     "flag sacrifice2_empeche"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "sacrifice2_partir": [
+   {
+    "s": "registre",
+    "t": "Derrière toi, cinq cris, et l'odeur de l'essence. Pression de la Tour : +5."
+   },
+   {
+    "fx": [
+     "pressure 5"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "sacrifice2_absent": [
+   {
+    "music": "registre"
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — Deuxième sacrifice des Élus. Cinq vies offertes à la Tour devant la Porte de Yongsan."
+   },
+   {
+    "s": "registre",
+    "t": "Pression de la Tour : +5."
+   },
+   {
+    "fx": [
+     "pressure 5"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "etages": [
+   {
+    "music": "registre"
+   },
+   {
+    "s": "system",
+    "t": "ÉTAGE 3 — LE MARCHÉ DES ÂMES — OUVERT. Règle : tout s'achète, même les souvenirs et les années de vie."
+   },
+   {
+    "s": "system",
+    "t": "ÉTAGE 4 — LE BANQUET — OUVERT. Règle : on ne peut pas frapper quelqu'un avec qui l'on a partagé un repas."
+   },
+   {
+    "s": "narrator",
+    "t": "Au même instant, au-dessus de Hongdae, le ciel se couvre d'un essaim. Des milliers de drones de Mirae, en formation, qui balaient les rues de leurs projecteurs. Le président Jang a appelé ça « la sécurisation »."
+   },
+   {
+    "if": "flag('ampli_sabote')",
+    "then": "etages_sabote"
+   },
+   {
+    "s": "elias",
+    "t": "Dans l'autre vie, Mirae a ouvert le feu sur Hongdae le dix-neuvième jour. « Pour la sécurité de tous. »",
+    "e": "anger"
+   },
+   {
+    "end": true
+   }
+  ],
+  "etages_sabote": [
+   {
+    "s": "registre",
+    "t": "Sans les données de la Sirène, les drones de Mirae tirent mal. Une petite victoire, au prix d'une grande colère : Jang sait qui a cassé son jouet."
+   },
+   {
+    "end": true
+   }
+  ],
+  "drones": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "combat.danger"
+   },
+   {
+    "s": "narrator",
+    "t": "Rue de Hongdae. Un essaim de drones de Mirae plonge sur un groupe de civils qui fouillent une supérette. Les projecteurs se braquent sur toi."
+   },
+   {
+    "s": "mirae_ia",
+    "t": "Individu non enregistré. Rang : anomalie. Neutralisation autorisée."
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "drones_j18"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "s": "narrator",
+    "t": "Les carcasses grésillent sur le bitume. Sur l'une d'elles, un logo, et une ligne gravée au laser : « Propriété du Sous-niveau 9 — Dr T. M.-A. »"
+   },
+   {
+    "fx": [
+     "flag drones_abattus",
+     "add align.protect 1",
+     "money 40"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "heritiere": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "registre"
+   },
+   {
+    "if": "flag('haneul_trouvee')",
+    "then": "heritiere_ok"
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — Vingtième jour. Étage 1. Les robes blanches trouvent la porte sans serrure."
+   },
+   {
+    "s": "registre",
+    "t": "Dans la première vie, c'est ce jour-là que tu l'as rencontrée. Cette fois, ce sont eux."
+   },
+   {
+    "s": "haneul",
+    "t": "Elias… Ils chantent si fort. Je n'arrive plus à rester réveillée. Je…",
+    "e": "fear",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "Haneul — capturée par les Élus. La page se ferme comme une paupière."
+   },
+   {
+    "fx": [
+     "flag haneul_capturee",
+     "pressure 8"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "heritiere_ok": [
+   {
+    "s": "narrator",
+    "t": "Sous ta porte, une feuille de papier de riz. Pas d'enveloppe. Une écriture ronde, appliquée, d'une main qui a recopié beaucoup d'ordonnances."
+   },
+   {
+    "s": "prophete",
+    "t": "« Les miens ont trouvé la porte vide ce matin. Tu l'as encore trouvée avant moi. Prends soin d'elle. Elle oublie un peu plus à chaque fois que tu reviens. »"
+   },
+   {
+    "if": "loop() >= 2",
+    "then": "heritiere_boucle"
+   },
+   {
+    "s": "haneul",
+    "t": "Quelqu'un parle de moi. Je le sens. Comme une main sur une vitre.",
+    "e": "tilt"
+   },
+   {
+    "fx": [
+     "add aff.haneul 2"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "heritiere_boucle": [
+   {
+    "s": "elias",
+    "t": "(« À chaque fois que tu reviens. » Il sait que je régresse. Il le sait depuis le début.)",
+    "e": "fear"
+   },
+   {
+    "fx": [
+     "flag prophete_sait"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "siege": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "boss"
+   },
+   {
+    "s": "narrator",
+    "t": "Vingt-deuxième nuit. Le ciel au-dessus de Séoul vire au rouge sang. La Marée Rouge : des silhouettes écarlates pleuvent de la Tour, deux fois plus rapides que les autres."
+   },
+   {
+    "s": "narrator",
+    "t": "Et sur Myeongdong, les robes blanches montent à l'assaut de la cathédrale, torches à la main. Les Élus attaquent le Sanctuaire, le terrain neutre, la Trêve elle-même."
+   },
+   {
+    "s": "agatha",
+    "t": "Mes enfants, à l'intérieur ! Les blessés d'abord ! Personne ne reste dehors !",
+    "e": "fear"
+   },
+   {
+    "if": "flag('treve_signee')",
+    "then": "siege_treve"
+   },
+   {
+    "goto": "siege_combat"
+   }
+  ],
+  "siege_treve": [
+   {
+    "s": "narrator",
+    "t": "Au bout de la rue, des moteurs. Les barges de Longwei remontent le canal, des hommes de Haesong descendent des camions, et même une escouade de Cheonma, à contrecœur. La Trêve de la Tour tient."
+   },
+   {
+    "s": "registre",
+    "t": "Trêve honorée : les cinq Sceaux défendent le terrain neutre."
+   },
+   {
+    "fx": [
+     "add align.bond 2"
+    ]
+   },
+   {
+    "goto": "siege_combat"
+   }
+  ],
+  "siege_combat": [
+   {
+    "s": "registre",
+    "t": "ANCRE — Siège de Myeongdong. Troisième sacrifice. Marée Rouge."
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "siege_myeongdong"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "s": "narrator",
+    "t": "Les zélotes refluent. Dans la nef, Mère Agatha soigne un enfant brûlé. Pour la première fois, elle a retiré son gant gauche. Autour de son poignet, un bracelet tressé rouge, délavé, usé jusqu'à la corde."
+   },
+   {
+    "s": "elias",
+    "t": "(Seo-Yeon porte le même. Exactement le même.)",
+    "e": "surprise"
+   },
+   {
+    "fx": [
+     "souvenir agatha_main",
+     "flag sacrifice3_empeche"
+    ]
+   },
+   {
+    "if": "party('aoi') and party('maricel')",
+    "then": "siege_deux"
+   },
+   {
+    "if": "party('aoi')",
+    "then": "siege_aoi"
+   },
+   {
+    "if": "party('maricel')",
+    "then": "siege_maricel"
+   },
+   {
+    "goto": "siege_fin"
+   }
+  ],
+  "siege_deux": [
+   {
+    "s": "narrator",
+    "t": "Sur le parvis, Aoi monte sur les marches de la cathédrale et se met à chanter, sans micro, pour que la foule la suive vers les tunnels. La Marée Rouge se tourne vers sa voix."
+   },
+   {
+    "s": "narrator",
+    "t": "Au même instant, Maricel crie un nom, « Bong-ha ! », et court vers le Marché en feu. Un gamin des Rats est resté dans les stands."
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — Aoi, Jour 22 : elle chante jusqu'à la mort pour couvrir l'évacuation. Maricel, Jour 22 : elle retourne chercher un enfant dans le Marché en feu."
+   },
+   {
+    "if": "party('ryeon') or party('xiaoyu') or flag('treve_signee')",
+    "then": "siege_deux_sauves"
+   },
+   {
+    "choice": [
+     {
+      "t": "Courir vers les marches. Protéger Aoi.",
+      "goto": "choix_aoi",
+      "fx": [
+       "add aff.aoi 6"
+      ]
+     },
+     {
+      "t": "Plonger dans le Marché en feu avec Maricel.",
+      "goto": "choix_maricel",
+      "fx": [
+       "add aff.maricel 6"
+      ]
+     }
+    ]
+   }
+  ],
+  "siege_deux_sauves": [
+   {
+    "if": "party('ryeon')",
+    "then": "sauves_ryeon"
+   },
+   {
+    "if": "party('xiaoyu')",
+    "then": "sauves_xiaoyu"
+   },
+   {
+    "s": "narrator",
+    "t": "Les hommes de la Trêve forment une haie devant les marches de la cathédrale. Aoi n'a pas à chanter longtemps."
+   },
+   {
+    "goto": "sauves_marche"
+   }
+  ],
+  "sauves_ryeon": [
+   {
+    "s": "ryeon",
+    "t": "Va avec la voleuse. Je garde la chanteuse. Personne ne passera ces marches.",
+    "e": "anger",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Ryeon se poste devant Aoi, le sabre Baekho dégainé. Pendant une heure, la Marée Rouge se brise sur une seule femme en hanbok noir et blanc."
+   },
+   {
+    "goto": "sauves_marche"
+   }
+  ],
+  "sauves_xiaoyu": [
+   {
+    "s": "xiaoyu",
+    "t": "Mes barges sont au canal. Dix minutes pour vider la place. Chante vite, petite.",
+    "e": "fan",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Les barges de Longwei avalent la foule par vagues. Aoi chante trois chansons au lieu de vingt. Elle descend des marches vivante, la voix cassée."
+   },
+   {
+    "goto": "sauves_marche"
+   }
+  ],
+  "sauves_marche": [
+   {
+    "s": "narrator",
+    "t": "Tu rattrapes Maricel dans le Marché en feu. Les stands s'effondrent en pluie de braises. Bong-ha est sous une table, avec un chat. Vous ressortez tous les trois par un soupirail, noirs de suie."
+   },
+   {
+    "s": "maricel",
+    "t": "Deux fois. Tu m'as sortie du noir deux fois, gwapo. À la troisième, je t'épouse.",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "goto": "siege_reecrit_deux"
+   }
+  ],
+  "siege_reecrit_deux": [
+   {
+    "s": "registre",
+    "t": "Réécriture — Aoi Tsukishiro : nouvelle Fin, Jour 30. Maricel Dizon : nouvelle Fin, Jour 30. Les deux pages tiennent, pour l'instant."
+   },
+   {
+    "fx": [
+     "fin aoi_3",
+     "fin maricel_3",
+     "flag aoi_j22_survie",
+     "flag maricel_j22_survie",
+     "add aff.aoi 4",
+     "add aff.maricel 4"
+    ]
+   },
+   {
+    "goto": "siege_fin"
+   }
+  ],
+  "choix_aoi": [
+   {
+    "s": "narrator",
+    "t": "Tu te postes devant Aoi sur les marches. Elle chante jusqu'à ce que la place soit vide, et tu tues tout ce qui monte vers elle. Elle vit."
+   },
+   {
+    "s": "narrator",
+    "t": "Quand tu te retournes vers le Marché, il n'y a plus de Marché. Juste un brasier, et un enfant des Rats qui pleure sur le trottoir d'en face. Maricel l'a poussé dehors. Elle n'est pas ressortie."
+   },
+   {
+    "s": "registre",
+    "t": "Maricel Dizon — Jour 22. La Fin est accomplie. Elle est retournée chercher un enfant dans le Marché en feu."
+   },
+   {
+    "fx": [
+     "flag maricel_tombee",
+     "leave maricel",
+     "fin aoi_3",
+     "flag aoi_j22_survie"
+    ]
+   },
+   {
+    "goto": "siege_fin"
+   }
+  ],
+  "choix_maricel": [
+   {
+    "s": "narrator",
+    "t": "Tu plonges dans le Marché en feu derrière Maricel. Vous ressortez avec Bong-ha et un chat, noirs de suie."
+   },
+   {
+    "s": "narrator",
+    "t": "Sur les marches de la cathédrale, le chant s'est arrêté au milieu d'une note. La place est vide. Les gens sont passés. Aoi est assise contre la porte, la tête penchée, comme si elle dormait."
+   },
+   {
+    "s": "registre",
+    "t": "Aoi Tsukishiro — Jour 22, Nuit. La Fin est accomplie. Elle a chanté jusqu'au bout."
+   },
+   {
+    "fx": [
+     "flag aoi_tombee",
+     "leave aoi",
+     "fin maricel_3",
+     "flag maricel_j22_survie"
+    ]
+   },
+   {
+    "goto": "siege_fin"
+   }
+  ],
+  "siege_aoi": [
+   {
+    "s": "narrator",
+    "t": "Aoi monte sur les marches et se met à chanter pour guider la foule. La Marée Rouge se tourne vers sa voix. Tu te postes devant elle."
+   },
+   {
+    "s": "aoi",
+    "t": "Ne te retourne pas. Si tu te retournes, je m'arrête.",
+    "e": "true_smile",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Tu ne te retournes pas. Elle ne s'arrête pas. À l'aube, la place est vide, et elle est vivante, la voix réduite à un souffle."
+   },
+   {
+    "s": "registre",
+    "t": "Réécriture — Aoi Tsukishiro : nouvelle Fin, Jour 30."
+   },
+   {
+    "fx": [
+     "fin aoi_3",
+     "flag aoi_j22_survie",
+     "add aff.aoi 6"
+    ]
+   },
+   {
+    "goto": "siege_fin"
+   }
+  ],
+  "siege_maricel": [
+   {
+    "s": "narrator",
+    "t": "Maricel court vers le Marché en feu en criant un nom. Tu la suis. Vous ressortez avec un gamin et un chat, noirs de suie."
+   },
+   {
+    "s": "registre",
+    "t": "Réécriture — Maricel Dizon : nouvelle Fin, Jour 30."
+   },
+   {
+    "fx": [
+     "fin maricel_3",
+     "flag maricel_j22_survie",
+     "add aff.maricel 6"
+    ]
+   },
+   {
+    "goto": "siege_fin"
+   }
+  ],
+  "siege_fin": [
+   {
+    "s": "agatha",
+    "t": "Tu as encore sauvé tout le monde, mon fils. Tout le monde, sauf toi.",
+    "e": "sad"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle remet son gant. Elle ne te regarde pas. Dans sa main droite, un chapelet ; dans sa manche, une feuille de papier jaunie qu'elle serre à s'en blanchir les jointures."
+   },
+   {
+    "end": true
+   }
+  ],
+  "siege_absent": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "registre"
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — Marée Rouge et siège de Myeongdong. Tu n'es pas là."
+   },
+   {
+    "if": "flag('treve_signee')",
+    "then": "absent_treve"
+   },
+   {
+    "s": "registre",
+    "t": "Les Élus prennent la cathédrale. Le troisième sacrifice a lieu sur l'autel même du Sanctuaire. Pression de la Tour : +5."
+   },
+   {
+    "if": "party('aoi')",
+    "then": "absent_aoi"
+   },
+   {
+    "if": "party('maricel')",
+    "then": "absent_maricel"
+   },
+   {
+    "fx": [
+     "pressure 5",
+     "flag sanctuaire_tombe"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "absent_aoi": [
+   {
+    "s": "registre",
+    "t": "Aoi Tsukishiro a couru à Myeongdong sans toi. Elle a chanté jusqu'à la mort pour couvrir l'évacuation."
+   },
+   {
+    "fx": [
+     "flag aoi_tombee",
+     "leave aoi"
+    ]
+   },
+   {
+    "if": "party('maricel')",
+    "then": "absent_maricel"
+   },
+   {
+    "fx": [
+     "pressure 5",
+     "flag sanctuaire_tombe"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "absent_maricel": [
+   {
+    "s": "registre",
+    "t": "Maricel Dizon est retournée chercher un enfant dans le Marché en feu. Elle n'est pas ressortie."
+   },
+   {
+    "fx": [
+     "flag maricel_tombee",
+     "leave maricel",
+     "pressure 5",
+     "flag sanctuaire_tombe"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "absent_treve": [
+   {
+    "s": "registre",
+    "t": "La Trêve tient. Les cinq Sceaux défendent la cathédrale jusqu'à l'aube. Aoi chante, Maricel court, et toutes deux reviennent, couvertes de suie."
+   },
+   {
+    "if": "party('aoi')",
+    "then": "absent_treve_aoi"
+   },
+   {
+    "if": "party('maricel')",
+    "then": "absent_treve_maricel"
+   },
+   {
+    "end": true
+   }
+  ],
+  "absent_treve_aoi": [
+   {
+    "fx": [
+     "fin aoi_3",
+     "flag aoi_j22_survie"
+    ]
+   },
+   {
+    "if": "party('maricel')",
+    "then": "absent_treve_maricel"
+   },
+   {
+    "end": true
+   }
+  ],
+  "absent_treve_maricel": [
+   {
+    "fx": [
+     "fin maricel_3",
+     "flag maricel_j22_survie"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "classement": [
+   {
+    "music": "registre"
+   },
+   {
+    "bg": "black"
+   },
+   {
+    "s": "system",
+    "t": "TROISIÈME CLASSEMENT DES CANDIDATS."
+   },
+   {
+    "s": "system",
+    "t": "1. Cheon Mu-gyeong — Rang S. 2. ??? — Rang S — Identité masquée. 3. Baek Ryeon — Rang A."
+   },
+   {
+    "if": "flag('courtier_vaincu') or flag('hote_vaincu')",
+    "then": "classement_conquerant"
+   },
+   {
+    "s": "system",
+    "t": "… 3 117. Kang Elias — Rang D — Porteur."
+   },
+   {
+    "goto": "classement_annonce"
+   }
+  ],
+  "classement_conquerant": [
+   {
+    "s": "system",
+    "t": "… 64. Kang Elias — Rang C — Porteur. MENTION : Conquérant des étages supérieurs."
+   },
+   {
+    "s": "narrator",
+    "t": "Sur les écrans de Gangnam, ton visage, cette fois. Pas seulement ton nom. Quelqu'un a fourni une photo au Système."
+   },
+   {
+    "fx": [
+     "flag elias_celebre"
+    ]
+   },
+   {
+    "goto": "classement_annonce"
+   }
+  ],
+  "classement_annonce": [
+   {
+    "s": "system",
+    "t": "ANNONCE GÉNÉRALE. DESCENTE DANS SEPT JOURS."
+   },
+   {
+    "s": "narrator",
+    "t": "La phrase s'affiche partout à la fois : sur les écrans, dans le ciel, au fond des yeux. Dans toute la ville, des millions de personnes s'arrêtent au même instant de respirer."
+   },
+   {
+    "fx": [
+     "souvenir descente_annoncee"
+    ]
+   },
+   {
+    "if": "flag('haneul_capturee')",
+    "then": "classement_haneul_capturee"
+   },
+   {
+    "if": "party('haneul')",
+    "then": "classement_haneul"
+   },
+   {
+    "goto": "classement_fins"
+   }
+  ],
+  "classement_haneul": [
+   {
+    "s": "haneul",
+    "t": "Sept jours. C'est moi qui descends, Elias. Je m'en souviens, maintenant. C'est moi, la Descente.",
+    "e": "fear",
+    "v": true
+   },
+   {
+    "s": "elias",
+    "t": "Alors on a sept jours pour changer la fin du livre.",
+    "e": "neutral"
+   },
+   {
+    "goto": "classement_fins"
+   }
+  ],
+  "classement_haneul_capturee": [
+   {
+    "s": "registre",
+    "t": "Quelque part dans l'étage 1, une porte sans serrure s'est refermée sur une femme endormie. Les Élus chantent devant. Ils ont sept jours."
+   },
+   {
+    "goto": "classement_fins"
+   }
+  ],
+  "classement_fins": [
+   {
+    "s": "registre",
+    "t": "Bilan des Fins de l'Acte III."
+   },
+   {
+    "if": "flag('ryeon_sauvee')",
+    "then": "cf_ryeon_ok"
+   },
+   {
+    "if": "flag('ryeon_morte')",
+    "then": "cf_ryeon_non"
+   },
+   {
+    "goto": "cf_xiaoyu"
+   }
+  ],
+  "cf_ryeon_ok": [
+   {
+    "s": "registre",
+    "t": "Baek Ryeon — page réécrite. Le ruban rouge flotte encore."
+   },
+   {
+    "goto": "cf_xiaoyu"
+   }
+  ],
+  "cf_ryeon_non": [
+   {
+    "s": "registre",
+    "t": "Baek Ryeon — page close. Jour 17. La Maison Baek appartient à Cheonma."
+   },
+   {
+    "goto": "cf_xiaoyu"
+   }
+  ],
+  "cf_xiaoyu": [
+   {
+    "if": "flag('xiaoyu_sauvee') or flag('xiaoyu_survit')",
+    "then": "cf_xiaoyu_ok"
+   },
+   {
+    "if": "flag('xiaoyu_morte')",
+    "then": "cf_xiaoyu_non"
+   },
+   {
+    "goto": "cf_haein"
+   }
+  ],
+  "cf_xiaoyu_ok": [
+   {
+    "s": "registre",
+    "t": "Long Xiaoyu — page réécrite. L'Oncle Fang a bu le Han à sa place."
+   },
+   {
+    "goto": "cf_haein"
+   }
+  ],
+  "cf_xiaoyu_non": [
+   {
+    "s": "registre",
+    "t": "Long Xiaoyu — page close. Jour 19. Le Sceau du Courant appartient à Mirae."
+   },
+   {
+    "goto": "cf_haein"
+   }
+  ],
+  "cf_haein": [
+   {
+    "if": "flag('haein_sauvee')",
+    "then": "cf_haein_ok"
+   },
+   {
+    "if": "flag('hae_in_morte')",
+    "then": "cf_haein_non"
+   },
+   {
+    "goto": "classement_fin"
+   }
+  ],
+  "cf_haein_ok": [
+   {
+    "s": "registre",
+    "t": "Yoon Hae-in — page réécrite. Elle a fini son thé."
+   },
+   {
+    "goto": "classement_fin"
+   }
+  ],
+  "cf_haein_non": [
+   {
+    "s": "registre",
+    "t": "Yoon Hae-in — page close. Jour 21. Haesong appartient à Nam, et Nam à Mirae."
+   },
+   {
+    "goto": "classement_fin"
+   }
+  ],
+  "classement_fin": [
+   {
+    "s": "narrator",
+    "t": "FIN DE L'ACTE III — « La Guerre des Sceaux »."
+   },
+   {
+    "event": "end_act",
+    "args": {
+     "act": 3
+    }
+   },
+   {
+    "end": true
+   }
+  ],
+  "defeat": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Le monde bascule. Le sol, le ciel, la Tour qui regarde."
+   },
+   {
+    "s": "elias",
+    "t": "Pas… encore…",
+    "e": "exhausted"
+   },
+   {
+    "s": "registre",
+    "t": "ÉCHEC — Le Lecteur est mort."
+   },
+   {
+    "s": "registre",
+    "t": "Régression."
+   },
+   {
+    "event": "regress",
+    "args": {}
+   },
+   {
+    "end": true
+   }
+  ]
+ }
+}

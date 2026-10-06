@@ -335,12 +335,12 @@
     },
     "bond": {
       "name": "Bond",
-      "target": "melee",
+      "target": "ranged",
       "cost": 10,
       "effects": [
         {
           "type": "damage",
-          "power": 1.4
+          "power": 1.2
         }
       ],
       "ai_weight": 0.6
@@ -671,9 +671,442 @@
         {
           "type": "damage",
           "power": 1.5
+        },
+        {
+          "type": "status",
+          "status": "immobile",
+          "turns": 1
         }
       ],
       "ai_weight": 1.0
+    },
+    "hurlement_muet": {
+      "name": "Hurlement muet",
+      "target": "all_enemies",
+      "cost": 40,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 0.7
+        },
+        {
+          "type": "status",
+          "status": "stun",
+          "turns": 1,
+          "chance": 0.35
+        }
+      ],
+      "ai_weight": 1.2
+    },
+    "iai": {
+      "name": "Iai",
+      "target": "melee",
+      "cost": 0,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 1.25,
+          "crit_if_full": true
+        }
+      ],
+      "desc": "Dégainer et trancher. Critique garanti sur une cible indemne."
+    },
+    "garde_lotus": {
+      "name": "Garde du Lotus",
+      "target": "self",
+      "cost": 15,
+      "effects": [
+        {
+          "type": "status",
+          "status": "counter",
+          "turns": 2
+        },
+        {
+          "type": "status",
+          "status": "guard",
+          "turns": 1
+        }
+      ],
+      "weight": 60,
+      "desc": "Riposte à chaque coup reçu pendant 2 tours."
+    },
+    "danse_petales": {
+      "name": "Danse des Pétales",
+      "target": "row",
+      "cost": 25,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 0.8
+        }
+      ],
+      "desc": "Frappe toute une ligne ennemie."
+    },
+    "tigre_blanc": {
+      "name": "ULTIME — Tigre Blanc Céleste",
+      "target": "ranged",
+      "cost": 0,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 2.6,
+          "ignore_def": true
+        }
+      ],
+      "awaken": true,
+      "desc": "Un tigre spectral fend l'ennemi : ignore la défense."
+    },
+    "mille_aiguilles": {
+      "name": "Mille Aiguilles",
+      "target": "ranged",
+      "cost": 0,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 0.55
+        },
+        {
+          "type": "status",
+          "status": "poison",
+          "turns": 3
+        }
+      ],
+      "desc": "Aiguilles empoisonnées : poison 3 tours."
+    },
+    "eventail_lames": {
+      "name": "Éventail de lames",
+      "target": "row",
+      "cost": 20,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 0.65
+        }
+      ],
+      "desc": "Les lames rétractables balaient une ligne."
+    },
+    "mise_totale": {
+      "name": "Mise totale",
+      "target": "self",
+      "cost": 15,
+      "effects": [
+        {
+          "type": "crit_next"
+        },
+        {
+          "type": "haste",
+          "value": 150
+        }
+      ],
+      "weight": 50,
+      "desc": "Prochain coup critique, et elle rejoue vite."
+    },
+    "dragon_noir": {
+      "name": "ULTIME — Dragon Noir du Han",
+      "target": "all_enemies",
+      "cost": 0,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 0.9
+        },
+        {
+          "type": "status",
+          "status": "poison",
+          "turns": 3
+        }
+      ],
+      "awaken": true,
+      "desc": "Le tatouage s'éveille : dégâts et poison sur tous."
+    },
+    "lame_cheonma": {
+      "name": "Lame de Cheonma",
+      "target": "melee",
+      "cost": 0,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 1.1
+        }
+      ],
+      "ai_weight": 1.0
+    },
+    "fusillade": {
+      "name": "Fusillade",
+      "target": "row",
+      "cost": 20,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 0.6
+        }
+      ],
+      "ai_weight": 0.8
+    },
+    "tae_ju_charge": {
+      "name": "Charge du Prince",
+      "target": "melee",
+      "cost": 0,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 1.3
+        }
+      ],
+      "ai_weight": 1.0
+    },
+    "poing_demon": {
+      "name": "Poing du Roi Démon",
+      "target": "pierce",
+      "cost": 30,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 1.1
+        },
+        {
+          "type": "delay",
+          "value": 150
+        }
+      ],
+      "ai_weight": 0.9
+    },
+    "rage_heritier": {
+      "name": "Rage de l'héritier",
+      "target": "self",
+      "cost": 0,
+      "effects": [
+        {
+          "type": "crit_next"
+        },
+        {
+          "type": "haste",
+          "value": 200
+        }
+      ],
+      "weight": 40,
+      "ai_weight": 0.5
+    },
+    "lotus_dague": {
+      "name": "Dague du Lotus",
+      "target": "ranged",
+      "cost": 0,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 0.9
+        },
+        {
+          "type": "status",
+          "status": "poison",
+          "turns": 2
+        }
+      ],
+      "ai_weight": 1.0
+    },
+    "lotus_ombre": {
+      "name": "Pas de l'ombre",
+      "target": "ranged",
+      "cost": 20,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 1.4
+        }
+      ],
+      "ai_weight": 0.8
+    },
+    "fang_ordre": {
+      "name": "Ordre de l'Oncle",
+      "target": "all_enemies",
+      "cost": 30,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 0.6
+        },
+        {
+          "type": "status",
+          "status": "mark",
+          "turns": 1
+        }
+      ],
+      "ai_weight": 0.9
+    },
+    "fang_canne": {
+      "name": "Canne-épée",
+      "target": "melee",
+      "cost": 0,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 1.2
+        }
+      ],
+      "ai_weight": 1.0
+    },
+    "tir_precis": {
+      "name": "Tir de précision",
+      "target": "ranged",
+      "cost": 0,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 1.0
+        }
+      ],
+      "ai_weight": 1.0
+    },
+    "grenade_flash": {
+      "name": "Grenade aveuglante",
+      "target": "row",
+      "cost": 25,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 0.4
+        },
+        {
+          "type": "status",
+          "status": "stun",
+          "turns": 1,
+          "chance": 0.4
+        }
+      ],
+      "ai_weight": 0.7
+    },
+    "zele": {
+      "name": "Zèle",
+      "target": "melee",
+      "cost": 0,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 1.2
+        }
+      ],
+      "ai_weight": 1.0
+    },
+    "bucher": {
+      "name": "Bûcher",
+      "target": "row",
+      "cost": 25,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 0.7
+        },
+        {
+          "type": "status",
+          "status": "poison",
+          "turns": 2
+        }
+      ],
+      "ai_weight": 0.8
+    },
+    "griffes_rouges": {
+      "name": "Griffes rouges",
+      "target": "melee",
+      "cost": 0,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 1.15
+        }
+      ],
+      "ai_weight": 1.0
+    },
+    "saut_rouge": {
+      "name": "Saut écarlate",
+      "target": "ranged",
+      "cost": 15,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 1.1
+        }
+      ],
+      "ai_weight": 0.8
+    },
+    "estimation": {
+      "name": "Estimation",
+      "target": "ranged",
+      "cost": 0,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 0.9
+        },
+        {
+          "type": "status",
+          "status": "mark",
+          "turns": 2
+        }
+      ],
+      "ai_weight": 1.0
+    },
+    "saisie": {
+      "name": "Saisie des années",
+      "target": "ranged",
+      "cost": 30,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 1.6
+        }
+      ],
+      "ai_weight": 0.9
+    },
+    "solde": {
+      "name": "Liquidation totale",
+      "target": "all_enemies",
+      "cost": 50,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 0.8
+        },
+        {
+          "type": "delay",
+          "value": 200
+        }
+      ],
+      "ai_weight": 1.1
+    },
+    "devorer": {
+      "name": "Dévorer",
+      "target": "melee",
+      "cost": 0,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 1.4
+        }
+      ],
+      "self_effects": [
+        {
+          "type": "heal",
+          "pct": 0.05
+        }
+      ],
+      "ai_weight": 1.0
+    },
+    "festin": {
+      "name": "Festin",
+      "target": "all_enemies",
+      "cost": 40,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 0.7
+        },
+        {
+          "type": "status",
+          "status": "poison",
+          "turns": 2
+        }
+      ],
+      "ai_weight": 0.9
     }
   }
 }

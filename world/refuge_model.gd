@@ -1,7 +1,7 @@
 extends RefCounted
 ## Logique du Refuge (pure, testable) — GDD §8.5.
 ## État dans le StateStore : refuge.node, refuge.sector, refuge.rations, refuge.defense, refuge.faim,
-## drapeaux refuge.<amélioration>, refuge.last_day, refuge.repos.<jour>.
+## drapeaux refuge.<amélioration>, refuge.last_day, refuge.repos.<héroïne>.<jour>.
 
 var store
 var data: Dictionary
@@ -53,7 +53,11 @@ func residents() -> int:
 
 
 func daily_need() -> int:
-	return int(ceil(float(residents()) / float(data.get("upkeep", {}).get("residents_per_ration", 2))))
+	var up: Dictionary = data.get("upkeep", {})
+	var need := int(ceil(float(residents()) / float(up.get("residents_per_ration", 2))))
+	if str(up.get("shortage_if", "")) != "" and store.check(str(up["shortage_if"])):
+		need += int(up.get("shortage_extra_need", 0))
+	return need
 
 
 func can_build(id: String) -> bool:
@@ -115,13 +119,31 @@ func daily_upkeep() -> Array:
 		else:
 			store.set_var("refuge.rations", 0)
 			store.add_var("refuge.faim", 1)
-			var pen := int(data.get("upkeep", {}).get("hunger_trust_penalty", 2))
-			for f in store.flags.keys():
-				if str(f).begins_with("party."):
-					store.add_var("trust." + str(f).substr(6), -pen)
-			msgs.append("Jour %d : le Refuge manque de rations. Le groupe a faim (Confiance −%d)." % [d, pen])
+			msgs.append_array(_famine(d))
 	store.set_var("refuge.last_day", store.day())
 	return msgs
+
+
+## Famine d'un jour : plus punitive en milieu de boucle (pénuries, guerre ouverte).
+func _famine(d: int) -> Array:
+	var up: Dictionary = data.get("upkeep", {})
+	var mid := d >= int(up.get("midloop_day", 999))
+	var pen := int(up.get("midloop_trust_penalty" if mid else "hunger_trust_penalty", 2))
+	var starving := int(store.get_var("refuge.faim", 0)) >= int(up.get("starving_days", 999))
+	for f in store.flags.keys():
+		if str(f).begins_with("party."):
+			var cid := str(f).substr(6)
+			store.add_var("trust." + cid, -pen)
+			if starving:
+				store.add_var("aff." + cid, -int(up.get("starving_aff_penalty", 0)))
+	var msg := "Jour %d : le Refuge manque de rations. Le groupe a faim (Confiance −%d)." % [d, pen]
+	if mid:
+		store.add_var("fatigue", int(up.get("midloop_fatigue", 0)))
+		store.add_var("refuge.defense", -int(up.get("midloop_defense_loss", 0)))
+		msg += " Les pénuries pèsent : fatigue et défense en baisse."
+	if starving:
+		msg += " Trois jours sans manger : la rancœur s'installe (Affinité en baisse)."
+	return [msg]
 
 
 ## Effets d'une nuit passée au Refuge.
@@ -132,9 +154,10 @@ func on_sleep_here() -> void:
 				store.add_var("trust." + str(f).substr(6), 1)
 
 
-func rest_done_today() -> bool:
-	return store.has_flag("refuge.repos.%d" % store.day())
+## Un moment de repos par héroïne et par jour (v0.8 : la limite était d'un seul repos par jour).
+func rest_done_today(cid: String) -> bool:
+	return store.has_flag("refuge.repos.%s.%d" % [cid, store.day()])
 
 
-func mark_rest() -> void:
-	store.set_flag("refuge.repos.%d" % store.day())
+func mark_rest(cid: String) -> void:
+	store.set_flag("refuge.repos.%s.%d" % [cid, store.day()])

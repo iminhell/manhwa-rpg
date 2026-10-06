@@ -1,0 +1,500 @@
+{
+ "id": "act3_xiaoyu",
+ "title": "Acte III — La mutinerie du Dragon Pâle",
+ "start": "start",
+ "speakers": {
+  "fang": "Oncle Fang"
+ },
+ "blocks": {
+  "start": [
+   {
+    "goto": "mutinerie"
+   }
+  ],
+  "mutinerie": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "night"
+   },
+   {
+    "s": "narrator",
+    "t": "Dix-neuvième nuit. Le Dragon Pâle, la barge-casino du Consortium, est amarré au milieu du Han, toutes lanternes allumées. Banquet des anciens : Xiaoyu préside en qipao noir, l'Oncle Fang à sa droite, et derrière lui trois silhouettes en blanc : les Trois Lotus."
+   },
+   {
+    "if": "not flag('xiaoyu_rencontree')",
+    "then": "mutinerie_rencontre"
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Kang. Tu viens dîner sans invitation sur ma barge. C'est soit très romantique, soit très stupide.",
+    "e": "fan",
+    "v": true
+   },
+   {
+    "goto": "mutinerie_toast"
+   }
+  ],
+  "mutinerie_rencontre": [
+   {
+    "s": "registre",
+    "t": "Lecture de la Fin — Long Xiaoyu. Jour 19, Nuit. Sur le Han. Poignardée par ses propres lieutenants."
+   },
+   {
+    "fx": [
+     "flag xiaoyu_rencontree",
+     "fin xiaoyu"
+    ]
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Kang Elias. Mon ancien recouvreur. Tu viens dîner sans invitation. C'est soit très romantique, soit très stupide.",
+    "e": "fan",
+    "v": true
+   },
+   {
+    "goto": "mutinerie_toast"
+   }
+  ],
+  "mutinerie_toast": [
+   {
+    "s": "fang",
+    "t": "Un toast. Au vieux maître, qui ne verra pas l'hiver. Et à sa fille, qui a coûté si cher au Consortium.",
+    "e": "neutral"
+   },
+   {
+    "if": "flag('fang_humilie')",
+    "then": "toast_humilie"
+   },
+   {
+    "goto": "mutinerie_choix"
+   }
+  ],
+  "toast_humilie": [
+   {
+    "s": "fang",
+    "t": "Et au rang F qui nous a fait plier devant des Rats. Je n'oublie jamais un visage.",
+    "e": "contempt"
+   },
+   {
+    "goto": "mutinerie_choix"
+   }
+  ],
+  "mutinerie_choix": [
+   {
+    "s": "registre",
+    "t": "ANCRE — Long Xiaoyu. Jour 19, Nuit. Dans trois minutes, les Lotus dégaineront."
+   },
+   {
+    "choice": [
+     {
+      "t": "Glisser au plus jeune des Lotus : « Fang a vendu le Sceau du Courant à Mirae. Tu crois qu'ils garderont des assassins ? »",
+      "goto": "choix_lotus",
+      "fx": [
+       "add align.chaos 1"
+      ],
+      "if": "souvenir('nam_jang') or souvenir('foreuses_mirae')"
+     },
+     {
+      "t": "Te placer derrière Xiaoyu, la main sur ta lame.",
+      "goto": "choix_garde",
+      "fx": [
+       "add trust.xiaoyu 4"
+      ]
+     },
+     {
+      "t": "Renverser la table et frapper le premier.",
+      "goto": "choix_frapper",
+      "fx": [
+       "add align.protect -1"
+      ]
+     }
+    ]
+   }
+  ],
+  "choix_lotus": [
+   {
+    "s": "narrator",
+    "t": "Le Lotus Blanc pâlit sous son masque. Il regarde Fang. Il regarde le Han, très noir, très froid. Quand Fang lève son verre pour donner le signal, sa dague se plante dans la table, à un centimètre de la main du vieil homme."
+   },
+   {
+    "s": "fang",
+    "t": "…Traître. Vous êtes tous des traîtres. Le vieux maître aurait dû vous noyer à la naissance.",
+    "e": "anger"
+   },
+   {
+    "goto": "combat_fang"
+   }
+  ],
+  "choix_garde": [
+   {
+    "if": "flag('xiaoyu_avertie')",
+    "then": "garde_prete"
+   },
+   {
+    "s": "narrator",
+    "t": "Fang lève son verre. Les Lotus dégainent. Une dague cherche le dos de Xiaoyu ; tu la dévies d'un revers, mais la deuxième lui ouvre le flanc. Elle bascule par-dessus le bastingage, dans le fleuve noir."
+   },
+   {
+    "choice": [
+     {
+      "t": "Plonger.",
+      "goto": "garde_plonger",
+      "fx": [
+       "add fatigue 6",
+       "add align.bond 2"
+      ]
+     },
+     {
+      "t": "Tenir le pont d'abord.",
+      "goto": "garde_tenir"
+     }
+    ]
+   }
+  ],
+  "garde_prete": [
+   {
+    "s": "narrator",
+    "t": "Fang lève son verre. Les Lotus dégainent. Xiaoyu a déjà ouvert son éventail : les lames rétractables arrêtent la première dague à un pouce de sa gorge."
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Tu m'avais prévenue, Kang. Je n'oublie pas mes dettes. Couvre-moi.",
+    "e": "desire",
+    "v": true
+   },
+   {
+    "goto": "combat_lotus"
+   }
+  ],
+  "choix_frapper": [
+   {
+    "s": "narrator",
+    "t": "La table du banquet vole. Les verres, le baijiu, les baguettes d'ivoire. Les Lotus dégainent une seconde trop tard."
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Tu es fou. J'adore les fous.",
+    "e": "joy"
+   },
+   {
+    "goto": "combat_lotus"
+   }
+  ],
+  "garde_plonger": [
+   {
+    "s": "narrator",
+    "t": "L'eau du Han est si froide qu'elle brûle. Tu la trouves au jugé, une main de soie dans le noir, et tu la ramènes contre la coque. Elle crache de l'eau et du sang, et rit."
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Personne… ne plonge… pour moi. Ils regardent. Ils parient.",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "fx": [
+     "flag xiaoyu_blessee",
+     "add aff.xiaoyu 8"
+    ]
+   },
+   {
+    "goto": "combat_lotus"
+   }
+  ],
+  "garde_tenir": [
+   {
+    "s": "narrator",
+    "t": "Tu tiens le pont. Quand tu te penches enfin sur le bastingage, la surface du fleuve est lisse. Puis une main ensanglantée agrippe une amarre : elle est remontée seule, une dague entre les dents."
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Je note. Tu as choisi le pont. Je note tout, Kang.",
+    "e": "contempt"
+   },
+   {
+    "fx": [
+     "flag xiaoyu_blessee",
+     "add trust.xiaoyu -4"
+    ]
+   },
+   {
+    "goto": "combat_lotus"
+   }
+  ],
+  "combat_lotus": [
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "mutinerie"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "goto": "combat_fang"
+   }
+  ],
+  "combat_fang": [
+   {
+    "s": "narrator",
+    "t": "Il ne reste que Fang, la canne-épée à la main, au milieu du banquet renversé."
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "fang"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "s": "narrator",
+    "t": "Le vieil homme recule jusqu'au bastingage, la main sur sa blessure. Xiaoyu s'approche, l'éventail fermé."
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Vous m'avez fait sauter sur vos genoux, Oncle. Je vous rends la politesse.",
+    "e": "contempt",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle le pousse, d'un doigt. Le Han l'avale sans un bruit. Sur le pont, il reste sa veste, et dans la veste, une lettre cachetée à l'écriture tremblée : celle du Vieux Long, adressée à sa fille."
+   },
+   {
+    "s": "elias",
+    "t": "(Je la garde. Ce n'est pas le moment.)",
+    "e": "neutral"
+   },
+   {
+    "fx": [
+     "flag fang_noye",
+     "flag lettre_vieux_long"
+    ]
+   },
+   {
+    "goto": "mutinerie_offre"
+   }
+  ],
+  "mutinerie_offre": [
+   {
+    "s": "xiaoyu",
+    "t": "Tu m'as sauvé la vie. Chez les Long, on ne dit pas merci : on fait un contrat. Fixe ton prix.",
+    "e": "fan",
+    "v": true
+   },
+   {
+    "choice": [
+     {
+      "t": "« Un contrat. Ton Consortium couvre mes arrières, je couvre les tiens. »",
+      "goto": "offre_contrat",
+      "fx": [
+       "add trust.xiaoyu 10"
+      ]
+     },
+     {
+      "t": "« Rien. Tu ne me dois rien. »",
+      "goto": "offre_rien",
+      "fx": [
+       "add aff.xiaoyu 8",
+       "add align.protect 1"
+      ]
+     },
+     {
+      "t": "« Une partie de mahjong. Enjeu total : ton Sceau, et toi. »",
+      "goto": "offre_pari",
+      "fx": [
+       "add align.protect -3"
+      ]
+     }
+    ]
+   }
+  ],
+  "offre_contrat": [
+   {
+    "s": "xiaoyu",
+    "t": "Un homme qui négocie après m'avoir repêchée. Je pourrais t'épouser rien que pour ça. Signé.",
+    "e": "desire"
+   },
+   {
+    "goto": "mutinerie_fin"
+   }
+  ],
+  "offre_rien": [
+   {
+    "s": "xiaoyu",
+    "t": "…Rien. Personne ne m'a jamais rien donné pour rien. Ça me terrifie, Kang. Je viens avec toi pour comprendre ce que tu veux vraiment.",
+    "e": "surprise",
+    "v": true
+   },
+   {
+    "goto": "mutinerie_fin"
+   }
+  ],
+  "offre_pari": [
+   {
+    "s": "narrator",
+    "t": "Elle sourit lentement. Elle fait installer la table sur le pont encore mouillé de sang, au milieu des lanternes. Elle joue mieux que toi. Tu triches mieux qu'elle."
+   },
+   {
+    "s": "narrator",
+    "t": "Au dernier tour, elle voit ta main. Elle comprend que tu as triché. Elle comprend aussi que tu voulais qu'elle le voie."
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Perdu. Loyalement, à ta façon. Une Long paie toujours ses dettes. Le Sceau du Courant, et le reste. Selon le contrat.",
+    "e": "desire",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "PACTE — Long Xiaoyu. Ambivalence de départ : +10. Elle a perdu ; elle honore. Le moindre manquement à une clause, et le Couteau sortira."
+   },
+   {
+    "fx": [
+     "flag pacte.xiaoyu",
+     "set ambivalence.xiaoyu 10",
+     "flag sceau_courant"
+    ]
+   },
+   {
+    "goto": "mutinerie_fin"
+   }
+  ],
+  "mutinerie_fin": [
+   {
+    "s": "registre",
+    "t": "Long Xiaoyu a rejoint le groupe. Nouvelle Fin : Jour 28, un poison du Prophète. Ou ta main, si elle te trahit."
+   },
+   {
+    "fx": [
+     "flag xiaoyu_sauvee",
+     "join xiaoyu",
+     "fin xiaoyu_2",
+     "souvenir xiaoyu_survie",
+     "pressure -2"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "mutinerie_absent": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "registre"
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — Mutinerie sur le Dragon Pâle. Tu n'es pas là."
+   },
+   {
+    "if": "flag('xiaoyu_avertie')",
+    "then": "absent_avertie"
+   },
+   {
+    "s": "registre",
+    "t": "Fang lève son verre. Les Trois Lotus dégainent. Long Xiaoyu est jetée dans le Han, une dague dans le dos."
+   },
+   {
+    "s": "registre",
+    "t": "Long Xiaoyu — Jour 19, Nuit. La Fin est accomplie. Le Sceau du Courant est vendu à Mirae Dynamics."
+   },
+   {
+    "fx": [
+     "flag xiaoyu_morte",
+     "flag courant_mirae"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "absent_avertie": [
+   {
+    "s": "registre",
+    "t": "« Surveille Fang. Il a un acheteur. » Elle s'en est souvenue. Quand Fang lève son verre, l'éventail de Xiaoyu est déjà ouvert."
+   },
+   {
+    "s": "registre",
+    "t": "À l'aube, l'Oncle Fang flotte entre les piles du pont Mapo. Long Xiaoyu tient le Consortium seule. Elle fait savoir qu'elle a une dette envers toi, et qu'elle attend sur sa barge."
+   },
+   {
+    "fx": [
+     "flag xiaoyu_survit",
+     "flag fang_noye"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "contrat": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Le Dragon Pâle. Xiaoyu t'attend seule à la table de mahjong, un contrat calligraphié devant elle, l'encre encore fraîche."
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Tu m'as sauvé la vie avec une phrase, au Sommet. Je déteste les dettes. Alors je paie : mon Consortium, mes barges, et ma compagnie. Signe, mon chou.",
+    "e": "fan",
+    "v": true
+   },
+   {
+    "fx": [
+     "flag lettre_vieux_long"
+    ]
+   },
+   {
+    "s": "narrator",
+    "t": "Dans la doublure du contrat, elle a glissé une lettre cachetée qu'elle n'a pas eu le courage d'ouvrir : l'écriture de son père. Elle te la confie « pour plus tard »."
+   },
+   {
+    "goto": "mutinerie_fin"
+   }
+  ],
+  "defeat": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Le monde bascule. Le sol, le ciel, la Tour qui regarde."
+   },
+   {
+    "s": "elias",
+    "t": "Pas… encore…",
+    "e": "exhausted"
+   },
+   {
+    "s": "registre",
+    "t": "ÉCHEC — Le Lecteur est mort."
+   },
+   {
+    "s": "registre",
+    "t": "Régression."
+   },
+   {
+    "event": "regress",
+    "args": {}
+   },
+   {
+    "end": true
+   }
+  ]
+ }
+}

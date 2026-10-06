@@ -1,4 +1,4 @@
-# LA TOUR DU DERNIER JOUR — Game Design Document v0.7
+# LA TOUR DU DERNIER JOUR — Game Design Document v0.8
 
 > RPG narratif et tactique inspiré des manhwas/webtoons, à haute liberté de choix.
 > **Statut** : pré-production. Le document de conception fait foi avant toute phase de code.
@@ -57,8 +57,8 @@
 | Production visuelle | **Pipeline cloud automatisé** (fal.ai : Flux, LoRA par personnage), sans GPU local ni ComfyUI. Le joueur choisit une planche par personnage, le reste est scripté (§18.6) |
 | Musique | OST **hybride** : thèmes générés par IA et bibliothèques synthwave / dark ambient libres de droits (§18.7) |
 | Écriture | Dialogues, quêtes et scripts rédigés par Claude en JSON à partir des fiches, puis relus par l'auteur |
-| Cohérence (règle d'or) | `tools/check_all.sh` après chaque bloc : validateur de données (références, variables orphelines, conditions, défaites non gérées…), tests unitaires, fuzz de dialogues et 4 parties automatiques complètes, du prologue à la fin de l'Acte II (§19.7) |
-| État (v0.7) | Prologue J1–J2, **Acte I J3–J7** et **Acte II J8–J15 jouables sur la carte** : 7 secteurs + étages 1 et 2, 65 sous-zones, 43 événements datés, Refuge (stock, améliorations, repos avec les héroïnes), sauvegarde/chargement et méta-progression, voix et musique gérées (§19.7) |
+| Cohérence (règle d'or) | `tools/check_all.sh` après chaque bloc : validateur de données (références, variables orphelines, conditions, défaites non gérées…), tests unitaires, fuzz de dialogues et 4 parties automatiques complètes, du prologue à la fin de l'Acte III (§19.7) |
+| État (v0.8) | Prologue J1–J2, **Actes I (J3–J7), II (J8–J15) et III (J16–J23) jouables sur la carte** : 7 secteurs + étages 1 à 4, 73 sous-zones, 61 événements datés, Refuge (stock, améliorations, repos avec les héroïnes), sauvegarde/chargement et méta-progression, voix et musique gérées (§19.7) |
 
 **Règles de design de l'univers :**
 1. **Tous les personnages romançables sont des adultes.** Leur âge est inscrit dans les données, et leur charadesign a des proportions adultes.
@@ -2256,8 +2256,9 @@ manhwa-rpg/                    # le projet Godot est à la racine du dépôt
 │   ├── characters/            # 11 fiches (identité, palette, voix ko/ja, stats)
 │   ├── combat/                # skills · enemies · encounters
 │   ├── dialogues/             # prologue_j1 · act1_world · act1_haein · act1_camp · act1_haneul · act1_tower
-│   │                          # act2_world · act2_aoi · act2_maricel · act2_seo · act2_refuge · act2_tower
-│   ├── world/                 # sectors (7 secteurs + étages 1–2, 65 nœuds) · events · souvenirs · fins · act_summary · refuge
+│   │                          # act2_world · act2_aoi · act2_maricel · act2_seo · act2_tower
+│   │                          # act3_world · act3_ryeon · act3_xiaoyu · act3_haein · act3_tower · refuge (repos, tous actes)
+│   ├── world/                 # sectors (7 secteurs + étages 1–4, 73 nœuds) · events · souvenirs · fins · act_summary · refuge
 │   ├── audio/music.json       # pistes et contextes musicaux
 │   └── art/                   # prompts.json (source des prompts) · manifest.json (assets, backend fal/runpod)
 ├── assets/                    # visuels générés · audio/music · voice/<ko|ja>/<perso>/
@@ -2325,15 +2326,15 @@ manhwa-rpg/                    # le projet Godot est à la racine du dépôt
 | Mémoire cible | < 2,5 Go | < 1 Go (streaming des CG et des voix) |
 | Taille de l'installation | 6 à 8 Go (CG, voix, Live2D) | 3 à 4 Go |
 
-### 19.7 État d'implémentation (v0.7) et contrôle de cohérence
+### 19.7 État d'implémentation (v0.8) et contrôle de cohérence
 
 #### 19.7.1 Carte des 30 jours
 - **Temps** : 1 jour = 4 phases = 16 ticks. Coûts :
   - 1 tick pour passer d'une sous-zone à une autre ;
   - 2 ticks par défaut pour une action ;
-  - 1 phase pour un secteur adjacent, 2 phases pour un secteur lointain.
+  - 3 ticks pour un secteur adjacent, 6 ticks pour un secteur lointain (v0.8, au lieu de 4 et 8 : §19.7.6).
 - **Interruptions** : le temps avance tick par tick, et un événement daté (Ancre) l'interrompt à la frontière de phase. Dormir dans un refuge passe la nuit, sauf si un événement nocturne l'interrompt.
-- **Survie** : la fatigue entraîne un malus de combat à partir de la 5e phase éveillé, et un malaise à 28 ticks (réveil à l'aube, détroussé). Les rations réduisent la fatigue. Une Marée a lieu chaque nuit hors refuge (combattre ou se terrer).
+- **Survie** : la fatigue entraîne un malus de combat à partir de la 5e phase éveillé, et un malaise à 32 ticks : réveil à l'aube s'il survient au crépuscule ou la nuit, deux phases perdues s'il survient à l'aube ou le jour (détroussé dans les deux cas). Les rations réduisent la fatigue. Une Marée a lieu chaque nuit hors refuge (combattre ou se terrer).
 - **Monde** : 7 secteurs et l'étage 1, pour 60 sous-zones. Parmi elles :
   - **14 zones cachées** : souterrains (abri n°7, tunnels coloniaux, bunker B6), **strates effondrées** (Éclat du Vestibule, écaille de Seongsu), sanctuaires, la crypte d'Agatha ;
   - leur révélation dépend de la **phase**, de la **boucle**, des **souvenirs** ou des **rumeurs** ;
@@ -2349,13 +2350,13 @@ manhwa-rpg/                    # le projet Godot est à la racine du dépôt
    - **drapeaux, variables, objets et souvenirs lus mais jamais écrits** (erreur) ou écrits mais jamais lus (avertissement) ;
    - défaites de combat non gérées, adjacences et liens non symétriques, personnages mineurs, cohérence entre l'art et les fiches.
 2. **Import Godot** : erreurs d'analyse GDScript.
-3. **Tests headless** : 2 401 vérifications, dont un fuzz de chaque bloc de dialogue avec des choix aléatoires, la logique de carte, le Refuge, l'aller-retour de sauvegarde, le Grappin et le Charme, et des combats complets contre les rencontres de l'Acte II (Mère Sourde comprise).
+3. **Tests headless** : 3 777 vérifications, dont un fuzz de chaque bloc de dialogue avec des choix aléatoires, la logique de carte, le Refuge (famine de milieu de boucle comprise), l'aller-retour de sauvegarde, le Grappin, le Charme, et des combats complets contre les rencontres des Actes II et III (Mère Sourde, duels, Fang, Courtier, Hôte Affamé, Marée Rouge).
 4. **Quatre parties automatiques complètes** (`tests/autopilot.json`, chaque étape bornée dans le temps) :
-   - standard, du prologue à la fin de l'Acte II : sérum, Refuge, Aoi convaincue et Sirène sabotée, sacrifice brisé, Guerre de l'Eau côté Rats, Seo-Yeon sauvée à Sainte-Marie, Sommet (forages interdits, Hae-in avertie), tunnels étayés, étage 2 ;
-   - embranchements alternatifs : Pacte avec Seo-Yeon, penthouse, concert-piège avec dilemme, Longwei, Seo-Yeon figée par Haneul, Ryeon avertie ;
-   - défaite forcée, régression, puis boucle 2 jusqu'à la fin de l'Acte II ;
+   - standard, du prologue à la fin de l'Acte III : Actes I–II, puis domaine Baek défendu, sacrifice brisé, Elias champion de Ryeon, drones de Mirae, Lotus retourné et Fang noyé, repos au Refuge, coup d'État déjoué (Hae-in alliée), siège tenu (Aoi et Maricel sauvées) ;
+   - embranchements alternatifs : Pacte avec Seo-Yeon, concert-piège, Longwei, Seo-Yeon figée, lettre de Cheonma lue au mariage, Xiaoyu repêchée et Pacte au mahjong, Sceau de la Balance pris (Pacte de Hae-in) ;
+   - défaite forcée, régression, puis boucle 2 jusqu'à la fin de l'Acte III ;
    - `--act1-only` : arrêt à la fin de l'Acte I.
-- Le validateur vérifie aussi que **chaque héroïne qui peut rejoindre le groupe a sa scène de repos** (`act2_refuge:<id>`), et que l'itinéraire de l'autotest ne référence que des nœuds et des conditions valides.
+- Le validateur vérifie aussi que **chaque héroïne qui peut rejoindre le groupe a sa scène de repos** (`refuge:<id>`), que l'itinéraire de l'autotest ne référence que des nœuds et des conditions valides, et que **la version « présent » d'une Ancre exclut sa version « absent »** (une Ancre ne se joue jamais deux fois).
 
 #### 19.7.3 Acte II — Consolidation (J8–J15)
 | Jour | Ancre | Présent | Absent |
@@ -2377,8 +2378,8 @@ manhwa-rpg/                    # le projet Godot est à la racine du dépôt
 - **Fins réécrites** : Aoi (J22, siège de Myeongdong), Seo-Yeon (J27, quais), Maricel (J22, Marché en feu).
 
 #### 19.7.4 Refuge et sauvegardes
-- **Refuge** (`data/world/refuge.json`, `world/refuge_model.gd`) : s'établit sur un nœud refuge (2 rations offertes). Type selon l'alignement (Sanctuaire, Forteresse, Planques, Comptoir). Stock de rations : 1 ration pour 2 résidents par jour, la famine coûte de la Confiance. Améliorations : barricades, cuisine (+1 ration par jour), infirmerie (+1 Confiance par nuit), dortoir (scènes intimes), vigie (pas de Marée dans le secteur), atelier (vente des Fragments).
-- **Moments de repos** : une scène par héroïne du groupe, une fois par jour à partir du crépuscule (`act2_refuge`). Paliers : premier repos, repos courts, puis scène intime avec le Dortoir et une Affinité suffisante ; variantes Pacte (Seo-Yeon) et peur (Aoi dominée).
+- **Refuge** (`data/world/refuge.json`, `world/refuge_model.gd`) : s'établit sur un nœud refuge (2 rations offertes). Type selon l'alignement (Sanctuaire, Forteresse, Planques, Comptoir). Stock de rations : 1 ration pour 2 résidents par jour, la famine coûte de la Confiance. **À partir du J10**, chaque jour de famine coûte −4 Confiance, une phase de fatigue et de la défense ; la pénurie d'eau (Longwei ou pompes détruites) ajoute 1 ration de besoin ; trois jours de faim d'affilée entament l'Affinité. Améliorations : barricades, cuisine (+1 ration par jour), infirmerie (+1 Confiance par nuit), dortoir (scènes intimes), vigie (pas de Marée dans le secteur), atelier (vente des Fragments).
+- **Moments de repos** (`refuge`) : **une scène par héroïne et par jour** (v0.8), à partir du crépuscule, 2 ticks chacune ; elles réduisent la fatigue d'une phase. Paliers : premier repos, repos courts, puis scène intime avec le Dortoir et une Affinité suffisante ; variantes Pacte (Seo-Yeon) et peur (Aoi dominée).
 - **Sauvegarde** (`core/save_manager.gd`) : emplacements auto, 1, 2 et 3 (`user://saves/`), autosauvegarde à chaque nouvelle phase et après chaque fin d'acte, écran Continuer / Charger au titre. **Méta** : boucles vécues, actes terminés, Fins connues et souvenirs, conservés entre les parties.
 
 ---
@@ -2400,6 +2401,39 @@ manhwa-rpg/                    # le projet Godot est à la racine du dépôt
 
 ## 21. Réponses validées & questions ouvertes
 
+#### 19.7.5 Acte III — La Guerre des Sceaux (J16–J23)
+| Jour | Ancre | Présent | Absent |
+|---|---|---|---|
+| J16 aube | Assaut de Cheonma sur le domaine Baek | Tenir l'escalier avec Ryeon ; la lettre de Cheon Mu-gyeong (souvenir) | Le domaine tombe |
+| J16 | Deuxième sacrifice (cinq captifs) | Briser le cercle (combat) | Pression +5 |
+| **J17** | **Mariage-duel de Ryeon** | Elias champion (Confiance), lettre lue (alliance rompue), conseil sur la feinte (duel avantagé), ou duel à pile ou face. Défaite du champion : Ryeon reprend le duel | Survit seulement si avertie au Sommet **et** domaine défendu ou lettre trouvée |
+| J18 | Étages 3 et 4 ouverts, essaim de Mirae sur Hongdae | Abattre l'essaim (signature de Minh-Anh) | — |
+| **J19** | **Mutinerie du Dragon Pâle** | Retourner le Lotus Blanc (souvenirs du Sommet), garder Xiaoyu (plonger ou tenir le pont), frapper le premier ; Fang ; contrat, don ou **Pacte au mahjong** | Survit seule si avertie (contrat ensuite sur sa barge) |
+| J20 | Les Élus trouvent la porte sans serrure | Lettre du Prophète (« tu l'as encore trouvée avant moi ») | Haneul **capturée** si elle n'a pas été trouvée |
+| **J21** | **Coup d'État chez Haesong** | Nam démasqué (si Hae-in avertie) ; épargner ou laisser exécuter Nam ; alliance, **Pacte (Sceau de la Balance)** ou départ | Survit si avertie |
+| **J22** | **Marée Rouge, siège de Myeongdong, troisième sacrifice** | Combat du Sanctuaire, bracelet d'Agatha (souvenir). Fins d'Aoi et de Maricel : Ryeon, Xiaoyu ou la Trêve couvrent Aoi ; sinon, choisir | La cathédrale tombe sans la Trêve ; Aoi et Maricel y meurent |
+| J23 | Troisième Classement : « Descente dans 7 jours » | Bilan, révélation de Haneul (« la Descente, c'est moi ») | — |
+
+- **Étage 3 — le Marché des Âmes** : vendre des années de vie, gager un souvenir, enchères (lame de Tour, +4 ATQ), le **Courtier** (combattre, payer ou lui vendre un souvenir de la première vie).
+- **Étage 4 — le Banquet** : partager le pain (impossible ensuite de frapper ce convive), la fiole d'amanite des cuisines, l'**Hôte Affamé** (empoisonner ou combattre).
+- **Nouvelles jouables** : Ryeon (Iai, Garde du Lotus, Danse des Pétales, Tigre Blanc Céleste) et Xiaoyu (Mille Aiguilles, poison, Mise totale, Dragon Noir). Hae-in rejoint le groupe si elle est sauvée.
+- **Nouvelles Fins** : Ryeon (J29, étage 8), Xiaoyu (J28), Hae-in (J30), Aoi et Maricel (troisièmes pages, J30).
+- **Scènes de repos** : Ryeon (source chaude), Xiaoyu (mahjong, lettre du Vieux Long, Pacte), Hae-in (échecs, brûlures, Pacte). Les nuits de Seo-Yeon, Haneul, Aoi et Maricel sont approfondies, et Seo-Yeon a une deuxième nuit.
+
+#### 19.7.6 Équilibrage v0.8
+- **Mesure du temps** : l'autopilote compte les phases de jour où l'itinéraire n'a rien d'obligatoire à faire. Avant v0.8, un itinéraire qui couvre toutes les Ancres ne laissait que **3 phases libres sur 21** (Acte I) et **7 sur 24** (Acte II), avec **un seul repos par jour** pour toutes les héroïnes : les romances ne pouvaient pas avancer.
+- **Décision** : la boucle reste à **30 jours** (le calendrier, les Fins et le lore en dépendent), mais l'horloge s'assouplit :
+  - trajets −25 % (3 / 6 ticks) ;
+  - repos par héroïne et par jour, 2 ticks, le soir : la romance ne consomme plus les phases de jour ;
+  - malaise à 32 ticks, et un malaise du matin ne coûte plus une journée entière (bug corrigé).
+- **Combat** :
+  - dégâts ennemis +32 % ; Gardiens +15 % de PV avec des **paliers** (sous 60 / 50 / 25 % de PV : vitesse, attaque, nouvelles compétences) ;
+  - **Règle du bruit** de la Mère Sourde : chaque compétence coûteuse l'enrage ;
+  - IA : achever une cible, viser les soigneurs, puis la cible la plus entamée ;
+  - Rôdeurs qui sautent sur la ligne arrière ; poison, contre-attaque, attaques qui ignorent la défense ;
+  - régénération de 4 mana par action ; difficulté propre à chaque rencontre (tutoriels plus doux, duels réglés au cas par cas).
+- **Bug corrigé** : Frappe de Recouvreur et Clé de bras n'étaient jamais utilisables (comparaison de lignes flottantes et entières).
+
 ### 21.1 Réponses validées
 | Question | Réponse | Section |
 |---|---|---|
@@ -2413,16 +2447,18 @@ manhwa-rpg/                    # le projet Godot est à la racine du dépôt
 | Visuels | **Pipeline cloud automatisé**, sans GPU ni ComfyUI | §18.6 |
 | Voix, format, périmètre, mobile | Coréen et japonais · jeu d'un seul bloc · Séoul + étages 1 à 50 · paysage exclusif | §18.3, §15, §19.6 |
 
-### 21.2 Fait en v0.6 et v0.7
+### 21.2 Fait en v0.6, v0.7 et v0.8
 - **Carte des 30 jours** : gestionnaire de temps, 7 secteurs et l'étage 1, zones cachées et événements secrets (§19.7).
 - **Acte I J3–J7** : Hae-in (audience, contrat ARCHE, penthouse), manifestations de Haneul (rêves, vision, murmure, réveil à l'étage 1), décision du camp (4 voies, dont le **Pacte** avec Seo-Yeon), Nuée (présent ou absent), Sceaux, Classement, et des rencontres-teasers des autres héroïnes avec lecture de leur Fin.
 - **Audio** : `MusicManager` (contextes par secteur, nuit, combat, danger, boss, Registre, intime), `VoiceManager` (commutateur On/Off, coréen ou japonais), menu Options. Le pipeline des voix exporte 127 répliques, déjà traduites en coréen et en japonais.
 - **Prompts** : morphologies et fanservice ; backend 18+ RunPod/ComfyUI.
 - **v0.7 — Acte II J8–J15** (§19.7.3) : 6 nouveaux fichiers de dialogues (environ 880 étapes), 25 nouveaux événements, l'étage 2 et la Mère Sourde, Aoi et Maricel jouables, la Guerre de l'Eau, le Sommet des Sceaux, la Fin de Seo-Yeon sous toutes ses formes (camp, Pacte, rupture, vassale de Cheonma, morsure).
 - **v0.7 — Refuge et sauvegardes** (§19.7.4) ; 275 répliques doublables, toutes traduites en coréen et en japonais.
+- **v0.8 — Acte III J16–J23** (§19.7.5) : 5 nouveaux fichiers de dialogues (environ 540 étapes), 18 nouveaux événements, étages 3 et 4, Ryeon et Xiaoyu jouables, Pactes de Xiaoyu et de Hae-in, scènes de repos approfondies (fichier `refuge`, 263 étapes).
+- **v0.8 — Équilibrage** du temps, du combat et de la famine (§19.7.6) ; 361 répliques doublables, toutes traduites.
 
 ### 21.3 Prochaines étapes
 1. **Générer les visuels** : `generate.py refs`, choisir les planches, puis `auto` par personnage ; ajouter les CG de l'Acte II (concert, Sainte-Marie, tunnels, Sommet).
-2. **Acte III (J16–J23)** : duel de Ryeon (J17), mutinerie de Longwei et Fin de Xiaoyu (J19), coup d'État chez Haesong (J21), siège de Myeongdong (J22), Troisième Classement.
-3. **Quêtes de Faction** ouvertes au J15 et choix de camp avant le J19.
+2. **Acte IV (J24–J30)** : contrat sur Simone (Nadia, J24), Machine d'Inversion (Minh-Anh, J26), Dernier Exode (J27), Protocole Cendre (J28), étages 5 à 10, Nuit du Déversement (§14.4).
+3. **Quêtes de Faction** et choix de camp ; sauvetage de Haneul si les Élus l'ont capturée.
 4. **Scènes de Pacte et de romance** (P1 à P3), avec leurs CG RunPod ; Quartiers du Refuge pour loger les 10 héroïnes.

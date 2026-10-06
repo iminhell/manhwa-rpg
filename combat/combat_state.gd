@@ -10,6 +10,7 @@ signal logged(text: String)
 var units: Array = []
 var skills: Dictionary = {}
 var rng := RandomNumberGenerator.new()
+const MANA_REGEN := 4            ## mana récupéré à chaque action (évite les fins de combat à la seule Garde)
 var reveal_count: int = 2       ## Pressentiment niveau 1 : 2 premières cases ennemies
 var rewrite_charges: int = 0
 var turn: int = 0
@@ -40,6 +41,9 @@ func setup(party: Array, encounter: Dictionary, enemy_db: Dictionary, skill_db: 
 		var u = _make_unit(uid, e["id"], def.get("name", e["id"]), "enemy", [e.get("row", 0), e.get("lane", 1)], def, [])
 		u.boss = def.get("boss", false)
 		u.color = def.get("color", "#c0392b")
+		u.atk *= float(encounter.get("atk_mult", 1.0))  # difficulté propre à la rencontre (tutoriels plus doux)
+		u.phases = def.get("phases", []).duplicate(true)
+		u.rule = str(def.get("rule", ""))
 		units.append(u)
 	for u in units:
 		u.ctb = _turn_delay(u, 100) * rng.randf_range(0.8, 1.0)
@@ -121,7 +125,7 @@ func can_use(actor, skill_id: String) -> bool:
 	if actor.mana < int(s.get("cost", 0)):
 		return false
 	var rows: Array = s.get("from_rows", [])
-	if not rows.is_empty() and not rows.has(actor.row):
+	if not rows.is_empty() and not rows.map(func(r): return int(r)).has(actor.row):  # JSON : nombres flottants
 		return false
 	return not valid_targets(actor, skill_id).is_empty()
 
@@ -251,6 +255,8 @@ func use_skill(actor, skill_id: String, target) -> void:
 	else:
 		actor.awaken = min(100, actor.awaken + 8)
 	_log("%s utilise %s." % [actor.name, s.get("name", skill_id)])
+	if actor.side == "ally" and int(s.get("cost", 0)) > 0:
+		_hear_noise(actor)
 	for tgt in affected(actor, skill_id, target):
 		for eff in s.get("effects", []):
 			_apply(actor, tgt, eff)
@@ -261,12 +267,21 @@ func use_skill(actor, skill_id: String, target) -> void:
 
 
 func _end_action(actor, weight: int) -> void:
+	if actor.has_status("poison") and actor.is_alive():
+		var pdmg := int(max(1.0, round(actor.max_hp * (0.03 if actor.boss else 0.06))))
+		actor.hp = max(0, actor.hp - pdmg)
+		_log("  %s souffre du poison (%d)." % [actor.name, pdmg])
+		if actor.hp == 0:
+			_log("  %s tombe." % actor.name)
+		else:
+			_check_phase(actor)
 	for k in actor.statuses.keys():
 		if k == "stun":
 			continue
 		actor.statuses[k] -= 1
 		if actor.statuses[k] <= 0:
 			actor.statuses.erase(k)
+	actor.mana = min(actor.max_mana, actor.mana + MANA_REGEN)
 	actor.ctb += _turn_delay(actor, weight)
 	if actor.side == "enemy" and actor.is_alive():
 		plan_intent(actor)
@@ -308,7 +323,7 @@ func _apply(actor, tgt, eff: Dictionary) -> void:
 				tgt.hp = int(round(tgt.max_hp * float(eff.get("pct", 0.3))))
 				_log("  %s se relève !" % tgt.name)
 		"cleanse":
-			for s in ["stun", "immobile", "mark"]:
+			for s in ["stun", "immobile", "mark", "poison", "charm"]:
 				tgt.statuses.erase(s)
 			tgt.fear = 0
 		"crit_next":
@@ -348,11 +363,13 @@ func _damage(actor, tgt, eff: Dictionary) -> void:
 		_log("  %s est exécuté !" % tgt.name)
 		return
 	var raw: float = actor.atk * float(eff.get("power", 1.0)) * rng.randf_range(0.9, 1.1)
-	var crit: bool = actor.crit_next or rng.randf() < 0.05 or (tgt.has_status("mark") and rng.randf() < 0.3)
+	var crit: bool = actor.crit_next or rng.randf() < 0.05 or (tgt.has_status("mark") and rng.randf() < 0.3) \
+		or (eff.get("crit_if_full", false) and tgt.hp == tgt.max_hp)
 	if crit:
 		raw *= 1.5
 	actor.crit_next = false
-	raw *= 100.0 / (100.0 + tgt.def * 3.0)
+	if not eff.get("ignore_def", false):
+		raw *= 100.0 / (100.0 + tgt.def * 3.0)
 	if tgt.has_status("guard"):
 		raw *= 0.6
 	var dmg := int(max(1.0, round(raw)))
@@ -361,10 +378,42 @@ func _damage(actor, tgt, eff: Dictionary) -> void:
 	_log("  %s subit %d dégâts%s." % [tgt.name, dmg, " (critique)" if crit else ""])
 	if tgt.hp == 0:
 		_log("  %s tombe." % tgt.name)
+		return
+	_check_phase(tgt)
+	# Garde du Lotus : riposte aux coups portés par l'autre camp (jamais en chaîne)
+	if tgt.has_status("counter") and actor.side != tgt.side and actor.is_alive() and not eff.get("_counter", false):
+		_log("  %s riposte !" % tgt.name)
+		_damage(tgt, actor, {"power": 0.7, "_counter": true})
+
+
+## Paliers de boss : sous un seuil de PV, le Gardien change de comportement (une seule fois par palier).
+func _check_phase(u) -> void:
+	while u.phase_idx < u.phases.size() and u.hp_ratio() <= float(u.phases[u.phase_idx].get("below", 0.0)):
+		var ph: Dictionary = u.phases[u.phase_idx]
+		u.phase_idx += 1
+		u.atk *= float(ph.get("atk_mult", 1.0))
+		u.spd *= float(ph.get("spd_mult", 1.0))
+		u.def *= float(ph.get("def_mult", 1.0))
+		for sid in ph.get("add_skills", []):
+			if not u.skills.has(sid):
+				u.skills.append(sid)
+		u.mana = u.max_mana
+		_log("  [%s] %s" % [u.name, ph.get("log", "change de forme !")])
+		plan_intent(u)
+
+
+## Règle « bruit » (étage 2) : chaque compétence coûteuse d'un allié enrage le Gardien.
+func _hear_noise(actor) -> void:
+	for e in alive("enemy"):
+		if e.rule == "bruit" and e.rage < 12:
+			e.rage += 1
+			e.atk *= 1.04
+			_log("  %s entend %s (rage %d)." % [e.name, actor.name, e.rage])
 
 
 func _status_name(s: String) -> String:
-	return {"stun": "étourdi", "immobile": "immobilisé", "guard": "protégé", "mark": "marqué", "charm": "charmé"}.get(s, s)
+	return {"stun": "étourdi", "immobile": "immobilisé", "guard": "protégé", "mark": "marqué", "charm": "charmé",
+		"poison": "empoisonné", "counter": "en garde du Lotus"}.get(s, s)
 
 
 # --- IA ennemie ----------------------------------------------------------------------
@@ -377,12 +426,40 @@ func plan_intent(enemy) -> void:
 			continue
 		var s := skill(sid)
 		var targets := valid_targets(enemy, sid)
-		targets.sort_custom(func(a, b): return a.hp_ratio() < b.hp_ratio())
+		if targets.is_empty():
+			continue
 		var score := float(s.get("ai_weight", 1.0)) * rng.randf_range(0.7, 1.3)
+		var target = _ai_target(enemy, s, targets)
+		if _would_kill(enemy, s, target):
+			score += 0.6
 		if score > best_score:
 			best_score = score
-			best = {"skill": sid, "target": targets[0].uid}
+			best = {"skill": sid, "target": target.uid}
 	enemy.intent = best
+
+
+## Choix de cible ennemi (v0.8) : achever une cible > viser un soigneur > la cible la plus entamée.
+func _ai_target(enemy, s: Dictionary, targets: Array):
+	var killable := targets.filter(func(t): return _would_kill(enemy, s, t))
+	if not killable.is_empty():
+		return killable[0]
+	var healers := targets.filter(func(t): return t.skills.any(func(sid): return skill(sid).get("effects", []).any(
+		func(e): return e.get("type", "") == "heal")))
+	if not healers.is_empty() and rng.randf() < (0.6 if enemy.boss else 0.35):
+		return healers[rng.randi_range(0, healers.size() - 1)]
+	var sorted := targets.duplicate()
+	sorted.sort_custom(func(a, b): return a.hp_ratio() < b.hp_ratio())
+	return sorted[0]
+
+
+func _would_kill(enemy, s: Dictionary, t) -> bool:
+	var power := 0.0
+	for e in s.get("effects", []):
+		if e.get("type", "") == "damage":
+			power += float(e.get("power", 1.0))
+	if power <= 0.0:
+		return false
+	return enemy.atk * power * 100.0 / (100.0 + t.def * 3.0) >= t.hp
 
 
 ## Politique automatique pour un allié (mode test, combat auto) :

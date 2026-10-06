@@ -17,5 +17,25 @@
     "ja": "tts_ryeon_ja",
     "timbre": "mezzo claire, formelle"
   },
-  "art_token": "ryeon_baek"
+  "art_token": "ryeon_baek",
+  "combat": {
+    "stats": {
+      "hp": 95,
+      "atk": 15,
+      "def": 5,
+      "spd": 14,
+      "mana": 60
+    },
+    "position": [
+      0,
+      0
+    ],
+    "skills": [
+      "iai",
+      "garde_lotus",
+      "danse_petales",
+      "garde",
+      "tigre_blanc"
+    ]
+  }
 }

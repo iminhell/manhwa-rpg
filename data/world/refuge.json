@@ -1,5 +1,5 @@
 {
- "note": "Refuge (§8.5) : une base établie sur un nœud-refuge. Stock de rations, améliorations, entretien quotidien, moments de repos.",
+ "note": "Refuge (§8.5) : une base établie sur un nœud-refuge. Stock de rations, améliorations, entretien quotidien, moments de repos. Milieu de boucle (J10+) : la famine coûte plus de Confiance, de la fatigue et de la défense ; la pénurie d'eau (Longwei ou pompes détruites) ajoute 1 ration de besoin ; 3 jours de faim d'affilée entament l'Affinité.",
  "types": [
   {
    "id": "sanctuaire",
@@ -28,7 +28,15 @@
  ],
  "upkeep": {
   "residents_per_ration": 2,
-  "hunger_trust_penalty": 2
+  "hunger_trust_penalty": 2,
+  "midloop_day": 10,
+  "midloop_trust_penalty": 4,
+  "midloop_fatigue": 4,
+  "midloop_defense_loss": 5,
+  "shortage_if": "v('eau.controle', '') == 'longwei' or v('eau.controle', '') == 'personne'",
+  "shortage_extra_need": 1,
+  "starving_days": 3,
+  "starving_aff_penalty": 2
  },
  "upgrades": {
   "barricades": {

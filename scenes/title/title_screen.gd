@@ -27,7 +27,7 @@ func _ready() -> void:
 	var t := UI.label("LA TOUR DU DERNIER JOUR", 72, UI.TEXT)
 	t.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	v.add_child(t)
-	var st := UI.label("Prototype — Actes I et II", 26, UI.GOLD)
+	var st := UI.label("Prototype — Actes I à III", 26, UI.GOLD)
 	st.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	v.add_child(st)
 	var loops := int(SaveManager.meta.get("loops", 1))

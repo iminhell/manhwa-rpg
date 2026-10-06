@@ -28,6 +28,7 @@ func _init() -> void:
 	test_dialogue_fuzz()
 	test_save_roundtrip()
 	test_refuge()
+	test_refuge_midloop()
 	print("\n%d réussis, %d échoués" % [_passed, _failed])
 	quit(1 if _failed > 0 else 0)
 
@@ -132,7 +133,13 @@ func test_combat_full_battles() -> void:
 	var parties := {"tuto_rodeur": ["elias"], "j1_maree": ["elias"], "j2_camp": ["elias", "seo_yeon"],
 		"portier_test": ["elias", "seo_yeon", "haneul", "hae_in"],
 		"concert_maree": ["elias", "seo_yeon", "haneul", "aoi"], "tunnels": ["elias", "haneul", "aoi", "maricel"],
-		"mere_sourde": ["elias", "seo_yeon", "haneul", "aoi", "maricel"]}
+		"mere_sourde": ["elias", "seo_yeon", "haneul", "aoi", "maricel"],
+		"maree_t3": ["elias", "seo_yeon", "haneul", "aoi", "maricel"],
+		"duel_tae_ju": ["elias"], "duel_ryeon": ["ryeon"], "duel_ryeon_avertie": ["ryeon"], "fang": ["elias", "haneul", "aoi", "maricel", "ryeon"],
+		"coup_haesong": ["elias", "seo_yeon", "haneul", "aoi", "maricel", "ryeon", "xiaoyu"],
+		"maree_rouge": ["elias", "seo_yeon", "haneul", "aoi", "maricel", "ryeon", "xiaoyu", "hae_in"],
+		"courtier": ["elias", "seo_yeon", "haneul", "aoi", "maricel", "ryeon"],
+		"hote_affame": ["elias", "seo_yeon", "haneul", "aoi", "maricel", "ryeon", "xiaoyu"]}
 	for enc in parties:
 		for seed_value in [7, 11, 23]:
 			var st := _load_combat(enc, parties[enc], seed_value)
@@ -180,6 +187,30 @@ func test_combat_fear() -> void:
 
 
 ## Acte II : Grappin (attire en première ligne) et Charme (l'ennemi frappe les siens).
+## v0.8 : famine plus punitive au milieu de la boucle, pénurie d'eau.
+func test_refuge_midloop() -> void:
+	var s := StateStore.new()
+	var r := RefugeModel.new(s, DataDB.load_json("res://data/world/refuge.json"))
+	s.set_flag("party.seo_yeon")
+	s.set_flag("party.haneul")
+	s.set_time(11, 0)
+	r.establish("yeouido.parking")
+	var need := r.daily_need()
+	s.set_var("eau.controle", "longwei")
+	check(r.daily_need() == need + 1, "pénurie d'eau : +1 ration de besoin")
+	s.set_var("refuge.rations", 0)
+	s.set_var("fatigue", 0)
+	var t := s.trust("seo_yeon")
+	var a := s.aff("seo_yeon")
+	for i in 3:
+		s.set_time(12 + i, 0)
+		r.daily_upkeep()
+	check(s.trust("seo_yeon") == t - 12, "famine J10+ : −4 Confiance par jour")
+	check(int(s.get_var("fatigue")) >= 12, "famine J10+ : fatigue accumulée")
+	check(s.aff("seo_yeon") < a, "trois jours de faim : l'Affinité baisse")
+	check(int(s.get_var("refuge.defense")) < 0 or int(s.get_var("refuge.defense")) <= -15, "famine J10+ : défense du Refuge en baisse")
+
+
 func test_combat_pull_charm() -> void:
 	var st := _load_combat("concert_maree", ["elias", "aoi", "maricel"], 9)
 	var back = st.unit_at("enemy", 2, 2)
@@ -249,7 +280,7 @@ func test_world_model() -> void:
 	w.move("yeouido.ifc")
 	check(s.ticks() == t0 + 1 and w.node_id() == "yeouido.ifc", "déplacement = 1 tick")
 	check(not w.sector_available("etage1"), "étage 1 fermé avant J5")
-	check(w.travel_cost("ponts") == 4 and w.travel_cost("gangnam") == 8, "coûts de trajet (adjacent / lointain)")
+	check(w.travel_cost("ponts") == 3 and w.travel_cost("gangnam") == 6, "coûts de trajet (adjacent / lointain)")
 	# Événement daté : le rêve du J2 interrompt l'avancée à la nuit
 	w.take_event()
 	w.advance(8)
@@ -287,10 +318,18 @@ func test_world_model() -> void:
 	var s2 := StateStore.new()
 	var w2 := _world(s2)
 	w2.place("hongdae.rue_clubs")
-	s2.set_var("fatigue", 27)
+	s2.set_time(1, 2)
+	s2.set_var("fatigue", 31)
 	s2.set_flag("event.j2_reve")
+	s2.set_flag("event.maree")
 	w2.advance(2)
-	check(int(s2.get_var("fatigue")) == 0 and s2.phase() == 0 and s2.day() == 2, "malaise à 28 de fatigue → aube suivante")
+	check(int(s2.get_var("fatigue")) == 0 and s2.phase() == 0 and s2.day() == 2, "malaise du soir à 32 de fatigue → aube suivante")
+	var s3 := StateStore.new()
+	var w3 := _world(s3)
+	w3.place("hongdae.rue_clubs")
+	s3.set_var("fatigue", 31)
+	w3.advance(2)
+	check(int(s3.get_var("fatigue")) == 0 and s3.day() == 1 and s3.phase() == 2, "malaise du matin : deux phases perdues, pas une journée")
 
 
 ## Parcourt chaque bloc de chaque dialogue avec des choix aléatoires : aucune erreur ni boucle infinie.
@@ -389,8 +428,11 @@ func test_refuge() -> void:
 	s.set_time(s.day(), 2)
 	w.take_event()
 	var rest := w.actions().filter(func(a): return a.get("rest", false))
+	var n_rest := rest.size()
 	w.do_action(rest[0])
-	check(w.actions().filter(func(a): return a.get("rest", false)).is_empty(), "un seul moment de repos par jour")
+	var left := w.actions().filter(func(a): return a.get("rest", false))
+	check(left.size() == n_rest - 1 and not left.any(func(a): return a["id"] == rest[0]["id"]),
+		"un moment de repos par héroïne et par jour")
 	# Vigie : pas de Marée dans le secteur du Refuge
 	s.set_flag("refuge.vigie")
 	w.place("yeouido.ifc")

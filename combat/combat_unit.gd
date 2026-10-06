@@ -24,6 +24,10 @@ var boss: bool = false
 var fled: bool = false
 var color: String = "#2ec5ff"
 var intent: Dictionary = {}     ## ennemis : {"skill": id, "target": uid}
+var phases: Array = []          ## boss : [{"below": 0.5, "atk_mult": 1.2, "spd_mult": 1.0, "add_skills": [], "log": "…"}]
+var phase_idx: int = 0          ## nombre de paliers déjà franchis
+var rule: String = ""           ## Règle de Gardien (ex. "bruit" : chaque compétence coûteuse l'enrage)
+var rage: int = 0
 
 
 func is_alive() -> bool:
@@ -40,7 +44,7 @@ func has_status(s: String) -> bool:
 
 const FIELDS := ["uid", "base_id", "name", "side", "row", "lane", "max_hp", "hp", "atk", "def", "spd",
 	"max_mana", "mana", "awaken", "fear", "skills", "statuses", "ctb", "crit_next", "boss", "fled",
-	"color", "intent"]
+	"color", "intent", "phases", "phase_idx", "rule", "rage"]
 
 
 func to_dict() -> Dictionary:

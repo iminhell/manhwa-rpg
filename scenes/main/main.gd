@@ -17,7 +17,7 @@ const SavePanel := preload("res://scenes/save_panel.gd")
 const UI := preload("res://ui/ui_style.gd")
 
 const STORY := "prologue_j1"
-const LAST_ACT := 2
+const LAST_ACT := 3
 const AUTOTEST_MAX_STEPS := 12000
 
 var _screen: Control        ## écran principal (titre, prologue, carte, résumé)
@@ -222,6 +222,8 @@ func _end_act(act: int) -> void:
 		var lines: Array = DataDB.act_summary.get("act%d" % act, []).filter(func(l): return st.check(str(l.get("if", ""))))
 		print("[autotest] FIN DE L'ACTE %d — boucle %d, J%d, groupe %s, Pression %d" % [
 			act, st.loop(), st.day(), GameState.party_ids(), int(st.pressure())])
+		print("[autotest] temps libre de l'Acte %d : %.1f phases de jour sur l'itinéraire" % [act, _map.idle_ticks / 4.0])
+		_map.idle_ticks = 0
 		for l in lines:
 			print("[autotest]   • ", l["text"])
 		if act >= LAST_ACT or OS.get_cmdline_user_args().has("--act1-only"):

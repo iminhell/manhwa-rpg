@@ -29,7 +29,8 @@ var _over := false
 func setup(encounter_id: String, party_ids: Array, seed_value: int = 0) -> void:
 	var enc: Dictionary = DataDB.encounters.get(encounter_id, {})
 	var party := []
-	for id in party_ids:
+	# Duels et combats imposés : la rencontre peut fixer son propre groupe ("party").
+	for id in enc.get("party", party_ids):
 		party.append(DataDB.character(id))
 	state = CombatState.new()
 	state.setup(party, enc, DataDB.enemies, DataDB.skills, seed_value)
@@ -54,6 +55,8 @@ func _apply_modifiers() -> void:
 	elias.atk *= fatigue
 	if GameState.store.item("lame_gu") > 0:
 		elias.atk += 3.0
+	if GameState.store.item("lame_tour") > 0:  # étage 3 : la lame qui coupe les glyphes
+		elias.atk += 4.0
 	if fatigue < 1.0:
 		_pending_log.append("Fatigue : Elias combat à %d %% de sa force." % int(fatigue * 100))
 

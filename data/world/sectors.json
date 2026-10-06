@@ -448,7 +448,7 @@
        "label": "Poser la main sur la porte",
        "cost": 1,
        "dialogue": "act1_haneul:rencontre",
-       "if": "not flag('haneul_trouvee')"
+       "if": "not flag('haneul_trouvee') and not flag('haneul_capturee')"
       }
      ]
     },
@@ -1207,6 +1207,14 @@
        "cost": 1,
        "once": true,
        "dialogue": "act1_world:xiaoyu_barge"
+      },
+      {
+       "id": "contrat",
+       "label": "Monter à bord du Dragon Pâle (contrat de Xiaoyu)",
+       "cost": 2,
+       "once": true,
+       "if": "flag('xiaoyu_survit') and not party('xiaoyu') and day() >= 20",
+       "dialogue": "act3_xiaoyu:contrat"
       }
      ]
     },
@@ -1600,7 +1608,8 @@
        "once": true,
        "dialogue": "act1_world:ryeon_domaine"
       }
-     ]
+     ],
+     "refuge": "flag('domaine_defendu') or flag('ryeon_sauvee')"
     },
     "collines.jingwansa": {
      "name": "Temple Jingwansa",
@@ -1738,7 +1747,8 @@
     0.33
    ],
    "adjacent": [
-    "etage1"
+    "etage1",
+    "etage3"
    ],
    "entry": "etage2.rues_muettes",
    "desc": "Règle : tout son au-dessus d'un murmure attire le Gardien. Chaque combat fait du bruit.",
@@ -1893,6 +1903,246 @@
         "pressure -10",
         "souvenir premier_conquerant_2"
        ]
+      }
+     ]
+    }
+   }
+  },
+  "etage3": {
+   "name": "Tour — Étage 3 : Le Marché des Âmes",
+   "short": "Étage 3",
+   "controller": "tour",
+   "danger": 4,
+   "color": "#d4ac0d",
+   "map_pos": [
+    0.88,
+    0.22
+   ],
+   "adjacent": [
+    "etage2",
+    "etage4"
+   ],
+   "entry": "etage3.allee",
+   "desc": "Règle : tout s'achète, même les souvenirs et les années de vie.",
+   "music": "tower",
+   "available": "day() >= 18 and flag('passe_tour')",
+   "nodes": {
+    "etage3.allee": {
+     "name": "L'Allée des étals",
+     "type": "lieu",
+     "desc": "Des balances qui pèsent l'invisible. Des marchands sans visage.",
+     "pos": [
+      0.15,
+      0.5
+     ],
+     "links": [
+      "etage3.preteur",
+      "etage3.encheres",
+      "etage3.comptoir"
+     ],
+     "actions": [
+      {
+       "id": "vendre_annee",
+       "label": "Vendre une année de vie (+40)",
+       "cost": 1,
+       "daily": true,
+       "fx": [
+        "money 40",
+        "add annees_vendues 1",
+        "add fatigue 4"
+       ],
+       "message": "Une balance de cuivre, un frisson glacé. Tu as un an de moins à vivre. Tu ne sais pas lequel."
+      },
+      {
+       "id": "creanciers",
+       "label": "Affronter les créanciers du Marché",
+       "cost": 2,
+       "once": true,
+       "encounter": "marche_ames",
+       "win_fx": [
+        "money 60",
+        "item fragment_strate 1"
+       ]
+      }
+     ]
+    },
+    "etage3.preteur": {
+     "name": "Le Prêteur sur souvenirs",
+     "type": "pnj",
+     "desc": "Un vieillard qui garde des souvenirs dans des bocaux étiquetés.",
+     "pos": [
+      0.4,
+      0.85
+     ],
+     "links": [
+      "etage3.allee"
+     ],
+     "actions": [
+      {
+       "id": "gager",
+       "label": "Gager un souvenir sans importance (+80)",
+       "cost": 2,
+       "once": true,
+       "fx": [
+        "money 80",
+        "flag souvenir_gage"
+       ],
+       "message": "Il prend le goût du premier café de ta vie. Tu ne t'en souviendras plus jamais. Il le range entre « une chanson de 1994 » et « la peur du noir »."
+      }
+     ]
+    },
+    "etage3.encheres": {
+     "name": "La Salle des enchères",
+     "type": "cache",
+     "desc": "On y vend ce qui n'a pas de prix. Ce soir : une lame forgée dans la Tour.",
+     "pos": [
+      0.55,
+      0.2
+     ],
+     "links": [
+      "etage3.allee"
+     ],
+     "actions": [
+      {
+       "id": "lame",
+       "label": "Enchérir sur la lame de Tour (120)",
+       "cost": 2,
+       "once": true,
+       "if": "money() >= 120",
+       "fx": [
+        "money -120",
+        "item lame_tour 1"
+       ],
+       "message": "Une lame grise, sans éclat, qui ne pèse rien. Elle coupe les glyphes."
+      }
+     ],
+     "hidden": "souvenir('marche_ames') or loop() >= 2"
+    },
+    "etage3.comptoir": {
+     "name": "Le Comptoir de jade",
+     "type": "menace",
+     "desc": "Un homme dont le visage est un livre de comptes.",
+     "pos": [
+      0.85,
+      0.5
+     ],
+     "links": [
+      "etage3.allee"
+     ],
+     "actions": [
+      {
+       "id": "courtier",
+       "label": "Traiter avec le Courtier",
+       "cost": 2,
+       "if": "not flag('courtier_vaincu')",
+       "dialogue": "act3_tower:courtier"
+      }
+     ]
+    }
+   }
+  },
+  "etage4": {
+   "name": "Tour — Étage 4 : Le Banquet",
+   "short": "Étage 4",
+   "controller": "tour",
+   "danger": 5,
+   "color": "#784212",
+   "map_pos": [
+    0.93,
+    0.12
+   ],
+   "adjacent": [
+    "etage3"
+   ],
+   "entry": "etage4.vestibule",
+   "desc": "Règle : on ne peut pas frapper quelqu'un avec qui l'on a partagé un repas.",
+   "music": "tower",
+   "available": "day() >= 18 and flag('passe_tour')",
+   "nodes": {
+    "etage4.vestibule": {
+     "name": "Le Vestibule des convives",
+     "type": "lieu",
+     "desc": "Des manteaux de mondes disparus, accrochés à des patères d'os.",
+     "pos": [
+      0.15,
+      0.5
+     ],
+     "links": [
+      "etage4.salle",
+      "etage4.cuisines"
+     ],
+     "actions": []
+    },
+    "etage4.salle": {
+     "name": "La Grande Salle",
+     "type": "lieu",
+     "desc": "Des convives maigres qui mangent sans fin.",
+     "pos": [
+      0.45,
+      0.3
+     ],
+     "links": [
+      "etage4.vestibule",
+      "etage4.table"
+     ],
+     "actions": [
+      {
+       "id": "partager",
+       "label": "Partager le pain d'un convive",
+       "cost": 2,
+       "once": true,
+       "fx": [
+        "souvenir banquet",
+        "item ration 3",
+        "pressure -1"
+       ],
+       "message": "Une femme à six doigts te tend une miche. Elle vient d'un monde qui s'appelait « Ilun ». Vous ne pourrez plus jamais vous battre. Elle a l'air soulagée."
+      }
+     ]
+    },
+    "etage4.cuisines": {
+     "name": "Les Cuisines",
+     "type": "cache",
+     "desc": "Des chaudrons qui bouillent seuls. Une étagère de fioles sans étiquette.",
+     "pos": [
+      0.45,
+      0.8
+     ],
+     "links": [
+      "etage4.vestibule"
+     ],
+     "actions": [
+      {
+       "id": "fiole",
+       "label": "Voler une fiole d'amanite",
+       "cost": 2,
+       "once": true,
+       "fx": [
+        "item poison_hote 1"
+       ],
+       "message": "Une fiole verte, tiède. Le cuisinier fantôme te regarde la prendre, et sourit."
+      }
+     ],
+     "hidden": "souvenir('banquet') or loop() >= 2"
+    },
+    "etage4.table": {
+     "name": "La Table de l'Hôte",
+     "type": "menace",
+     "desc": "Il ne partage jamais son repas.",
+     "pos": [
+      0.85,
+      0.4
+     ],
+     "links": [
+      "etage4.salle"
+     ],
+     "actions": [
+      {
+       "id": "hote",
+       "label": "S'approcher de l'Hôte Affamé",
+       "cost": 2,
+       "if": "not flag('hote_vaincu')",
+       "dialogue": "act3_tower:hote"
       }
      ]
     }

@@ -1062,5 +1062,329 @@
  "Je paierai. Pour eux. Pas pour vous. Jamais pour vous.": {
   "ko": "낼게요. 저 사람들을 위해서. 당신이 아니라. 절대 당신을 위해서는 아니에요.",
   "ja": "払います。この人たちのために。あなたのためじゃない。絶対に、あなたのためじゃない。"
+ },
+ "Monsieur Kang. Vous arrivez en retard à une réunion à laquelle vous n'étiez pas convié. C'est presque élégant.": {
+  "ko": "강 씨. 초대받지도 않은 회의에 늦게 오셨네요. 거의 우아할 지경이군요.",
+  "ja": "カンさん。招かれてもいない会議に遅刻してくるなんて。ほとんど優雅ね。"
+ },
+ "Vous avez terminé, Gi-seok ? Bien. Monsieur Kang m'a prévenue il y a huit jours. J'ai eu le temps de lire vos messages à Mirae. Tous.": {
+  "ko": "다 끝났나요, 기석 씨? 좋아요. 강 씨가 여드레 전에 알려 줬어요. 미래에 보낸 당신 메시지를 읽을 시간이 충분했죠. 전부.",
+  "ja": "終わった、ギソク？結構。カンさんが八日前に教えてくれたの。あなたがミレに送ったメッセージ、読む時間は十分あったわ。全部ね。"
+ },
+ "Ne croyez pas que je vous remercierai. Vous avez jeté ARCHE en pâture à toute la ville. Mais je préfère vous devoir la vie qu'à lui le Sceau.": {
+  "ko": "고맙다고 할 거라 생각하지 마세요. 당신은 ARCHE를 온 도시에 던져 줬으니까. 그래도 저자에게 인장을 넘기느니 당신에게 목숨을 빚지는 게 낫죠.",
+  "ja": "礼を言うとは思わないで。あなたはARCHEを街中に晒した。でも、あの男に印章を渡すくらいなら、あなたに命を借りる方がましよ。"
+ },
+ "Neuf ans, Gi-seok. Vous auriez pu attendre que je meure de vieillesse. J'ai le cœur fragile, paraît-il.": {
+  "ko": "9년이에요, 기석 씨. 제가 늙어 죽을 때까지 기다릴 수도 있었잖아요. 심장이 약하다던데요, 제가.",
+  "ja": "九年よ、ギソク。私が老衰で死ぬのを待てばよかったのに。心臓が弱いそうよ、私。"
+ },
+ "Il moisira dans le bunker B4. C'est pire que la mort, pour un homme qui aime les fenêtres.": {
+  "ko": "B4 벙커에서 썩게 될 거예요. 창문을 좋아하는 남자에겐 죽음보다 끔찍하죠.",
+  "ja": "B4の地下壕で朽ちていくわ。窓が好きな男には、死ぬより辛いでしょうね。"
+ },
+ "Vous m'avez prévenue, vous êtes venu, et vous avez vu ce dont je suis capable. Vous en savez trop pour que je vous laisse partir, Monsieur Kang. Alors choisissez comment vous restez.": {
+  "ko": "당신은 경고했고, 와 주었고, 제가 뭘 할 수 있는지도 봤죠. 그냥 보내기엔 너무 많이 알아요, 강 씨. 그러니 어떻게 남을지 고르세요.",
+  "ja": "警告して、来てくれて、私に何ができるかも見た。帰すには知りすぎたわ、カンさん。だから、どう残るか選びなさい。"
+ },
+ "Je vous dois la vie. Je vous dois aussi la honte d'ARCHE. Les deux s'annulent, Monsieur Kang. Sortez de ma tour.": {
+  "ko": "목숨을 빚졌죠. ARCHE의 수치도 당신 덕이고요. 둘이 상쇄되네요, 강 씨. 제 타워에서 나가세요.",
+  "ja": "命の借りがある。ARCHEの恥も、あなたのおかげ。相殺ね、カンさん。私のタワーから出ていって。"
+ },
+ "D'égal à égale. Personne ne m'a jamais proposé ça. Ils voulaient tous être au-dessus, ou en dessous.": {
+  "ko": "대등하게. 그런 제안은 처음이에요. 다들 위에 서거나, 아래에 있고 싶어 했거든요.",
+  "ja": "対等に。そんな提案は初めて。皆、上に立つか、下にいたがったから。"
+ },
+ "Dépossession. Bien joué. Je négocie chaque clause. La septième d'abord : je rends compte chaque soir. La huitième : Da-bin reste hors de tout ceci. Si vous touchez à ma fille, le contrat brûle, et vous avec.": {
+  "ko": "박탈이군요. 잘했어요. 조항 하나하나 협상하겠어요. 먼저 7조: 매일 밤 보고한다. 8조: 다빈은 이 일에서 제외한다. 제 딸에게 손대면, 계약은 불타고 당신도 같이 타요.",
+  "ja": "剥奪ね。見事よ。条項は一つずつ交渉する。まず第七条、毎晩報告する。第八条、ダビンは一切関わらせない。娘に手を出したら、契約は燃える。あなたもね。"
+ },
+ "Toi ! Tu tombes au pire moment. Ou au meilleur. Prends la gauche, je tiens l'escalier.": {
+  "ko": "너! 최악의 타이밍에 왔군. 아니면 최고의. 왼쪽을 맡아, 계단은 내가 지킨다.",
+  "ja": "お前！最悪の時に来たな。いや、最高の時か。左を頼む、階段は私が守る。"
+ },
+ "Un étranger. Tu es armé ? Non ? Alors ramasse quelque chose et tiens la gauche.": {
+  "ko": "이방인. 무기 있어? 없어? 그럼 아무거나 주워서 왼쪽을 지켜.",
+  "ja": "よそ者か。武器は？ない？なら何か拾って左を守れ。"
+ },
+ "« Après la nuit de noces, prends le domaine. » Le mariage n'était qu'une porte d'entrée.": {
+  "ko": "「첫날밤이 지나면 영지를 차지해라.」 결혼은 들어가는 문에 불과했어.",
+  "ja": "「初夜の後、領地を奪え」。結婚は入口にすぎなかったのか。"
+ },
+ "Mon père a donné sa parole. Demain au crépuscule, je l'honorerai. D'une manière ou d'une autre.": {
+  "ko": "아버지가 약속하셨다. 내일 해 질 녘, 나는 그 약속을 지킬 거야. 어떤 식으로든.",
+  "ja": "父は約束した。明日の黄昏、私はそれを果たす。どんな形であれ。"
+ },
+ "Cheon Tae-ju. Je refuse cette union. Selon le code des Collines, je te défie en duel d'honneur. Si je tombe, la Maison Baek t'appartient.": {
+  "ko": "천태주. 이 혼인을 거부한다. 북악의 법도에 따라 명예의 결투를 신청한다. 내가 쓰러지면, 백가는 네 것이다.",
+  "ja": "チョン・テジュ。この婚姻を拒む。北の丘の掟に従い、名誉の決闘を申し込む。私が倒れたら、白家はお前のものだ。"
+ },
+ "…Tu n'as pas le droit. C'est mon honneur.": {
+  "ko": "…넌 그럴 권리가 없어. 이건 내 명예야.",
+  "ja": "…お前にその権利はない。これは私の名誉だ。"
+ },
+ "Ton honneur, c'est de vivre assez longtemps pour reconstruire la Maison. Laisse-moi celui de me faire casser la figure.": {
+  "ko": "네 명예는 가문을 다시 세울 만큼 오래 사는 거야. 얻어터지는 명예는 나한테 넘겨.",
+  "ja": "お前の名誉は、家を立て直すまで生きることだ。ぶん殴られる名誉は俺に譲れ。"
+ },
+ "Assez ! Le champion est tombé. Le duel me revient.": {
+  "ko": "그만! 대전자가 쓰러졌다. 결투는 내 차례다.",
+  "ja": "そこまで！代理は倒れた。決闘は私に戻る。"
+ },
+ "Tu as… Personne ne s'était jamais battu à ma place. Je déteste ça. Je… merci.": {
+  "ko": "너… 나 대신 싸워 준 사람은 아무도 없었어. 이런 거 싫어. 나… 고마워.",
+  "ja": "お前…私の代わりに戦った者など、一人もいなかった。こういうのは嫌いだ。私は…ありがとう。"
+ },
+ "« Mon fils. Après la nuit de noces, prends le domaine. Les Baek n'auront plus d'héritier mâle pour protester. Le vieux Jin-ho ne verra pas l'hiver. — C. »": {
+  "ko": "「아들아. 첫날밤이 지나면 영지를 차지해라. 백가에는 항의할 사내 후계자도 없을 것이다. 늙은 진호는 겨울을 넘기지 못한다. — 천」",
+  "ja": "「息子よ。初夜の後、領地を奪え。白家に異を唱える男の跡継ぎはもういない。老いたジノは冬を越せまい。——C」"
+ },
+ "Va-t'en. Avant que j'oublie que mon père t'a reçu sous son toit.": {
+  "ko": "꺼져. 아버지가 너를 이 지붕 아래 들였다는 걸 잊기 전에.",
+  "ja": "去れ。父がお前をこの屋根の下に迎えたことを、忘れる前に。"
+ },
+ "…La feinte basse. L'épaule droite. Si tu mens, je reviendrai te hanter.": {
+  "ko": "…낮은 페인트. 오른쪽 어깨. 거짓말이면, 죽어서라도 찾아갈 거야.",
+  "ja": "…下段のフェイント。右肩。嘘だったら、化けて出てやる。"
+ },
+ "Je ne te tue pas. Je n'ai plus quinze ans. Rentre chez ton père et dis-lui que la Maison Baek n'est pas à vendre.": {
+  "ko": "죽이지 않겠다. 난 이제 열다섯이 아니야. 아버지한테 돌아가서 백가는 팔 물건이 아니라고 전해.",
+  "ja": "殺さない。もう十五ではない。父の元へ帰り、白家は売り物ではないと伝えろ。"
+ },
+ "…Pas de témoin. J'avais dit… pas de témoin…": {
+  "ko": "…증인은 필요 없다고… 했잖아…",
+  "ja": "…立会人は…いらないと…言ったのに…"
+ },
+ "La Maison Baek n'a plus de chef. Ni d'hommes. Il me reste un sabre et une dette. Les deux sont à toi, si tu les veux.": {
+  "ko": "백가에는 이제 가주도, 사람도 없어. 남은 건 검 한 자루와 빚 하나. 원한다면 둘 다 네 거야.",
+  "ja": "白家にはもう当主も、兵もいない。残ったのは剣一振りと借りが一つ。望むなら、どちらもお前のものだ。"
+ },
+ "Tu avais raison. Je déteste quand tu as raison. Je viens payer ma dette.": {
+  "ko": "네 말이 맞았어. 네가 옳을 때가 제일 싫어. 빚을 갚으러 왔다.",
+  "ja": "お前が正しかった。お前が正しいのが一番腹立たしい。借りを返しに来た。"
+ },
+ "(Dans l'autre vie, j'ai vendu deux ans ici pour une épée. Je ne sais plus lesquels.)": {
+  "ko": "(지난 생에서 나는 여기서 검 한 자루에 2년을 팔았다. 어느 2년인지는 기억나지 않는다.)",
+  "ja": "（前の人生で、ここで剣一本のために二年を売った。どの二年だったかは、もう覚えていない。）"
+ },
+ "Ay, gwapo. Ici on marchande. Tout. Laisse-moi parler, je vais leur vendre leurs propres étals.": {
+  "ko": "아이, 과포. 여기선 다 흥정이야. 전부. 내가 말할게, 저 사람들 가판대를 저 사람들한테 되팔아 줄게.",
+  "ja": "アイ、グワポ。ここじゃ全部値切るの。全部。私に喋らせて、あいつらの屋台をあいつらに売りつけてやる。"
+ },
+ "Un marché où l'on vend des années de vie… Mon père aurait adoré. Il en aurait acheté. Beaucoup.": {
+  "ko": "수명을 파는 시장이라… 우리 아버지가 좋아했겠네. 많이 샀을 거야.",
+  "ja": "寿命を売る市場…父が好きそう。たくさん買ったでしょうね。"
+ },
+ "Elias ? Tu as l'air… plus léger. Ça ne me plaît pas.": {
+  "ko": "엘리아스? 너… 가벼워 보여. 마음에 안 들어.",
+  "ja": "エリアス？なんだか…軽くなったみたい。気に入らない。"
+ },
+ "(S'asseoir, c'est se désarmer. Ne pas s'asseoir, c'est les insulter.)": {
+  "ko": "(앉으면 무장 해제다. 앉지 않으면 모욕이고.)",
+  "ja": "（座れば武装解除。座らなければ侮辱だ。）"
+ },
+ "Un dîner d'affaires sans fin, où l'on ne peut pas poignarder ses convives. J'ai présidé des conseils plus dangereux.": {
+  "ko": "동석자를 찌를 수 없는 끝없는 비즈니스 만찬이라. 저는 이보다 위험한 이사회도 주재했어요.",
+  "ja": "同席者を刺せない、終わりのない会食。もっと危険な取締役会を仕切ったことがあるわ。"
+ },
+ "Dans l'autre vie, Mirae a ouvert le feu sur Hongdae le dix-neuvième jour. « Pour la sécurité de tous. »": {
+  "ko": "지난 생에서 미래는 19일째에 홍대에 발포했다. 「모두의 안전을 위해.」",
+  "ja": "前の人生で、ミレは十九日目に弘大へ発砲した。「皆の安全のために」。"
+ },
+ "Elias… Ils chantent si fort. Je n'arrive plus à rester réveillée. Je…": {
+  "ko": "엘리아스… 저 사람들 노래가 너무 커. 깨어 있을 수가 없어. 나…",
+  "ja": "エリアス…歌が大きすぎる。起きていられない。私…"
+ },
+ "Quelqu'un parle de moi. Je le sens. Comme une main sur une vitre.": {
+  "ko": "누가 내 얘기를 해. 느껴져. 유리창에 댄 손처럼.",
+  "ja": "誰かが私のことを話してる。わかるの。窓ガラスに置かれた手みたいに。"
+ },
+ "(« À chaque fois que tu reviens. » Il sait que je régresse. Il le sait depuis le début.)": {
+  "ko": "(「네가 돌아올 때마다.」 내가 회귀하는 걸 알고 있다. 처음부터 알고 있었어.)",
+  "ja": "（「お前が戻るたびに」。俺が回帰していると知っている。最初から知っていたんだ。）"
+ },
+ "(Seo-Yeon porte le même. Exactement le même.)": {
+  "ko": "(서연도 같은 걸 차고 있다. 완전히 똑같은 걸.)",
+  "ja": "（ソヨンも同じものを着けている。まったく同じものを。）"
+ },
+ "Va avec la voleuse. Je garde la chanteuse. Personne ne passera ces marches.": {
+  "ko": "도둑이랑 가. 가수는 내가 지킨다. 이 계단은 아무도 못 지나가.",
+  "ja": "盗賊と行け。歌姫は私が守る。この階段は誰も通さない。"
+ },
+ "Mes barges sont au canal. Dix minutes pour vider la place. Chante vite, petite.": {
+  "ko": "내 바지선이 운하에 있어. 광장을 비우는 데 10분. 빨리 불러, 꼬마야.",
+  "ja": "艀は運河にいるわ。広場を空けるのに十分。早く歌いなさい、お嬢ちゃん。"
+ },
+ "Deux fois. Tu m'as sortie du noir deux fois, gwapo. À la troisième, je t'épouse.": {
+  "ko": "두 번. 어둠에서 날 두 번 꺼내 줬어, 과포. 세 번째엔 결혼하자.",
+  "ja": "二回。暗闇から二回も出してくれた、グワポ。三回目は結婚ね。"
+ },
+ "Ne te retourne pas. Si tu te retournes, je m'arrête.": {
+  "ko": "돌아보지 마. 돌아보면, 나 멈춰 버릴 거야.",
+  "ja": "振り向かないで。振り向いたら、止まっちゃうから。"
+ },
+ "Sept jours. C'est moi qui descends, Elias. Je m'en souviens, maintenant. C'est moi, la Descente.": {
+  "ko": "7일. 내려가는 건 나야, 엘리아스. 이제 기억나. 강림은, 나야.",
+  "ja": "七日。降りるのは私なの、エリアス。今、思い出した。降臨は、私。"
+ },
+ "Alors on a sept jours pour changer la fin du livre.": {
+  "ko": "그럼 이야기의 결말을 바꿀 시간이 7일 있는 거야.",
+  "ja": "なら、本の結末を変えるのに七日ある。"
+ },
+ "Kang. Tu viens dîner sans invitation sur ma barge. C'est soit très romantique, soit très stupide.": {
+  "ko": "강. 초대도 없이 내 바지선에 저녁 먹으러 왔네. 아주 로맨틱하거나, 아주 멍청하거나.",
+  "ja": "カン。招待もなしに私の艀へ夕食に？とてもロマンチックか、とても愚かか、ね。"
+ },
+ "Kang Elias. Mon ancien recouvreur. Tu viens dîner sans invitation. C'est soit très romantique, soit très stupide.": {
+  "ko": "강 엘리아스. 내 옛 추심원. 초대도 없이 저녁 먹으러 왔네. 아주 로맨틱하거나, 아주 멍청하거나.",
+  "ja": "カン・エリアス。元取り立て屋。招待もなしに夕食に？とてもロマンチックか、とても愚かか、ね。"
+ },
+ "Tu m'avais prévenue, Kang. Je n'oublie pas mes dettes. Couvre-moi.": {
+  "ko": "경고해 줬지, 강. 난 빚을 잊지 않아. 엄호해.",
+  "ja": "警告してくれたわね、カン。借りは忘れない。援護して。"
+ },
+ "Tu es fou. J'adore les fous.": {
+  "ko": "미쳤구나. 난 미친 남자가 좋아.",
+  "ja": "正気じゃないわ。正気じゃない男、大好き。"
+ },
+ "Personne… ne plonge… pour moi. Ils regardent. Ils parient.": {
+  "ko": "아무도… 날 위해… 뛰어들지 않아. 다들 구경하지. 내기를 걸고.",
+  "ja": "誰も…私のために…飛び込まない。見てるだけ。賭けてるだけ。"
+ },
+ "Je note. Tu as choisi le pont. Je note tout, Kang.": {
+  "ko": "기억해 둘게. 넌 갑판을 택했어. 난 전부 기억해, 강.",
+  "ja": "覚えておくわ。あなたは甲板を選んだ。全部覚えてるのよ、カン。"
+ },
+ "Vous m'avez fait sauter sur vos genoux, Oncle. Je vous rends la politesse.": {
+  "ko": "숙부님 무릎에서 놀아 주셨죠. 그 예의를 갚아 드릴게요.",
+  "ja": "叔父様の膝であやしてもらったわね。そのお返しよ。"
+ },
+ "(Je la garde. Ce n'est pas le moment.)": {
+  "ko": "(이건 내가 갖고 있자. 지금은 때가 아니다.)",
+  "ja": "（これは預かっておく。今はその時じゃない。）"
+ },
+ "Tu m'as sauvé la vie. Chez les Long, on ne dit pas merci : on fait un contrat. Fixe ton prix.": {
+  "ko": "내 목숨을 구했지. 롱 가문은 고맙다고 안 해. 계약을 하지. 값을 불러.",
+  "ja": "命を救ってくれた。ロン家は礼を言わないの。契約を結ぶ。値段を言って。"
+ },
+ "Un homme qui négocie après m'avoir repêchée. Je pourrais t'épouser rien que pour ça. Signé.": {
+  "ko": "날 건져 놓고 협상하는 남자라니. 그것만으로도 결혼할 수 있겠어. 서명했어.",
+  "ja": "私を引き上げた後に交渉する男。それだけで結婚できそう。署名したわ。"
+ },
+ "…Rien. Personne ne m'a jamais rien donné pour rien. Ça me terrifie, Kang. Je viens avec toi pour comprendre ce que tu veux vraiment.": {
+  "ko": "…아무것도 안 바란다고. 대가 없이 뭘 준 사람은 없었어. 그게 무서워, 강. 네가 진짜 뭘 원하는지 알아내려고 같이 갈게.",
+  "ja": "…何もいらない、ね。見返りなしに何かくれた人なんていなかった。怖いわ、カン。あなたの本当の望みを知るために、ついていく。"
+ },
+ "Perdu. Loyalement, à ta façon. Une Long paie toujours ses dettes. Le Sceau du Courant, et le reste. Selon le contrat.": {
+  "ko": "졌어. 네 방식대로, 공정하게. 롱 가문은 빚을 꼭 갚아. 물결의 인장, 그리고 나머지도. 계약대로.",
+  "ja": "負けたわ。あなたなりに、正々堂々と。ロン家は必ず借りを返す。流れの印章も、残りも。契約どおりに。"
+ },
+ "Tu m'as sauvé la vie avec une phrase, au Sommet. Je déteste les dettes. Alors je paie : mon Consortium, mes barges, et ma compagnie. Signe, mon chou.": {
+  "ko": "정상회담에서 한마디로 내 목숨을 구했지. 난 빚이 싫어. 그래서 갚을게. 내 컨소시엄, 내 바지선, 그리고 나라는 동행까지. 서명해, 자기.",
+  "ja": "サミットで一言、命を救ってくれた。借りは嫌いなの。だから払う。私の連合、私の艀、そして私自身を。署名して、坊や。"
+ },
+ "Encore. Là. Les glyphes chantent quand tu touches là.": {
+  "ko": "더. 거기. 거기를 만지면 문양이 노래해.",
+  "ja": "もっと。そこ。そこに触れると、紋様が歌うの。"
+ },
+ "Ay… gwapo… si tu t'arrêtes, je te vole ta montre pour de vrai.": {
+  "ko": "아이… 과포… 멈추면 진짜로 네 시계 훔칠 거야.",
+  "ja": "アイ…グワポ…止めたら、本当に時計盗むからね。"
+ },
+ "Ne bouge pas. Pour une fois, c'est moi qui examine.": {
+  "ko": "움직이지 마. 이번엔 내가 진찰할 차례야.",
+  "ja": "動かないで。今回は、私が診る番。"
+ },
+ "Je ne mangeais pas de bonbons. C'était… un test de vigilance. Tu l'as échoué.": {
+  "ko": "사탕 먹던 거 아니야. 그건… 경계 테스트였어. 넌 탈락이야.",
+  "ja": "飴を食べていたのではない。あれは…警戒の試験だ。お前は不合格だ。"
+ },
+ "…Tu es pénible. Mets ton pied gauche ici. Non, ici. Tu te bats comme un voyou.": {
+  "ko": "…귀찮은 녀석. 왼발은 여기. 아니, 여기. 넌 깡패처럼 싸워.",
+  "ja": "…面倒な男だ。左足はここ。違う、ここだ。チンピラみたいな戦い方をする。"
+ },
+ "Tu… ! Retourne-toi ! Un homme d'honneur se retourne !": {
+  "ko": "너…! 돌아서! 명예를 아는 남자라면 돌아선다!",
+  "ja": "お前…！後ろを向け！名誉ある男なら後ろを向く！"
+ },
+ "…Je n'ai pas dit de partir.": {
+  "ko": "…가라고는 안 했어.",
+  "ja": "…出ていけとは言っていない。"
+ },
+ "J'ai dit ça. C'est vrai. Alors viens. Mais je garde le sabre à portée.": {
+  "ko": "그렇게 말했지. 맞아. 그럼 와. 하지만 검은 손 닿는 데 둘 거야.",
+  "ja": "確かにそう言った。なら来い。だが剣は手の届く所に置く。"
+ },
+ "Personne ne m'a jamais… On ne m'a appris qu'à me battre. Je ne sais pas faire ça.": {
+  "ko": "아무도 나한테… 난 싸우는 것밖에 배운 게 없어. 이런 건 할 줄 몰라.",
+  "ja": "誰も私に…私は戦うことしか教わっていない。こういうことは、知らない。"
+ },
+ "Alors on fait comme à l'entraînement. Doucement. Et tu corriges ma garde.": {
+  "ko": "그럼 훈련처럼 하자. 천천히. 그리고 네가 내 자세를 고쳐 줘.",
+  "ja": "なら稽古と同じだ。ゆっくり。それで、お前が俺の構えを直せ。"
+ },
+ "Une partie, mon chou. Si tu gagnes, je te dis un secret. Si je gagne, tu m'en dis un.": {
+  "ko": "한 판 하자, 자기. 네가 이기면 내 비밀 하나. 내가 이기면 네 비밀 하나.",
+  "ja": "一局どう、坊や。あなたが勝ったら私の秘密を一つ。私が勝ったら、あなたのを一つ。"
+ },
+ "Perdu. Délicieusement. Ton secret, Kang.": {
+  "ko": "졌네. 아주 맛있게. 네 비밀, 강.",
+  "ja": "負けね。美味しく。あなたの秘密よ、カン。"
+ },
+ "Je suis déjà mort une fois. Dans un parking.": {
+  "ko": "난 이미 한 번 죽었어. 주차장에서.",
+  "ja": "俺は一度死んでる。駐車場でな。"
+ },
+ "« Je sais pour le thé, ma fille. Je te pardonne. Tu as fait ce que je t'ai appris. » …Le vieux salaud.": {
+  "ko": "「차 일은 알고 있다, 딸아. 용서하마. 넌 내가 가르친 대로 했을 뿐이다.」 …늙은 망할 영감.",
+  "ja": "「茶のことは知っている、娘よ。許す。お前は私が教えた通りにしただけだ」…あの老いぼれ。"
+ },
+ "Mes amants sont des outils. Je les congédie au matin. Tu veux être congédié, Kang ?": {
+  "ko": "내 애인들은 도구야. 아침이면 내보내지. 너도 내보내지고 싶어, 강?",
+  "ja": "私の恋人は道具よ。朝には追い出すの。あなたも追い出されたい、カン？"
+ },
+ "Dix-neuf ans. Un amant qui voulait la place de mon père. Il est au fond du Han. Continue.": {
+  "ko": "열아홉 살. 아버지 자리를 노리던 애인. 지금은 한강 바닥에 있어. 계속해.",
+  "ja": "十九の時。父の座を狙った恋人よ。今は漢江の底。続けて。"
+ },
+ "Ne le dis à personne. Personne. Je ferais noyer toute la ville.": {
+  "ko": "아무한테도 말하지 마. 아무한테도. 그랬다간 도시 전체를 빠뜨릴 거야.",
+  "ja": "誰にも言わないで。誰にも。言ったら街ごと沈めるわ。"
+ },
+ "Une Long paie toujours. Avec panache. Dis-moi comment tu veux être payé, Seigneur.": {
+  "ko": "롱 가문은 반드시 갚아. 멋지게. 어떻게 받고 싶은지 말해, 영주님.",
+  "ja": "ロンの女は必ず払う。華麗にね。どう払ってほしいか言って、ご領主様。"
+ },
+ "Une dette payée avec intérêts. Ne t'y habitue pas, Seigneur.": {
+  "ko": "이자까지 쳐서 갚은 빚이야. 익숙해지지 마, 영주님.",
+  "ja": "利子付きで払った借りよ。慣れないでね、ご領主様。"
+ },
+ "Asseyez-vous, Monsieur Kang. Les Blancs. Vous perdrez en vingt coups, mais j'aimerais savoir comment vous perdez.": {
+  "ko": "앉으세요, 강 씨. 백을 잡으세요. 스무 수 안에 지겠지만, 어떻게 지는지 보고 싶어요.",
+  "ja": "お座りなさい、カンさん。白をどうぞ。二十手で負けるでしょうけど、どう負けるのか見たいの。"
+ },
+ "Vingt-trois coups. Vous m'avez surprise trois fois. Personne ne m'a surprise trois fois depuis neuf ans.": {
+  "ko": "스물세 수. 저를 세 번 놀라게 했어요. 9년 동안 저를 세 번 놀라게 한 사람은 없었는데.",
+  "ja": "二十三手。三度も驚かされたわ。九年間、三度も私を驚かせた人はいなかった。"
+ },
+ "J'ai tout contrôlé, toute ma vie. Mon mariage. Mon conseil. Mon deuil. Je voudrais savoir ce que ça fait de ne pas contrôler. Une nuit. Selon mes conditions.": {
+  "ko": "평생 모든 걸 통제했어요. 결혼도, 이사회도, 애도도. 통제하지 않는 게 어떤 건지 알고 싶어요. 하룻밤만. 제 조건대로.",
+  "ja": "生涯、全てを支配してきた。結婚も、取締役会も、喪も。支配しないとはどういうことか知りたいの。一晩だけ。私の条件で。"
+ },
+ "Mon mari. Il voulait me dresser. Il n'a jamais eu le reste. Personne ne l'a eu.": {
+  "ko": "제 남편이요. 저를 길들이고 싶어 했죠. 나머지는 끝내 갖지 못했어요. 아무도요.",
+  "ja": "夫よ。私を調教したがった。残りは決して手に入れられなかった。誰もね。"
+ },
+ "Pour la première fois, quelqu'un d'autre a décidé. C'est… terrifiant. Recommencez.": {
+  "ko": "처음으로, 다른 누군가가 결정했어요. 그건… 무서워요. 다시 해요.",
+  "ja": "初めて、誰か他の人が決めた。それは…恐ろしいわ。もう一度。"
+ },
+ "Le rapport du jour, Seigneur Kang. Les comptes de Haesong. Et ma présence, puisque le contrat la stipule.": {
+  "ko": "오늘의 보고입니다, 강 영주님. 해송의 장부. 그리고 계약이 명시한 대로, 제 동석도요.",
+  "ja": "本日の報告です、カン様。海松の帳簿。それと、契約が定める通り、私の同席も。"
+ },
+ "Le contrat dit « présence ». Il ne dit rien de mon consentement au reste. Celui-là, je le donne. Ce soir. Notez-le.": {
+  "ko": "계약에는 「동석」이라고만 되어 있죠. 나머지에 대한 제 동의는 없어요. 그건 제가 주는 거예요. 오늘 밤. 기록해 두세요.",
+  "ja": "契約は「同席」とだけ。それ以外への同意は書いていない。それは私が与えるの。今夜。記録しておいて。"
  }
 }

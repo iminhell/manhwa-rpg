@@ -17,5 +17,25 @@
     "ja": "tts_xiaoyu_ja",
     "timbre": "mezzo suave, langoureuse"
   },
-  "art_token": "xiaoyu_long"
+  "art_token": "xiaoyu_long",
+  "combat": {
+    "stats": {
+      "hp": 80,
+      "atk": 13,
+      "def": 4,
+      "spd": 15,
+      "mana": 80
+    },
+    "position": [
+      1,
+      2
+    ],
+    "skills": [
+      "mille_aiguilles",
+      "eventail_lames",
+      "mise_totale",
+      "garde",
+      "dragon_noir"
+    ]
+  }
 }

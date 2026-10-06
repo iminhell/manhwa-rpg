@@ -1,1102 +1,2019 @@
 {
-  "encounters": {
-    "tuto_rodeur": {
-      "name": "Le premier monstre",
-      "enemies": [
-        {
-          "id": "rodeur",
-          "row": 0,
-          "lane": 1
-        }
-      ],
-      "party_positions": {
-        "elias": [
-          0,
-          1
-        ],
-        "seo_yeon": [
-          2,
-          1
-        ],
-        "haneul": [
-          1,
-          0
-        ],
-        "hae_in": [
-          2,
-          2
-        ],
-        "aoi": [
-          2,
-          0
-        ],
-        "maricel": [
-          0,
-          2
-        ]
-      },
-      "background": "itaewon_street"
-    },
-    "j1_maree": {
-      "name": "Première Marée",
-      "enemies": [
-        {
-          "id": "rodeur",
-          "row": 0,
-          "lane": 0
-        },
-        {
-          "id": "rodeur",
-          "row": 0,
-          "lane": 2
-        }
-      ],
-      "party_positions": {
-        "elias": [
-          0,
-          1
-        ],
-        "seo_yeon": [
-          2,
-          1
-        ],
-        "haneul": [
-          1,
-          0
-        ],
-        "hae_in": [
-          2,
-          2
-        ],
-        "aoi": [
-          2,
-          0
-        ],
-        "maricel": [
-          0,
-          2
-        ]
-      },
-      "background": "itaewon_street"
-    },
-    "j2_camp": {
-      "name": "Raid sur le camp",
-      "enemies": [
-        {
-          "id": "rodeur",
-          "row": 0,
-          "lane": 0
-        },
-        {
-          "id": "rodeur",
-          "row": 0,
-          "lane": 2
-        },
-        {
-          "id": "cracheur",
-          "row": 2,
-          "lane": 1
-        }
-      ],
-      "party_positions": {
-        "elias": [
-          0,
-          1
-        ],
-        "seo_yeon": [
-          2,
-          1
-        ],
-        "haneul": [
-          1,
-          0
-        ],
-        "hae_in": [
-          2,
-          2
-        ],
-        "aoi": [
-          2,
-          0
-        ],
-        "maricel": [
-          0,
-          2
-        ]
-      },
-      "background": "yeouido_camp"
-    },
-    "portier_test": {
-      "name": "Le Portier (test)",
-      "enemies": [
-        {
-          "id": "portier",
-          "row": 1,
-          "lane": 1
-        },
-        {
-          "id": "rodeur",
-          "row": 0,
-          "lane": 0
-        },
-        {
-          "id": "rodeur",
-          "row": 0,
-          "lane": 2
-        }
-      ],
-      "party_positions": {
-        "elias": [
-          0,
-          1
-        ],
-        "seo_yeon": [
-          2,
-          1
-        ],
-        "haneul": [
-          1,
-          0
-        ],
-        "hae_in": [
-          2,
-          2
-        ],
-        "aoi": [
-          2,
-          0
-        ],
-        "maricel": [
-          0,
-          2
-        ]
-      },
-      "background": "tower_gate"
-    },
-    "nid_rodeurs": {
-      "name": "Nid de rôdeurs",
-      "enemies": [
-        {
-          "id": "rodeur",
-          "row": 0,
-          "lane": 0
-        },
-        {
-          "id": "rodeur",
-          "row": 0,
-          "lane": 2
-        }
-      ],
-      "party_positions": {
-        "elias": [
-          0,
-          1
-        ],
-        "seo_yeon": [
-          2,
-          1
-        ],
-        "haneul": [
-          1,
-          0
-        ],
-        "hae_in": [
-          2,
-          2
-        ],
-        "aoi": [
-          2,
-          0
-        ],
-        "maricel": [
-          0,
-          2
-        ]
-      },
-      "background": "itaewon_street"
-    },
-    "nid_cracheurs": {
-      "name": "Nid de cracheurs",
-      "enemies": [
-        {
-          "id": "rodeur",
-          "row": 0,
-          "lane": 1
-        },
-        {
-          "id": "cracheur",
-          "row": 1,
-          "lane": 0
-        },
-        {
-          "id": "cracheur",
-          "row": 2,
-          "lane": 2
-        }
-      ],
-      "party_positions": {
-        "elias": [
-          0,
-          1
-        ],
-        "seo_yeon": [
-          2,
-          1
-        ],
-        "haneul": [
-          1,
-          0
-        ],
-        "hae_in": [
-          2,
-          2
-        ],
-        "aoi": [
-          2,
-          0
-        ],
-        "maricel": [
-          0,
-          2
-        ]
-      },
-      "background": "itaewon_street"
-    },
-    "nid_brute": {
-      "name": "La Brute",
-      "enemies": [
-        {
-          "id": "brute",
-          "row": 0,
-          "lane": 1
-        },
-        {
-          "id": "rodeur",
-          "row": 1,
-          "lane": 0
-        }
-      ],
-      "party_positions": {
-        "elias": [
-          0,
-          1
-        ],
-        "seo_yeon": [
-          2,
-          1
-        ],
-        "haneul": [
-          1,
-          0
-        ],
-        "hae_in": [
-          2,
-          2
-        ],
-        "aoi": [
-          2,
-          0
-        ],
-        "maricel": [
-          0,
-          2
-        ]
-      },
-      "background": "itaewon_street"
-    },
-    "arene_coex": {
-      "name": "Arène du COEX",
-      "enemies": [
-        {
-          "id": "chasseur",
-          "row": 0,
-          "lane": 1
-        },
-        {
-          "id": "chasseur",
-          "row": 1,
-          "lane": 2
-        }
-      ],
-      "party_positions": {
-        "elias": [
-          0,
-          1
-        ],
-        "seo_yeon": [
-          2,
-          1
-        ],
-        "haneul": [
-          1,
-          0
-        ],
-        "hae_in": [
-          2,
-          2
-        ],
-        "aoi": [
-          2,
-          0
-        ],
-        "maricel": [
-          0,
-          2
-        ]
-      },
-      "background": "black"
-    },
-    "maree_t1": {
-      "name": "Marée nocturne",
-      "enemies": [
-        {
-          "id": "rodeur",
-          "row": 0,
-          "lane": 0
-        },
-        {
-          "id": "rodeur",
-          "row": 0,
-          "lane": 2
-        }
-      ],
-      "party_positions": {
-        "elias": [
-          0,
-          1
-        ],
-        "seo_yeon": [
-          2,
-          1
-        ],
-        "haneul": [
-          1,
-          0
-        ],
-        "hae_in": [
-          2,
-          2
-        ],
-        "aoi": [
-          2,
-          0
-        ],
-        "maricel": [
-          0,
-          2
-        ]
-      },
-      "background": "itaewon_street"
-    },
-    "maree_t2": {
-      "name": "Marée nocturne (palier 2)",
-      "enemies": [
-        {
-          "id": "rodeur",
-          "row": 0,
-          "lane": 0
-        },
-        {
-          "id": "rodeur",
-          "row": 0,
-          "lane": 2
-        },
-        {
-          "id": "cracheur",
-          "row": 2,
-          "lane": 1
-        }
-      ],
-      "party_positions": {
-        "elias": [
-          0,
-          1
-        ],
-        "seo_yeon": [
-          2,
-          1
-        ],
-        "haneul": [
-          1,
-          0
-        ],
-        "hae_in": [
-          2,
-          2
-        ],
-        "aoi": [
-          2,
-          0
-        ],
-        "maricel": [
-          0,
-          2
-        ]
-      },
-      "background": "itaewon_street"
-    },
-    "j6_nuee": {
-      "name": "La Nuée sur Yeouido",
-      "enemies": [
-        {
-          "id": "rodeur",
-          "row": 0,
-          "lane": 0
-        },
-        {
-          "id": "rodeur",
-          "row": 0,
-          "lane": 1
-        },
-        {
-          "id": "rodeur",
-          "row": 0,
-          "lane": 2
-        },
-        {
-          "id": "cracheur",
-          "row": 2,
-          "lane": 1
-        }
-      ],
-      "party_positions": {
-        "elias": [
-          0,
-          1
-        ],
-        "seo_yeon": [
-          2,
-          1
-        ],
-        "haneul": [
-          1,
-          0
-        ],
-        "hae_in": [
-          2,
-          2
-        ],
-        "aoi": [
-          2,
-          0
-        ],
-        "maricel": [
-          0,
-          2
-        ]
-      },
-      "background": "yeouido_camp"
-    },
-    "vestibule_gardes": {
-      "name": "Gardes des Clés",
-      "enemies": [
-        {
-          "id": "garde_cles",
-          "row": 0,
-          "lane": 1
-        },
-        {
-          "id": "rodeur",
-          "row": 0,
-          "lane": 0
-        }
-      ],
-      "party_positions": {
-        "elias": [
-          0,
-          1
-        ],
-        "seo_yeon": [
-          2,
-          1
-        ],
-        "haneul": [
-          1,
-          0
-        ],
-        "hae_in": [
-          2,
-          2
-        ],
-        "aoi": [
-          2,
-          0
-        ],
-        "maricel": [
-          0,
-          2
-        ]
-      },
-      "background": "tower_gate"
-    },
-    "portier": {
-      "name": "Le Portier aux Mille Clés",
-      "enemies": [
-        {
-          "id": "portier",
-          "row": 1,
-          "lane": 1
-        },
-        {
-          "id": "garde_cles",
-          "row": 0,
-          "lane": 0
-        },
-        {
-          "id": "garde_cles",
-          "row": 0,
-          "lane": 2
-        }
-      ],
-      "party_positions": {
-        "elias": [
-          0,
-          1
-        ],
-        "seo_yeon": [
-          2,
-          1
-        ],
-        "haneul": [
-          1,
-          0
-        ],
-        "hae_in": [
-          2,
-          2
-        ],
-        "aoi": [
-          2,
-          0
-        ],
-        "maricel": [
-          0,
-          2
-        ]
-      },
-      "background": "tower_gate"
-    },
-    "archives_chasseurs": {
-      "name": "Pilleurs de Cheonma",
-      "enemies": [
-        {
-          "id": "chasseur",
-          "row": 0,
-          "lane": 1
-        },
-        {
-          "id": "chasseur",
-          "row": 1,
-          "lane": 0
-        }
-      ],
-      "party_positions": {
-        "elias": [
-          0,
-          1
-        ],
-        "seo_yeon": [
-          2,
-          1
-        ],
-        "haneul": [
-          1,
-          0
-        ],
-        "hae_in": [
-          2,
-          2
-        ],
-        "aoi": [
-          2,
-          0
-        ],
-        "maricel": [
-          0,
-          2
-        ]
-      },
-      "background": "black"
-    },
-    "vassaux_cheonma": {
-      "name": "Gardiens du Marché des Vassaux",
-      "enemies": [
-        {
-          "id": "chasseur",
-          "row": 0,
-          "lane": 0
-        },
-        {
-          "id": "chasseur",
-          "row": 0,
-          "lane": 2
-        },
-        {
-          "id": "chasseur",
-          "row": 1,
-          "lane": 1
-        }
-      ],
-      "party_positions": {
-        "elias": [
-          0,
-          1
-        ],
-        "seo_yeon": [
-          2,
-          1
-        ],
-        "haneul": [
-          1,
-          0
-        ],
-        "hae_in": [
-          2,
-          2
-        ],
-        "aoi": [
-          2,
-          0
-        ],
-        "maricel": [
-          0,
-          2
-        ]
-      },
-      "background": "black"
-    },
-    "drones_mirae": {
-      "name": "Essaim de Mirae",
-      "enemies": [
-        {
-          "id": "drone_mirae",
-          "row": 0,
-          "lane": 0
-        },
-        {
-          "id": "drone_mirae",
-          "row": 0,
-          "lane": 2
-        },
-        {
-          "id": "drone_mirae",
-          "row": 1,
-          "lane": 1
-        }
-      ],
-      "party_positions": {
-        "elias": [
-          0,
-          1
-        ],
-        "seo_yeon": [
-          2,
-          1
-        ],
-        "haneul": [
-          1,
-          0
-        ],
-        "hae_in": [
-          2,
-          2
-        ],
-        "aoi": [
-          2,
-          0
-        ],
-        "maricel": [
-          0,
-          2
-        ]
-      },
-      "background": "black"
-    },
-    "concert_maree": {
-      "name": "La Marée du concert",
-      "enemies": [
-        {
-          "id": "rodeur",
-          "row": 0,
-          "lane": 0
-        },
-        {
-          "id": "rodeur",
-          "row": 0,
-          "lane": 1
-        },
-        {
-          "id": "rodeur",
-          "row": 0,
-          "lane": 2
-        },
-        {
-          "id": "cracheur",
-          "row": 1,
-          "lane": 0
-        },
-        {
-          "id": "cracheur",
-          "row": 2,
-          "lane": 2
-        }
-      ],
-      "party_positions": {
-        "elias": [
-          0,
-          1
-        ],
-        "seo_yeon": [
-          2,
-          1
-        ],
-        "haneul": [
-          1,
-          0
-        ],
-        "hae_in": [
-          2,
-          2
-        ],
-        "aoi": [
-          2,
-          0
-        ],
-        "maricel": [
-          0,
-          2
-        ]
-      },
-      "background": "itaewon_street"
-    },
-    "fanatiques": {
-      "name": "Les Élus en prière",
-      "enemies": [
-        {
-          "id": "fanatique",
-          "row": 0,
-          "lane": 0
-        },
-        {
-          "id": "fanatique",
-          "row": 0,
-          "lane": 2
-        },
-        {
-          "id": "fanatique",
-          "row": 1,
-          "lane": 1
-        }
-      ],
-      "party_positions": {
-        "elias": [
-          0,
-          1
-        ],
-        "seo_yeon": [
-          2,
-          1
-        ],
-        "haneul": [
-          1,
-          0
-        ],
-        "hae_in": [
-          2,
-          2
-        ],
-        "aoi": [
-          2,
-          0
-        ],
-        "maricel": [
-          0,
-          2
-        ]
-      },
-      "background": "tower_gate"
-    },
-    "guerre_eau": {
-      "name": "La Guerre de l'Eau",
-      "enemies": [
-        {
-          "id": "garde_longwei",
-          "row": 0,
-          "lane": 0
-        },
-        {
-          "id": "garde_longwei",
-          "row": 0,
-          "lane": 2
-        },
-        {
-          "id": "chasseur",
-          "row": 1,
-          "lane": 1
-        }
-      ],
-      "party_positions": {
-        "elias": [
-          0,
-          1
-        ],
-        "seo_yeon": [
-          2,
-          1
-        ],
-        "haneul": [
-          1,
-          0
-        ],
-        "hae_in": [
-          2,
-          2
-        ],
-        "aoi": [
-          2,
-          0
-        ],
-        "maricel": [
-          0,
-          2
-        ]
-      },
-      "background": "black"
-    },
-    "tunnels": {
-      "name": "Ce qui vit dans les tunnels",
-      "enemies": [
-        {
-          "id": "rodeur",
-          "row": 0,
-          "lane": 1
-        },
-        {
-          "id": "brute",
-          "row": 1,
-          "lane": 1
-        },
-        {
-          "id": "rodeur",
-          "row": 0,
-          "lane": 0
-        }
-      ],
-      "party_positions": {
-        "elias": [
-          0,
-          1
-        ],
-        "seo_yeon": [
-          2,
-          1
-        ],
-        "haneul": [
-          1,
-          0
-        ],
-        "hae_in": [
-          2,
-          2
-        ],
-        "aoi": [
-          2,
-          0
-        ],
-        "maricel": [
-          0,
-          2
-        ]
-      },
-      "background": "black"
-    },
-    "hopital_j12": {
-      "name": "Aile pédiatrique",
-      "enemies": [
-        {
-          "id": "rodeur",
-          "row": 0,
-          "lane": 0
-        },
-        {
-          "id": "rodeur",
-          "row": 0,
-          "lane": 2
-        },
-        {
-          "id": "brute",
-          "row": 1,
-          "lane": 1
-        }
-      ],
-      "party_positions": {
-        "elias": [
-          0,
-          1
-        ],
-        "seo_yeon": [
-          2,
-          1
-        ],
-        "haneul": [
-          1,
-          0
-        ],
-        "hae_in": [
-          2,
-          2
-        ],
-        "aoi": [
-          2,
-          0
-        ],
-        "maricel": [
-          0,
-          2
-        ]
-      },
-      "background": "black"
-    },
-    "silence_rodeurs": {
-      "name": "Rues muettes",
-      "enemies": [
-        {
-          "id": "rodeur",
-          "row": 0,
-          "lane": 1
-        },
-        {
-          "id": "cracheur",
-          "row": 1,
-          "lane": 1
-        }
-      ],
-      "party_positions": {
-        "elias": [
-          0,
-          1
-        ],
-        "seo_yeon": [
-          2,
-          1
-        ],
-        "haneul": [
-          1,
-          0
-        ],
-        "hae_in": [
-          2,
-          2
-        ],
-        "aoi": [
-          2,
-          0
-        ],
-        "maricel": [
-          0,
-          2
-        ]
-      },
-      "background": "tower_gate"
-    },
-    "mere_sourde": {
-      "name": "La Mère Sourde",
-      "enemies": [
-        {
-          "id": "mere_sourde",
-          "row": 1,
-          "lane": 1
-        },
-        {
-          "id": "rodeur",
-          "row": 0,
-          "lane": 0
-        },
-        {
-          "id": "rodeur",
-          "row": 0,
-          "lane": 2
-        }
-      ],
-      "party_positions": {
-        "elias": [
-          0,
-          1
-        ],
-        "seo_yeon": [
-          2,
-          1
-        ],
-        "haneul": [
-          1,
-          0
-        ],
-        "hae_in": [
-          2,
-          2
-        ],
-        "aoi": [
-          2,
-          0
-        ],
-        "maricel": [
-          0,
-          2
-        ]
-      },
-      "background": "tower_gate"
-    },
-    "maree_t3": {
-      "name": "Marée nocturne (palier 3)",
-      "enemies": [
-        {
-          "id": "rodeur",
-          "row": 0,
-          "lane": 0
-        },
-        {
-          "id": "rodeur",
-          "row": 0,
-          "lane": 2
-        },
-        {
-          "id": "cracheur",
-          "row": 2,
-          "lane": 1
-        },
-        {
-          "id": "brute",
-          "row": 1,
-          "lane": 1
-        }
-      ],
-      "party_positions": {
-        "elias": [
-          0,
-          1
-        ],
-        "seo_yeon": [
-          2,
-          1
-        ],
-        "haneul": [
-          1,
-          0
-        ],
-        "hae_in": [
-          2,
-          2
-        ],
-        "aoi": [
-          2,
-          0
-        ],
-        "maricel": [
-          0,
-          2
-        ]
-      },
-      "background": "itaewon_street"
+ "encounters": {
+  "tuto_rodeur": {
+   "name": "Le premier monstre",
+   "enemies": [
+    {
+     "id": "rodeur",
+     "row": 0,
+     "lane": 1
     }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "itaewon_street",
+   "atk_mult": 0.8
+  },
+  "j1_maree": {
+   "name": "Première Marée",
+   "enemies": [
+    {
+     "id": "rodeur",
+     "row": 0,
+     "lane": 0
+    },
+    {
+     "id": "rodeur",
+     "row": 0,
+     "lane": 2
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "itaewon_street",
+   "atk_mult": 0.8
+  },
+  "j2_camp": {
+   "name": "Raid sur le camp",
+   "enemies": [
+    {
+     "id": "rodeur",
+     "row": 0,
+     "lane": 0
+    },
+    {
+     "id": "rodeur",
+     "row": 0,
+     "lane": 2
+    },
+    {
+     "id": "cracheur",
+     "row": 2,
+     "lane": 1
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "yeouido_camp",
+   "atk_mult": 0.9
+  },
+  "portier_test": {
+   "name": "Le Portier (test)",
+   "enemies": [
+    {
+     "id": "portier",
+     "row": 1,
+     "lane": 1
+    },
+    {
+     "id": "rodeur",
+     "row": 0,
+     "lane": 0
+    },
+    {
+     "id": "rodeur",
+     "row": 0,
+     "lane": 2
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "tower_gate"
+  },
+  "nid_rodeurs": {
+   "name": "Nid de rôdeurs",
+   "enemies": [
+    {
+     "id": "rodeur",
+     "row": 0,
+     "lane": 0
+    },
+    {
+     "id": "rodeur",
+     "row": 0,
+     "lane": 2
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "itaewon_street",
+   "atk_mult": 0.9
+  },
+  "nid_cracheurs": {
+   "name": "Nid de cracheurs",
+   "enemies": [
+    {
+     "id": "rodeur",
+     "row": 0,
+     "lane": 1
+    },
+    {
+     "id": "cracheur",
+     "row": 1,
+     "lane": 0
+    },
+    {
+     "id": "cracheur",
+     "row": 2,
+     "lane": 2
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "itaewon_street"
+  },
+  "nid_brute": {
+   "name": "La Brute",
+   "enemies": [
+    {
+     "id": "brute",
+     "row": 0,
+     "lane": 1
+    },
+    {
+     "id": "rodeur",
+     "row": 1,
+     "lane": 0
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "itaewon_street"
+  },
+  "arene_coex": {
+   "name": "Arène du COEX",
+   "enemies": [
+    {
+     "id": "chasseur",
+     "row": 0,
+     "lane": 1
+    },
+    {
+     "id": "chasseur",
+     "row": 1,
+     "lane": 2
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "black"
+  },
+  "maree_t1": {
+   "name": "Marée nocturne",
+   "enemies": [
+    {
+     "id": "rodeur",
+     "row": 0,
+     "lane": 0
+    },
+    {
+     "id": "rodeur",
+     "row": 0,
+     "lane": 2
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "itaewon_street",
+   "atk_mult": 0.9
+  },
+  "maree_t2": {
+   "name": "Marée nocturne (palier 2)",
+   "enemies": [
+    {
+     "id": "rodeur",
+     "row": 0,
+     "lane": 0
+    },
+    {
+     "id": "rodeur",
+     "row": 0,
+     "lane": 2
+    },
+    {
+     "id": "cracheur",
+     "row": 2,
+     "lane": 1
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "itaewon_street"
+  },
+  "j6_nuee": {
+   "name": "La Nuée sur Yeouido",
+   "enemies": [
+    {
+     "id": "rodeur",
+     "row": 0,
+     "lane": 0
+    },
+    {
+     "id": "rodeur",
+     "row": 0,
+     "lane": 1
+    },
+    {
+     "id": "rodeur",
+     "row": 0,
+     "lane": 2
+    },
+    {
+     "id": "cracheur",
+     "row": 2,
+     "lane": 1
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "yeouido_camp"
+  },
+  "vestibule_gardes": {
+   "name": "Gardes des Clés",
+   "enemies": [
+    {
+     "id": "garde_cles",
+     "row": 0,
+     "lane": 1
+    },
+    {
+     "id": "rodeur",
+     "row": 0,
+     "lane": 0
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "tower_gate"
+  },
+  "portier": {
+   "name": "Le Portier aux Mille Clés",
+   "enemies": [
+    {
+     "id": "portier",
+     "row": 1,
+     "lane": 1
+    },
+    {
+     "id": "garde_cles",
+     "row": 0,
+     "lane": 0
+    },
+    {
+     "id": "garde_cles",
+     "row": 0,
+     "lane": 2
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "tower_gate"
+  },
+  "archives_chasseurs": {
+   "name": "Pilleurs de Cheonma",
+   "enemies": [
+    {
+     "id": "chasseur",
+     "row": 0,
+     "lane": 1
+    },
+    {
+     "id": "chasseur",
+     "row": 1,
+     "lane": 0
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "black"
+  },
+  "vassaux_cheonma": {
+   "name": "Gardiens du Marché des Vassaux",
+   "enemies": [
+    {
+     "id": "chasseur",
+     "row": 0,
+     "lane": 0
+    },
+    {
+     "id": "chasseur",
+     "row": 0,
+     "lane": 2
+    },
+    {
+     "id": "chasseur",
+     "row": 1,
+     "lane": 1
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "black"
+  },
+  "drones_mirae": {
+   "name": "Essaim de Mirae",
+   "enemies": [
+    {
+     "id": "drone_mirae",
+     "row": 0,
+     "lane": 0
+    },
+    {
+     "id": "drone_mirae",
+     "row": 0,
+     "lane": 2
+    },
+    {
+     "id": "drone_mirae",
+     "row": 1,
+     "lane": 1
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "black"
+  },
+  "concert_maree": {
+   "name": "La Marée du concert",
+   "enemies": [
+    {
+     "id": "rodeur",
+     "row": 0,
+     "lane": 0
+    },
+    {
+     "id": "rodeur",
+     "row": 0,
+     "lane": 1
+    },
+    {
+     "id": "rodeur",
+     "row": 0,
+     "lane": 2
+    },
+    {
+     "id": "cracheur",
+     "row": 1,
+     "lane": 0
+    },
+    {
+     "id": "cracheur",
+     "row": 2,
+     "lane": 2
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "itaewon_street"
+  },
+  "fanatiques": {
+   "name": "Les Élus en prière",
+   "enemies": [
+    {
+     "id": "fanatique",
+     "row": 0,
+     "lane": 0
+    },
+    {
+     "id": "fanatique",
+     "row": 0,
+     "lane": 2
+    },
+    {
+     "id": "fanatique",
+     "row": 1,
+     "lane": 1
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "tower_gate"
+  },
+  "guerre_eau": {
+   "name": "La Guerre de l'Eau",
+   "enemies": [
+    {
+     "id": "garde_longwei",
+     "row": 0,
+     "lane": 0
+    },
+    {
+     "id": "garde_longwei",
+     "row": 0,
+     "lane": 2
+    },
+    {
+     "id": "chasseur",
+     "row": 1,
+     "lane": 1
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "black"
+  },
+  "tunnels": {
+   "name": "Ce qui vit dans les tunnels",
+   "enemies": [
+    {
+     "id": "rodeur",
+     "row": 0,
+     "lane": 1
+    },
+    {
+     "id": "brute",
+     "row": 1,
+     "lane": 1
+    },
+    {
+     "id": "rodeur",
+     "row": 0,
+     "lane": 0
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "black"
+  },
+  "hopital_j12": {
+   "name": "Aile pédiatrique",
+   "enemies": [
+    {
+     "id": "rodeur",
+     "row": 0,
+     "lane": 0
+    },
+    {
+     "id": "rodeur",
+     "row": 0,
+     "lane": 2
+    },
+    {
+     "id": "brute",
+     "row": 1,
+     "lane": 1
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "black"
+  },
+  "silence_rodeurs": {
+   "name": "Rues muettes",
+   "enemies": [
+    {
+     "id": "rodeur",
+     "row": 0,
+     "lane": 1
+    },
+    {
+     "id": "cracheur",
+     "row": 1,
+     "lane": 1
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "tower_gate"
+  },
+  "mere_sourde": {
+   "name": "La Mère Sourde",
+   "enemies": [
+    {
+     "id": "mere_sourde",
+     "row": 1,
+     "lane": 1
+    },
+    {
+     "id": "rodeur",
+     "row": 0,
+     "lane": 0
+    },
+    {
+     "id": "rodeur",
+     "row": 0,
+     "lane": 2
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "tower_gate"
+  },
+  "maree_t3": {
+   "name": "Marée nocturne (palier 3)",
+   "enemies": [
+    {
+     "id": "rodeur",
+     "row": 0,
+     "lane": 0
+    },
+    {
+     "id": "rodeur",
+     "row": 0,
+     "lane": 2
+    },
+    {
+     "id": "cracheur",
+     "row": 2,
+     "lane": 1
+    },
+    {
+     "id": "brute",
+     "row": 1,
+     "lane": 1
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "itaewon_street"
+  },
+  "domaine_baek": {
+   "name": "L'assaut du domaine Baek",
+   "enemies": [
+    {
+     "id": "soldat_cheonma",
+     "row": 0,
+     "lane": 0
+    },
+    {
+     "id": "soldat_cheonma",
+     "row": 0,
+     "lane": 2
+    },
+    {
+     "id": "chasseur",
+     "row": 1,
+     "lane": 1
+    },
+    {
+     "id": "soldat_cheonma",
+     "row": 2,
+     "lane": 1
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "black"
+  },
+  "duel_tae_ju": {
+   "name": "Duel d'honneur — Elias, champion de Ryeon",
+   "enemies": [
+    {
+     "id": "tae_ju",
+     "row": 0,
+     "lane": 1
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "black",
+   "party": [
+    "elias"
+   ],
+   "atk_mult": 0.75
+  },
+  "mutinerie": {
+   "name": "Mutinerie sur le Dragon Pâle",
+   "enemies": [
+    {
+     "id": "lotus",
+     "row": 0,
+     "lane": 0
+    },
+    {
+     "id": "lotus",
+     "row": 0,
+     "lane": 2
+    },
+    {
+     "id": "garde_longwei",
+     "row": 1,
+     "lane": 1
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "black"
+  },
+  "fang": {
+   "name": "L'Oncle Fang",
+   "enemies": [
+    {
+     "id": "fang",
+     "row": 1,
+     "lane": 1
+    },
+    {
+     "id": "lotus",
+     "row": 0,
+     "lane": 0
+    },
+    {
+     "id": "lotus",
+     "row": 0,
+     "lane": 2
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "black"
+  },
+  "coup_haesong": {
+   "name": "Coup d'État au conseil",
+   "enemies": [
+    {
+     "id": "garde_nam",
+     "row": 0,
+     "lane": 0
+    },
+    {
+     "id": "garde_nam",
+     "row": 0,
+     "lane": 2
+    },
+    {
+     "id": "nam",
+     "row": 1,
+     "lane": 1
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "black"
+  },
+  "siege_myeongdong": {
+   "name": "Siège de Myeongdong",
+   "enemies": [
+    {
+     "id": "zelote",
+     "row": 0,
+     "lane": 0
+    },
+    {
+     "id": "zelote",
+     "row": 0,
+     "lane": 2
+    },
+    {
+     "id": "rodeur_rouge",
+     "row": 0,
+     "lane": 1
+    },
+    {
+     "id": "zelote",
+     "row": 2,
+     "lane": 1
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "black"
+  },
+  "maree_rouge": {
+   "name": "Marée Rouge",
+   "enemies": [
+    {
+     "id": "rodeur_rouge",
+     "row": 0,
+     "lane": 0
+    },
+    {
+     "id": "rodeur_rouge",
+     "row": 0,
+     "lane": 1
+    },
+    {
+     "id": "rodeur_rouge",
+     "row": 0,
+     "lane": 2
+    },
+    {
+     "id": "cracheur",
+     "row": 2,
+     "lane": 0
+    },
+    {
+     "id": "brute",
+     "row": 1,
+     "lane": 1
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "itaewon_street"
+  },
+  "sacrifice_j16": {
+   "name": "Deuxième sacrifice",
+   "enemies": [
+    {
+     "id": "zelote",
+     "row": 0,
+     "lane": 0
+    },
+    {
+     "id": "fanatique",
+     "row": 0,
+     "lane": 2
+    },
+    {
+     "id": "zelote",
+     "row": 1,
+     "lane": 1
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "tower_gate"
+  },
+  "marche_ames": {
+   "name": "Les créanciers du Marché",
+   "enemies": [
+    {
+     "id": "garde_cles",
+     "row": 0,
+     "lane": 0
+    },
+    {
+     "id": "lotus",
+     "row": 0,
+     "lane": 2
+    },
+    {
+     "id": "garde_cles",
+     "row": 1,
+     "lane": 1
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "tower_gate"
+  },
+  "courtier": {
+   "name": "Le Courtier",
+   "enemies": [
+    {
+     "id": "courtier",
+     "row": 1,
+     "lane": 1
+    },
+    {
+     "id": "garde_cles",
+     "row": 0,
+     "lane": 0
+    },
+    {
+     "id": "garde_cles",
+     "row": 0,
+     "lane": 2
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "tower_gate"
+  },
+  "hote_affame": {
+   "name": "L'Hôte Affamé",
+   "enemies": [
+    {
+     "id": "hote_affame",
+     "row": 1,
+     "lane": 1
+    },
+    {
+     "id": "rodeur",
+     "row": 0,
+     "lane": 0
+    },
+    {
+     "id": "rodeur",
+     "row": 0,
+     "lane": 2
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "tower_gate"
+  },
+  "drones_j18": {
+   "name": "Essaim de Mirae (J18)",
+   "enemies": [
+    {
+     "id": "drone_mirae",
+     "row": 0,
+     "lane": 0
+    },
+    {
+     "id": "drone_mirae",
+     "row": 0,
+     "lane": 1
+    },
+    {
+     "id": "drone_mirae",
+     "row": 0,
+     "lane": 2
+    },
+    {
+     "id": "drone_mirae",
+     "row": 2,
+     "lane": 1
+    }
+   ],
+   "party_positions": {
+    "elias": [
+     0,
+     1
+    ],
+    "seo_yeon": [
+     2,
+     1
+    ],
+    "haneul": [
+     1,
+     0
+    ],
+    "hae_in": [
+     2,
+     2
+    ],
+    "aoi": [
+     2,
+     0
+    ],
+    "maricel": [
+     0,
+     2
+    ],
+    "ryeon": [
+     0,
+     0
+    ],
+    "xiaoyu": [
+     1,
+     2
+    ]
+   },
+   "background": "black"
+  },
+  "duel_ryeon": {
+   "name": "Duel d'honneur — Baek Ryeon contre Cheon Tae-ju",
+   "enemies": [
+    {
+     "id": "tae_ju",
+     "row": 0,
+     "lane": 1
+    }
+   ],
+   "party": [
+    "ryeon"
+   ],
+   "party_positions": {
+    "ryeon": [
+     0,
+     1
+    ]
+   },
+   "background": "black"
+  },
+  "duel_ryeon_avertie": {
+   "name": "Duel d'honneur — Ryeon connaît son ouverture",
+   "enemies": [
+    {
+     "id": "tae_ju",
+     "row": 0,
+     "lane": 1
+    }
+   ],
+   "party": [
+    "ryeon"
+   ],
+   "party_positions": {
+    "ryeon": [
+     0,
+     1
+    ]
+   },
+   "background": "black",
+   "atk_mult": 0.8
   }
+ }
 }

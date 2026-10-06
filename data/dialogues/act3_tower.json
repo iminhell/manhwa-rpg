@@ -1,0 +1,356 @@
+{
+ "id": "act3_tower",
+ "title": "Acte III — Tour, Étages 3 et 4",
+ "start": "start",
+ "speakers": {
+  "courtier": "Le Courtier",
+  "hote": "L'Hôte Affamé"
+ },
+ "blocks": {
+  "start": [
+   {
+    "goto": "etage3"
+   }
+  ],
+  "etage3": [
+   {
+    "bg": "tower_gate"
+   },
+   {
+    "music": "tower"
+   },
+   {
+    "s": "system",
+    "t": "ÉTAGE 3 — LE MARCHÉ DES ÂMES. Règle : tout s'achète, même les souvenirs et les années de vie."
+   },
+   {
+    "s": "narrator",
+    "t": "Un bazar sans fin sous des voûtes de cuivre. Des étals tenus par des marchands sans visage, des balances qui pèsent des choses invisibles. Sur une ardoise : « Une année de vie : 40 éclats. Un souvenir d'enfance : 120. Un premier amour : prix sur demande. »"
+   },
+   {
+    "if": "party('xiaoyu') or party('maricel')",
+    "then": "etage3_marchande"
+   },
+   {
+    "s": "elias",
+    "t": "(Dans l'autre vie, j'ai vendu deux ans ici pour une épée. Je ne sais plus lesquels.)",
+    "e": "neutral"
+   },
+   {
+    "fx": [
+     "souvenir marche_ames"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "etage3_marchande": [
+   {
+    "s": "maricel",
+    "t": "Ay, gwapo. Ici on marchande. Tout. Laisse-moi parler, je vais leur vendre leurs propres étals.",
+    "e": "wink"
+   },
+   {
+    "fx": [
+     "souvenir marche_ames"
+    ]
+   },
+   {
+    "if": "party('xiaoyu')",
+    "then": "etage3_xiaoyu"
+   },
+   {
+    "end": true
+   }
+  ],
+  "etage3_xiaoyu": [
+   {
+    "s": "xiaoyu",
+    "t": "Un marché où l'on vend des années de vie… Mon père aurait adoré. Il en aurait acheté. Beaucoup.",
+    "e": "fan"
+   },
+   {
+    "end": true
+   }
+  ],
+  "courtier": [
+   {
+    "bg": "tower_gate"
+   },
+   {
+    "music": "boss"
+   },
+   {
+    "s": "narrator",
+    "t": "Au fond du Marché, derrière un comptoir de jade, un homme en redingote dont le visage est un grand livre de comptes ouvert. Les pages tournent toutes seules quand il parle."
+   },
+   {
+    "s": "courtier",
+    "t": "Kang Elias. Porteur. Régresseur. Votre dossier est épais. Vous voulez passer ? Tout a un prix. Le mien est négociable."
+   },
+   {
+    "choice": [
+     {
+      "t": "Le combattre.",
+      "goto": "courtier_combat",
+      "fx": [
+       "add align.chaos 1"
+      ]
+     },
+     {
+      "t": "Le payer (250 éclats).",
+      "goto": "courtier_payer",
+      "fx": [
+       "money -250"
+      ],
+      "if": "money() >= 250"
+     },
+     {
+      "t": "Lui vendre un souvenir de ta première vie.",
+      "goto": "courtier_souvenir",
+      "fx": [
+       "add align.bond -2"
+      ]
+     }
+    ]
+   }
+  ],
+  "courtier_combat": [
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "courtier"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "s": "narrator",
+    "t": "Le grand livre se referme d'un coup sec. Le Courtier s'effondre en une pluie de reçus jaunis. Sur le comptoir, ton nom, inscrit à l'encre rouge."
+   },
+   {
+    "goto": "courtier_fin"
+   }
+  ],
+  "courtier_payer": [
+   {
+    "s": "courtier",
+    "t": "Un client qui paie comptant. Rare, de nos jours. Passez. Et revenez acheter quelque chose."
+   },
+   {
+    "s": "narrator",
+    "t": "Il s'incline et se dissout dans ses propres pages. Le comptoir de jade est vide."
+   },
+   {
+    "goto": "courtier_fin"
+   }
+  ],
+  "courtier_souvenir": [
+   {
+    "s": "courtier",
+    "t": "Un souvenir de la première vie. Excellent. Lequel ? Non, ne dites rien : je le choisis moi-même."
+   },
+   {
+    "s": "narrator",
+    "t": "Il tend une main gantée vers ton front. Quelque chose se détache. Tu ne sais pas quoi. Tu sais seulement que, quelque part, un visage vient de perdre son nom."
+   },
+   {
+    "s": "haneul",
+    "t": "Elias ? Tu as l'air… plus léger. Ça ne me plaît pas.",
+    "e": "tilt"
+   },
+   {
+    "fx": [
+     "flag souvenir_vendu"
+    ]
+   },
+   {
+    "goto": "courtier_fin"
+   }
+  ],
+  "courtier_fin": [
+   {
+    "s": "registre",
+    "t": "Gardien de l'Étage 3 neutralisé."
+   },
+   {
+    "fx": [
+     "flag courtier_vaincu",
+     "pressure -8",
+     "souvenir premier_conquerant_3"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "etage4": [
+   {
+    "bg": "tower_gate"
+   },
+   {
+    "music": "tower"
+   },
+   {
+    "s": "system",
+    "t": "ÉTAGE 4 — LE BANQUET. Règle : on ne peut pas frapper quelqu'un avec qui l'on a partagé un repas."
+   },
+   {
+    "s": "narrator",
+    "t": "Une salle de banquet infinie. Des tables chargées de plats qui fument encore depuis des siècles. Des convives d'autres mondes, maigres, qui mangent sans s'arrêter, et qui te font signe de t'asseoir."
+   },
+   {
+    "if": "party('hae_in')",
+    "then": "etage4_haein"
+   },
+   {
+    "s": "elias",
+    "t": "(S'asseoir, c'est se désarmer. Ne pas s'asseoir, c'est les insulter.)",
+    "e": "neutral"
+   },
+   {
+    "end": true
+   }
+  ],
+  "etage4_haein": [
+   {
+    "s": "hae_in",
+    "t": "Un dîner d'affaires sans fin, où l'on ne peut pas poignarder ses convives. J'ai présidé des conseils plus dangereux.",
+    "e": "neutral"
+   },
+   {
+    "end": true
+   }
+  ],
+  "hote": [
+   {
+    "bg": "tower_gate"
+   },
+   {
+    "music": "boss"
+   },
+   {
+    "s": "narrator",
+    "t": "Au bout de la table, seul, l'Hôte Affamé. Une silhouette immense, une mâchoire qui descend jusqu'à sa poitrine, un couvert d'argent dans chaque main. Il ne partage jamais son repas. Il n'a jamais partagé."
+   },
+   {
+    "if": "item('poison_hote') > 0",
+    "then": "hote_poison"
+   },
+   {
+    "s": "hote",
+    "t": "Un plat frais. Assieds-toi, petit. Ou laisse-moi venir à toi."
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "hote_affame"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "goto": "hote_fin"
+   }
+  ],
+  "hote_poison": [
+   {
+    "choice": [
+     {
+      "t": "Glisser la fiole des cuisines dans son plat.",
+      "goto": "hote_empoisonne",
+      "fx": [
+       "item poison_hote -1",
+       "add align.chaos 1"
+      ]
+     },
+     {
+      "t": "Le combattre loyalement.",
+      "goto": "hote_loyal",
+      "fx": [
+       "add align.protect 1"
+      ]
+     }
+    ]
+   }
+  ],
+  "hote_empoisonne": [
+   {
+    "s": "narrator",
+    "t": "Il mange. Il mange tout. Puis il s'arrête, la fourchette en l'air, et regarde son assiette comme on regarde une trahison. Il s'effondre sur la table, au milieu de son festin."
+   },
+   {
+    "s": "hote",
+    "t": "…Personne… ne m'avait jamais… rien servi…"
+   },
+   {
+    "goto": "hote_fin"
+   }
+  ],
+  "hote_loyal": [
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "hote_affame"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "goto": "hote_fin"
+   }
+  ],
+  "hote_fin": [
+   {
+    "s": "registre",
+    "t": "Gardien de l'Étage 4 vaincu."
+   },
+   {
+    "fx": [
+     "flag hote_vaincu",
+     "pressure -8",
+     "souvenir premier_conquerant_4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "defeat": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Le monde bascule. Le sol, le ciel, la Tour qui regarde."
+   },
+   {
+    "s": "elias",
+    "t": "Pas… encore…",
+    "e": "exhausted"
+   },
+   {
+    "s": "registre",
+    "t": "ÉCHEC — Le Lecteur est mort."
+   },
+   {
+    "s": "registre",
+    "t": "Régression."
+   },
+   {
+    "event": "regress",
+    "args": {}
+   },
+   {
+    "end": true
+   }
+  ]
+ }
+}

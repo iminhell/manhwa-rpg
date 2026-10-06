@@ -6,7 +6,7 @@ signal closed
 const UI := preload("res://ui/ui_style.gd")
 
 
-const TITLES := {1: "ÉVEIL", 2: "CONSOLIDATION"}
+const TITLES := {1: "ÉVEIL", 2: "CONSOLIDATION", 3: "LA GUERRE DES SCEAUX"}
 
 
 func setup(act: int, can_continue: bool = false) -> void:

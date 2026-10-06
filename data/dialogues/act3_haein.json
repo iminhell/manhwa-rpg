@@ -1,0 +1,388 @@
+{
+ "id": "act3_haein",
+ "title": "Acte III — Le coup d'État de Haesong",
+ "start": "start",
+ "speakers": {
+  "nam": "Nam Gi-seok"
+ },
+ "blocks": {
+  "start": [
+   {
+    "goto": "coup"
+   }
+  ],
+  "coup": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "haein"
+   },
+   {
+    "s": "narrator",
+    "t": "Vingt et unième jour. Tour IFC, soixantième étage. La salle du conseil de Haesong Holdings : une table de noyer de vingt mètres, douze fauteuils, une baie vitrée sur la Tour noire de Yongsan."
+   },
+   {
+    "if": "flag('haein_avertie')",
+    "then": "coup_prete"
+   },
+   {
+    "s": "narrator",
+    "t": "Quand l'ascenseur s'ouvre, tu entends déjà la voix de Nam Gi-seok. Douze administrateurs debout. Six mercenaires en gris. Et Yoon Hae-in, assise, très droite, un canon de pistolet contre la tempe."
+   },
+   {
+    "s": "nam",
+    "t": "…le conseil prend acte de la démission de la Présidente. Pour raisons de santé. Le Sceau de la Balance, Présidente. Posez-le sur la table.",
+    "e": "neutral"
+   },
+   {
+    "s": "hae_in",
+    "t": "Monsieur Kang. Vous arrivez en retard à une réunion à laquelle vous n'étiez pas convié. C'est presque élégant.",
+    "e": "threat",
+    "v": true
+   },
+   {
+    "if": "flag('arche_revelee') or flag('haein_froid')",
+    "then": "coup_hostile"
+   },
+   {
+    "goto": "coup_combat"
+   }
+  ],
+  "coup_prete": [
+   {
+    "s": "narrator",
+    "t": "La salle est pleine. Nam Gi-seok parle depuis dix minutes de « transition responsable ». Hae-in l'écoute, le menton sur la main. Derrière elle, l'Agent Shin. Derrière chaque administrateur fidèle, un garde de Haesong."
+   },
+   {
+    "s": "hae_in",
+    "t": "Vous avez terminé, Gi-seok ? Bien. Monsieur Kang m'a prévenue il y a huit jours. J'ai eu le temps de lire vos messages à Mirae. Tous.",
+    "e": "threat",
+    "v": true
+   },
+   {
+    "s": "nam",
+    "t": "…Tuez-la. Maintenant !",
+    "e": "anger"
+   },
+   {
+    "s": "narrator",
+    "t": "Les mercenaires de Nam dégainent. Les gardes de Haesong aussi. La baie vitrée vole en éclats."
+   },
+   {
+    "goto": "coup_combat"
+   }
+  ],
+  "coup_hostile": [
+   {
+    "s": "hae_in",
+    "t": "Ne croyez pas que je vous remercierai. Vous avez jeté ARCHE en pâture à toute la ville. Mais je préfère vous devoir la vie qu'à lui le Sceau.",
+    "e": "contempt"
+   },
+   {
+    "goto": "coup_combat"
+   }
+  ],
+  "coup_combat": [
+   {
+    "s": "registre",
+    "t": "ANCRE — Yoon Hae-in. Jour 21. Ici. Maintenant."
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "coup_haesong"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "s": "narrator",
+    "t": "Nam Gi-seok rampe vers l'ascenseur, la jambe en sang. Hae-in se lève, ramasse le pistolet d'un mercenaire, vérifie le chargeur avec des gestes de quelqu'un qui a appris à tirer très jeune."
+   },
+   {
+    "s": "hae_in",
+    "t": "Neuf ans, Gi-seok. Vous auriez pu attendre que je meure de vieillesse. J'ai le cœur fragile, paraît-il.",
+    "e": "threat",
+    "v": true
+   },
+   {
+    "choice": [
+     {
+      "t": "« Laisse-le à la justice. Il en reste une, quelque part. »",
+      "goto": "nam_epargne",
+      "fx": [
+       "add align.protect 2"
+      ]
+     },
+     {
+      "t": "Ne rien dire. C'est son conseil.",
+      "goto": "nam_execute",
+      "fx": [
+       "add align.protect -1"
+      ]
+     }
+    ]
+   }
+  ],
+  "nam_epargne": [
+   {
+    "s": "narrator",
+    "t": "Elle le regarde longtemps. Puis elle lui tend le pistolet par le canon, et le fait remettre à l'Agent Shin."
+   },
+   {
+    "s": "hae_in",
+    "t": "Il moisira dans le bunker B4. C'est pire que la mort, pour un homme qui aime les fenêtres.",
+    "e": "neutral"
+   },
+   {
+    "goto": "coup_apres"
+   }
+  ],
+  "nam_execute": [
+   {
+    "s": "narrator",
+    "t": "Un seul coup de feu. Les administrateurs ne bougent pas. Hae-in repose le pistolet sur la table de noyer, à côté de sa tasse, et finit son thé."
+   },
+   {
+    "fx": [
+     "flag nam_execute"
+    ]
+   },
+   {
+    "goto": "coup_apres"
+   }
+  ],
+  "coup_apres": [
+   {
+    "if": "flag('arche_revelee') or flag('haein_froid')",
+    "then": "apres_hostile"
+   },
+   {
+    "s": "hae_in",
+    "t": "Vous m'avez prévenue, vous êtes venu, et vous avez vu ce dont je suis capable. Vous en savez trop pour que je vous laisse partir, Monsieur Kang. Alors choisissez comment vous restez.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "choice": [
+     {
+      "t": "« Une alliance. D'égal à égale. »",
+      "goto": "apres_alliance",
+      "fx": [
+       "add trust.hae_in 10"
+      ]
+     },
+     {
+      "t": "« Je prends le Sceau de la Balance. Et toi avec. »",
+      "goto": "apres_pacte",
+      "fx": [
+       "add align.protect -6"
+      ]
+     },
+     {
+      "t": "« Je ne reste pas. Garde ta tour. »",
+      "goto": "apres_partir",
+      "fx": [
+       "add align.bond -1"
+      ]
+     }
+    ]
+   }
+  ],
+  "apres_hostile": [
+   {
+    "s": "hae_in",
+    "t": "Je vous dois la vie. Je vous dois aussi la honte d'ARCHE. Les deux s'annulent, Monsieur Kang. Sortez de ma tour.",
+    "e": "contempt"
+   },
+   {
+    "choice": [
+     {
+      "t": "Partir.",
+      "goto": "apres_partir"
+     },
+     {
+      "t": "« Je prends le Sceau de la Balance. Tu n'as plus de conseil pour t'en empêcher. »",
+      "goto": "apres_pacte",
+      "fx": [
+       "add align.protect -6"
+      ]
+     }
+    ]
+   }
+  ],
+  "apres_alliance": [
+   {
+    "s": "hae_in",
+    "t": "D'égal à égale. Personne ne m'a jamais proposé ça. Ils voulaient tous être au-dessus, ou en dessous.",
+    "e": "surprise",
+    "v": true
+   },
+   {
+    "s": "hae_in",
+    "t": "Haesong financera votre Refuge. Et moi, je viendrai vérifier que vous dépensez bien mon argent. Souvent.",
+    "e": "neutral"
+   },
+   {
+    "fx": [
+     "add aff.hae_in 8"
+    ]
+   },
+   {
+    "goto": "coup_fin"
+   }
+  ],
+  "apres_pacte": [
+   {
+    "s": "narrator",
+    "t": "Le Sceau de la Balance est un disque d'or et d'onyx, posé sur la table de noyer. Tu poses la main dessus. Le Système matérialise un parchemin de glyphes rouges."
+   },
+   {
+    "s": "hae_in",
+    "t": "Dépossession. Bien joué. Je négocie chaque clause. La septième d'abord : je rends compte chaque soir. La huitième : Da-bin reste hors de tout ceci. Si vous touchez à ma fille, le contrat brûle, et vous avec.",
+    "e": "threat",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "PACTE DE VASSALITÉ — Yoon Hae-in. Ambivalence : −30. Elle signe avec une lucidité glaciale."
+   },
+   {
+    "fx": [
+     "flag pacte.hae_in",
+     "set ambivalence.hae_in -30",
+     "flag sceau_balance"
+    ]
+   },
+   {
+    "goto": "coup_fin"
+   }
+  ],
+  "apres_partir": [
+   {
+    "s": "narrator",
+    "t": "Tu quittes la salle du conseil. Dans l'ascenseur, ton reflet dans les portes d'acier. Derrière, une femme seule au bout d'une table de vingt mètres, qui ne te regarde pas partir."
+   },
+   {
+    "s": "registre",
+    "t": "Yoon Hae-in vivra. Nouvelle Fin : Jour 30, assassinée par le Prophète des Élus, qui a besoin du Sceau de la Balance."
+   },
+   {
+    "fx": [
+     "flag haein_survit",
+     "flag haein_sauvee",
+     "fin hae_in_2",
+     "souvenir haein_survie",
+     "pressure -1"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "coup_fin": [
+   {
+    "s": "registre",
+    "t": "Yoon Hae-in a rejoint le groupe. Nouvelle Fin : Jour 30, assassinée par le Prophète des Élus, qui a besoin du Sceau de la Balance."
+   },
+   {
+    "fx": [
+     "flag haein_sauvee",
+     "join hae_in",
+     "fin hae_in_2",
+     "souvenir haein_survie",
+     "pressure -2"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "coup_absent": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "registre"
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — Coup d'État au conseil de Haesong. Tu n'es pas là."
+   },
+   {
+    "if": "flag('haein_avertie')",
+    "then": "absent_avertie"
+   },
+   {
+    "s": "registre",
+    "t": "Nam Gi-seok pose le Sceau de la Balance devant lui. Les mercenaires de Mirae gardent les portes. Un seul coup de feu, au soixantième étage."
+   },
+   {
+    "s": "registre",
+    "t": "Yoon Hae-in — Jour 21. La Fin est accomplie. Haesong appartient à Nam, et Nam appartient à Mirae."
+   },
+   {
+    "fx": [
+     "flag hae_in_morte",
+     "flag nam_seigneur"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "absent_avertie": [
+   {
+    "s": "registre",
+    "t": "Huit jours de préparation. Quand Nam se lève pour parler, l'Agent Shin lui passe les menottes devant tout le conseil."
+   },
+   {
+    "s": "registre",
+    "t": "Yoon Hae-in garde le Sceau de la Balance. Elle t'envoie une carte noire, encre bordeaux : « Une dette. Je les déteste. — Y. H. »"
+   },
+   {
+    "fx": [
+     "flag haein_survit",
+     "flag haein_sauvee",
+     "fin hae_in_2",
+     "souvenir haein_survie"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "defeat": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Le monde bascule. Le sol, le ciel, la Tour qui regarde."
+   },
+   {
+    "s": "elias",
+    "t": "Pas… encore…",
+    "e": "exhausted"
+   },
+   {
+    "s": "registre",
+    "t": "ÉCHEC — Le Lecteur est mort."
+   },
+   {
+    "s": "registre",
+    "t": "Régression."
+   },
+   {
+    "event": "regress",
+    "args": {}
+   },
+   {
+    "end": true
+   }
+  ]
+ }
+}
