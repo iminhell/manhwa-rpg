@@ -1,0 +1,164 @@
+{
+ "act1": [
+  {
+   "if": "flag('camp_sauve')",
+   "text": "Le camp de Yeouido a survécu à la Nuée."
+  },
+  {
+   "if": "flag('camp_tombe')",
+   "text": "Le camp de Yeouido est tombé."
+  },
+  {
+   "if": "flag('camp_pille')",
+   "text": "Tu as pillé le camp de Yeouido. Un enfant t'a vu partir."
+  },
+  {
+   "if": "flag('camp_abandonne')",
+   "text": "Personne n'a pris la défense du camp de Yeouido."
+  },
+  {
+   "if": "flag('pacte.seo_yeon')",
+   "text": "Park Seo-Yeon est ta vassale, liée par un Pacte qu'elle hait."
+  },
+  {
+   "if": "flag('seo_rupture')",
+   "text": "Seo-Yeon a brisé le Pacte et fui vers le Sanctuaire."
+  },
+  {
+   "if": "flag('seo_vassale_cheonma')",
+   "text": "Seo-Yeon est esclave de Cheonma. À cause de toi."
+  },
+  {
+   "if": "flag('seo_blessee')",
+   "text": "Seo-Yeon a été mordue. Sa Fin s'est rapprochée."
+  },
+  {
+   "if": "flag('seo_a_serum')",
+   "text": "Seo-Yeon porte une ampoule de sérum H-07 sur elle."
+  },
+  {
+   "if": "flag('seo_confession')",
+   "text": "Seo-Yeon t'a confié la mort de Lee Man-sik."
+  },
+  {
+   "if": "flag('haneul_trouvee')",
+   "text": "Haneul s'est réveillée, quinze jours plus tôt que dans ta première vie."
+  },
+  {
+   "if": "not flag('haneul_trouvee')",
+   "text": "Haneul dort toujours derrière la porte sans serrure. Les Élus approchent."
+  },
+  {
+   "if": "flag('haein_mercenaire')",
+   "text": "Yoon Hae-in te voit comme un fournisseur. Rentable."
+  },
+  {
+   "if": "flag('haein_alliance')",
+   "text": "Yoon Hae-in te trouve naïf. Et intrigant."
+  },
+  {
+   "if": "flag('haein_menace')",
+   "text": "Yoon Hae-in sait que tu connais ARCHE. Un Pacte est possible."
+  },
+  {
+   "if": "flag('haein_froid')",
+   "text": "Les portes de Haesong te sont fermées."
+  },
+  {
+   "if": "flag('penthouse_reste')",
+   "text": "Tu as passé la nuit de la Nuée dans le penthouse de la Présidente."
+  },
+  {
+   "if": "flag('penthouse_quitte')",
+   "text": "Tu as quitté la Présidente pour courir au camp. Elle ne l'oubliera pas."
+  },
+  {
+   "if": "flag('penthouse_refuse')",
+   "text": "Tu as refusé l'invitation de la Présidente."
+  },
+  {
+   "if": "flag('archive_copie')",
+   "text": "Tu gardes une copie secrète du dossier ARCHE."
+  },
+  {
+   "if": "flag('portier_vaincu')",
+   "text": "Premier Conquérant de l'Étage 1. Tout Séoul connaît ton nom."
+  },
+  {
+   "if": "flag('elias_celebre')",
+   "text": "Cheonma t'a remarqué."
+  },
+  {
+   "if": "flag('aide_choi')",
+   "text": "Mme Choi et les survivants d'Itaewon ont un refuge grâce à toi."
+  },
+  {
+   "if": "flag('vole_choi')",
+   "text": "Tu as dépouillé Mme Choi. Le Registre compte tout."
+  },
+  {
+   "if": "flag('bunker_partage')",
+   "text": "Le bunker B6 nourrit les réfugiés de Yeouido."
+  },
+  {
+   "if": "flag('bunker_vendu')",
+   "text": "Tu as vendu le bunker B6 à Haesong."
+  },
+  {
+   "if": "flag('agatha_rencontree')",
+   "text": "Mère Agatha : une page que le Registre refuse de lire."
+  },
+  {
+   "if": "flag('prophete_apercu')",
+   "text": "Le Prophète des Élus porte deux signatures pour une seule page."
+  },
+  {
+   "if": "flag('mirae_anomalie')",
+   "text": "Mirae Dynamics a détecté ton anomalie temporelle."
+  },
+  {
+   "if": "flag('nadia_apercue')",
+   "text": "Une tireuse aux cheveux blancs t'a regardé sans tirer. « Pas encore. »"
+  },
+  {
+   "if": "flag('aoi_entendue')",
+   "text": "Une idol chante seule dans un studio de Hongdae. Fin : J9."
+  },
+  {
+   "if": "flag('xiaoyu_rencontree')",
+   "text": "Long Xiaoyu se souvient de son ancien recouvreur."
+  },
+  {
+   "if": "flag('etais_vus')",
+   "text": "Quelqu'un fore sous les tunnels de Myeongdong. Logo : Mirae."
+  },
+  {
+   "if": "flag('hopital_vu')",
+   "text": "Tu as vu le dessin des six enfants, à Sainte-Marie."
+  },
+  {
+   "if": "flag('serum_trouve')",
+   "text": "Tu as volé une ampoule de sérum H-07 chez Haesong Bio."
+  },
+  {
+   "if": "flag('simone_deal')",
+   "text": "La commandante Hayes attend un plan de l'étage 1."
+  },
+  {
+   "if": "flag('veut_sceau')",
+   "text": "Tu as décidé qu'un Sceau, ça se prend."
+  },
+  {
+   "if": "flag('vigie')",
+   "text": "Depuis la Tour N Seoul, tu as vu toute la ville respirer."
+  },
+  {
+   "if": "flag('sceaux_distribues')",
+   "text": "Cinq clans portent désormais un Sceau."
+  },
+  {
+   "if": "flag('tour_ouverte')",
+   "text": "L'étage 1 est ouvert. Le compte à rebours a commencé."
+  }
+ ]
+}

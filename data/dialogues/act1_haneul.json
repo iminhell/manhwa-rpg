@@ -1,0 +1,278 @@
+{
+ "id": "act1_haneul",
+ "title": "Acte I — Haneul",
+ "start": "start",
+ "speakers": {},
+ "blocks": {
+  "start": [
+   {
+    "goto": "reve_j2"
+   }
+  ],
+  "reve_j2": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "registre"
+   },
+   {
+    "s": "narrator",
+    "t": "Cette nuit-là, Elias rêve d'une porte sans serrure."
+   },
+   {
+    "s": "haneul",
+    "t": "Tu es revenu plus tôt que prévu.",
+    "e": "tilt",
+    "v": true
+   },
+   {
+    "s": "haneul",
+    "t": "La dernière fois, tu étais si fatigué. Tu m'as portée quand même.",
+    "e": "sad"
+   },
+   {
+    "s": "haneul",
+    "t": "Viens me chercher, Lecteur. Avant qu'ils ne me trouvent.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Il se réveille en sueur. Sa montre cassée indique toujours 23h58. Pendant une seconde, il aurait juré que l'aiguille avait bougé."
+   },
+   {
+    "end": true
+   }
+  ],
+  "vision_j3": [
+   {
+    "music": "registre"
+   },
+   {
+    "s": "registre",
+    "t": "Lecture des Fins — erreur de page."
+   },
+   {
+    "s": "narrator",
+    "t": "Pendant une seconde, le Registre ne montre pas une Fin. Il montre une main. Une empreinte dorée, posée de l'intérieur, contre la page, comme contre une vitre."
+   },
+   {
+    "s": "haneul",
+    "t": "Tu lis mes comptes. Ça chatouille.",
+    "e": "joy"
+   },
+   {
+    "s": "elias",
+    "t": "(Elle me voit. D'où elle est, elle me voit.)",
+    "e": "surprise"
+   },
+   {
+    "fx": [
+     "add aff.haneul 2"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "murmure_j4": [
+   {
+    "music": "registre"
+   },
+   {
+    "s": "narrator",
+    "t": "Minuit, quatrième jour. Le Registre s'ouvre seul. Une seule ligne, écrite d'une main tremblante."
+   },
+   {
+    "s": "haneul",
+    "t": "Les robes blanches ont trouvé l'escalier. Elles chantent devant ma porte. Viens au cinquième matin.",
+    "e": "fear",
+    "v": true
+   },
+   {
+    "if": "loop() >= 2",
+    "then": "murmure_boucle"
+   },
+   {
+    "end": true
+   }
+  ],
+  "murmure_boucle": [
+   {
+    "s": "haneul",
+    "t": "Tu es déjà mort une fois dans cette boucle. Je l'ai senti. Ça m'a pris un souvenir.",
+    "e": "sad"
+   },
+   {
+    "s": "elias",
+    "t": "Quel souvenir ?",
+    "e": "fear"
+   },
+   {
+    "s": "haneul",
+    "t": "Je ne sais plus. C'est ça, le problème.",
+    "e": "sad"
+   },
+   {
+    "end": true
+   }
+  ],
+  "rencontre": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "registre"
+   },
+   {
+    "cg": "cg_haneul_porte"
+   },
+   {
+    "s": "narrator",
+    "t": "La porte est chaude, comme une peau. Quand ta main la touche, les glyphes de ton cou s'allument, et la porte… respire."
+   },
+   {
+    "s": "narrator",
+    "t": "Elle s'ouvre vers l'intérieur. Une salle ronde, sans fond. Au centre, une femme endormie dans une gangue d'obsidienne translucide. Cheveux d'argent jusqu'aux chevilles. Des glyphes dorés courent sous sa peau."
+   },
+   {
+    "s": "elias",
+    "t": "Je t'ai trouvée. Quinze jours plus tôt que la dernière fois.",
+    "e": "sad",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "L'obsidienne se fend. Elle ouvre les yeux. De l'or liquide, avec un anneau d'horloge qui tourne autour des pupilles. Le même que dans ton reflet."
+   },
+   {
+    "s": "haneul",
+    "t": "…Tu sens la poussière, la poudre et le savon bon marché.",
+    "e": "tilt",
+    "v": true
+   },
+   {
+    "s": "haneul",
+    "t": "Je ne me souviens pas de ton nom. Mais je me souviens de ton dos. Tu m'as portée.",
+    "e": "sad"
+   },
+   {
+    "s": "elias",
+    "t": "Elias. Et toi ?",
+    "e": "neutral"
+   },
+   {
+    "s": "haneul",
+    "t": "Je n'en ai pas. Personne ne m'en a jamais donné.",
+    "e": "tilt"
+   },
+   {
+    "choice": [
+     {
+      "t": "« Haneul. Parce que tu regardes toujours le ciel. »",
+      "goto": "nom",
+      "fx": [
+       "add aff.haneul 10"
+      ]
+     },
+     {
+      "t": "« Choisis-le toi-même. »",
+      "goto": "nom_choisi",
+      "fx": [
+       "add trust.haneul 10"
+      ]
+     }
+    ]
+   }
+  ],
+  "nom": [
+   {
+    "s": "haneul",
+    "t": "Haneul… Le ciel.",
+    "e": "joy",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle répète le mot trois fois, comme on goûte un fruit. Puis elle sourit, et pour la première fois, elle projette une ombre."
+   },
+   {
+    "goto": "rencontre_fin"
+   }
+  ],
+  "nom_choisi": [
+   {
+    "s": "narrator",
+    "t": "Elle réfléchit longtemps. Regarde vers le haut, là où il n'y a pas de plafond."
+   },
+   {
+    "s": "haneul",
+    "t": "Tu m'aurais appelée Haneul, n'est-ce pas ? Je l'entends dans ta tête. Je le prends.",
+    "e": "joy"
+   },
+   {
+    "goto": "rencontre_fin"
+   }
+  ],
+  "rencontre_fin": [
+   {
+    "cg": ""
+   },
+   {
+    "s": "narrator",
+    "t": "Elle se lève, nue, sans aucune pudeur, comme quelqu'un qui n'a jamais appris ce que c'était. Tu enlèves ton bomber et tu le poses sur ses épaules. Elle s'y enroule, et refuse de le rendre."
+   },
+   {
+    "s": "haneul",
+    "t": "Il est chaud. Je le garde.",
+    "e": "joy"
+   },
+   {
+    "s": "registre",
+    "t": "Haneul a rejoint le groupe. Fin — Haneul : Jour 30, 23h58. Le reste de la page est déchiré."
+   },
+   {
+    "s": "registre",
+    "t": "Note du Registre : chaque régression lui coûte un souvenir."
+   },
+   {
+    "fx": [
+     "flag haneul_trouvee",
+     "join haneul",
+     "fin haneul",
+     "souvenir haneul_nom",
+     "pressure -3"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "reve_j7": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "registre"
+   },
+   {
+    "s": "narrator",
+    "t": "Septième aube. Un rêve qui n'en est pas un."
+   },
+   {
+    "s": "haneul",
+    "t": "Ils ont presque trouvé la porte. Ils chantent si fort, Elias. Ils veulent que je dorme pour toujours.",
+    "e": "fear",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "Souvenir n°4 : « Je l'ai trouvée trop tard, au J20. » Le J20 n'est plus très loin."
+   },
+   {
+    "end": true
+   }
+  ]
+ }
+}

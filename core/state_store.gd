@@ -42,11 +42,28 @@ func add_souvenir(id: String) -> void:
 # --- Effets ------------------------------------------------------------------
 ## Formats acceptés (chaînes compactes pour l'écriture des dialogues) :
 ##   "set clé valeur" · "add clé valeur" · "flag nom" · "unflag nom" · "souvenir id"
+##   "item id n" (inventaire) · "money n" · "fin id" (Fin connue au Registre)
+##   "join id" / "leave id" (groupe) · "pressure n" (Pression de la Tour)
+const EFFECT_OPS := ["set", "add", "flag", "unflag", "souvenir", "item", "money", "fin", "join", "leave", "pressure"]
+
+
 func apply_effect(effect: String) -> void:
 	var parts := effect.strip_edges().split(" ", false)
 	if parts.is_empty():
 		return
 	match parts[0]:
+		"item":
+			add_var("item." + parts[1], float(parts[2]) if parts.size() > 2 else 1.0)
+		"money":
+			add_var("argent", float(parts[1]))
+		"fin":
+			set_flag("fin." + parts[1], true)
+		"join":
+			set_flag("party." + parts[1], true)
+		"leave":
+			set_flag("party." + parts[1], false)
+		"pressure":
+			add_var("tower.p_mod", float(parts[1]))
 		"set":
 			set_var(parts[1], _parse_value(parts[2]) if parts.size() > 2 else true)
 		"add":
@@ -112,6 +129,85 @@ func aff(id: String) -> float:
 
 func loop() -> int:
 	return int(get_var("loop", 1))
+
+
+# --- Temps (1 jour = 4 phases = 16 ticks ; 1 tick = ¼ de phase) ---------------------
+const TICKS_PER_PHASE := 4
+const TICKS_PER_DAY := 16
+
+
+func ticks() -> int:
+	return int(get_var("time.ticks", 0))
+
+
+@warning_ignore("integer_division")
+func day() -> int:
+	return ticks() / TICKS_PER_DAY + 1
+
+
+@warning_ignore("integer_division")
+func phase() -> int:
+	return (ticks() % TICKS_PER_DAY) / TICKS_PER_PHASE
+
+
+func advance_ticks(n: int) -> void:
+	set_var("time.ticks", ticks() + n)
+	add_var("fatigue", n)
+
+
+## Place l'horloge sur (jour, phase) sans jamais remonter le temps.
+func set_time(d: int, p: int) -> void:
+	var target := (d - 1) * TICKS_PER_DAY + p * TICKS_PER_PHASE
+	if target > ticks():
+		advance_ticks(target - ticks())
+
+
+## Saute à l'aube suivante. Si l'on est pile au lever du jour (malaise à l'aube), le temps ne bouge pas.
+func sleep_until_dawn() -> void:
+	if ticks() % TICKS_PER_DAY != 0:
+		set_var("time.ticks", day() * TICKS_PER_DAY)
+	set_var("fatigue", 0)
+
+
+func pressure() -> float:
+	return 20.0 + 2.5 * float(day() - 1) + float(get_var("tower.p_mod", 0))
+
+
+# --- Monde, groupe, inventaire ------------------------------------------------------
+func at(node_id: String) -> bool:
+	return str(get_var("pos.node", "")) == node_id
+
+
+func in_sector(sector_id: String) -> bool:
+	return str(get_var("pos.sector", "")) == sector_id
+
+
+func party(id: String) -> bool:
+	return id == "elias" or has_flag("party." + id)
+
+
+func item(id: String) -> int:
+	return int(get_var("item." + id, 0))
+
+
+func money() -> int:
+	return int(get_var("argent", 0))
+
+
+func trust(id: String) -> float:
+	return float(get_var("trust." + id))
+
+
+func fear(id: String) -> float:
+	return float(get_var("fear." + id))
+
+
+func done(event_id: String) -> bool:
+	return has_flag("event." + event_id)
+
+
+func knows_fin(id: String) -> bool:
+	return has_flag("fin." + id)
 
 
 # --- Sérialisation -----------------------------------------------------------

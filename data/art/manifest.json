@@ -413,6 +413,109 @@
       "prompt": "elias_kang waking up in a ruined apartment, eyes glowing gold with a clock ring, golden glyphs on his neck, system window floating in the air, dawn light",
       "out": "assets/cg/cg_registre_awakening.png",
       "size": "landscape_16_9"
+    },
+    {
+      "id": "cg_haneul_porte",
+      "kind": "cg",
+      "chars": [
+        "haneul",
+        "elias"
+      ],
+      "prompt": "haneul_heiress awakening inside a cracking translucent obsidian cocoon in a round bottomless chamber, very long silver hair floating, golden glyphs under her skin, gold eyes with clock rings opening, elias_kang reaching out his hand, golden light, awe, cinematic wide shot",
+      "out": "assets/cg/cg_haneul_porte.png",
+      "size": "landscape_16_9"
+    },
+    {
+      "id": "pinup_seo_yeon_0",
+      "kind": "fanservice",
+      "char": "seo_yeon",
+      "outfit": "night",
+      "pose": 0,
+      "camera": "low angle shot looking up",
+      "expression": "teasing",
+      "out": "assets/cg/pinup_seo_yeon_0.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "pinup_seo_yeon_1",
+      "kind": "fanservice",
+      "char": "seo_yeon",
+      "outfit": "night",
+      "pose": 1,
+      "camera": "over-the-shoulder shot",
+      "expression": "shy",
+      "out": "assets/cg/pinup_seo_yeon_1.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "pinup_hae_in_0",
+      "kind": "fanservice",
+      "char": "hae_in",
+      "outfit": "night",
+      "pose": 0,
+      "camera": "low angle shot looking up",
+      "expression": "teasing",
+      "out": "assets/cg/pinup_hae_in_0.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "pinup_hae_in_1",
+      "kind": "fanservice",
+      "char": "hae_in",
+      "outfit": "night",
+      "pose": 1,
+      "camera": "over-the-shoulder shot",
+      "expression": "shy",
+      "out": "assets/cg/pinup_hae_in_1.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "pinup_haneul_0",
+      "kind": "fanservice",
+      "char": "haneul",
+      "outfit": "night",
+      "pose": 0,
+      "camera": "low angle shot looking up",
+      "expression": "teasing",
+      "out": "assets/cg/pinup_haneul_0.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "pinup_haneul_1",
+      "kind": "fanservice",
+      "char": "haneul",
+      "outfit": "night",
+      "pose": 1,
+      "camera": "over-the-shoulder shot",
+      "expression": "shy",
+      "out": "assets/cg/pinup_haneul_1.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "cg_haein_penthouse",
+      "kind": "cg",
+      "chars": [
+        "hae_in",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "haein_yoon in an open burgundy silk robe pulling elias_kang toward her by his collar in a candle-lit penthouse, ruined red city behind the panoramic window, intimate adult scene, passionate, sirens glowing outside, cinematic",
+      "out": "assets/cg/cg_haein_penthouse.png",
+      "size": "landscape_16_9"
+    },
+    {
+      "id": "cg_seo_pacte",
+      "kind": "cg",
+      "chars": [
+        "seo_yeon",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "seoyeon_park signing a glowing red glyph contract with a drop of blood, kneeling before elias_kang in a dark tent, tears and defiance, dark romance, dramatic chiaroscuro",
+      "out": "assets/cg/cg_seo_pacte.png",
+      "size": "landscape_16_9"
     }
   ]
 }

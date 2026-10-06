@@ -391,13 +391,16 @@
     "e": "neutral"
    },
    {
-    "phase": 2
+    "time": "1:2"
    },
    {
     "goto": "night"
    }
   ],
   "night": [
+   {
+    "time": "1:3"
+   },
    {
     "s": "narrator",
     "t": "JOUR 1 — NUIT. La première Marée."
@@ -453,7 +456,12 @@
     "e": "exhausted"
    },
    {
-    "phase": 1
+    "time": "2:0"
+   },
+   {
+    "fx": [
+     "set fatigue 0"
+    ]
    },
    {
     "goto": "j2"
@@ -462,6 +470,9 @@
   "j2": [
    {
     "bg": "yeouido_camp"
+   },
+   {
+    "time": "2:1"
    },
    {
     "s": "narrator",
@@ -483,6 +494,12 @@
    {
     "s": "registre",
     "t": "PARK SEO-YEON — Fin : Jour 12, Crépuscule. Hôpital Sainte-Marie."
+   },
+   {
+    "fx": [
+     "fin seo_yeon",
+     "add aff.seo_yeon 2"
+    ]
    },
    {
     "s": "narrator",
@@ -686,30 +703,21 @@
     "e": "anger"
    },
    {
-    "goto": "teaser"
-   }
-  ],
-  "teaser": [
-   {
-    "bg": "black"
+    "time": "2:2"
    },
    {
     "s": "narrator",
-    "t": "Cette nuit-là, Elias rêve d'une porte sans serrure."
+    "t": "Le crépuscule tombe sur Yeouido. Pour la première fois depuis sa mort, Elias a du temps devant lui. Vingt-huit jours."
    },
    {
-    "s": "haneul",
-    "t": "Tu es revenu plus tôt que prévu.",
-    "e": "tilt"
+    "s": "registre",
+    "t": "CARTE DE SÉOUL déverrouillée. Chaque déplacement coûte du temps. Les Ancres du calendrier n'attendent personne."
    },
    {
-    "s": "haneul",
-    "t": "Viens me chercher, Lecteur. Avant qu'ils ne me trouvent.",
-    "e": "neutral"
-   },
-   {
-    "s": "narrator",
-    "t": "— FIN DU PROTOTYPE (Acte I, Jours 1 et 2) —"
+    "event": "world",
+    "args": {
+     "node": "yeouido.camp"
+    }
    },
    {
     "end": true

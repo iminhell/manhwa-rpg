@@ -34,10 +34,31 @@ func setup(encounter_id: String, party_ids: Array, seed_value: int = 0) -> void:
 	state = CombatState.new()
 	state.setup(party, enc, DataDB.enemies, DataDB.skills, seed_value)
 	state.rewrite_charges = GameState.rewrite_charges()
+	_apply_modifiers()
+	var boss: bool = enc.get("enemies", []).any(func(e): return DataDB.enemies.get(e["id"], {}).get("boss", false))
+	MusicManager.play_context("boss" if boss else "combat")
 	state.logged.connect(_on_log)
 	_build_ui(enc)
 	_on_log("— %s —" % enc.get("name", encounter_id))
+	for l in _pending_log:
+		_on_log(l)
 	_next_turn.call_deferred()
+
+
+## Fatigue (§3.1) et équipement : la lame du forgeron Gu, etc.
+func _apply_modifiers() -> void:
+	var fatigue: float = GameState.fatigue_modifier()
+	var elias = state.unit("elias")
+	if elias == null:
+		return
+	elias.atk *= fatigue
+	if GameState.store.item("lame_gu") > 0:
+		elias.atk += 3.0
+	if fatigue < 1.0:
+		_pending_log.append("Fatigue : Elias combat à %d %% de sa force." % int(fatigue * 100))
+
+
+var _pending_log: Array = []
 
 
 func _build_ui(enc: Dictionary) -> void:
@@ -215,6 +236,9 @@ func _show_result(r: String) -> void:
 # --- Affichage ---------------------------------------------------------------------
 
 func _refresh() -> void:
+	var danger: bool = state.alive("ally").any(func(u): return u.hp_ratio() < 0.3)
+	if MusicManager.current_context in ["combat", "combat.danger"]:
+		MusicManager.set_danger(danger)
 	_fill_grid(_ally_grid, "ally")
 	_fill_grid(_enemy_grid, "enemy")
 	for c in _timeline.get_children():

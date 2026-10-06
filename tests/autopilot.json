@@ -1,0 +1,91 @@
+{
+ "note": "Itinéraire de l'autopilote (-- --autotest) ; choix forcés par bloc (défaut : premier choix). « -- --autotest --alt » utilise choices_alt (embranchements alternatifs).",
+ "route": [
+  {
+   "go": "yeouido.ifc",
+   "until": "flag('haein_rencontree')",
+   "do": "haein"
+  },
+  {
+   "go": "yeouido.parking",
+   "until": "flag('bunker_ouvert')",
+   "do": "ouvrir"
+  },
+  {
+   "go": "yeouido.parking",
+   "until": "day() >= 3",
+   "do": "sleep"
+  },
+  {
+   "go": "myeongdong.cathedrale",
+   "until": "flag('agatha_rencontree')",
+   "do": "agatha"
+  },
+  {
+   "go": "myeongdong.marche",
+   "until": "flag('maricel_rencontree')",
+   "do": "maricel"
+  },
+  {
+   "go": "yeouido.camp",
+   "until": "done('j3_seo_soir') or day() >= 4",
+   "do": "wait"
+  },
+  {
+   "go": "yeouido.parking",
+   "until": "day() >= 4",
+   "do": "sleep"
+  },
+  {
+   "go": "yeouido.camp",
+   "until": "done('j4_camp')",
+   "do": "wait"
+  },
+  {
+   "go": "yeouido.camp",
+   "until": "day() >= 5",
+   "do": "sleep"
+  },
+  {
+   "go": "yeouido.assemblee",
+   "until": "flag('archive_trouvee') or not flag('contrat_haein')",
+   "do": "archives"
+  },
+  {
+   "go": "yeouido.ifc",
+   "until": "flag('archive_livree') or not flag('archive_trouvee')",
+   "do": "remise"
+  },
+  {
+   "go": "yongsan.porte_tour",
+   "until": "flag('passe_tour')",
+   "do": "simone"
+  },
+  {
+   "go": "etage1.trois_portes",
+   "until": "flag('porte_juste')",
+   "do": "enigme"
+  },
+  {
+   "go": "etage1.porte_sans_serrure",
+   "until": "flag('haneul_trouvee')",
+   "do": "main"
+  },
+  {
+   "go": "yeouido.camp",
+   "until": "day() >= 7 and phase() >= 2",
+   "do": "sleep"
+  }
+ ],
+ "choices": {
+  "act1_tower:portes_choix": 2,
+  "act1_haein:penthouse": 1
+ },
+ "choices_alt": {
+  "act1_tower:portes_choix": 2,
+  "act1_haein:penthouse": 0,
+  "act1_haein:penthouse_alarme": 1,
+  "act1_camp:decision_j4": 1,
+  "act1_haein:bureau": 1
+ }
+}

@@ -17,6 +17,9 @@ extends RefCounted
 ##   {"choice": [{"t": "...", "goto": "bloc", "fx": [...], "if": "cond"}]}
 ##   {"event": "combat", "args": {"encounter": "..."}}   met en pause, l'hôte appelle resume()
 ##   {"phase": 1}                                        avance le temps d'une phase
+##   {"time": "2:1"}                                     place l'horloge sur J2, phase 1 (jamais en arrière)
+##   {"music": "intimate"}                               change le contexte musical (data/audio/music.json)
+##   "v": true sur une réplique                           réplique doublée (voix IA)
 ##   {"end": true}
 ## Chaque réplique reçoit un identifiant stable "dialogue:bloc:index" (clé des voix IA).
 
@@ -46,6 +49,7 @@ func start(dlg: Dictionary, start_block: String = "") -> void:
 ##   {"kind": "line", "speaker", "text", "expr", "id"}
 ##   {"kind": "choice", "options": [{"text", "index"}]}
 ##   {"kind": "bg", "id"} · {"kind": "cg", "id"} · {"kind": "phase", "count"}
+##   {"kind": "time", "day", "phase"} · {"kind": "music", "context"}
 ##   {"kind": "event", "name", "args"} · {"kind": "end"}
 func next() -> Dictionary:
 	if finished:
@@ -62,7 +66,7 @@ func next() -> Dictionary:
 		index += 1
 		if step.has("t"):
 			return {"kind": "line", "speaker": str(step.get("s", "narrator")), "text": str(step["t"]),
-					"expr": str(step.get("e", "neutral")), "id": step_id}
+					"expr": str(step.get("e", "neutral")), "id": step_id, "voiced": bool(step.get("v", false))}
 		if step.has("fx"):
 			store.apply_effects(step["fx"])
 			continue
@@ -89,6 +93,11 @@ func next() -> Dictionary:
 			return {"kind": "cg", "id": str(step["cg"])}
 		if step.has("phase"):
 			return {"kind": "phase", "count": int(step["phase"])}
+		if step.has("time"):
+			var dp := str(step["time"]).split(":")
+			return {"kind": "time", "day": int(dp[0]), "phase": int(dp[1])}
+		if step.has("music"):
+			return {"kind": "music", "context": str(step["music"])}
 		if step.has("event"):
 			return {"kind": "event", "name": str(step["event"]), "args": step.get("args", {})}
 		if step.has("end"):

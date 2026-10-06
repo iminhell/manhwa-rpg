@@ -429,6 +429,18 @@
         }
       ],
       "ai_weight": 0.6
+    },
+    "coup_de_poing_eveille": {
+      "name": "Poing éveillé",
+      "target": "melee",
+      "cost": 10,
+      "effects": [
+        {
+          "type": "damage",
+          "power": 1.3
+        }
+      ],
+      "ai_weight": 0.8
     }
   }
 }

@@ -6,6 +6,7 @@ const StateStore := preload("res://core/state_store.gd")
 const DialogueRunner := preload("res://narrative/dialogue_runner.gd")
 const CombatState := preload("res://combat/combat_state.gd")
 const DataDB := preload("res://core/data_db.gd")
+const WorldModel := preload("res://world/world_model.gd")
 
 var _passed := 0
 var _failed := 0
@@ -19,6 +20,9 @@ func _init() -> void:
 	test_combat_full_battles()
 	test_combat_rewrite()
 	test_combat_fear()
+	test_time()
+	test_world_model()
+	test_dialogue_fuzz()
 	print("\n%d réussis, %d échoués" % [_passed, _failed])
 	quit(1 if _failed > 0 else 0)
 
@@ -166,3 +170,116 @@ func test_combat_fear() -> void:
 	var enemy = st.alive("enemy")[0]
 	st._apply(st.unit("elias"), enemy, {"type": "fear", "value": 120})
 	check(enemy.fled and st.result() == "win", "Peur ≥ 100 : l'ennemi fuit")
+
+
+func test_time() -> void:
+	var s := StateStore.new()
+	check(s.day() == 1 and s.phase() == 0, "J1 Aube au départ")
+	s.advance_ticks(5)
+	check(s.day() == 1 and s.phase() == 1, "5 ticks = J1 Jour")
+	s.set_time(2, 3)
+	check(s.day() == 2 and s.phase() == 3, "set_time J2 Nuit")
+	s.set_time(1, 0)
+	check(s.day() == 2, "set_time ne remonte jamais le temps")
+	s.sleep_until_dawn()
+	check(s.day() == 3 and s.phase() == 0 and int(s.get_var("fatigue")) == 0, "dormir → aube suivante, fatigue 0")
+	s.sleep_until_dawn()
+	check(s.day() == 3 and s.phase() == 0, "dormir à l'aube ne saute pas de journée")
+	check(is_equal_approx(s.pressure(), 25.0), "Pression J3 = 25 (%s)" % s.pressure())
+	s.apply_effects(["pressure -10", "item ration 2", "money 30", "join seo_yeon", "fin aoi"])
+	check(is_equal_approx(s.pressure(), 15.0) and s.item("ration") == 2 and s.money() == 30, "effets pression/objet/argent")
+	check(s.party("seo_yeon") and s.knows_fin("aoi"), "effets groupe/Fin")
+
+
+func _world(store) -> WorldModel:
+	return WorldModel.new(store, DataDB.load_json("res://data/world/sectors.json"), DataDB.load_json("res://data/world/events.json"))
+
+
+func test_world_model() -> void:
+	var s := StateStore.new()
+	s.set_time(2, 2)
+	var w := _world(s)
+	w.place("yeouido.camp")
+	check(w.sector_id() == "yeouido" and not w.is_refuge("yeouido.camp"), "camp : pas encore un refuge")
+	check(not w.node_visible("yeouido.parking"), "bunker B6 caché sans le souvenir")
+	s.add_souvenir("s1_bunker_b6")
+	check(w.node_visible("yeouido.parking"), "bunker B6 révélé par le souvenir n°1")
+	check(not w.node_open("yeouido.labo"), "labo Haesong verrouillé sans badge")
+	check(w.can_move("yeouido.ifc") and not w.can_move("yeouido.labo"), "déplacements : liens et verrous")
+	var t0: int = s.ticks()
+	w.move("yeouido.ifc")
+	check(s.ticks() == t0 + 1 and w.node_id() == "yeouido.ifc", "déplacement = 1 tick")
+	check(not w.sector_available("etage1"), "étage 1 fermé avant J5")
+	check(w.travel_cost("ponts") == 4 and w.travel_cost("gangnam") == 8, "coûts de trajet (adjacent / lointain)")
+	# Événement daté : le rêve du J2 interrompt l'avancée à la nuit
+	w.take_event()
+	w.advance(8)
+	var ev := w.take_event()
+	check(ev.get("id", "") == "j2_reve", "J2 Nuit : le rêve de Haneul se déclenche (%s)" % ev.get("id", "-"))
+	check(s.phase() == 3 and s.day() == 2, "le temps s'arrête à la frontière de la nuit")
+	check(w.take_event().get("id", "") == "maree", "puis la Marée (hors refuge)")
+	check(w.take_event().is_empty(), "plus d'événement en attente")
+	# Zones cachées liées au calendrier et à la boucle
+	w.place("yongsan.ruelle")
+	check(w.node_visible("yongsan.eclat"), "Éclat du Vestibule visible la nuit")
+	check(not w.node_visible("yongsan.abri7"), "abri n°7 caché en boucle 1")
+	s.set_var("loop", 2)
+	check(w.node_visible("yongsan.abri7") and w.node_visible("ponts.grotte"), "boucle 2 : abri n°7 et grotte révélés")
+	# Accès à l'étage 1
+	s.set_time(5, 0)
+	s.set_flag("passe_tour")
+	w.place("yongsan.porte_tour")
+	check(w.can_travel("etage1"), "étage 1 accessible depuis Yongsan au J5 avec le laissez-passer")
+	w.place("ponts.banpo")
+	check(not w.can_travel("etage1"), "étage 1 inaccessible hors de Yongsan")
+	# Recherche de chemin
+	w.place("yeouido.camp")
+	check(w.path_step("etage1.porte_sans_serrure").has("travel"), "chemin inter-secteurs")
+	w.place("yongsan.appart")
+	var step := w.path_step("yongsan.porte_tour")
+	check(step.get("move", "") == "yongsan.rue_itaewon", "chemin intra-secteur (%s)" % step)
+	# Actions : une seule fois, puis disparaît
+	var n_before := w.actions().size()
+	for a in w.actions():
+		if a.get("id") == "fouiller":
+			w.do_action(a)
+	check(w.actions().size() == n_before - 1 and s.item("ration") >= 2, "action « une fois » consommée")
+	# Malaise d'épuisement
+	var s2 := StateStore.new()
+	var w2 := _world(s2)
+	w2.place("hongdae.rue_clubs")
+	s2.set_var("fatigue", 27)
+	s2.set_flag("event.j2_reve")
+	w2.advance(2)
+	check(int(s2.get_var("fatigue")) == 0 and s2.phase() == 0 and s2.day() == 2, "malaise à 28 de fatigue → aube suivante")
+
+
+## Parcourt chaque bloc de chaque dialogue avec des choix aléatoires : aucune erreur ni boucle infinie.
+func test_dialogue_fuzz() -> void:
+	var dialogues := DataDB.load_dir("res://data/dialogues")
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 1234
+	var runs := 0
+	for id in dialogues:
+		for block in dialogues[id]["blocks"]:
+			for attempt in 4:
+				var s := StateStore.new()
+				s.set_var("loop", 1 + attempt % 3)
+				s.set_time(1 + rng.randi_range(0, 6), rng.randi_range(0, 3))
+				for f in ["camp_defendu", "camp_vassal", "haneul_trouvee", "archive_copie", "haein_rencontree", "portier_vaincu"]:
+					if rng.randf() < 0.4:
+						s.set_flag(f)
+				s.set_var("combat.last", "win" if rng.randf() < 0.8 else "lose")
+				var r := DialogueRunner.new(s)
+				r.start(dialogues[id], block)
+				var ended := false
+				for i in 400:
+					var st := r.next()
+					if st["kind"] == "choice":
+						r.choose(rng.randi_range(0, st["options"].size() - 1))
+					elif st["kind"] == "end":
+						ended = true
+						break
+				runs += 1
+				check(ended, "%s:%s se termine" % [id, block])
+	print("  fuzz dialogues : %d parcours" % runs)

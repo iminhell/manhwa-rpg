@@ -1,0 +1,1414 @@
+{
+ "id": "act1_world",
+ "title": "Acte I — Monde (Ancres, lieux, secrets)",
+ "start": "start",
+ "speakers": {
+  "choi": "Mme Choi",
+  "agatha": "Mère Agatha",
+  "maricel": "Fille au sweat moutarde",
+  "inconnue": "???",
+  "mirae_ia": "IA de Mirae",
+  "haut_parleur": "Haut-parleur",
+  "prophete": "Le Prophète",
+  "simone": "Commandante"
+ },
+ "blocks": {
+  "start": [
+   {
+    "s": "narrator",
+    "t": "…"
+   },
+   {
+    "end": true
+   }
+  ],
+  "maree": [
+   {
+    "music": "night"
+   },
+   {
+    "s": "narrator",
+    "t": "La nuit tombe. La Tour gronde, et ses flancs se mettent à suinter."
+   },
+   {
+    "s": "narrator",
+    "t": "Des silhouettes se décrochent du ciel noir comme des gouttes de goudron. La Marée."
+   },
+   {
+    "choice": [
+     {
+      "t": "Les affronter. Chaque monstre tué, c'est une vie de plus à l'aube.",
+      "goto": "maree_fight",
+      "fx": [
+       "add align.protect 1"
+      ]
+     },
+     {
+      "t": "Se terrer dans une cage d'escalier jusqu'au matin.",
+      "goto": "maree_hide",
+      "fx": [
+       "add fatigue 4"
+      ]
+     }
+    ]
+   }
+  ],
+  "maree_fight": [
+   {
+    "if": "day() <= 6",
+    "then": "maree_t1",
+    "else": "maree_t2"
+   }
+  ],
+  "maree_t1": [
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "maree_t1"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "fx": [
+     "money 15"
+    ]
+   },
+   {
+    "s": "narrator",
+    "t": "Les corps fondent en fumée noire avant l'aube. Il reste quelques éclats de glyphes, monnayables au Marché Souterrain."
+   },
+   {
+    "end": true
+   }
+  ],
+  "maree_t2": [
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "maree_t2"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "fx": [
+     "money 25"
+    ]
+   },
+   {
+    "s": "narrator",
+    "t": "Plus nombreux que la veille. Plus rapides. La Tour accélère."
+   },
+   {
+    "end": true
+   }
+  ],
+  "maree_hide": [
+   {
+    "s": "narrator",
+    "t": "Recroquevillé dans le noir, tu écoutes les griffes racler les portes, une à une. Quelqu'un hurle, deux rues plus loin. Puis plus rien."
+   },
+   {
+    "s": "elias",
+    "t": "(On meurt toujours seul. Ce soir, ce n'est pas mon tour.)",
+    "e": "exhausted"
+   },
+   {
+    "end": true
+   }
+  ],
+  "defeat": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Le monde bascule. Le sol, le ciel, la Tour qui regarde."
+   },
+   {
+    "s": "elias",
+    "t": "Pas… encore…",
+    "e": "exhausted"
+   },
+   {
+    "s": "registre",
+    "t": "ÉCHEC — Le Lecteur est mort."
+   },
+   {
+    "s": "registre",
+    "t": "Régression."
+   },
+   {
+    "event": "regress",
+    "args": {}
+   },
+   {
+    "end": true
+   }
+  ],
+  "sceaux": [
+   {
+    "music": "registre"
+   },
+   {
+    "s": "system",
+    "t": "ANNONCE GÉNÉRALE — Distribution des Sceaux."
+   },
+   {
+    "s": "system",
+    "t": "Les cinq groupements comptant le plus d'Éveillés reçoivent un Sceau de Seigneurie."
+   },
+   {
+    "s": "system",
+    "t": "Sceau du Poing — Groupe Cheonma. Sceau de la Balance — Haesong Holdings. Sceau du Courant — Consortium Longwei."
+   },
+   {
+    "s": "system",
+    "t": "Sceau de l'Œil — Mirae Dynamics. Sceau du Tigre Blanc — Maison Baek."
+   },
+   {
+    "s": "narrator",
+    "t": "Sur toute la ville, cinq colonnes de lumière percent le crépuscule. Gangnam, Yeouido, le Han, Hongdae, les Collines."
+   },
+   {
+    "s": "elias",
+    "t": "Dans l'autre vie, j'ai regardé ces lumières depuis un égout. Les gens se sont entretués toute la nuit pour savoir qui les porterait.",
+    "e": "neutral"
+   },
+   {
+    "s": "registre",
+    "t": "Un Sceau peut être volé, gagné, hérité ou offert. Le Système ne juge pas : il comptabilise."
+   },
+   {
+    "choice": [
+     {
+      "t": "« Un Sceau, ça se prend. »",
+      "goto": "sceaux_fin",
+      "fx": [
+       "add align.protect -1",
+       "flag veut_sceau"
+      ]
+     },
+     {
+      "t": "« Ces cinq-là vont déchirer la ville. Quelqu'un doit tenir les autres. »",
+      "goto": "sceaux_fin",
+      "fx": [
+       "add align.protect 1",
+       "add align.bond 1"
+      ]
+     },
+     {
+      "t": "« Qu'ils se battent. Je vais ailleurs. »",
+      "goto": "sceaux_fin",
+      "fx": [
+       "add align.bond -1"
+      ]
+     }
+    ]
+   }
+  ],
+  "sceaux_fin": [
+   {
+    "fx": [
+     "flag sceaux_distribues"
+    ]
+   },
+   {
+    "s": "narrator",
+    "t": "Les cinq colonnes s'éteignent. La nuit tombe sur une ville qui a désormais des rois."
+   },
+   {
+    "end": true
+   }
+  ],
+  "porte_j5": [
+   {
+    "music": "registre"
+   },
+   {
+    "s": "system",
+    "t": "ÉTAGE 1 — LE VESTIBULE — OUVERT."
+   },
+   {
+    "s": "system",
+    "t": "Règle de l'étage : aucune arme apportée de l'extérieur ne fonctionne."
+   },
+   {
+    "s": "narrator",
+    "t": "Au loin, un grondement de pierre : l'arche d'obsidienne de Yongsan vient de s'ouvrir."
+   },
+   {
+    "s": "haut_parleur",
+    "t": "Ici l'Unité 0. Yongsan est en quarantaine. Tout civil approchant de la Porte sera abattu. Je répète : tout civil sera abattu."
+   },
+   {
+    "s": "elias",
+    "t": "Le cinquième matin. Elle dort derrière une porte sans serrure… et les robes blanches vont la chercher.",
+    "e": "anger"
+   },
+   {
+    "if": "flag('haneul_trouvee')",
+    "then": "porte_fin"
+   },
+   {
+    "s": "registre",
+    "t": "Souvenir n°4 — « Je l'ai trouvée trop tard, au J20. » Cette fois, il est encore temps."
+   },
+   {
+    "goto": "porte_fin"
+   }
+  ],
+  "porte_fin": [
+   {
+    "fx": [
+     "flag tour_ouverte"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "classement": [
+   {
+    "music": "registre"
+   },
+   {
+    "bg": "black"
+   },
+   {
+    "s": "system",
+    "t": "PREMIER CLASSEMENT DES CANDIDATS."
+   },
+   {
+    "s": "system",
+    "t": "1. Cheon Mu-gyeong — Rang S — Roi Démon. 2. Baek Ryeon — Rang A. 3. Cheon Tae-ju — Rang A."
+   },
+   {
+    "s": "system",
+    "t": "…  48 211. Kang Elias — Rang F — Porteur."
+   },
+   {
+    "if": "flag('portier_vaincu')",
+    "then": "classement_conquerant"
+   },
+   {
+    "s": "elias",
+    "t": "Quarante-huit mille deux cent onzième. Parfait. Personne ne regarde jamais le fond du classement.",
+    "e": "smirk"
+   },
+   {
+    "goto": "classement_suite"
+   }
+  ],
+  "classement_conquerant": [
+   {
+    "s": "system",
+    "t": "MENTION SPÉCIALE — Premier Conquérant de l'Étage 1 : Kang Elias."
+   },
+   {
+    "s": "narrator",
+    "t": "Sur tous les écrans géants de Gangnam, ton nom s'affiche en lettres d'or. À la Tour Cheonma, un colosse repose lentement son verre."
+   },
+   {
+    "s": "elias",
+    "t": "…Ah. Ça, ce n'était pas prévu.",
+    "e": "surprise"
+   },
+   {
+    "fx": [
+     "flag elias_celebre"
+    ]
+   },
+   {
+    "goto": "classement_suite"
+   }
+  ],
+  "classement_suite": [
+   {
+    "if": "flag('haein_rencontree') and not flag('haein_froid')",
+    "then": "classement_haein"
+   },
+   {
+    "goto": "classement_seo"
+   }
+  ],
+  "classement_haein": [
+   {
+    "s": "narrator",
+    "t": "Une carte noire glissée sous ta porte, écriture à l'encre bordeaux."
+   },
+   {
+    "s": "hae_in",
+    "t": "« Rang F. Mensonge élégant. Vous avez ma curiosité, Monsieur Kang. Ne la gaspillez pas. — Y. H. »",
+    "e": "threat"
+   },
+   {
+    "goto": "classement_seo"
+   }
+  ],
+  "classement_seo": [
+   {
+    "if": "party('seo_yeon')",
+    "then": "classement_seo_ok",
+    "else": "classement_seo_absente"
+   }
+  ],
+  "classement_seo_ok": [
+   {
+    "s": "seo_yeon",
+    "t": "Quarante-huit mille ? Vous vous êtes battu contre une nuée entière sous mes yeux. Le Système est aveugle, ou vous trichez.",
+    "e": "surprise"
+   },
+   {
+    "s": "elias",
+    "t": "Les deux, peut-être.",
+    "e": "smirk"
+   },
+   {
+    "goto": "classement_haneul"
+   }
+  ],
+  "classement_seo_absente": [
+   {
+    "s": "narrator",
+    "t": "Personne pour commenter. Le camp de Yeouido ne t'attend plus."
+   },
+   {
+    "s": "registre",
+    "t": "Park Seo-Yeon — la page tremble. Sa Fin n'a pas disparu. Elle s'est rapprochée."
+   },
+   {
+    "goto": "classement_haneul"
+   }
+  ],
+  "classement_haneul": [
+   {
+    "if": "flag('haneul_trouvee')",
+    "then": "classement_haneul_ok",
+    "else": "classement_haneul_non"
+   }
+  ],
+  "classement_haneul_ok": [
+   {
+    "s": "haneul",
+    "t": "Ils comptent les gens comme le Registre compte les morts. Ça ne te dérange pas ?",
+    "e": "tilt"
+   },
+   {
+    "s": "elias",
+    "t": "Ça me dérange qu'on me compte. Les autres, je m'en occupe.",
+    "e": "neutral"
+   },
+   {
+    "goto": "classement_fin"
+   }
+  ],
+  "classement_haneul_non": [
+   {
+    "s": "registre",
+    "t": "Étage 1 — porte sans serrure : toujours close. Les robes blanches se rapprochent."
+   },
+   {
+    "goto": "classement_fin"
+   }
+  ],
+  "classement_fin": [
+   {
+    "s": "narrator",
+    "t": "FIN DE L'ACTE I — « Éveil »."
+   },
+   {
+    "event": "end_act",
+    "args": {
+     "act": 1
+    }
+   },
+   {
+    "end": true
+   }
+  ],
+  "choi_eglise": [
+   {
+    "bg": "itaewon_street"
+   },
+   {
+    "s": "choi",
+    "t": "Elias-ssi ! Regarde, on a monté une cuisine. Les petits du quartier dorment au chaud."
+   },
+   {
+    "s": "choi",
+    "t": "Ta mère… elle venait prier ici, tu sais. Le dimanche matin. Après ses nuits.",
+    "e": "sad"
+   },
+   {
+    "s": "elias",
+    "t": "Ses nuits.",
+    "e": "neutral"
+   },
+   {
+    "s": "choi",
+    "t": "Elle a tout fait pour toi. Tout. Ne laisse personne te dire le contraire."
+   },
+   {
+    "choice": [
+     {
+      "t": "« Je sais ce qu'elle faisait, madame Choi. »",
+      "goto": "choi_verite",
+      "fx": [
+       "add align.chaos -1"
+      ]
+     },
+     {
+      "t": "Changer de sujet. « Vous avez besoin de quoi ? »",
+      "goto": "choi_aide",
+      "fx": [
+       "add align.protect 1"
+      ]
+     }
+    ]
+   }
+  ],
+  "choi_verite": [
+   {
+    "s": "choi",
+    "t": "Alors tu sais aussi pourquoi. Pour que tu ne connaisses jamais ça.",
+    "e": "tears"
+   },
+   {
+    "s": "elias",
+    "t": "Raté.",
+    "e": "sad"
+   },
+   {
+    "fx": [
+     "add align.bond 1"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "choi_aide": [
+   {
+    "s": "choi",
+    "t": "De l'eau, des pansements, et un homme qui revient vivant. Fais au moins la dernière."
+   },
+   {
+    "end": true
+   }
+  ],
+  "agatha": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Une religieuse aux cheveux gris, petite, des mains abîmées qui ne tremblent pas. Elle bande un enfant sans le regarder, en te regardant, toi."
+   },
+   {
+    "s": "agatha",
+    "t": "Tu as les yeux de quelqu'un qui a déjà enterré cette ville une fois, mon fils."
+   },
+   {
+    "s": "elias",
+    "t": "…Vous dites ça à tout le monde ?",
+    "e": "surprise"
+   },
+   {
+    "s": "agatha",
+    "t": "Seulement à ceux qui reviennent."
+   },
+   {
+    "s": "narrator",
+    "t": "Elle sourit. Un sourire doux, épuisé, très ancien. Sa main gauche reste cachée dans sa manche."
+   },
+   {
+    "s": "agatha",
+    "t": "Il y a une jeune médecin à Yeouido. Si tu la croises, prends soin d'elle. Elle ne sait pas encore ce qu'elle vaut."
+   },
+   {
+    "s": "registre",
+    "t": "Lecture de la Fin — Mère Agatha Seo. … ERREUR. La page est illisible. Comme raturée de l'intérieur."
+   },
+   {
+    "s": "elias",
+    "t": "(Illisible ? Le Registre n'a jamais refusé de lire quelqu'un.)",
+    "e": "anger"
+   },
+   {
+    "fx": [
+     "flag agatha_rencontree",
+     "add align.chaos -1"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "maricel_marche": [
+   {
+    "s": "narrator",
+    "t": "Une fille en sweat moutarde, casquette à l'envers, balayage blond miel, compte des piles électriques assise sur une caisse. Ses doigts bougent plus vite que tes yeux."
+   },
+   {
+    "s": "maricel",
+    "t": "Ay, gwapo ! T'as l'air perdu. Ou riche. Les deux, c'est mon type préféré.",
+    "e": "wink"
+   },
+   {
+    "s": "elias",
+    "t": "Je cherche des tunnels.",
+    "e": "neutral"
+   },
+   {
+    "s": "maricel",
+    "t": "Tout le monde cherche des tunnels. Moi, je les connais. Ça a un prix.",
+    "e": "joy"
+   },
+   {
+    "s": "registre",
+    "t": "Lecture de la Fin — Maricel Dizon. Jour 14, Aube. Tunnels sous Myeongdong. Ensevelie avec onze des siens."
+   },
+   {
+    "s": "elias",
+    "t": "(Encore une. Dans sept jours.)",
+    "e": "sad"
+   },
+   {
+    "choice": [
+     {
+      "t": "« Tes tunnels vont s'effondrer. Quelqu'un fore sous la ville. »",
+      "goto": "maricel_avertir",
+      "fx": [
+       "add trust.maricel 5"
+      ]
+     },
+     {
+      "t": "Lui tendre une ration. « Pour le prix. »",
+      "goto": "maricel_ration",
+      "fx": [
+       "item ration -1",
+       "add aff.maricel 5"
+      ],
+      "if": "item('ration') > 0"
+     },
+     {
+      "t": "« Laisse tomber. »",
+      "goto": "maricel_fin"
+     }
+    ]
+   }
+  ],
+  "maricel_avertir": [
+   {
+    "s": "maricel",
+    "t": "…Comment tu sais pour les foreuses ? Personne ne sait pour les foreuses.",
+    "e": "surprise"
+   },
+   {
+    "s": "elias",
+    "t": "J'ai l'oreille fine.",
+    "e": "smirk"
+   },
+   {
+    "s": "maricel",
+    "t": "Hmm. Toi, je vais te surveiller. Avec plaisir.",
+    "e": "wink"
+   },
+   {
+    "goto": "maricel_fin"
+   }
+  ],
+  "maricel_ration": [
+   {
+    "s": "maricel",
+    "t": "Une ration militaire ? T'es un ange ou un idiot. Va voir les vieux tunnels sous le marché. Et dis que tu viens de la part de Cel.",
+    "e": "joy"
+   },
+   {
+    "goto": "maricel_fin"
+   }
+  ],
+  "maricel_fin": [
+   {
+    "fx": [
+     "flag maricel_rencontree",
+     "fin maricel"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "aoi_studio": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Derrière la porte capitonnée, une voix. Pas une chanson de scène : une berceuse en japonais, cassée, chantée pour personne."
+   },
+   {
+    "s": "narrator",
+    "t": "Par le hublot : une fille aux cheveux noirs et roses, recroquevillée dans un sweat gris trop grand. Des bracelets serrés au poignet gauche. Elle chante en tirant sur ses manches."
+   },
+   {
+    "s": "registre",
+    "t": "Lecture de la Fin — Aoi Tsukishiro. Jour 9, Nuit. Rue des Clubs. Écrasée par la Marée qu'attire son propre chant."
+   },
+   {
+    "choice": [
+     {
+      "t": "Frapper doucement.",
+      "goto": "aoi_frapper",
+      "fx": [
+       "add aff.aoi 3"
+      ]
+     },
+     {
+      "t": "Repartir sans bruit. Ce n'est pas le moment.",
+      "goto": "aoi_partir"
+     }
+    ]
+   }
+  ],
+  "aoi_frapper": [
+   {
+    "s": "aoi",
+    "t": "— ! Qui… L'agence vous envoie ? Je reviens, je reviens, j'ai juste…",
+    "e": "fear"
+   },
+   {
+    "s": "elias",
+    "t": "Personne ne m'envoie. Je passais. Vous chantez faux, au deuxième couplet.",
+    "e": "neutral"
+   },
+   {
+    "s": "aoi",
+    "t": "…Pardon ?",
+    "e": "surprise"
+   },
+   {
+    "s": "aoi",
+    "t": "Ahaha… Personne n'ose me dire ça. Merci, je crois.",
+    "e": "true_smile"
+   },
+   {
+    "s": "elias",
+    "t": "Le J9. Ne montez pas sur cette scène.",
+    "e": "neutral"
+   },
+   {
+    "s": "aoi",
+    "t": "Le concert de l'espoir ? Je n'ai pas le choix. Je n'ai jamais eu le choix.",
+    "e": "sad"
+   },
+   {
+    "goto": "aoi_fin"
+   }
+  ],
+  "aoi_partir": [
+   {
+    "s": "narrator",
+    "t": "La berceuse reprend derrière toi. Elle s'arrête au même endroit, à chaque fois."
+   },
+   {
+    "goto": "aoi_fin"
+   }
+  ],
+  "aoi_fin": [
+   {
+    "fx": [
+     "flag aoi_entendue",
+     "fin aoi"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "mirae_drone": [
+   {
+    "s": "narrator",
+    "t": "Le portail scanne ta silhouette. Un drone descend à hauteur de ton visage, son objectif tourne comme une pupille."
+   },
+   {
+    "s": "mirae_ia",
+    "t": "Candidat identifié. Kang Elias. Rang F. Porteur. Bienvenue sur le campus Mirae Dynamics."
+   },
+   {
+    "if": "loop() >= 2",
+    "then": "mirae_anomalie"
+   },
+   {
+    "s": "elias",
+    "t": "Rang F, oui. Merci de le rappeler.",
+    "e": "smirk"
+   },
+   {
+    "end": true
+   }
+  ],
+  "mirae_anomalie": [
+   {
+    "s": "mirae_ia",
+    "t": "… Anomalie temporelle détectée. Signature non conforme. Transmission au Sous-niveau 9."
+   },
+   {
+    "s": "narrator",
+    "t": "Le drone recule. Trois autres pivotent vers toi. Quelque part sous tes pieds, quelqu'un vient de recevoir une alerte."
+   },
+   {
+    "s": "registre",
+    "t": "Lecture partielle — Dr. Tran Minh-Anh. Jour 26, Nuit. Sous-niveau 9."
+   },
+   {
+    "s": "elias",
+    "t": "(Elle m'a vu. Déjà.)",
+    "e": "anger"
+   },
+   {
+    "fx": [
+     "flag mirae_anomalie",
+     "fin minh_anh"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "ryeon_domaine": [
+   {
+    "s": "narrator",
+    "t": "Dans la cour du domaine Baek, une épéiste en hanbok de combat noir et blanc tranche des feuilles de pin en plein vol. Queue de cheval interminable, ruban rouge."
+   },
+   {
+    "s": "ryeon",
+    "t": "Tu regardes depuis trop longtemps, étranger. Soit tu dégaines, soit tu pars.",
+    "e": "anger"
+   },
+   {
+    "s": "registre",
+    "t": "Lecture de la Fin — Baek Ryeon. Jour 17, Crépuscule. Domaine Baek. Tuée en duel d'honneur."
+   },
+   {
+    "choice": [
+     {
+      "t": "« Je n'ai pas d'épée. Juste une question : qui te force à épouser Cheonma ? »",
+      "goto": "ryeon_question",
+      "fx": [
+       "add trust.ryeon 3"
+      ]
+     },
+     {
+      "t": "« Belle technique. Mauvais appui sur la jambe gauche. »",
+      "goto": "ryeon_critique",
+      "fx": [
+       "add aff.ryeon 4"
+      ]
+     },
+     {
+      "t": "Partir.",
+      "goto": "ryeon_fin"
+     }
+    ]
+   }
+  ],
+  "ryeon_question": [
+   {
+    "s": "ryeon",
+    "t": "…Qui t'a parlé de ça ?! C'est une affaire de la Maison Baek !",
+    "e": "tsundere"
+   },
+   {
+    "s": "ryeon",
+    "t": "Pars. Avant que j'oublie que tu n'es pas armé.",
+    "e": "anger"
+   },
+   {
+    "goto": "ryeon_fin"
+   }
+  ],
+  "ryeon_critique": [
+   {
+    "s": "narrator",
+    "t": "Elle se fige. Regarde sa jambe gauche. Rougit jusqu'aux oreilles."
+   },
+   {
+    "s": "ryeon",
+    "t": "Je… le savais. Évidemment. Je testais ton œil.",
+    "e": "tsundere"
+   },
+   {
+    "goto": "ryeon_fin"
+   }
+  ],
+  "ryeon_fin": [
+   {
+    "fx": [
+     "flag ryeon_rencontree",
+     "fin ryeon"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "xiaoyu_barge": [
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Lanternes rouges, fumée de jasmin, mahjong. Une femme en qipao noir fendu, carré rouge carmin, joue seule contre trois sièges vides. Elle ne lève pas les yeux."
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Kang Elias. Mon meilleur recouvreur. Tu as disparu le jour de la fin du monde, sans rendre ta dernière enveloppe.",
+    "e": "fan"
+   },
+   {
+    "s": "elias",
+    "t": "J'ai eu un empêchement. Je suis mort.",
+    "e": "smirk"
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Mourir n'annule pas une dette, mon chou. Ça la transmet.",
+    "e": "fan"
+   },
+   {
+    "s": "registre",
+    "t": "Lecture de la Fin — Long Xiaoyu. Jour 19, Nuit. Sur le Han. Poignardée par ses propres lieutenants."
+   },
+   {
+    "choice": [
+     {
+      "t": "« Tes lieutenants. Le J19. Surveille l'Oncle Fang. »",
+      "goto": "xiaoyu_avertir",
+      "fx": [
+       "add trust.xiaoyu 4"
+      ]
+     },
+     {
+      "t": "Rembourser l'enveloppe (40).",
+      "goto": "xiaoyu_payer",
+      "fx": [
+       "money -40",
+       "add aff.xiaoyu 5"
+      ],
+      "if": "money() >= 40"
+     },
+     {
+      "t": "« Je ne travaille plus pour toi. »",
+      "goto": "xiaoyu_refus",
+      "fx": [
+       "add fear.xiaoyu 2"
+      ]
+     }
+    ]
+   }
+  ],
+  "xiaoyu_avertir": [
+   {
+    "s": "narrator",
+    "t": "L'éventail s'immobilise. Pour la première fois, elle te regarde. Des yeux de chat, couleur d'ambre."
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Tu sais que je fais noyer ceux qui me mentent ?",
+    "e": "fan"
+   },
+   {
+    "s": "elias",
+    "t": "Je sais. C'est pour ça que je ne mens pas.",
+    "e": "neutral"
+   },
+   {
+    "s": "xiaoyu",
+    "t": "…Intéressant. Reviens me voir, Kang. Vivant, de préférence.",
+    "e": "desire"
+   },
+   {
+    "goto": "xiaoyu_fin"
+   }
+  ],
+  "xiaoyu_payer": [
+   {
+    "s": "xiaoyu",
+    "t": "Un homme qui paie ses dettes après l'apocalypse. On devrait t'empailler.",
+    "e": "joy"
+   },
+   {
+    "goto": "xiaoyu_fin"
+   }
+  ],
+  "xiaoyu_refus": [
+   {
+    "s": "xiaoyu",
+    "t": "Personne ne « ne travaille plus » pour moi. On finit juste de travailler.",
+    "e": "contempt"
+   },
+   {
+    "goto": "xiaoyu_fin"
+   }
+  ],
+  "xiaoyu_fin": [
+   {
+    "fx": [
+     "flag xiaoyu_rencontree",
+     "fin xiaoyu"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "nadia_reflet": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Le toit de la Lotte World Tower. Le vent hurle à 555 mètres. Yongsan s'étend en dessous, la Tour noire en son centre."
+   },
+   {
+    "s": "narrator",
+    "t": "À l'autre bout du toit, une silhouette allongée derrière un fusil démesuré. Cheveux platine. Une lunette qui renvoie un éclat blanc."
+   },
+   {
+    "s": "elias",
+    "t": "(Le reflet blanc. Le toit, à gauche.)",
+    "e": "fear"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle tourne la tête. Des yeux gris, presque argentés. Elle ne bouge pas l'arme. Elle te regarde comme on mesure une distance."
+   },
+   {
+    "s": "inconnue",
+    "t": "Rang F. Tu es monté jusqu'ici pour la vue ?",
+    "e": "aim"
+   },
+   {
+    "s": "elias",
+    "t": "Pour toi.",
+    "e": "neutral"
+   },
+   {
+    "s": "inconnue",
+    "t": "Mauvaise réponse. Redescends, Porteur. Tu n'es pas encore sur ma liste.",
+    "e": "aim"
+   },
+   {
+    "s": "registre",
+    "t": "Lecture de la Fin — ??? Jour 24, Crépuscule. Ce toit. Abattue. [Identité : refusée par la cible]"
+   },
+   {
+    "s": "elias",
+    "t": "(« Pas encore. » Dans l'autre vie, j'y étais. Le J30.)",
+    "e": "anger"
+   },
+   {
+    "fx": [
+     "flag nadia_apercue",
+     "fin nadia"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "simone_checkpoint": [
+   {
+    "bg": "tower_gate"
+   },
+   {
+    "s": "narrator",
+    "t": "Sacs de sable, projecteurs, soldats coréens et américains mélangés. Une femme en veste de commandement, carrure de catcheuse, cicatrice à la mâchoire, t'arrête d'une main."
+   },
+   {
+    "s": "simone",
+    "t": "Stop. Civil, rang F. Demi-tour, ou je te fais demi-tourner.",
+    "e": "neutral"
+   },
+   {
+    "s": "registre",
+    "t": "Lecture de la Fin — Simone Hayes. Jour 28, Aube. Silo d'artillerie de Yongsan. Morte à son poste."
+   },
+   {
+    "fx": [
+     "fin simone"
+    ]
+   },
+   {
+    "choice": [
+     {
+      "t": "« Le Portier ment toujours sur la troisième porte. Je peux vous ouvrir l'étage. »",
+      "goto": "simone_info",
+      "fx": [
+       "add trust.simone 5"
+      ],
+      "if": "souvenir('s3_portier')"
+     },
+     {
+      "t": "Glisser 50 au caporal pendant qu'elle a le dos tourné.",
+      "goto": "simone_pot",
+      "fx": [
+       "money -50",
+       "add align.protect -1"
+      ],
+      "if": "money() >= 50"
+     },
+     {
+      "t": "Contourner par les barbelés, de nuit, comme une ombre.",
+      "goto": "simone_ombre",
+      "fx": [
+       "add align.bond -1"
+      ],
+      "if": "phase() == 3"
+     },
+     {
+      "t": "Repartir.",
+      "goto": "simone_fin"
+     }
+    ]
+   }
+  ],
+  "simone_info": [
+   {
+    "s": "simone",
+    "t": "…Personne n'est entré là-dedans. Comment tu saurais ça ?",
+    "e": "surprise"
+   },
+   {
+    "s": "elias",
+    "t": "Appelons ça une intuition de rang F.",
+    "e": "smirk"
+   },
+   {
+    "s": "simone",
+    "t": "Ok, rang F. Tu entres, tu me ramènes un plan. Tu mens, je te colle au mur moi-même. Deal ?",
+    "e": "cigar"
+   },
+   {
+    "fx": [
+     "flag passe_tour",
+     "flag simone_deal"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "simone_pot": [
+   {
+    "s": "narrator",
+    "t": "Le caporal empoche les billets sans un mot et regarde ailleurs. La commandante ne s'est rendu compte de rien. Peut-être."
+   },
+   {
+    "fx": [
+     "flag passe_tour"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "simone_ombre": [
+   {
+    "s": "narrator",
+    "t": "Sous les projecteurs, entre deux rondes, tu glisses dans l'ombre des sacs de sable. Une voix, derrière toi : « Je t'ai vu, rang F. Si tu reviens pas, je ne t'ai jamais vu. »"
+   },
+   {
+    "fx": [
+     "flag passe_tour",
+     "add trust.simone 2"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "simone_fin": [
+   {
+    "end": true
+   }
+  ],
+  "elus": [
+   {
+    "s": "narrator",
+    "t": "Des hommes et des femmes en robes blanches psalmodient devant l'arche. Une femme masquée de blanc les dirige. Sa voix est déformée, comme filtrée par un métal."
+   },
+   {
+    "s": "prophete",
+    "t": "La Tour est une miséricorde. Dans trente jours, nous dormirons enfin."
+   },
+   {
+    "s": "registre",
+    "t": "Lecture de la Fin — Le Prophète. … ACCÈS REFUSÉ. Deux signatures pour une seule page."
+   },
+   {
+    "s": "elias",
+    "t": "(Deux signatures ?)",
+    "e": "surprise"
+   },
+   {
+    "fx": [
+     "flag prophete_apercu"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "eclat_vestibule": [
+   {
+    "music": "registre"
+   },
+   {
+    "s": "narrator",
+    "t": "Tu poses la main sur une dalle flottante. Les glyphes s'allument sous ta paume, puis remontent le long de ton bras jusqu'à tes yeux."
+   },
+   {
+    "s": "haneul",
+    "t": "…Tu m'entends ? Ce morceau est tombé de chez moi. Il se souvient encore de mon pas.",
+    "e": "sad"
+   },
+   {
+    "s": "registre",
+    "t": "Fragment de Strate récupéré. Lore : « Le Vestibule fut bâti pour accueillir ceux qui n'avaient plus de monde. »"
+   },
+   {
+    "fx": [
+     "item fragment_strate 1",
+     "souvenir eclat_vu",
+     "pressure -1"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "vigie": [
+   {
+    "s": "narrator",
+    "t": "Du haut de la Tour N Seoul, la ville entière : des feux à Gangnam, un essaim de drones sur Hongdae, des lanternes rouges sur le Han, les Collines noyées de brume."
+   },
+   {
+    "s": "narrator",
+    "t": "Et sur la Lotte Tower, un éclat blanc, minuscule. Il clignote une fois, comme un signal."
+   },
+   {
+    "s": "registre",
+    "t": "Carte enrichie : dangers des secteurs mis à jour. Zones cachées pressenties."
+   },
+   {
+    "fx": [
+     "souvenir vigie_ville",
+     "flag vigie"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "bunker_b6": [
+   {
+    "s": "narrator",
+    "t": "Ton souvenir te guide : troisième pilier, une plaque d'égout fausse, un volant rouillé. Le mur glisse dans un hurlement de métal."
+   },
+   {
+    "s": "narrator",
+    "t": "Derrière : un bunker de Haesong. Des palettes de vivres, de l'eau, des générateurs. De quoi nourrir deux cents personnes pendant un mois."
+   },
+   {
+    "s": "elias",
+    "t": "Dans l'autre vie, on l'a trouvé au J18. Il était déjà vide. Pillé par Cheonma.",
+    "e": "neutral"
+   },
+   {
+    "choice": [
+     {
+      "t": "Le garder secret. Un refuge pour moi seul.",
+      "goto": "b6_secret",
+      "fx": [
+       "add align.bond -2",
+       "item ration 6",
+       "money 40"
+      ]
+     },
+     {
+      "t": "Prévenir le camp de Yeouido.",
+      "goto": "b6_camp",
+      "fx": [
+       "add align.protect 3",
+       "add align.bond 2",
+       "add camp.defense 15",
+       "item ration 2"
+      ]
+     },
+     {
+      "t": "Le vendre à Haesong : c'est leur bunker, après tout.",
+      "goto": "b6_vendre",
+      "fx": [
+       "money 120",
+       "add align.protect -1"
+      ]
+     }
+    ]
+   }
+  ],
+  "b6_secret": [
+   {
+    "s": "narrator",
+    "t": "Tu refermes le mur. Personne ne saura."
+   },
+   {
+    "fx": [
+     "flag bunker_ouvert"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "b6_camp": [
+   {
+    "s": "narrator",
+    "t": "Au matin, une file de survivants descend en silence dans le bunker. Une vieille femme te serre les mains sans un mot."
+   },
+   {
+    "fx": [
+     "flag bunker_ouvert",
+     "flag bunker_partage"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "b6_vendre": [
+   {
+    "s": "narrator",
+    "t": "Un garde de Haesong compte les billets avec un sourire mince. « La Présidente appréciera votre… honnêteté. »"
+   },
+   {
+    "fx": [
+     "flag bunker_vendu",
+     "add trust.hae_in 3"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "maison_bleue": [
+   {
+    "s": "narrator",
+    "t": "Au sous-sol, des boîtes d'archives classées par décennie. Un rapport de 1988, tamponné TRÈS SECRET : « Anomalie gravitationnelle sous Yongsan. Interdire tout forage. »"
+   },
+   {
+    "s": "narrator",
+    "t": "Un autre, plus ancien, recopié d'un registre Joseon : « La maison Baek garde le sabre-sceau. Si la Tour revient, l'héritier devra trancher le ciel. »"
+   },
+   {
+    "s": "elias",
+    "t": "La Tour est déjà venue. Et quelqu'un l'a refermée.",
+    "e": "surprise"
+   },
+   {
+    "fx": [
+     "souvenir lore_maison_bleue",
+     "add align.chaos -1"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "grotte_seongsu": [
+   {
+    "music": "registre"
+   },
+   {
+    "s": "narrator",
+    "t": "Une écaille d'obsidienne grande comme une voiture, fichée dans la berge. L'eau du fleuve remonte le long de sa surface et goutte vers le ciel."
+   },
+   {
+    "s": "elias",
+    "t": "Dans l'autre vie, les Rats parlaient d'une « pierre qui pleure à l'envers ». Je n'y suis jamais allé.",
+    "e": "neutral"
+   },
+   {
+    "s": "narrator",
+    "t": "Quand tu la touches, une voix qui n'est pas celle de Haneul murmure un nombre. Trois cent douze."
+   },
+   {
+    "s": "registre",
+    "t": "Fragment de Strate. Lore : « Ce nombre ne t'appartient pas, Lecteur. Il appartient à celle qui t'a précédé. »"
+   },
+   {
+    "fx": [
+     "souvenir ecaille_fleuve",
+     "item fragment_strate 1"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "parc_haneul": [
+   {
+    "s": "narrator",
+    "t": "Le vent couche les herbes hautes de la colline. Une pancarte rouillée : « Parc Haneul — 하늘공원 ». Le parc du Ciel."
+   },
+   {
+    "if": "flag('haneul_trouvee')",
+    "then": "parc_haneul_ok"
+   },
+   {
+    "s": "registre",
+    "t": "Un murmure dans la page vide : « Un parc porte mon nom ? Je ne savais pas que j'en avais un. »"
+   },
+   {
+    "end": true
+   }
+  ],
+  "parc_haneul_ok": [
+   {
+    "s": "haneul",
+    "t": "Ce parc porte mon nom ! Enfin… le nom que tu m'as donné.",
+    "e": "joy"
+   },
+   {
+    "s": "haneul",
+    "t": "Est-ce que les gens venaient ici pour regarder le ciel, eux aussi ?",
+    "e": "tilt"
+   },
+   {
+    "s": "elias",
+    "t": "Ils venaient boire de la bière et prendre des photos.",
+    "e": "smirk"
+   },
+   {
+    "s": "haneul",
+    "t": "C'est presque pareil.",
+    "e": "joy"
+   },
+   {
+    "fx": [
+     "add aff.haneul 4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ]
+ }
+}

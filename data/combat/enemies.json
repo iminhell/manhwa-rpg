@@ -63,6 +63,39 @@
       ],
       "color": "#e8b23a",
       "boss": true
+    },
+    "chasseur": {
+      "name": "Chasseur de Cheonma",
+      "stats": {
+        "hp": 70,
+        "atk": 11,
+        "def": 5,
+        "spd": 11,
+        "mana": 30
+      },
+      "skills": [
+        "coup_de_poing_eveille",
+        "griffes"
+      ],
+      "color": "#8a2be2",
+      "boss": false,
+      "human": true
+    },
+    "garde_cles": {
+      "name": "Garde des Clés",
+      "stats": {
+        "hp": 60,
+        "atk": 10,
+        "def": 6,
+        "spd": 9,
+        "mana": 30
+      },
+      "skills": [
+        "cle_tranchante",
+        "porte_close"
+      ],
+      "color": "#c9a227",
+      "boss": false
     }
   }
 }

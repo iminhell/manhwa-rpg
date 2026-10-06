@@ -13,6 +13,7 @@ const CHARS_PER_SEC := 55.0
 
 var runner: DialogueRunner
 var auto_advance := false        ## mode test : avance et choisit seul
+var choice_overrides: Dictionary = {}  ## mode test : "dialogue:bloc" → index de choix
 var _speakers: Dictionary = {}
 var _bg_layer: Control
 var _bg: Control
@@ -86,7 +87,12 @@ func _ready() -> void:
 	add_child(_hud)
 
 
+## Accepte « fichier » ou « fichier:bloc ».
 func start(dialogue_id: String, block: String = "") -> void:
+	if ":" in dialogue_id:
+		block = dialogue_id.get_slice(":", 1)
+		dialogue_id = dialogue_id.get_slice(":", 0)
+	VoiceManager.begin_scene()
 	var dlg: Dictionary = DataDB.dialogues.get(dialogue_id, {})
 	_speakers = dlg.get("speakers", {})
 	runner = DialogueRunner.new(GameState.store)
@@ -122,10 +128,17 @@ func _advance() -> void:
 		"phase":
 			GameState.advance_phase(_current["count"])
 			_advance()
+		"time":
+			GameState.store.set_time(_current["day"], _current["phase"])
+			_advance()
+		"music":
+			MusicManager.play_context(_current["context"])
+			_advance()
 		"event":
 			_paused = true
 			event_requested.emit(_current["name"], _current["args"])
 		"end":
+			VoiceManager.stop()
 			finished.emit()
 
 
@@ -157,6 +170,7 @@ func _show_line(line: Dictionary) -> void:
 	_text.text = text
 	_text.visible_characters = 0
 	_typing = true
+	VoiceManager.on_line(line)
 
 
 func _show_choices(options: Array) -> void:
@@ -170,7 +184,8 @@ func _show_choices(options: Array) -> void:
 		b.pressed.connect(_on_choice.bind(opt["index"]))
 		_choices.add_child(b)
 	if auto_advance:
-		_on_choice.call_deferred(0)
+		var key := "%s:%s" % [runner.dialogue.get("id", ""), runner.block]
+		_on_choice.call_deferred(clampi(int(choice_overrides.get(key, 0)), 0, options.size() - 1))
 
 
 func _on_choice(index: int) -> void:
@@ -197,6 +212,9 @@ func _update_hud() -> void:
 
 
 func _process(delta: float) -> void:
+	if _typing and auto_advance:
+		_text.visible_ratio = 1.0
+		_typing = false
 	if _typing:
 		_text.visible_characters += max(1, int(CHARS_PER_SEC * delta * 2.0))
 		if _text.visible_ratio >= 1.0:

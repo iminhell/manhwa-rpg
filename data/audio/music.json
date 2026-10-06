@@ -1,0 +1,88 @@
+{
+ "note": "Pistes à produire (IA + bibliothèques libres). Fichiers attendus : assets/audio/music/<id>.ogg (ou .mp3). Absents = silence, sans erreur.",
+ "tracks": {
+  "title": {
+   "file": "res://assets/audio/music/title.ogg",
+   "desc": "Thème principal — « 23h58 » (piano, cordes, synthé sombre)"
+  },
+  "yongsan": {
+   "file": "res://assets/audio/music/yongsan.ogg",
+   "desc": "Yongsan — ambiance militaire, drones lointains, basse grave"
+  },
+  "yeouido": {
+   "file": "res://assets/audio/music/yeouido.ogg",
+   "desc": "Yeouido — piano froid, verre, synthé glacé"
+  },
+  "hongdae": {
+   "file": "res://assets/audio/music/hongdae.ogg",
+   "desc": "Hongdae — synthwave saturée, voix samplées"
+  },
+  "myeongdong": {
+   "file": "res://assets/audio/music/myeongdong.ogg",
+   "desc": "Myeongdong — chœurs lointains, cloches, nappe sacrée"
+  },
+  "ponts": {
+   "file": "res://assets/audio/music/ponts.ogg",
+   "desc": "Ponts du Han — eau, erhu, dark ambient"
+  },
+  "gangnam": {
+   "file": "res://assets/audio/music/gangnam.ogg",
+   "desc": "Gangnam — trap industrielle, percussions lourdes"
+  },
+  "collines": {
+   "file": "res://assets/audio/music/collines.ogg",
+   "desc": "Collines — gayageum, flûte daegeum, vent dans les pins"
+  },
+  "tower": {
+   "file": "res://assets/audio/music/tower.ogg",
+   "desc": "Tour — drones d'orgue, cloches inversées"
+  },
+  "night": {
+   "file": "res://assets/audio/music/night.ogg",
+   "desc": "Marée nocturne — pulsation, tension, cordes grinçantes"
+  },
+  "combat": {
+   "file": "res://assets/audio/music/combat.ogg",
+   "desc": "Combat — synthwave épique, batterie"
+  },
+  "combat_danger": {
+   "file": "res://assets/audio/music/combat_danger.ogg",
+   "desc": "Combat (danger) — même thème, couche intense"
+  },
+  "boss": {
+   "file": "res://assets/audio/music/boss.ogg",
+   "desc": "Boss — chœur, cuivres, synthé distordu"
+  },
+  "registre": {
+   "file": "res://assets/audio/music/registre.ogg",
+   "desc": "Registre — tic-tac d'horloge, cloche, réverbération"
+  },
+  "intimate": {
+   "file": "res://assets/audio/music/intimate.ogg",
+   "desc": "Intime — piano lent, nappe chaude"
+  },
+  "haein_theme": {
+   "file": "res://assets/audio/music/haein_theme.ogg",
+   "desc": "Thème de Yoon Hae-in — violoncelle, jazz lent, verre"
+  }
+ },
+ "contexts": {
+  "title": "title",
+  "sector.yongsan": "yongsan",
+  "sector.yeouido": "yeouido",
+  "sector.hongdae": "hongdae",
+  "sector.myeongdong": "myeongdong",
+  "sector.ponts": "ponts",
+  "sector.gangnam": "gangnam",
+  "sector.collines": "collines",
+  "sector.tower": "tower",
+  "tower": "tower",
+  "night": "night",
+  "combat": "combat",
+  "combat.danger": "combat_danger",
+  "boss": "boss",
+  "registre": "registre",
+  "intimate": "intimate",
+  "haein": "haein_theme"
+ }
+}

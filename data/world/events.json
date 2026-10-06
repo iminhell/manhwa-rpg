@@ -1,0 +1,148 @@
+{
+ "events": [
+  {
+   "id": "j2_reve",
+   "when": "day() == 2 and phase() == 3",
+   "where": "*",
+   "dialogue": "act1_haneul:reve_j2",
+   "priority": 90,
+   "repeat": "once"
+  },
+  {
+   "id": "j3_vision",
+   "when": "day() == 3 and phase() >= 1",
+   "where": "*",
+   "dialogue": "act1_haneul:vision_j3",
+   "priority": 60,
+   "repeat": "once"
+  },
+  {
+   "id": "j3_sceaux",
+   "when": "day() == 3 and phase() >= 2",
+   "where": "*",
+   "dialogue": "act1_world:sceaux",
+   "priority": 95,
+   "repeat": "once"
+  },
+  {
+   "id": "j3_seo_soir",
+   "when": "day() == 3 and phase() >= 2 and party('seo_yeon')",
+   "where": "yeouido.camp",
+   "dialogue": "act1_camp:seo_soir",
+   "priority": 70,
+   "repeat": "once"
+  },
+  {
+   "id": "j4_camp",
+   "when": "day() == 4 and phase() >= 1 and phase() <= 2 and not flag('camp_vendu')",
+   "where": "yeouido.camp",
+   "dialogue": "act1_camp:decision_j4",
+   "priority": 95,
+   "repeat": "once"
+  },
+  {
+   "id": "j4_camp_manque",
+   "when": "day() == 4 and phase() == 3 and not done('j4_camp')",
+   "where": "*",
+   "dialogue": "act1_camp:decision_manquee",
+   "priority": 85,
+   "repeat": "once"
+  },
+  {
+   "id": "j4_murmure",
+   "when": "day() == 4 and phase() == 3",
+   "where": "*",
+   "dialogue": "act1_haneul:murmure_j4",
+   "priority": 60,
+   "repeat": "once"
+  },
+  {
+   "id": "j5_porte",
+   "when": "day() >= 5",
+   "where": "*",
+   "dialogue": "act1_world:porte_j5",
+   "priority": 95,
+   "repeat": "once"
+  },
+  {
+   "id": "haein_contrat",
+   "when": "flag('haein_rencontree') and not flag('haein_froid') and day() >= 5 and phase() <= 2",
+   "where": "*",
+   "dialogue": "act1_haein:contrat",
+   "priority": 75,
+   "repeat": "once"
+  },
+  {
+   "id": "haein_penthouse",
+   "when": "flag('archive_livree') and day() == 6 and phase() == 2",
+   "where": "*",
+   "dialogue": "act1_haein:penthouse",
+   "priority": 80,
+   "repeat": "once"
+  },
+  {
+   "id": "j6_nuee_present",
+   "when": "day() == 6 and phase() == 3 and not flag('penthouse_reste') and not flag('camp_tombe') and not flag('camp_vendu')",
+   "where": "sector:yeouido",
+   "dialogue": "act1_camp:nuee_present",
+   "priority": 99,
+   "repeat": "once"
+  },
+  {
+   "id": "j6_nuee_absent",
+   "when": "day() == 6 and phase() == 3 and not done('j6_nuee_present')",
+   "where": "*",
+   "dialogue": "act1_camp:nuee_absent",
+   "priority": 98,
+   "repeat": "once"
+  },
+  {
+   "id": "j7_reve",
+   "when": "day() == 7 and not flag('haneul_trouvee')",
+   "where": "*",
+   "dialogue": "act1_haneul:reve_j7",
+   "priority": 60,
+   "repeat": "once"
+  },
+  {
+   "id": "j7_classement",
+   "when": "day() > 7 or (day() == 7 and phase() >= 2)",
+   "where": "*",
+   "dialogue": "act1_world:classement",
+   "priority": 100,
+   "repeat": "once"
+  },
+  {
+   "id": "tour_arrivee",
+   "when": "true",
+   "where": "etage1.vestibule",
+   "dialogue": "act1_tower:vestibule",
+   "priority": 70,
+   "repeat": "once"
+  },
+  {
+   "id": "aoi_chant",
+   "when": "phase() == 3",
+   "where": "hongdae.studio",
+   "dialogue": "act1_world:aoi_studio",
+   "priority": 70,
+   "repeat": "once"
+  },
+  {
+   "id": "parc_haneul",
+   "when": "true",
+   "where": "hongdae.parc_haneul",
+   "dialogue": "act1_world:parc_haneul",
+   "priority": 40,
+   "repeat": "once"
+  },
+  {
+   "id": "maree",
+   "when": "phase() == 3 and not v('pos.refuge')",
+   "where": "*",
+   "dialogue": "act1_world:maree",
+   "priority": 10,
+   "repeat": "daily"
+  }
+ ]
+}

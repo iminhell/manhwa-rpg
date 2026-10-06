@@ -2,20 +2,31 @@
   "version": 1,
   "style": {
     "name": "manhwa_premium_dark",
-    "summary_fr": "Manhwa semi-réaliste mature (référence : Solo Leveling, Omniscient Reader's Viewpoint). Encrage net, ombrages durs et profonds, rim light marqué, contrastes cinématographiques, néons cyan et magenta sur fonds sombres, ambiance SF et dark fantasy. Proportions adultes réalistes.",
+    "summary_fr": "Manhwa semi-réaliste mature (référence : Solo Leveling, Omniscient Reader's Viewpoint). Encrage net, ombrages durs et profonds, rim light marqué, contrastes cinématographiques, néons cyan et magenta sur fonds sombres, ambiance SF et dark fantasy. Proportions adultes réalistes. Morphologies strictement fidèles aux fiches (Hae-in très plantureuse et mûre, Simone musclée, Maricel pulpeuse, Aoi fine et élancée…). Fanservice assumé : tenues de nuit, angles dynamiques, cadrages cinématiques, expressions suggestives.",
     "positive": "semi-realistic mature Korean webtoon illustration, premium action manhwa rendering in the vein of Solo Leveling and Omniscient Reader's Viewpoint, sharp clean lineart, dramatic hard cel shading with deep shadows, strong rim lighting, cinematic contrast, neon cyan and magenta accent lights, dark fantasy and sci-fi atmosphere, highly detailed eyes, realistic adult proportions, high detail",
     "negative": "chibi, childlike, young-looking, loli, school uniform, deformed hands, extra fingers, extra limbs, fused fingers, blurry, lowres, jpeg artifacts, watermark, text, signature, logo, 3d render, photo, flat colors, pastel kawaii style, oversaturated, cropped head, duplicate character",
     "params": {
-      "flux": { "image_size": "portrait_4_3", "num_inference_steps": 28, "guidance_scale": 3.5 },
-      "sdxl": { "width": 832, "height": 1216, "steps": 30, "cfg": 6.0, "sampler": "dpmpp_2m_sde_karras" },
+      "flux": {
+        "image_size": "portrait_4_3",
+        "num_inference_steps": 28,
+        "guidance_scale": 3.5
+      },
+      "sdxl": {
+        "width": 832,
+        "height": 1216,
+        "steps": 30,
+        "cfg": 6.0,
+        "sampler": "dpmpp_2m_sde_karras"
+      },
       "midjourney": "--ar 2:3 --style raw --stylize 150"
     }
   },
   "templates": {
-    "ref_sheet": "character reference sheet of {core}, full body turnaround: front view, three-quarter view, side view and back view, plus two close-up head shots, wearing {outfit}, natural standing pose, flat neutral grey background, consistent design across all views, model sheet layout",
-    "portrait": "waist-up portrait of {core}, wearing {outfit}, three-quarter angle facing the viewer, {expression}, dark gradient background with subtle neon rim light, clean silhouette, visual novel dialogue sprite",
+    "ref_sheet": "character reference sheet of {core}, {body}, full body turnaround: front view, three-quarter view, side view and back view, plus two close-up head shots, wearing {outfit}, natural standing pose, flat neutral grey background, consistent design across all views, model sheet layout",
+    "portrait": "waist-up portrait of {core}, {body}, wearing {outfit}, three-quarter angle facing the viewer, {expression}, dark gradient background with subtle neon rim light, clean silhouette, visual novel dialogue sprite",
     "full_body": "full body illustration of {core}, wearing {outfit}, dynamic but readable pose, dark ruined Seoul street at night with neon signs and the black Tower in the sky, cinematic lighting",
-    "combat_sprite": "full body combat stance of {core}, wearing {outfit}, {weapon}, side three-quarter view, dramatic action lighting, plain dark background for cut-out"
+    "combat_sprite": "full body combat stance of {core}, wearing {outfit}, {weapon}, side three-quarter view, dramatic action lighting, plain dark background for cut-out",
+    "fanservice": "{core}, {body}, wearing {outfit}, {pose}, {camera}, {expression}, cinematic manhwa panel framing, dramatic rim lighting, glossy skin highlights"
   },
   "expressions": {
     "neutral": "neutral calm expression",
@@ -40,8 +51,18 @@
   ],
   "characters": [
     {
-      "id": "elias", "token": "elias_kang", "name": "Elias Kang", "age": 29, "height_cm": 184, "weight_kg": 86,
-      "palette": ["#111111", "#3a3a3a", "#d4651e", "#e8b23a"],
+      "id": "elias",
+      "token": "elias_kang",
+      "name": "Elias Kang",
+      "age": 29,
+      "height_cm": 184,
+      "weight_kg": 86,
+      "palette": [
+        "#111111",
+        "#3a3a3a",
+        "#d4651e",
+        "#e8b23a"
+      ],
       "core": "elias_kang, 29-year-old mixed-race man with a Korean mother and a French-Martinican father, tall 184cm, broad shoulders, lean V-shaped muscular fighter build, warm caramel light-brown skin, sharp angular face, square defined jaw with slightly cleft chin, high cheekbones, straight nose with a slightly wide tip, full lips with a one-sided ironic smile, well-kept three-day stubble, hooded almond hazel-amber eyes under thick straight brows, thick black tightly curled hair with short faded sides and longer curls falling on the forehead, vertical scar splitting the left eyebrow, burn scar on the right forearm, Korean handwritten tattoo on the inner left forearm, sleeves rolled up to the elbows",
       "outfits": {
         "base": "worn black bomber jacket with orange lining, charcoal grey t-shirt, black tactical cargo pants, combat boots, broken military wristwatch",
@@ -49,155 +70,422 @@
         "tyrant": "long black coat with high collar and shoulder plates, open black shirt, chain pendant with a glowing red seal, dark red leather gloves",
         "wolf": "dark hood, half-face respirator mask, knife harness, bandaged hands",
         "mercenary": "sand tactical jacket, magazine harness, bandana, shooting glasses pushed up on the forehead",
-        "casual": "black tank top, sweatpants, barefoot"
+        "casual": "black tank top, sweatpants, barefoot",
+        "night": "bare-chested, low-slung grey sweatpants, scars and tattoo visible"
       },
       "weapon": "combat knife in reverse grip and a heavy tower-forged blade",
       "signature": "Registre activated: glowing pure gold irises with a slowly rotating clock ring around the pupils, golden glyphs running along the neck veins and hands, swirling luminous pages around him",
-      "signature_expressions": { "smirk": "one-sided ironic smirk, eyes half-lidded" },
-      "checklist_fr": ["Cicatrice au sourcil GAUCHE", "Boucles serrées (pas de cheveux lisses)", "Peau caramel, pas pâle", "Montre cassée à 23h58", "Tatouage avant-bras GAUCHE"]
+      "signature_expressions": {
+        "smirk": "one-sided ironic smirk, eyes half-lidded"
+      },
+      "checklist_fr": [
+        "Cicatrice au sourcil GAUCHE",
+        "Boucles serrées (pas de cheveux lisses)",
+        "Peau caramel, pas pâle",
+        "Montre cassée à 23h58",
+        "Tatouage avant-bras GAUCHE"
+      ],
+      "body": "tall athletic V-shaped muscular male body, broad chest, defined abs, veined forearms, scarred skin",
+      "pinup_poses": [
+        "leaning against a doorframe, arms crossed, smirking at the viewer",
+        "sitting on the edge of a bed at night, elbows on knees, neon light through the blinds"
+      ]
     },
     {
-      "id": "seo_yeon", "token": "seoyeon_park", "name": "Park Seo-Yeon", "age": 27, "height_cm": 163, "weight_kg": 52,
-      "palette": ["#9ccbe8", "#e8dcc4", "#f5f2ea", "#b5532a"],
+      "id": "seo_yeon",
+      "token": "seoyeon_park",
+      "name": "Park Seo-Yeon",
+      "age": 27,
+      "height_cm": 163,
+      "weight_kg": 52,
+      "palette": [
+        "#9ccbe8",
+        "#e8dcc4",
+        "#f5f2ea",
+        "#b5532a"
+      ],
       "core": "seoyeon_park, 27-year-old Korean woman, petite slender build 163cm, soft round face, small upturned nose, thin naturally pink lips, large round warm chocolate-brown eyes with dark circles, thin round gold-rimmed glasses repaired with white tape on the left temple, shoulder-blade-length straight auburn hair in a faded copper-red dye with darker roots, worn in a messy bun held by a pencil with loose strands framing her face, small beauty mark at the corner of the right eye, chapped hands with very short nails, red braided fabric bracelet, fair rosy skin",
       "outfits": {
         "base": "stained light-blue medical scrubs under an oversized beige cardigan, worn white sneakers, stethoscope around the neck",
         "combat": "orange rescue vest with many pockets, red-cross armband, medical satchel, surgical gloves",
-        "casual": "oversized knit sweater, hair let down, no glasses"
+        "casual": "oversized knit sweater, hair let down, no glasses",
+        "night": "oversized men's shirt half-buttoned, bare legs, glasses off, auburn hair let down"
       },
       "weapon": "medical satchel and a glowing surgical scalpel",
       "signature": "hands glowing with soft white healing light, blood-stained sleeves",
-      "signature_expressions": { "lie": "pushing her glasses up with one finger, avoiding eye contact" },
-      "checklist_fr": ["Lunettes rondes scotchées à GAUCHE", "Auburn cuivré, racines sombres", "Grain de beauté œil DROIT", "Bracelet tressé rouge"]
+      "signature_expressions": {
+        "lie": "pushing her glasses up with one finger, avoiding eye contact"
+      },
+      "checklist_fr": [
+        "Lunettes rondes scotchées à GAUCHE",
+        "Auburn cuivré, racines sombres",
+        "Grain de beauté œil DROIT",
+        "Bracelet tressé rouge"
+      ],
+      "body": "petite slender body, narrow shoulders, slim waist, modest medium bust, soft hips",
+      "pinup_poses": [
+        "stretching her back after a long shift, shirt riding up, sleepy smile",
+        "sitting on a hospital bed hugging her knees, shy glance at the viewer"
+      ]
     },
     {
-      "id": "hae_in", "token": "haein_yoon", "name": "Yoon Hae-in", "age": 41, "height_cm": 172, "weight_kg": 58,
-      "palette": ["#f4f1ea", "#c19a6b", "#6d1a2a", "#3f8f6b"],
+      "id": "hae_in",
+      "token": "haein_yoon",
+      "name": "Yoon Hae-in",
+      "age": 41,
+      "height_cm": 172,
+      "weight_kg": 58,
+      "palette": [
+        "#f4f1ea",
+        "#c19a6b",
+        "#6d1a2a",
+        "#3f8f6b"
+      ],
       "core": "haein_yoon, 41-year-old Korean woman, tall elegant mature hourglass figure 172cm, aristocratic oval face, high sculpted cheekbones, full lips with dark burgundy lipstick, beauty mark under the left side of the lower lip, long almond-shaped ink-black eyes with subtle winged eyeliner, long straight jet-black hair in a strict low chignon with a side part, a single silver streak at the left temple, imperial jade drop earrings, flawless porcelain skin with faint laugh lines, cold appraising gaze",
       "outfits": {
         "base": "tailored white haute couture pantsuit, silk blouse, camel coat draped over the shoulders without using the sleeves, nude stiletto heels, rose-gold watch",
         "combat": "reinforced white suit with a black trench coat lined with glowing red contract runes, white gloves",
-        "casual": "burgundy silk robe, long hair let down, glass of red wine"
+        "casual": "burgundy silk robe, long hair let down, glass of red wine",
+        "night": "black lace lingerie under an open burgundy silk robe, sheer black stockings, hair let down"
       },
       "weapon": "floating glowing contract scrolls",
       "signature": "golden contract chains materializing around her, an executive tower office overlooking ruined Seoul at night",
-      "signature_expressions": { "threat": "lowered chin, faint cold smile, one eyebrow raised" },
-      "checklist_fr": ["Mèche argentée tempe GAUCHE", "Manteau sur les épaules, manches vides", "Jade aux oreilles", "Grain de beauté sous la lèvre (gauche)"]
+      "signature_expressions": {
+        "threat": "lowered chin, faint cold smile, one eyebrow raised"
+      },
+      "checklist_fr": [
+        "Mèche argentée tempe GAUCHE",
+        "Manteau sur les épaules, manches vides",
+        "Jade aux oreilles",
+        "Grain de beauté sous la lèvre (gauche)"
+      ],
+      "body": "voluptuous mature hourglass body, very large full bust, tiny cinched waist, wide hips, long shapely legs",
+      "pinup_poses": [
+        "sitting on the edge of her executive desk with legs crossed, leaning back on one hand",
+        "standing at the panoramic window at night, robe slipping off one shoulder, looking back over her shoulder"
+      ]
     },
     {
-      "id": "ryeon", "token": "ryeon_baek", "name": "Baek Ryeon", "age": 23, "height_cm": 168, "weight_kg": 55,
-      "palette": ["#0d0d0d", "#f2f2f2", "#d62828", "#b8c2cc"],
+      "id": "ryeon",
+      "token": "ryeon_baek",
+      "name": "Baek Ryeon",
+      "age": 23,
+      "height_cm": 168,
+      "weight_kg": 55,
+      "palette": [
+        "#0d0d0d",
+        "#f2f2f2",
+        "#d62828",
+        "#b8c2cc"
+      ],
       "core": "ryeon_baek, 23-year-old Korean woman, athletic slender swordswoman build 168cm, long toned legs, noble severe oval face, thin straight eyebrows slightly frowning, steel-grey eyes, very long straight blue-black hair in a high ponytail reaching her knees tied with a red ribbon, wispy bangs and two long face-framing strands, thin scar on the left collarbone, calloused hands, fair skin with a light tan on the forearms, perfect upright posture",
       "outfits": {
         "base": "modernized black-and-white combat hanbok with a short fitted jeogori and wide trousers tied at the ankles, red sash belt, long sword at the hip",
         "combat": "white lacquered leather armor pieces over the hanbok, white tiger half-mask",
         "casual": "light hot-spring yukata, hair let down, visibly embarrassed",
-        "wedding": "red and gold traditional wedding hanbok with a ceremonial headpiece"
+        "wedding": "red and gold traditional wedding hanbok with a ceremonial headpiece",
+        "night": "loosely tied white sleeping yukata slipping off one shoulder, very long hair untied, red ribbon around the wrist"
       },
       "weapon": "long single-edged Korean sword with a white tiger guard",
       "signature": "spectral white tiger aura behind her during a drawing slash",
-      "signature_expressions": { "tsundere": "arms crossed, head turned away, cheeks red" },
-      "checklist_fr": ["Ruban ROUGE dans la queue de cheval", "Yeux GRIS acier", "Cicatrice clavicule GAUCHE", "Queue de cheval jusqu'aux genoux"]
+      "signature_expressions": {
+        "tsundere": "arms crossed, head turned away, cheeks red"
+      },
+      "checklist_fr": [
+        "Ruban ROUGE dans la queue de cheval",
+        "Yeux GRIS acier",
+        "Cicatrice clavicule GAUCHE",
+        "Queue de cheval jusqu'aux genoux"
+      ],
+      "body": "athletic toned swordswoman body, small firm bust, flat toned stomach, long muscular legs",
+      "pinup_poses": [
+        "kneeling in seiza by a hot spring, flustered, covering herself with a towel",
+        "mid-sword-draw in a dynamic low stance, ponytail whipping, hanbok fluttering"
+      ]
     },
     {
-      "id": "simone", "token": "simone_hayes", "name": "Simone Hayes", "age": 38, "height_cm": 178, "weight_kg": 72,
-      "palette": ["#5b5f3a", "#2b2b2b", "#c9a227", "#b03a2e"],
+      "id": "simone",
+      "token": "simone_hayes",
+      "name": "Simone Hayes",
+      "age": 38,
+      "height_cm": 178,
+      "weight_kg": 72,
+      "palette": [
+        "#5b5f3a",
+        "#2b2b2b",
+        "#c9a227",
+        "#b03a2e"
+      ],
       "core": "simone_hayes, 38-year-old African-American woman, powerful muscular athletic build 178cm, broad shoulders, defined arms and abs, solid hips and thighs, deep dark-brown skin with a warm copper undertone, strong square jaw with a diagonal scar on the left jawline, high cheekbones, wide straight nose, full lips, piercing very dark eyes, tight black cornrows on top and on the right side with a shaved undercut on the left side, two military dog tags and an engagement ring on a chain around her neck, eagle unit tattoo on the right shoulder",
       "outfits": {
         "base": "multicam fatigues, command jacket with sleeves rolled up, plate carrier vest, black beret tucked under the shoulder strap, combat boots",
         "combat": "light military exoskeleton over the fatigues, awakened assault rifle with glowing runes",
-        "casual": "khaki tank top, sweatpants, barefoot, hair unbound into a natural afro, cigar"
+        "casual": "khaki tank top, sweatpants, barefoot, hair unbound into a natural afro, cigar",
+        "night": "black sports bra and tight boxer briefs, dog tags on bare skin, hair unbound into an afro"
       },
       "weapon": "awakened assault rifle",
       "signature": "commanding pose with tactical holographic map, artillery flares in the background",
-      "signature_expressions": { "cigar": "rare tired smile with a lit cigar" },
-      "checklist_fr": ["Cicatrice mâchoire GAUCHE", "Undercut côté GAUCHE", "Plaques et bague de fiançailles", "Carrure puissante"]
+      "signature_expressions": {
+        "cigar": "rare tired smile with a lit cigar"
+      },
+      "checklist_fr": [
+        "Cicatrice mâchoire GAUCHE",
+        "Undercut côté GAUCHE",
+        "Plaques et bague de fiançailles",
+        "Carrure puissante"
+      ],
+      "body": "powerful muscular body, broad shoulders, muscular arms, six-pack abs, full firm bust, thick strong thighs",
+      "pinup_poses": [
+        "doing pull-ups on a bar, sweat glistening, determined look",
+        "sitting on an ammo crate with a cigar, tank top, relaxed confident grin"
+      ]
     },
     {
-      "id": "xiaoyu", "token": "xiaoyu_long", "name": "Long Xiaoyu", "age": 31, "height_cm": 170, "weight_kg": 54,
-      "palette": ["#0b0b0b", "#c9a227", "#a3122a", "#3f8f6b"],
+      "id": "xiaoyu",
+      "token": "xiaoyu_long",
+      "name": "Long Xiaoyu",
+      "age": 31,
+      "height_cm": 170,
+      "weight_kg": 54,
+      "palette": [
+        "#0b0b0b",
+        "#c9a227",
+        "#a3122a",
+        "#3f8f6b"
+      ],
       "core": "xiaoyu_long, 31-year-old Chinese woman, tall feline slender figure 170cm, wasp waist, long legs, heart-shaped face, cat-like upturned eyes with sharp black winged eyeliner, amber-gold irises, beauty mark under the left eye, carmine red lips with a teasing smirk, sleek chin-length blunt bob with straight-cut bangs dyed deep crimson red with glossy black roots, jade hairpin, long red lacquered nails, black and gold dragon tattoo across the back from the right shoulder to the left hip, pale ivory skin",
       "outfits": {
         "base": "modern black qipao with a high slit embroidered with golden dragons, fitted black leather jacket, heeled ankle boots, black stockings, steel folding fan",
         "combat": "same qipao, gauntlets with poison needles, belt of small vials, fan blades extended",
-        "casual": "red silk robe on a casino barge, mahjong tiles on the table"
+        "casual": "red silk robe on a casino barge, mahjong tiles on the table",
+        "night": "red silk slip dress with thin straps and a thigh-high slit, barefoot, fan in hand"
       },
       "weapon": "steel war fan with retractable blades",
       "signature": "neon-lit floating casino barge on the black Han river, lanterns, smoke",
-      "signature_expressions": { "fan": "hiding a laugh behind an open fan, eyes narrowed" },
-      "checklist_fr": ["Carré ROUGE carmin, racines noires", "Grain de beauté œil GAUCHE", "Dragon dans le dos", "Éventail d'acier"]
+      "signature_expressions": {
+        "fan": "hiding a laugh behind an open fan, eyes narrowed"
+      },
+      "checklist_fr": [
+        "Carré ROUGE carmin, racines noires",
+        "Grain de beauté œil GAUCHE",
+        "Dragon dans le dos",
+        "Éventail d'acier"
+      ],
+      "body": "slender feline body, wasp waist, medium perky bust, round hips, very long slender legs",
+      "pinup_poses": [
+        "lounging on a mahjong table, fan hiding a smile, slit revealing a long leg",
+        "leaning on a casino barge railing at night, back tattoo visible through an open-back qipao"
+      ]
     },
     {
-      "id": "aoi", "token": "aoi_tsukishiro", "name": "Aoi Tsukishiro", "age": 22, "height_cm": 160, "weight_kg": 47,
-      "palette": ["#f4b6c9", "#111111", "#ffffff", "#9aa0a6"],
+      "id": "aoi",
+      "token": "aoi_tsukishiro",
+      "name": "Aoi Tsukishiro",
+      "age": 22,
+      "height_cm": 160,
+      "weight_kg": 47,
+      "palette": [
+        "#f4b6c9",
+        "#111111",
+        "#ffffff",
+        "#9aa0a6"
+      ],
       "core": "aoi_tsukishiro, 22-year-old Japanese woman with adult features, slim toned dancer build 160cm, small V-shaped face, large expressive hazel eyes with green flecks, heart-shaped lips, two-tone hair black on top and pastel pink underneath, chest-length, worn in low twin tails with black roots growing out, star stud in the left earlobe, colorful bandages on her fingers, tight bracelets on the left wrist, faint freckles on the nose, smudged glitter stage makeup",
       "outfits": {
         "base": "torn sequined stage jacket over a ruffled skort, flat boots, oversized bomber jacket on top",
         "combat": "headset microphone turned into a sonic weapon, glowing stage ribbon",
         "casual": "oversized grey hoodie, face mask pulled down, cap, denim shorts, sneakers",
-        "concert": "angelic white and gold stage dress"
+        "concert": "angelic white and gold stage dress",
+        "night": "oversized grey hoodie as her only garment, thigh-high socks, hair loose"
       },
       "weapon": "headset microphone emitting visible sound waves",
       "signature": "standing alone on a ruined concert stage under a single spotlight, crowd of silhouettes",
-      "signature_expressions": { "stage_smile": "perfect idol smile with empty eyes and no dimple", "true_smile": "genuine laughing smile with a dimple on the right cheek" },
-      "checklist_fr": ["Noir dessus / rose dessous", "Bracelets serrés poignet GAUCHE", "Fossette DROITE seulement en vrai sourire", "Visage adulte (22 ans)"]
+      "signature_expressions": {
+        "stage_smile": "perfect idol smile with empty eyes and no dimple",
+        "true_smile": "genuine laughing smile with a dimple on the right cheek"
+      },
+      "checklist_fr": [
+        "Noir dessus / rose dessous",
+        "Bracelets serrés poignet GAUCHE",
+        "Fossette DROITE seulement en vrai sourire",
+        "Visage adulte (22 ans)"
+      ],
+      "body": "slim slender dancer body with adult proportions, small bust, narrow waist, long toned legs",
+      "pinup_poses": [
+        "dancing alone on a ruined stage, hoodie flaring, spotlight",
+        "curled up on a studio couch with headphones, looking up at the viewer"
+      ]
     },
     {
-      "id": "nadia", "token": "nadia_tsoi", "name": "Nadia Tsoi", "age": 34, "height_cm": 176, "weight_kg": 63,
-      "palette": ["#4a5560", "#111111", "#e8e8e8", "#b3202a"],
+      "id": "nadia",
+      "token": "nadia_tsoi",
+      "name": "Nadia Tsoi",
+      "age": 34,
+      "height_cm": 176,
+      "weight_kg": 63,
+      "palette": [
+        "#4a5560",
+        "#111111",
+        "#e8e8e8",
+        "#b3202a"
+      ],
       "core": "nadia_tsoi, 34-year-old Koryo-saram woman of Central Asian Korean descent, tall lean wiry build 176cm, angular face with very high prominent cheekbones, narrow straight nose, thin pale lips holding an unlit cigarette, narrow monolid almond eyes with pale grey almost silver irises, dark circles under the eyes, short platinum-white hair with a shaved undercut on the right side and the nape, long asymmetric fringe falling over the right eye, very pale cool-toned skin with visible veins at the temples",
       "outfits": {
         "base": "long slate-grey military greatcoat, black turtleneck, combat trousers, fingerless gloves, faded red wool scarf",
         "combat": "urban camouflage poncho, awakened anti-materiel sniper rifle with a white-glinting scope",
-        "casual": "oversized men's white shirt, bare legs, vodka bottle, vinyl record player"
+        "casual": "oversized men's white shirt, bare legs, vodka bottle, vinyl record player",
+        "night": "unbuttoned oversized men's white shirt, black underwear, red scarf around the neck"
       },
       "weapon": "anti-materiel sniper rifle with a long scope",
       "signature": "prone on a skyscraper rooftop in falling ash, a white glint on the scope",
-      "signature_expressions": { "aim": "one eye closed, utterly calm, cheek against the rifle stock" },
-      "checklist_fr": ["Platine, undercut côté DROIT", "Mèche sur l'œil DROIT", "Yeux gris pâle", "Écharpe ROUGE (confiance)"]
+      "signature_expressions": {
+        "aim": "one eye closed, utterly calm, cheek against the rifle stock"
+      },
+      "checklist_fr": [
+        "Platine, undercut côté DROIT",
+        "Mèche sur l'œil DROIT",
+        "Yeux gris pâle",
+        "Écharpe ROUGE (confiance)"
+      ],
+      "body": "tall lean wiry body, small bust, sharp collarbones, long legs",
+      "pinup_poses": [
+        "prone sniper position on a rooftop, shirt hem lifting, cold glance over the scope",
+        "sitting on a windowsill smoking in the snow, shirt open, scarf"
+      ]
     },
     {
-      "id": "maricel", "token": "maricel_dizon", "name": "Maricel Dizon", "age": 26, "height_cm": 157, "weight_kg": 50,
-      "palette": ["#d4a017", "#556b2f", "#e3b778", "#c9a227"],
+      "id": "maricel",
+      "token": "maricel_dizon",
+      "name": "Maricel Dizon",
+      "age": 26,
+      "height_cm": 157,
+      "weight_kg": 50,
+      "palette": [
+        "#d4a017",
+        "#556b2f",
+        "#e3b778",
+        "#c9a227"
+      ],
       "core": "maricel_dizon, 26-year-old Filipina woman, petite curvy athletic build 157cm, round cheerful face with deep dimples on both cheeks, small slightly flat nose, full lips, beauty mark above the right side of the upper lip, large warm dark-brown eyes with long lashes, wavy shoulder-length hair with dark roots melting into a warm honey-blonde balayage, backwards baseball cap, golden-brown sun-kissed skin, Philippine eight-ray sun tattoo on the left shoulder, many beaded and cord bracelets on both wrists, slightly crooked left canine visible when she grins",
       "outfits": {
         "base": "mustard-yellow cropped hoodie, tank top, olive-green cargo pants with stuffed pockets, high-top sneakers, fanny pack",
         "combat": "retractable claw gloves, rope and grappling hook, headlamp",
-        "casual": "oversized basketball jersey worn as a dress, messy bun"
+        "casual": "oversized basketball jersey worn as a dress, messy bun",
+        "night": "cropped white tank top and tiny cotton shorts, bracelets, cap backwards"
       },
       "weapon": "retractable claw gloves and a grappling hook",
       "signature": "crouching on a Myeongdong rooftop at night, spinning a stolen watch between her fingers",
-      "signature_expressions": { "wink": "playful wink with a crooked grin" },
-      "checklist_fr": ["Balayage blond miel, racines brunes", "Tatouage soleil épaule GAUCHE", "Fossettes des deux côtés", "Casquette à l'envers"]
+      "signature_expressions": {
+        "wink": "playful wink with a crooked grin"
+      },
+      "checklist_fr": [
+        "Balayage blond miel, racines brunes",
+        "Tatouage soleil épaule GAUCHE",
+        "Fossettes des deux côtés",
+        "Casquette à l'envers"
+      ],
+      "body": "petite curvy body, large bust for her small frame, narrow waist, wide hips, thick thighs, round bottom",
+      "pinup_poses": [
+        "crouching on a rooftop edge with a playful wink, shorts and bracelets",
+        "lying on her stomach on a hammock under a bridge, kicking her feet, grin"
+      ]
     },
     {
-      "id": "minh_anh", "token": "minhanh_tran", "name": "Dr. Tran Minh-Anh", "age": 36, "height_cm": 166, "weight_kg": 53,
-      "palette": ["#f5f7fa", "#111111", "#2ec5ff", "#c0c6cc"],
+      "id": "minh_anh",
+      "token": "minhanh_tran",
+      "name": "Dr. Tran Minh-Anh",
+      "age": 36,
+      "height_cm": 166,
+      "weight_kg": 53,
+      "palette": [
+        "#f5f7fa",
+        "#111111",
+        "#2ec5ff",
+        "#c0c6cc"
+      ],
       "core": "minhanh_tran, 36-year-old Vietnamese-Korean woman, slender willowy build 166cm, delicate oval face, soft cheekbones, small upturned nose, full naturally dark lips, very dark almost black eyes behind thin black rectangular glasses, purple shadows under the eyes, extremely long straight black hair in a single braid down to her lower back tied with an electric cable, cybernetic implant on the right temple with three silver ports and a strip of glowing blue LEDs, chipped black nail polish, light golden olive skin",
       "outfits": {
         "base": "long white lab coat over a fitted black bodysuit, safety boots, holographic tablet on the wrist",
         "combat": "lab coat unfolding into a swarm of small drones, analysis visor",
-        "casual": "oversized black turtleneck sweater, mismatched socks, iced coffee"
+        "casual": "oversized black turtleneck sweater, mismatched socks, iced coffee",
+        "night": "unbuttoned lab coat over a black lace bodysuit, glasses, braid over the shoulder"
       },
       "weapon": "swarm of hovering hexagonal drones",
       "signature": "underground laboratory full of servers and holographic data, LEDs turning red",
-      "signature_expressions": { "red_leds": "flustered, temple LEDs glowing red, looking away" },
-      "checklist_fr": ["Tresse unique jusqu'aux reins", "Implant tempe DROITE (LED bleues)", "Lunettes rectangulaires", "Teint olive doré"]
+      "signature_expressions": {
+        "red_leds": "flustered, temple LEDs glowing red, looking away"
+      },
+      "checklist_fr": [
+        "Tresse unique jusqu'aux reins",
+        "Implant tempe DROITE (LED bleues)",
+        "Lunettes rectangulaires",
+        "Teint olive doré"
+      ],
+      "body": "slender willowy body, medium bust, slim waist, long elegant hands",
+      "pinup_poses": [
+        "leaning over a holographic console, glasses sliding down, lab coat open",
+        "sitting cross-legged on a server rack floor taking notes, LEDs glowing red, blushing"
+      ]
     },
     {
-      "id": "haneul", "token": "haneul_heiress", "name": "Haneul (l'Héritière)", "age": 25, "height_cm": 169, "weight_kg": 54,
-      "palette": ["#f7f5f0", "#c0c6cc", "#e8b23a", "#1a1a1a"],
+      "id": "haneul",
+      "token": "haneul_heiress",
+      "name": "Haneul (l'Héritière)",
+      "age": 25,
+      "height_cm": 169,
+      "weight_kg": 54,
+      "palette": [
+        "#f7f5f0",
+        "#c0c6cc",
+        "#e8b23a",
+        "#1a1a1a"
+      ],
       "core": "haneul_heiress, adult woman appearing about 25 years old, ethereal slender figure 169cm, timeless delicate oval face of no identifiable ethnicity, pale pink lips, large almond eyes with liquid gold irises and a slowly rotating clock-face ring around the pupils, silver eyelashes, very long glittering silver-white straight hair, translucent pearl-white opaline skin with faintly glowing golden glyphs on the arms and neck, gentle wondering expression, hovering slightly above the ground",
       "outfits": {
         "base": "oversized worn black bomber jacket with orange lining over a mismatched long sweater and long skirt, boots of two different sizes",
         "awakening": "obsidian and gold dress-armor, crown of floating glyphs, wings of fragmented light",
-        "casual": "man's shirt, sitting on a window ledge looking at the sky"
+        "casual": "man's shirt, sitting on a window ledge looking at the sky",
+        "night": "Elias's oversized black shirt as her only garment, bare legs, glyphs glowing on her thighs"
       },
       "weapon": "floating golden glyph circles and a clock-hand of light",
       "signature": "standing before a door without a lock on the first floor of the Tower, golden pages floating",
-      "signature_expressions": { "tilt": "head tilted 45 degrees, curious", "administrator": "cold ancient expression, glyphs turning red" },
-      "states": { "memory_25": "silver hair", "memory_50": "pearl-grey hair", "memory_100": "ink-black hair" },
-      "checklist_fr": ["Yeux OR + anneau d'horloge", "Glyphes dorés", "Bomber d'Elias (doublure orange)", "Cheveux selon l'état de mémoire"]
+      "signature_expressions": {
+        "tilt": "head tilted 45 degrees, curious",
+        "administrator": "cold ancient expression, glyphs turning red"
+      },
+      "states": {
+        "memory_25": "silver hair",
+        "memory_50": "pearl-grey hair",
+        "memory_100": "ink-black hair"
+      },
+      "checklist_fr": [
+        "Yeux OR + anneau d'horloge",
+        "Glyphes dorés",
+        "Bomber d'Elias (doublure orange)",
+        "Cheveux selon l'état de mémoire"
+      ],
+      "body": "ethereal slender body, medium bust, slim waist, long graceful legs",
+      "pinup_poses": [
+        "sitting on a window ledge looking at the sky, shirt slipping off one shoulder",
+        "floating mid-air in a golden glyph circle, hair spreading like silk"
+      ]
     }
-  ]
+  ],
+  "camera_angles": [
+    "low angle shot looking up",
+    "high angle shot looking down",
+    "over-the-shoulder shot",
+    "dutch angle",
+    "extreme close-up on the eyes",
+    "from behind, looking back at the viewer",
+    "cowboy shot",
+    "wide cinematic shot",
+    "close-up on the face and collarbone"
+  ],
+  "suggestive_expressions": {
+    "teasing": "teasing smile, one eyebrow raised",
+    "bite_lip": "biting her lower lip, half-lidded eyes",
+    "shy": "flustered blush, looking away, hand near her mouth",
+    "smolder": "smoldering half-lidded gaze, lips slightly parted"
+  }
 }

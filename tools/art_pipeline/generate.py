@@ -12,6 +12,10 @@ Pipeline d'images automatisé (cloud, sans GPU local).
   assets   Génère les assets finaux du manifeste avec les LoRA (portraits, expressions,
            sprites, décors, CG) directement dans assets/ du projet Godot
   auto     approve + dataset + train + assets pour un personnage, en une commande
+  runpod-loras  télécharge les LoRA Flux entraînés (fal.ai) pour les déposer sur le volume RunPod
+
+Visuels 18+ : les entrées du manifeste avec "backend": "runpod" (ou --backend runpod) passent par
+runpod_backend.py (ComfyUI serverless, modèles et LoRA personnels, sans filtre).
 
 Backend : fal.ai via le client officiel `fal_client` (pip install fal-client), clé dans FAL_KEY.
 `--dry-run` affiche les prompts et le plan sans aucun appel réseau.
@@ -129,7 +133,7 @@ def cmd_refs(ctx: Ctx, a) -> None:
     tpl = ctx.prompts["templates"]["ref_sheet"]
     params = ctx.prompts["style"]["params"]["flux"]
     for c in select(ctx, a.char):
-        prompt = ctx.style(tpl.format(core=c["core"], outfit=c["outfits"]["base"]))
+        prompt = ctx.style(tpl.format(core=c["core"], body=c["body"], outfit=c["outfits"]["base"]))
         print(f"[refs] {c['id']} × {a.n}")
         res = ctx.run(MODEL_T2I, {"prompt": prompt, "num_images": a.n, "image_size": "landscape_16_9",
                                   "num_inference_steps": params["num_inference_steps"],
@@ -208,12 +212,41 @@ def compose(ctx: Ctx, item: dict) -> str:
     outfit = c["outfits"].get(item.get("outfit", "base"), c["outfits"]["base"])
     e = item.get("expression", "neutral")
     e_txt = expr.get(e) or c.get("signature_expressions", {}).get(e, e)
+    e_txt = ctx.prompts.get("suggestive_expressions", {}).get(e, e_txt)
     kind = item["kind"]
     if kind == "combat_sprite":
         return ctx.style(tpl["combat_sprite"].format(core=c["token"], outfit=outfit, weapon=c["weapon"]))
     if kind == "full_body":
         return ctx.style(tpl["full_body"].format(core=c["token"], outfit=outfit))
-    return ctx.style(tpl["portrait"].format(core=c["token"], outfit=outfit, expression=e_txt))
+    if kind == "fanservice":
+        cams = ctx.prompts.get("camera_angles", ["low angle shot looking up"])
+        pose = c.get("pinup_poses", ["standing"])[int(item.get("pose", 0)) % max(1, len(c.get("pinup_poses", [])))]
+        return ctx.style(tpl["fanservice"].format(core=c["token"], body=c["body"], outfit=outfit, pose=pose,
+                                                  camera=item.get("camera", cams[0]), expression=e_txt))
+    return ctx.style(tpl["portrait"].format(core=c["token"], body=c["body"], outfit=outfit, expression=e_txt))
+
+
+def _runpod_asset(ctx: Ctx, item: dict, prompt: str, chars: list, dest: Path) -> None:
+    sys.path.insert(0, str(Path(__file__).parent))
+    from runpod_backend import RunPodBackend, SIZES  # noqa: PLC0415
+    rp = RunPodBackend(dry_run=ctx.dry_run)
+    w, h = SIZES.get(item.get("size", "portrait_4_3"), (896, 1152))
+    loras = [(f"{ctx.chars[c]['token']}.safetensors", 0.9) for c in chars if c in ctx.chars]
+    png = rp.generate(prompt, ctx.prompts["style"]["negative"], w, h, loras)
+    if png:
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        dest.write_bytes(png)
+
+
+def cmd_runpod_loras(ctx: Ctx, a) -> None:
+    loras = load_json(LORAS) if LORAS.exists() else {}
+    out = WORK / "loras"
+    for cid, info in loras.items():
+        dest = out / f"{info['trigger']}.safetensors"
+        print(f"[runpod-loras] {cid} → {dest}")
+        if not ctx.dry_run:
+            download(info["url"], dest)
+    print(f"À déposer dans ComfyUI/models/loras/ du volume RunPod ({len(loras)} fichiers).")
 
 
 def cmd_assets(ctx: Ctx, a) -> None:
@@ -233,6 +266,9 @@ def cmd_assets(ctx: Ctx, a) -> None:
             print(f"  ! {item['id']} : LoRA absent pour {chars}, génération sans LoRA")
         prompt = compose(ctx, item)
         print(f"[assets] {item['id']} → {item['out']}")
+        if item.get("backend") == "runpod" or getattr(a, "backend", "fal") == "runpod":
+            _runpod_asset(ctx, item, prompt, chars, dest)
+            continue
         args = {"prompt": prompt, "num_images": 1, "image_size": item.get("size", "portrait_4_3"),
                 "enable_safety_checker": False}
         if lora_list:
@@ -246,7 +282,7 @@ def cmd_auto(ctx: Ctx, a) -> None:
     cmd_approve(ctx, a)
     cmd_dataset(ctx, argparse.Namespace(id=a.id, n=a.n))
     cmd_train(ctx, argparse.Namespace(id=a.id, steps=a.steps))
-    cmd_assets(ctx, argparse.Namespace(char=[a.id], kind=None, force=False))
+    cmd_assets(ctx, argparse.Namespace(char=[a.id], kind=None, force=False, backend="fal"))
 
 
 def main() -> None:
@@ -260,12 +296,14 @@ def main() -> None:
     s = sub.add_parser("train"); s.add_argument("id"); s.add_argument("--steps", type=int, default=1000)
     s = sub.add_parser("assets"); s.add_argument("--char", nargs="*"); s.add_argument("--kind", nargs="*")
     s.add_argument("--force", action="store_true")
+    s.add_argument("--backend", choices=["fal", "runpod"], default="fal")
+    sub.add_parser("runpod-loras")
     s = sub.add_parser("auto"); s.add_argument("id"); s.add_argument("file")
     s.add_argument("--n", type=int, default=20); s.add_argument("--steps", type=int, default=1000)
     a = p.parse_args()
     ctx = Ctx(a.dry_run)
     {"refs": cmd_refs, "review": cmd_review, "approve": cmd_approve, "dataset": cmd_dataset,
-     "train": cmd_train, "assets": cmd_assets, "auto": cmd_auto}[a.cmd](ctx, a)
+     "train": cmd_train, "assets": cmd_assets, "auto": cmd_auto, "runpod-loras": cmd_runpod_loras}[a.cmd](ctx, a)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,750 @@
+{
+ "id": "act1_haein",
+ "title": "Acte I — Yoon Hae-in",
+ "start": "start",
+ "speakers": {
+  "garde": "Garde de Haesong",
+  "chasseur": "Chasseur de Cheonma"
+ },
+ "blocks": {
+  "start": [
+   {
+    "goto": "audience"
+   }
+  ],
+  "audience": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Le hall de la tour IFC. Des gardes en costume sombre, fusils d'assaut, oreillettes. Un groupe électrogène ronronne sous le marbre."
+   },
+   {
+    "s": "garde",
+    "t": "Haesong Holdings ne reçoit pas les rangs F. Dégagez."
+   },
+   {
+    "if": "souvenir('s1_bunker_b6')",
+    "then": "audience_levier"
+   },
+   {
+    "choice": [
+     {
+      "t": "Repartir.",
+      "goto": "audience_refus"
+     }
+    ]
+   }
+  ],
+  "audience_levier": [
+   {
+    "s": "elias",
+    "t": "Dites à votre Présidente que je sais ce qu'il y a derrière le mur du parking B6. Elle, elle ne le sait pas.",
+    "e": "smirk"
+   },
+   {
+    "s": "narrator",
+    "t": "Le garde hésite. Touche son oreillette. Trente secondes. Puis l'ascenseur s'ouvre."
+   },
+   {
+    "goto": "bureau"
+   }
+  ],
+  "audience_refus": [
+   {
+    "s": "narrator",
+    "t": "Les portes vitrées se referment. Derrière, ton reflet : un homme en bomber sale face à une tour de verre."
+   },
+   {
+    "end": true
+   }
+  ],
+  "bureau": [
+   {
+    "music": "haein"
+   },
+   {
+    "s": "narrator",
+    "t": "Cinquantième étage. La ville en ruines s'étend derrière une baie vitrée, rouge sous le crépuscule de la Tour."
+   },
+   {
+    "s": "narrator",
+    "t": "Elle est assise de biais sur le bord de son bureau, une jambe croisée sur l'autre, la soie de son chemisier tendue sur une poitrine qu'elle ne cherche ni à cacher ni à montrer. Tailleur blanc, lèvres bordeaux, chignon noir que fend une seule mèche d'argent."
+   },
+   {
+    "s": "narrator",
+    "t": "Yoon Hae-in ne se lève pas. Elle te regarde comme on regarde un actif dont on n'a pas encore fixé le prix."
+   },
+   {
+    "s": "hae_in",
+    "t": "Monsieur Kang. Rang F, Porteur, ancien recouvreur pour une société-écran de Longwei. Vous voyez, je fais mes devoirs.",
+    "e": "threat",
+    "v": true
+   },
+   {
+    "s": "hae_in",
+    "t": "Vous avez une minute pour m'expliquer comment un homme comme vous connaît mon propre sous-sol mieux que moi.",
+    "e": "neutral"
+   },
+   {
+    "s": "registre",
+    "t": "Lecture de la Fin — Yoon Hae-in. Jour 21, Jour. Salle du conseil de cette tour. Exécutée par les siens."
+   },
+   {
+    "fx": [
+     "fin hae_in",
+     "flag haein_rencontree"
+    ]
+   },
+   {
+    "s": "elias",
+    "t": "(Le J21. Dans quinze jours, quelqu'un dans cette tour va lui tirer une balle dans la tête.)",
+    "e": "neutral"
+   },
+   {
+    "choice": [
+     {
+      "t": "Mercenaire — « Je vends l'emplacement. Le prix est élevé. »",
+      "goto": "merc",
+      "fx": [
+       "add align.protect -1",
+       "flag haein_mercenaire"
+      ]
+     },
+     {
+      "t": "Héros — « Ouvrez ce bunker aux réfugiés de Yeouido. »",
+      "goto": "heros",
+      "fx": [
+       "add align.protect 2",
+       "add align.bond 1",
+       "flag haein_alliance"
+      ]
+     },
+     {
+      "t": "Tyran — « Je sais aussi ce qu'est le Projet ARCHE. »",
+      "goto": "tyran",
+      "fx": [
+       "add align.protect -2",
+       "flag haein_menace"
+      ],
+      "if": "souvenir('lore_arche_rumeur')"
+     },
+     {
+      "t": "« Je me suis trompé d'étage. » Partir.",
+      "goto": "froid",
+      "fx": [
+       "flag haein_froid"
+      ]
+     }
+    ]
+   }
+  ],
+  "merc": [
+   {
+    "s": "hae_in",
+    "t": "Enfin quelqu'un qui parle ma langue.",
+    "e": "joy"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle décroise les jambes, très lentement, pour prendre une liasse dans un tiroir. Le geste dure exactement le temps qu'il faut pour que tu le remarques."
+   },
+   {
+    "s": "hae_in",
+    "t": "Cent cinquante. Si le bunker existe, vous aurez droit à un deuxième rendez-vous. S'il n'existe pas, à une chute de cinquante étages.",
+    "e": "threat"
+   },
+   {
+    "fx": [
+     "money 150",
+     "add trust.hae_in 5",
+     "add aff.hae_in 2"
+    ]
+   },
+   {
+    "s": "elias",
+    "t": "Troisième pilier. Plaque d'égout fausse. Volant rouillé.",
+    "e": "neutral"
+   },
+   {
+    "goto": "fin"
+   }
+  ],
+  "heros": [
+   {
+    "s": "hae_in",
+    "t": "Ouvrir mes réserves à des réfugiés. Gratuitement.",
+    "e": "contempt"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle rit. Un rire bref, grave, presque sincère."
+   },
+   {
+    "s": "hae_in",
+    "t": "Vous êtes soit un saint, soit un excellent négociateur qui joue le saint. Les deux m'intéressent.",
+    "e": "joy"
+   },
+   {
+    "s": "hae_in",
+    "t": "Disons ceci : si vos réfugiés survivent jusqu'au Classement, je considérerai qu'ils sont un investissement.",
+    "e": "neutral"
+   },
+   {
+    "fx": [
+     "add aff.hae_in 4",
+     "add trust.hae_in 2"
+    ]
+   },
+   {
+    "goto": "fin"
+   }
+  ],
+  "tyran": [
+   {
+    "s": "narrator",
+    "t": "Le silence dure. Elle ne cille pas. Mais ses doigts, posés sur le bureau, se crispent d'un millimètre."
+   },
+   {
+    "s": "hae_in",
+    "t": "Peu de gens connaissent ce nom. Ils ont tous signé des accords de confidentialité. Certains ne sont plus là pour les respecter.",
+    "e": "threat"
+   },
+   {
+    "s": "elias",
+    "t": "Moi, je n'ai rien signé.",
+    "e": "smirk"
+   },
+   {
+    "s": "hae_in",
+    "t": "Pas encore.",
+    "e": "desire"
+   },
+   {
+    "fx": [
+     "add fear.hae_in 10",
+     "add aff.hae_in 3"
+    ]
+   },
+   {
+    "s": "registre",
+    "t": "Ascendant établi — Secret (Projet ARCHE). Un Pacte deviendra possible."
+   },
+   {
+    "goto": "fin"
+   }
+  ],
+  "froid": [
+   {
+    "s": "hae_in",
+    "t": "Dommage. Vous aviez l'air plus intéressant que mes conseillers. Shin, raccompagnez-le.",
+    "e": "contempt"
+   },
+   {
+    "end": true
+   }
+  ],
+  "fin": [
+   {
+    "s": "hae_in",
+    "t": "Agent Shin vous raccompagne. Ne revenez pas sans y être invité, Monsieur Kang.",
+    "e": "neutral"
+   },
+   {
+    "s": "narrator",
+    "t": "Un homme immense, muet, t'ouvre la porte. Avant qu'elle se referme, tu la vois se tourner vers la baie vitrée, et poser le front contre le verre."
+   },
+   {
+    "end": true
+   }
+  ],
+  "contrat": [
+   {
+    "s": "narrator",
+    "t": "Une berline noire freine à ta hauteur. L'homme immense de la tour IFC — Agent Shin — te tend une carte sans un mot. Encre bordeaux."
+   },
+   {
+    "s": "hae_in",
+    "t": "« Archives scellées de l'Assemblée nationale. Un disque dur Haesong Bio, étiquette verte. Rapportez-le intact. Rémunération : généreuse. Discrétion : absolue. — Y. H. »",
+    "e": "neutral"
+   },
+   {
+    "choice": [
+     {
+      "t": "Accepter.",
+      "goto": "contrat_ok",
+      "fx": [
+       "flag contrat_haein",
+       "add trust.hae_in 2"
+      ]
+     },
+     {
+      "t": "Déchirer la carte.",
+      "goto": "contrat_non",
+      "fx": [
+       "flag haein_froid"
+      ]
+     }
+    ]
+   }
+  ],
+  "contrat_ok": [
+   {
+    "s": "narrator",
+    "t": "Shin hoche la tête et repart. La berline disparaît sans phares."
+   },
+   {
+    "end": true
+   }
+  ],
+  "contrat_non": [
+   {
+    "s": "narrator",
+    "t": "Shin regarde les morceaux de carte au sol, puis toi. Il ne dit rien. Il n'a jamais rien dit."
+   },
+   {
+    "end": true
+   }
+  ],
+  "archives": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Sous l'hémicycle effondré, une salle d'archives blindée, porte arrachée. Quelqu'un est passé avant toi."
+   },
+   {
+    "s": "chasseur",
+    "t": "Hé. Le rang F. Ce disque, Cheonma le veut aussi. Pose-le et va-t'en."
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "archives_chasseurs"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "s": "narrator",
+    "t": "Le disque dur est là, sous un bureau renversé. Étiquette verte : « A.R.C.H.E. — Phase 3 — Réponse reçue »."
+   },
+   {
+    "s": "narrator",
+    "t": "Un portable de terrain encore chargé traîne à côté. Tu pourrais lire le contenu. Ou copier le disque."
+   },
+   {
+    "choice": [
+     {
+      "t": "Lire le contenu.",
+      "goto": "archives_lire",
+      "fx": [
+       "add align.chaos -1"
+      ]
+     },
+     {
+      "t": "Ne pas regarder. Livrer le disque intact.",
+      "goto": "archives_intact",
+      "fx": [
+       "add trust.hae_in 3"
+      ]
+     }
+    ]
+   }
+  ],
+  "archives_lire": [
+   {
+    "s": "narrator",
+    "t": "Des relevés sismiques. Une sonde descendue à 2 400 mètres sous Yongsan. Puis une ligne de texte, transmise depuis la sonde, que personne n'a pu traduire."
+   },
+   {
+    "s": "narrator",
+    "t": "Toi, tu peux. Le Registre la lit pour toi : « QUI ME RÉVEILLE ? »"
+   },
+   {
+    "s": "registre",
+    "t": "Souvenir acquis — Dossier ARCHE."
+   },
+   {
+    "fx": [
+     "souvenir lore_arche_dossier"
+    ]
+   },
+   {
+    "choice": [
+     {
+      "t": "Copier le disque. Un levier pour plus tard.",
+      "goto": "archives_copie",
+      "fx": [
+       "flag archive_copie",
+       "add align.protect -1"
+      ]
+     },
+     {
+      "t": "Détruire le disque. Personne ne doit rappeler ce qui dort là-dessous.",
+      "goto": "archives_detruit",
+      "fx": [
+       "flag archive_detruite",
+       "flag haein_froid",
+       "add align.chaos -2"
+      ]
+     },
+     {
+      "t": "Le livrer tel quel.",
+      "goto": "archives_intact"
+     }
+    ]
+   }
+  ],
+  "archives_copie": [
+   {
+    "s": "narrator",
+    "t": "Une clé USB, quarante secondes. Tu glisses la copie dans ta doublure."
+   },
+   {
+    "goto": "archives_intact"
+   }
+  ],
+  "archives_intact": [
+   {
+    "fx": [
+     "flag archive_trouvee"
+    ]
+   },
+   {
+    "s": "narrator",
+    "t": "Le disque pèse dans ta poche comme une arme chargée."
+   },
+   {
+    "end": true
+   }
+  ],
+  "archives_detruit": [
+   {
+    "s": "narrator",
+    "t": "Tu écrases le disque sous ton talon, puis tu en brûles les restes. La Présidente ne te le pardonnera pas."
+   },
+   {
+    "end": true
+   }
+  ],
+  "defeat": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Le monde bascule. Le sol, le ciel, la Tour qui regarde."
+   },
+   {
+    "s": "elias",
+    "t": "Pas… encore…",
+    "e": "exhausted"
+   },
+   {
+    "s": "registre",
+    "t": "ÉCHEC — Le Lecteur est mort."
+   },
+   {
+    "s": "registre",
+    "t": "Régression."
+   },
+   {
+    "event": "regress",
+    "args": {}
+   },
+   {
+    "end": true
+   }
+  ],
+  "remise": [
+   {
+    "music": "haein"
+   },
+   {
+    "s": "narrator",
+    "t": "Cinquantième étage. Elle prend le disque du bout de ses ongles bordeaux, le retourne, vérifie le sceau."
+   },
+   {
+    "if": "flag('archive_copie')",
+    "then": "remise_soupcon"
+   },
+   {
+    "s": "hae_in",
+    "t": "Intact. Vous êtes plus fiable que mon conseil d'administration, Monsieur Kang.",
+    "e": "joy"
+   },
+   {
+    "goto": "remise_fin"
+   }
+  ],
+  "remise_soupcon": [
+   {
+    "s": "hae_in",
+    "t": "Le sceau a été ouvert puis refermé. Proprement. Je respecte le travail propre.",
+    "e": "threat"
+   },
+   {
+    "s": "hae_in",
+    "t": "Mais si une copie circule un jour, je saurai d'où elle vient.",
+    "e": "threat"
+   },
+   {
+    "fx": [
+     "add trust.hae_in -5",
+     "add fear.hae_in 5"
+    ]
+   },
+   {
+    "goto": "remise_fin"
+   }
+  ],
+  "remise_fin": [
+   {
+    "s": "narrator",
+    "t": "Elle fait glisser vers toi une enveloppe épaisse et un badge argenté au logo de pin."
+   },
+   {
+    "s": "hae_in",
+    "t": "Cent. Et un accès aux laboratoires Haesong Bio. On m'a dit que vous fréquentiez une médecin. Elle trouvera peut-être son bonheur là-bas.",
+    "e": "neutral"
+   },
+   {
+    "s": "elias",
+    "t": "Vous me faites surveiller.",
+    "e": "neutral"
+   },
+   {
+    "s": "hae_in",
+    "t": "Je fais surveiller tout ce qui m'intéresse.",
+    "e": "desire"
+   },
+   {
+    "fx": [
+     "money 100",
+     "flag archive_livree",
+     "flag acces_labo",
+     "add aff.hae_in 5",
+     "add trust.hae_in 4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "penthouse": [
+   {
+    "s": "narrator",
+    "t": "La berline de Shin, encore. Cette fois, la carte dit seulement : « Dîner. Ce soir. Penthouse. — Y. H. »"
+   },
+   {
+    "choice": [
+     {
+      "t": "Monter dans la voiture.",
+      "goto": "penthouse_go",
+      "fx": [
+       "add aff.hae_in 2"
+      ]
+     },
+     {
+      "t": "« Pas ce soir. »",
+      "goto": "penthouse_non",
+      "fx": [
+       "flag penthouse_refuse"
+      ]
+     }
+    ]
+   }
+  ],
+  "penthouse_non": [
+   {
+    "s": "narrator",
+    "t": "Shin referme la portière. Pour la première fois, tu crois voir l'ombre d'une surprise sur son visage."
+   },
+   {
+    "end": true
+   }
+  ],
+  "penthouse_go": [
+   {
+    "event": "move",
+    "args": {
+     "node": "yeouido.ifc"
+    }
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Le penthouse est éclairé à la bougie. Électricité rationnée, même pour une reine. Une table pour deux, un vin de 1982, et toute la ville rouge derrière la vitre."
+   },
+   {
+    "s": "narrator",
+    "t": "Elle a lâché ses cheveux. Une cascade noire jusqu'aux reins, la mèche d'argent sur la tempe. Une robe de soie bordeaux, ceinturée à la taille, qui épouse chaque courbe d'un corps de femme mûre qui sait exactement ce qu'il vaut."
+   },
+   {
+    "s": "hae_in",
+    "t": "Ne me regardez pas comme ça, Monsieur Kang. Ou alors, regardez-moi vraiment.",
+    "e": "desire",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle te sert elle-même. Ses doigts frôlent les tiens sur le pied du verre, et ne s'excusent pas."
+   },
+   {
+    "s": "hae_in",
+    "t": "Ma fille a dix-neuf ans. Elle étudie à Paris. Elle est de l'autre côté du Voile, et je ne sais pas si elle est vivante.",
+    "e": "sad",
+    "v": true
+   },
+   {
+    "s": "hae_in",
+    "t": "Vous êtes la seule personne dans cette ville qui ne me regarde pas comme une banque. C'est reposant. Et dangereux.",
+    "e": "neutral"
+   },
+   {
+    "choice": [
+     {
+      "t": "« Vous n'êtes pas seule ce soir. »",
+      "goto": "penthouse_doux",
+      "fx": [
+       "add aff.hae_in 5",
+       "add trust.hae_in 3"
+      ]
+     },
+     {
+      "t": "« Vous m'avez fait venir pour me tester. Testez. »",
+      "goto": "penthouse_defi",
+      "fx": [
+       "add aff.hae_in 4",
+       "add fear.hae_in 2"
+      ]
+     }
+    ]
+   }
+  ],
+  "penthouse_doux": [
+   {
+    "s": "hae_in",
+    "t": "Seule… Vous dites ça comme si c'était une maladie.",
+    "e": "sad"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle s'approche. Sa main se pose sur ta cicatrice au sourcil, la suit du pouce."
+   },
+   {
+    "goto": "penthouse_alarme"
+   }
+  ],
+  "penthouse_defi": [
+   {
+    "s": "hae_in",
+    "t": "Insolent.",
+    "e": "threat"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle pose son verre, contourne la table, et s'arrête si près que tu sens son parfum d'iris et de cuir. Elle te regarde de haut, malgré la différence de taille."
+   },
+   {
+    "goto": "penthouse_alarme"
+   }
+  ],
+  "penthouse_alarme": [
+   {
+    "time": "6:3"
+   },
+   {
+    "s": "narrator",
+    "t": "Ses lèvres sont à un souffle des tiennes quand les sirènes hurlent sur Yeouido."
+   },
+   {
+    "s": "narrator",
+    "t": "Par la baie vitrée : des silhouettes noires qui pleuvent de la Tour. Elles tombent sur le parc. Sur le camp."
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — La Nuée sur Yeouido. Maintenant."
+   },
+   {
+    "s": "hae_in",
+    "t": "Restez. Mes murs tiendront. Les leurs, non. Ce n'est pas votre faute.",
+    "e": "desire"
+   },
+   {
+    "choice": [
+     {
+      "t": "Rester avec elle.",
+      "goto": "penthouse_reste",
+      "fx": [
+       "flag penthouse_reste",
+       "add aff.hae_in 10",
+       "add align.protect -3"
+      ]
+     },
+     {
+      "t": "« Pardon. » Courir vers le camp.",
+      "goto": "penthouse_quitte",
+      "fx": [
+       "flag penthouse_quitte",
+       "add trust.hae_in 5",
+       "add align.protect 3"
+      ]
+     }
+    ]
+   }
+  ],
+  "penthouse_reste": [
+   {
+    "s": "narrator",
+    "t": "Tu ne bouges pas. Elle sourit, lentement, comme on signe un contrat."
+   },
+   {
+    "s": "narrator",
+    "t": "La soie bordeaux glisse d'une épaule. Les sirènes hurlent toujours quand elle t'attire vers elle, et quand la bougie s'éteint, tu ne sais plus lequel des deux a soufflé dessus."
+   },
+   {
+    "s": "registre",
+    "t": "La nuit passe. En bas, dans le parc, d'autres pages se tournent."
+   },
+   {
+    "end": true
+   }
+  ],
+  "penthouse_quitte": [
+   {
+    "s": "hae_in",
+    "t": "Vous me laissez pour des réfugiés.",
+    "e": "surprise"
+   },
+   {
+    "s": "hae_in",
+    "t": "…Allez-y. Et revenez vivant. J'ai horreur des investissements perdus.",
+    "e": "threat"
+   },
+   {
+    "event": "move",
+    "args": {
+     "node": "yeouido.camp"
+    }
+   },
+   {
+    "s": "narrator",
+    "t": "L'escalier de service, quatre marches à la fois. Le parc est déjà en feu."
+   },
+   {
+    "end": true
+   }
+  ]
+ }
+}

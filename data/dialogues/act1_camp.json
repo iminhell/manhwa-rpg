@@ -1,0 +1,792 @@
+{
+ "id": "act1_camp",
+ "title": "Acte I — Le Camp de Yeouido",
+ "start": "start",
+ "speakers": {
+  "recruteur": "Recruteur de Cheonma"
+ },
+ "blocks": {
+  "start": [
+   {
+    "goto": "visite"
+   }
+  ],
+  "visite": [
+   {
+    "bg": "yeouido_camp"
+   },
+   {
+    "if": "flag('camp_vassal')",
+    "then": "visite_vassal"
+   },
+   {
+    "if": "day() >= 7 and flag('camp_sauve')",
+    "then": "visite_sauve"
+   },
+   {
+    "if": "day() >= 5",
+    "then": "visite_tard"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Vous revoilà. Asseyez-vous, que je vérifie vos points. Non, ce n'est pas une question.",
+    "e": "neutral"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle défait ton bandage avec des gestes précis. Ses lunettes glissent. Elle les remonte du poignet, les mains gantées."
+   },
+   {
+    "choice": [
+     {
+      "t": "« Vous avez mangé aujourd'hui ? »",
+      "goto": "visite_soin",
+      "fx": [
+       "add aff.seo_yeon 2"
+      ]
+     },
+     {
+      "t": "Rester silencieux et la laisser faire.",
+      "goto": "visite_soin",
+      "fx": [
+       "add trust.seo_yeon 1"
+      ]
+     }
+    ]
+   }
+  ],
+  "visite_soin": [
+   {
+    "s": "seo_yeon",
+    "t": "Je mangerai quand tout le monde aura mangé. Ne me regardez pas comme ça.",
+    "e": "embarrassed"
+   },
+   {
+    "fx": [
+     "set fatigue 0"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "visite_tard": [
+   {
+    "s": "seo_yeon",
+    "t": "Il paraît que la Tour s'est ouverte. Que des gens montent là-haut pour devenir plus forts.",
+    "e": "sad"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Moi, je reste ici. Quelqu'un doit recoudre ceux qui en redescendent.",
+    "e": "neutral"
+   },
+   {
+    "if": "item('serum_h07') > 0",
+    "then": "visite_serum"
+   },
+   {
+    "end": true
+   }
+  ],
+  "visite_serum": [
+   {
+    "s": "elias",
+    "t": "Tenez. Gardez ça sur vous. Toujours.",
+    "e": "neutral"
+   },
+   {
+    "s": "narrator",
+    "t": "Tu poses une ampoule bleue au creux de sa main. Étiquette : H-07."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "C'est… un antiviral expérimental de Haesong ? Où avez-vous… Non. Je ne veux pas savoir.",
+    "e": "surprise"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Pourquoi moi ?",
+    "e": "embarrassed"
+   },
+   {
+    "s": "elias",
+    "t": "Parce que le douzième jour, vous allez en avoir besoin.",
+    "e": "neutral"
+   },
+   {
+    "s": "registre",
+    "t": "La Fin de Park Seo-Yeon vacille. La cause profonde n'est pas encore réécrite : le camp, les enfants."
+   },
+   {
+    "fx": [
+     "item serum_h07 -1",
+     "flag seo_a_serum",
+     "add trust.seo_yeon 8",
+     "add aff.seo_yeon 5"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "visite_vassal": [
+   {
+    "s": "seo_yeon",
+    "t": "Seigneur Kang.",
+    "e": "contempt"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle ne lève pas les yeux. Elle compte les rations du tribut, celles que tu as exigées. Ses mains tremblent pour la première fois."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Le camp a payé. Vous avez ce que vous vouliez. Autre chose ?",
+    "e": "contempt"
+   },
+   {
+    "s": "registre",
+    "t": "Pacte de Vassalité — Park Seo-Yeon. Ambivalence : Ressentiment."
+   },
+   {
+    "end": true
+   }
+  ],
+  "visite_sauve": [
+   {
+    "s": "seo_yeon",
+    "t": "Les enfants ont dessiné quelque chose pour vous. C'est… un homme avec un manteau qui se bat contre des pieuvres.",
+    "e": "joy"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Je leur ai dit que vous étiez plus moche en vrai.",
+    "e": "laugh"
+   },
+   {
+    "fx": [
+     "add aff.seo_yeon 3"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "seo_soir": [
+   {
+    "bg": "yeouido_camp"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Le soir du troisième jour. Les feux du camp, le ronflement des blessés. Seo-Yeon s'assoit à côté de toi sur un banc que les racines n'ont pas encore mangé."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Je peux vous dire un truc horrible ? Avant la Tour, je voulais démissionner. Je n'en pouvais plus.",
+    "e": "sad",
+    "v": true
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Et maintenant que tout s'est effondré… je n'ai jamais été aussi utile. C'est monstrueux, non ?",
+    "e": "sad"
+   },
+   {
+    "choice": [
+     {
+      "t": "« C'est humain. »",
+      "goto": "seo_soir_doux",
+      "fx": [
+       "add aff.seo_yeon 5",
+       "add trust.seo_yeon 3"
+      ]
+     },
+     {
+      "t": "« Qu'est-ce qui vous a fait vouloir partir ? »",
+      "goto": "seo_soir_creuser",
+      "fx": [
+       "add trust.seo_yeon 5"
+      ]
+     },
+     {
+      "t": "« Vous dormirez quand vous serez morte. Ce sera bientôt si vous continuez. »",
+      "goto": "seo_soir_dur",
+      "fx": [
+       "add aff.seo_yeon -2",
+       "add align.bond -1"
+      ]
+     }
+    ]
+   }
+  ],
+  "seo_soir_doux": [
+   {
+    "s": "seo_yeon",
+    "t": "Humain. Oui. On dit ça des choses qu'on ne veut pas regarder en face.",
+    "e": "neutral"
+   },
+   {
+    "s": "narrator",
+    "t": "Sa tête se pose une seconde contre ton épaule. Puis elle se redresse d'un coup, rouge jusqu'aux oreilles."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Pardon ! Je… c'est la fatigue.",
+    "e": "embarrassed"
+   },
+   {
+    "end": true
+   }
+  ],
+  "seo_soir_creuser": [
+   {
+    "s": "narrator",
+    "t": "Long silence. Elle retire ses lunettes, les nettoie avec le bas de son cardigan. Elle ne te regarde pas."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Un soir, aux urgences, mon chef m'a demandé de faire passer le fils d'un député avant un ouvrier. J'ai modifié la fiche de tri.",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "s": "seo_yeon",
+    "t": "L'ouvrier est mort dans le couloir. Il s'appelait Lee Man-sik. Cinquante-quatre ans. Je n'ai jamais rien dit à personne.",
+    "e": "tears"
+   },
+   {
+    "s": "elias",
+    "t": "Vous venez de le dire.",
+    "e": "neutral"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "…Oui. Pourquoi à vous ?",
+    "e": "lie"
+   },
+   {
+    "s": "elias",
+    "t": "Parce que j'ai fait pire. Et que je ne vous jugerai pas.",
+    "e": "sad"
+   },
+   {
+    "fx": [
+     "flag seo_confession",
+     "add trust.seo_yeon 5"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "seo_soir_dur": [
+   {
+    "s": "seo_yeon",
+    "t": "Merci du diagnostic, docteur Kang.",
+    "e": "contempt"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle se lève et retourne à ses blessés sans un mot de plus."
+   },
+   {
+    "end": true
+   }
+  ],
+  "decision_j4": [
+   {
+    "bg": "yeouido_camp"
+   },
+   {
+    "music": "registre"
+   },
+   {
+    "s": "narrator",
+    "t": "Jour 4. Le camp de Yeouido. Quarante survivants, des vivres pour trois jours."
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — Dans deux nuits, la Nuée tombera sur ce parc. Le Registre l'a vu."
+   },
+   {
+    "s": "narrator",
+    "t": "Un recruteur de Cheonma, tatouage de poing sur la nuque, fait le tour des tentes. Il compte les têtes comme on compte du bétail."
+   },
+   {
+    "s": "recruteur",
+    "t": "Joli camp. Sans protection. Mon patron paierait bien pour savoir où il est. Et toi, rang F, t'as l'air de savoir compter."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Kang-ssi… Les enfants. Qu'est-ce qu'on fait ?",
+    "e": "fear"
+   },
+   {
+    "choice": [
+     {
+      "t": "Défendre le camp. Organiser, fortifier, rester.",
+      "goto": "defendre",
+      "fx": [
+       "add align.protect 10",
+       "add align.bond 10",
+       "flag camp_defendu",
+       "add trust.seo_yeon 10",
+       "add aff.seo_yeon 5"
+      ]
+     },
+     {
+      "t": "« Je vous protège. En échange, le camp me paie un tribut. Et toi, tu m'obéis. »",
+      "goto": "tribut",
+      "fx": [
+       "add align.protect -10",
+       "add align.bond 5",
+       "flag camp_vassal",
+       "flag pacte.seo_yeon",
+       "set ambivalence.seo_yeon -40",
+       "add fear.seo_yeon 20",
+       "money 60",
+       "item ration 3"
+      ]
+     },
+     {
+      "t": "Revenir cette nuit prendre les vivres. Et partir.",
+      "goto": "piller",
+      "fx": [
+       "add align.protect -5",
+       "add align.bond -10",
+       "flag camp_pille",
+       "item ration 6",
+       "money 20"
+      ]
+     },
+     {
+      "t": "Vendre la position du camp au recruteur de Cheonma.",
+      "goto": "vendre",
+      "fx": [
+       "add align.protect -10",
+       "add align.bond -5",
+       "flag camp_vendu",
+       "money 200"
+      ]
+     }
+    ]
+   }
+  ],
+  "defendre": [
+   {
+    "s": "elias",
+    "t": "On creuse une tranchée côté fleuve. Les voitures en barrière côté avenue. Ceux qui savent tenir une arme, avec moi.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "recruteur",
+    "t": "Héros de rang F. Ça meurt vite, ces trucs-là.",
+    "e": "contempt"
+   },
+   {
+    "s": "narrator",
+    "t": "Toute la journée, tu tailles des pieux dans les cerisiers morts. Seo-Yeon organise une infirmerie dans la tente du fond. À la nuit tombée, le camp a des murs."
+   },
+   {
+    "phase": 2
+   },
+   {
+    "fx": [
+     "add camp.defense 10"
+    ]
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Merci. Je… merci.",
+    "e": "tears"
+   },
+   {
+    "end": true
+   }
+  ],
+  "tribut": [
+   {
+    "s": "narrator",
+    "t": "Le silence tombe sur le camp. Un vieil homme crache par terre. Seo-Yeon te regarde comme si tu venais de la gifler."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Vous êtes… comme eux. Comme le recruteur.",
+    "e": "contempt"
+   },
+   {
+    "s": "elias",
+    "t": "Non. Eux, ils prennent et ils partent. Moi, je prends et je reste. Choisissez.",
+    "e": "neutral"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle choisit. Elle n'a pas le choix. Le Système matérialise un parchemin de glyphes rouges entre vous deux. Clause d'Allégeance, de Résidence, de Protection. Et une clause de rupture, dont le prix s'inscrit en lettres de sang : la vie du camp."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "…Je signe. Pour eux. Pas pour vous.",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "PACTE DE VASSALITÉ signé — Park Seo-Yeon. Clause de Protection active : si le camp tombe, le Pacte se brise."
+   },
+   {
+    "end": true
+   }
+  ],
+  "piller": [
+   {
+    "s": "narrator",
+    "t": "Cette nuit-là, pendant que le camp dort, tu vides la réserve. Six rations, des médicaments, l'argent d'une boîte à biscuits."
+   },
+   {
+    "s": "narrator",
+    "t": "Un enfant te voit. Il ne crie pas. Il te regarde partir."
+   },
+   {
+    "s": "registre",
+    "t": "Témoin : un enfant. La rumeur atteindra le Sanctuaire dans deux jours."
+   },
+   {
+    "end": true
+   }
+  ],
+  "vendre": [
+   {
+    "s": "recruteur",
+    "t": "Deux cents. Et une place dans l'arène si un jour tu veux mourir avec style.",
+    "e": "joy"
+   },
+   {
+    "s": "narrator",
+    "t": "Il note les coordonnées sur son avant-bras au marqueur. Seo-Yeon, de loin, croit que vous parlez de la Tour."
+   },
+   {
+    "s": "registre",
+    "t": "Le Registre se tait. Puis une ligne s'écrit seule : « Park Seo-Yeon — vassale de Cheonma, J6. »"
+   },
+   {
+    "end": true
+   }
+  ],
+  "decision_manquee": [
+   {
+    "s": "registre",
+    "t": "Jour 4, Nuit. Le camp de Yeouido n'a pas de protecteur."
+   },
+   {
+    "s": "registre",
+    "t": "Sans toi, la Nuée du sixième soir le trouvera nu."
+   },
+   {
+    "fx": [
+     "flag camp_abandonne"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "nuee_present": [
+   {
+    "bg": "yeouido_camp"
+   },
+   {
+    "music": "boss"
+   },
+   {
+    "s": "narrator",
+    "t": "La Nuée. Des dizaines de silhouettes pleuvent du ciel noir sur le parc de Yeouido."
+   },
+   {
+    "if": "flag('camp_defendu')",
+    "then": "nuee_defendu"
+   },
+   {
+    "if": "flag('camp_vassal')",
+    "then": "nuee_vassal"
+   },
+   {
+    "goto": "nuee_nu"
+   }
+  ],
+  "nuee_defendu": [
+   {
+    "s": "seo_yeon",
+    "t": "Les barricades tiennent ! Kang-ssi, à gauche !",
+    "e": "fear"
+   },
+   {
+    "goto": "nuee_combat"
+   }
+  ],
+  "nuee_vassal": [
+   {
+    "s": "seo_yeon",
+    "t": "Vous êtes venu. La clause… vous la tenez vraiment.",
+    "e": "surprise"
+   },
+   {
+    "fx": [
+     "add ambivalence.seo_yeon 20"
+    ]
+   },
+   {
+    "goto": "nuee_combat"
+   }
+  ],
+  "nuee_nu": [
+   {
+    "s": "narrator",
+    "t": "Pas de murs, pas de tranchée. Les survivants courent dans tous les sens. Il n'y a que toi."
+   },
+   {
+    "goto": "nuee_combat"
+   }
+  ],
+  "nuee_combat": [
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "j6_nuee"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "fx": [
+     "flag camp_sauve",
+     "add align.protect 3"
+    ]
+   },
+   {
+    "s": "narrator",
+    "t": "À l'aube, le parc fume. Des corps noirs fondent sur l'herbe. Les tentes du fond sont intactes. Les enfants aussi."
+   },
+   {
+    "if": "party('seo_yeon')",
+    "then": "nuee_seo"
+   },
+   {
+    "end": true
+   }
+  ],
+  "nuee_seo": [
+   {
+    "s": "seo_yeon",
+    "t": "Ils sont tous vivants. Tous. Vous savez ce que ça veut dire, pour moi ?",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle s'effondre contre toi, couverte de sang qui n'est pas le sien, et pleure sans bruit."
+   },
+   {
+    "fx": [
+     "add aff.seo_yeon 8",
+     "add trust.seo_yeon 8"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "defeat": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Le monde bascule. Le sol, le ciel, la Tour qui regarde."
+   },
+   {
+    "s": "elias",
+    "t": "Pas… encore…",
+    "e": "exhausted"
+   },
+   {
+    "s": "registre",
+    "t": "ÉCHEC — Le Lecteur est mort."
+   },
+   {
+    "s": "registre",
+    "t": "Régression."
+   },
+   {
+    "event": "regress",
+    "args": {}
+   },
+   {
+    "end": true
+   }
+  ],
+  "nuee_absent": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "registre"
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — La Nuée sur Yeouido. Tu n'es pas là."
+   },
+   {
+    "if": "flag('camp_vendu')",
+    "then": "absent_vendu"
+   },
+   {
+    "if": "flag('camp_defendu') and v('camp.defense') >= 20",
+    "then": "absent_tient"
+   },
+   {
+    "if": "flag('camp_defendu')",
+    "then": "absent_pertes"
+   },
+   {
+    "if": "flag('camp_vassal')",
+    "then": "absent_vassal"
+   },
+   {
+    "goto": "absent_tombe"
+   }
+  ],
+  "absent_tient": [
+   {
+    "s": "registre",
+    "t": "Les barricades tiennent. Le camp perd trois hommes, mais il passe la nuit."
+   },
+   {
+    "fx": [
+     "flag camp_sauve"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "absent_pertes": [
+   {
+    "s": "registre",
+    "t": "Les barricades cèdent côté fleuve. Onze morts. Le camp survit, à peine."
+   },
+   {
+    "fx": [
+     "flag camp_sauve",
+     "add trust.seo_yeon -5"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "absent_vassal": [
+   {
+    "s": "registre",
+    "t": "Clause de Protection rompue. Le Seigneur était absent pendant que ses vassaux mouraient."
+   },
+   {
+    "s": "registre",
+    "t": "PACTE BRISÉ — Park Seo-Yeon a fui vers le Sanctuaire avec les blessés."
+   },
+   {
+    "fx": [
+     "leave seo_yeon",
+     "unflag pacte.seo_yeon",
+     "flag seo_rupture",
+     "add align.protect -3"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "absent_vendu": [
+   {
+    "s": "registre",
+    "t": "Les hommes de Cheonma sont arrivés avant la Nuée. Ils ont emmené tout ce qui pouvait travailler."
+   },
+   {
+    "s": "registre",
+    "t": "Park Seo-Yeon — vassale de Cheonma. Sa Fin a changé de forme. Elle n'a pas disparu."
+   },
+   {
+    "fx": [
+     "leave seo_yeon",
+     "flag seo_vassale_cheonma",
+     "flag camp_tombe"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "absent_tombe": [
+   {
+    "s": "registre",
+    "t": "Pas de murs, pas de protecteur. La Nuée a trouvé le camp."
+   },
+   {
+    "s": "registre",
+    "t": "Park Seo-Yeon est vivante, mordue au bras. Les enfants qu'elle protégeait, non."
+   },
+   {
+    "s": "registre",
+    "t": "Fin de Park Seo-Yeon : avancée. La page saigne."
+   },
+   {
+    "fx": [
+     "leave seo_yeon",
+     "flag camp_tombe",
+     "flag seo_blessee",
+     "add align.protect -2"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "hopital": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "L'aile pédiatrique de Sainte-Marie. Des dessins d'enfants scotchés aux murs, des lits vides, une odeur de désinfectant tourné."
+   },
+   {
+    "s": "narrator",
+    "t": "Un dessin te retient : une femme en blouse bleue, avec des lunettes rondes, qui tient la main de six enfants. Quelqu'un a écrit dessous : « Docteur Seo-Yeon nous protège »."
+   },
+   {
+    "s": "registre",
+    "t": "Lieu de la Fin — Park Seo-Yeon. Jour 12, Crépuscule. Ici."
+   },
+   {
+    "s": "elias",
+    "t": "(Six enfants. Ils viennent se cacher ici parce que le camp les rationne. C'est pour eux qu'elle entre.)",
+    "e": "sad"
+   },
+   {
+    "fx": [
+     "flag hopital_vu",
+     "add align.protect 1"
+    ]
+   },
+   {
+    "end": true
+   }
+  ]
+ }
+}

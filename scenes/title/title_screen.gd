@@ -3,6 +3,7 @@ extends Control
 
 signal new_loop
 signal combat_test
+signal options
 signal quit_game
 
 const UI := preload("res://ui/ui_style.gd")
@@ -28,7 +29,7 @@ func _ready() -> void:
 	st.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	v.add_child(st)
 	v.add_child(Control.new())
-	for entry in [["Nouvelle boucle", new_loop], ["Combat de test : le Portier", combat_test], ["Quitter", quit_game]]:
+	for entry in [["Nouvelle boucle", new_loop], ["Combat de test : le Portier", combat_test], ["Options", options], ["Quitter", quit_game]]:
 		var b := UI.button(entry[0], 30)
 		b.custom_minimum_size = Vector2(520, 64)
 		var sig: Signal = entry[1]

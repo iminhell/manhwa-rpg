@@ -1,4 +1,4 @@
-# LA TOUR DU DERNIER JOUR — Game Design Document v0.5
+# LA TOUR DU DERNIER JOUR — Game Design Document v0.6
 
 > RPG narratif et tactique inspiré des manhwas/webtoons, à haute liberté de choix.
 > **Statut** : pré-production. Le document de conception fait foi avant toute phase de code.
@@ -57,6 +57,8 @@
 | Production visuelle | **Pipeline cloud automatisé** (fal.ai : Flux, LoRA par personnage), sans GPU local ni ComfyUI. Le joueur choisit une planche par personnage, le reste est scripté (§18.6) |
 | Musique | OST **hybride** : thèmes générés par IA et bibliothèques synthwave / dark ambient libres de droits (§18.7) |
 | Écriture | Dialogues, quêtes et scripts rédigés par Claude en JSON à partir des fiches, puis relus par l'auteur |
+| Cohérence (règle d'or) | `tools/check_all.sh` après chaque bloc : validateur de données (références, variables orphelines, conditions, défaites non gérées…), tests unitaires, fuzz de dialogues et 3 parties automatiques complètes (§19.7) |
+| État (v0.6) | Prologue J1–J2 + **Acte I J3–J7 jouable sur la carte** : 7 secteurs + étage 1, 60 sous-zones dont 14 cachées, 18 événements datés, temps en ticks, fatigue, Marées, voix et musique gérées (§19.7) |
 
 **Règles de design de l'univers :**
 1. **Tous les personnages romançables sont des adultes.** Leur âge est inscrit dans les données, et leur charadesign a des proportions adultes.
@@ -2200,7 +2202,10 @@ Chaque Strate est le **vestige d'un monde que la Tour a déjà « archivé »** 
 
 - **Le jeu n'attend jamais l'art** : `AssetDB` affiche un placeholder coloré tant qu'une image manque. Une image générée remplace automatiquement le placeholder au lancement suivant.
 - **Source unique** : `data/art/prompts.json` alimente à la fois le pipeline et `docs/CHARADESIGN_PROMPTS.md` (généré).
-- **Contenu 18+** : les conditions d'utilisation de fal.ai et des modèles s'appliquent. En cas de refus, le repli prévu est un backend **ComfyUI serverless sur RunPod** (modèles et LoRA personnels, sans filtre), à ajouter au même script.
+- **Contenu 18+** : les entrées du manifeste marquées `"backend": "runpod"` passent par `tools/art_pipeline/runpod_backend.py`, un endpoint **ComfyUI serverless sur RunPod** (worker-comfyui) qui exécute tes propres modèles et LoRA, sans filtre.
+  - Le workflow est construit dynamiquement, en **Flux** (qui réutilise directement les LoRA entraînés sur fal.ai, récupérés par `generate.py runpod-loras`) ou en **SDXL** (Illustrious, Pony…).
+  - Chaque personnage présent dans la scène charge son LoRA.
+- **Prompts fanservice** : morphologies strictes, tenues de nuit, poses pin-up, angles de caméra et expressions suggestives par personnage (`docs/CHARADESIGN_PROMPTS.md`).
 - **Coût indicatif** : quelques dizaines de dollars pour l'ensemble du casting et du prototype, voir `tools/art_pipeline/README.md`.
 
 ### 18.7 Musique : OST hybride
@@ -2238,22 +2243,24 @@ Chaque Strate est le **vestige d'un monde que la Tour a déjà « archivé »** 
 ### 19.3 Structure du projet (dépôt actuel)
 ```
 manhwa-rpg/                    # le projet Godot est à la racine du dépôt
-├── project.godot              # 1920×1080, paysage, autoloads DataDB / GameState / AssetDB
-├── core/                      # state_store.gd (variables, effets, conditions) · game_state.gd · data_db.gd · asset_db.gd
+├── project.godot              # 1920×1080, paysage ; autoloads : DataDB, Settings, GameState, AssetDB, MusicManager, VoiceManager
+├── core/                      # state_store (variables, effets, conditions, temps) · game_state · data_db · asset_db
+│                              # settings (options persistées) · music_manager · voice_manager
 ├── narrative/                 # dialogue_runner.gd : moteur de dialogue JSON (logique pure)
+├── world/                     # world_model.gd : carte, sous-zones, zones cachées, temps, fatigue, événements, chemins
 ├── combat/                    # combat_unit.gd · combat_state.gd : grilles 3×3, CTB, compétences, IA, Réécriture
-├── scenes/                    # main/ · title/ · dialogue/ (portraits Live2D-lite) · combat/
-├── ui/ui_style.gd             # thème néon (fabriques de boutons, panneaux)
-├── shaders/                   # portrait_breathe.gdshader
+├── scenes/                    # main/ · title/ · dialogue/ · combat/ · world/ (carte, graphe, Registre, fin d'acte) · options_panel
 ├── data/
-│   ├── characters/            # 11 fiches JSON (identité, palette, voix, stats de combat)
-│   ├── combat/                # skills.json · enemies.json · encounters.json
-│   ├── dialogues/             # prologue_j1.json …
-│   └── art/                   # prompts.json (source des prompts) · manifest.json (assets à générer)
-├── assets/                    # images générées par le pipeline (portraits, sprites, décors, CG)
-├── tests/run_tests.gd         # tests headless
-├── tools/art_pipeline/        # generate.py · build_prompt_doc.py · README.md   (ignoré par Godot)
-└── docs/                      # GDD.md · CHARADESIGN_PROMPTS.md                  (ignoré par Godot)
+│   ├── characters/            # 11 fiches (identité, palette, voix ko/ja, stats)
+│   ├── combat/                # skills · enemies · encounters
+│   ├── dialogues/             # prologue_j1 · act1_world · act1_haein · act1_camp · act1_haneul · act1_tower
+│   ├── world/                 # sectors (7 secteurs + étage 1, 60 nœuds) · events · souvenirs · fins · act_summary
+│   ├── audio/music.json       # pistes et contextes musicaux
+│   └── art/                   # prompts.json (source des prompts) · manifest.json (assets, backend fal/runpod)
+├── assets/                    # visuels générés · audio/music · voice/<ko|ja>/<perso>/
+├── tests/                     # run_tests.gd (tests headless) · autopilot.json (itinéraire et choix de l'autotest)
+├── tools/                     # validate_data.py · check_all.sh · art_pipeline/ · voice_pipeline/   (ignoré par Godot)
+└── docs/                      # GDD.md · CHARADESIGN_PROMPTS.md                                    (ignoré par Godot)
 ```
 
 ### 19.4 Briques clés
@@ -2315,6 +2322,36 @@ manhwa-rpg/                    # le projet Godot est à la racine du dépôt
 | Mémoire cible | < 2,5 Go | < 1 Go (streaming des CG et des voix) |
 | Taille de l'installation | 6 à 8 Go (CG, voix, Live2D) | 3 à 4 Go |
 
+### 19.7 État d'implémentation (v0.6) et contrôle de cohérence
+
+#### 19.7.1 Carte des 30 jours
+- **Temps** : 1 jour = 4 phases = 16 ticks. Coûts :
+  - 1 tick pour passer d'une sous-zone à une autre ;
+  - 2 ticks par défaut pour une action ;
+  - 1 phase pour un secteur adjacent, 2 phases pour un secteur lointain.
+- **Interruptions** : le temps avance tick par tick, et un événement daté (Ancre) l'interrompt à la frontière de phase. Dormir dans un refuge passe la nuit, sauf si un événement nocturne l'interrompt.
+- **Survie** : la fatigue entraîne un malus de combat à partir de la 5e phase éveillé, et un malaise à 28 ticks (réveil à l'aube, détroussé). Les rations réduisent la fatigue. Une Marée a lieu chaque nuit hors refuge (combattre ou se terrer).
+- **Monde** : 7 secteurs et l'étage 1, pour 60 sous-zones. Parmi elles :
+  - **14 zones cachées** : souterrains (abri n°7, tunnels coloniaux, bunker B6), **strates effondrées** (Éclat du Vestibule, écaille de Seongsu), sanctuaires, la crypte d'Agatha ;
+  - leur révélation dépend de la **phase**, de la **boucle**, des **souvenirs** ou des **rumeurs** ;
+  - certaines zones sont verrouillées par le calendrier (Marché des Vassaux au J8) ou par un badge (labo Haesong).
+- **Événements datés** : 18 événements (Ancres J2 à J7, manifestations de Haneul, rencontres de lieux, Marée quotidienne), avec priorités, déclenchement unique ou quotidien, et localisation (partout, un secteur, un nœud).
+- **Registre en jeu** : Fins connues, souvenirs, Pression, alignement. Un écran de fin d'acte récapitule les conséquences (`data/world/act_summary.json`).
+
+#### 19.7.2 Contrôle de cohérence (règle d'or)
+`tools/check_all.sh` enchaîne quatre étapes, à lancer à chaque nouveau bloc :
+1. **`tools/validate_data.py`** :
+   - références (blocs, rencontres, nœuds, dialogues, souvenirs, Fins, personnages, compétences, pistes musicales) ;
+   - syntaxe des conditions et des effets ;
+   - **drapeaux, variables, objets et souvenirs lus mais jamais écrits** (erreur) ou écrits mais jamais lus (avertissement) ;
+   - défaites de combat non gérées, adjacences et liens non symétriques, personnages mineurs, cohérence entre l'art et les fiches.
+2. **Import Godot** : erreurs d'analyse GDScript.
+3. **Tests headless** : 1 165 vérifications, dont un fuzz de chaque bloc de dialogue avec des choix aléatoires et la logique de carte.
+4. **Trois parties automatiques complètes**, du prologue à la fin de l'Acte I :
+   - standard ;
+   - embranchements alternatifs : Pacte avec Seo-Yeon, penthouse, Nuée défendue ;
+   - défaite forcée, régression, puis boucle 2.
+
 ---
 
 ## 20. Périmètre de la démo
@@ -2347,8 +2384,14 @@ manhwa-rpg/                    # le projet Godot est à la racine du dépôt
 | Visuels | **Pipeline cloud automatisé**, sans GPU ni ComfyUI | §18.6 |
 | Voix, format, périmètre, mobile | Coréen et japonais · jeu d'un seul bloc · Séoul + étages 1 à 50 · paysage exclusif | §18.3, §15, §19.6 |
 
-### 21.2 Prochaines étapes
-1. Lancer le pipeline d'images : planches de référence des 11 personnages, puis le choix humain.
-2. Étendre le prototype : carte stratégique et carte de secteur (§7), calendrier des 30 jours (§3), Refuge.
-3. Écrire les J3 à J7 (Acte I complet), avec Hae-in et le Souvenir n°4 (Haneul).
-4. `MusicManager` et `VoiceManager` (pistes coréenne et japonaise).
+### 21.2 Fait en v0.6
+- **Carte des 30 jours** : gestionnaire de temps, 7 secteurs et l'étage 1, zones cachées et événements secrets (§19.7).
+- **Acte I J3–J7** : Hae-in (audience, contrat ARCHE, penthouse), manifestations de Haneul (rêves, vision, murmure, réveil à l'étage 1), décision du camp (4 voies, dont le **Pacte** avec Seo-Yeon), Nuée (présent ou absent), Sceaux, Classement, et des rencontres-teasers des autres héroïnes avec lecture de leur Fin.
+- **Audio** : `MusicManager` (contextes par secteur, nuit, combat, danger, boss, Registre, intime), `VoiceManager` (commutateur On/Off, coréen ou japonais), menu Options. Le pipeline des voix exporte 127 répliques, déjà traduites en coréen et en japonais.
+- **Prompts** : morphologies et fanservice ; backend 18+ RunPod/ComfyUI.
+
+### 21.3 Prochaines étapes
+1. **Générer les visuels** : `generate.py refs`, choisir les planches, puis `auto` par personnage.
+2. **Acte II (J8–J15)** : Impôt du Sang, concert-piège d'Aoi (J9), Guerre de l'Eau (J11), Fin de Seo-Yeon (J12), Sommet des Sceaux (J13), tunnels de Maricel (J14).
+3. **Refuge et sauvegardes** : gestion du refuge (§8.5), sauvegarde et chargement (RunSave et MetaSave).
+4. **Scènes de Pacte et de romance** (P1 à P3), avec leurs CG RunPod.

@@ -1,0 +1,1649 @@
+{
+ "factions": {
+  "unite_0": {
+   "name": "Unité 0",
+   "color": "#5b5f3a"
+  },
+  "tour": {
+   "name": "La Tour",
+   "color": "#c9a227"
+  },
+  "haesong": {
+   "name": "Haesong Holdings",
+   "color": "#f4f1ea"
+  },
+  "mirae": {
+   "name": "Mirae Dynamics",
+   "color": "#2ec5ff"
+  },
+  "sanctuaire": {
+   "name": "Le Sanctuaire",
+   "color": "#f2f2f2"
+  },
+  "longwei": {
+   "name": "Consortium Longwei",
+   "color": "#a3122a"
+  },
+  "cheonma": {
+   "name": "Groupe Cheonma",
+   "color": "#8a2be2"
+  },
+  "baek": {
+   "name": "Maison Baek",
+   "color": "#d62828"
+  }
+ },
+ "sectors": {
+  "yongsan": {
+   "name": "Yongsan — L'Ombre de la Tour",
+   "short": "Yongsan",
+   "controller": "unite_0",
+   "danger": 4,
+   "color": "#e8b23a",
+   "map_pos": [
+    0.55,
+    0.55
+   ],
+   "adjacent": [
+    "myeongdong",
+    "hongdae",
+    "ponts",
+    "etage1"
+   ],
+   "entry": "yongsan.appart",
+   "desc": "Ancienne garnison, Itaewon en ruines, barbelés de l'Unité 0. La Tour occupe tout le ciel.",
+   "music": "sector.yongsan",
+   "available": "",
+   "nodes": {
+    "yongsan.appart": {
+     "name": "Appartement d'Elias (Itaewon)",
+     "type": "refuge",
+     "desc": "Le studio aux vitres soufflées. Ta montre arrêtée sur 23h58 traîne sur la table.",
+     "pos": [
+      0.12,
+      0.25
+     ],
+     "links": [
+      "yongsan.rue_itaewon"
+     ],
+     "refuge": "true",
+     "actions": [
+      {
+       "id": "fouiller",
+       "label": "Fouiller les placards",
+       "cost": 2,
+       "once": true,
+       "fx": [
+        "item ration 2",
+        "money 10"
+       ],
+       "message": "Deux rations militaires et un billet froissé. Le reste a été soufflé par l'explosion."
+      }
+     ]
+    },
+    "yongsan.rue_itaewon": {
+     "name": "Rue principale d'Itaewon",
+     "type": "lieu",
+     "desc": "Voitures retournées, néons morts, une vitrine de kebab maculée de sang.",
+     "pos": [
+      0.32,
+      0.4
+     ],
+     "links": [
+      "yongsan.appart",
+      "yongsan.eglise",
+      "yongsan.marche",
+      "yongsan.musee",
+      "yongsan.ruelle"
+     ],
+     "actions": [
+      {
+       "id": "recuperer",
+       "label": "Récupérer dans les épaves",
+       "cost": 2,
+       "daily": true,
+       "fx": [
+        "money 5"
+       ],
+       "message": "Quelques pièces, une boussole fêlée. Itaewon n'a plus rien à donner."
+      }
+     ]
+    },
+    "yongsan.eglise": {
+     "name": "Église d'Itaewon",
+     "type": "refuge",
+     "desc": "Les survivants du quartier ont barricadé la nef.",
+     "pos": [
+      0.3,
+      0.12
+     ],
+     "links": [
+      "yongsan.rue_itaewon"
+     ],
+     "refuge": "flag('aide_choi')",
+     "actions": [
+      {
+       "id": "choi",
+       "label": "Parler à Mme Choi",
+       "cost": 1,
+       "if": "flag('aide_choi')",
+       "dialogue": "act1_world:choi_eglise",
+       "once": true
+      },
+      {
+       "id": "cache",
+       "label": "Fouiller la crypte de l'église",
+       "cost": 2,
+       "once": true,
+       "if": "flag('aide_choi')",
+       "fx": [
+        "item ration 3"
+       ],
+       "message": "Mme Choi te montre la réserve du curé : trois rations. « Prends. Tu nous as sauvés. »"
+      }
+     ]
+    },
+    "yongsan.marche": {
+     "name": "Marché d'Itaewon",
+     "type": "menace",
+     "desc": "Étals renversés. Quelque chose gratte sous les bâches.",
+     "pos": [
+      0.52,
+      0.22
+     ],
+     "links": [
+      "yongsan.rue_itaewon",
+      "yongsan.ruelle"
+     ],
+     "actions": [
+      {
+       "id": "nid",
+       "label": "Nettoyer le nid du marché",
+       "cost": 2,
+       "daily": true,
+       "encounter": "nid_rodeurs",
+       "win_fx": [
+        "money 20",
+        "item ration 1"
+       ]
+      }
+     ]
+    },
+    "yongsan.ruelle": {
+     "name": "Ruelle derrière le marché",
+     "type": "lieu",
+     "desc": "Une impasse étroite. Les murs y sont étrangement chauds.",
+     "pos": [
+      0.55,
+      0.45
+     ],
+     "links": [
+      "yongsan.rue_itaewon",
+      "yongsan.marche",
+      "yongsan.eclat"
+     ],
+     "actions": [
+      {
+       "id": "ecouter",
+       "label": "Tendre l'oreille",
+       "cost": 1,
+       "once": true,
+       "message": "Un bourdonnement sous le béton, comme une ruche. Il vient d'en bas… ou d'en haut ?"
+      }
+     ]
+    },
+    "yongsan.eclat": {
+     "name": "Éclat du Vestibule (strate effondrée)",
+     "type": "cache",
+     "desc": "Un morceau de l'étage 1, tombé du ciel la nuit du J0. Les dalles d'obsidienne flottent à dix centimètres du sol.",
+     "pos": [
+      0.75,
+      0.55
+     ],
+     "links": [
+      "yongsan.ruelle"
+     ],
+     "hidden": "phase() == 3 or souvenir('eclat_vu')",
+     "actions": [
+      {
+       "id": "toucher",
+       "label": "Toucher les glyphes",
+       "cost": 1,
+       "once": true,
+       "dialogue": "act1_world:eclat_vestibule"
+      }
+     ]
+    },
+    "yongsan.musee": {
+     "name": "Musée de la Guerre (réfugiés)",
+     "type": "pnj",
+     "desc": "Un camp de réfugiés sous les avions exposés. L'Unité 0 y distribue de l'eau.",
+     "pos": [
+      0.35,
+      0.7
+     ],
+     "links": [
+      "yongsan.rue_itaewon",
+      "yongsan.porte_tour",
+      "yongsan.gare"
+     ],
+     "actions": [
+      {
+       "id": "aider",
+       "label": "Aider à la distribution",
+       "cost": 4,
+       "daily": true,
+       "fx": [
+        "add align.protect 1",
+        "add align.bond 1",
+        "item ration 1"
+       ],
+       "message": "Deux heures à porter des jerricanes. Un soldat te glisse une ration : « Merci, rang F. »"
+      }
+     ]
+    },
+    "yongsan.gare": {
+     "name": "Gare de Yongsan",
+     "type": "menace",
+     "desc": "Les quais sont devenus un nid. Les rails grincent la nuit.",
+     "pos": [
+      0.15,
+      0.85
+     ],
+     "links": [
+      "yongsan.musee",
+      "yongsan.abri7"
+     ],
+     "actions": [
+      {
+       "id": "nid",
+       "label": "Purger les quais",
+       "cost": 3,
+       "daily": true,
+       "encounter": "nid_cracheurs",
+       "win_fx": [
+        "money 30"
+       ]
+      }
+     ]
+    },
+    "yongsan.abri7": {
+     "name": "Abri anti-aérien n°7",
+     "type": "cache",
+     "desc": "Une porte blindée de 1968, mangée par la rouille. Derrière : un tunnel vers le sud du fleuve.",
+     "pos": [
+      0.4,
+      0.92
+     ],
+     "links": [
+      "yongsan.gare"
+     ],
+     "hidden": "loop() >= 2 or flag('rumeur_abri7')",
+     "actions": [
+      {
+       "id": "tunnel",
+       "label": "Emprunter le tunnel vers Gangnam",
+       "cost": 2,
+       "travel": "gangnam.sortie_tunnel",
+       "message": "Quarante minutes de noir absolu, de l'eau jusqu'aux chevilles. Tu ressors sous Gangnam."
+      }
+     ]
+    },
+    "yongsan.porte_tour": {
+     "name": "Porte de la Tour",
+     "type": "menace",
+     "desc": "Une arche d'obsidienne haute comme un immeuble. Barbelés, projecteurs, et les robes blanches des Élus.",
+     "pos": [
+      0.7,
+      0.8
+     ],
+     "links": [
+      "yongsan.musee",
+      "yongsan.silo"
+     ],
+     "actions": [
+      {
+       "id": "simone",
+       "label": "Approcher du checkpoint de l'Unité 0",
+       "cost": 1,
+       "dialogue": "act1_world:simone_checkpoint",
+       "if": "day() >= 5 and not flag('passe_tour')"
+      },
+      {
+       "id": "elus",
+       "label": "Observer les Élus",
+       "cost": 1,
+       "once": true,
+       "dialogue": "act1_world:elus"
+      }
+     ]
+    },
+    "yongsan.silo": {
+     "name": "Silo d'artillerie",
+     "type": "cache",
+     "desc": "Un bunker bétonné, hors des cartes. Des câbles neufs y descendent.",
+     "pos": [
+      0.92,
+      0.7
+     ],
+     "links": [
+      "yongsan.porte_tour"
+     ],
+     "hidden": "flag('passe_tour')",
+     "open": "false",
+     "locked_hint": "Gardé jour et nuit. Plus tard, peut-être…"
+    }
+   }
+  },
+  "etage1": {
+   "name": "Tour — Étage 1 : Le Vestibule",
+   "short": "Étage 1",
+   "controller": "tour",
+   "danger": 3,
+   "color": "#c9a227",
+   "map_pos": [
+    0.66,
+    0.43
+   ],
+   "adjacent": [
+    "yongsan"
+   ],
+   "entry": "etage1.vestibule",
+   "desc": "Règle : aucune arme apportée de l'extérieur ne fonctionne.",
+   "music": "sector.tower",
+   "available": "day() >= 5 and flag('passe_tour')",
+   "nodes": {
+    "etage1.vestibule": {
+     "name": "Le Vestibule",
+     "type": "lieu",
+     "desc": "Un hall sans plafond visible. Les sons y arrivent avec une seconde de retard.",
+     "pos": [
+      0.15,
+      0.5
+     ],
+     "links": [
+      "etage1.galerie",
+      "etage1.salle_portier"
+     ]
+    },
+    "etage1.galerie": {
+     "name": "Galerie des Clés",
+     "type": "menace",
+     "desc": "Des milliers de clés suspendues tintent sans vent. Certaines saignent.",
+     "pos": [
+      0.38,
+      0.25
+     ],
+     "links": [
+      "etage1.vestibule",
+      "etage1.trois_portes"
+     ],
+     "actions": [
+      {
+       "id": "gardes",
+       "label": "Affronter les Gardes des Clés",
+       "cost": 2,
+       "daily": true,
+       "encounter": "vestibule_gardes",
+       "win_fx": [
+        "money 25",
+        "item fragment_strate 1"
+       ]
+      }
+     ]
+    },
+    "etage1.trois_portes": {
+     "name": "Les Trois Portes",
+     "type": "lieu",
+     "desc": "Trois portes identiques. Une voix sans bouche annonce : « Une seule mène plus loin. »",
+     "pos": [
+      0.6,
+      0.3
+     ],
+     "links": [
+      "etage1.galerie",
+      "etage1.couloir"
+     ],
+     "actions": [
+      {
+       "id": "enigme",
+       "label": "Choisir une porte",
+       "cost": 1,
+       "dialogue": "act1_tower:trois_portes",
+       "if": "not flag('porte_juste')"
+      }
+     ]
+    },
+    "etage1.couloir": {
+     "name": "Couloir sans écho",
+     "type": "lieu",
+     "desc": "Tes pas ne font aucun bruit. Tes pensées non plus.",
+     "pos": [
+      0.8,
+      0.45
+     ],
+     "links": [
+      "etage1.trois_portes",
+      "etage1.porte_sans_serrure"
+     ],
+     "open": "flag('porte_juste')",
+     "locked_hint": "Il faut d'abord franchir la bonne porte."
+    },
+    "etage1.porte_sans_serrure": {
+     "name": "La porte sans serrure",
+     "type": "cache",
+     "desc": "Une porte lisse, chaude comme une peau. Elle n'a ni poignée ni serrure.",
+     "pos": [
+      0.92,
+      0.75
+     ],
+     "links": [
+      "etage1.couloir"
+     ],
+     "hidden": "souvenir('s4_porte_sans_serrure')",
+     "actions": [
+      {
+       "id": "main",
+       "label": "Poser la main sur la porte",
+       "cost": 1,
+       "dialogue": "act1_haneul:rencontre",
+       "if": "not flag('haneul_trouvee')"
+      }
+     ]
+    },
+    "etage1.salle_portier": {
+     "name": "Salle du Portier",
+     "type": "menace",
+     "desc": "Le Gardien de l'étage attend, entouré de mille clés flottantes. Combattre ici, c'est jouer sa vie.",
+     "pos": [
+      0.35,
+      0.8
+     ],
+     "links": [
+      "etage1.vestibule"
+     ],
+     "actions": [
+      {
+       "id": "defier",
+       "label": "Défier le Portier aux Mille Clés",
+       "cost": 4,
+       "once": true,
+       "encounter": "portier",
+       "win_fx": [
+        "flag portier_vaincu",
+        "pressure -10",
+        "souvenir premier_conquerant_1"
+       ],
+       "message": ""
+      }
+     ]
+    }
+   }
+  },
+  "yeouido": {
+   "name": "Yeouido — L'Île des Comptes",
+   "short": "Yeouido",
+   "controller": "haesong",
+   "danger": 2,
+   "color": "#f4f1ea",
+   "map_pos": [
+    0.18,
+    0.62
+   ],
+   "adjacent": [
+    "hongdae",
+    "ponts"
+   ],
+   "entry": "yeouido.camp",
+   "desc": "Quartier financier, Assemblée effondrée, cerisiers devenus carnivores.",
+   "music": "sector.yeouido",
+   "available": "",
+   "nodes": {
+    "yeouido.camp": {
+     "name": "Camp des survivants (parc)",
+     "type": "pnj",
+     "desc": "Quarante survivants, des tentes, et Seo-Yeon qui court d'un blessé à l'autre.",
+     "pos": [
+      0.25,
+      0.55
+     ],
+     "links": [
+      "yeouido.parc_ouest",
+      "yeouido.hopital",
+      "yeouido.ifc"
+     ],
+     "refuge": "flag('camp_defendu') or flag('camp_vassal')",
+     "actions": [
+      {
+       "id": "seo",
+       "label": "Parler à Seo-Yeon",
+       "cost": 1,
+       "dialogue": "act1_camp:visite",
+       "if": "not flag('camp_tombe') and not flag('camp_vendu')"
+      },
+      {
+       "id": "fortifier",
+       "label": "Renforcer les barricades",
+       "cost": 4,
+       "daily": true,
+       "if": "flag('camp_defendu')",
+       "fx": [
+        "add camp.defense 10",
+        "add align.protect 1"
+       ],
+       "message": "Des voitures poussées en barrière, des pieux taillés dans les cerisiers morts. Le camp respire un peu mieux."
+      }
+     ]
+    },
+    "yeouido.parc_ouest": {
+     "name": "Parc Hangang ouest",
+     "type": "menace",
+     "desc": "Les cerisiers carnivores ont avalé un banc entier. Leurs racines bougent.",
+     "pos": [
+      0.1,
+      0.85
+     ],
+     "links": [
+      "yeouido.camp"
+     ],
+     "actions": [
+      {
+       "id": "nid",
+       "label": "Brûler le nid des racines",
+       "cost": 3,
+       "daily": true,
+       "encounter": "nid_rodeurs",
+       "win_fx": [
+        "money 20"
+       ]
+      }
+     ]
+    },
+    "yeouido.hopital": {
+     "name": "Hôpital Sainte-Marie",
+     "type": "lieu",
+     "desc": "Les couloirs sont vides. Une odeur de désinfectant et de fer. Ici, au J12, Seo-Yeon…",
+     "pos": [
+      0.45,
+      0.85
+     ],
+     "links": [
+      "yeouido.camp",
+      "yeouido.assemblee"
+     ],
+     "actions": [
+      {
+       "id": "explorer",
+       "label": "Explorer l'aile pédiatrique",
+       "cost": 2,
+       "once": true,
+       "dialogue": "act1_camp:hopital"
+      }
+     ]
+    },
+    "yeouido.ifc": {
+     "name": "Tour Haesong (IFC)",
+     "type": "pnj",
+     "desc": "Le gratte-ciel de Haesong Holdings. Gardes armés, ascenseurs alimentés par générateur.",
+     "pos": [
+      0.5,
+      0.3
+     ],
+     "links": [
+      "yeouido.camp",
+      "yeouido.parking",
+      "yeouido.assemblee",
+      "yeouido.labo"
+     ],
+     "actions": [
+      {
+       "id": "haein",
+       "label": "Demander une audience",
+       "cost": 1,
+       "dialogue": "act1_haein:audience",
+       "if": "not flag('haein_rencontree') and phase() < 3"
+      },
+      {
+       "id": "remise",
+       "label": "Remettre le disque à la Présidente",
+       "cost": 1,
+       "if": "flag('archive_trouvee') and not flag('archive_livree') and not flag('archive_detruite') and phase() < 3",
+       "dialogue": "act1_haein:remise"
+      }
+     ]
+    },
+    "yeouido.parking": {
+     "name": "Parking IFC — niveau B6",
+     "type": "cache",
+     "desc": "Un mur de béton sans porte. Ton souvenir dit qu'il y a un bunker derrière.",
+     "pos": [
+      0.7,
+      0.12
+     ],
+     "links": [
+      "yeouido.ifc"
+     ],
+     "hidden": "souvenir('s1_bunker_b6')",
+     "refuge": "flag('bunker_ouvert')",
+     "actions": [
+      {
+       "id": "ouvrir",
+       "label": "Chercher le mécanisme du bunker",
+       "cost": 2,
+       "once": true,
+       "dialogue": "act1_world:bunker_b6"
+      }
+     ]
+    },
+    "yeouido.assemblee": {
+     "name": "Assemblée nationale (ruines)",
+     "type": "lieu",
+     "desc": "Le dôme vert s'est effondré sur l'hémicycle. Des archives s'envolent au vent.",
+     "pos": [
+      0.75,
+      0.6
+     ],
+     "links": [
+      "yeouido.ifc",
+      "yeouido.hopital"
+     ],
+     "actions": [
+      {
+       "id": "archives",
+       "label": "Fouiller les archives scellées (contrat Haesong)",
+       "cost": 3,
+       "once": true,
+       "if": "flag('contrat_haein')",
+       "dialogue": "act1_haein:archives"
+      },
+      {
+       "id": "lire",
+       "label": "Lire les documents épars",
+       "cost": 2,
+       "once": true,
+       "fx": [
+        "souvenir lore_arche_rumeur"
+       ],
+       "message": "Un procès-verbal de commission : « Projet A.R.C.H.E. — financement Haesong Bio — classé secret défense. » Daté d'il y a trois ans."
+      }
+     ]
+    },
+    "yeouido.labo": {
+     "name": "Laboratoires Haesong Bio",
+     "type": "lieu",
+     "desc": "Portes vitrées blindées, logo de pin argenté. Des voyants verts derrière.",
+     "pos": [
+      0.9,
+      0.35
+     ],
+     "links": [
+      "yeouido.ifc"
+     ],
+     "open": "flag('acces_labo')",
+     "locked_hint": "Badge Haesong requis.",
+     "actions": [
+      {
+       "id": "serum",
+       "label": "Chercher le sérum H-07",
+       "cost": 2,
+       "once": true,
+       "fx": [
+        "item serum_h07 1",
+        "flag serum_trouve"
+       ],
+       "message": "Une chambre froide. Six ampoules bleues étiquetées H-07. Tu en prends une. Le Registre frémit : une Fin vient de vaciller."
+      }
+     ]
+    }
+   }
+  },
+  "hongdae": {
+   "name": "Hongdae–Mapo — Les Écrans et le Bruit",
+   "short": "Hongdae",
+   "controller": "mirae",
+   "danger": 3,
+   "color": "#2ec5ff",
+   "map_pos": [
+    0.25,
+    0.33
+   ],
+   "adjacent": [
+    "collines",
+    "myeongdong",
+    "yeouido",
+    "yongsan"
+   ],
+   "entry": "hongdae.rue_clubs",
+   "desc": "Murs tagués, scènes improvisées, drones de surveillance de Mirae.",
+   "music": "sector.hongdae",
+   "available": "",
+   "nodes": {
+    "hongdae.rue_clubs": {
+     "name": "Rue des Clubs",
+     "type": "lieu",
+     "desc": "Des enceintes éventrées pendent aux façades. Quelqu'un a tagué « LA TOUR MENT » en rose fluo.",
+     "pos": [
+      0.3,
+      0.5
+     ],
+     "links": [
+      "hongdae.studio",
+      "hongdae.hongik",
+      "hongdae.stade",
+      "hongdae.campus"
+     ],
+     "actions": [
+      {
+       "id": "affiches",
+       "label": "Lire les affiches",
+       "cost": 1,
+       "once": true,
+       "message": "« CONCERT DE L'ESPOIR — J9 — Aoi Tsukishiro chante pour Séoul. Offert par Mirae Dynamics. » Le Registre se glace.",
+       "fx": [
+        "fin aoi"
+       ]
+      }
+     ]
+    },
+    "hongdae.studio": {
+     "name": "Studio d'enregistrement abandonné",
+     "type": "pnj",
+     "desc": "Une cabine insonorisée, des câbles, une odeur de café froid et de larmes.",
+     "pos": [
+      0.12,
+      0.25
+     ],
+     "links": [
+      "hongdae.rue_clubs"
+     ]
+    },
+    "hongdae.hongik": {
+     "name": "Université Hongik",
+     "type": "menace",
+     "desc": "Le campus est une zone de rafle : Mirae y « recrute » les éveillés.",
+     "pos": [
+      0.5,
+      0.2
+     ],
+     "links": [
+      "hongdae.rue_clubs",
+      "hongdae.parc_haneul"
+     ],
+     "actions": [
+      {
+       "id": "nid",
+       "label": "Chasser les rôdeurs des amphis",
+       "cost": 2,
+       "daily": true,
+       "encounter": "nid_rodeurs",
+       "win_fx": [
+        "money 20"
+       ]
+      }
+     ]
+    },
+    "hongdae.parc_haneul": {
+     "name": "Parc Haneul",
+     "type": "menace",
+     "desc": "Une colline d'anciennes décharges devenue prairie. Le vent y chante.",
+     "pos": [
+      0.75,
+      0.15
+     ],
+     "links": [
+      "hongdae.hongik"
+     ],
+     "actions": [
+      {
+       "id": "nid",
+       "label": "Affronter la Brute de la colline",
+       "cost": 3,
+       "daily": true,
+       "encounter": "nid_brute",
+       "win_fx": [
+        "money 40"
+       ]
+      }
+     ]
+    },
+    "hongdae.stade": {
+     "name": "Stade de la Coupe du Monde (camp)",
+     "type": "pnj",
+     "desc": "Dix mille personnes sur la pelouse. Les haut-parleurs de Mirae diffusent des chansons douces.",
+     "pos": [
+      0.35,
+      0.85
+     ],
+     "links": [
+      "hongdae.rue_clubs"
+     ],
+     "actions": [
+      {
+       "id": "rumeurs",
+       "label": "Écouter les rumeurs",
+       "cost": 2,
+       "daily": true,
+       "fx": [
+        "flag rumeur_abri7"
+       ],
+       "message": "« Un abri sous Yongsan mène jusqu'à Gangnam, les Rats l'utilisent. » Un vieux soldat te dessine le chemin sur un ticket."
+      }
+     ]
+    },
+    "hongdae.campus": {
+     "name": "Campus Mirae (DMC)",
+     "type": "pnj",
+     "desc": "Tours de verre, drones en essaim, un portail scanner. Tout ici te regarde.",
+     "pos": [
+      0.7,
+      0.6
+     ],
+     "links": [
+      "hongdae.rue_clubs",
+      "hongdae.sous_niveau"
+     ],
+     "actions": [
+      {
+       "id": "scan",
+       "label": "Passer devant le portail",
+       "cost": 1,
+       "once": true,
+       "dialogue": "act1_world:mirae_drone"
+      }
+     ]
+    },
+    "hongdae.sous_niveau": {
+     "name": "Sous-niveau 9",
+     "type": "cache",
+     "desc": "Un monte-charge descend sous le campus. Un bourdonnement de machine colossale.",
+     "pos": [
+      0.92,
+      0.85
+     ],
+     "links": [
+      "hongdae.campus"
+     ],
+     "hidden": "loop() >= 2",
+     "open": "false",
+     "locked_hint": "Accès biométrique Mirae. (Minh-Anh y travaille…)"
+    }
+   }
+  },
+  "myeongdong": {
+   "name": "Myeongdong–Jongno — Le Cœur Neutre",
+   "short": "Myeongdong",
+   "controller": "sanctuaire",
+   "danger": 2,
+   "color": "#f2f2f2",
+   "map_pos": [
+    0.58,
+    0.3
+   ],
+   "adjacent": [
+    "collines",
+    "hongdae",
+    "yongsan"
+   ],
+   "entry": "myeongdong.cathedrale",
+   "desc": "La Trêve : toute violence ouverte y est interdite. Bougies, troc, rumeurs.",
+   "music": "sector.myeongdong",
+   "available": "",
+   "nodes": {
+    "myeongdong.cathedrale": {
+     "name": "Cathédrale (Sanctuaire)",
+     "type": "pnj",
+     "desc": "Mille bougies. Des blessés sur les bancs. Une religieuse aux cheveux gris dirige tout d'une voix douce.",
+     "pos": [
+      0.4,
+      0.4
+     ],
+     "links": [
+      "myeongdong.marche",
+      "myeongdong.gyeongbok",
+      "myeongdong.tour_n",
+      "myeongdong.crypte"
+     ],
+     "actions": [
+      {
+       "id": "agatha",
+       "label": "Parler à Mère Agatha",
+       "cost": 1,
+       "once": true,
+       "dialogue": "act1_world:agatha"
+      },
+      {
+       "id": "soins",
+       "label": "Se faire soigner (repos d'une phase)",
+       "cost": 4,
+       "daily": true,
+       "fx": [
+        "set fatigue 0"
+       ],
+       "message": "Une novice change ton bandage. Tu dors une heure sur un banc. La fatigue reflue."
+      }
+     ]
+    },
+    "myeongdong.marche": {
+     "name": "Marché Souterrain",
+     "type": "pnj",
+     "desc": "Les galeries commerçantes sous Myeongdong. On y troque tout, des piles aux secrets.",
+     "pos": [
+      0.2,
+      0.7
+     ],
+     "links": [
+      "myeongdong.cathedrale",
+      "myeongdong.euljiro",
+      "myeongdong.forge",
+      "myeongdong.tunnels"
+     ],
+     "actions": [
+      {
+       "id": "maricel",
+       "label": "Chercher la Reine des Rats",
+       "cost": 1,
+       "once": true,
+       "dialogue": "act1_world:maricel_marche"
+      },
+      {
+       "id": "troc",
+       "label": "Échanger des rations contre de l'argent",
+       "cost": 1,
+       "if": "item('ration') > 0",
+       "fx": [
+        "item ration -1",
+        "money 15"
+       ],
+       "message": "Un Rat compte tes pièces deux fois. « Affaire conclue, beau gosse. »"
+      }
+     ]
+    },
+    "myeongdong.gyeongbok": {
+     "name": "Palais Gyeongbokgung (ruines)",
+     "type": "lieu",
+     "desc": "La végétation de la Tour a englouti les pavillons. Un pin noir pousse au milieu du trône.",
+     "pos": [
+      0.55,
+      0.1
+     ],
+     "links": [
+      "myeongdong.cathedrale"
+     ],
+     "actions": [
+      {
+       "id": "relique",
+       "label": "Examiner la pierre gravée du trône",
+       "cost": 2,
+       "once": true,
+       "fx": [
+        "souvenir lore_joseon_pierre"
+       ],
+       "message": "Une stèle Joseon : « En l'an du Tigre Blanc, la Tour fut close par l'Épée et le Lecteur. » Le Lecteur ?"
+      }
+     ]
+    },
+    "myeongdong.tour_n": {
+     "name": "Tour N Seoul (vigie)",
+     "type": "lieu",
+     "desc": "Au sommet du mont Namsan, la vieille tour de télécommunication. On voit toute la ville d'ici.",
+     "pos": [
+      0.8,
+      0.25
+     ],
+     "links": [
+      "myeongdong.cathedrale"
+     ],
+     "actions": [
+      {
+       "id": "vigie",
+       "label": "Observer la ville",
+       "cost": 2,
+       "once": true,
+       "dialogue": "act1_world:vigie"
+      }
+     ]
+    },
+    "myeongdong.euljiro": {
+     "name": "Station Euljiro",
+     "type": "menace",
+     "desc": "Les quais ont été scellés par les Rats. Quelque chose cogne de l'autre côté.",
+     "pos": [
+      0.45,
+      0.9
+     ],
+     "links": [
+      "myeongdong.marche"
+     ],
+     "actions": [
+      {
+       "id": "nid",
+       "label": "Ouvrir la station et purger",
+       "cost": 3,
+       "daily": true,
+       "encounter": "nid_cracheurs",
+       "win_fx": [
+        "money 30"
+       ]
+      }
+     ]
+    },
+    "myeongdong.forge": {
+     "name": "Atelier du forgeron Gu",
+     "type": "pnj",
+     "desc": "Un vieux forgeron éveillé martèle du métal de la Tour sur une enclume de chemin de fer.",
+     "pos": [
+      0.1,
+      0.4
+     ],
+     "links": [
+      "myeongdong.marche"
+     ],
+     "actions": [
+      {
+       "id": "lame",
+       "label": "Acheter une lame forgée dans la Tour (60)",
+       "cost": 1,
+       "once": true,
+       "if": "money() >= 60",
+       "fx": [
+        "money -60",
+        "item lame_gu 1"
+       ],
+       "message": "« Métal du Vestibule. Elle coupe ce que tes poings ne touchent pas. » (+3 attaque pour Elias)"
+      }
+     ]
+    },
+    "myeongdong.tunnels": {
+     "name": "Tunnels de l'ère coloniale",
+     "type": "cache",
+     "desc": "Des galeries de briques sous la ville. Les étais craquent. Des enfants Rats y dorment.",
+     "pos": [
+      0.25,
+      0.95
+     ],
+     "links": [
+      "myeongdong.marche"
+     ],
+     "hidden": "flag('maricel_rencontree')",
+     "actions": [
+      {
+       "id": "etais",
+       "label": "Inspecter les étais",
+       "cost": 2,
+       "once": true,
+       "fx": [
+        "flag etais_vus"
+       ],
+       "message": "Des marques de foreuse récentes, et un logo Mirae sur une caisse vide. Quelqu'un fragilise ces tunnels. Le J14, Maricel…"
+      }
+     ]
+    },
+    "myeongdong.crypte": {
+     "name": "Crypte du Sanctuaire",
+     "type": "cache",
+     "desc": "Une porte de bronze scellée derrière l'autel. Mère Agatha ne la mentionne jamais.",
+     "pos": [
+      0.65,
+      0.65
+     ],
+     "links": [
+      "myeongdong.cathedrale"
+     ],
+     "hidden": "loop() >= 2",
+     "open": "loop() >= 3",
+     "locked_hint": "Scellée. Une odeur de vieux papier… et d'antiseptique. (boucle 3+)"
+    }
+   }
+  },
+  "ponts": {
+   "name": "Ponts du Han — Le Fleuve Noir",
+   "short": "Ponts du Han",
+   "controller": "longwei",
+   "danger": 3,
+   "color": "#a3122a",
+   "map_pos": [
+    0.45,
+    0.73
+   ],
+   "adjacent": [
+    "yongsan",
+    "yeouido",
+    "gangnam"
+   ],
+   "entry": "ponts.banpo",
+   "desc": "Ponts-forteresses à péage, barges-casinos, un fleuve devenu noir.",
+   "music": "sector.ponts",
+   "available": "",
+   "nodes": {
+    "ponts.banpo": {
+     "name": "Pont Banpo (péage Longwei)",
+     "type": "pnj",
+     "desc": "Des hommes en costume noir et lunettes de soleil, de nuit. Le péage se paie en eau, en balles ou en sang.",
+     "pos": [
+      0.4,
+      0.4
+     ],
+     "links": [
+      "ponts.barge",
+      "ponts.pompage",
+      "ponts.quais",
+      "ponts.piles_mapo"
+     ],
+     "actions": [
+      {
+       "id": "peage",
+       "label": "Payer le péage (10)",
+       "cost": 1,
+       "if": "money() >= 10 and not flag('peage_paye')",
+       "fx": [
+        "money -10",
+        "flag peage_paye"
+       ],
+       "message": "Un tampon rouge sur le poignet. « Bon passage, Kang. Le patron se souvient de toi. »"
+      }
+     ]
+    },
+    "ponts.barge": {
+     "name": "Barge-casino Dragon Pâle",
+     "type": "pnj",
+     "desc": "Lanternes rouges, tables de mahjong, et la dirigeante de Longwei qui joue seule.",
+     "pos": [
+      0.7,
+      0.2
+     ],
+     "links": [
+      "ponts.banpo"
+     ],
+     "open": "flag('peage_paye')",
+     "locked_hint": "Il faut d'abord payer le péage.",
+     "actions": [
+      {
+       "id": "xiaoyu",
+       "label": "Approcher de la table de mahjong",
+       "cost": 1,
+       "once": true,
+       "dialogue": "act1_world:xiaoyu_barge"
+      }
+     ]
+    },
+    "ponts.pompage": {
+     "name": "Station de pompage de Ttukseom",
+     "type": "lieu",
+     "desc": "Les pompes qui alimentent la moitié de Séoul. Encore libres… pour l'instant.",
+     "pos": [
+      0.75,
+      0.6
+     ],
+     "links": [
+      "ponts.banpo"
+     ],
+     "actions": [
+      {
+       "id": "observer",
+       "label": "Observer la station",
+       "cost": 1,
+       "once": true,
+       "message": "Des hommes de Longwei mesurent les vannes et prennent des notes. Le J11, ils s'en empareront.",
+       "fx": [
+        "souvenir guerre_eau_prevue"
+       ]
+      }
+     ]
+    },
+    "ponts.piles_mapo": {
+     "name": "Piles du pont Mapo (camp des Rats)",
+     "type": "pnj",
+     "desc": "Des hamacs sous le tablier, des feux, des enfants qui pêchent des choses sans yeux.",
+     "pos": [
+      0.1,
+      0.55
+     ],
+     "links": [
+      "ponts.banpo",
+      "ponts.grotte"
+     ],
+     "actions": [
+      {
+       "id": "rats",
+       "label": "Partager un feu avec les Rats",
+       "cost": 2,
+       "daily": true,
+       "fx": [
+        "add align.bond 1",
+        "flag rumeur_abri7"
+       ],
+       "message": "Un gamin te parle d'un abri sous Yongsan qui passe sous le fleuve. Il veut une ration en échange. Tu la lui donnes."
+      }
+     ]
+    },
+    "ponts.quais": {
+     "name": "Quais du Dernier Exode",
+     "type": "lieu",
+     "desc": "Des barges amarrées, vides. Le J27, des milliers de gens tenteront de fuir d'ici.",
+     "pos": [
+      0.45,
+      0.85
+     ],
+     "links": [
+      "ponts.banpo",
+      "ponts.nodeul"
+     ]
+    },
+    "ponts.nodeul": {
+     "name": "Îlot Nodeul",
+     "type": "menace",
+     "desc": "Une île au milieu du fleuve noir. Quelque chose de très grand nage autour.",
+     "pos": [
+      0.75,
+      0.92
+     ],
+     "links": [
+      "ponts.quais"
+     ],
+     "actions": [
+      {
+       "id": "nid",
+       "label": "Affronter ce qui sort de l'eau",
+       "cost": 3,
+       "daily": true,
+       "encounter": "nid_cracheurs",
+       "win_fx": [
+        "money 35"
+       ]
+      }
+     ]
+    },
+    "ponts.grotte": {
+     "name": "Grotte sous le pont Seongsu (strate effondrée)",
+     "type": "cache",
+     "desc": "Une cavité où une écaille de la Tour s'est fichée dans la berge. L'eau y coule vers le haut.",
+     "pos": [
+      0.15,
+      0.9
+     ],
+     "links": [
+      "ponts.piles_mapo"
+     ],
+     "hidden": "loop() >= 2",
+     "actions": [
+      {
+       "id": "ecaille",
+       "label": "Approcher de l'écaille",
+       "cost": 2,
+       "once": true,
+       "dialogue": "act1_world:grotte_seongsu"
+      }
+     ]
+    }
+   }
+  },
+  "gangnam": {
+   "name": "Gangnam — Le Royaume du Poing",
+   "short": "Gangnam",
+   "controller": "cheonma",
+   "danger": 4,
+   "color": "#8a2be2",
+   "map_pos": [
+    0.72,
+    0.88
+   ],
+   "adjacent": [
+    "ponts"
+   ],
+   "entry": "gangnam.station",
+   "desc": "Tours de verre fendues, écrans géants, arène au COEX. La loi du rang.",
+   "music": "sector.gangnam",
+   "available": "",
+   "nodes": {
+    "gangnam.station": {
+     "name": "Station Gangnam",
+     "type": "menace",
+     "desc": "Le carrefour le plus célèbre de Séoul. Des chasseurs de Cheonma y patrouillent en meute.",
+     "pos": [
+      0.3,
+      0.5
+     ],
+     "links": [
+      "gangnam.coex",
+      "gangnam.tour_cheonma",
+      "gangnam.sinsa",
+      "gangnam.lotte",
+      "gangnam.marche_vassaux",
+      "gangnam.sortie_tunnel"
+     ],
+     "actions": [
+      {
+       "id": "nid",
+       "label": "Nettoyer la sortie 11",
+       "cost": 2,
+       "daily": true,
+       "encounter": "nid_rodeurs",
+       "win_fx": [
+        "money 20"
+       ]
+      }
+     ]
+    },
+    "gangnam.coex": {
+     "name": "Arène du COEX",
+     "type": "pnj",
+     "desc": "Un hall d'exposition transformé en arène. Paris, sang, et le Classement sur écran géant.",
+     "pos": [
+      0.6,
+      0.2
+     ],
+     "links": [
+      "gangnam.station"
+     ],
+     "actions": [
+      {
+       "id": "arene",
+       "label": "Combattre dans l'arène (mise : 20)",
+       "cost": 3,
+       "daily": true,
+       "if": "money() >= 20 and phase() < 3",
+       "fx": [
+        "money -20"
+       ],
+       "encounter": "arene_coex",
+       "win_fx": [
+        "money 70",
+        "add align.protect -1"
+       ]
+      }
+     ]
+    },
+    "gangnam.tour_cheonma": {
+     "name": "Tour Cheonma",
+     "type": "pnj",
+     "desc": "Le QG du Groupe Cheonma. Un homme colossal regarde la ville depuis le dernier étage.",
+     "pos": [
+      0.2,
+      0.15
+     ],
+     "links": [
+      "gangnam.station"
+     ],
+     "open": "false",
+     "locked_hint": "« Rang F ? Dégage. » (Plus tard, l'arène ouvrira peut-être cette porte.)"
+    },
+    "gangnam.sinsa": {
+     "name": "Clinique clandestine de Sinsa",
+     "type": "pnj",
+     "desc": "Une clinique de chirurgie esthétique reconvertie en hôpital de guerre. Les prix sont astronomiques.",
+     "pos": [
+      0.1,
+      0.75
+     ],
+     "links": [
+      "gangnam.station"
+     ],
+     "actions": [
+      {
+       "id": "soin",
+       "label": "Payer des soins (30)",
+       "cost": 2,
+       "if": "money() >= 30",
+       "fx": [
+        "money -30",
+        "set fatigue 0"
+       ],
+       "message": "Une infirmière aux yeux morts te recoud et t'injecte un stimulant. Tu te sens neuf. Et ruiné."
+      }
+     ]
+    },
+    "gangnam.lotte": {
+     "name": "Lotte World Tower (toit)",
+     "type": "lieu",
+     "desc": "555 mètres. Le toit offre une vue parfaite sur Yongsan. Un nid de tireur, déjà.",
+     "pos": [
+      0.85,
+      0.4
+     ],
+     "links": [
+      "gangnam.station"
+     ],
+     "actions": [
+      {
+       "id": "monter",
+       "label": "Monter au sommet",
+       "cost": 3,
+       "once": true,
+       "if": "phase() == 3",
+       "dialogue": "act1_world:nadia_reflet"
+      }
+     ]
+    },
+    "gangnam.marche_vassaux": {
+     "name": "Marché des Vassaux",
+     "type": "lieu",
+     "desc": "Des cages vides et un estrade. Une banderole : « IMPÔT DU SANG — J8 ».",
+     "pos": [
+      0.55,
+      0.8
+     ],
+     "links": [
+      "gangnam.station"
+     ],
+     "open": "day() >= 8",
+     "locked_hint": "Ouvre au J8, avec l'Impôt du Sang."
+    },
+    "gangnam.sortie_tunnel": {
+     "name": "Sortie du tunnel n°7",
+     "type": "cache",
+     "desc": "Une bouche d'égout sous un parking de Gangnam. Le tunnel remonte vers Yongsan.",
+     "pos": [
+      0.85,
+      0.9
+     ],
+     "links": [
+      "gangnam.station"
+     ],
+     "hidden": "loop() >= 2 or flag('rumeur_abri7')",
+     "actions": [
+      {
+       "id": "tunnel",
+       "label": "Reprendre le tunnel vers Yongsan",
+       "cost": 2,
+       "travel": "yongsan.abri7",
+       "message": "Le noir, l'eau, le silence. Tu ressors sous la gare de Yongsan."
+      }
+     ]
+    }
+   }
+  },
+  "collines": {
+   "name": "Collines du Nord — Les Vieilles Maisons",
+   "short": "Collines",
+   "controller": "baek",
+   "danger": 2,
+   "color": "#d62828",
+   "map_pos": [
+    0.5,
+    0.1
+   ],
+   "adjacent": [
+    "hongdae",
+    "myeongdong"
+   ],
+   "entry": "collines.buam",
+   "desc": "Manoirs traditionnels, forêts de pins, murailles Joseon. Ici, une promesse est une loi.",
+   "music": "sector.collines",
+   "available": "",
+   "nodes": {
+    "collines.buam": {
+     "name": "Village de Buam-dong",
+     "type": "pnj",
+     "desc": "Des réfugiés logés dans les maisons de thé. Les moines de Jingwansa distribuent du riz.",
+     "pos": [
+      0.2,
+      0.55
+     ],
+     "links": [
+      "collines.domaine",
+      "collines.jingwansa",
+      "collines.maison_bleue"
+     ],
+     "actions": [
+      {
+       "id": "riz",
+       "label": "Aider les moines",
+       "cost": 3,
+       "daily": true,
+       "fx": [
+        "item ration 1",
+        "add align.protect 1"
+       ],
+       "message": "Tu portes des sacs de riz jusqu'au temple. Un moine éveillé te bénit d'un signe que tu ne comprends pas."
+      }
+     ]
+    },
+    "collines.domaine": {
+     "name": "Domaine Baek",
+     "type": "pnj",
+     "desc": "Un manoir à toits courbes, un dojo, une salle des ancêtres. Une épéiste s'entraîne dans la cour, seule.",
+     "pos": [
+      0.45,
+      0.3
+     ],
+     "links": [
+      "collines.buam",
+      "collines.source"
+     ],
+     "actions": [
+      {
+       "id": "ryeon",
+       "label": "Observer l'épéiste",
+       "cost": 1,
+       "once": true,
+       "dialogue": "act1_world:ryeon_domaine"
+      }
+     ]
+    },
+    "collines.jingwansa": {
+     "name": "Temple Jingwansa",
+     "type": "lieu",
+     "desc": "Un temple de montagne. Les cloches sonnent seules la nuit, en rythme avec la Tour.",
+     "pos": [
+      0.15,
+      0.15
+     ],
+     "links": [
+      "collines.buam",
+      "collines.forteresse"
+     ],
+     "actions": [
+      {
+       "id": "mediter",
+       "label": "Méditer avec les moines",
+       "cost": 4,
+       "daily": true,
+       "fx": [
+        "set fatigue 0",
+        "add align.chaos 1"
+       ],
+       "message": "Le silence est si total que tu entends le Registre tourner ses pages."
+      }
+     ]
+    },
+    "collines.forteresse": {
+     "name": "Forteresse de Bukhansan",
+     "type": "menace",
+     "desc": "Les murailles Joseon abritent une meute de bêtes de la Tour.",
+     "pos": [
+      0.4,
+      0.05
+     ],
+     "links": [
+      "collines.jingwansa"
+     ],
+     "actions": [
+      {
+       "id": "nid",
+       "label": "Débusquer la Brute des remparts",
+       "cost": 3,
+       "daily": true,
+       "encounter": "nid_brute",
+       "win_fx": [
+        "money 40"
+       ]
+      }
+     ]
+    },
+    "collines.maison_bleue": {
+     "name": "Ancienne Maison Bleue",
+     "type": "lieu",
+     "desc": "L'ex-résidence présidentielle, pillée. Les archives du sous-sol sont intactes.",
+     "pos": [
+      0.75,
+      0.7
+     ],
+     "links": [
+      "collines.buam",
+      "collines.epee"
+     ],
+     "actions": [
+      {
+       "id": "archives",
+       "label": "Consulter les archives présidentielles",
+       "cost": 3,
+       "once": true,
+       "dialogue": "act1_world:maison_bleue"
+      }
+     ]
+    },
+    "collines.epee": {
+     "name": "Sanctuaire de l'Épée scellée",
+     "type": "cache",
+     "desc": "Un autel de pierre sous les pins. Une marque de sabre fend la roche… et la roche saigne doré.",
+     "pos": [
+      0.92,
+      0.4
+     ],
+     "links": [
+      "collines.maison_bleue"
+     ],
+     "hidden": "souvenir('lore_joseon_pierre')",
+     "actions": [
+      {
+       "id": "marque",
+       "label": "Toucher la marque du sabre",
+       "cost": 1,
+       "once": true,
+       "fx": [
+        "souvenir sceau_baek_vu",
+        "pressure -1"
+       ],
+       "message": "Une décharge te traverse. Pendant une seconde, tu vois une femme en hanbok blanc trancher le ciel. Le Registre note : « Technique de scellement — fragment. »"
+      }
+     ]
+    },
+    "collines.source": {
+     "name": "Source chaude cachée",
+     "type": "cache",
+     "desc": "Une vasque naturelle fumante entre les rochers. Personne ne connaît cet endroit… presque personne.",
+     "pos": [
+      0.75,
+      0.1
+     ],
+     "links": [
+      "collines.domaine"
+     ],
+     "hidden": "flag('ryeon_rencontree')",
+     "actions": [
+      {
+       "id": "bain",
+       "label": "Se baigner",
+       "cost": 4,
+       "daily": true,
+       "fx": [
+        "set fatigue 0"
+       ],
+       "message": "L'eau brûlante dénoue chaque muscle. Quelque part derrière les rochers, une voix furieuse : « Qui est là ?! » Tu files avant qu'un sabre ne t'atteigne."
+      }
+     ]
+    }
+   }
+  }
+ }
+}

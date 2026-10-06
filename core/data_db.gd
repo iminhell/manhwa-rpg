@@ -6,6 +6,12 @@ var skills: Dictionary = {}
 var enemies: Dictionary = {}
 var encounters: Dictionary = {}
 var dialogues: Dictionary = {}
+var world: Dictionary = {}
+var events: Dictionary = {}
+var souvenirs: Dictionary = {}
+var fins: Dictionary = {}
+var act_summary: Dictionary = {}
+var music: Dictionary = {}
 
 
 func _ready() -> void:
@@ -18,6 +24,12 @@ func reload() -> void:
 	enemies = load_json("res://data/combat/enemies.json").get("enemies", {})
 	encounters = load_json("res://data/combat/encounters.json").get("encounters", {})
 	dialogues = load_dir("res://data/dialogues")
+	world = load_json("res://data/world/sectors.json")
+	events = load_json("res://data/world/events.json")
+	souvenirs = load_json("res://data/world/souvenirs.json").get("souvenirs", {})
+	fins = load_json("res://data/world/fins.json").get("fins", {})
+	act_summary = load_json("res://data/world/act_summary.json")
+	music = load_json("res://data/audio/music.json")
 
 
 static func load_json(path: String) -> Dictionary:
@@ -58,6 +70,10 @@ func display_name(id: String) -> String:
 	return character(id).get("name", id.capitalize())
 
 
+## Couleur d'accent lisible sur fond sombre (les palettes très sombres sont éclaircies).
 func palette_color(id: String) -> Color:
 	var pal: Array = character(id).get("palette", [])
-	return Color(pal[2]) if pal.size() > 2 else Color("#2ec5ff")
+	var c := Color(pal[2]) if pal.size() > 2 else Color("#2ec5ff")
+	while c.get_luminance() < 0.35:
+		c = c.lightened(0.2)
+	return c

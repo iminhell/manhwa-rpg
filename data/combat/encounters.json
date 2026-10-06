@@ -140,6 +140,371 @@
         ]
       },
       "background": "tower_gate"
+    },
+    "nid_rodeurs": {
+      "name": "Nid de rôdeurs",
+      "enemies": [
+        {
+          "id": "rodeur",
+          "row": 0,
+          "lane": 0
+        },
+        {
+          "id": "rodeur",
+          "row": 0,
+          "lane": 2
+        }
+      ],
+      "party_positions": {
+        "elias": [
+          0,
+          1
+        ],
+        "seo_yeon": [
+          2,
+          1
+        ],
+        "haneul": [
+          1,
+          0
+        ],
+        "hae_in": [
+          2,
+          2
+        ]
+      },
+      "background": "itaewon_street"
+    },
+    "nid_cracheurs": {
+      "name": "Nid de cracheurs",
+      "enemies": [
+        {
+          "id": "rodeur",
+          "row": 0,
+          "lane": 1
+        },
+        {
+          "id": "cracheur",
+          "row": 1,
+          "lane": 0
+        },
+        {
+          "id": "cracheur",
+          "row": 2,
+          "lane": 2
+        }
+      ],
+      "party_positions": {
+        "elias": [
+          0,
+          1
+        ],
+        "seo_yeon": [
+          2,
+          1
+        ],
+        "haneul": [
+          1,
+          0
+        ],
+        "hae_in": [
+          2,
+          2
+        ]
+      },
+      "background": "itaewon_street"
+    },
+    "nid_brute": {
+      "name": "La Brute",
+      "enemies": [
+        {
+          "id": "brute",
+          "row": 0,
+          "lane": 1
+        },
+        {
+          "id": "rodeur",
+          "row": 1,
+          "lane": 0
+        }
+      ],
+      "party_positions": {
+        "elias": [
+          0,
+          1
+        ],
+        "seo_yeon": [
+          2,
+          1
+        ],
+        "haneul": [
+          1,
+          0
+        ],
+        "hae_in": [
+          2,
+          2
+        ]
+      },
+      "background": "itaewon_street"
+    },
+    "arene_coex": {
+      "name": "Arène du COEX",
+      "enemies": [
+        {
+          "id": "chasseur",
+          "row": 0,
+          "lane": 1
+        },
+        {
+          "id": "chasseur",
+          "row": 1,
+          "lane": 2
+        }
+      ],
+      "party_positions": {
+        "elias": [
+          0,
+          1
+        ],
+        "seo_yeon": [
+          2,
+          1
+        ],
+        "haneul": [
+          1,
+          0
+        ],
+        "hae_in": [
+          2,
+          2
+        ]
+      },
+      "background": "black"
+    },
+    "maree_t1": {
+      "name": "Marée nocturne",
+      "enemies": [
+        {
+          "id": "rodeur",
+          "row": 0,
+          "lane": 0
+        },
+        {
+          "id": "rodeur",
+          "row": 0,
+          "lane": 2
+        }
+      ],
+      "party_positions": {
+        "elias": [
+          0,
+          1
+        ],
+        "seo_yeon": [
+          2,
+          1
+        ],
+        "haneul": [
+          1,
+          0
+        ],
+        "hae_in": [
+          2,
+          2
+        ]
+      },
+      "background": "itaewon_street"
+    },
+    "maree_t2": {
+      "name": "Marée nocturne (palier 2)",
+      "enemies": [
+        {
+          "id": "rodeur",
+          "row": 0,
+          "lane": 0
+        },
+        {
+          "id": "rodeur",
+          "row": 0,
+          "lane": 2
+        },
+        {
+          "id": "cracheur",
+          "row": 2,
+          "lane": 1
+        }
+      ],
+      "party_positions": {
+        "elias": [
+          0,
+          1
+        ],
+        "seo_yeon": [
+          2,
+          1
+        ],
+        "haneul": [
+          1,
+          0
+        ],
+        "hae_in": [
+          2,
+          2
+        ]
+      },
+      "background": "itaewon_street"
+    },
+    "j6_nuee": {
+      "name": "La Nuée sur Yeouido",
+      "enemies": [
+        {
+          "id": "rodeur",
+          "row": 0,
+          "lane": 0
+        },
+        {
+          "id": "rodeur",
+          "row": 0,
+          "lane": 1
+        },
+        {
+          "id": "rodeur",
+          "row": 0,
+          "lane": 2
+        },
+        {
+          "id": "cracheur",
+          "row": 2,
+          "lane": 1
+        }
+      ],
+      "party_positions": {
+        "elias": [
+          0,
+          1
+        ],
+        "seo_yeon": [
+          2,
+          1
+        ],
+        "haneul": [
+          1,
+          0
+        ],
+        "hae_in": [
+          2,
+          2
+        ]
+      },
+      "background": "yeouido_camp"
+    },
+    "vestibule_gardes": {
+      "name": "Gardes des Clés",
+      "enemies": [
+        {
+          "id": "garde_cles",
+          "row": 0,
+          "lane": 1
+        },
+        {
+          "id": "rodeur",
+          "row": 0,
+          "lane": 0
+        }
+      ],
+      "party_positions": {
+        "elias": [
+          0,
+          1
+        ],
+        "seo_yeon": [
+          2,
+          1
+        ],
+        "haneul": [
+          1,
+          0
+        ],
+        "hae_in": [
+          2,
+          2
+        ]
+      },
+      "background": "tower_gate"
+    },
+    "portier": {
+      "name": "Le Portier aux Mille Clés",
+      "enemies": [
+        {
+          "id": "portier",
+          "row": 1,
+          "lane": 1
+        },
+        {
+          "id": "garde_cles",
+          "row": 0,
+          "lane": 0
+        },
+        {
+          "id": "garde_cles",
+          "row": 0,
+          "lane": 2
+        }
+      ],
+      "party_positions": {
+        "elias": [
+          0,
+          1
+        ],
+        "seo_yeon": [
+          2,
+          1
+        ],
+        "haneul": [
+          1,
+          0
+        ],
+        "hae_in": [
+          2,
+          2
+        ]
+      },
+      "background": "tower_gate"
+    },
+    "archives_chasseurs": {
+      "name": "Pilleurs de Cheonma",
+      "enemies": [
+        {
+          "id": "chasseur",
+          "row": 0,
+          "lane": 1
+        },
+        {
+          "id": "chasseur",
+          "row": 1,
+          "lane": 0
+        }
+      ],
+      "party_positions": {
+        "elias": [
+          0,
+          1
+        ],
+        "seo_yeon": [
+          2,
+          1
+        ],
+        "haneul": [
+          1,
+          0
+        ],
+        "hae_in": [
+          2,
+          2
+        ]
+      },
+      "background": "black"
     }
   }
 }

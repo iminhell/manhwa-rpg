@@ -1,0 +1,165 @@
+{
+ "id": "act1_tower",
+ "title": "Acte I — Tour, Étage 1",
+ "start": "start",
+ "speakers": {
+  "portier": "Le Portier"
+ },
+ "blocks": {
+  "start": [
+   {
+    "goto": "vestibule"
+   }
+  ],
+  "vestibule": [
+   {
+    "bg": "tower_gate"
+   },
+   {
+    "music": "tower"
+   },
+   {
+    "s": "system",
+    "t": "ÉTAGE 1 — LE VESTIBULE. Règle : aucune arme apportée de l'extérieur ne fonctionne."
+   },
+   {
+    "s": "narrator",
+    "t": "Ton couteau de combat glisse de ta main et se dissout en sable noir avant de toucher le sol."
+   },
+   {
+    "s": "elias",
+    "t": "Charmant. Dans l'autre vie, j'ai mis trois jours à comprendre. Cette fois, je viens les mains vides.",
+    "e": "smirk"
+   },
+   {
+    "s": "registre",
+    "t": "Compétence adaptée : Tir de couverture → Lancer de lame (lames de Tour)."
+   },
+   {
+    "s": "narrator",
+    "t": "Le hall n'a pas de plafond. Au loin, mille clés tintent. Et quelque part, derrière tout ça, une porte respire."
+   },
+   {
+    "end": true
+   }
+  ],
+  "trois_portes": [
+   {
+    "s": "narrator",
+    "t": "Trois portes identiques. La voix du Portier tombe de partout et de nulle part."
+   },
+   {
+    "s": "portier",
+    "t": "Une seule mène plus loin. La première mène plus loin. La deuxième mène plus loin. La troisième mène à la mort."
+   },
+   {
+    "if": "souvenir('s3_portier')",
+    "then": "portes_souvenir"
+   },
+   {
+    "goto": "portes_choix"
+   }
+  ],
+  "portes_souvenir": [
+   {
+    "s": "elias",
+    "t": "(« Il ne peut ouvrir qu'une porte à la fois. Il ment toujours sur la troisième. »)",
+    "e": "smirk"
+   },
+   {
+    "goto": "portes_choix"
+   }
+  ],
+  "portes_choix": [
+   {
+    "choice": [
+     {
+      "t": "La première porte.",
+      "goto": "porte_mauvaise"
+     },
+     {
+      "t": "La deuxième porte.",
+      "goto": "porte_mauvaise"
+     },
+     {
+      "t": "La troisième porte. « À la mort », vraiment ?",
+      "goto": "porte_juste",
+      "fx": [
+       "add align.chaos -1"
+      ]
+     }
+    ]
+   }
+  ],
+  "porte_juste": [
+   {
+    "s": "narrator",
+    "t": "La troisième porte s'ouvre sur un couloir où tes pas ne font aucun bruit."
+   },
+   {
+    "s": "portier",
+    "t": "…Tu as triché, Lecteur. Le Portier se souviendra de toi."
+   },
+   {
+    "fx": [
+     "flag porte_juste"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "porte_mauvaise": [
+   {
+    "s": "narrator",
+    "t": "La porte s'ouvre sur un mur de clés acérées. Elles se décrochent, et prennent forme humaine."
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "vestibule_gardes"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "s": "narrator",
+    "t": "Les Gardes se dissolvent en tintements. Les trois portes sont revenues à leur place, identiques."
+   },
+   {
+    "end": true
+   }
+  ],
+  "defeat": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Le monde bascule. Le sol, le ciel, la Tour qui regarde."
+   },
+   {
+    "s": "elias",
+    "t": "Pas… encore…",
+    "e": "exhausted"
+   },
+   {
+    "s": "registre",
+    "t": "ÉCHEC — Le Lecteur est mort."
+   },
+   {
+    "s": "registre",
+    "t": "Régression."
+   },
+   {
+    "event": "regress",
+    "args": {}
+   },
+   {
+    "end": true
+   }
+  ]
+ }
+}
