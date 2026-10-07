@@ -3,75 +3,93 @@
  "tracks": {
   "title": {
    "file": "res://assets/audio/music/title.ogg",
-   "desc": "Thème principal — « 23h58 » (piano, cordes, synthé sombre)"
+   "desc": "Thème principal — « 23h58 » (piano, cordes, synthé sombre)",
+   "prompt": "dark cinematic main theme, melancholic piano melody over sustained strings and a dark analog synth pad, slow build, Korean apocalypse drama, 80 bpm, loopable"
   },
   "yongsan": {
    "file": "res://assets/audio/music/yongsan.ogg",
-   "desc": "Yongsan — ambiance militaire, drones lointains, basse grave"
+   "desc": "Yongsan — ambiance militaire, drones lointains, basse grave",
+   "prompt": "dark military ambient, distant drones hum, deep sub bass pulses, metallic percussion, tense and cold, 70 bpm, loopable"
   },
   "yeouido": {
    "file": "res://assets/audio/music/yeouido.ogg",
-   "desc": "Yeouido — piano froid, verre, synthé glacé"
+   "desc": "Yeouido — piano froid, verre, synthé glacé",
+   "prompt": "cold minimalist piano, glassy bell tones, icy synth pads, corporate skyscraper at night, sparse and elegant, 75 bpm, loopable"
   },
   "hongdae": {
    "file": "res://assets/audio/music/hongdae.ogg",
-   "desc": "Hongdae — synthwave saturée, voix samplées"
+   "desc": "Hongdae — synthwave saturée, voix samplées",
+   "prompt": "saturated synthwave, neon city night, gated drums, analog arpeggios, chopped vocal samples, energetic, 110 bpm, loopable"
   },
   "myeongdong": {
    "file": "res://assets/audio/music/myeongdong.ogg",
-   "desc": "Myeongdong — chœurs lointains, cloches, nappe sacrée"
+   "desc": "Myeongdong — chœurs lointains, cloches, nappe sacrée",
+   "prompt": "sacred ambient, distant choir pads, soft church bells, warm reverb drone, hopeful and fragile, 60 bpm, loopable"
   },
   "ponts": {
    "file": "res://assets/audio/music/ponts.ogg",
-   "desc": "Ponts du Han — eau, erhu, dark ambient"
+   "desc": "Ponts du Han — eau, erhu, dark ambient",
+   "prompt": "dark ambient river soundscape, flowing water, mournful erhu melody, low drones, misty night bridge, 65 bpm, loopable"
   },
   "gangnam": {
    "file": "res://assets/audio/music/gangnam.ogg",
-   "desc": "Gangnam — trap industrielle, percussions lourdes"
+   "desc": "Gangnam — trap industrielle, percussions lourdes",
+   "prompt": "industrial trap beat, heavy distorted 808 bass, hard metallic percussion, menacing synth stabs, rich and dangerous, 140 bpm, loopable"
   },
   "collines": {
    "file": "res://assets/audio/music/collines.ogg",
-   "desc": "Collines — gayageum, flûte daegeum, vent dans les pins"
+   "desc": "Collines — gayageum, flûte daegeum, vent dans les pins",
+   "prompt": "traditional Korean folk ambient, gayageum plucks, breathy daegeum flute, wind in pine trees, calm and nostalgic, 70 bpm, loopable"
   },
   "tower": {
    "file": "res://assets/audio/music/tower.ogg",
-   "desc": "Tour — drones d'orgue, cloches inversées"
+   "desc": "Tour — drones d'orgue, cloches inversées",
+   "prompt": "ominous pipe organ drones, reversed bells, deep cavernous reverb, otherworldly dark fantasy tower, slow, loopable"
   },
   "night": {
    "file": "res://assets/audio/music/night.ogg",
-   "desc": "Marée nocturne — pulsation, tension, cordes grinçantes"
+   "desc": "Marée nocturne — pulsation, tension, cordes grinçantes",
+   "prompt": "nocturnal horror tension, pulsing low heartbeat synth, creaking dissonant strings, creeping dread, 90 bpm, loopable"
   },
   "combat": {
    "file": "res://assets/audio/music/combat.ogg",
-   "desc": "Combat — synthwave épique, batterie"
+   "desc": "Combat — synthwave épique, batterie",
+   "prompt": "epic synthwave battle music, driving drums, aggressive bass arpeggio, heroic lead synth, anime action, 140 bpm, loopable"
   },
   "combat_danger": {
    "file": "res://assets/audio/music/combat_danger.ogg",
-   "desc": "Combat (danger) — même thème, couche intense"
+   "desc": "Combat (danger) — même thème, couche intense",
+   "prompt": "intense epic battle music, driving drums, distorted bass, urgent string ostinato, alarm synth, high stakes anime action, 150 bpm, loopable"
   },
   "boss": {
    "file": "res://assets/audio/music/boss.ogg",
-   "desc": "Boss — chœur, cuivres, synthé distordu"
+   "desc": "Boss — chœur, cuivres, synthé distordu",
+   "prompt": "epic boss battle, dark choir, powerful brass hits, distorted synth bass, thunderous drums, dark fantasy, 150 bpm, loopable"
   },
   "registre": {
    "file": "res://assets/audio/music/registre.ogg",
-   "desc": "Registre — tic-tac d'horloge, cloche, réverbération"
+   "desc": "Registre — tic-tac d'horloge, cloche, réverbération",
+   "prompt": "mystical time theme, ticking clock percussion, single resonant bell, ethereal reverb pads, golden and eerie, 60 bpm, loopable"
   },
   "intimate": {
    "file": "res://assets/audio/music/intimate.ogg",
-   "desc": "Intime — piano lent, nappe chaude"
+   "desc": "Intime — piano lent, nappe chaude",
+   "prompt": "slow romantic piano, warm analog synth pad, soft and tender, late night intimacy, gentle, 65 bpm, loopable"
   },
   "haein_theme": {
    "file": "res://assets/audio/music/haein_theme.ogg",
-   "desc": "Thème de Yoon Hae-in — violoncelle, jazz lent, verre"
+   "desc": "Thème de Yoon Hae-in — violoncelle, jazz lent, verre",
+   "prompt": "slow noir jazz, sultry cello melody, brushed drums, upright bass, glass clinks, elegant and dangerous, 70 bpm, loopable"
   },
   "silence": {
    "file": "res://assets/audio/music/silence.ogg",
-   "desc": "Étage 2 — quasi-silence, respiration, cloches étouffées"
+   "desc": "Étage 2 — quasi-silence, respiration, cloches étouffées",
+   "prompt": "near silence ambient, faint breathing textures, muffled distant bells, very sparse, eerie stillness, loopable"
   },
   "concert_aoi": {
    "file": "res://assets/audio/music/concert_aoi.ogg",
-   "desc": "« Chanson pour Séoul » — la chanson d'Aoi, version scène"
+   "desc": "« Chanson pour Séoul » — la chanson d'Aoi, version scène",
+   "prompt": "J-pop idol ballad instrumental, bright piano and strings, emotional chorus melody, stage concert, 90 bpm"
   }
  },
  "contexts": {

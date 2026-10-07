@@ -15,7 +15,8 @@
   "voice": {
     "ko": "tts_nadia_ko",
     "ja": "tts_nadia_ja",
-    "timbre": "contralto basse, rauque"
+    "timbre": "contralto basse, rauque",
+    "xtts": "Brenda Stern"
   },
   "art_token": "nadia_tsoi",
   "combat": {

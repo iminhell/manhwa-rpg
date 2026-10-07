@@ -10,3 +10,6 @@ art_work/
 __pycache__/
 *.pyc
 .env
+
+# Archive téléchargée depuis Colab (installée par tools/generate_assets.py)
+assets_generated*.zip

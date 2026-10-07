@@ -6,6 +6,7 @@ RPG narratif et tactique inspiré des manhwas/webtoons : régression temporelle,
 - [Game Design Document](docs/GDD.md) — univers, mécaniques, personnages, architecture, état d'implémentation (§19.7).
 - [Charadesign & prompts](docs/CHARADESIGN_PROMPTS.md) — prompts visuels des 11 personnages (morphologies, tenues, fanservice).
 - [Pipeline d'images](tools/art_pipeline/README.md) — génération cloud (fal.ai) + backend 18+ (RunPod / ComfyUI).
+- [Génération gratuite](tools/free_assets/README.md) — images, musique et voix sur le GPU gratuit de Colab ([ouvrir le notebook](https://colab.research.google.com/github/iminhell/manhwa-rpg/blob/main/tools/free_assets/generate_assets.ipynb)).
 - [Règles du projet](CLAUDE.md) — conventions et contrôle de cohérence obligatoire.
 
 ## Jouer au prototype
@@ -51,3 +52,4 @@ godot --path . -- --capture           # captures d'écran dans user://captures/
 | `python3 tools/validate_data.py` | Cohérence des données (références, variables orphelines, conditions…) |
 | `python3 tools/art_pipeline/generate.py refs \| auto <id> <planche> \| assets` | Visuels (voir son README) |
 | `python3 tools/voice_pipeline/voice_lines.py export \| generate --lang ko\|ja` | Répliques à doubler et synthèse vocale |
+| `GENERER_ASSETS.bat` · `python3 tools/generate_assets.py [--paid]` | Assets en un clic : récupère ce que Colab a produit, ou génère (voir `tools/free_assets/README.md`) |

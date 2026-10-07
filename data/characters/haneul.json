@@ -15,7 +15,8 @@
   "voice": {
     "ko": "tts_haneul_ko",
     "ja": "tts_haneul_ja",
-    "timbre": "soprano douce à deux voix"
+    "timbre": "soprano douce à deux voix",
+    "xtts": "Claribel Dervla"
   },
   "art_token": "haneul_heiress",
   "combat": {

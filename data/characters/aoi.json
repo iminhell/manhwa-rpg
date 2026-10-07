@@ -15,7 +15,8 @@
   "voice": {
     "ko": "tts_aoi_ko",
     "ja": "tts_aoi_ja",
-    "timbre": "soprano cristalline, voix parlée éraillée"
+    "timbre": "soprano cristalline, voix parlée éraillée",
+    "xtts": "Gracie Wise"
   },
   "art_token": "aoi_tsukishiro",
   "combat": {

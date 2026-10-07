@@ -15,7 +15,8 @@
   "voice": {
     "ko": "tts_maricel_ko",
     "ja": "tts_maricel_ja",
-    "timbre": "mezzo chaude, pétillante"
+    "timbre": "mezzo chaude, pétillante",
+    "xtts": "Tammie Ema"
   },
   "art_token": "maricel_dizon",
   "combat": {

@@ -15,7 +15,8 @@
   "voice": {
     "ko": "tts_ryeon_ko",
     "ja": "tts_ryeon_ja",
-    "timbre": "mezzo claire, formelle"
+    "timbre": "mezzo claire, formelle",
+    "xtts": "Ana Florence"
   },
   "art_token": "ryeon_baek",
   "combat": {

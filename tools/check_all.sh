@@ -10,6 +10,7 @@ step() { printf '\n\033[1;36m== %s ==\033[0m\n' "$1"; }
 
 step "1/4 Validation des données (lore, variables, références)"
 python3 tools/validate_data.py || fail=1
+python3 tools/free_assets/test_free_gen.py >/dev/null || { python3 tools/free_assets/test_free_gen.py | tail -5; fail=1; }
 
 step "2/4 Import Godot (erreurs d'analyse GDScript)"
 if "$GODOT" --headless --path . --import 2>&1 | grep -E "SCRIPT ERROR|Parse Error"; then fail=1; else echo "OK"; fi

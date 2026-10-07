@@ -15,7 +15,8 @@
   "voice": {
     "ko": "tts_seo_yeon_ko",
     "ja": "tts_seo_yeon_ja",
-    "timbre": "soprano légère, douce"
+    "timbre": "soprano légère, douce",
+    "xtts": "Daisy Studious"
   },
   "art_token": "seoyeon_park",
   "combat": {

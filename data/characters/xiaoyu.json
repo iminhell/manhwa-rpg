@@ -15,7 +15,8 @@
   "voice": {
     "ko": "tts_xiaoyu_ko",
     "ja": "tts_xiaoyu_ja",
-    "timbre": "mezzo suave, langoureuse"
+    "timbre": "mezzo suave, langoureuse",
+    "xtts": "Asya Anara"
   },
   "art_token": "xiaoyu_long",
   "combat": {

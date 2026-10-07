@@ -15,7 +15,8 @@
   "voice": {
     "ko": "tts_minh_anh_ko",
     "ja": "tts_minh_anh_ja",
-    "timbre": "mezzo neutre, précise"
+    "timbre": "mezzo neutre, précise",
+    "xtts": "Sofia Hellen"
   },
   "art_token": "minhanh_tran",
   "combat": {

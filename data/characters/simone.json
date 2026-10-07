@@ -15,7 +15,8 @@
   "voice": {
     "ko": "tts_simone_ko",
     "ja": "tts_simone_ja",
-    "timbre": "alto grave, puissante"
+    "timbre": "alto grave, puissante",
+    "xtts": "Gitta Nikolina"
   },
   "art_token": "simone_hayes",
   "combat": {

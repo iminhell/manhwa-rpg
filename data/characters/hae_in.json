@@ -15,7 +15,8 @@
   "voice": {
     "ko": "tts_hae_in_ko",
     "ja": "tts_hae_in_ja",
-    "timbre": "alto profond, velouté"
+    "timbre": "alto profond, velouté",
+    "xtts": "Alison Dietlinde"
   },
   "art_token": "haein_yoon",
   "combat": {

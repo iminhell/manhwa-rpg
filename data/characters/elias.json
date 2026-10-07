@@ -15,7 +15,8 @@
   "voice": {
     "ko": "tts_elias_ko",
     "ja": "tts_elias_ja",
-    "timbre": "baryton grave, posé, rauque"
+    "timbre": "baryton grave, posé, rauque",
+    "xtts": "Damien Black"
   },
   "art_token": "elias_kang",
   "combat": {
