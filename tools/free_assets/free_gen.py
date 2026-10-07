@@ -108,6 +108,19 @@ def sdxl_prompt(ctx, item: dict) -> str:
     return f"{QUALITY}, {prompt}"
 
 
+def enable_vae_slicing(pipe) -> str:
+    """Décodage du VAE par tranches (moins de VRAM). L'API a changé selon les versions de diffusers :
+    récentes → pipe.vae.enable_slicing() (la méthode du pipeline a été retirée), anciennes → pipe.enable_vae_slicing()."""
+    vae = getattr(pipe, "vae", None)
+    if callable(getattr(vae, "enable_slicing", None)):
+        vae.enable_slicing()
+        return "vae.enable_slicing"
+    if callable(getattr(pipe, "enable_vae_slicing", None)):
+        pipe.enable_vae_slicing()
+        return "pipe.enable_vae_slicing"
+    return ""  # optionnel : sans tranches, l'image se décode quand même (un peu plus de VRAM)
+
+
 class SdxlBackend:
     def __init__(self) -> None:
         import torch  # noqa: PLC0415
@@ -118,7 +131,7 @@ class SdxlBackend:
         self.pipe = StableDiffusionXLPipeline.from_pretrained(IMAGE_MODEL, torch_dtype=dtype, use_safetensors=True)
         self.pipe.scheduler = EulerAncestralDiscreteScheduler.from_config(self.pipe.scheduler.config)
         self.pipe.to(dev)
-        self.pipe.enable_vae_slicing()
+        enable_vae_slicing(self.pipe)
         self.dev = dev
         try:
             from compel import Compel, ReturnedEmbeddingsType  # noqa: PLC0415

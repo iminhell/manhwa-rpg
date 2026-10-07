@@ -71,6 +71,29 @@ class FakeVoices:
 
 
 def main() -> None:
+    # Décodage du VAE par tranches selon la version de diffusers
+    class Vae:
+        sliced = False
+
+        def enable_slicing(self):
+            self.sliced = True
+
+    class NewPipe:  # diffusers récent : plus de pipe.enable_vae_slicing
+        def __init__(self):
+            self.vae = Vae()
+
+    class OldPipe:  # diffusers ancien : méthode du pipeline seulement
+        sliced = False
+        vae = object()
+
+        def enable_vae_slicing(self):
+            self.sliced = True
+
+    new, old = NewPipe(), OldPipe()
+    check(fg.enable_vae_slicing(new) == "vae.enable_slicing" and new.vae.sliced, "VAE : diffusers récent (vae.enable_slicing)")
+    check(fg.enable_vae_slicing(old) == "pipe.enable_vae_slicing" and old.sliced, "VAE : diffusers ancien (enable_vae_slicing)")
+    check(fg.enable_vae_slicing(object()) == "", "VAE : aucune méthode, pas d'erreur")
+
     ctx = fg.art.Ctx(dry_run=True)
     manifest = fg.load_json(fg.MANIFEST)["assets"]
     tokens = [c["token"] for c in ctx.chars.values()]
