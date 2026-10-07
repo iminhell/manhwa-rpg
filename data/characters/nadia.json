@@ -17,5 +17,25 @@
     "ja": "tts_nadia_ja",
     "timbre": "contralto basse, rauque"
   },
-  "art_token": "nadia_tsoi"
+  "art_token": "nadia_tsoi",
+  "combat": {
+    "stats": {
+      "hp": 80,
+      "atk": 16,
+      "def": 4,
+      "spd": 15,
+      "mana": 70
+    },
+    "position": [
+      2,
+      1
+    ],
+    "skills": [
+      "tir_longue",
+      "balle_perforante",
+      "immobilite",
+      "garde",
+      "reflet_blanc"
+    ]
+  }
 }

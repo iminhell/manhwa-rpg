@@ -30,11 +30,13 @@ func setup(encounter_id: String, party_ids: Array, seed_value: int = 0) -> void:
 	var enc: Dictionary = DataDB.encounters.get(encounter_id, {})
 	var party := []
 	# Duels et combats imposés : la rencontre peut fixer son propre groupe ("party").
-	for id in enc.get("party", party_ids):
+	for id in enc.get("party", GameState.squad(party_ids)):
 		party.append(DataDB.character(id))
 	state = CombatState.new()
 	state.setup(party, enc, DataDB.enemies, DataDB.skills, seed_value)
 	state.rewrite_charges = GameState.rewrite_charges()
+	var dif: Dictionary = GameState.difficulty()
+	state.apply_difficulty(float(dif.get("enemy_atk", 1.0)), float(dif.get("enemy_hp", 1.0)))
 	_apply_modifiers()
 	var boss: bool = enc.get("enemies", []).any(func(e): return DataDB.enemies.get(e["id"], {}).get("boss", false))
 	MusicManager.play_context("boss" if boss else "combat")

@@ -27,11 +27,14 @@ func setup(party: Array, encounter: Dictionary, enemy_db: Dictionary, skill_db: 
 	units = []
 	rng.seed = seed_value if seed_value != 0 else randi()
 	var positions: Dictionary = encounter.get("party_positions", {})
+	var taken := {}
 	for c in party:
 		var cb: Dictionary = c.get("combat", {})
 		if cb.is_empty():
 			continue
 		var pos: Array = positions.get(c["id"], cb.get("position", [0, 1]))
+		pos = _free_cell(taken, [int(pos[0]), int(pos[1])])
+		taken["%d,%d" % [pos[0], pos[1]]] = true
 		units.append(_make_unit(c["id"], c["id"], c.get("name", c["id"]), "ally", pos, cb, c.get("palette", [])))
 	var counts := {}
 	for e in encounter.get("enemies", []):
@@ -49,6 +52,18 @@ func setup(party: Array, encounter: Dictionary, enemy_db: Dictionary, skill_db: 
 		u.ctb = _turn_delay(u, 100) * rng.randf_range(0.8, 1.0)
 	for u in alive("enemy"):
 		plan_intent(u)
+
+
+## Case libre la plus proche de la case voulue (plusieurs héroïnes peuvent revendiquer la même).
+static func _free_cell(taken: Dictionary, want: Array) -> Array:
+	if not taken.has("%d,%d" % [want[0], want[1]]):
+		return want
+	for d in range(1, 5):
+		for r in range(3):
+			for l in range(3):
+				if abs(r - want[0]) + abs(l - want[1]) == d and not taken.has("%d,%d" % [r, l]):
+					return [r, l]
+	return want
 
 
 func _make_unit(uid: String, base_id: String, display: String, side: String, pos: Array, cb: Dictionary, palette: Array):
@@ -436,6 +451,15 @@ func plan_intent(enemy) -> void:
 			best_score = score
 			best = {"skill": sid, "target": target.uid}
 	enemy.intent = best
+
+
+## Mode de difficulté : multiplie l'attaque et les PV des ennemis (data/world/difficulty.json).
+func apply_difficulty(atk_mult: float, hp_mult: float) -> void:
+	for u in units:
+		if u.side == "enemy":
+			u.atk *= atk_mult
+			u.max_hp = int(max(1.0, round(u.max_hp * hp_mult)))
+			u.hp = u.max_hp
 
 
 ## Choix de cible ennemi (v0.8) : achever une cible > viser un soigneur > la cible la plus entamée.

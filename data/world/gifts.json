@@ -1,0 +1,192 @@
+{
+ "note": "Cadeaux (Jours de répit et Refuge) : achetés sur un nœud, offerts au Refuge (le meilleur du sac), une fois par héroïne et par jour.",
+ "gifts": {
+  "mots_croises": {
+   "name": "Recueil de mots croisés",
+   "price": 10,
+   "node": "myeongdong.marche",
+   "loves": [
+    "seo_yeon"
+   ],
+   "likes": [
+    "minh_anh",
+    "hae_in"
+   ],
+   "reactions": {
+    "seo_yeon": "Seo-Yeon serre le recueil contre elle : « Au stylo. Je vais les faire au stylo, comme une adulte. »"
+   }
+  },
+  "cafe_sucre": {
+   "name": "Café soluble et sucre en morceaux",
+   "price": 10,
+   "node": "yeouido.camp",
+   "loves": [
+    "seo_yeon",
+    "minh_anh"
+   ],
+   "likes": [
+    "simone"
+   ],
+   "reactions": {
+    "seo_yeon": "« Quatre sucres. Tu as retenu. » Elle détourne les yeux, trop vite.",
+    "minh_anh": "Minh-Anh le boit froid, sans sucre, en trois gorgées. Ses LEDs passent au rouge une seconde."
+   }
+  },
+  "pain_au_lait": {
+   "name": "Pain au lait (boulangerie de Mapo)",
+   "price": 15,
+   "node": "hongdae.rue_clubs",
+   "loves": [
+    "haneul"
+   ],
+   "likes": [
+    "aoi",
+    "maricel"
+   ],
+   "reactions": {
+    "haneul": "Haneul le respire longtemps avant de mordre dedans. « C'est le goût d'avant. Je le reconnais. »"
+   }
+  },
+  "takoyaki": {
+   "name": "Boîte de takoyaki en conserve",
+   "price": 10,
+   "node": "hongdae.rue_clubs",
+   "loves": [
+    "aoi"
+   ],
+   "likes": [
+    "maricel"
+   ],
+   "reactions": {
+    "aoi": "« Des takoyaki en boîte. C'est une insulte à Osaka. » Elle les mange tous. Elle pleure un peu."
+   }
+  },
+  "mangues": {
+   "name": "Mangues séchées de contrebande",
+   "price": 10,
+   "node": "myeongdong.marche",
+   "loves": [
+    "maricel"
+   ],
+   "likes": [
+    "aoi",
+    "haneul"
+   ],
+   "reactions": {
+    "maricel": "Maricel te vole la mangue des mains avant que tu aies fini de la tendre. « Ay, gwapo. Tu me connais trop. »"
+   }
+  },
+  "bonbons": {
+   "name": "Bonbons de sésame (pâtisserie des Collines)",
+   "price": 10,
+   "node": "collines.buam",
+   "loves": [
+    "ryeon"
+   ],
+   "likes": [
+    "haneul"
+   ],
+   "reactions": {
+    "ryeon": "« Je n'en mange pas. » Elle range le sachet dans son hanbok. Il est vide le soir même."
+   }
+  },
+  "baijiu": {
+   "name": "Baijiu millésimé",
+   "price": 50,
+   "node": "ponts.barge",
+   "loves": [
+    "xiaoyu"
+   ],
+   "likes": [
+    "nadia",
+    "simone"
+   ],
+   "reactions": {
+    "xiaoyu": "Elle lit l'étiquette, hausse un sourcil. « 1998. Tu as volé ça à mon père. Excellent goût. »"
+   }
+  },
+  "the_jeju": {
+   "name": "Thé vert de Jeju",
+   "price": 30,
+   "node": "yeouido.ifc",
+   "loves": [
+    "hae_in"
+   ],
+   "likes": [
+    "seo_yeon"
+   ],
+   "reactions": {
+    "hae_in": "Hae-in ouvre la boîte, respire. « Vous vous êtes renseigné. Je déteste qu'on se renseigne sur moi. Merci. »"
+   }
+  },
+  "vinyle": {
+   "name": "Vinyle de Viktor Tsoi",
+   "price": 40,
+   "node": "hongdae.stade",
+   "loves": [
+    "nadia"
+   ],
+   "likes": [
+    "aoi"
+   ],
+   "reactions": {
+    "nadia": "Nadia retourne le vinyle sans un mot. Puis elle dit « Kino », et sourit, et c'est la première fois."
+   }
+  },
+  "cigare": {
+   "name": "Cigare cubain",
+   "price": 30,
+   "node": "yongsan.marche",
+   "loves": [
+    "simone"
+   ],
+   "likes": [
+    "xiaoyu"
+   ],
+   "reactions": {
+    "simone": "« Je ne le fume qu'un jour où on a survécu. » Elle le range dans sa poche de poitrine. « Garde-moi une place ce jour-là, Rang F. »"
+   }
+  },
+  "puzzle": {
+   "name": "Casse-tête mécanique de laiton",
+   "price": 25,
+   "node": "myeongdong.forge",
+   "loves": [
+    "minh_anh"
+   ],
+   "likes": [
+    "hae_in",
+    "maricel"
+   ],
+   "reactions": {
+    "minh_anh": "Minh-Anh le résout en quarante secondes, puis le démonte entièrement pour comprendre pourquoi il était facile."
+   }
+  },
+  "ruban": {
+   "name": "Ruban de soie rouge",
+   "price": 20,
+   "node": "myeongdong.marche",
+   "loves": [],
+   "likes": [
+    "ryeon",
+    "aoi",
+    "nadia",
+    "seo_yeon",
+    "haneul",
+    "xiaoyu",
+    "maricel",
+    "hae_in",
+    "simone",
+    "minh_anh"
+   ],
+   "reactions": {
+    "ryeon": "Elle regarde le ruban, puis celui de sa mère, à son poignet. « Pas à la place. À côté. »"
+   }
+  }
+ },
+ "default_reactions": {
+  "loves": "Elle reste un long moment sans rien dire, le cadeau dans les mains. Puis elle te regarde comme si tu avais lu dans ses pensées.",
+  "likes": "Elle sourit, sincèrement, et range le cadeau avec soin.",
+  "neutral": "Elle remercie poliment. Ce n'est pas tout à fait elle, mais l'intention compte."
+ }
+}

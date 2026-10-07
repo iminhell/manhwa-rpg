@@ -2,11 +2,12 @@ extends Control
 ## Écran de fin d'acte : conséquences (data/world/act_summary.json), alignement, Fins.
 
 signal closed
+signal regress_requested
 
 const UI := preload("res://ui/ui_style.gd")
 
 
-const TITLES := {1: "ÉVEIL", 2: "CONSOLIDATION", 3: "LA GUERRE DES SCEAUX"}
+const TITLES := {1: "ÉVEIL", 2: "CONSOLIDATION", 3: "LA GUERRE DES SCEAUX", 4: "LA GRANDE DESCENTE"}
 
 
 func setup(act: int, can_continue: bool = false) -> void:
@@ -35,6 +36,13 @@ func setup(act: int, can_continue: bool = false) -> void:
 	for line in DataDB.act_summary.get("act%d" % act, []):
 		if st.check(str(line.get("if", ""))):
 			text.append_text("• %s\n" % line["text"])
+	if not can_continue:
+		# Fin de boucle : régresser en gardant les Échos (ce qu'Elias a accompli), ou revenir au titre.
+		var echoes := UI.label("Échos gravés pour la prochaine boucle : %d" % GameState.Echoes.after_loop(st, DataDB.echoes).size(), 20, UI.CYAN)
+		v.add_child(echoes)
+		var r := UI.button("Régresser — boucle %d (Échos et souvenirs conservés)" % (st.loop() + 1), 26, UI.GOLD)
+		r.pressed.connect(func(): regress_requested.emit())
+		v.add_child(r)
 	var b := UI.button("Continuer vers l'Acte %d" % (act + 1) if can_continue else "Retour au titre", 26)
 	b.pressed.connect(func(): closed.emit())
 	v.add_child(b)

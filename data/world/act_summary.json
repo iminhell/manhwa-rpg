@@ -496,5 +496,303 @@
    "if": "souvenir('descente_annoncee')",
    "text": "Descente dans sept jours."
   }
+ ],
+ "act4": [
+  {
+   "if": "flag('issue.aube_nouvelle')",
+   "text": "FIN — AUBE NOUVELLE. La Tour est contenue. Haneul est vivante, et humaine. L'Ère des Strates commence."
+  },
+  {
+   "if": "flag('issue.page_refermee')",
+   "text": "FIN — LA PAGE REFERMÉE. La ville est sauvée. Haneul tient le livre fermé, de l'intérieur."
+  },
+  {
+   "if": "flag('issue.roi_reine_ruines')",
+   "text": "FIN — LE ROI ET LA REINE DES RUINES. La Tour s'agenouille. Séoul aussi."
+  },
+  {
+   "if": "flag('issue.aube_amere')",
+   "text": "FIN — AUBE AMÈRE. Séoul survit sans l'Héritière. Quelqu'un attend derrière la porte."
+  },
+  {
+   "if": "flag('issue.effacement')",
+   "text": "FIN TRAGIQUE — EFFACEMENT. La Pression a dépassé 85. Séoul n'a jamais existé."
+  },
+  {
+   "if": "flag('issue.page_finale')",
+   "text": "FIN TRAGIQUE — LA PAGE FINALE. Agatha triomphe. La ville dort dans l'Archive, pour toujours."
+  },
+  {
+   "if": "flag('issue.refuge_nation')",
+   "text": "Voie — Le Refuge-Nation."
+  },
+  {
+   "if": "flag('issue.empire_ruines')",
+   "text": "Voie — L'Empire des Ruines."
+  },
+  {
+   "if": "flag('issue.ombre_sommet')",
+   "text": "Voie — L'Ombre au Sommet."
+  },
+  {
+   "if": "flag('issue.roi_contrats')",
+   "text": "Voie — Le Roi des Contrats."
+  },
+  {
+   "if": "flag('issue.seo_yeon')",
+   "text": "Seo-Yeon — La Main qui ne tremble pas."
+  },
+  {
+   "if": "flag('issue.haneul')",
+   "text": "Haneul — Le Ciel."
+  },
+  {
+   "if": "flag('issue.hae_in')",
+   "text": "Hae-in — La Présidente sans Sceau."
+  },
+  {
+   "if": "flag('issue.ryeon')",
+   "text": "Ryeon — Le Lotus et le Tigre."
+  },
+  {
+   "if": "flag('issue.simone')",
+   "text": "Simone — Désobéissance."
+  },
+  {
+   "if": "flag('issue.xiaoyu')",
+   "text": "Xiaoyu — Le Pari du Dragon."
+  },
+  {
+   "if": "flag('issue.aoi')",
+   "text": "Aoi — Chanson pour une seule personne."
+  },
+  {
+   "if": "flag('issue.nadia')",
+   "text": "Nadia — Deux Loups."
+  },
+  {
+   "if": "flag('issue.maricel')",
+   "text": "Maricel — Le Soleil sous la Ville."
+  },
+  {
+   "if": "flag('issue.minh_anh')",
+   "text": "Minh-Anh — L'Équation."
+  },
+  {
+   "if": "flag('issue.maison_des_dix')",
+   "text": "Harem Absolu — LA MAISON DES DIX."
+  },
+  {
+   "if": "flag('issue.trone_des_dix')",
+   "text": "Harem Absolu — LE TRÔNE DES DIX."
+  },
+  {
+   "if": "flag('issue.nuit_des_couteaux')",
+   "text": "Harem Absolu — LA NUIT DES COUTEAUX."
+  },
+  {
+   "if": "flag('issue.la_maison')",
+   "text": "Cour — La Maison."
+  },
+  {
+   "if": "flag('issue.maison_n')",
+   "text": "Constellation — La Maison de quelques-uns."
+  },
+  {
+   "if": "flag('issue.lecteur_seul')",
+   "text": "Constellation — Le Lecteur Seul."
+  },
+  {
+   "if": "flag('constellation_dix')",
+   "text": "La Constellation du Lecteur : les dix Fins tissées ont survécu à l'Épreuve des Dix."
+  },
+  {
+   "if": "flag('portrait_dix')",
+   "text": "Le Portrait des Dix est flou. C'est la plus belle photo de l'apocalypse."
+  },
+  {
+   "if": "flag('formation_dix')",
+   "text": "Formation des Dix : l'Ultime collective s'est éveillée."
+  },
+  {
+   "if": "flag('agatha_rachetee')",
+   "text": "Agatha a remis la Page arrachée. Seo-Yeon a reçu une lettre d'elle-même."
+  },
+  {
+   "if": "flag('agatha_executee')",
+   "text": "La Prophète est tombée entre les pages blanches."
+  },
+  {
+   "if": "flag('agatha_alliance')",
+   "text": "Les Élus sont devenus la religion de l'Empire."
+  },
+  {
+   "if": "flag('agatha_triomphe')",
+   "text": "Agatha a ouvert la porte. Elle a eu sa miséricorde."
+  },
+  {
+   "if": "flag('prophete_vaincu')",
+   "text": "Le masque blanc s'est fendu. Dessous : des lunettes rondes rafistolées au scotch."
+  },
+  {
+   "if": "flag('haneul_liberee')",
+   "text": "Haneul, devenue Administratrice, a été arrachée à l'encre au Seuil."
+  },
+  {
+   "if": "flag('simone_briefee')",
+   "text": "Tu as parlé à la commandante Hayes avant le J24."
+  },
+  {
+   "if": "flag('contrat_connu')",
+   "text": "Tu connaissais le contrat de Nadia avant le J24."
+  },
+  {
+   "if": "flag('nadia_sauvee')",
+   "text": "Nadia Tsoi a baissé son fusil sur le toit de la Lotte Tower."
+  },
+  {
+   "if": "flag('nadia_blessee')",
+   "text": "Nadia porte la balle du contre-sniper à l'épaule."
+  },
+  {
+   "if": "flag('concil.simone_nadia')",
+   "text": "Le Toit du J24 : Simone et Nadia ont partagé un cigare."
+  },
+  {
+   "if": "flag('nadia_partie')",
+   "text": "Nadia Tsoi a disparu dans la nuit avec son fusil."
+  },
+  {
+   "if": "flag('nadia_a_tire_finale')",
+   "text": "La nuit de la Descente, un reflet blanc a visé ton cœur."
+  },
+  {
+   "if": "flag('nadia_rachat')",
+   "text": "Nadia a tiré sur celle qui la payait. L'écho de la première vie est brisé."
+  },
+  {
+   "if": "flag('nadia_morte')",
+   "text": "Nadia Tsoi est morte sur le toit, l'écharpe rouge emportée par le vent."
+  },
+  {
+   "if": "flag('simone_morte')",
+   "text": "Simone Hayes est morte."
+  },
+  {
+   "if": "flag('simone_desobeit')",
+   "text": "Simone a refusé l'ordre du Protocole Cendre."
+  },
+  {
+   "if": "flag('cendre_suspendu')",
+   "text": "Le Protocole Cendre ne s'est pas déclenché."
+  },
+  {
+   "if": "flag('cendre_tombee')",
+   "text": "Gangnam a disparu dans une boule de feu blanche."
+  },
+  {
+   "if": "flag('minh_anh_sauvee')",
+   "text": "Minh-Anh a quitté le fauteuil de la Machine d'Inversion."
+  },
+  {
+   "if": "flag('minh_anh_sait')",
+   "text": "Minh-Anh sait tout des boucles. Elle a vu les trois cent douze lectures d'avant."
+  },
+  {
+   "if": "flag('machine_detruite')",
+   "text": "La Machine d'Inversion n'est plus qu'un tas de métal tordu."
+  },
+  {
+   "if": "flag('minh_anh_morte')",
+   "text": "Minh-Anh a été désintégrée par sa propre machine."
+  },
+  {
+   "if": "flag('executeurs_vaincus')",
+   "text": "Les Exécuteurs du Système sont venus corriger une anomalie. Dossier suspendu."
+  },
+  {
+   "if": "flag('corbeau_dejoue')",
+   "text": "Les Lettres du Corbeau ont été lues à voix haute. La jalousie n'a pas pris."
+  },
+  {
+   "if": "flag('exode_sauve')",
+   "text": "Le Dernier Exode a traversé le Han."
+  },
+  {
+   "if": "flag('exode_rancon')",
+   "text": "Tu as fait payer les places sur les barges du Dernier Exode."
+  },
+  {
+   "if": "flag('seo_j27_survie')",
+   "text": "Seo-Yeon est ressortie du Han avec sept enfants."
+  },
+  {
+   "if": "flag('seo_noyee')",
+   "text": "Seo-Yeon s'est noyée en aidant des réfugiés."
+  },
+  {
+   "if": "flag('sacrifice4_empeche')",
+   "text": "Tu as brisé le dernier cercle des Élus."
+  },
+  {
+   "if": "flag('ryeon_j29_survie')",
+   "text": "Ryeon est revenue de l'étage 8."
+  },
+  {
+   "if": "flag('ryeon_morte_j29')",
+   "text": "Le sabre Baekho a été retrouvé brisé devant la porte du Refuge."
+  },
+  {
+   "if": "flag('ancre_retour')",
+   "text": "Une ancre est gravée au J15, dans un miroir de l'étage 5."
+  },
+  {
+   "if": "flag('spectres_vus')",
+   "text": "Tu as marché parmi les morts de cette boucle."
+  },
+  {
+   "if": "flag('aoi_ramenee') or flag('seo_yeon_ramenee') or flag('maricel_ramenee') or flag('ryeon_ramenee') or flag('xiaoyu_ramenee') or flag('hae_in_ramenee') or flag('nadia_ramenee') or flag('simone_ramenee') or flag('minh_anh_ramenee')",
+   "text": "Au Jardin des Fins, tu as cueilli une Fin accomplie. Quelqu'un est revenu."
+  },
+  {
+   "if": "flag('veille_maison')",
+   "text": "La Veille de la Maison : personne n'a dormi seule."
+  },
+  {
+   "if": "flag('maison_premiere')",
+   "text": "Une Première tient la Maison."
+  },
+  {
+   "if": "flag('rupture_seo')",
+   "text": "Seo-Yeon a rompu le Pacte la nuit de la Descente."
+  },
+  {
+   "if": "flag('ville_brisee')",
+   "text": "La ville s'est brisée partout où tu n'étais pas."
+  },
+  {
+   "if": "flag('ville_blessee') and not flag('ville_brisee')",
+   "text": "La ville a saigné, mais elle a tenu."
+  },
+  {
+   "if": "flag('front_yongsan') or flag('front_myeongdong') or flag('front_yeouido')",
+   "text": "Tu as choisi ton front pour la Nuit du Déversement."
+  },
+  {
+   "if": "flag('concil.serum') and flag('vaccin_masse')",
+   "text": "Seo-Yeon et Minh-Anh ont synthétisé un vaccin de masse."
+  },
+  {
+   "if": "flag('concil.silo') or flag('concil.sujet') or flag('concil.reines') or flag('concil.reines_froide')",
+   "text": "Des Quêtes de Conciliation ont apaisé la Maison."
+  },
+  {
+   "if": "flag('duo_seo_haneul') or flag('duo_aoi_maricel') or flag('duo_lames') or flag('trio_nuit') or flag('quatuor_nuit') or flag('nuit_maison')",
+   "text": "Des nuits partagées à plusieurs, au Refuge."
+  },
+  {
+   "if": "flag('nadia_nuit') or flag('nadia_nuit_pacte') or flag('simone_nuit') or flag('simone_nuit_pacte') or flag('minh_anh_nuit')",
+   "text": "Nadia, Simone ou Minh-Anh ont choisi de rester une nuit."
+  }
  ]
 }

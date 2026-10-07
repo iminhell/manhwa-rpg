@@ -1,0 +1,1149 @@
+{
+ "id": "act4_world",
+ "title": "Acte IV — Monde (Exode, Cendre, Veille)",
+ "start": "start",
+ "speakers": {
+  "prophete": "Le Prophète"
+ },
+ "blocks": {
+  "start": [
+   {
+    "goto": "etages56"
+   }
+  ],
+  "etages56": [
+   {
+    "music": "registre"
+   },
+   {
+    "s": "system",
+    "t": "ÉTAGE 5 — LE LABYRINTHE INVERSÉ — OUVERT. ÉTAGE 6 — LA FORÊT DES PENDUS — OUVERT."
+   },
+   {
+    "s": "narrator",
+    "t": "À Hongdae, les lumières de Mirae vacillent toute la nuit : le président Jang teste sa Machine. Dans la Tour, deux nouveaux étages respirent."
+   },
+   {
+    "s": "elias",
+    "t": "Cinq jours. La ville le sait. On voit des barges sur le Han, des files devant les églises, et des gens qui se marient dans la rue.",
+    "e": "neutral"
+   },
+   {
+    "end": true
+   }
+  ],
+  "executeurs": [
+   {
+    "bg": "tower_gate"
+   },
+   {
+    "music": "boss"
+   },
+   {
+    "s": "system",
+    "t": "ANOMALIE DÉTECTÉE. LE LECTEUR PORTE TROP DE FINS."
+   },
+   {
+    "s": "narrator",
+    "t": "Trois silhouettes dorées descendent du ciel sur des fils de lumière. Pas des monstres : des fonctionnaires. Des Exécuteurs du Système, venus corriger une erreur de comptabilité."
+   },
+   {
+    "s": "registre",
+    "t": "Le Poids du Destin : chaque lien est un contrat. Au-delà de huit, la Tour traite le Lecteur comme une anomalie."
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "executeurs"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "s": "narrator",
+    "t": "Les Exécuteurs se dissolvent en chiffres. Il reste, sur le pavé, un tampon officiel : « Dossier suspendu. »"
+   },
+   {
+    "fx": [
+     "flag executeurs_vaincus",
+     "pressure -2"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "corbeau": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Vingt-septième aube. Sur chaque oreiller du Refuge, une lettre anonyme. Écriture ronde, appliquée, d'une main qui a recopié beaucoup d'ordonnances."
+   },
+   {
+    "s": "narrator",
+    "t": "Chaque lettre dit à chacune ce qu'elle redoute le plus d'entendre : qu'Elias en aime une autre, qu'il les sacrifiera, qu'il les a déjà sacrifiées dans une autre vie."
+   },
+   {
+    "s": "registre",
+    "t": "Les Lettres du Corbeau. La jalousie, semée à la main."
+   },
+   {
+    "choice": [
+     {
+      "t": "Réunir tout le monde et lire les lettres à voix haute.",
+      "goto": "corbeau_lire",
+      "fx": [
+       "add align.bond 2"
+      ]
+     },
+     {
+      "t": "Les brûler avant le réveil des autres.",
+      "goto": "corbeau_bruler",
+      "fx": [
+       "add align.bond -1"
+      ]
+     }
+    ]
+   }
+  ],
+  "corbeau_lire": [
+   {
+    "s": "narrator",
+    "t": "Tu lis tout, à voix haute, devant elles. Les mensonges sonnent faux quand on les dit ensemble. À la cinquième lettre, quelqu'un rit. À la septième, tout le monde rit."
+   },
+   {
+    "s": "elias",
+    "t": "Celle qui a écrit ça connaît chacune d'entre vous. Elle écrit comme une infirmière qui recopie des ordonnances. J'ai déjà lu cette écriture.",
+    "e": "anger",
+    "v": true
+   },
+   {
+    "fx": [
+     "flag corbeau_dejoue",
+     "souvenir ecriture_corbeau",
+     "add aff.haneul 2"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "corbeau_bruler": [
+   {
+    "s": "narrator",
+    "t": "Les lettres brûlent dans le poêle. Une seule t'échappe : elle a glissé sous un lit. Le soir, quelqu'un la trouvera."
+   },
+   {
+    "fx": [
+     "flag corbeau_cache"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "exode": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "combat.danger"
+   },
+   {
+    "s": "narrator",
+    "t": "Vingt-septième jour. Sur les quais du Han, des milliers de gens. Des barges surchargées tentent de traverser vers la rive sud, où la rumeur dit que la Tour ne descendra pas. La rumeur ment."
+   },
+   {
+    "s": "narrator",
+    "t": "Les Rôdeurs écarlates sentent la foule. Ils arrivent par les piles des ponts."
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — Le Dernier Exode. Sauver des civils… ou les rançonner."
+   },
+   {
+    "choice": [
+     {
+      "t": "Tenir les quais pendant l'embarquement.",
+      "goto": "exode_tenir",
+      "fx": [
+       "add align.protect 4"
+      ]
+     },
+     {
+      "t": "Faire payer la place sur les barges. Deux cents de plus, tout de suite.",
+      "goto": "exode_rancon",
+      "fx": [
+       "money 200",
+       "add align.protect -8"
+      ]
+     }
+    ]
+   }
+  ],
+  "exode_tenir": [
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "exode"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "s": "narrator",
+    "t": "Les barges partent l'une après l'autre. Sur la dernière, une vieille femme te fait un signe de croix, et un enfant te fait un doigt d'honneur, par principe."
+   },
+   {
+    "fx": [
+     "flag exode_sauve"
+    ]
+   },
+   {
+    "goto": "exode_seo"
+   }
+  ],
+  "exode_rancon": [
+   {
+    "s": "narrator",
+    "t": "Les passeurs te remettent les billets en tremblant. Les barges partent moins chargées. Ceux qui n'ont pas pu payer regardent l'eau."
+   },
+   {
+    "fx": [
+     "flag exode_rancon"
+    ]
+   },
+   {
+    "goto": "exode_seo"
+   }
+  ],
+  "exode_seo": [
+   {
+    "if": "party('seo_yeon')",
+    "then": "exode_seo_present"
+   },
+   {
+    "end": true
+   }
+  ],
+  "exode_seo_present": [
+   {
+    "s": "narrator",
+    "t": "Au milieu du fleuve, une barge chavire. Des corps dans l'eau noire. Seo-Yeon a déjà ôté son cardigan."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Il y a des enfants dans l'eau. Ne me retiens pas, Elias.",
+    "e": "fear",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — Park Seo-Yeon, nouvelle page : Jour 27, quais du Dernier Exode. Noyée en aidant des réfugiés."
+   },
+   {
+    "if": "party('xiaoyu') or party('maricel')",
+    "then": "exode_seo_aide"
+   },
+   {
+    "choice": [
+     {
+      "t": "Plonger avec elle.",
+      "goto": "exode_plonger",
+      "fx": [
+       "add fatigue 8",
+       "add aff.seo_yeon 6"
+      ]
+     },
+     {
+      "t": "Tenir la berge et tendre les cordes.",
+      "goto": "exode_berge"
+     }
+    ]
+   }
+  ],
+  "exode_seo_aide": [
+   {
+    "if": "party('xiaoyu')",
+    "then": "exode_seo_xiaoyu"
+   },
+   {
+    "s": "narrator",
+    "t": "Maricel plonge la première, une corde autour de la taille, en hurlant des insultes en cebuano à la rivière. Seo-Yeon la suit. Elles ramènent sept enfants à elles deux."
+   },
+   {
+    "goto": "exode_seo_sauvee"
+   }
+  ],
+  "exode_seo_xiaoyu": [
+   {
+    "s": "xiaoyu",
+    "t": "Mes barges ne chavirent pas, ma chérie. Toutes les autres, oui. Tout le monde à bord du Dragon Pâle !",
+    "e": "fan",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Le Dragon Pâle fend le fleuve et repêche les naufragés au filet. Seo-Yeon n'a pas besoin de plonger : elle soigne sur le pont, à genoux dans l'eau du Han."
+   },
+   {
+    "goto": "exode_seo_sauvee"
+   }
+  ],
+  "exode_plonger": [
+   {
+    "s": "narrator",
+    "t": "L'eau du Han brûle de froid. Tu la rattrapes alors que le courant l'emporte, un enfant serré contre elle. Tu nages pour trois."
+   },
+   {
+    "goto": "exode_seo_sauvee"
+   }
+  ],
+  "exode_berge": [
+   {
+    "s": "narrator",
+    "t": "Tu tends les cordes. Tu hisses des inconnus. Tu cherches un cardigan beige dans l'eau noire, et tu ne le trouves pas."
+   },
+   {
+    "s": "registre",
+    "t": "Park Seo-Yeon — Jour 27, quais du Dernier Exode. Noyée en aidant des réfugiés. La page s'est refermée sur sa deuxième Fin."
+   },
+   {
+    "s": "registre",
+    "t": "Anomalie : la page de Mère Agatha Seo se met à trembler, comme une flamme."
+   },
+   {
+    "fx": [
+     "flag seo_noyee",
+     "leave seo_yeon"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "exode_seo_sauvee": [
+   {
+    "s": "seo_yeon",
+    "t": "Sept. On en a sorti sept. Je ne compte pas ceux qu'on n'a pas eus. Pas ce soir.",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "Réécriture — Park Seo-Yeon : nouvelle page, Jour 30."
+   },
+   {
+    "fx": [
+     "flag seo_j27_survie",
+     "fin seo_yeon_3",
+     "add trust.seo_yeon 6"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "exode_absent": [
+   {
+    "music": "registre"
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — Le Dernier Exode. Tu n'es pas là."
+   },
+   {
+    "if": "party('xiaoyu')",
+    "then": "exode_absent_xiaoyu"
+   },
+   {
+    "s": "registre",
+    "t": "Les Rôdeurs écarlates montent sur les barges par les piles des ponts. Un tiers des réfugiés n'atteint pas la rive sud."
+   },
+   {
+    "if": "party('seo_yeon')",
+    "then": "exode_absent_seo"
+   },
+   {
+    "end": true
+   }
+  ],
+  "exode_absent_xiaoyu": [
+   {
+    "s": "registre",
+    "t": "Les barges de Longwei escortent l'Exode. Xiaoyu a fait payer les riches et embarqué les autres gratuitement, pour l'élégance du geste."
+   },
+   {
+    "fx": [
+     "flag exode_sauve"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "exode_absent_seo": [
+   {
+    "s": "registre",
+    "t": "Park Seo-Yeon a plongé pour des enfants. Le courant l'a emportée."
+   },
+   {
+    "fx": [
+     "flag seo_noyee",
+     "leave seo_yeon"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "cendre": [
+   {
+    "bg": "tower_gate"
+   },
+   {
+    "music": "boss"
+   },
+   {
+    "s": "narrator",
+    "t": "Vingt-huitième aube. Le silo d'artillerie de Yongsan. Les sirènes. Sur les écrans, le compte à rebours de l'extérieur : le Protocole Cendre, une frappe thermobarique sur un secteur entier."
+   },
+   {
+    "if": "pressure() < 50",
+    "then": "cendre_suspendu"
+   },
+   {
+    "s": "narrator",
+    "t": "Le système de tir automatique a été saboté dans la nuit. Une main blanche, un masque, personne ne sait. Il ne reste qu'un déclencheur manuel. Et une seule personne qui a le code."
+   },
+   {
+    "s": "simone",
+    "t": "Rang F. Tu es venu. Recule. Si je n'appuie pas, l'extérieur rase toute la ville au lieu d'un secteur. C'est le calcul.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — Simone Hayes. Jour 28, Aube. Ici. Elle meurt à son poste en appuyant."
+   },
+   {
+    "choice": [
+     {
+      "t": "« Désobéis. Pour une fois, désobéis. »",
+      "goto": "cendre_desobeir",
+      "if": "trust('simone') >= 12 or flag('simone_alliee') or flag('marcus_revele')"
+     },
+     {
+      "t": "Saboter le déclencheur manuel avec l'aide du groupe.",
+      "goto": "cendre_saboter",
+      "fx": [
+       "add align.chaos 2"
+      ],
+      "if": "party('maricel') or party('minh_anh')"
+     },
+     {
+      "t": "Prendre le code de force. L'Unité 0 se rend, ou elle tombe.",
+      "goto": "cendre_force",
+      "fx": [
+       "add align.protect -6"
+      ],
+      "if": "v('align.protect') <= -15"
+     },
+     {
+      "t": "La laisser faire son devoir.",
+      "goto": "cendre_laisser",
+      "fx": [
+       "add align.bond -2"
+      ]
+     }
+    ]
+   }
+  ],
+  "cendre_suspendu": [
+   {
+    "s": "narrator",
+    "t": "Le compte à rebours s'arrête à 00:04:12. Un message de l'extérieur s'affiche en anglais, puis en coréen : « Pression sous le seuil. Protocole suspendu. »"
+   },
+   {
+    "s": "simone",
+    "t": "…Quelqu'un a fait baisser la Tour. Je ne savais pas que c'était possible.",
+    "e": "surprise",
+    "v": true
+   },
+   {
+    "s": "elias",
+    "t": "Il fallait juste monter assez haut, et tuer ce qu'il y avait en haut.",
+    "e": "smirk"
+   },
+   {
+    "fx": [
+     "flag cendre_suspendu",
+     "flag simone_sauvee",
+     "add trust.simone 8"
+    ]
+   },
+   {
+    "goto": "cendre_simone_rejoint"
+   }
+  ],
+  "cendre_desobeir": [
+   {
+    "s": "simone",
+    "t": "Vingt-trois noms dans mon gilet. Un cortège de mariage. J'ai obéi, ce jour-là.",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle retire sa main du déclencheur. Elle retire ses plaques, celles de Marcus et les siennes, et les pose sur le pupitre."
+   },
+   {
+    "s": "simone",
+    "t": "Commandante Hayes, Unité 0. Je refuse l'ordre. Écrivez-le dans vos rapports, là-bas, dehors.",
+    "e": "cigar",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Le compte à rebours atteint zéro. Rien ne se passe. Sans le code, la frappe ne part pas. L'extérieur ne rappelle jamais."
+   },
+   {
+    "fx": [
+     "flag cendre_suspendu",
+     "flag simone_sauvee",
+     "flag simone_desobeit",
+     "add trust.simone 12"
+    ]
+   },
+   {
+    "goto": "cendre_simone_rejoint"
+   }
+  ],
+  "cendre_saboter": [
+   {
+    "if": "party('minh_anh')",
+    "then": "saboter_minh_anh"
+   },
+   {
+    "s": "maricel",
+    "t": "Un câble rouge, un câble bleu. Ay, gwapo, c'est toujours le jaune. Toujours.",
+    "e": "wink"
+   },
+   {
+    "goto": "saboter_suite"
+   }
+  ],
+  "saboter_minh_anh": [
+   {
+    "s": "minh_anh",
+    "t": "Ce déclencheur a été conçu par des ingénieurs qui pensaient que personne d'intelligent ne le toucherait jamais. Erreur classique. Trente secondes.",
+    "e": "neutral"
+   },
+   {
+    "goto": "saboter_suite"
+   }
+  ],
+  "saboter_suite": [
+   {
+    "s": "narrator",
+    "t": "Le pupitre s'éteint dans une gerbe d'étincelles. Les soldats de l'Unité 0 lèvent leurs armes vers toi. Ils ne font pas la différence entre un sauveur et un saboteur."
+   },
+   {
+    "s": "simone",
+    "t": "Ne tirez pas ! Ne… Bon sang. Défends-toi, Rang F, je ne peux pas les arrêter tous.",
+    "e": "anger"
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "silo_unite0"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "s": "simone",
+    "t": "Tu as désarmé mes hommes, saboté mon silo et sauvé un secteur. Je devrais te faire arrêter. Je vais te payer un verre.",
+    "e": "cigar",
+    "v": true
+   },
+   {
+    "fx": [
+     "flag cendre_suspendu",
+     "flag simone_sauvee",
+     "add trust.simone 6"
+    ]
+   },
+   {
+    "goto": "cendre_simone_rejoint"
+   }
+  ],
+  "cendre_force": [
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "silo_unite0"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "s": "narrator",
+    "t": "L'Unité 0 dépose les armes. Simone se tient droite au milieu de ses soldats désarmés, la mâchoire serrée."
+   },
+   {
+    "s": "simone",
+    "t": "Reddition de l'Unité 0. Tu as le code, maintenant. Et tu as moi. Le Système va appeler ça un contrat.",
+    "e": "contempt",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "PACTE DE VASSALITÉ — Simone Hayes. Ambivalence : −30. Elle obéit. Elle n'a pas oublié comment on désobéit."
+   },
+   {
+    "fx": [
+     "flag pacte.simone",
+     "set ambivalence.simone -30",
+     "flag cendre_suspendu",
+     "flag simone_sauvee"
+    ]
+   },
+   {
+    "goto": "cendre_simone_rejoint"
+   }
+  ],
+  "cendre_laisser": [
+   {
+    "s": "narrator",
+    "t": "Elle appuie. La colline tremble. À l'horizon, au-dessus de Gangnam, une boule de feu blanche se lève comme un second soleil."
+   },
+   {
+    "s": "narrator",
+    "t": "Quand le souffle retombe, la commandante est assise contre le pupitre, la main encore sur le déclencheur. Le contre-choc a traversé le silo. Elle ne se relève pas."
+   },
+   {
+    "s": "registre",
+    "t": "Simone Hayes — Jour 28, Aube. La Fin est accomplie. Gangnam n'existe plus."
+   },
+   {
+    "fx": [
+     "flag simone_morte",
+     "flag cendre_tombee",
+     "pressure -10"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "cendre_simone_rejoint": [
+   {
+    "s": "registre",
+    "t": "Simone Hayes a rejoint le groupe. Nouvelle Fin : Jour 30, tuée en défendant le dernier pont pendant la Descente."
+   },
+   {
+    "fx": [
+     "join simone",
+     "fin simone_2",
+     "souvenir cendre_suspendu",
+     "pressure -2"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "cendre_absent": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "registre"
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — Le Protocole Cendre. Tu n'es pas là."
+   },
+   {
+    "if": "pressure() < 50",
+    "then": "cendre_absent_suspendu"
+   },
+   {
+    "s": "registre",
+    "t": "La commandante Hayes déclenche la frappe à la main. Gangnam disparaît dans une boule de feu blanche. Le contre-choc traverse le silo."
+   },
+   {
+    "s": "registre",
+    "t": "Simone Hayes — Jour 28, Aube. La Fin est accomplie."
+   },
+   {
+    "fx": [
+     "flag simone_morte",
+     "flag cendre_tombee",
+     "pressure -10"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "cendre_absent_suspendu": [
+   {
+    "s": "registre",
+    "t": "Pression sous le seuil. L'extérieur suspend le Protocole. À Yongsan, une commandante allume un demi-cigare."
+   },
+   {
+    "fx": [
+     "flag cendre_suspendu",
+     "flag simone_sauvee"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "etages710": [
+   {
+    "music": "registre"
+   },
+   {
+    "s": "system",
+    "t": "LA TOUR INSPIRE. ÉTAGES 7, 8, 9 ET 10 — OUVERTS."
+   },
+   {
+    "s": "narrator",
+    "t": "Toute la ville sent l'aspiration : un vent qui souffle vers Yongsan, qui arrache les tuiles et couche les arbres. Au sommet de la Tour noire, quelque chose ouvre un œil."
+   },
+   {
+    "s": "registre",
+    "t": "Quatrième sacrifice des Élus annoncé devant la Porte. Demain soir, la Descente."
+   },
+   {
+    "end": true
+   }
+  ],
+  "sacrifice4": [
+   {
+    "bg": "tower_gate"
+   },
+   {
+    "music": "boss"
+   },
+   {
+    "s": "narrator",
+    "t": "Devant l'arche, douze brancards. Les robes blanches ne chantent plus : elles pleurent de joie."
+   },
+   {
+    "s": "prophete",
+    "t": "Demain, mes enfants, nous dormirons. Offrons à la Tour une dernière nuit de veille."
+   },
+   {
+    "choice": [
+     {
+      "t": "Briser le dernier cercle.",
+      "goto": "sacrifice4_combat",
+      "fx": [
+       "add align.protect 3"
+      ]
+     },
+     {
+      "t": "Garder ses forces pour demain.",
+      "goto": "sacrifice4_partir",
+      "fx": [
+       "add align.bond -1"
+      ]
+     }
+    ]
+   }
+  ],
+  "sacrifice4_combat": [
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "sacrifice_j29"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "s": "narrator",
+    "t": "Douze captifs, douze liens tranchés. Le masque blanc ne s'enfuit pas, cette fois. Il te regarde, et il incline la tête, comme pour saluer un adversaire."
+   },
+   {
+    "fx": [
+     "flag sacrifice4_empeche"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "sacrifice4_partir": [
+   {
+    "s": "registre",
+    "t": "Douze cris derrière toi. Pression de la Tour : +5."
+   },
+   {
+    "fx": [
+     "pressure 5"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "sacrifice4_absent": [
+   {
+    "music": "registre"
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — Quatrième sacrifice des Élus. Douze vies devant la Porte."
+   },
+   {
+    "s": "registre",
+    "t": "Pression de la Tour : +5."
+   },
+   {
+    "fx": [
+     "pressure 5"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "ryeon_j29": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "night"
+   },
+   {
+    "s": "narrator",
+    "t": "Vingt-neuvième nuit. Ryeon n'est pas dans son lit. Son sabre non plus. Sur ton oreiller, un mot calligraphié à l'encre de Chine : « L'étage 8 est ouvert. Le Champion d'Hier y attend un adversaire digne. Je reviens avant l'aube. »"
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — Baek Ryeon, nouvelle page : Jour 29, étage 8. Tuée par le Champion d'Hier."
+   },
+   {
+    "choice": [
+     {
+      "t": "La rattraper et prendre sa place dans l'arène.",
+      "goto": "ryeon29_remplacer",
+      "fx": [
+       "add aff.ryeon 6"
+      ]
+     },
+     {
+      "t": "La rattraper et lui ordonner de rentrer.",
+      "goto": "ryeon29_ordonner",
+      "if": "trust('ryeon') >= 18"
+     },
+     {
+      "t": "La laisser y aller. C'est son honneur.",
+      "goto": "ryeon29_laisser"
+     }
+    ]
+   }
+  ],
+  "ryeon29_remplacer": [
+   {
+    "s": "narrator",
+    "t": "Tu la rattrapes sur le sable de l'arène, au moment où un homme qui a ton visage tire une lame qui a ta forme."
+   },
+   {
+    "s": "ryeon",
+    "t": "C'est mon duel ! Tu n'as pas…",
+    "e": "tsundere"
+   },
+   {
+    "s": "elias",
+    "t": "Il a mon visage. C'est mon duel depuis toujours. Garde-moi une place pour le petit-déjeuner.",
+    "e": "smirk",
+    "v": true
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "champion_hier"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "ryeon29_perdu"
+   },
+   {
+    "s": "narrator",
+    "t": "Le Champion d'Hier s'effondre sur le sable. Il te regarde avec tes propres yeux, et il dit : « Cette fois, sauve-les toutes. » Puis il n'est plus là."
+   },
+   {
+    "fx": [
+     "flag champion_vaincu",
+     "flag ryeon_j29_survie",
+     "souvenir premier_conquerant_8",
+     "pressure -6"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "ryeon29_perdu": [
+   {
+    "s": "narrator",
+    "t": "Tu tombes. Ryeon s'interpose. Le Champion d'Hier hésite devant elle, comme s'il la reconnaissait, et recule dans l'ombre de l'arène."
+   },
+   {
+    "s": "ryeon",
+    "t": "Rentre. On reviendra. Ensemble, cette fois.",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "fx": [
+     "flag ryeon_j29_survie",
+     "add fatigue 8"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "ryeon29_ordonner": [
+   {
+    "s": "ryeon",
+    "t": "…Un ordre. De toi. J'ai juré de t'obéir sous le pin des ancêtres, je crois. Même si je ne l'ai jamais dit à voix haute.",
+    "e": "tsundere",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle rentre. Elle ne dort pas. Elle aiguise son sabre jusqu'à l'aube, assise au pied de ton lit."
+   },
+   {
+    "fx": [
+     "flag ryeon_j29_survie"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "ryeon29_laisser": [
+   {
+    "s": "narrator",
+    "t": "À l'aube, le sabre Baekho est posé devant la porte du Refuge, la lame brisée en deux. Le ruban rouge est noué autour de la poignée."
+   },
+   {
+    "s": "registre",
+    "t": "Baek Ryeon — Jour 29, étage 8. Tuée par le Champion d'Hier. La Fin est accomplie."
+   },
+   {
+    "fx": [
+     "flag ryeon_morte_j29",
+     "leave ryeon"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "veille": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "La Veille. Toute la Maison est réunie autour d'un poêle de fortune, dans la salle commune du Refuge. Personne ne dort. Personne ne veut être seule."
+   },
+   {
+    "if": "flag('corbeau_cache')",
+    "then": "veille_corbeau"
+   },
+   {
+    "s": "haneul",
+    "t": "Demain, je saurai qui je suis. J'ai peur de ne plus vous reconnaître après.",
+    "e": "sad",
+    "v": true
+   },
+   {
+    "choice": [
+     {
+      "t": "« Ici, il n'y a pas de première. On est un cercle. »",
+      "goto": "veille_cercle",
+      "fx": [
+       "add align.bond 3"
+      ]
+     },
+     {
+      "t": "Désigner une Première pour tenir la Maison si tu tombes.",
+      "goto": "veille_premiere",
+      "fx": [
+       "add align.protect -1"
+      ]
+     }
+    ]
+   }
+  ],
+  "veille_corbeau": [
+   {
+    "s": "narrator",
+    "t": "Quelqu'un a trouvé la lettre que tu n'avais pas brûlée. L'atmosphère est tendue comme une corde. Il te faut une heure de vérités pour que les regards se décrispent."
+   },
+   {
+    "goto": "veille_choix"
+   }
+  ],
+  "veille_choix": [
+   {
+    "choice": [
+     {
+      "t": "« Ici, il n'y a pas de première. On est un cercle. »",
+      "goto": "veille_cercle",
+      "fx": [
+       "add align.bond 3"
+      ]
+     },
+     {
+      "t": "Désigner une Première pour tenir la Maison si tu tombes.",
+      "goto": "veille_premiere",
+      "fx": [
+       "add align.protect -1"
+      ]
+     }
+    ]
+   }
+  ],
+  "veille_cercle": [
+   {
+    "s": "narrator",
+    "t": "Maricel applaudit. Haneul sourit. Hae-in lève les yeux au ciel, et ne proteste pas. Pour une nuit, personne ne compte rien."
+   },
+   {
+    "fx": [
+     "flag maison_cercle"
+    ]
+   },
+   {
+    "goto": "veille_fin"
+   }
+  ],
+  "veille_premiere": [
+   {
+    "if": "party('hae_in')",
+    "then": "premiere_haein"
+   },
+   {
+    "s": "narrator",
+    "t": "Tu désignes celle qui tiendra la Maison. Les autres acceptent, certaines avec un sourire, d'autres avec un regard qui dit « on en reparlera »."
+   },
+   {
+    "fx": [
+     "flag maison_premiere"
+    ]
+   },
+   {
+    "goto": "veille_fin"
+   }
+  ],
+  "premiere_haein": [
+   {
+    "s": "hae_in",
+    "t": "Évidemment. Quelqu'un doit tenir les comptes. Je ne vous décevrai pas. Vous non plus, Mademoiselle Long.",
+    "e": "neutral"
+   },
+   {
+    "if": "party('xiaoyu')",
+    "then": "premiere_xiaoyu"
+   },
+   {
+    "fx": [
+     "flag maison_premiere"
+    ]
+   },
+   {
+    "goto": "veille_fin"
+   }
+  ],
+  "premiere_xiaoyu": [
+   {
+    "s": "xiaoyu",
+    "t": "La Présidente, Première. Je conteste. Officiellement. Avec un sourire.",
+    "e": "fan"
+   },
+   {
+    "fx": [
+     "flag maison_premiere"
+    ]
+   },
+   {
+    "goto": "veille_fin"
+   }
+  ],
+  "veille_fin": [
+   {
+    "s": "narrator",
+    "t": "À l'aube du trentième jour, elles dorment toutes, en tas, sur les matelas de la salle commune. Toi, tu regardes le ciel par la fenêtre barricadée. Il est rouge, déjà."
+   },
+   {
+    "fx": [
+     "flag veille_maison"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "defeat": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Le monde bascule. Le sol, le ciel, la Tour qui regarde."
+   },
+   {
+    "s": "elias",
+    "t": "Pas… encore…",
+    "e": "exhausted"
+   },
+   {
+    "s": "registre",
+    "t": "ÉCHEC — Le Lecteur est mort."
+   },
+   {
+    "s": "registre",
+    "t": "Régression."
+   },
+   {
+    "event": "regress",
+    "args": {}
+   },
+   {
+    "end": true
+   }
+  ]
+ }
+}

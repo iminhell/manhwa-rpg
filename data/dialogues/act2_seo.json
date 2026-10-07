@@ -235,6 +235,31 @@
   ],
   "hopital_rodeurs": [
    {
+    "if": "loop() >= 2 and flag('echo.seo_morte')",
+    "then": "hopital_echo"
+   },
+   {
+    "goto": "hopital_rodeurs2"
+   }
+  ],
+  "hopital_echo": [
+   {
+    "s": "seo_yeon",
+    "t": "Kang-ssi… je me réveille à minuit chaque nuit, depuis une semaine. Avec la sensation d'une morsure. Dites-moi que c'est la fatigue.",
+    "e": "fear",
+    "v": true
+   },
+   {
+    "s": "elias",
+    "t": "Ce n'est pas la fatigue. C'est ce soir. Reste derrière moi.",
+    "e": "neutral"
+   },
+   {
+    "goto": "hopital_rodeurs2"
+   }
+  ],
+  "hopital_rodeurs2": [
+   {
     "s": "narrator",
     "t": "Un râle, au bout du couloir. Puis un deuxième. Les Rôdeurs ont suivi l'odeur des enfants."
    },

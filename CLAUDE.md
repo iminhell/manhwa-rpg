@@ -12,6 +12,7 @@ Ne jamais commiter si le script échoue. Le validateur (`tools/validate_data.py`
 - les blocs, rencontres, nœuds, dialogues, Fins, personnages ou compétences inexistants ;
 - les conditions invalides et les effets inconnus ;
 - les combats dont la défaite n'est pas gérée (l'étape suivante doit tester `v('combat.last')`) ;
+- les incohérences chronologiques : drapeau lu avant sa première écriture possible (fenêtres de jours déduites des événements et des nœuds), souvenir ou Écho (`echo.<id>`) lu sans garde `loop()` ;
 - tout personnage romançable de moins de 18 ans.
 
 ## Conventions
@@ -20,8 +21,10 @@ Ne jamais commiter si le script échoue. Le validateur (`tools/validate_data.py`
 - **Variables d'état** : `align.protect` (+ protéger / − dominer), `align.bond` (+ lien / − solitude), `align.chaos`, `aff.<id>`, `trust.<id>`, `fear.<id>`, `ambivalence.<id>`, `argent`, `item.<id>`, `fatigue`, `camp.defense`, `refuge.*` (Refuge), `eau.controle`, `etage2.bruit`, `repos.<id>`. Groupe : `join <id>` / `leave <id>`. Fin connue : `fin <id>`.
 - **Monde** : `data/world/sectors.json` (nœuds `secteur.nom`, liens symétriques), `events.json` (Ancres datées), `act_summary.json` (conséquences affichées en fin d'acte).
 - **Voix** : après avoir écrit des répliques, lancer `python3 tools/voice_pipeline/voice_lines.py export`, puis compléter `tools/voice_pipeline/translations.json` (coréen et japonais).
-- **Autotest** : `tests/autopilot.json` décrit l'itinéraire et les choix forcés (prologue → fin de l'Acte III). Le mettre à jour quand un acte change ; chaque étape doit être bornée dans le temps (`… or day() >= N`). `AUTOPILOT_DEBUG=1` trace l'itinéraire.
-- **Refuge** : toute héroïne qui peut rejoindre le groupe (`join <id>` ou `flag party.<id>`) doit avoir un bloc `refuge:<id>` (moment de repos, `data/dialogues/refuge.json`) ; le validateur le vérifie.
+- **Autotest** : `tests/autopilot.json` décrit l'itinéraire et les choix forcés (prologue → Nuit du Déversement, fin de l'Acte IV ; `LAST_ACT` dans `scenes/main/main.gd`). Variantes : `--alt`, `--autotest-regress`, `--act1-only`, `--mode=histoire|survie`. Le mettre à jour quand un acte change ; chaque étape doit être bornée dans le temps (`… or day() >= N`). `AUTOPILOT_DEBUG=1` trace l'itinéraire.
+- **Refuge** : toute héroïne qui peut rejoindre le groupe (`join <id>` ou `flag party.<id>`) doit avoir un bloc `refuge:<id>` (moment de repos, `data/dialogues/refuge.json`) ; le validateur le vérifie. Scènes à plusieurs : `data/world/group_scenes.json` → `refuge_groupe:<id>`. Cadeaux : `data/world/gifts.json`.
+- **Modes** : `data/world/difficulty.json` (`histoire`, `normal`, `survie`), lu par `mode()` ; ils règlent combat, rations et jours de répit (`item.sablier`, drapeau `repit.actif`).
+- **Échos** : `data/world/echoes.json` ; les drapeaux `echo.<id>` sont posés à la régression et se lisent toujours derrière `loop() >= 2`. **IR** : `data/world/resilience.json`, lu par `ir()`.
 - **Ancres présent / absent** : l'événement « présent » doit contenir `and not done('<id>_absent')` (validé).
 - **Combats** : une rencontre peut fixer `atk_mult` (difficulté) et `party` (duel, groupe imposé). Une défaite qui n'est pas une mort (duel) se branche sur un bloc dédié, jamais sur `defeat`.
 - **Conditions** : comparer une variable texte avec une valeur par défaut, `v('eau.controle', '') == 'rats'` (sinon l'expression échoue tant que la variable n'existe pas).

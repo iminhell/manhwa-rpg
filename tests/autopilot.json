@@ -1,5 +1,5 @@
 {
- "note": "Itinéraire de l'autopilote (-- --autotest) : prologue → fin de l'Acte III ; « -- --act1-only » s'arrête après l'Acte I. Choix forcés par bloc (défaut : premier choix). « -- --alt » utilise choices_alt (embranchements alternatifs). Chaque étape est bornée dans le temps (until … or day() >= N) pour que les variantes ne restent jamais bloquées.",
+ "note": "Itinéraire de l'autopilote (-- --autotest) : prologue → Nuit du Déversement (fin de boucle, Acte IV) ; « -- --act1-only » s'arrête après l'Acte I. Choix forcés par bloc (défaut : premier choix). « -- --alt » utilise choices_alt (embranchements alternatifs). Chaque étape est bornée dans le temps (until … or day() >= N) pour que les variantes ne restent jamais bloquées.",
  "route": [
   {
    "go": "yeouido.ifc",
@@ -288,7 +288,87 @@
   },
   {
    "go": "myeongdong.cathedrale",
-   "until": "day() > 23",
+   "until": "day() >= 24",
+   "do": "sleep"
+  },
+  {
+   "go": "gangnam.lotte",
+   "until": "done('j24_contrat') or done('j24_musee') or done('j24_contrat_absent')",
+   "do": "wait"
+  },
+  {
+   "go": "yeouido.parking",
+   "until": "day() >= 25",
+   "do": "sleep"
+  },
+  {
+   "go": "yeouido.parking",
+   "until": "v('repit.compte', 0) >= 1 or day() >= 26 or (item('sablier') == 0 and mode() != 'histoire')",
+   "do": "_repit"
+  },
+  {
+   "go": "yeouido.parking",
+   "until": "not flag('repit.actif') or v('repos.seo_yeon') >= 2 or not party('seo_yeon')",
+   "do": "_rest_seo_yeon"
+  },
+  {
+   "go": "yeouido.parking",
+   "until": "not flag('repit.actif') or v('repos.haneul') >= 1 or not party('haneul')",
+   "do": "_rest_haneul"
+  },
+  {
+   "go": "yeouido.parking",
+   "until": "not flag('repit.actif')",
+   "do": "_repit_fin"
+  },
+  {
+   "go": "yeouido.parking",
+   "until": "day() >= 26",
+   "do": "sleep"
+  },
+  {
+   "go": "hongdae.sous_niveau",
+   "until": "done('j26_machine') or done('j26_machine_absent')",
+   "do": "wait"
+  },
+  {
+   "go": "yongsan.appart",
+   "until": "day() >= 27",
+   "do": "sleep"
+  },
+  {
+   "go": "ponts.quais",
+   "until": "done('j27_exode') or done('j27_exode_absent')",
+   "do": "wait"
+  },
+  {
+   "go": "yongsan.appart",
+   "until": "day() >= 28",
+   "do": "sleep"
+  },
+  {
+   "go": "yongsan.silo",
+   "until": "done('j28_cendre') or done('j28_cendre_absent')",
+   "do": "wait"
+  },
+  {
+   "go": "yongsan.appart",
+   "until": "day() >= 29",
+   "do": "sleep"
+  },
+  {
+   "go": "yongsan.porte_tour",
+   "until": "done('j29_sacrifice') or done('j29_sacrifice_absent')",
+   "do": "wait"
+  },
+  {
+   "go": "yongsan.appart",
+   "until": "day() >= 30",
+   "do": "sleep"
+  },
+  {
+   "go": "yongsan.appart",
+   "until": "day() > 30",
    "do": "wait"
   }
  ],
@@ -311,6 +391,11 @@
   "act3_xiaoyu:mutinerie_offre": 2,
   "act3_haein:coup_apres": 1,
   "act3_tower:courtier": 2,
-  "act3_world:siege_deux": 1
+  "act3_world:siege_deux": 1,
+  "act4_nadia:toit_choix": 9,
+  "act4_minh_anh:machine_suite": 9,
+  "act4_world:cendre": 9,
+  "act4_finale:debut": 1,
+  "act4_world:exode": 1
  }
 }

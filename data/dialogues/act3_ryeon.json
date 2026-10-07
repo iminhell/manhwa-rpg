@@ -20,6 +20,10 @@
     "music": "combat.danger"
    },
    {
+    "if": "loop() >= 2 and flag('echo.ryeon_morte')",
+    "then": "assaut_echo"
+   },
+   {
     "s": "narrator",
     "t": "Seizième aube. Les Collines du Nord brûlent. Des camions de Cheonma ont forcé le portail du domaine Baek ; des hommes en costume noir montent l'allée des pins, fusils à l'épaule."
    },
@@ -30,6 +34,33 @@
    {
     "s": "ryeon",
     "t": "Toi ! Tu tombes au pire moment. Ou au meilleur. Prends la gauche, je tiens l'escalier.",
+    "e": "anger",
+    "v": true
+   },
+   {
+    "goto": "assaut_combat"
+   }
+  ],
+  "assaut_echo": [
+   {
+    "s": "narrator",
+    "t": "Seizième aube. Tu connais déjà le bruit des camions, l'odeur des pins qui brûlent, l'endroit exact où Ryeon tiendra l'escalier."
+   },
+   {
+    "s": "elias",
+    "t": "(La dernière fois, son ruban rouge a glissé dans la poussière au dix-septième crépuscule. Pas cette fois.)",
+    "e": "anger"
+   },
+   {
+    "fx": [
+     "flag ryeon_rencontree",
+     "fin ryeon",
+     "add trust.ryeon 4"
+    ]
+   },
+   {
+    "s": "ryeon",
+    "t": "Toi. Je ne te connais pas, et pourtant je sais que tu tiens la gauche. Tiens-la.",
     "e": "anger",
     "v": true
    },

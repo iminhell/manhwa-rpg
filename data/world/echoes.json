@@ -1,0 +1,73 @@
+{
+ "note": "Échos inter-boucles : à la régression, chaque écho dont la condition est vraie devient un drapeau persistant « echo.<id> ». Les dialogues ne les lisent que sous garde loop() (validé).",
+ "echoes": {
+  "aoi_sauvee": {
+   "if": "flag('aoi_sauvee')",
+   "text": "Aoi rêve de chansons qu'elle n'a jamais écrites."
+  },
+  "aoi_morte": {
+   "if": "flag('aoi_morte') or flag('aoi_tombee')",
+   "text": "Une scène vide à Hongdae. Aoi a peur des micros de cuivre sans savoir pourquoi."
+  },
+  "seo_sauvee": {
+   "if": "flag('seo_sauvee') or flag('seo_soignee') or flag('seo_rachetee')",
+   "text": "Seo-Yeon fait confiance à Elias une seconde trop tôt."
+  },
+  "seo_morte": {
+   "if": "flag('seo_morte')",
+   "text": "Seo-Yeon se réveille en sursaut chaque nuit à minuit."
+  },
+  "maricel_sauvee": {
+   "if": "flag('maricel_sauvee')",
+   "text": "Maricel connaît le chemin des étais avant qu'on le lui montre."
+  },
+  "maricel_morte": {
+   "if": "flag('maricel_morte') or flag('maricel_tombee')",
+   "text": "Maricel refuse de descendre sous le marché, sans pouvoir dire pourquoi."
+  },
+  "ryeon_sauvee": {
+   "if": "flag('ryeon_sauvee')",
+   "text": "Ryeon reconnaît la garde d'Elias. C'est la sienne."
+  },
+  "ryeon_morte": {
+   "if": "flag('ryeon_morte')",
+   "text": "Le ruban rouge de Ryeon se dénoue tout seul, parfois, au crépuscule."
+  },
+  "xiaoyu_sauvee": {
+   "if": "flag('xiaoyu_sauvee') or flag('xiaoyu_survit')",
+   "text": "Xiaoyu sent l'odeur du Han froid quand Fang lève son verre."
+  },
+  "haein_sauvee": {
+   "if": "flag('haein_sauvee')",
+   "text": "Hae-in a déjà fait surveiller Nam, sans savoir pourquoi."
+  },
+  "nadia_tir": {
+   "if": "flag('nadia_a_tire') or flag('nadia_pactisee') or flag('nadia_sauvee')",
+   "text": "Nadia a vu Elias dans sa lunette. Plusieurs fois. Elle s'en souvient de plus en plus."
+  },
+  "simone_sauvee": {
+   "if": "flag('simone_sauvee')",
+   "text": "Simone garde une place dans sa poche de poitrine pour un cigare qu'elle n'a pas encore reçu."
+  },
+  "minh_anh_sauvee": {
+   "if": "flag('minh_anh_sauvee')",
+   "text": "Minh-Anh a déjà, dans un dossier chiffré, le nom d'Elias et le mot « régresseur »."
+  },
+  "haneul_capturee": {
+   "if": "flag('haneul_capturee')",
+   "text": "Haneul a froid derrière la porte. Elle compte les boucles où on ne l'a pas trouvée."
+  },
+  "prophete_demasque": {
+   "if": "flag('prophete_demasque')",
+   "text": "Le Prophète sait qu'Elias sait. Le masque blanc ne sert plus à rien."
+  },
+  "aube": {
+   "if": "flag('fin_aube')",
+   "text": "La Tour a déjà été contenue une fois. Elle s'en souvient. Elle s'adapte."
+  },
+  "pactes": {
+   "if": "flag('pacte.seo_yeon') or flag('pacte.xiaoyu') or flag('pacte.hae_in') or flag('nadia_pactisee')",
+   "text": "Les colliers de glyphes rouges laissent une trace que la régression n'efface pas tout à fait."
+  }
+ }
+}

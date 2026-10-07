@@ -38,7 +38,8 @@
    },
    {
     "fx": [
-     "souvenir marche_ames"
+     "souvenir marche_ames",
+     "flag portail.3"
     ]
    },
    {
@@ -53,7 +54,8 @@
    },
    {
     "fx": [
-     "souvenir marche_ames"
+     "souvenir marche_ames",
+     "flag portail.3"
     ]
    },
    {
@@ -212,6 +214,11 @@
     "e": "neutral"
    },
    {
+    "fx": [
+     "flag portail.4"
+    ]
+   },
+   {
     "end": true
    }
   ],
@@ -220,6 +227,11 @@
     "s": "hae_in",
     "t": "Un dîner d'affaires sans fin, où l'on ne peut pas poignarder ses convives. J'ai présidé des conseils plus dangereux.",
     "e": "neutral"
+   },
+   {
+    "fx": [
+     "flag portail.4"
+    ]
    },
    {
     "end": true

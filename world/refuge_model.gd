@@ -5,6 +5,7 @@ extends RefCounted
 
 var store
 var data: Dictionary
+var difficulty: Dictionary = {}  ## mode de la boucle : ration_need, famine
 
 
 func _init(state_store, refuge_data: Dictionary) -> void:
@@ -54,7 +55,7 @@ func residents() -> int:
 
 func daily_need() -> int:
 	var up: Dictionary = data.get("upkeep", {})
-	var need := int(ceil(float(residents()) / float(up.get("residents_per_ration", 2))))
+	var need := int(ceil(float(residents()) / float(up.get("residents_per_ration", 2)) * float(difficulty.get("ration_need", 1.0))))
 	if str(up.get("shortage_if", "")) != "" and store.check(str(up["shortage_if"])):
 		need += int(up.get("shortage_extra_need", 0))
 	return need
@@ -128,7 +129,10 @@ func daily_upkeep() -> Array:
 func _famine(d: int) -> Array:
 	var up: Dictionary = data.get("upkeep", {})
 	var mid := d >= int(up.get("midloop_day", 999))
-	var pen := int(up.get("midloop_trust_penalty" if mid else "hunger_trust_penalty", 2))
+	var fam := float(difficulty.get("famine", 1.0))
+	if fam <= 0.0:
+		return ["Jour %d : le Refuge manque de rations, mais on se serre les coudes (mode Histoire)." % d]
+	var pen := int(round(float(up.get("midloop_trust_penalty" if mid else "hunger_trust_penalty", 2)) * fam))
 	var starving := int(store.get_var("refuge.faim", 0)) >= int(up.get("starving_days", 999))
 	for f in store.flags.keys():
 		if str(f).begins_with("party."):
@@ -156,8 +160,15 @@ func on_sleep_here() -> void:
 
 ## Un moment de repos par héroïne et par jour (v0.8 : la limite était d'un seul repos par jour).
 func rest_done_today(cid: String) -> bool:
-	return store.has_flag("refuge.repos.%s.%d" % [cid, store.day()])
+	return store.has_flag("refuge.repos.%s.%s" % [cid, day_key()])
 
 
 func mark_rest(cid: String) -> void:
-	store.set_flag("refuge.repos.%s.%d" % [cid, store.day()])
+	store.set_flag("refuge.repos.%s.%s" % [cid, day_key()])
+
+
+## Clé de journée : un jour de répit compte comme une journée à part (repos et cadeaux à nouveau possibles).
+func day_key() -> String:
+	if store.has_flag("repit.actif"):
+		return "%d.r%d" % [store.day(), int(store.get_var("repit.compte", 0))]
+	return str(store.day())

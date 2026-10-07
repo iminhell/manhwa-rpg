@@ -1,0 +1,123 @@
+{
+ "note": "Scènes de groupe au Refuge : membres requis (dans le groupe), condition, une fois (once) ou une fois par jour. Dialogue refuge_groupe:<id>.",
+ "scenes": [
+  {
+   "id": "lecon_anatomie",
+   "label": "Soirée à trois : Seo-Yeon et Haneul",
+   "members": [
+    "seo_yeon",
+    "haneul"
+   ],
+   "if": "aff('seo_yeon') >= 15 and aff('haneul') >= 15",
+   "once": false,
+   "dialogue": "refuge_groupe:lecon_anatomie"
+  },
+  {
+   "id": "deux_voix",
+   "label": "Karaoké à deux voix : Aoi et Maricel",
+   "members": [
+    "aoi",
+    "maricel"
+   ],
+   "if": "aff('aoi') >= 15 and aff('maricel') >= 15",
+   "once": false,
+   "dialogue": "refuge_groupe:deux_voix"
+  },
+  {
+   "id": "deux_lames",
+   "label": "Deux lames sur le toit : Ryeon et Nadia",
+   "members": [
+    "ryeon",
+    "nadia"
+   ],
+   "if": "aff('ryeon') >= 15 and aff('nadia') >= 15",
+   "once": false,
+   "dialogue": "refuge_groupe:deux_lames"
+  },
+  {
+   "id": "mahjong_reines",
+   "label": "Le Mahjong des Reines : Hae-in et Xiaoyu",
+   "members": [
+    "hae_in",
+    "xiaoyu"
+   ],
+   "if": "aff('hae_in') >= 10 and aff('xiaoyu') >= 10",
+   "once": true,
+   "dialogue": "refuge_groupe:mahjong_reines"
+  },
+  {
+   "id": "serum",
+   "label": "Sérum H-07 : Seo-Yeon et Minh-Anh",
+   "members": [
+    "seo_yeon",
+    "minh_anh"
+   ],
+   "if": "aff('seo_yeon') >= 10 and aff('minh_anh') >= 10",
+   "once": true,
+   "dialogue": "refuge_groupe:serum"
+  },
+  {
+   "id": "sujet",
+   "label": "Je ne suis pas un sujet : Haneul et Minh-Anh",
+   "members": [
+    "haneul",
+    "minh_anh"
+   ],
+   "if": "aff('minh_anh') >= 10",
+   "once": true,
+   "dialogue": "refuge_groupe:sujet"
+  },
+  {
+   "id": "silo",
+   "label": "Le Silo : Simone et Minh-Anh",
+   "members": [
+    "simone",
+    "minh_anh"
+   ],
+   "if": "aff('simone') >= 10 and aff('minh_anh') >= 10",
+   "once": true,
+   "dialogue": "refuge_groupe:silo"
+  },
+  {
+   "id": "nuit_des_trois",
+   "label": "La Nuit des Trois : Seo-Yeon, Aoi et Maricel",
+   "members": [
+    "seo_yeon",
+    "aoi",
+    "maricel"
+   ],
+   "if": "aff('seo_yeon') >= 20 and aff('aoi') >= 20 and aff('maricel') >= 20 and flag('refuge.dortoir')",
+   "once": false,
+   "dialogue": "refuge_groupe:nuit_des_trois"
+  },
+  {
+   "id": "reines_lames",
+   "label": "Les Reines et les Lames",
+   "members": [
+    "hae_in",
+    "xiaoyu",
+    "ryeon",
+    "simone"
+   ],
+   "if": "aff('hae_in') >= 20 and aff('xiaoyu') >= 20 and aff('ryeon') >= 20 and aff('simone') >= 20 and flag('concil.reines')",
+   "once": false,
+   "dialogue": "refuge_groupe:reines_lames"
+  },
+  {
+   "id": "nuit_maison",
+   "label": "La Nuit de la Maison",
+   "members": [],
+   "if": "bonds() >= 6 and flag('refuge.dortoir')",
+   "once": false,
+   "dialogue": "refuge_groupe:nuit_maison"
+  },
+  {
+   "id": "portrait_dix",
+   "label": "Le Portrait des Dix",
+   "members": [],
+   "if": "bonds() >= 10",
+   "once": true,
+   "dialogue": "refuge_groupe:portrait_dix"
+  }
+ ]
+}

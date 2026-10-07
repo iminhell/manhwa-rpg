@@ -17,5 +17,25 @@
     "ja": "tts_simone_ja",
     "timbre": "alto grave, puissante"
   },
-  "art_token": "simone_hayes"
+  "art_token": "simone_hayes",
+  "combat": {
+    "stats": {
+      "hp": 115,
+      "atk": 14,
+      "def": 7,
+      "spd": 11,
+      "mana": 60
+    },
+    "position": [
+      0,
+      1
+    ],
+    "skills": [
+      "crosse",
+      "rafale",
+      "suppression",
+      "bouclier_exo",
+      "protocole_rouge"
+    ]
+  }
 }

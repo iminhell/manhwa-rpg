@@ -1,0 +1,1470 @@
+{
+ "id": "act4_finale",
+ "title": "Acte IV — La Nuit du Déversement et les Fins",
+ "start": "start",
+ "speakers": {
+  "prophete": "Le Prophète",
+  "agatha": "Mère Agatha"
+ },
+ "blocks": {
+  "start": [
+   {
+    "goto": "debut"
+   }
+  ],
+  "debut": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "boss"
+   },
+   {
+    "s": "narrator",
+    "t": "Trentième jour. Dix-huit heures. L'Inspiration : la Tour aspire l'air de la ville. Les drapeaux se tendent tous vers Yongsan. Les oiseaux tombent du ciel."
+   },
+   {
+    "s": "system",
+    "t": "GRANDE DESCENTE — 23h58."
+   },
+   {
+    "if": "pressure() > 85",
+    "then": "effacement"
+   },
+   {
+    "s": "registre",
+    "t": "Pression de la Tour et Résilience de la ville : tout ce que tu as fait pendant trente jours se paie cette nuit."
+   },
+   {
+    "choice": [
+     {
+      "t": "Combattre au pied de la Tour, à Yongsan.",
+      "goto": "front_yongsan",
+      "fx": [
+       "flag front_yongsan"
+      ]
+     },
+     {
+      "t": "Défendre le Sanctuaire de Myeongdong.",
+      "goto": "front_myeongdong",
+      "fx": [
+       "flag front_myeongdong",
+       "add align.protect 2"
+      ]
+     },
+     {
+      "t": "Tenir le Refuge et les camps de Yeouido.",
+      "goto": "front_yeouido",
+      "fx": [
+       "flag front_yeouido",
+       "add align.bond 2"
+      ]
+     }
+    ]
+   }
+  ],
+  "front_yongsan": [
+   {
+    "s": "narrator",
+    "t": "Tu prends position devant l'arche d'obsidienne, là où tout a commencé."
+   },
+   {
+    "goto": "fronts"
+   }
+  ],
+  "front_myeongdong": [
+   {
+    "s": "narrator",
+    "t": "Tu prends position sur le parvis de la cathédrale, entre les blessés et la nuit."
+   },
+   {
+    "goto": "fronts"
+   }
+  ],
+  "front_yeouido": [
+   {
+    "s": "narrator",
+    "t": "Tu prends position sur les barricades du Refuge, là où dorment ceux que tu as ramenés."
+   },
+   {
+    "goto": "fronts"
+   }
+  ],
+  "fronts": [
+   {
+    "s": "narrator",
+    "t": "Dix-neuf heures. La Marée tombe sur tous les secteurs à la fois. Tu ne peux être qu'à un seul endroit."
+   },
+   {
+    "if": "ir() >= 60",
+    "then": "fronts_tiennent"
+   },
+   {
+    "if": "ir() >= 40",
+    "then": "fronts_pertes"
+   },
+   {
+    "goto": "fronts_tombent"
+   }
+  ],
+  "fronts_tiennent": [
+   {
+    "s": "registre",
+    "t": "Résilience élevée : les autres secteurs tiennent. La Trêve, l'eau, les murs, les alliances : tout ce que tu as construit se lève en même temps."
+   },
+   {
+    "goto": "front_combat"
+   }
+  ],
+  "fronts_pertes": [
+   {
+    "s": "registre",
+    "t": "Résilience moyenne : deux secteurs plient. Des quartiers entiers s'éteignent. La ville saigne, mais elle tient."
+   },
+   {
+    "fx": [
+     "flag ville_blessee"
+    ]
+   },
+   {
+    "goto": "front_combat"
+   }
+  ],
+  "fronts_tombent": [
+   {
+    "s": "registre",
+    "t": "Résilience faible : les fronts s'effondrent un par un. La ville ne tient plus que là où tu te tiens."
+   },
+   {
+    "fx": [
+     "flag ville_brisee",
+     "pressure 8"
+    ]
+   },
+   {
+    "goto": "front_combat"
+   }
+  ],
+  "front_combat": [
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "front_final"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "s": "narrator",
+    "t": "Vingt et une heures. Ton secteur tient. Les corps noirs fondent dans les rues. Il te reste une heure avant que la Tour ne s'ouvre en grand."
+   },
+   {
+    "goto": "trahison_1"
+   }
+  ],
+  "trahison_1": [
+   {
+    "s": "narrator",
+    "t": "Vingt-deux heures. L'heure où les contrats se paient."
+   },
+   {
+    "if": "flag('nadia_a_tire')",
+    "then": "nadia_retour"
+   },
+   {
+    "goto": "trahison_2"
+   }
+  ],
+  "nadia_retour": [
+   {
+    "s": "narrator",
+    "t": "Un éclat blanc, sur un toit, à quatre cents mètres. Tu le reconnais avant même de le voir. Le reflet du premier soir de ta première vie."
+   },
+   {
+    "if": "loop() >= 2 and flag('echo.nadia_tir')",
+    "then": "nadia_retour_echo"
+   },
+   {
+    "s": "narrator",
+    "t": "Tu te jettes derrière un mur. La balle arrache le béton à hauteur de ton cœur. Une deuxième ne vient pas : la tireuse a déjà changé de toit."
+   },
+   {
+    "fx": [
+     "add fatigue 8",
+     "flag nadia_a_tire_finale"
+    ]
+   },
+   {
+    "goto": "trahison_2"
+   }
+  ],
+  "nadia_retour_echo": [
+   {
+    "s": "narrator",
+    "t": "Tu ne te caches pas. Tu restes debout, face au toit, les bras le long du corps. L'éclat blanc ne bouge plus pendant dix secondes."
+   },
+   {
+    "s": "narrator",
+    "t": "Puis il pivote. Un seul coup de feu, très loin : sur un autre toit, une silhouette en robe blanche s'effondre, un émetteur à la main. Celle qui payait."
+   },
+   {
+    "s": "registre",
+    "t": "Nadia Tsoi a tiré sur celle qui la payait. L'écho de la première vie est brisé."
+   },
+   {
+    "fx": [
+     "flag nadia_rachat"
+    ]
+   },
+   {
+    "goto": "trahison_2"
+   }
+  ],
+  "trahison_2": [
+   {
+    "if": "flag('pacte.hae_in') and v('ambivalence.hae_in') <= -40",
+    "then": "haein_couteau"
+   },
+   {
+    "goto": "trahison_3"
+   }
+  ],
+  "haein_couteau": [
+   {
+    "s": "narrator",
+    "t": "Ta radio grésille. La voix de Hae-in, calme, comme dans un conseil d'administration."
+   },
+   {
+    "s": "hae_in",
+    "t": "Les Élus connaissent votre position depuis une heure, Seigneur Kang. C'était le moment le plus rentable. Rien de personnel. Tout est contractuel.",
+    "e": "threat",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "Le Couteau — Yoon Hae-in. La clause de Pacte était glaciale. Elle l'est restée."
+   },
+   {
+    "fx": [
+     "flag couteau_haein",
+     "leave hae_in",
+     "pressure 5"
+    ]
+   },
+   {
+    "goto": "trahison_3"
+   }
+  ],
+  "trahison_3": [
+   {
+    "if": "flag('pacte.xiaoyu') and v('ambivalence.xiaoyu') < 0",
+    "then": "xiaoyu_couteau"
+   },
+   {
+    "goto": "trahison_4"
+   }
+  ],
+  "xiaoyu_couteau": [
+   {
+    "s": "narrator",
+    "t": "Une lettre parfumée au jasmin, livrée la veille et que tu n'as pas ouverte. Elle disait : « Une clause a été violée. Je vends ta tête demain soir. Avec élégance. »"
+   },
+   {
+    "s": "registre",
+    "t": "Le Couteau — Long Xiaoyu. La parole était sa religion. Tu l'as profanée."
+   },
+   {
+    "fx": [
+     "flag couteau_xiaoyu",
+     "leave xiaoyu",
+     "pressure 5"
+    ]
+   },
+   {
+    "goto": "trahison_4"
+   }
+  ],
+  "trahison_4": [
+   {
+    "if": "flag('nadia_pactisee') and v('ambivalence.nadia') <= -30",
+    "then": "nadia_couteau"
+   },
+   {
+    "goto": "trahison_5"
+   }
+  ],
+  "nadia_couteau": [
+   {
+    "s": "narrator",
+    "t": "Le reflet blanc, au pire moment, comme elle l'avait promis. La balle te frôle la tempe. Nadia baisse son fusil, déjà ailleurs."
+   },
+   {
+    "s": "nadia",
+    "t": "Je t'avais prévenu. Le Pacte avait un prix. Je l'ai payé avec une seule balle. Elle t'a raté exprès.",
+    "e": "aim",
+    "v": true
+   },
+   {
+    "fx": [
+     "flag couteau_nadia",
+     "leave nadia",
+     "add fatigue 8"
+    ]
+   },
+   {
+    "goto": "trahison_5"
+   }
+  ],
+  "trahison_5": [
+   {
+    "if": "flag('pacte.seo_yeon') and v('ambivalence.seo_yeon') <= -50",
+    "then": "seo_couteau"
+   },
+   {
+    "goto": "epreuve"
+   }
+  ],
+  "seo_couteau": [
+   {
+    "s": "seo_yeon",
+    "t": "Je pars soigner les blessés du Sanctuaire. Le Pacte dit que je dois rester. Je romps. Le prix, je le paierai seule.",
+    "e": "contempt",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "Rupture — Park Seo-Yeon. Le collier de glyphes rouges se brise. Elle ne se retourne pas."
+   },
+   {
+    "fx": [
+     "flag rupture_seo",
+     "leave seo_yeon"
+    ]
+   },
+   {
+    "goto": "epreuve"
+   }
+  ],
+  "epreuve": [
+   {
+    "if": "bonds() >= 10",
+    "then": "epreuve_dix"
+   },
+   {
+    "goto": "ascension"
+   }
+  ],
+  "epreuve_dix": [
+   {
+    "s": "system",
+    "t": "ÉPREUVE DES DIX. LA TOUR RÉCOLTE LES DIX FINS DE LA MAISON CETTE NUIT."
+   },
+   {
+    "s": "narrator",
+    "t": "Dix lieux. Dix Fins convergentes. Une scène à Hongdae, des quais, un silo, un toit, un laboratoire, des tunnels, un domaine, une barge, une salle de conseil, une porte sans serrure. Toutes menacées en même temps."
+   },
+   {
+    "if": "flag('maison_cercle') and (flag('treve_signee') or flag('concil.simone_nadia'))",
+    "then": "epreuve_paires"
+   },
+   {
+    "s": "registre",
+    "t": "Tu ne peux être qu'à un seul endroit. Les autres affrontent leur Fin seules, ou par paires."
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "epreuve_dix"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "goto": "epreuve_fin"
+   }
+  ],
+  "epreuve_paires": [
+   {
+    "s": "narrator",
+    "t": "Le Cercle tient. Ryeon et Nadia couvrent le toit. Simone et Minh-Anh tiennent le silo. Xiaoyu et Hae-in jouent leur dernière partie à la table du conseil. Maricel guide Aoi dans les tunnels. Seo-Yeon reste avec Haneul."
+   },
+   {
+    "s": "registre",
+    "t": "Chaque paire protège sa Fin. Toi, tu vas là où personne d'autre ne peut aller."
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "epreuve_dix"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "goto": "epreuve_fin"
+   }
+  ],
+  "epreuve_fin": [
+   {
+    "s": "narrator",
+    "t": "À vingt-deux heures trente, dix voix dans ta radio, l'une après l'autre. Dix fois : « Je suis vivante. »"
+   },
+   {
+    "s": "registre",
+    "t": "Constellation du Lecteur : les dix Fins se tissent dans le Registre comme des étoiles reliées."
+   },
+   {
+    "fx": [
+     "flag constellation_dix",
+     "pressure -5"
+    ]
+   },
+   {
+    "goto": "ascension"
+   }
+  ],
+  "ascension": [
+   {
+    "s": "narrator",
+    "t": "Vingt-deux heures trente. L'Ascension : tu montes, étage par étage, par les portails que tu as ouverts."
+   },
+   {
+    "if": "flag('minotaure_vaincu') and flag('bourreau_vaincu') and flag('juge_vaincu') and flag('champion_vaincu') and flag('jardiniere_vaincue')",
+    "then": "ascension_libre"
+   },
+   {
+    "s": "registre",
+    "t": "Des étages non conquis. Leurs Gardiens, à moitié réveillés, barrent la route."
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "ascension"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "goto": "seuil"
+   }
+  ],
+  "ascension_libre": [
+   {
+    "s": "registre",
+    "t": "Tous les Gardiens sont tombés. Les portails s'ouvrent comme des portes de maison. Tu montes sans combattre jusqu'au Seuil."
+   },
+   {
+    "goto": "seuil"
+   }
+  ],
+  "seuil": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "registre"
+   },
+   {
+    "s": "narrator",
+    "t": "Vingt-trois heures trente. Étage 10 : le Seuil. Pas de murs. Un plancher de pages blanches au-dessus du vide, et au loin, une porte sans serrure."
+   },
+   {
+    "if": "flag('haneul_capturee')",
+    "then": "seuil_administratrice"
+   },
+   {
+    "goto": "seuil_prophete"
+   }
+  ],
+  "seuil_administratrice": [
+   {
+    "s": "narrator",
+    "t": "Devant la porte, Haneul. Ses cheveux d'argent flottent dans un vent qui n'existe pas. Ses yeux sont pleins d'encre. Les Élus l'ont gardée endormie dix jours. Elle s'est réveillée Administratrice."
+   },
+   {
+    "s": "haneul",
+    "t": "Je tiens les comptes, Lecteur. Les tiens sont dans le rouge.",
+    "e": "administrator",
+    "v": true
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "administratrice"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle tombe à genoux. L'encre coule de ses yeux comme des larmes. Quand elle relève la tête, ses iris sont redevenus d'or."
+   },
+   {
+    "s": "haneul",
+    "t": "…Tu sens la poussière, la poudre et le savon bon marché. Tu es venu. Tard. Mais tu es venu.",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "fx": [
+     "unflag haneul_capturee",
+     "flag haneul_liberee",
+     "flag haneul_trouvee",
+     "join haneul"
+    ]
+   },
+   {
+    "goto": "seuil_prophete"
+   }
+  ],
+  "seuil_prophete": [
+   {
+    "s": "narrator",
+    "t": "Une silhouette en robe blanche se tient entre toi et la porte. Le masque blanc. La voix filtrée, comme par un métal."
+   },
+   {
+    "s": "prophete",
+    "t": "Tu es encore monté jusqu'ici. Trois cent douze fois, je t'ai regardé monter. Trois cent douze fois, tu es mort pour elles."
+   },
+   {
+    "if": "souvenir('agatha_main') and (souvenir('lectrice_zero') or souvenir('ecriture_corbeau'))",
+    "then": "demasque"
+   },
+   {
+    "s": "elias",
+    "t": "Qui es-tu ?",
+    "e": "anger"
+   },
+   {
+    "s": "prophete",
+    "t": "Quelqu'un qui t'aime trop pour te laisser recommencer."
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "prophete"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "s": "narrator",
+    "t": "Le masque se fend en deux. Dessous, une vieille femme aux cheveux gris, des lunettes rondes rafistolées au scotch, un bracelet tressé rouge au poignet gauche. Mère Agatha."
+   },
+   {
+    "s": "agatha",
+    "t": "Tu ne m'as pas reconnue. Tant mieux. Je n'aurais pas supporté ton regard.",
+    "e": "tears"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle tombe dans le vide entre les pages, sans un cri. Le Registre se tait une seconde, comme une minute de silence."
+   },
+   {
+    "fx": [
+     "flag prophete_demasque",
+     "flag prophete_vaincu",
+     "flag agatha_executee"
+    ]
+   },
+   {
+    "goto": "page"
+   }
+  ],
+  "demasque": [
+   {
+    "s": "elias",
+    "t": "Retire ce masque, Mère Agatha. Le bracelet rouge. L'écriture des ordonnances. Les lunettes rondes. Je sais.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Un long silence. Puis la Prophète retire son masque. Mère Agatha, soixante-sept ans, les yeux secs."
+   },
+   {
+    "s": "agatha",
+    "t": "Trois cent douze boucles. J'étais la Lectrice, avant toi. C'est moi qui la portais hors de l'étage 1. Et toi, tu mourais au douzième jour, pour me protéger. À chaque fois.",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "if": "party('seo_yeon')",
+    "then": "demasque_seo"
+   },
+   {
+    "goto": "demasque_choix"
+   }
+  ],
+  "demasque_seo": [
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon s'avance. Elle regarde la vieille femme, les mains, les cicatrices, le bracelet. Elle porte le même au poignet."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "…C'est moi. Vous êtes moi.",
+    "e": "fear",
+    "v": true
+   },
+   {
+    "s": "agatha",
+    "t": "Je suis ce que tu deviens si tu choisis trop souvent qui doit mourir. Ne deviens pas moi, petite.",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Je ne deviendrai pas vous.",
+    "e": "anger",
+    "v": true
+   },
+   {
+    "goto": "demasque_choix"
+   }
+  ],
+  "demasque_choix": [
+   {
+    "fx": [
+     "flag prophete_demasque"
+    ]
+   },
+   {
+    "choice": [
+     {
+      "t": "« Donne-moi la Page arrachée. Repose-toi, enfin. »",
+      "goto": "agatha_redemption",
+      "fx": [
+       "add align.protect 3"
+      ],
+      "if": "party('seo_yeon') and aff('seo_yeon') >= 20"
+     },
+     {
+      "t": "Mettre fin à la Prophète.",
+      "goto": "agatha_execution",
+      "fx": [
+       "add align.protect -2"
+      ]
+     },
+     {
+      "t": "« Tes Élus serviront mon Empire. Ta religion sera la mienne. »",
+      "goto": "agatha_alliance",
+      "fx": [
+       "add align.protect -6"
+      ],
+      "if": "v('align.protect') <= -20"
+     },
+     {
+      "t": "La laisser faire. Peut-être a-t-elle raison.",
+      "goto": "agatha_laisser",
+      "fx": [
+       "add align.chaos 5"
+      ]
+     }
+    ]
+   }
+  ],
+  "agatha_redemption": [
+   {
+    "s": "narrator",
+    "t": "Agatha sort de sa manche une feuille jaunie, arrachée d'un livre qui n'existe pas encore. La Page. Elle la pose dans ta main."
+   },
+   {
+    "s": "agatha",
+    "t": "Une lettre pour elle, au dos. Pour quand elle aura mon âge. Qu'elle la lise avant, si elle veut.",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "La Page arrachée : +1 Réécriture permanente. Seo-Yeon reçoit une « Lettre à moi-même »."
+   },
+   {
+    "fx": [
+     "flag agatha_rachetee",
+     "pressure -10",
+     "add aff.seo_yeon 10"
+    ]
+   },
+   {
+    "goto": "page"
+   }
+  ],
+  "agatha_execution": [
+   {
+    "s": "narrator",
+    "t": "Un seul geste. La vieille femme ne se défend pas. Elle tombe entre les pages blanches, et le Registre se tait une seconde."
+   },
+   {
+    "if": "party('seo_yeon')",
+    "then": "execution_seo"
+   },
+   {
+    "fx": [
+     "flag agatha_executee",
+     "pressure -10"
+    ]
+   },
+   {
+    "goto": "page"
+   }
+  ],
+  "execution_seo": [
+   {
+    "s": "seo_yeon",
+    "t": "…Vous l'avez tuée. Vous m'avez tuée. Je ne sais pas quoi ressentir.",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "fx": [
+     "flag agatha_executee",
+     "pressure -10",
+     "add trust.seo_yeon -10"
+    ]
+   },
+   {
+    "goto": "page"
+   }
+  ],
+  "agatha_alliance": [
+   {
+    "s": "agatha",
+    "t": "…Une religion d'État. Pour un Empire des ruines. C'est presque une fin. Presque une paix.",
+    "e": "neutral"
+   },
+   {
+    "s": "registre",
+    "t": "Alliance sombre : les Élus deviennent la religion de l'Empire."
+   },
+   {
+    "fx": [
+     "flag agatha_alliance"
+    ]
+   },
+   {
+    "goto": "page"
+   }
+  ],
+  "agatha_laisser": [
+   {
+    "s": "agatha",
+    "t": "Merci. Enfin quelqu'un qui comprend. Dormons, Elias. Tous. Pour toujours.",
+    "e": "joy"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle ouvre la porte sans serrure. Derrière, l'Archive : des millions de mondes endormis entre des pages. La Terre glisse dedans, comme une feuille qu'on range."
+   },
+   {
+    "s": "registre",
+    "t": "LA PAGE FINALE. Agatha triomphe. Séoul dort dans l'Archive. Il n'y aura plus de boucles."
+   },
+   {
+    "fx": [
+     "flag issue.page_finale",
+     "flag agatha_triomphe"
+    ]
+   },
+   {
+    "goto": "fin_boucle"
+   }
+  ],
+  "page": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "registre"
+   },
+   {
+    "s": "narrator",
+    "t": "Vingt-trois heures cinquante-huit. La porte sans serrure s'ouvre d'elle-même."
+   },
+   {
+    "if": "pressure() > 85",
+    "then": "effacement"
+   },
+   {
+    "if": "not party('haneul')",
+    "then": "page_sans_haneul"
+   },
+   {
+    "s": "haneul",
+    "t": "Je me souviens de tout, maintenant. J'étais l'Administratrice. La Tour, c'est mon livre de comptes. La Descente, c'est moi.",
+    "e": "sad",
+    "v": true
+   },
+   {
+    "s": "haneul",
+    "t": "Je peux refermer le livre. Il faut que quelqu'un reste dedans pour le tenir fermé.",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "choice": [
+     {
+      "t": "« Alors on le referme ensemble. Personne ne reste dedans. »",
+      "goto": "page_ensemble",
+      "if": "pressure() <= 60 and ir() >= 50"
+     },
+     {
+      "t": "La serrer contre toi. La laisser refermer le livre.",
+      "goto": "page_refermee",
+      "fx": [
+       "add align.bond 2"
+      ]
+     },
+     {
+      "t": "« Ne referme rien. Règne avec moi sur ce qui reste. »",
+      "goto": "page_regner",
+      "fx": [
+       "add align.protect -10"
+      ],
+      "if": "v('align.protect') <= -30"
+     }
+    ]
+   }
+  ],
+  "page_sans_haneul": [
+   {
+    "s": "registre",
+    "t": "Haneul n'est pas là. Personne ne tient le livre. La porte s'ouvre en grand."
+   },
+   {
+    "if": "ir() >= 70 and pressure() <= 50",
+    "then": "aube_amere"
+   },
+   {
+    "goto": "effacement"
+   }
+  ],
+  "aube_amere": [
+   {
+    "s": "narrator",
+    "t": "La ville tient. Toute seule, sans Gardienne, par la seule force de ses murs, de ses trêves et de ses gens. À l'aube, la Tour est toujours là. Elle ne descend pas. Elle attend."
+   },
+   {
+    "s": "registre",
+    "t": "AUBE AMÈRE. Séoul survit sans l'Héritière. La porte sans serrure reste fermée, avec quelqu'un derrière."
+   },
+   {
+    "fx": [
+     "flag issue.aube_amere",
+     "flag fin_aube"
+    ]
+   },
+   {
+    "goto": "resolution"
+   }
+  ],
+  "page_ensemble": [
+   {
+    "s": "narrator",
+    "t": "Tu prends sa main. Elle prend la tienne. Ensemble, vous poussez la porte sans serrure, et elle se ferme avec le bruit d'un livre qu'on referme après l'avoir fini."
+   },
+   {
+    "s": "narrator",
+    "t": "Les glyphes sous sa peau s'éteignent un à un. Elle tremble, elle a froid, elle respire. Elle projette une ombre ordinaire."
+   },
+   {
+    "s": "haneul",
+    "t": "Je suis… lourde. C'est ça, être humaine ? C'est lourd. J'aime bien.",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "AUBE NOUVELLE. La Tour est contenue. Haneul est vivante. L'Ère des Strates commence."
+   },
+   {
+    "fx": [
+     "flag issue.aube_nouvelle",
+     "flag fin_aube",
+     "fin haneul_2"
+    ]
+   },
+   {
+    "goto": "resolution"
+   }
+  ],
+  "page_refermee": [
+   {
+    "s": "narrator",
+    "t": "Elle t'embrasse, une fois, avec un goût de pain au lait. Puis elle franchit la porte et la tire derrière elle. La porte n'a pas de serrure. Elle n'en a jamais eu besoin."
+   },
+   {
+    "s": "registre",
+    "t": "LA PAGE REFERMÉE. La ville est sauvée. Haneul tient le livre fermé, de l'intérieur. Tu entends parfois une berceuse, la nuit, à travers les murs."
+   },
+   {
+    "fx": [
+     "flag issue.page_refermee",
+     "flag fin_aube"
+    ]
+   },
+   {
+    "goto": "resolution"
+   }
+  ],
+  "page_regner": [
+   {
+    "s": "narrator",
+    "t": "Haneul te regarde longtemps. Puis elle sourit, d'un sourire que tu ne lui connaissais pas. Elle pose la main sur la porte, et la Tour s'agenouille."
+   },
+   {
+    "s": "registre",
+    "t": "LE ROI ET LA REINE DES RUINES. La Tour obéit. Séoul aussi."
+   },
+   {
+    "fx": [
+     "flag issue.roi_reine_ruines",
+     "flag fin_aube"
+    ]
+   },
+   {
+    "goto": "resolution"
+   }
+  ],
+  "effacement": [
+   {
+    "s": "narrator",
+    "t": "La Pression est trop haute. La Tour ne descend pas : elle s'abat. Les rues, les ponts, le fleuve, les noms. Tout devient une page blanche."
+   },
+   {
+    "s": "registre",
+    "t": "EFFACEMENT. P > 85. Séoul n'a jamais existé, pour l'Archive."
+   },
+   {
+    "fx": [
+     "flag issue.effacement"
+    ]
+   },
+   {
+    "goto": "fin_boucle"
+   }
+  ],
+  "resolution": [
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "registre",
+    "t": "Résolution — les Fins de cette boucle."
+   },
+   {
+    "if": "v('align.protect') >= 20",
+    "then": "voie_heros"
+   },
+   {
+    "if": "v('align.protect') <= -20",
+    "then": "voie_tyran"
+   },
+   {
+    "if": "v('align.bond') <= -20",
+    "then": "voie_loup"
+   },
+   {
+    "if": "money() >= 400",
+    "then": "voie_mercenaire"
+   },
+   {
+    "goto": "epi_seo"
+   }
+  ],
+  "voie_heros": [
+   {
+    "s": "registre",
+    "t": "Fin de voie — LE REFUGE-NATION. Les camps, les Rats, les Sanctuaires et les Collines deviennent une seule ville qui se protège elle-même."
+   },
+   {
+    "fx": [
+     "flag issue.refuge_nation"
+    ]
+   },
+   {
+    "goto": "epi_seo"
+   }
+  ],
+  "voie_tyran": [
+   {
+    "s": "registre",
+    "t": "Fin de voie — L'EMPIRE DES RUINES. Les Sceaux te reviennent un à un. Séoul obéit, et elle survit parce qu'elle obéit."
+   },
+   {
+    "fx": [
+     "flag issue.empire_ruines"
+    ]
+   },
+   {
+    "goto": "epi_seo"
+   }
+  ],
+  "voie_loup": [
+   {
+    "s": "registre",
+    "t": "Fin de voie — L'OMBRE AU SOMMET. Personne ne sait qui a sauvé la ville. Tu préfères ça."
+   },
+   {
+    "fx": [
+     "flag issue.ombre_sommet"
+    ]
+   },
+   {
+    "goto": "epi_seo"
+   }
+  ],
+  "voie_mercenaire": [
+   {
+    "s": "registre",
+    "t": "Fin de voie — LE ROI DES CONTRATS. Chaque survivant te doit quelque chose. Tu tiens la ville par ses dettes."
+   },
+   {
+    "fx": [
+     "flag issue.roi_contrats"
+    ]
+   },
+   {
+    "goto": "epi_seo"
+   }
+  ],
+  "epi_seo": [
+   {
+    "if": "party('seo_yeon') and aff('seo_yeon') >= 25",
+    "then": "epi_seo_ok"
+   },
+   {
+    "goto": "epi_haneul"
+   }
+  ],
+  "epi_seo_ok": [
+   {
+    "s": "registre",
+    "t": "Fin d'héroïne — LA MAIN QUI NE TREMBLE PAS."
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon ouvre un hôpital dans l'ancienne tour IFC. Elle ne trie plus personne. Le soir, elle vient s'asseoir sur tes genoux, retire ses lunettes, et te laisse défaire ses cheveux auburn un à un, en comptant tes battements de cœur."
+   },
+   {
+    "fx": [
+     "flag issue.seo_yeon"
+    ]
+   },
+   {
+    "goto": "epi_haneul"
+   }
+  ],
+  "epi_haneul": [
+   {
+    "if": "party('haneul') and aff('haneul') >= 25",
+    "then": "epi_haneul_ok"
+   },
+   {
+    "goto": "epi_haein"
+   }
+  ],
+  "epi_haneul_ok": [
+   {
+    "s": "registre",
+    "t": "Fin d'héroïne — LE CIEL."
+   },
+   {
+    "s": "narrator",
+    "t": "Haneul apprend tout : le froid, la faim, les bleus, les rhumes. Elle dort contre toi chaque nuit, ton bomber pour seul vêtement, et elle se réveille chaque matin en te demandant un souvenir nouveau à garder."
+   },
+   {
+    "fx": [
+     "flag issue.haneul"
+    ]
+   },
+   {
+    "goto": "epi_haein"
+   }
+  ],
+  "epi_haein": [
+   {
+    "if": "party('hae_in') and aff('hae_in') >= 25",
+    "then": "epi_haein_ok"
+   },
+   {
+    "goto": "epi_ryeon"
+   }
+  ],
+  "epi_haein_ok": [
+   {
+    "s": "registre",
+    "t": "Fin d'héroïne — LA PRÉSIDENTE SANS SCEAU."
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in rend le Sceau de la Balance au conseil de la ville. Elle découvre qu'elle aime perdre aux échecs contre toi, à condition que personne ne regarde, et que la partie se termine dans sa chambre."
+   },
+   {
+    "fx": [
+     "flag issue.hae_in"
+    ]
+   },
+   {
+    "goto": "epi_ryeon"
+   }
+  ],
+  "epi_ryeon": [
+   {
+    "if": "party('ryeon') and aff('ryeon') >= 25",
+    "then": "epi_ryeon_ok"
+   },
+   {
+    "goto": "epi_simone"
+   }
+  ],
+  "epi_ryeon_ok": [
+   {
+    "s": "registre",
+    "t": "Fin d'héroïne — LE LOTUS ET LE TIGRE."
+   },
+   {
+    "s": "narrator",
+    "t": "Ryeon rebâtit la Maison Baek avec une seule règle nouvelle : on demande. Elle te demande tout, désormais, en rougissant jusqu'aux oreilles, et elle n'accepte jamais un non à l'entraînement."
+   },
+   {
+    "fx": [
+     "flag issue.ryeon"
+    ]
+   },
+   {
+    "goto": "epi_simone"
+   }
+  ],
+  "epi_simone": [
+   {
+    "if": "party('simone') and aff('simone') >= 25",
+    "then": "epi_simone_ok"
+   },
+   {
+    "goto": "epi_xiaoyu"
+   }
+  ],
+  "epi_simone_ok": [
+   {
+    "s": "registre",
+    "t": "Fin d'héroïne — DÉSOBÉISSANCE."
+   },
+   {
+    "s": "narrator",
+    "t": "Simone range ses deux plaques dans une boîte, et garde la bague au doigt, la sienne. Elle fume le cigare que tu lui avais offert, un jour où vous avez survécu, nue sur le toit du silo, ses cheveux défaits dans le vent."
+   },
+   {
+    "fx": [
+     "flag issue.simone"
+    ]
+   },
+   {
+    "goto": "epi_xiaoyu"
+   }
+  ],
+  "epi_xiaoyu": [
+   {
+    "if": "party('xiaoyu') and aff('xiaoyu') >= 25",
+    "then": "epi_xiaoyu_ok"
+   },
+   {
+    "goto": "epi_aoi"
+   }
+  ],
+  "epi_xiaoyu_ok": [
+   {
+    "s": "registre",
+    "t": "Fin d'héroïne — LE PARI DU DRAGON."
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu fait de Longwei une compagnie de barges honnête, ou presque. Elle parie tout sur toi, chaque soir, à la table de mahjong, et elle perd exprès, toujours, pour le plaisir de payer."
+   },
+   {
+    "fx": [
+     "flag issue.xiaoyu"
+    ]
+   },
+   {
+    "goto": "epi_aoi"
+   }
+  ],
+  "epi_aoi": [
+   {
+    "if": "party('aoi') and aff('aoi') >= 25",
+    "then": "epi_aoi_ok"
+   },
+   {
+    "goto": "epi_nadia"
+   }
+  ],
+  "epi_aoi_ok": [
+   {
+    "s": "registre",
+    "t": "Fin d'héroïne — CHANSON POUR UNE SEULE PERSONNE."
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi ne remonte jamais sur une scène. Elle chante dans la cuisine du Refuge, sous la douche, contre ton cou, la nuit. Une seule personne l'écoute. C'est assez. C'est tout."
+   },
+   {
+    "fx": [
+     "flag issue.aoi"
+    ]
+   },
+   {
+    "goto": "epi_nadia"
+   }
+  ],
+  "epi_nadia": [
+   {
+    "if": "party('nadia') and aff('nadia') >= 25",
+    "then": "epi_nadia_ok"
+   },
+   {
+    "goto": "epi_maricel"
+   }
+  ],
+  "epi_nadia_ok": [
+   {
+    "s": "registre",
+    "t": "Fin d'héroïne — DEUX LOUPS."
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia porte l'écharpe rouge de sa grand-mère, maintenant, devant tout le monde. Elle dort enfin, dos à toi, face à la porte, et c'est toi qui surveilles la porte."
+   },
+   {
+    "fx": [
+     "flag issue.nadia"
+    ]
+   },
+   {
+    "goto": "epi_maricel"
+   }
+  ],
+  "epi_maricel": [
+   {
+    "if": "party('maricel') and aff('maricel') >= 25",
+    "then": "epi_maricel_ok"
+   },
+   {
+    "goto": "epi_minh_anh"
+   }
+  ],
+  "epi_maricel_ok": [
+   {
+    "s": "registre",
+    "t": "Fin d'héroïne — LE SOLEIL SOUS LA VILLE."
+   },
+   {
+    "s": "narrator",
+    "t": "Maricel ouvre les tunnels de Myeongdong aux enfants des Rats : une école, une cantine, un karaoké. Elle t'y emmène la nuit, porte grande ouverte, et elle ne fait plus jamais de cauchemar."
+   },
+   {
+    "fx": [
+     "flag issue.maricel"
+    ]
+   },
+   {
+    "goto": "epi_minh_anh"
+   }
+  ],
+  "epi_minh_anh": [
+   {
+    "if": "party('minh_anh') and aff('minh_anh') >= 25",
+    "then": "epi_minh_anh_ok"
+   },
+   {
+    "goto": "constellation"
+   }
+  ],
+  "epi_minh_anh_ok": [
+   {
+    "s": "registre",
+    "t": "Fin d'héroïne — L'ÉQUATION."
+   },
+   {
+    "s": "narrator",
+    "t": "Minh-Anh détruit elle-même ses données sur Haneul, puis passe un an à étudier le seul phénomène qu'elle ne comprend pas : toi. Ses LEDs restent rouges presque tout le temps."
+   },
+   {
+    "fx": [
+     "flag issue.minh_anh"
+    ]
+   },
+   {
+    "goto": "constellation"
+   }
+  ],
+  "constellation": [
+   {
+    "if": "bonds() >= 10",
+    "then": "harem"
+   },
+   {
+    "if": "bonds() >= 4",
+    "then": "cour"
+   },
+   {
+    "if": "party_size() <= 1",
+    "then": "lecteur_seul"
+   },
+   {
+    "s": "registre",
+    "t": "Constellation — LA MAISON. Quelques liens, très forts. Une maison qui ressemble aux gens qui y vivent."
+   },
+   {
+    "fx": [
+     "flag issue.maison_n"
+    ]
+   },
+   {
+    "goto": "fin_boucle"
+   }
+  ],
+  "cour": [
+   {
+    "s": "registre",
+    "t": "Fin de Cour — LA MAISON. Plusieurs femmes, un toit, une table trop petite, et un homme qui a enfin quelqu'un à qui revenir."
+   },
+   {
+    "fx": [
+     "flag issue.la_maison"
+    ]
+   },
+   {
+    "goto": "fin_boucle"
+   }
+  ],
+  "lecteur_seul": [
+   {
+    "s": "registre",
+    "t": "Constellation — LE LECTEUR SEUL. Tu as sauvé la ville. Tu n'as gardé personne. Le Registre est très lourd, dans ta poche."
+   },
+   {
+    "fx": [
+     "flag issue.lecteur_seul"
+    ]
+   },
+   {
+    "goto": "fin_boucle"
+   }
+  ],
+  "harem": [
+   {
+    "if": "v('align.protect') <= -20",
+    "then": "harem_trone"
+   },
+   {
+    "s": "narrator",
+    "t": "Dix femmes autour d'une table construite exprès, dans la salle commune du Refuge agrandi. Les disputes, les rires, les jalousies réglées à voix haute, les nuits partagées à plusieurs quand personne ne veut être seule."
+   },
+   {
+    "s": "registre",
+    "t": "Fin du Harem Absolu — LA MAISON DES DIX. La plus lumineuse du jeu. Celui que dix destins ont choisi."
+   },
+   {
+    "fx": [
+     "flag issue.maison_des_dix"
+    ]
+   },
+   {
+    "goto": "fin_boucle"
+   }
+  ],
+  "harem_trone": [
+   {
+    "if": "flag('couteau_haein') or flag('couteau_xiaoyu') or flag('couteau_nadia')",
+    "then": "harem_couteaux"
+   },
+   {
+    "s": "narrator",
+    "t": "Dix femmes autour d'un trône de pierre noire. Certaines par amour, d'autres par Pacte. Toutes à genoux par choix, et toutes debout dès que les portes se ferment."
+   },
+   {
+    "s": "registre",
+    "t": "Fin du Harem Absolu — LE TRÔNE DES DIX. Un empire de domination absolue, tenu par dix mains."
+   },
+   {
+    "fx": [
+     "flag issue.trone_des_dix"
+    ]
+   },
+   {
+    "goto": "fin_boucle"
+   }
+  ],
+  "harem_couteaux": [
+   {
+    "s": "registre",
+    "t": "Fin du Harem Absolu — LA NUIT DES COUTEAUX. La conspiration éclate au matin. Le trône était trop grand pour qu'on ne le partage pas au couteau."
+   },
+   {
+    "fx": [
+     "flag issue.nuit_des_couteaux"
+    ]
+   },
+   {
+    "goto": "fin_boucle"
+   }
+  ],
+  "fin_boucle": [
+   {
+    "s": "narrator",
+    "t": "FIN DE LA BOUCLE — « La Grande Descente »."
+   },
+   {
+    "event": "end_act",
+    "args": {
+     "act": 4
+    }
+   },
+   {
+    "end": true
+   }
+  ],
+  "defeat": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Le monde bascule. Le sol, le ciel, la Tour qui regarde."
+   },
+   {
+    "s": "elias",
+    "t": "Pas… encore…",
+    "e": "exhausted"
+   },
+   {
+    "s": "registre",
+    "t": "ÉCHEC — Le Lecteur est mort."
+   },
+   {
+    "s": "registre",
+    "t": "Régression."
+   },
+   {
+    "event": "regress",
+    "args": {}
+   },
+   {
+    "end": true
+   }
+  ]
+ }
+}

@@ -23,7 +23,7 @@
     "t": "Vingt et unième jour. Tour IFC, soixantième étage. La salle du conseil de Haesong Holdings : une table de noyer de vingt mètres, douze fauteuils, une baie vitrée sur la Tour noire de Yongsan."
    },
    {
-    "if": "flag('haein_avertie')",
+    "if": "flag('haein_avertie') or (loop() >= 2 and flag('echo.haein_sauvee'))",
     "then": "coup_prete"
    },
    {

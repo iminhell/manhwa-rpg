@@ -9,6 +9,7 @@ const DataDB := preload("res://core/data_db.gd")
 const WorldModel := preload("res://world/world_model.gd")
 const RefugeModel := preload("res://world/refuge_model.gd")
 const SaveFormat := preload("res://core/save_format.gd")
+const Echoes := preload("res://core/echoes.gd")
 
 var _passed := 0
 var _failed := 0
@@ -29,6 +30,7 @@ func _init() -> void:
 	test_save_roundtrip()
 	test_refuge()
 	test_refuge_midloop()
+	test_systems_v09()
 	print("\n%d réussis, %d échoués" % [_passed, _failed])
 	quit(1 if _failed > 0 else 0)
 
@@ -139,7 +141,17 @@ func test_combat_full_battles() -> void:
 		"coup_haesong": ["elias", "seo_yeon", "haneul", "aoi", "maricel", "ryeon", "xiaoyu"],
 		"maree_rouge": ["elias", "seo_yeon", "haneul", "aoi", "maricel", "ryeon", "xiaoyu", "hae_in"],
 		"courtier": ["elias", "seo_yeon", "haneul", "aoi", "maricel", "ryeon"],
-		"hote_affame": ["elias", "seo_yeon", "haneul", "aoi", "maricel", "ryeon", "xiaoyu"]}
+		"hote_affame": ["elias", "seo_yeon", "haneul", "aoi", "maricel", "ryeon", "xiaoyu"],
+		"nadia_toit": ["elias"], "machine_inversion": ["elias", "haneul", "aoi", "maricel", "ryeon", "nadia"],
+		"silo_unite0": ["elias", "seo_yeon", "haneul", "ryeon", "xiaoyu", "nadia"],
+		"minotaure": ["elias", "seo_yeon", "haneul", "ryeon", "nadia", "minh_anh"],
+		"bourreau_fort": ["elias", "seo_yeon", "haneul", "ryeon", "simone", "minh_anh"],
+		"juge": ["elias", "seo_yeon", "haneul", "ryeon", "simone", "nadia"], "champion_hier": ["elias"],
+		"jardiniere": ["elias", "seo_yeon", "haneul", "aoi", "ryeon", "simone"],
+		"front_final": ["elias", "seo_yeon", "haneul", "ryeon", "simone", "nadia"],
+		"prophete": ["elias", "seo_yeon", "haneul", "ryeon", "simone", "nadia"],
+		"administratrice": ["elias", "seo_yeon", "ryeon", "simone", "nadia", "minh_anh"],
+		"epreuve_dix": ["elias", "seo_yeon", "haneul", "ryeon", "simone", "nadia"]}
 	for enc in parties:
 		for seed_value in [7, 11, 23]:
 			var st := _load_combat(enc, parties[enc], seed_value)
@@ -187,6 +199,81 @@ func test_combat_fear() -> void:
 
 
 ## Acte II : Grappin (attire en première ligne) et Charme (l'ennemi frappe les siens).
+## v0.9 : modes de difficulté, jours de répit, cadeaux, échos inter-boucles, Indice de Résilience.
+func test_systems_v09() -> void:
+	var dif: Dictionary = DataDB.load_json("res://data/world/difficulty.json")["modes"]
+	# Combat : le mode multiplie l'attaque et les PV des ennemis
+	var st := _load_combat("tunnels", ["elias"], 3)
+	var e = st.alive("enemy")[0]
+	var atk: float = e.atk
+	var hp: int = e.max_hp
+	st.apply_difficulty(float(dif["histoire"]["enemy_atk"]), float(dif["histoire"]["enemy_hp"]))
+	check(e.atk < atk and e.max_hp < hp and e.hp == e.max_hp, "mode Histoire : ennemis affaiblis")
+	# Refuge : besoin en rations et famine selon le mode
+	var s := StateStore.new()
+	var r := RefugeModel.new(s, DataDB.load_json("res://data/world/refuge.json"))
+	s.set_flag("party.seo_yeon")
+	s.set_flag("party.haneul")
+	r.establish("yeouido.parking")
+	var need := r.daily_need()
+	r.difficulty = dif["survie"]
+	check(r.daily_need() > need, "mode Survie : plus de rations par jour")
+	r.difficulty = dif["histoire"]
+	s.set_var("refuge.rations", 0)
+	var t := s.trust("seo_yeon")
+	s.set_time(12, 0)
+	r.daily_upkeep()
+	check(s.trust("seo_yeon") == t, "mode Histoire : la famine ne coûte rien")
+	# Jour de répit : pas d'Ancre, le temps revient au matin, repos de nouveau possibles
+	var s2 := StateStore.new()
+	var w := WorldModel.new(s2, DataDB.load_json("res://data/world/sectors.json"), DataDB.load_json("res://data/world/events.json"),
+		DataDB.load_json("res://data/world/refuge.json"), dif["normal"], DataDB.load_json("res://data/world/gifts.json"))
+	s2.set_flag("souvenir_dummy")
+	s2.souvenirs["s1_bunker_b6"] = true
+	s2.set_flag("bunker_ouvert")
+	s2.set_flag("party.haneul")
+	s2.set_time(8, 0)
+	w.place("yeouido.parking")
+	while not w.take_event().is_empty():
+		pass
+	w.refuge.establish("yeouido.parking")
+	check(not w.actions().any(func(a): return a.get("repit", false)), "répit : impossible sans sablier (mode Normal)")
+	s2.apply_effects(["item sablier 1", "item cadeau_pain_au_lait 1"])
+	var rep := w.actions().filter(func(a): return a.get("repit", false))
+	check(rep.size() == 1, "répit : proposé au Refuge avec un sablier")
+	var morning: int = s2.ticks()
+	w.do_action(rep[0])
+	check(w.in_repit() and s2.item("sablier") == 0, "répit : déclaré, sablier consommé")
+	check(w.next_event().is_empty() and not w._check_events(), "répit : aucune Ancre ne se déclenche")
+	var rest := w.actions().filter(func(a): return a.get("rest", false))
+	check(not rest.is_empty(), "répit : moments de repos dès le matin")
+	w.do_action(rest[0])
+	var gift := w.actions().filter(func(a): return a.has("gift"))
+	check(gift.size() == 1, "cadeau : un cadeau proposé pour Haneul")
+	var aff := s2.aff("haneul")
+	w.do_action(gift[0])
+	check(s2.aff("haneul") == aff + 8 and s2.item("cadeau_pain_au_lait") == 0, "cadeau adoré : Affinité +8")
+	w.advance(16)
+	check(not w.in_repit() and s2.ticks() == morning and int(s2.get_var("fatigue")) == 0, "répit : à la nuit, retour au matin")
+	check(s2.aff("haneul") >= aff + 8, "répit : les liens tissés restent")
+	check(w.actions().any(func(a): return a.get("id", "") == "_rest_haneul") or s2.phase() < 2, "répit : la journée réelle reste à vivre")
+	w.difficulty = dif["histoire"]
+	check(w.can_start_repit(), "mode Histoire : répit illimité")
+	# Échos : gravés à la régression, cumulatifs
+	var old := StateStore.new()
+	old.set_flag("aoi_sauvee")
+	old.set_flag("echo.seo_morte")
+	var ech: Array = Echoes.after_loop(old, DataDB.load_json("res://data/world/echoes.json")["echoes"])
+	check(ech.has("echo.aoi_sauvee") and ech.has("echo.seo_morte") and not ech.has("echo.ryeon_morte"), "échos : acquis et nouveaux, rien d'autre")
+	# Indice de Résilience
+	var s3 := StateStore.new()
+	s3.resilience = DataDB.load_json("res://data/world/resilience.json")
+	var base := s3.ir()
+	s3.set_flag("treve_signee")
+	s3.set_var("eau.controle", "rats")
+	check(s3.ir() == base + 16, "IR : Trêve +10, eau partagée +6")
+
+
 ## v0.8 : famine plus punitive au milieu de la boucle, pénurie d'eau.
 func test_refuge_midloop() -> void:
 	var s := StateStore.new()

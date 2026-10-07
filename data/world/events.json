@@ -138,7 +138,7 @@
   },
   {
    "id": "maree",
-   "when": "phase() == 3 and not v('pos.refuge') and not in_sector('etage1') and not in_sector('etage2') and not in_sector('etage3') and not in_sector('etage4') and not (flag('refuge.vigie') and in_refuge_sector()) and not (day() == 9 and done('j9_concert')) and not (day() == 22 and done('j22_siege'))",
+   "when": "phase() == 3 and not v('pos.refuge') and not in_tower() and not (flag('refuge.vigie') and in_refuge_sector()) and not (day() == 9 and done('j9_concert')) and not (day() == 22 and done('j22_siege')) and day() < 30",
    "where": "*",
    "dialogue": "act1_world:maree",
    "priority": 10,
@@ -485,6 +485,190 @@
    "when": "day() > 23 or (day() == 23 and phase() >= 2)",
    "where": "*",
    "dialogue": "act3_world:classement",
+   "priority": 100,
+   "repeat": "once"
+  },
+  {
+   "id": "j24_contrat",
+   "when": "day() == 24 and phase() == 2 and not done('j24_contrat_absent') and not done('j24_musee')",
+   "where": "gangnam.lotte",
+   "dialogue": "act4_nadia:toit",
+   "priority": 99,
+   "repeat": "once"
+  },
+  {
+   "id": "j24_musee",
+   "when": "day() == 24 and phase() == 2 and not done('j24_contrat_absent') and not done('j24_contrat')",
+   "where": "sector:yongsan",
+   "dialogue": "act4_nadia:musee",
+   "priority": 99,
+   "repeat": "once"
+  },
+  {
+   "id": "j24_contrat_absent",
+   "when": "((day() == 24 and phase() == 3) or day() > 24) and not done('j24_contrat') and not done('j24_musee')",
+   "where": "*",
+   "dialogue": "act4_nadia:absent",
+   "priority": 98,
+   "repeat": "once"
+  },
+  {
+   "id": "j25_etages",
+   "when": "day() >= 25",
+   "where": "*",
+   "dialogue": "act4_world:etages56",
+   "priority": 95,
+   "repeat": "once"
+  },
+  {
+   "id": "j25_executeurs",
+   "when": "day() >= 25 and party_size() >= 9 and phase() <= 2",
+   "where": "*",
+   "dialogue": "act4_world:executeurs",
+   "priority": 90,
+   "repeat": "once"
+  },
+  {
+   "id": "etage5_arrivee",
+   "when": "true",
+   "where": "sector:etage5",
+   "dialogue": "act4_tower:etage5",
+   "priority": 70,
+   "repeat": "once"
+  },
+  {
+   "id": "etage6_arrivee",
+   "when": "true",
+   "where": "sector:etage6",
+   "dialogue": "act4_tower:etage6",
+   "priority": 70,
+   "repeat": "once"
+  },
+  {
+   "id": "etage7_arrivee",
+   "when": "true",
+   "where": "sector:etage7",
+   "dialogue": "act4_tower:etage7",
+   "priority": 70,
+   "repeat": "once"
+  },
+  {
+   "id": "etage8_arrivee",
+   "when": "true",
+   "where": "sector:etage8",
+   "dialogue": "act4_tower:etage8",
+   "priority": 70,
+   "repeat": "once"
+  },
+  {
+   "id": "etage9_arrivee",
+   "when": "true",
+   "where": "sector:etage9",
+   "dialogue": "act4_tower:etage9",
+   "priority": 70,
+   "repeat": "once"
+  },
+  {
+   "id": "j26_machine",
+   "when": "day() == 26 and phase() == 3 and not done('j26_machine_absent')",
+   "where": "sector:hongdae",
+   "dialogue": "act4_minh_anh:machine",
+   "priority": 99,
+   "repeat": "once"
+  },
+  {
+   "id": "j26_machine_absent",
+   "when": "((day() == 26 and phase() == 3) or day() > 26) and not done('j26_machine')",
+   "where": "*",
+   "dialogue": "act4_minh_anh:absent",
+   "priority": 98,
+   "repeat": "once"
+  },
+  {
+   "id": "j27_corbeau",
+   "when": "day() >= 27 and bonds() >= 3 and not flag('prophete_demasque')",
+   "where": "*",
+   "dialogue": "act4_world:corbeau",
+   "priority": 93,
+   "repeat": "once"
+  },
+  {
+   "id": "j27_exode",
+   "when": "day() == 27 and phase() >= 1 and phase() <= 2 and not done('j27_exode_absent')",
+   "where": "sector:ponts",
+   "dialogue": "act4_world:exode",
+   "priority": 99,
+   "repeat": "once"
+  },
+  {
+   "id": "j27_exode_absent",
+   "when": "((day() == 27 and phase() == 3) or day() > 27) and not done('j27_exode')",
+   "where": "*",
+   "dialogue": "act4_world:exode_absent",
+   "priority": 98,
+   "repeat": "once"
+  },
+  {
+   "id": "j28_cendre",
+   "when": "day() == 28 and phase() <= 1 and not done('j28_cendre_absent')",
+   "where": "yongsan.silo",
+   "dialogue": "act4_world:cendre",
+   "priority": 99,
+   "repeat": "once"
+  },
+  {
+   "id": "j28_cendre_absent",
+   "when": "((day() == 28 and phase() >= 2) or day() > 28) and not done('j28_cendre')",
+   "where": "*",
+   "dialogue": "act4_world:cendre_absent",
+   "priority": 98,
+   "repeat": "once"
+  },
+  {
+   "id": "j29_etages",
+   "when": "day() >= 29",
+   "where": "*",
+   "dialogue": "act4_world:etages710",
+   "priority": 95,
+   "repeat": "once"
+  },
+  {
+   "id": "j29_sacrifice",
+   "when": "day() == 29 and phase() >= 1 and phase() <= 2 and not done('j29_sacrifice_absent')",
+   "where": "yongsan.porte_tour",
+   "dialogue": "act4_world:sacrifice4",
+   "priority": 97,
+   "repeat": "once"
+  },
+  {
+   "id": "j29_sacrifice_absent",
+   "when": "((day() == 29 and phase() == 3) or day() > 29) and not done('j29_sacrifice')",
+   "where": "*",
+   "dialogue": "act4_world:sacrifice4_absent",
+   "priority": 96,
+   "repeat": "once"
+  },
+  {
+   "id": "j29_ryeon",
+   "when": "day() == 29 and phase() == 3 and party('ryeon') and not flag('champion_vaincu')",
+   "where": "*",
+   "dialogue": "act4_world:ryeon_j29",
+   "priority": 92,
+   "repeat": "once"
+  },
+  {
+   "id": "j29_veille",
+   "when": "day() == 29 and phase() == 3 and bonds() >= 4",
+   "where": "*",
+   "dialogue": "act4_world:veille",
+   "priority": 60,
+   "repeat": "once"
+  },
+  {
+   "id": "j30_finale",
+   "when": "day() > 30 or (day() == 30 and phase() >= 2)",
+   "where": "*",
+   "dialogue": "act4_finale:debut",
    "priority": 100,
    "repeat": "once"
   }

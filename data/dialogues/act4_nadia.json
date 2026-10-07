@@ -1,0 +1,909 @@
+{
+ "id": "act4_nadia",
+ "title": "Acte IV — Nadia et Simone : le toit du J24",
+ "start": "start",
+ "speakers": {},
+ "blocks": {
+  "start": [
+   {
+    "goto": "toit"
+   }
+  ],
+  "verre": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "night"
+   },
+   {
+    "s": "narrator",
+    "t": "Le toit de la Lotte World Tower, de jour cette fois. La tireuse est assise dos au parapet, face à l'escalier, un vinyle posé à côté d'elle sur une platine à piles. Viktor Tsoi chante en russe pour personne."
+   },
+   {
+    "s": "nadia",
+    "t": "Rang F. Tu reviens. Les gens ne reviennent pas, d'habitude. Ou alors en morceaux.",
+    "e": "aim",
+    "v": true
+   },
+   {
+    "if": "loop() >= 2 and flag('echo.nadia_tir')",
+    "then": "verre_echo"
+   },
+   {
+    "choice": [
+     {
+      "t": "T'asseoir à côté d'elle, dos au mur, face à la porte.",
+      "goto": "verre_assis",
+      "fx": [
+       "add trust.nadia 4"
+      ]
+     },
+     {
+      "t": "« Ton prochain contrat. C'est la commandante Hayes, n'est-ce pas ? »",
+      "goto": "verre_contrat",
+      "fx": [
+       "add fear.nadia 3"
+      ]
+     },
+     {
+      "t": "Poser une bouteille de vodka entre vous deux.",
+      "goto": "verre_vodka",
+      "fx": [
+       "add aff.nadia 4"
+      ]
+     }
+    ]
+   }
+  ],
+  "verre_echo": [
+   {
+    "s": "narrator",
+    "t": "Elle te regarde longtemps, la tête penchée. Le Zippo s'immobilise entre ses doigts."
+   },
+   {
+    "s": "nadia",
+    "t": "Je t'ai déjà vu dans ma lunette. Pas ici. Ailleurs. Quand je ferme les yeux, tu tombes, et c'est moi qui ai tiré.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "elias",
+    "t": "C'est arrivé. Dans une autre vie. Le trentième jour.",
+    "e": "sad"
+   },
+   {
+    "s": "nadia",
+    "t": "…Et tu viens boire un verre avec moi.",
+    "e": "surprise"
+   },
+   {
+    "fx": [
+     "add trust.nadia 6"
+    ]
+   },
+   {
+    "choice": [
+     {
+      "t": "« Oui. »",
+      "goto": "verre_assis",
+      "fx": [
+       "add trust.nadia 4"
+      ]
+     },
+     {
+      "t": "« Je viens te demander de ne pas recommencer. »",
+      "goto": "verre_contrat"
+     }
+    ]
+   }
+  ],
+  "verre_assis": [
+   {
+    "s": "narrator",
+    "t": "Vous restez assis une heure sans parler. Elle te tend la cigarette éteinte qu'elle garde au coin des lèvres. Tu la gardes au coin des tiennes."
+   },
+   {
+    "s": "nadia",
+    "t": "Tu ne parles pas. C'est bien. Les gens parlent pour ne pas entendre ce qu'ils pensent.",
+    "e": "neutral"
+   },
+   {
+    "fx": [
+     "flag nadia_rencontree",
+     "add trust.nadia 4"
+    ]
+   },
+   {
+    "goto": "verre_fin"
+   }
+  ],
+  "verre_contrat": [
+   {
+    "s": "nadia",
+    "t": "…Qui t'a dit ça ? Personne ne sait. Cheonma ne sait même pas qui paie vraiment.",
+    "e": "anger"
+   },
+   {
+    "s": "elias",
+    "t": "Une femme en blanc. Avec un masque. Elle paie pour que l'Unité 0 n'ait plus de tête avant la Descente.",
+    "e": "neutral"
+   },
+   {
+    "s": "nadia",
+    "t": "Tu en sais trop pour un rang F. C'est mon dernier contrat. Après, je disparais.",
+    "e": "aim"
+   },
+   {
+    "s": "elias",
+    "t": "Dans une ville sans sortie.",
+    "e": "sad"
+   },
+   {
+    "s": "nadia",
+    "t": "…Oui. Dans une ville sans sortie. C'est drôle, quand tu le dis.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "fx": [
+     "flag nadia_rencontree",
+     "flag contrat_connu",
+     "add trust.nadia 3"
+    ]
+   },
+   {
+    "goto": "verre_fin"
+   }
+  ],
+  "verre_vodka": [
+   {
+    "s": "nadia",
+    "t": "De la vraie. Pas celle de Cheonma, qui pique les yeux. Tu sais vivre, rang F.",
+    "e": "neutral"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle boit au goulot, te tend la bouteille. Ses doigts effleurent les tiens. Ils sont glacés."
+   },
+   {
+    "fx": [
+     "flag nadia_rencontree",
+     "add trust.nadia 2"
+    ]
+   },
+   {
+    "goto": "verre_fin"
+   }
+  ],
+  "verre_fin": [
+   {
+    "s": "registre",
+    "t": "Lecture de la Fin — Nadia Tsoi. Jour 24, Crépuscule. Ce toit. Abattue par le contre-sniper de l'Unité 0 pendant son contrat."
+   },
+   {
+    "fx": [
+     "fin nadia"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "briefing": [
+   {
+    "bg": "tower_gate"
+   },
+   {
+    "music": "tower"
+   },
+   {
+    "s": "narrator",
+    "t": "Le silo d'artillerie de Yongsan, sous la colline. Des écrans, des cartes, des soldats qui ne dorment plus. La commandante Hayes boit du café froid dans un casque."
+   },
+   {
+    "s": "simone",
+    "t": "Rang F. Tu m'as ramené un plan de l'étage 1, il y a des semaines. Tu as gagné cinq minutes. Parle vite.",
+    "e": "cigar",
+    "v": true
+   },
+   {
+    "s": "simone",
+    "t": "L'extérieur a posé un ultimatum. Si la Pression dépasse le seuil, le Protocole Cendre rase un secteur pour « contenir ». C'est moi qui ai le code.",
+    "e": "neutral"
+   },
+   {
+    "choice": [
+     {
+      "t": "« Quelqu'un va essayer de te tuer le vingt-quatrième jour. Depuis la Lotte Tower. Et ton contre-sniper va répondre. »",
+      "goto": "briefing_sniper",
+      "fx": [
+       "add trust.simone 4"
+      ]
+     },
+     {
+      "t": "« Ton fiancé, Marcus. Il n'est pas mort à l'entraînement. Il escortait la sonde du Projet ARCHE. »",
+      "goto": "briefing_marcus",
+      "fx": [
+       "add align.chaos 2"
+      ],
+      "if": "souvenir('lore_arche_dossier') or flag('archive_copie')"
+     },
+     {
+      "t": "« Le Protocole Cendre ne sauvera personne. »",
+      "goto": "briefing_cendre",
+      "fx": [
+       "add trust.simone 2"
+      ]
+     }
+    ]
+   }
+  ],
+  "briefing_sniper": [
+   {
+    "s": "simone",
+    "t": "…La Lotte. Bien sûr. C'est le seul toit qui voit le musée.",
+    "e": "neutral"
+   },
+   {
+    "s": "elias",
+    "t": "Ne fais pas tirer ton contre-sniper. La tireuse n'est pas ton ennemie. Celle qui la paie, si.",
+    "e": "neutral"
+   },
+   {
+    "s": "simone",
+    "t": "Tu me demandes de laisser une arme braquée sur ma tête.",
+    "e": "anger"
+   },
+   {
+    "s": "elias",
+    "t": "Je te demande de me laisser monter sur ce toit avant tes hommes.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "simone",
+    "t": "…Un seul ordre de différence entre la vie et la mort, et c'est un rang F qui me le demande. Accordé. Si tu te trompes, on meurt tous les deux.",
+    "e": "cigar"
+   },
+   {
+    "fx": [
+     "flag simone_avertie",
+     "flag simone_briefee"
+    ]
+   },
+   {
+    "goto": "briefing_fin"
+   }
+  ],
+  "briefing_marcus": [
+   {
+    "s": "narrator",
+    "t": "Elle repose le casque. La bague de fiançailles, sur la chaîne de ses plaques, s'immobilise entre ses doigts."
+   },
+   {
+    "s": "simone",
+    "t": "Tu sais ce que tu dis ? Il y a des choses qu'on ne dit pas à une femme armée, Rang F.",
+    "e": "anger",
+    "v": true
+   },
+   {
+    "s": "elias",
+    "t": "Haesong Bio a envoyé une sonde sous Yongsan. Ton fiancé était dans l'escorte. La sonde a reçu une réponse. Lui, non.",
+    "e": "neutral"
+   },
+   {
+    "s": "simone",
+    "t": "…Deux ans. Deux ans que je fleuris une tombe d'accident d'entraînement.",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "fx": [
+     "flag marcus_revele",
+     "flag simone_briefee",
+     "add trust.simone 6"
+    ]
+   },
+   {
+    "goto": "briefing_fin"
+   }
+  ],
+  "briefing_cendre": [
+   {
+    "s": "simone",
+    "t": "Il en sauvera assez. C'est le calcul qu'on m'a appris. Un secteur contre une ville.",
+    "e": "neutral"
+   },
+   {
+    "s": "elias",
+    "t": "Et si la Pression descend sous le seuil avant le vingt-septième jour ?",
+    "e": "neutral"
+   },
+   {
+    "s": "simone",
+    "t": "Alors l'extérieur suspend le Protocole. Mais personne ne fait baisser la Tour, Rang F.",
+    "e": "cigar"
+   },
+   {
+    "fx": [
+     "flag simone_briefee"
+    ]
+   },
+   {
+    "goto": "briefing_fin"
+   }
+  ],
+  "briefing_fin": [
+   {
+    "s": "registre",
+    "t": "Lecture de la Fin — Simone Hayes. Jour 28, Aube. Ce silo. Morte à son poste en déclenchant le Protocole Cendre à la main."
+   },
+   {
+    "fx": [
+     "fin simone"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "toit": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "boss"
+   },
+   {
+    "s": "narrator",
+    "t": "Vingt-quatrième crépuscule. Le toit de la Lotte World Tower, à 555 mètres. Le vent hurle. Allongée derrière son fusil anti-matériel, Nadia vise le parvis du Musée de la Guerre, où la commandante Hayes parle aux réfugiés."
+   },
+   {
+    "s": "narrator",
+    "t": "À trois cents mètres, sur la tour voisine, un éclat de lunette : le contre-sniper de l'Unité 0. Il vise Nadia. Personne ne vise personne au hasard, ce soir."
+   },
+   {
+    "if": "not flag('nadia_rencontree')",
+    "then": "toit_inconnue"
+   },
+   {
+    "s": "nadia",
+    "t": "Rang F. Tu ne devrais pas être là. Recule, ou je te mets sur ma liste.",
+    "e": "aim",
+    "v": true
+   },
+   {
+    "goto": "toit_choix"
+   }
+  ],
+  "toit_inconnue": [
+   {
+    "s": "registre",
+    "t": "Lecture de la Fin — Nadia Tsoi. Jour 24, Crépuscule. Ce toit. Abattue par le contre-sniper de l'Unité 0 pendant son contrat."
+   },
+   {
+    "fx": [
+     "fin nadia",
+     "flag nadia_rencontree"
+    ]
+   },
+   {
+    "s": "nadia",
+    "t": "Le rang F du premier soir. Tu ne devrais pas être là. Recule.",
+    "e": "aim",
+    "v": true
+   },
+   {
+    "goto": "toit_choix"
+   }
+  ],
+  "toit_choix": [
+   {
+    "s": "registre",
+    "t": "ANCRE — Nadia Tsoi et Simone Hayes. Jour 24, Crépuscule. Une seule survit, d'habitude."
+   },
+   {
+    "choice": [
+     {
+      "t": "T'allonger à côté d'elle. « Ce contrat est payé par la femme en blanc. Celle qui te paiera pour me tuer au trentième jour. »",
+      "goto": "toit_parler",
+      "if": "trust('nadia') >= 6 or (loop() >= 2 and flag('echo.nadia_tir'))"
+     },
+     {
+      "t": "« Je rachète ton contrat. Trois cents. Tu travailles pour moi, maintenant. »",
+      "goto": "toit_racheter",
+      "fx": [
+       "money -300"
+      ],
+      "if": "money() >= 300"
+     },
+     {
+      "t": "« Je rachète ton contrat à vie. Tu es à moi. »",
+      "goto": "toit_pacte",
+      "fx": [
+       "money -300",
+       "add align.protect -5"
+      ],
+      "if": "money() >= 300 and v('align.protect') <= -10"
+     },
+     {
+      "t": "« Lève-toi. On règle ça comme des loups. »",
+      "goto": "toit_duel",
+      "fx": [
+       "add align.bond -1"
+      ]
+     },
+     {
+      "t": "Reculer. Ce n'est pas ton combat.",
+      "goto": "toit_laisser",
+      "fx": [
+       "add align.bond -2"
+      ]
+     }
+    ]
+   }
+  ],
+  "toit_parler": [
+   {
+    "s": "narrator",
+    "t": "Tu t'allonges contre le béton glacé, à vingt centimètres d'elle. Tu ne touches pas l'arme. Tu regardes le parvis avec elle, dans la même direction."
+   },
+   {
+    "s": "nadia",
+    "t": "La femme en blanc… Comment tu sais qu'elle paie aussi pour toi ?",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "elias",
+    "t": "Parce que la dernière fois, c'était toi, sur ce genre de toit, et c'était moi, en bas. Et tu étais aussi fatiguée que maintenant.",
+    "e": "sad",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Le canon dévie d'un centimètre. Puis de dix. Nadia retire son doigt de la détente et pose le front contre la crosse."
+   },
+   {
+    "s": "nadia",
+    "t": "Je n'ai jamais rompu un contrat. Jamais. C'est la seule chose propre que j'avais.",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "if": "flag('simone_avertie')",
+    "then": "toit_trois"
+   },
+   {
+    "goto": "toit_contre"
+   }
+  ],
+  "toit_contre": [
+   {
+    "s": "narrator",
+    "t": "Sur la tour voisine, l'éclat de lunette se fixe. Le contre-sniper de l'Unité 0 a vu le canon bouger. Il n'a pas d'ordre contraire."
+   },
+   {
+    "choice": [
+     {
+      "t": "Te jeter sur Nadia.",
+      "goto": "contre_plonger",
+      "fx": [
+       "add aff.nadia 8",
+       "add fatigue 8"
+      ]
+     },
+     {
+      "t": "Crier dans le vent, agiter les bras, n'importe quoi.",
+      "goto": "contre_crier"
+     }
+    ]
+   }
+  ],
+  "contre_plonger": [
+   {
+    "s": "narrator",
+    "t": "La balle arrache un morceau de parapet à l'endroit exact où était sa tête. Vous roulez ensemble sur le béton. Elle se retrouve sous toi, les yeux grands ouverts, le souffle court."
+   },
+   {
+    "s": "nadia",
+    "t": "Tu viens de prendre une balle pour la femme qui t'a tué. Tu es complètement idiot.",
+    "e": "surprise",
+    "v": true
+   },
+   {
+    "s": "elias",
+    "t": "Je l'ai seulement frôlée. Et tu n'as tué personne, cette fois.",
+    "e": "smirk"
+   },
+   {
+    "goto": "toit_sauvee"
+   }
+  ],
+  "contre_crier": [
+   {
+    "s": "narrator",
+    "t": "Le vent emporte ta voix. La balle part. Nadia bascule en arrière, une main sur l'épaule. Elle vit. Elle saigne beaucoup."
+   },
+   {
+    "s": "nadia",
+    "t": "…Il visait la tête. Il a eu l'épaule. Tu m'as fait bouger avec tes cris d'idiot.",
+    "e": "exhausted"
+   },
+   {
+    "fx": [
+     "flag nadia_blessee"
+    ]
+   },
+   {
+    "goto": "toit_sauvee"
+   }
+  ],
+  "toit_trois": [
+   {
+    "s": "narrator",
+    "t": "Ta radio grésille. La voix de Simone, essoufflée : elle est dans l'escalier de service. Le contre-sniper a reçu l'ordre de ne pas tirer."
+   },
+   {
+    "s": "narrator",
+    "t": "La porte du toit s'ouvre. La commandante Hayes, l'exosquelette ouvert, les mains vides. Face à elle, la tireuse qui devait la tuer, à genoux près de son fusil."
+   },
+   {
+    "s": "simone",
+    "t": "Alors c'est toi, le reflet blanc. J'ai validé une frappe sur un cortège de mariage, en 2012. Vingt-trois noms. Je les ai dans mon gilet.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "nadia",
+    "t": "Un enfant de treize ans. Une ceinture d'explosifs. Je n'ai pas de liste. Je m'en souviens sans.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Les deux femmes se regardent longtemps. Puis Simone sort un cigare, le coupe en deux, et en tend une moitié à Nadia."
+   },
+   {
+    "s": "simone",
+    "t": "On est en vie toutes les deux. C'est un jour où on a survécu. Ça se fête.",
+    "e": "cigar"
+   },
+   {
+    "s": "registre",
+    "t": "Fins liées réécrites — Nadia Tsoi ET Simone Hayes. Le cycle tireuse/cible est brisé."
+   },
+   {
+    "fx": [
+     "flag simone_alliee",
+     "flag concil.simone_nadia",
+     "add trust.simone 10",
+     "add trust.nadia 10"
+    ]
+   },
+   {
+    "goto": "toit_sauvee"
+   }
+  ],
+  "toit_racheter": [
+   {
+    "s": "nadia",
+    "t": "Trois cents. Cheonma payait deux cent cinquante. Tu as dix minutes pour me dire qui je ne dois pas tuer.",
+    "e": "aim"
+   },
+   {
+    "s": "elias",
+    "t": "Personne, ce soir. Range ton arme.",
+    "e": "neutral"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle range le fusil dans son étui avec des gestes de mécanicienne. Sur la tour voisine, l'éclat de lunette hésite, puis s'éteint : la cible ne vise plus personne."
+   },
+   {
+    "fx": [
+     "add trust.nadia 4"
+    ]
+   },
+   {
+    "goto": "toit_sauvee"
+   }
+  ],
+  "toit_pacte": [
+   {
+    "s": "nadia",
+    "t": "À vie. Personne ne m'a jamais achetée à vie. On m'a louée.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Le Système matérialise un parchemin de glyphes rouges entre vous deux. Clause de Résidence. Clause de Loyauté. Une clause de rupture dont le prix est une balle."
+   },
+   {
+    "s": "nadia",
+    "t": "Je signe. Mais si un jour l'Ambivalence tombe trop bas, je tirerai au pire moment. Tu le sais.",
+    "e": "aim",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "PACTE DE VASSALITÉ — Nadia Tsoi. Ambivalence de départ : −10."
+   },
+   {
+    "fx": [
+     "flag nadia_pactisee",
+     "set ambivalence.nadia -10"
+    ]
+   },
+   {
+    "goto": "toit_sauvee"
+   }
+  ],
+  "toit_duel": [
+   {
+    "s": "nadia",
+    "t": "Comme des loups. D'accord. J'aime mieux ça que les discours.",
+    "e": "aim",
+    "v": true
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "nadia_toit"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "duel_perdu"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle est à terre, le souffle court, le canon de son propre fusil dans ta main. Tu ne tires pas. Tu lui tends la main."
+   },
+   {
+    "s": "nadia",
+    "t": "Personne ne m'a jamais battue sur un toit. Tu m'as vue, Rang F. Vraiment vue. D'accord. Je viens.",
+    "e": "surprise",
+    "v": true
+   },
+   {
+    "fx": [
+     "add trust.nadia 8",
+     "add aff.nadia 4"
+    ]
+   },
+   {
+    "goto": "toit_sauvee"
+   }
+  ],
+  "duel_perdu": [
+   {
+    "s": "narrator",
+    "t": "Tu te réveilles sur le béton, la joue en sang. Elle est déjà repartie à son fusil. Un seul coup de feu, très loin, en bas."
+   },
+   {
+    "s": "nadia",
+    "t": "Tu n'étais pas sur ma liste. Elle, si.",
+    "e": "aim"
+   },
+   {
+    "s": "registre",
+    "t": "Simone Hayes — Jour 24, Crépuscule. Abattue depuis la Lotte Tower. Nadia Tsoi a disparu dans la nuit."
+   },
+   {
+    "fx": [
+     "flag simone_morte",
+     "flag nadia_a_tire",
+     "flag nadia_partie"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "toit_laisser": [
+   {
+    "s": "narrator",
+    "t": "Tu recules vers l'escalier. Derrière toi, deux détonations presque simultanées : la sienne, et celle du contre-sniper."
+   },
+   {
+    "s": "registre",
+    "t": "Simone Hayes — Jour 24, Crépuscule. Abattue sur le parvis du Musée de la Guerre."
+   },
+   {
+    "s": "registre",
+    "t": "Nadia Tsoi — touchée, mais pas tuée. Elle a disparu. Le Registre garde sa page ouverte jusqu'au trentième jour."
+   },
+   {
+    "fx": [
+     "flag simone_morte",
+     "flag nadia_a_tire",
+     "flag nadia_partie"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "toit_sauvee": [
+   {
+    "if": "flag('simone_alliee')",
+    "then": "sauvee_simone"
+   },
+   {
+    "s": "registre",
+    "t": "Nadia Tsoi a rejoint le groupe. Nouvelle Fin : Jour 30, 23h58, sur le toit de l'étage 10. Elle tire sur Elias… ou sur celui qui la payait."
+   },
+   {
+    "fx": [
+     "flag nadia_sauvee",
+     "join nadia",
+     "fin nadia_2",
+     "souvenir nadia_lunette",
+     "pressure -2"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "sauvee_simone": [
+   {
+    "s": "narrator",
+    "t": "Simone repart avec ses hommes. Avant de descendre, elle se retourne vers toi."
+   },
+   {
+    "s": "simone",
+    "t": "Le vingt-huitième jour, le Protocole Cendre. Viens au silo, Rang F. J'aurai peut-être besoin de quelqu'un qui sait désobéir.",
+    "e": "cigar",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "Nadia Tsoi a rejoint le groupe. Nouvelle Fin : Jour 30, 23h58, sur le toit de l'étage 10."
+   },
+   {
+    "fx": [
+     "flag nadia_sauvee",
+     "join nadia",
+     "fin nadia_2",
+     "souvenir nadia_lunette",
+     "pressure -2"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "musee": [
+   {
+    "bg": "tower_gate"
+   },
+   {
+    "music": "boss"
+   },
+   {
+    "s": "narrator",
+    "t": "Vingt-quatrième crépuscule. Le parvis du Musée de la Guerre. La commandante Hayes parle à trois cents réfugiés depuis un char renversé. Toi, tu regardes la Lotte Tower, très loin, et tu cherches un reflet blanc."
+   },
+   {
+    "s": "simone",
+    "t": "Rang F ? Qu'est-ce que tu fais là ? Tu as l'air de quelqu'un qui attend une balle.",
+    "e": "neutral"
+   },
+   {
+    "choice": [
+     {
+      "t": "La plaquer au sol.",
+      "goto": "musee_plaquer",
+      "fx": [
+       "add trust.simone 8"
+      ]
+     },
+     {
+      "t": "Lui crier de se mettre à couvert.",
+      "goto": "musee_crier",
+      "fx": [
+       "add trust.simone 4"
+      ]
+     }
+    ]
+   }
+  ],
+  "musee_plaquer": [
+   {
+    "s": "narrator",
+    "t": "Tu la plaques contre le flanc du char. La balle anti-matériel traverse l'endroit exact où était sa poitrine et creuse un cratère dans le béton. Une seconde plus tard, le contre-sniper de l'Unité 0 répond. Une seule fois."
+   },
+   {
+    "goto": "musee_fin"
+   }
+  ],
+  "musee_crier": [
+   {
+    "s": "narrator",
+    "t": "Elle a le réflexe des vétérans : elle se jette derrière le char avant même d'avoir compris. La balle fend l'air au-dessus d'elle. Le contre-sniper répond. Une seule fois."
+   },
+   {
+    "goto": "musee_fin"
+   }
+  ],
+  "musee_fin": [
+   {
+    "s": "simone",
+    "t": "…Tu savais. Tu savais l'heure, l'angle et le toit. Je ne te demanderai pas comment, Rang F. Je te demanderai seulement d'être là le vingt-huit.",
+    "e": "cigar",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "Nadia Tsoi — Jour 24, Crépuscule. Abattue par le contre-sniper de l'Unité 0. La Fin est accomplie."
+   },
+   {
+    "s": "registre",
+    "t": "Simone Hayes vit. Le Protocole Cendre l'attend au vingt-huitième jour."
+   },
+   {
+    "fx": [
+     "flag nadia_morte",
+     "add trust.simone 4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "absent": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "registre"
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — Le contrat de la Lotte Tower. Tu n'es pas là."
+   },
+   {
+    "if": "flag('simone_avertie')",
+    "then": "absent_averti"
+   },
+   {
+    "s": "registre",
+    "t": "Nadia Tsoi pose le doigt sur la détente. Le contre-sniper de l'Unité 0 tire le premier. Elle meurt sur le toit, l'écharpe rouge emportée par le vent."
+   },
+   {
+    "s": "registre",
+    "t": "Nadia Tsoi — Jour 24, Crépuscule. La Fin est accomplie. Simone Hayes vit."
+   },
+   {
+    "fx": [
+     "flag nadia_morte"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "absent_averti": [
+   {
+    "s": "registre",
+    "t": "La commandante Hayes se souvient de ta demande. Elle donne l'ordre de ne pas tirer, et reste à couvert derrière son char."
+   },
+   {
+    "s": "registre",
+    "t": "Sur le toit, Nadia attend une ouverture qui ne vient pas. À la nuit, elle range son fusil sans avoir tiré, et disparaît."
+   },
+   {
+    "fx": [
+     "flag nadia_partie"
+    ]
+   },
+   {
+    "end": true
+   }
+  ]
+ }
+}

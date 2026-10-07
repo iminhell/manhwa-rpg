@@ -57,6 +57,10 @@ world = load(DATA / "world/sectors.json")
 sectors = world.get("sectors", {})
 events = load(DATA / "world/events.json").get("events", [])
 souvenirs = load(DATA / "world/souvenirs.json").get("souvenirs", {})
+echoes = load(DATA / "world/echoes.json").get("echoes", {})
+gifts = load(DATA / "world/gifts.json").get("gifts", {})
+difficulty = load(DATA / "world/difficulty.json")
+resilience = load(DATA / "world/resilience.json")
 fins = load(DATA / "world/fins.json").get("fins", {})
 prompts = load(DATA / "art/prompts.json")
 manifest = load(DATA / "art/manifest.json").get("assets", [])
@@ -71,13 +75,14 @@ KNOWN_EVENTS = {"combat", "regress", "end_act", "world", "move"}
 EFFECT_TYPES = {"damage", "heal", "status", "fear", "delay", "haste", "revive", "cleanse", "crit_next", "swap", "advance", "awaken", "pull"}
 TARGETS = {"melee", "ranged", "pierce", "row", "all_enemies", "ally", "all_allies", "all_allies_any", "ally_other", "self", "ally_ko"}
 FUNCS = {"v", "flag", "souvenir", "aff", "loop", "day", "phase", "at", "in_sector", "party", "item", "money",
-         "trust", "fear", "done", "knows_fin", "pressure", "ticks", "in_refuge_sector"}
+         "trust", "fear", "done", "knows_fin", "pressure", "ticks", "in_refuge_sector", "mode", "ir", "party_size", "bonds", "in_tower"}
 KEYWORDS = {"and", "or", "not", "true", "false", "null"}
 FX_OPS = {"set": 2, "add": 2, "flag": 1, "unflag": 1, "souvenir": 1, "item": 2, "money": 1, "fin": 1, "join": 1, "leave": 1, "pressure": 1}
 
 # Écritures implicites faites par le code (GDScript)
 IMPLICIT_VARS = {"combat.last", "pos.node", "pos.sector", "pos.refuge", "time.ticks", "fatigue", "loop", "argent", "tower.p_mod",
-                 "refuge.node", "refuge.sector", "refuge.rations", "refuge.defense", "refuge.faim", "refuge.last_day"}
+                 "refuge.node", "refuge.sector", "refuge.rations", "refuge.defense", "refuge.faim", "refuge.last_day",
+                 "difficulte", "repit.debut", "repit.compte"}
 SYSTEM_PREFIXES = ("align.", "aff.", "trust.", "fear.", "ambivalence.")  # consommées par les systèmes
 
 flags_read: dict[str, set] = defaultdict(set)
@@ -100,6 +105,11 @@ def check_condition(cond: str, where: str) -> None:
     for fn, arg in re.findall(r"(\w+)\(\s*'([^']*)'\s*(?:,[^)]*)?\)", cond):
         if fn == "flag":
             flags_read[arg].add(where)
+            if arg.startswith("echo."):
+                if arg[5:] not in echoes:
+                    err(f"{where} : écho inconnu « {arg} » (data/world/echoes.json)")
+                if "loop()" not in cond:
+                    err(f"{where} : chronologie — l'écho « {arg} » ne peut se lire qu'en boucle 2+ (ajouter une garde loop())")
         elif fn == "v":
             vars_read[arg].add(where)
         elif fn == "souvenir":
@@ -229,9 +239,13 @@ for enc_id, enc in encounters.items():
     for cid, pos in enc.get("party_positions", {}).items():
         if cid not in characters:
             err(f"encounters/{enc_id} : position pour personnage inconnu « {cid} »")
-    ally_cells = [tuple(p) for p in enc.get("party_positions", {}).values()]
-    if len(ally_cells) != len(set(ally_cells)):
-        err(f"encounters/{enc_id} : deux alliés sur la même case")
+    # 11 héroïnes pour 9 cases : les doublons sont résolus en jeu (case libre la plus proche, escouade de 6).
+    for cid, pos in enc.get("party_positions", {}).items():
+        if not (0 <= int(pos[0]) <= 2 and 0 <= int(pos[1]) <= 2):
+            err(f"encounters/{enc_id} : case hors grille pour {cid}")
+    for cid in enc.get("party", []):
+        if cid not in characters:
+            err(f"encounters/{enc_id} : groupe imposé, personnage inconnu « {cid} »")
 
 # --- Audio ---------------------------------------------------------------------------------
 for ctx, track in music.get("contexts", {}).items():
@@ -335,6 +349,15 @@ for dlg in dialogues.values():
 for cid in sorted(joinable):
     ref_dialogue(f"refuge:{cid}", f"refuge/repos/{cid}")
 
+# Scènes de groupe du Refuge (actions intégrées)
+for gs in load(DATA / "world/group_scenes.json").get("scenes", []):
+    w = f"group_scenes/{gs.get('id')}"
+    for m in gs.get("members", []):
+        if m not in characters:
+            err(f"{w} : personnage inconnu « {m} »")
+    check_condition(gs.get("if", ""), w)
+    ref_dialogue(gs.get("dialogue", ""), w)
+
 # --- Dialogues ------------------------------------------------------------------------------
 for did, dlg in dialogues.items():
     blocks = dlg.get("blocks", {})
@@ -425,11 +448,33 @@ for act, lines in load(DATA / "world/act_summary.json").items():
     for i, line in enumerate(lines):
         check_condition(line.get("if", ""), f"act_summary/{act}/{i}")
 
+# --- Systèmes v0.9 : échos, cadeaux, difficulté, résilience -----------------------------------
+for eid, e in echoes.items():
+    check_condition(e.get("if", ""), f"echoes/{eid}")
+    if not e.get("text"):
+        err(f"echoes/{eid} : texte manquant")
+for gid, g in gifts.items():
+    if g.get("node") not in all_nodes:
+        err(f"gifts/{gid} : nœud inconnu « {g.get('node')} »")
+    for cid in g.get("loves", []) + g.get("likes", []) + list(g.get("reactions", {}).keys()):
+        if cid not in characters:
+            err(f"gifts/{gid} : personnage inconnu « {cid} »")
+for mid in ("histoire", "normal", "survie"):
+    m = difficulty.get("modes", {}).get(mid)
+    if not m:
+        err(f"difficulty : mode manquant « {mid} »")
+        continue
+    for k in ("enemy_atk", "enemy_hp", "ration_need", "famine", "repit"):
+        if k not in m:
+            err(f"difficulty/{mid} : clé manquante « {k} »")
+for i, r in enumerate(resilience.get("rules", [])):
+    check_condition(r.get("if", ""), f"resilience/{i}")
+
 # Le prologue est lancé directement par le code
 dialogue_refs.add(("prologue_j1", "start"))
 
 # --- Orphelins ---------------------------------------------------------------------------------
-IMPLICIT_FLAG_PREFIXES = ("party.", "fin.", "visite.", "act.", "event.", "refuge.")
+IMPLICIT_FLAG_PREFIXES = ("party.", "fin.", "visite.", "act.", "event.", "refuge.", "repit.", "echo.")
 for f, places in sorted(flags_read.items()):
     if f not in flags_written and not f.startswith(IMPLICIT_FLAG_PREFIXES):
         err(f"drapeau lu mais jamais posé « {f} » ({', '.join(sorted(places)[:3])})")
@@ -448,6 +493,162 @@ for s, places in sorted(souv_read.items()):
 for s in souvenirs:
     if s not in souv_written:
         warn(f"souvenir défini mais jamais accordé « {s} »")
+
+# --- Chronologie (v0.9) ------------------------------------------------------------------------
+# Chaque bloc de dialogue reçoit une fenêtre de jours [min, max] déduite des Ancres (events.when), des actions de carte
+# (if + disponibilité du secteur) et des sauts conditionnels. Un drapeau lu dans une fenêtre qui s'achève avant le
+# premier jour où il peut être posé ne peut jamais être vrai dans la même boucle : erreur. Un souvenir (persistant
+# d'une boucle à l'autre) lu avant d'être accordé doit être gardé par loop().
+DAY_MAX = 30
+_DAY = re.compile(r"day\(\)\s*(==|>=|<=|>|<)\s*(\d+)")
+
+
+def _split_top(cond: str, sep: str) -> list[str]:
+    parts, depth, cur, i, quote = [], 0, "", 0, False
+    while i < len(cond):
+        c = cond[i]
+        if c == "'":
+            quote = not quote
+        if not quote:
+            depth += c == "("
+            depth -= c == ")"
+            if depth == 0 and cond.startswith(sep, i):
+                parts.append(cur)
+                cur, i = "", i + len(sep)
+                continue
+        cur += c
+        i += 1
+    parts.append(cur)
+    return [x.strip() for x in parts]
+
+
+def _wrapped(p: str) -> bool:
+    if not (p.startswith("(") and p.endswith(")")):
+        return False
+    depth = 0
+    for i, c in enumerate(p):
+        depth += c == "("
+        depth -= c == ")"
+        if depth == 0 and i < len(p) - 1:
+            return False
+    return True
+
+
+def _term_window(t: str) -> tuple[int, int]:
+    t = t.strip()
+    if t.startswith("not "):
+        return (1, DAY_MAX)
+    if _wrapped(t):
+        return day_window(t[1:-1])
+    m = _DAY.fullmatch(t)
+    if not m:
+        return (1, DAY_MAX)
+    op, n = m.group(1), int(m.group(2))
+    return {"==": (n, n), ">=": (n, DAY_MAX), ">": (n + 1, DAY_MAX), "<=": (1, n), "<": (1, n - 1)}[op]
+
+
+def day_window(cond: str) -> tuple[int, int]:
+    """Fenêtre de jours d'une condition : union sur les « or », intersection sur les « and »."""
+    if not cond or "day()" not in cond:
+        return (1, DAY_MAX)
+    lo_all, hi_all = DAY_MAX + 1, 0
+    for disj in _split_top(cond.strip(), " or "):
+        lo, hi = 1, DAY_MAX
+        for term in _split_top(disj, " and "):
+            tl, th = _term_window(term)
+            lo, hi = max(lo, tl), min(hi, th)
+        if lo <= hi:
+            lo_all, hi_all = min(lo_all, lo), max(hi_all, hi)
+    return (lo_all, hi_all) if lo_all <= hi_all else (1, DAY_MAX)
+
+
+def _inter(a, b):
+    lo, hi = max(a[0], b[0]), min(a[1], b[1])
+    return (lo, hi) if lo <= hi else a
+
+
+win: dict[tuple[str, str], tuple[int, int]] = {}
+entries: list[tuple[str, str, tuple[int, int]]] = [("prologue_j1", "start", (1, 2))]
+for ev in events:
+    if ":" in ev.get("dialogue", ""):
+        d, b = ev["dialogue"].split(":", 1)
+        entries.append((d, b, day_window(ev.get("when", ""))))
+action_windows = []
+for sid, sec in sectors.items():
+    swin = day_window(sec.get("available", ""))
+    for nid, n in sec.get("nodes", {}).items():
+        for a in n.get("actions", []):
+            aw = _inter(swin, day_window(a.get("if", "")))
+            action_windows.append((f"nodes/{nid}/{a.get('id')}", a, aw))
+            if ":" in a.get("dialogue", ""):
+                d, b = a["dialogue"].split(":", 1)
+                entries.append((d, b, aw))
+for (d, b) in list(dialogue_refs):
+    if d in ("refuge", "refuge_groupe"):
+        entries.append((d, b, (1, DAY_MAX)))
+stack = list(entries)
+while stack:
+    d, b, w = stack.pop()
+    if d not in dialogues or b not in dialogues[d].get("blocks", {}):
+        continue
+    old = win.get((d, b))
+    new = w if old is None else (min(old[0], w[0]), max(old[1], w[1]))
+    if new == old:
+        continue
+    win[(d, b)] = new
+    for st in dialogues[d]["blocks"][b]:
+        if "goto" in st:
+            stack.append((d, st["goto"], new))
+        if "then" in st:
+            stack.append((d, st["then"], _inter(new, day_window(st.get("if", "")))))
+        if "else" in st:
+            stack.append((d, st["else"], new))
+        for opt in st.get("choice", []):
+            if "goto" in opt:
+                stack.append((d, opt["goto"], new))
+
+first_flag: dict[str, int] = {}
+first_souv: dict[str, int] = {}
+
+
+def _note_writes(fx: list, lo: int) -> None:
+    for e in fx:
+        parts = str(e).split()
+        if len(parts) < 2:
+            continue
+        if parts[0] == "flag":
+            first_flag[parts[1]] = min(first_flag.get(parts[1], 99), lo)
+        elif parts[0] in ("join", "leave"):
+            first_flag["party." + parts[1]] = min(first_flag.get("party." + parts[1], 99), lo)
+        elif parts[0] == "souvenir":
+            first_souv[parts[1]] = min(first_souv.get(parts[1], 99), lo)
+
+
+reads: list[tuple[str, str, tuple[int, int]]] = []
+for (d, b), w in win.items():
+    for i, st in enumerate(dialogues[d]["blocks"][b]):
+        _note_writes(st.get("fx", []), w[0])
+        for opt in st.get("choice", []):
+            _note_writes(opt.get("fx", []), w[0])
+            if opt.get("if"):
+                reads.append((opt["if"], f"{d}:{b}:{i}", _inter(w, day_window(opt["if"]))))
+        if st.get("if"):
+            reads.append((st["if"], f"{d}:{b}:{i}", w))
+for where, a, aw in action_windows:
+    _note_writes(a.get("fx", []) + a.get("win_fx", []), aw[0])
+    if a.get("if"):
+        reads.append((a["if"], where, aw))
+for ev in events:
+    reads.append((ev.get("when", ""), f"events/{ev.get('id')}", day_window(ev.get("when", ""))))
+for cond, where, w in reads:
+    for fn, arg in re.findall(r"(\w+)\(\s*'([^']*)'\s*(?:,[^)]*)?\)", cond):
+        if fn == "flag" and arg in first_flag and not arg.startswith(IMPLICIT_FLAG_PREFIXES):
+            if w[1] < first_flag[arg] and "not flag('%s')" % arg not in cond:
+                err(f"{where} : chronologie — « {arg} » lu au plus tard le J{w[1]}, mais posé au plus tôt le J{first_flag[arg]}")
+        elif fn == "souvenir" and arg in first_souv and w[1] < first_souv[arg] and "loop()" not in cond \
+                and "not souvenir('%s')" % arg not in cond:
+            err(f"{where} : chronologie — souvenir « {arg} » lu au plus tard le J{w[1]}, accordé au plus tôt le J{first_souv[arg]} "
+                f"(ajouter une garde loop() : il ne peut venir que d'une boucle précédente)")
 
 # --- Rapport -------------------------------------------------------------------------------------
 n_steps = sum(len(b) for d in dialogues.values() for b in d.get("blocks", {}).values())

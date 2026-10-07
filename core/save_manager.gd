@@ -85,6 +85,16 @@ func update_meta(store) -> void:
 	for s in store.souvenirs:
 		if not meta["souvenirs"].has(s):
 			meta["souvenirs"].append(s)
+	if not meta.has("echoes"):
+		meta["echoes"] = []
+	if not meta.has("endings"):
+		meta["endings"] = []
+	for f in store.flags:
+		var key := str(f)
+		if key.begins_with("echo.") and not meta["echoes"].has(key.substr(5)):
+			meta["echoes"].append(key.substr(5))
+		if key.begins_with("issue.") and not meta["endings"].has(key.substr(6)):
+			meta["endings"].append(key.substr(6))
 	_write(META_PATH, meta)
 
 

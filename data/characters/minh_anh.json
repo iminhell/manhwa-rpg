@@ -17,5 +17,25 @@
     "ja": "tts_minh_anh_ja",
     "timbre": "mezzo neutre, précise"
   },
-  "art_token": "minhanh_tran"
+  "art_token": "minhanh_tran",
+  "combat": {
+    "stats": {
+      "hp": 70,
+      "atk": 10,
+      "def": 3,
+      "spd": 13,
+      "mana": 100
+    },
+    "position": [
+      2,
+      0
+    ],
+    "skills": [
+      "analyse",
+      "essaim",
+      "surcharge",
+      "patch",
+      "inversion"
+    ]
+  }
 }

@@ -1,0 +1,96 @@
+{
+ "note": "Indice de Résilience de la ville (IR, §14.3) : base + points par condition. Lu par ir() dans les conditions ; décide de la Nuit du Déversement avec la Pression (P × IR).",
+ "base": 20,
+ "rules": [
+  {
+   "if": "flag('camp_sauve')",
+   "pts": 6,
+   "label": "Camp de Yeouido debout"
+  },
+  {
+   "if": "v('camp.defense') >= 30",
+   "pts": 4,
+   "label": "Camp fortifié"
+  },
+  {
+   "if": "flag('treve_signee')",
+   "pts": 10,
+   "label": "Trêve de la Tour"
+  },
+  {
+   "if": "v('eau.controle', '') == 'rats' or v('eau.controle', '') == 'partage'",
+   "pts": 6,
+   "label": "Eau partagée"
+  },
+  {
+   "if": "v('eau.controle', '') == 'personne'",
+   "pts": -6,
+   "label": "Pompes détruites"
+  },
+  {
+   "if": "flag('forage_interdit')",
+   "pts": 3,
+   "label": "Forages interdits"
+  },
+  {
+   "if": "flag('sacrifice3_empeche')",
+   "pts": 6,
+   "label": "Sanctuaire tenu"
+  },
+  {
+   "if": "flag('sanctuaire_tombe')",
+   "pts": -8,
+   "label": "Sanctuaire tombé"
+  },
+  {
+   "if": "flag('vassaux_liberes')",
+   "pts": 3,
+   "label": "Vassaux libérés"
+  },
+  {
+   "if": "v('refuge.defense') >= 15",
+   "pts": 4,
+   "label": "Refuge fortifié"
+  },
+  {
+   "if": "flag('exode_sauve')",
+   "pts": 6,
+   "label": "Dernier Exode protégé"
+  },
+  {
+   "if": "flag('cendre_suspendu')",
+   "pts": 8,
+   "label": "Protocole Cendre suspendu"
+  },
+  {
+   "if": "flag('cendre_tombee')",
+   "pts": -10,
+   "label": "Un secteur rasé par le Protocole Cendre"
+  },
+  {
+   "if": "flag('simone_alliee')",
+   "pts": 6,
+   "label": "Unité 0 aux côtés d'Elias"
+  },
+  {
+   "if": "flag('machine_detruite')",
+   "pts": 3,
+   "label": "Machine d'Inversion détruite"
+  },
+  {
+   "if": "flag('haein_sauvee') and not flag('arche_revelee')",
+   "pts": 4,
+   "label": "Haesong stable"
+  },
+  {
+   "if": "flag('xiaoyu_sauvee') or flag('xiaoyu_survit')",
+   "pts": 4,
+   "label": "Barges de Longwei"
+  },
+  {
+   "if": "flag('ryeon_sauvee')",
+   "pts": 4,
+   "label": "Milice des Collines"
+  }
+ ]
+}

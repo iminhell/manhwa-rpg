@@ -387,6 +387,298 @@
           "log": "L'Hôte décroche sa mâchoire. Le Banquet est servi."
         }
       ]
+    },
+    "nadia_boss": {
+      "name": "Nadia — le Reflet Blanc",
+      "stats": {
+        "hp": 110,
+        "atk": 19.0,
+        "def": 6,
+        "spd": 16,
+        "mana": 120
+      },
+      "skills": [
+        "saiga",
+        "tir_tete",
+        "fumigene"
+      ],
+      "color": "#ecf0f1",
+      "boss": true,
+      "phases": [
+        {
+          "below": 0.4,
+          "spd_mult": 1.3,
+          "log": "Nadia jette sa lunette. « Plus besoin de viser. Tu es trop près. »"
+        }
+      ]
+    },
+    "automate_mirae": {
+      "name": "Automate de Mirae",
+      "stats": {
+        "hp": 90,
+        "atk": 15.5,
+        "def": 8,
+        "spd": 10,
+        "mana": 40
+      },
+      "skills": [
+        "pince",
+        "rayon_inversion"
+      ],
+      "color": "#5dade2",
+      "boss": false
+    },
+    "machine_inversion": {
+      "name": "La Machine d'Inversion",
+      "stats": {
+        "hp": 420,
+        "atk": 18.0,
+        "def": 9,
+        "spd": 8,
+        "mana": 160
+      },
+      "skills": [
+        "rayon_inversion",
+        "registre_ferme"
+      ],
+      "color": "#2e86c1",
+      "boss": true,
+      "phases": [
+        {
+          "below": 0.5,
+          "atk_mult": 1.25,
+          "log": "Les anneaux de la Machine s'emballent. Le temps bégaie autour d'elle."
+        }
+      ]
+    },
+    "soldat_unite0": {
+      "name": "Soldat de l'Unité 0",
+      "stats": {
+        "hp": 95,
+        "atk": 16.0,
+        "def": 7,
+        "spd": 11,
+        "mana": 30
+      },
+      "skills": [
+        "fusil_unite0",
+        "crosse"
+      ],
+      "color": "#7d6608",
+      "boss": false
+    },
+    "executeur": {
+      "name": "Exécuteur du Système",
+      "stats": {
+        "hp": 150,
+        "atk": 20.0,
+        "def": 9,
+        "spd": 12,
+        "mana": 60
+      },
+      "skills": [
+        "lame_executeur",
+        "sentence"
+      ],
+      "color": "#f4d03f",
+      "boss": false
+    },
+    "minotaure_miroir": {
+      "name": "Le Minotaure de Miroir",
+      "stats": {
+        "hp": 520,
+        "atk": 20.0,
+        "def": 9,
+        "spd": 10,
+        "mana": 140
+      },
+      "skills": [
+        "corne_miroir",
+        "reflet_inverse"
+      ],
+      "color": "#aab7b8",
+      "boss": true,
+      "phases": [
+        {
+          "below": 0.5,
+          "atk_mult": 1.25,
+          "log": "Le Minotaure brise ses propres reflets. Il n'y a plus qu'un seul monstre, et il est furieux."
+        }
+      ]
+    },
+    "spectre": {
+      "name": "Spectre de la boucle",
+      "stats": {
+        "hp": 60,
+        "atk": 15.0,
+        "def": 3,
+        "spd": 13,
+        "mana": 30
+      },
+      "skills": [
+        "plainte",
+        "griffes"
+      ],
+      "color": "#d5d8dc",
+      "boss": false
+    },
+    "bourreau_vert": {
+      "name": "Le Bourreau Vert",
+      "stats": {
+        "hp": 500,
+        "atk": 20.0,
+        "def": 8,
+        "spd": 10,
+        "mana": 140
+      },
+      "skills": [
+        "corde",
+        "pendaison"
+      ],
+      "color": "#196f3d",
+      "boss": true,
+      "phases": [
+        {
+          "below": 0.4,
+          "spd_mult": 1.3,
+          "log": "Le Bourreau tire sur toutes ses cordes à la fois. Les arbres gémissent."
+        }
+      ]
+    },
+    "juge_sans_visage": {
+      "name": "Le Juge Sans Visage",
+      "stats": {
+        "hp": 540,
+        "atk": 21.0,
+        "def": 10,
+        "spd": 9,
+        "mana": 150
+      },
+      "skills": [
+        "marteau",
+        "verdict"
+      ],
+      "color": "#f8f9f9",
+      "boss": true,
+      "phases": [
+        {
+          "below": 0.5,
+          "atk_mult": 1.2,
+          "log": "« Accusé, levez-vous. » Le Juge relit tes crimes, un par un."
+        }
+      ]
+    },
+    "champion_hier": {
+      "name": "Le Champion d'Hier",
+      "stats": {
+        "hp": 130,
+        "atk": 17.0,
+        "def": 7,
+        "spd": 13,
+        "mana": 120
+      },
+      "skills": [
+        "lame_hier",
+        "charge_hier",
+        "recouvrement_hier"
+      ],
+      "color": "#566573",
+      "boss": true,
+      "phases": [
+        {
+          "below": 0.35,
+          "atk_mult": 1.25,
+          "log": "Le Champion sourit avec ton visage. « Moi aussi, je voulais la sauver. »"
+        }
+      ]
+    },
+    "jardiniere": {
+      "name": "La Jardinière",
+      "stats": {
+        "hp": 480,
+        "atk": 19.0,
+        "def": 8,
+        "spd": 11,
+        "mana": 150
+      },
+      "skills": [
+        "epine",
+        "floraison"
+      ],
+      "color": "#a9cce3",
+      "boss": true,
+      "phases": [
+        {
+          "below": 0.5,
+          "spd_mult": 1.25,
+          "log": "La Jardinière arrache une poignée de Fins et les jette au vent."
+        }
+      ]
+    },
+    "epine_vivante": {
+      "name": "Ronce vivante",
+      "stats": {
+        "hp": 70,
+        "atk": 14.0,
+        "def": 5,
+        "spd": 10,
+        "mana": 20
+      },
+      "skills": [
+        "epine"
+      ],
+      "color": "#7dcea0",
+      "boss": false
+    },
+    "prophete_boss": {
+      "name": "Le Prophète",
+      "stats": {
+        "hp": 560,
+        "atk": 21.0,
+        "def": 8,
+        "spd": 12,
+        "mana": 180
+      },
+      "skills": [
+        "chant_prophete",
+        "page_arrachee",
+        "main_soignante"
+      ],
+      "color": "#fdfefe",
+      "boss": true,
+      "phases": [
+        {
+          "below": 0.5,
+          "atk_mult": 1.2,
+          "add_skills": [
+            "registre_ferme"
+          ],
+          "log": "Le masque blanc se fend. Dessous, des lunettes rondes rafistolées au scotch."
+        }
+      ]
+    },
+    "administratrice": {
+      "name": "L'Administratrice",
+      "stats": {
+        "hp": 600,
+        "atk": 22.0,
+        "def": 9,
+        "spd": 12,
+        "mana": 200
+      },
+      "skills": [
+        "glyphe_noir",
+        "registre_ferme"
+      ],
+      "color": "#f5b041",
+      "boss": true,
+      "phases": [
+        {
+          "below": 0.5,
+          "atk_mult": 1.2,
+          "log": "Les yeux de Haneul se remplissent d'encre. « Je tiens les comptes, Lecteur. Les tiens sont dans le rouge. »"
+        }
+      ]
     }
   }
 }

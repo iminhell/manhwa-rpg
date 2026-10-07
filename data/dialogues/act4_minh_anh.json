@@ -1,0 +1,381 @@
+{
+ "id": "act4_minh_anh",
+ "title": "Acte IV — La Machine d'Inversion",
+ "start": "start",
+ "speakers": {
+  "jang": "Président Jang"
+ },
+ "blocks": {
+  "start": [
+   {
+    "goto": "machine"
+   }
+  ],
+  "machine": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "boss"
+   },
+   {
+    "s": "narrator",
+    "t": "Vingt-sixième nuit. Sous-niveau 9 de Mirae Dynamics. Une salle ronde, sans angle. Au centre, la Machine d'Inversion : trois anneaux d'acier qui tournent autour d'un fauteuil vide, et des câbles qui descendent dans le sol, vers Yongsan."
+   },
+   {
+    "s": "narrator",
+    "t": "Une femme en blouse blanche s'attache elle-même au fauteuil. Une tresse noire jusqu'aux reins, des lunettes rectangulaires, trois ports argentés à la tempe dont les LEDs clignotent en bleu."
+   },
+   {
+    "if": "not knows_fin('minh_anh')",
+    "then": "machine_fin"
+   },
+   {
+    "goto": "machine_suite"
+   }
+  ],
+  "machine_fin": [
+   {
+    "s": "registre",
+    "t": "Lecture de la Fin — Dr Tran Minh-Anh. Jour 26, Nuit. Sous-niveau 9. Désintégrée par la surcharge de la Machine d'Inversion."
+   },
+   {
+    "fx": [
+     "fin minh_anh"
+    ]
+   },
+   {
+    "goto": "machine_suite"
+   }
+  ],
+  "machine_suite": [
+   {
+    "s": "minh_anh",
+    "t": "L'anomalie temporelle. Tu arrives pendant le protocole. C'est soit une coïncidence statistiquement absurde, soit une confirmation.",
+    "e": "red_leds",
+    "v": true
+   },
+   {
+    "s": "jang",
+    "t": "Docteur, la régression artificielle avant la Descente. Je vous ai donné trois semaines. Pas de cobaye volontaire ? Soyez le vôtre.",
+    "e": "neutral"
+   },
+   {
+    "if": "flag('ampli_sabote')",
+    "then": "machine_sirene"
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — Tran Minh-Anh. Jour 26, Nuit. Ici. Dans quatre minutes."
+   },
+   {
+    "choice": [
+     {
+      "t": "« Prends mes données. Le Registre. Tout ce que je sais des boucles. Ta machine n'aura plus besoin de toi. »",
+      "goto": "offre_donnees",
+      "fx": [
+       "add align.chaos 2"
+      ],
+      "if": "loop() >= 2 or flag('mirae_anomalie') or trust('minh_anh') >= 5"
+     },
+     {
+      "t": "« Une héroïne meurt à chaque boucle pour que je revienne. Voilà le coût. Tu veux vraiment le payer à leur place ? »",
+      "goto": "offre_cout",
+      "fx": [
+       "add trust.minh_anh 6"
+      ],
+      "if": "flag('aoi_morte') or flag('aoi_tombee') or flag('seo_morte') or flag('maricel_morte') or flag('maricel_tombee') or flag('ryeon_morte') or flag('xiaoyu_morte') or flag('hae_in_morte') or flag('nadia_morte') or flag('simone_morte') or (loop() >= 2 and (flag('echo.aoi_morte') or flag('echo.seo_morte') or flag('echo.maricel_morte') or flag('echo.ryeon_morte')))"
+     },
+     {
+      "t": "Arracher les câbles. Saboter la Machine et l'en sortir de force.",
+      "goto": "offre_sabotage",
+      "fx": [
+       "add align.protect 2"
+      ]
+     },
+     {
+      "t": "La laisser faire. C'est son choix.",
+      "goto": "offre_laisser",
+      "fx": [
+       "add align.bond -2"
+      ]
+     }
+    ]
+   }
+  ],
+  "machine_sirene": [
+   {
+    "s": "minh_anh",
+    "t": "Il me manque les données de foule du neuvième jour. Quelqu'un a cassé la Sirène. La Machine est instable à quarante pour cent.",
+    "e": "neutral"
+   },
+   {
+    "s": "elias",
+    "t": "C'était moi.",
+    "e": "neutral"
+   },
+   {
+    "s": "minh_anh",
+    "t": "…Évidemment. L'anomalie casse tout ce qu'elle touche. Statistiquement cohérent.",
+    "e": "red_leds"
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — Tran Minh-Anh. Jour 26, Nuit. Ici. Dans quatre minutes."
+   },
+   {
+    "choice": [
+     {
+      "t": "« Prends mes données. Le Registre. Tout ce que je sais des boucles. »",
+      "goto": "offre_donnees",
+      "fx": [
+       "add align.chaos 2"
+      ],
+      "if": "loop() >= 2 or flag('mirae_anomalie') or trust('minh_anh') >= 5"
+     },
+     {
+      "t": "« Une héroïne meurt à chaque boucle pour que je revienne. Voilà le coût. »",
+      "goto": "offre_cout",
+      "fx": [
+       "add trust.minh_anh 6"
+      ],
+      "if": "flag('aoi_morte') or flag('aoi_tombee') or flag('seo_morte') or flag('maricel_morte') or flag('maricel_tombee') or flag('ryeon_morte') or flag('xiaoyu_morte') or flag('hae_in_morte') or flag('nadia_morte') or flag('simone_morte') or (loop() >= 2 and (flag('echo.aoi_morte') or flag('echo.seo_morte') or flag('echo.maricel_morte') or flag('echo.ryeon_morte')))"
+     },
+     {
+      "t": "Arracher les câbles. Saboter la Machine et l'en sortir de force.",
+      "goto": "offre_sabotage",
+      "fx": [
+       "add align.protect 2"
+      ]
+     },
+     {
+      "t": "La laisser faire.",
+      "goto": "offre_laisser",
+      "fx": [
+       "add align.bond -2"
+      ]
+     }
+    ]
+   }
+  ],
+  "offre_donnees": [
+   {
+    "s": "narrator",
+    "t": "Tu poses ta main sur la plaque d'interface. Les glyphes de ton cou s'allument. Pendant dix secondes, la Machine boit le Registre : des dates, des morts, des aubes."
+   },
+   {
+    "s": "minh_anh",
+    "t": "… Trois cent douze. Il y a eu trois cent douze boucles avant les tiennes. Ce n'est pas ta signature. C'est… une autre Lectrice.",
+    "e": "red_leds",
+    "v": true
+   },
+   {
+    "s": "minh_anh",
+    "t": "Je n'ai plus besoin d'essayer sur moi. J'ai la vraie courbe. Président Jang, le protocole est annulé.",
+    "e": "neutral"
+   },
+   {
+    "s": "jang",
+    "t": "Vous n'avez pas l'autorité, Docteur.",
+    "e": "anger"
+   },
+   {
+    "s": "minh_anh",
+    "t": "J'ai l'autorité de savoir comment fonctionne la seule machine qui compte. Sortez de mon laboratoire.",
+    "e": "neutral"
+   },
+   {
+    "fx": [
+     "flag minh_anh_sait",
+     "add trust.minh_anh 10"
+    ]
+   },
+   {
+    "goto": "machine_sauvee"
+   }
+  ],
+  "offre_cout": [
+   {
+    "s": "elias",
+    "t": "Aoi, Seo-Yeon, Maricel, Ryeon. Chaque fois que je reviens, l'une d'elles paie. Ta machine ne fait pas revenir les gens. Elle choisit qui meurt.",
+    "e": "sad",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Minh-Anh reste immobile, les mains sur les sangles. Ses LEDs passent du bleu au rouge, et y restent."
+   },
+   {
+    "s": "minh_anh",
+    "t": "Neuf. Chez Haesong, il y en a eu neuf. Je leur ai donné deux cent mille wons et j'ai signé les rapports. Je ne veux pas en faire dix.",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle défait les sangles, une à une, avec des doigts qui tremblent pour la première fois."
+   },
+   {
+    "fx": [
+     "add aff.minh_anh 8"
+    ]
+   },
+   {
+    "goto": "machine_sauvee"
+   }
+  ],
+  "offre_sabotage": [
+   {
+    "s": "minh_anh",
+    "t": "Ne touche pas aux anneaux ! Si tu coupes l'alimentation en pleine rotation…",
+    "e": "fear"
+   },
+   {
+    "s": "narrator",
+    "t": "Trop tard. Les anneaux s'emballent. Les automates de maintenance se tournent vers toi, pinces levées. Les sécurités de Mirae ne font pas de différence entre une intrusion et une panne."
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "machine_inversion"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "s": "narrator",
+    "t": "La Machine s'arrête dans un hurlement de métal tordu. Tu arraches Minh-Anh du fauteuil. Elle ne pèse presque rien. Elle s'agrippe à ta veste."
+   },
+   {
+    "s": "minh_anh",
+    "t": "Tu as détruit trois ans de travail. Et l'unique appareil capable de te comprendre. Je… je ne sais pas si je dois te remercier.",
+    "e": "red_leds",
+    "v": true
+   },
+   {
+    "fx": [
+     "flag machine_detruite",
+     "add trust.minh_anh 6"
+    ]
+   },
+   {
+    "goto": "machine_sauvee"
+   }
+  ],
+  "offre_laisser": [
+   {
+    "s": "narrator",
+    "t": "Tu recules dans l'ombre. Les anneaux accélèrent. La lumière blanchit, puis devient insoutenable."
+   },
+   {
+    "s": "narrator",
+    "t": "Quand elle retombe, le fauteuil est vide. Il reste une paire de lunettes rectangulaires, fondues sur l'accoudoir."
+   },
+   {
+    "s": "registre",
+    "t": "Tran Minh-Anh — Jour 26, Nuit. La Fin est accomplie."
+   },
+   {
+    "fx": [
+     "flag minh_anh_morte"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "machine_sauvee": [
+   {
+    "s": "minh_anh",
+    "t": "Hypothèse : si je reste ici, Jang me fera disparaître avant le matin. Hypothèse bis : si je pars avec toi, j'aurai accès au plus beau problème de l'histoire. Les deux mènent à la même conclusion.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "elias",
+    "t": "Tu viens.",
+    "e": "smirk"
+   },
+   {
+    "s": "minh_anh",
+    "t": "Je viens. Pour la science. Et… pas seulement.",
+    "e": "red_leds"
+   },
+   {
+    "s": "registre",
+    "t": "Tran Minh-Anh a rejoint le groupe. Nouvelle Fin : Jour 30, l'étage 10 la « recrute » comme nouvelle administratrice de la Tour."
+   },
+   {
+    "fx": [
+     "flag minh_anh_sauvee",
+     "join minh_anh",
+     "fin minh_anh_2",
+     "souvenir machine_inversion",
+     "pressure -2"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "absent": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "registre"
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — Surcharge de la Machine d'Inversion. Tu n'es pas là."
+   },
+   {
+    "s": "registre",
+    "t": "Au Sous-niveau 9, une femme s'attache elle-même à un fauteuil, faute de cobaye volontaire. Les anneaux tournent."
+   },
+   {
+    "s": "registre",
+    "t": "Tran Minh-Anh — Jour 26, Nuit. La Fin est accomplie. Mirae garde ses données. Jang garde sa machine."
+   },
+   {
+    "fx": [
+     "flag minh_anh_morte"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "defeat": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Le monde bascule. Le sol, le ciel, la Tour qui regarde."
+   },
+   {
+    "s": "elias",
+    "t": "Pas… encore…",
+    "e": "exhausted"
+   },
+   {
+    "s": "registre",
+    "t": "ÉCHEC — Le Lecteur est mort."
+   },
+   {
+    "s": "registre",
+    "t": "Régression."
+   },
+   {
+    "event": "regress",
+    "args": {}
+   },
+   {
+    "end": true
+   }
+  ]
+ }
+}

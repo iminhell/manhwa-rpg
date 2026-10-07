@@ -3,6 +3,7 @@ extends Node
 
 const StateStore := preload("res://core/state_store.gd")
 const WorldModel := preload("res://world/world_model.gd")
+const Echoes := preload("res://core/echoes.gd")
 
 signal regressed(loop: int)
 
@@ -24,10 +25,15 @@ func _ready() -> void:
 	new_game()
 
 
-func new_game() -> void:
+func new_game(mode: String = "") -> void:
 	store = StateStore.new()
 	store.set_var("loop", 1)
+	store.set_var("difficulte", mode if mode != "" else str(DataDB.difficulty.get("default", "normal")))
 	_build_world()
+
+
+func difficulty() -> Dictionary:
+	return DataDB.difficulty.get("modes", {}).get(store.mode(), {})
 
 
 ## Restaure une sauvegarde (contenu de StateStore.to_dict()).
@@ -39,7 +45,8 @@ func load_store(data: Dictionary) -> void:
 
 
 func _build_world() -> void:
-	world = WorldModel.new(store, DataDB.world, DataDB.events, DataDB.refuge)
+	store.resilience = DataDB.resilience
+	world = WorldModel.new(store, DataDB.world, DataDB.events, DataDB.refuge, difficulty(), DataDB.gifts, DataDB.group_scenes)
 
 
 func phase_name() -> String:
@@ -50,13 +57,19 @@ func advance_phase(count: int = 1) -> void:
 	store.advance_ticks(count * StateStore.TICKS_PER_PHASE - store.ticks() % StateStore.TICKS_PER_PHASE)
 
 
-## Régression : retour au J1. Les souvenirs et le compteur de boucle persistent (§4 du GDD).
+## Régression : retour au J1. Persistent : les souvenirs, le compteur de boucle, le mode de difficulté,
+## et les Échos (data/world/echoes.json) — ce qu'Elias a accompli dans les boucles précédentes.
 func regress() -> void:
 	var kept_souvenirs := store.souvenirs.duplicate()
 	var loop := store.loop() + 1
+	var kept_echoes := Echoes.after_loop(store, DataDB.echoes)
+	var mode := store.mode()
 	store = StateStore.new()
 	store.souvenirs = kept_souvenirs
 	store.set_var("loop", loop)
+	store.set_var("difficulte", mode)
+	for e in kept_echoes:
+		store.set_flag(e)
 	_build_world()
 	regressed.emit(loop)
 
@@ -68,6 +81,17 @@ func party_ids() -> Array:
 		if id != "elias" and store.has_flag("party." + id):
 			ids.append(id)
 	return ids
+
+
+## Escouade de combat : Elias + les 5 héroïnes les plus liées (la grille 3×3 ne tient pas 11 personnes).
+const SQUAD_MAX := 6
+
+func squad(ids: Array) -> Array:
+	if ids.size() <= SQUAD_MAX:
+		return ids
+	var others := ids.filter(func(id): return id != "elias")
+	others.sort_custom(func(a, b): return store.aff(a) > store.aff(b))
+	return ["elias"] + others.slice(0, SQUAD_MAX - 1)
 
 
 ## Modificateur de combat lié à la Fatigue (§3.1) : 5e phase éveillé −15 %, 6e −30 %.

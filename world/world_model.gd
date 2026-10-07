@@ -3,13 +3,15 @@ extends RefCounted
 ## fatigue, événements datés (Ancres) et recherche de chemin. Voir GDD §3 et §7.
 ##
 ## Temps : 1 tick = ¼ de phase. Déplacement entre sous-zones = 1 tick, action = 2 ticks par défaut,
-## secteur adjacent = 4 ticks (1 phase), secteur non adjacent = 8 ticks (2 phases).
+## secteur adjacent = 3 ticks, secteur non adjacent = 6 ticks (v0.8).
+## Jours de répit (v0.9) : la Tour « retient son souffle » ; pas d'Ancre ni de combat, et à la nuit le temps
+## revient au matin du répit (les liens tissés restent). Cadeaux : achetés sur un nœud, offerts au Refuge.
 ## Le temps avance tick par tick : un événement daté interrompt l'avancée à la frontière de phase.
 
 const TRAVEL_ADJACENT := 3   ## v0.8 : assoupli (mesure du temps libre, GDD §19.7.5)
 const TRAVEL_FAR := 6
 const COLLAPSE_FATIGUE := 32   ## 8 phases éveillé : malaise forcé
-const SPECIAL_SECTORS := ["etage1", "etage2", "etage3", "etage4"]  ## accessibles uniquement depuis un secteur adjacent
+const SPECIAL_SECTORS := ["etage1", "etage2", "etage3", "etage4", "etage5", "etage6", "etage7", "etage8", "etage9", "etage10"]  ## accessibles uniquement depuis un secteur adjacent
 const RefugeModel := preload("res://world/refuge_model.gd")
 
 var store
@@ -19,11 +21,19 @@ var events: Array = []
 var messages: Array = []        ## messages à afficher (vidés par l'UI)
 var pending_event: Dictionary = {}
 var refuge  ## RefugeModel
+var difficulty: Dictionary = {}  ## mode de la boucle (data/world/difficulty.json → modes.<mode>)
+var gifts: Dictionary = {}       ## data/world/gifts.json
+var group_scenes: Array = []     ## data/world/group_scenes.json → scenes
 
 
-func _init(state_store, world_data: Dictionary, events_data: Dictionary, refuge_data: Dictionary = {}) -> void:
+func _init(state_store, world_data: Dictionary, events_data: Dictionary, refuge_data: Dictionary = {},
+		difficulty_data: Dictionary = {}, gifts_data: Dictionary = {}, group_data: Dictionary = {}) -> void:
 	store = state_store
+	group_scenes = group_data.get("scenes", [])
+	difficulty = difficulty_data
+	gifts = gifts_data
 	refuge = RefugeModel.new(state_store, refuge_data)
+	refuge.difficulty = difficulty_data
 	sectors = world_data.get("sectors", {})
 	factions = world_data.get("factions", {})
 	events = events_data.get("events", [])
@@ -136,15 +146,36 @@ func actions() -> Array:
 			continue
 		if not store.check(str(a.get("if", ""))):
 			continue
+		if in_repit() and a.has("encounter"):
+			continue
 		out.append(a)
+	for gid in gifts.get("gifts", {}):
+		var g: Dictionary = gifts["gifts"][gid]
+		if str(g.get("node", "")) == nid and store.money() >= int(g.get("price", 0)):
+			out.append({"id": "_buy_" + gid, "label": "Acheter un cadeau : %s (%d)" % [g.get("name", gid), int(g.get("price", 0))],
+				"cost": 1, "fx": ["money -%d" % int(g.get("price", 0)), "item cadeau_%s 1" % gid]})
+	if in_repit():
+		out.append({"id": "_repit_fin", "label": "Clore le jour de répit (le temps revient au matin)", "cost": 0, "repit_end": true})
 	if is_refuge(nid):
 		if refuge.node_id() == nid:
 			out.append({"id": "_manage", "label": "Gérer le Refuge (stock, améliorations)", "cost": 0, "panel": "refuge"})
-			if store.phase() >= 2:
+			if store.phase() >= 2 or in_repit():
 				for cid in _party_heroines():
 					if not refuge.rest_done_today(cid):
 						out.append({"id": "_rest_" + cid, "label": "Moment de repos avec %s" % cid.capitalize().replace("_", "-"),
 							"cost": 2, "rest": true, "dialogue": "refuge:" + cid})
+			if store.phase() >= 2 or in_repit():
+				for gs in group_scenes:
+					if _group_available(gs):
+						out.append({"id": "_groupe_" + str(gs["id"]), "label": "Scène de groupe : %s" % gs.get("label", gs["id"]),
+							"cost": 2, "dialogue": gs["dialogue"], "groupe": gs})
+			for cid in _party_heroines():
+				var gid := best_gift_for(cid)
+				if gid != "" and not store.has_flag("refuge.cadeau.%s.%s" % [cid, refuge.day_key()]):
+					out.append({"id": "_gift_" + cid, "label": "Offrir un cadeau à %s (%s)" % [cid.capitalize().replace("_", "-"),
+						gifts["gifts"][gid].get("name", gid)], "cost": 1, "gift": gid, "to": cid})
+			if not in_repit() and store.phase() <= 1 and can_start_repit():
+				out.append({"id": "_repit", "label": "Déclarer un jour de répit (la Tour retient son souffle)", "cost": 0, "repit": true})
 		else:
 			out.append({"id": "_establish", "label": "Établir le Refuge ici", "cost": 2, "establish": true})
 		out.append({"id": "_sleep", "label": "Dormir jusqu'à l'aube", "cost": 0, "sleep": true})
@@ -171,6 +202,16 @@ func do_action(a: Dictionary) -> Dictionary:
 		messages.append("Refuge établi : %s." % node(nid).get("name", nid))
 	if a.get("rest", false):
 		refuge.mark_rest(str(a.get("id", "")).trim_prefix("_rest_"))
+	if a.get("repit", false):
+		start_repit()
+		return {}
+	if a.get("repit_end", false):
+		end_repit()
+		return {}
+	if a.has("gift"):
+		give_gift(str(a["gift"]), str(a["to"]))
+	if a.has("groupe"):
+		store.set_flag(_group_flag(a["groupe"]))
 	if a.has("panel"):
 		return {"panel": a["panel"]}
 	if a.has("travel"):
@@ -182,6 +223,76 @@ func do_action(a: Dictionary) -> Dictionary:
 		if a.has(k):
 			result[k] = a[k]
 	return result
+
+
+# --- Jours de répit & cadeaux (v0.9) --------------------------------------------------
+
+func in_repit() -> bool:
+	return store.has_flag("repit.actif")
+
+
+func can_start_repit() -> bool:
+	if str(difficulty.get("repit", "objets")) == "illimite":
+		return true
+	return store.item("sablier") > 0
+
+
+func start_repit() -> void:
+	if str(difficulty.get("repit", "objets")) != "illimite":
+		store.apply_effects(["item sablier -1"])
+	store.set_flag("repit.actif")
+	store.set_var("repit.debut", store.ticks())
+	store.add_var("repit.compte", 1)
+	messages.append("Jour de répit. La Tour retient son souffle : aucune Ancre, aucune Marée, aucun combat. À la nuit, le temps reviendra à ce matin.")
+
+
+func end_repit() -> void:
+	if not in_repit():
+		return
+	store.set_var("time.ticks", int(store.get_var("repit.debut", store.ticks())))
+	store.set_flag("repit.actif", false)
+	store.set_var("fatigue", 0)
+	messages.append("Le répit s'achève. La Tour reprend son souffle : c'est de nouveau le matin du jour %d." % store.day())
+	refresh()
+
+
+## Scènes de groupe (§13.3) : tous les membres dans le groupe, condition remplie, une fois ou une fois par jour.
+func _group_available(gs: Dictionary) -> bool:
+	for m in gs.get("members", []):
+		if not store.party(str(m)):
+			return false
+	return store.check(str(gs.get("if", ""))) and not store.has_flag(_group_flag(gs))
+
+
+func _group_flag(gs: Dictionary) -> String:
+	if gs.get("once", false):
+		return "refuge.groupe.%s" % gs["id"]
+	return "refuge.groupe.%s.%s" % [gs["id"], refuge.day_key()]
+
+
+## Le meilleur cadeau du sac pour une héroïne : adoré > apprécié > n'importe lequel.
+func best_gift_for(cid: String) -> String:
+	var best := ""
+	var best_score := -1
+	for gid in gifts.get("gifts", {}):
+		if store.item("cadeau_" + gid) <= 0:
+			continue
+		var g: Dictionary = gifts["gifts"][gid]
+		var score := 2 if g.get("loves", []).has(cid) else (1 if g.get("likes", []).has(cid) else 0)
+		if score > best_score:
+			best_score = score
+			best = gid
+	return best
+
+
+func give_gift(gid: String, cid: String) -> void:
+	var g: Dictionary = gifts.get("gifts", {}).get(gid, {})
+	var tier := "loves" if g.get("loves", []).has(cid) else ("likes" if g.get("likes", []).has(cid) else "neutral")
+	var bonus: int = {"loves": 8, "likes": 4, "neutral": 1}[tier]
+	store.apply_effects(["item cadeau_%s -1" % gid, "add aff.%s %d" % [cid, bonus]])
+	store.set_flag("refuge.cadeau.%s.%s" % [cid, refuge.day_key()])
+	var text: String = g.get("reactions", {}).get(cid, gifts.get("default_reactions", {}).get(tier, ""))
+	messages.append("%s (Affinité +%d)" % [text, bonus])
 
 
 ## Dormir : la nuit passe, sauf si un événement nocturne l'interrompt.
@@ -218,6 +329,9 @@ func advance(n: int) -> void:
 	for i in n:
 		var before: int = store.phase()
 		store.advance_ticks(1)
+		if in_repit() and store.phase() == 3:
+			end_repit()
+			return
 		if store.phase() != before:
 			refresh()
 			if _check_events():
@@ -240,6 +354,8 @@ func advance(n: int) -> void:
 func _check_events() -> bool:
 	if not pending_event.is_empty():
 		return true
+	if in_repit():
+		return false
 	var ev := next_event()
 	if ev.is_empty():
 		return false

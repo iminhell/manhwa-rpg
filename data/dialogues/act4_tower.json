@@ -1,0 +1,1033 @@
+{
+ "id": "act4_tower",
+ "title": "Acte IV — Tour, étages 5 à 9",
+ "start": "start",
+ "speakers": {
+  "juge": "Le Juge Sans Visage",
+  "champion": "Le Champion d'Hier",
+  "jardiniere": "La Jardinière"
+ },
+ "blocks": {
+  "start": [
+   {
+    "goto": "etage5"
+   }
+  ],
+  "etage5": [
+   {
+    "bg": "tower_gate"
+   },
+   {
+    "music": "tower"
+   },
+   {
+    "s": "system",
+    "t": "ÉTAGE 5 — LE LABYRINTHE INVERSÉ. Règle : la gauche est la droite, les alliés apparaissent comme des ennemis."
+   },
+   {
+    "s": "narrator",
+    "t": "Des couloirs de miroirs. Ton reflet arrive toujours une seconde avant toi. Quand tu te retournes vers le groupe, tu vois des monstres qui portent leurs vêtements."
+   },
+   {
+    "if": "party('minh_anh')",
+    "then": "etage5_minh"
+   },
+   {
+    "s": "registre",
+    "t": "Portail de retour activé : le Vestibule mène désormais directement à l'étage 5."
+   },
+   {
+    "fx": [
+     "flag portail.5"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "etage5_minh": [
+   {
+    "s": "minh_anh",
+    "t": "Le motif est une permutation d'ordre sept. Fascinant. Ne regarde que mes LEDs : elles, la Tour ne peut pas les inverser.",
+    "e": "red_leds"
+   },
+   {
+    "s": "registre",
+    "t": "Portail de retour activé : le Vestibule mène désormais directement à l'étage 5."
+   },
+   {
+    "fx": [
+     "flag portail.5"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "etage6": [
+   {
+    "bg": "tower_gate"
+   },
+   {
+    "music": "tower"
+   },
+   {
+    "s": "system",
+    "t": "ÉTAGE 6 — LA FORÊT DES PENDUS. Règle : chaque mort de la boucle revient comme un spectre."
+   },
+   {
+    "s": "narrator",
+    "t": "Des cordes pendent de chaque branche. Certaines bougent encore. Entre les troncs, des silhouettes pâles marchent sans bruit vers toi."
+   },
+   {
+    "s": "registre",
+    "t": "Portail de retour activé : le Vestibule mène désormais directement à l'étage 6."
+   },
+   {
+    "fx": [
+     "flag portail.6"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "etage7": [
+   {
+    "bg": "tower_gate"
+   },
+   {
+    "music": "tower"
+   },
+   {
+    "s": "system",
+    "t": "ÉTAGE 7 — LE TRIBUNAL. Règle : les crimes commis en surface sont jugés."
+   },
+   {
+    "s": "narrator",
+    "t": "Des marches de marbre blanc. Des témoins sans bouche, alignés sur des gradins. Au fond, une balance dont un plateau porte ton nom."
+   },
+   {
+    "s": "registre",
+    "t": "Portail de retour activé : le Vestibule mène désormais directement à l'étage 7."
+   },
+   {
+    "fx": [
+     "flag portail.7"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "etage8": [
+   {
+    "bg": "tower_gate"
+   },
+   {
+    "music": "tower"
+   },
+   {
+    "s": "system",
+    "t": "ÉTAGE 8 — L'ARÈNE DES RANGS. Règle : seul le duel est autorisé."
+   },
+   {
+    "s": "narrator",
+    "t": "Une arène de sable sous un ciel sans étoiles. Sur les gradins, des milliers de spectateurs qui ont tous ton visage."
+   },
+   {
+    "s": "registre",
+    "t": "Portail de retour activé : le Vestibule mène désormais directement à l'étage 8."
+   },
+   {
+    "fx": [
+     "flag portail.8"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "etage9": [
+   {
+    "bg": "tower_gate"
+   },
+   {
+    "music": "tower"
+   },
+   {
+    "s": "system",
+    "t": "ÉTAGE 9 — LE JARDIN DES FINS. Règle : le Registre ne fonctionne pas. Les Fins poussent comme des fleurs."
+   },
+   {
+    "s": "narrator",
+    "t": "Des fleurs de papier à perte de vue. Sur chaque pétale, une date, une heure, un nom. Tu reconnais des noms. Tu reconnais le tien."
+   },
+   {
+    "s": "registre",
+    "t": "Portail de retour activé : le Vestibule mène désormais directement à l'étage 9."
+   },
+   {
+    "fx": [
+     "flag portail.9"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "minotaure": [
+   {
+    "bg": "tower_gate"
+   },
+   {
+    "music": "boss"
+   },
+   {
+    "s": "narrator",
+    "t": "Au cœur du Labyrinthe, une bête à tête de taureau faite de verre brisé. Chaque éclat reflète une version de toi qui a fait un autre choix."
+   },
+   {
+    "if": "party('minh_anh')",
+    "then": "minotaure_decode"
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "minotaure"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "goto": "minotaure_fin"
+   }
+  ],
+  "minotaure_decode": [
+   {
+    "s": "minh_anh",
+    "t": "Ordre sept. Il attaque toujours depuis le reflet qui se trouve à gauche de sa vraie position. Donc à droite. Frappe là.",
+    "e": "neutral"
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "minotaure_decode"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "goto": "minotaure_fin"
+   }
+  ],
+  "minotaure_fin": [
+   {
+    "s": "narrator",
+    "t": "Le Minotaure éclate en mille reflets qui tombent comme de la pluie. Dans chacun, une seconde, un Elias qui a perdu quelqu'un. Puis plus rien."
+   },
+   {
+    "s": "registre",
+    "t": "Gardien de l'Étage 5 vaincu."
+   },
+   {
+    "fx": [
+     "flag minotaure_vaincu",
+     "pressure -6",
+     "souvenir premier_conquerant_5"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "spectres": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "registre"
+   },
+   {
+    "s": "narrator",
+    "t": "Dans la clairière, les morts de cette boucle t'attendent, debout, sans colère."
+   },
+   {
+    "if": "flag('seo_morte') or flag('seo_noyee')",
+    "then": "spectre_seo"
+   },
+   {
+    "goto": "spectres_2"
+   }
+  ],
+  "spectre_seo": [
+   {
+    "s": "narrator",
+    "t": "Une blouse bleue, des lunettes rondes. Elle te sourit et te montre ses mains : propres, sans gants."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Ce n'était pas ta faute. Je l'ai choisi. Pour une fois, j'ai choisi.",
+    "e": "neutral"
+   },
+   {
+    "goto": "spectres_2"
+   }
+  ],
+  "spectres_2": [
+   {
+    "if": "flag('aoi_morte') or flag('aoi_tombee')",
+    "then": "spectre_aoi"
+   },
+   {
+    "goto": "spectres_3"
+   }
+  ],
+  "spectre_aoi": [
+   {
+    "s": "narrator",
+    "t": "Une robe blanche et dorée, des couettes noir et rose. Elle chante une berceuse, sans s'arrêter au deuxième couplet."
+   },
+   {
+    "goto": "spectres_3"
+   }
+  ],
+  "spectres_3": [
+   {
+    "if": "flag('ryeon_morte') or flag('ryeon_morte_j29') or flag('maricel_morte') or flag('maricel_tombee') or flag('xiaoyu_morte') or flag('hae_in_morte') or flag('nadia_morte') or flag('simone_morte') or flag('minh_anh_morte')",
+    "then": "spectre_autres"
+   },
+   {
+    "goto": "spectres_fin"
+   }
+  ],
+  "spectre_autres": [
+   {
+    "s": "narrator",
+    "t": "D'autres encore. Un ruban rouge. Un crop hoodie jaune. Un éventail fermé. Une tasse de thé. Une écharpe de laine. Un béret. Une paire de lunettes rectangulaires. Ils ne disent rien. Ils te regardent passer."
+   },
+   {
+    "goto": "spectres_fin"
+   }
+  ],
+  "spectres_fin": [
+   {
+    "if": "party('seo_yeon')",
+    "then": "spectres_apaises"
+   },
+   {
+    "s": "registre",
+    "t": "Les morts de la boucle nourrissent le Bourreau Vert. Plus il y en a, plus ses cordes sont lourdes."
+   },
+   {
+    "fx": [
+     "flag spectres_vus"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "spectres_apaises": [
+   {
+    "s": "seo_yeon",
+    "t": "Je suis médecin. Je sais parler aux gens qui ont mal. Même à ceux-là.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle s'avance vers les spectres et leur parle, longtemps, à voix basse. Un à un, ils s'assoient dans l'herbe, et ils ferment les yeux."
+   },
+   {
+    "s": "registre",
+    "t": "Spectres apaisés : le Bourreau Vert perd une partie de sa force."
+   },
+   {
+    "fx": [
+     "flag spectres_vus",
+     "flag spectres_apaises"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "bourreau": [
+   {
+    "bg": "tower_gate"
+   },
+   {
+    "music": "boss"
+   },
+   {
+    "s": "narrator",
+    "t": "Au gibet vert, un bourreau encapuchonné de mousse. Une corde dans chaque main, et une corde autour de son propre cou."
+   },
+   {
+    "if": "not flag('spectres_apaises') and (flag('sanctuaire_tombe') or flag('cendre_tombee') or flag('concert_massacre'))",
+    "then": "bourreau_lourd"
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "bourreau"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "goto": "bourreau_fin"
+   }
+  ],
+  "bourreau_lourd": [
+   {
+    "s": "registre",
+    "t": "La ville est en deuil. Les cordes du Bourreau sont lourdes de tous ses morts."
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "bourreau_fort"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "goto": "bourreau_fin"
+   }
+  ],
+  "bourreau_fin": [
+   {
+    "s": "narrator",
+    "t": "Le Bourreau tombe à genoux, puis tire sur sa propre corde. La forêt entière soupire de soulagement."
+   },
+   {
+    "s": "registre",
+    "t": "Gardien de l'Étage 6 vaincu."
+   },
+   {
+    "fx": [
+     "flag bourreau_vaincu",
+     "pressure -6",
+     "souvenir premier_conquerant_6"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "juge": [
+   {
+    "bg": "tower_gate"
+   },
+   {
+    "music": "boss"
+   },
+   {
+    "s": "narrator",
+    "t": "Le Juge Sans Visage frappe trois coups de marteau. Les témoins sans bouche se lèvent. La balance penche."
+   },
+   {
+    "s": "juge",
+    "t": "Accusé Kang Elias. Recouvreur. Porteur. Lecteur. Vous avez réécrit des Fins qui ne vous appartenaient pas. Plaidez."
+   },
+   {
+    "if": "party('simone')",
+    "then": "juge_simone"
+   },
+   {
+    "goto": "juge_verdict"
+   }
+  ],
+  "juge_simone": [
+   {
+    "s": "simone",
+    "t": "Témoin de moralité. Commandante Hayes, Unité 0. Cet homme a désobéi pour sauver des gens. Moi aussi. Jugez-nous ensemble.",
+    "e": "cigar",
+    "v": true
+   },
+   {
+    "fx": [
+     "add align.protect 5"
+    ]
+   },
+   {
+    "goto": "juge_verdict"
+   }
+  ],
+  "juge_verdict": [
+   {
+    "if": "v('align.protect') >= 15",
+    "then": "juge_clement"
+   },
+   {
+    "if": "v('align.protect') <= -15",
+    "then": "juge_decret"
+   },
+   {
+    "s": "juge",
+    "t": "Casier ordinaire. Le Tribunal vous combattra sans indulgence ni rancune."
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "juge"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "goto": "juge_fin"
+   }
+  ],
+  "juge_clement": [
+   {
+    "s": "juge",
+    "t": "Casier léger. Vous avez protégé plus que vous n'avez pris. Le Tribunal frappera moins fort."
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "juge_clement"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "goto": "juge_fin"
+   }
+  ],
+  "juge_decret": [
+   {
+    "s": "juge",
+    "t": "Casier lourd. Vous avez régné par la peur. Le Tribunal frappera de toute sa force."
+   },
+   {
+    "s": "elias",
+    "t": "Alors je plaide le Décret. Le Seigneur fait la loi. Il ne la subit pas.",
+    "e": "smirk"
+   },
+   {
+    "s": "juge",
+    "t": "…Recevable. Le Tribunal frappera de toute sa force quand même."
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "juge"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "goto": "juge_fin"
+   }
+  ],
+  "juge_fin": [
+   {
+    "s": "narrator",
+    "t": "Le marteau du Juge se fend. La balance s'immobilise, parfaitement droite, pour la première fois depuis des siècles."
+   },
+   {
+    "s": "registre",
+    "t": "Gardien de l'Étage 7 vaincu."
+   },
+   {
+    "fx": [
+     "flag juge_vaincu",
+     "pressure -6",
+     "souvenir premier_conquerant_7"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "champion": [
+   {
+    "bg": "tower_gate"
+   },
+   {
+    "music": "boss"
+   },
+   {
+    "s": "narrator",
+    "t": "Sur le sable, un homme qui a ton visage, tes cicatrices d'avant, ton bomber troué. Le Champion d'Hier. Celui que tu étais à la fin de ta première vie."
+   },
+   {
+    "s": "champion",
+    "t": "Tu les as sauvées ? Combien ? Moi, aucune. Je n'ai fait que porter la dernière.",
+    "e": "sad"
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "champion_hier"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "champion_perdu"
+   },
+   {
+    "s": "narrator",
+    "t": "Le Champion tombe sur le sable. Il te regarde avec tes propres yeux. « Cette fois, sauve-les toutes. » Puis il n'est plus là."
+   },
+   {
+    "s": "registre",
+    "t": "Gardien de l'Étage 8 vaincu. Souvenir de la première vie récupéré."
+   },
+   {
+    "fx": [
+     "flag champion_vaincu",
+     "pressure -6",
+     "souvenir premier_conquerant_8"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "champion_perdu": [
+   {
+    "s": "narrator",
+    "t": "Le Champion pose la lame sur ta gorge et ne tranche pas. « Pas encore. Reviens quand tu seras moins moi. » L'arène te recrache au vestiaire."
+   },
+   {
+    "fx": [
+     "add fatigue 8"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "jardiniere": [
+   {
+    "bg": "tower_gate"
+   },
+   {
+    "music": "boss"
+   },
+   {
+    "s": "narrator",
+    "t": "Dans la serre, une femme voilée taille des Fins avec un sécateur d'argent. Elle ne lève pas la tête."
+   },
+   {
+    "s": "jardiniere",
+    "t": "Le Lecteur. Ici, ton Registre ne sert à rien. Ici, les Fins se cueillent. Bats-moi, et tu pourras en cueillir une."
+   },
+   {
+    "if": "party('aoi')",
+    "then": "jardiniere_aoi"
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "jardiniere"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "goto": "jardiniere_fleur"
+   }
+  ],
+  "jardiniere_aoi": [
+   {
+    "s": "aoi",
+    "t": "Les fleurs… elles écoutent. Je peux chanter pour elles ?",
+    "e": "true_smile",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi chante. Les fleurs de papier s'ouvrent toutes à la fois, et les épines de la Jardinière se rétractent."
+   },
+   {
+    "event": "combat",
+    "args": {
+     "encounter": "jardiniere"
+    }
+   },
+   {
+    "if": "v('combat.last') == 'lose'",
+    "then": "defeat"
+   },
+   {
+    "goto": "jardiniere_fleur"
+   }
+  ],
+  "jardiniere_fleur": [
+   {
+    "s": "narrator",
+    "t": "La Jardinière s'incline et te tend son sécateur. « Une seule. Cueille une Fin accomplie, et elle repoussera autrement. La Tour en réclamera une autre, ailleurs. »"
+   },
+   {
+    "s": "registre",
+    "t": "Cueillir une Fin accomplie : l'héroïne revient. Pression +5."
+   },
+   {
+    "choice": [
+     {
+      "t": "Cueillir la fleur d'Aoi.",
+      "goto": "fleur_aoi",
+      "if": "flag('aoi_morte') or flag('aoi_tombee')"
+     },
+     {
+      "t": "Cueillir la fleur de Seo-Yeon.",
+      "goto": "fleur_seo",
+      "if": "flag('seo_morte') or flag('seo_noyee')"
+     },
+     {
+      "t": "Cueillir la fleur de Maricel.",
+      "goto": "fleur_maricel",
+      "if": "flag('maricel_morte') or flag('maricel_tombee')"
+     },
+     {
+      "t": "Cueillir la fleur de Ryeon.",
+      "goto": "fleur_ryeon",
+      "if": "flag('ryeon_morte') or flag('ryeon_morte_j29')"
+     },
+     {
+      "t": "Cueillir la fleur de Xiaoyu.",
+      "goto": "fleur_xiaoyu",
+      "if": "flag('xiaoyu_morte')"
+     },
+     {
+      "t": "Cueillir la fleur de Hae-in.",
+      "goto": "fleur_haein",
+      "if": "flag('hae_in_morte')"
+     },
+     {
+      "t": "Cueillir la fleur de Nadia.",
+      "goto": "fleur_nadia",
+      "if": "flag('nadia_morte')"
+     },
+     {
+      "t": "Cueillir la fleur de Simone.",
+      "goto": "fleur_simone",
+      "if": "flag('simone_morte')"
+     },
+     {
+      "t": "Cueillir la fleur de Minh-Anh.",
+      "goto": "fleur_minh_anh",
+      "if": "flag('minh_anh_morte')"
+     },
+     {
+      "t": "Ne rien cueillir. Les morts ont droit à leur Fin.",
+      "goto": "fleur_rien",
+      "fx": [
+       "add align.chaos -2"
+      ]
+     }
+    ]
+   }
+  ],
+  "fleur_aoi": [
+   {
+    "s": "narrator",
+    "t": "Tu coupes la tige. La fleur de papier se froisse, se défroisse, et devient une fleur vraie. Quelque part derrière toi, quelqu'un respire. Aoi."
+   },
+   {
+    "s": "aoi",
+    "t": "Il fait froid, de l'autre côté. Il n'y avait personne pour qui chanter.",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "Aoi Tsukishiro revient. La Tour réclamera une autre Fin."
+   },
+   {
+    "fx": [
+     "flag aoi_ramenee",
+     "join aoi",
+     "pressure 5"
+    ]
+   },
+   {
+    "goto": "jardiniere_fin"
+   }
+  ],
+  "fleur_seo": [
+   {
+    "s": "narrator",
+    "t": "Tu coupes la tige. La fleur de papier se froisse, se défroisse, et devient une fleur vraie. Quelque part derrière toi, quelqu'un respire. Seo-Yeon."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Je… je comptais des battements de cœur. Les miens s'étaient arrêtés. Elias ?",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "Park Seo-Yeon revient. La Tour réclamera une autre Fin."
+   },
+   {
+    "fx": [
+     "flag seo_yeon_ramenee",
+     "join seo_yeon",
+     "pressure 5"
+    ]
+   },
+   {
+    "goto": "jardiniere_fin"
+   }
+  ],
+  "fleur_maricel": [
+   {
+    "s": "narrator",
+    "t": "Tu coupes la tige. La fleur de papier se froisse, se défroisse, et devient une fleur vraie. Quelque part derrière toi, quelqu'un respire. Maricel."
+   },
+   {
+    "s": "maricel",
+    "t": "Ay… gwapo… Il faisait noir. Tellement noir. Tu es encore venu me chercher.",
+    "e": "tears",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "Maricel Dizon revient. La Tour réclamera une autre Fin."
+   },
+   {
+    "fx": [
+     "flag maricel_ramenee",
+     "join maricel",
+     "pressure 5"
+    ]
+   },
+   {
+    "goto": "jardiniere_fin"
+   }
+  ],
+  "fleur_ryeon": [
+   {
+    "s": "narrator",
+    "t": "Tu coupes la tige. La fleur de papier se froisse, se défroisse, et devient une fleur vraie. Quelque part derrière toi, quelqu'un respire. Ryeon."
+   },
+   {
+    "s": "ryeon",
+    "t": "Je n'ai pas eu le temps de dire merci. Je le dis maintenant. Merci. Ne recommence pas.",
+    "e": "tsundere",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "Baek Ryeon revient. La Tour réclamera une autre Fin."
+   },
+   {
+    "fx": [
+     "flag ryeon_ramenee",
+     "join ryeon",
+     "pressure 5"
+    ]
+   },
+   {
+    "goto": "jardiniere_fin"
+   }
+  ],
+  "fleur_xiaoyu": [
+   {
+    "s": "narrator",
+    "t": "Tu coupes la tige. La fleur de papier se froisse, se défroisse, et devient une fleur vraie. Quelque part derrière toi, quelqu'un respire. Xiaoyu."
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Le Han était froid, mon chou. Tu me dois un baijiu. Un très vieux.",
+    "e": "fan",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "Long Xiaoyu revient. La Tour réclamera une autre Fin."
+   },
+   {
+    "fx": [
+     "flag xiaoyu_ramenee",
+     "join xiaoyu",
+     "pressure 5"
+    ]
+   },
+   {
+    "goto": "jardiniere_fin"
+   }
+  ],
+  "fleur_haein": [
+   {
+    "s": "narrator",
+    "t": "Tu coupes la tige. La fleur de papier se froisse, se défroisse, et devient une fleur vraie. Quelque part derrière toi, quelqu'un respire. Hae-in."
+   },
+   {
+    "s": "hae_in",
+    "t": "Vous avez cueilli une Présidente. Vous savez ce que ça va vous coûter, Monsieur Kang ?",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "Yoon Hae-in revient. La Tour réclamera une autre Fin."
+   },
+   {
+    "fx": [
+     "flag hae_in_ramenee",
+     "join hae_in",
+     "pressure 5"
+    ]
+   },
+   {
+    "goto": "jardiniere_fin"
+   }
+  ],
+  "fleur_nadia": [
+   {
+    "s": "narrator",
+    "t": "Tu coupes la tige. La fleur de papier se froisse, se défroisse, et devient une fleur vraie. Quelque part derrière toi, quelqu'un respire. Nadia."
+   },
+   {
+    "s": "nadia",
+    "t": "…Encore toi. Même la mort ne te sort pas de ma lunette.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "Nadia Tsoi revient. La Tour réclamera une autre Fin."
+   },
+   {
+    "fx": [
+     "flag nadia_ramenee",
+     "join nadia",
+     "pressure 5"
+    ]
+   },
+   {
+    "goto": "jardiniere_fin"
+   }
+  ],
+  "fleur_simone": [
+   {
+    "s": "narrator",
+    "t": "Tu coupes la tige. La fleur de papier se froisse, se défroisse, et devient une fleur vraie. Quelque part derrière toi, quelqu'un respire. Simone."
+   },
+   {
+    "s": "simone",
+    "t": "Commandante Hayes, au rapport. J'étais morte, Rang F. Ça compte comme une permission ?",
+    "e": "cigar",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "Simone Hayes revient. La Tour réclamera une autre Fin."
+   },
+   {
+    "fx": [
+     "flag simone_ramenee",
+     "join simone",
+     "pressure 5"
+    ]
+   },
+   {
+    "goto": "jardiniere_fin"
+   }
+  ],
+  "fleur_minh_anh": [
+   {
+    "s": "narrator",
+    "t": "Tu coupes la tige. La fleur de papier se froisse, se défroisse, et devient une fleur vraie. Quelque part derrière toi, quelqu'un respire. Minh-Anh."
+   },
+   {
+    "s": "minh_anh",
+    "t": "Hypothèse : je suis morte. Observation : je ne le suis plus. Il me faut des données. Beaucoup.",
+    "e": "red_leds",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "Tran Minh-Anh revient. La Tour réclamera une autre Fin."
+   },
+   {
+    "fx": [
+     "flag minh_anh_ramenee",
+     "join minh_anh",
+     "pressure 5"
+    ]
+   },
+   {
+    "goto": "jardiniere_fin"
+   }
+  ],
+  "fleur_rien": [
+   {
+    "s": "narrator",
+    "t": "Tu rends le sécateur à la Jardinière. Elle relève son voile, une seconde. Elle a le visage de Haneul, plus vieux de mille ans."
+   },
+   {
+    "goto": "jardiniere_fin"
+   }
+  ],
+  "jardiniere_fin": [
+   {
+    "s": "registre",
+    "t": "Gardien de l'Étage 9 vaincu."
+   },
+   {
+    "fx": [
+     "flag jardiniere_vaincue",
+     "pressure -6",
+     "souvenir premier_conquerant_9"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "defeat": [
+   {
+    "bg": "black"
+   },
+   {
+    "s": "narrator",
+    "t": "Le monde bascule. Le sol, le ciel, la Tour qui regarde."
+   },
+   {
+    "s": "elias",
+    "t": "Pas… encore…",
+    "e": "exhausted"
+   },
+   {
+    "s": "registre",
+    "t": "ÉCHEC — Le Lecteur est mort."
+   },
+   {
+    "s": "registre",
+    "t": "Régression."
+   },
+   {
+    "event": "regress",
+    "args": {}
+   },
+   {
+    "end": true
+   }
+  ]
+ }
+}

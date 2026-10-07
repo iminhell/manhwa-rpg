@@ -6,6 +6,7 @@ extends Control
 ##   --autotest-regress  force une défaite au premier combat pour tester la régression
 ##   --alt               avec --autotest : embranchements alternatifs (tests/autopilot.json → choices_alt)
 ##   --capture           enregistre des captures d'écran dans user://captures/
+##   --mode=histoire|normal|survie   mode de difficulté de l'autotest (défaut : normal)
 
 const TitleScreen := preload("res://scenes/title/title_screen.gd")
 const DialogueScene := preload("res://scenes/dialogue/dialogue_scene.gd")
@@ -14,10 +15,11 @@ const WorldMapScene := preload("res://scenes/world/world_map_scene.gd")
 const ActSummary := preload("res://scenes/world/act_summary_screen.gd")
 const OptionsPanel := preload("res://scenes/options_panel.gd")
 const SavePanel := preload("res://scenes/save_panel.gd")
+const DifficultyPanel := preload("res://scenes/difficulty_panel.gd")
 const UI := preload("res://ui/ui_style.gd")
 
 const STORY := "prologue_j1"
-const LAST_ACT := 3
+const LAST_ACT := 4
 const AUTOTEST_MAX_STEPS := 12000
 
 var _screen: Control        ## écran principal (titre, prologue, carte, résumé)
@@ -42,7 +44,11 @@ func _ready() -> void:
 		print("[autotest] démarrage")
 		var auto := DataDB.load_json("res://tests/autopilot.json")
 		_choices = auto.get("choices_alt" if args.has("--alt") else "choices", {})
-		_start_story()
+		var mode := "normal"
+		for a in args:
+			if str(a).begins_with("--mode="):
+				mode = str(a).substr(7)
+		_start_story(true, mode)
 	else:
 		_show_title()
 
@@ -65,13 +71,19 @@ func _clear_overlay() -> void:
 func _show_title() -> void:
 	MusicManager.play_context("title")
 	var t := TitleScreen.new()
-	t.new_loop.connect(_start_story.bind(true))
+	t.new_loop.connect(_choose_mode)
 	t.continue_game.connect(_load_slot.bind(""))
 	t.load_game.connect(_show_load)
 	t.combat_test.connect(_start_combat_test)
 	t.options.connect(_show_options)
 	t.quit_game.connect(func(): get_tree().quit())
 	_set_screen(t)
+
+
+func _choose_mode() -> void:
+	var p := DifficultyPanel.new()
+	p.chosen.connect(func(mode: String): _start_story(true, mode))
+	add_child(p)
 
 
 func _show_options() -> void:
@@ -96,9 +108,9 @@ func _load_slot(slot: String) -> void:
 # --- Prologue ------------------------------------------------------------------------
 
 ## fresh = false après une régression : l'état de boucle (compteur, souvenirs) est conservé.
-func _start_story(fresh: bool = true) -> void:
+func _start_story(fresh: bool = true, mode: String = "") -> void:
 	if fresh:
-		GameState.new_game()
+		GameState.new_game(mode)
 	_dialogue = _make_dialogue()
 	_set_screen(_dialogue)
 	_dialogue.finished.connect(_on_prologue_finished)
@@ -234,6 +246,9 @@ func _end_act(act: int) -> void:
 	var s := ActSummary.new()
 	s.setup(act, act < LAST_ACT)
 	s.closed.connect(_after_summary.bind(act, s))
+	s.regress_requested.connect(func():
+		s.queue_free()
+		_regress())
 	add_child(s)
 
 

@@ -1,0 +1,33 @@
+{
+ "note": "Modes de difficulté (choisis à la création de la boucle, variable « difficulte »). Multiplicateurs appliqués au combat (ennemis) et au Refuge.",
+ "default": "normal",
+ "modes": {
+  "histoire": {
+   "name": "Histoire",
+   "desc": "Combats très faciles, rations très souples, jours de répit illimités. Pour vivre l'histoire et les romances.",
+   "enemy_atk": 0.6,
+   "enemy_hp": 0.75,
+   "ration_need": 0.5,
+   "famine": 0.0,
+   "repit": "illimite"
+  },
+  "normal": {
+   "name": "Normal (stratégique)",
+   "desc": "L'équilibrage de référence : Gardiens à paliers, famine de milieu de boucle, sabliers de répit accessibles.",
+   "enemy_atk": 1.0,
+   "enemy_hp": 1.0,
+   "ration_need": 1.0,
+   "famine": 1.0,
+   "repit": "objets"
+  },
+  "survie": {
+   "name": "Survie / Régression",
+   "desc": "Dégâts accrus, ressources rares, famine punitive. Les sabliers de répit se méritent.",
+   "enemy_atk": 1.25,
+   "enemy_hp": 1.15,
+   "ration_need": 1.5,
+   "famine": 1.5,
+   "repit": "rares"
+  }
+ }
+}

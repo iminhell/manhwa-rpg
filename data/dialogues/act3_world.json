@@ -937,6 +937,42 @@
   ],
   "classement_fin": [
    {
+    "if": "mode() == 'histoire'",
+    "then": "classement_fin2"
+   },
+   {
+    "if": "mode() == 'survie'",
+    "then": "classement_sablier_rare"
+   },
+   {
+    "s": "registre",
+    "t": "Le Système récompense les survivants : deux sabliers de répit."
+   },
+   {
+    "fx": [
+     "item sablier 2"
+    ]
+   },
+   {
+    "goto": "classement_fin2"
+   }
+  ],
+  "classement_sablier_rare": [
+   {
+    "s": "registre",
+    "t": "Le Système récompense les survivants : un sablier de répit. Un seul."
+   },
+   {
+    "fx": [
+     "item sablier 1"
+    ]
+   },
+   {
+    "goto": "classement_fin2"
+   }
+  ],
+  "classement_fin2": [
+   {
     "s": "narrator",
     "t": "FIN DE L'ACTE III — « La Guerre des Sceaux »."
    },

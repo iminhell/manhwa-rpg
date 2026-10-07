@@ -129,7 +129,7 @@
   ],
   "choix_garde": [
    {
-    "if": "flag('xiaoyu_avertie')",
+    "if": "flag('xiaoyu_avertie') or (loop() >= 2 and flag('echo.xiaoyu_sauvee'))",
     "then": "garde_prete"
    },
    {

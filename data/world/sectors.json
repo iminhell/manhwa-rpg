@@ -330,8 +330,18 @@
       "yongsan.porte_tour"
      ],
      "hidden": "flag('passe_tour')",
-     "open": "false",
-     "locked_hint": "Gardé jour et nuit. Plus tard, peut-être…"
+     "open": "day() >= 18",
+     "locked_hint": "Gardé jour et nuit par l'Unité 0. La commandante t'y convoquera (J18).",
+     "actions": [
+      {
+       "id": "briefing",
+       "label": "Briefing avec la commandante Hayes",
+       "cost": 2,
+       "once": true,
+       "if": "day() >= 18 and day() <= 23",
+       "dialogue": "act4_nadia:briefing"
+      }
+     ]
     }
    }
   },
@@ -365,6 +375,57 @@
      "links": [
       "etage1.galerie",
       "etage1.salle_portier"
+     ],
+     "actions": [
+      {
+       "id": "portail_3",
+       "label": "Portail vers l'étage 3",
+       "cost": 1,
+       "if": "flag('portail.3')",
+       "travel": "etage3.allee"
+      },
+      {
+       "id": "portail_4",
+       "label": "Portail vers l'étage 4",
+       "cost": 1,
+       "if": "flag('portail.4')",
+       "travel": "etage4.vestibule"
+      },
+      {
+       "id": "portail_5",
+       "label": "Portail vers l'étage 5",
+       "cost": 1,
+       "if": "flag('portail.5')",
+       "travel": "etage5.entree"
+      },
+      {
+       "id": "portail_6",
+       "label": "Portail vers l'étage 6",
+       "cost": 1,
+       "if": "flag('portail.6')",
+       "travel": "etage6.lisiere"
+      },
+      {
+       "id": "portail_7",
+       "label": "Portail vers l'étage 7",
+       "cost": 1,
+       "if": "flag('portail.7')",
+       "travel": "etage7.parvis"
+      },
+      {
+       "id": "portail_8",
+       "label": "Portail vers l'étage 8",
+       "cost": 1,
+       "if": "flag('portail.8')",
+       "travel": "etage8.vestiaire"
+      },
+      {
+       "id": "portail_9",
+       "label": "Portail vers l'étage 9",
+       "cost": 1,
+       "if": "flag('portail.9')",
+       "travel": "etage9.allee"
+      }
      ]
     },
     "etage1.galerie": {
@@ -893,7 +954,7 @@
      "links": [
       "hongdae.campus"
      ],
-     "hidden": "loop() >= 2",
+     "hidden": "loop() >= 2 or day() >= 24 or flag('mirae_anomalie') or flag('drones_abattus')",
      "open": "false",
      "locked_hint": "Accès biométrique Mirae. (Minh-Anh y travaille…)"
     }
@@ -986,6 +1047,29 @@
         "money 15"
        ],
        "message": "Un Rat compte tes pièces deux fois. « Affaire conclue, beau gosse. »"
+      },
+      {
+       "id": "sablier",
+       "label": "Acheter un sablier de répit (20)",
+       "cost": 1,
+       "if": "mode() == 'normal' and money() >= 20",
+       "fx": [
+        "money -20",
+        "item sablier 1"
+       ],
+       "message": "Un sablier de verre noir, rempli de sable de la Tour. Retourné, il fait retenir son souffle à la Tour pour une journée."
+      },
+      {
+       "id": "sablier_rare",
+       "label": "Marchander un sablier de répit (60)",
+       "cost": 2,
+       "daily": true,
+       "if": "mode() == 'survie' and money() >= 60",
+       "fx": [
+        "money -60",
+        "item sablier 1"
+       ],
+       "message": "Le marchand n'en a qu'un, et il le sait."
       }
      ]
     },
@@ -1463,6 +1547,14 @@
        "once": true,
        "if": "phase() == 3",
        "dialogue": "act1_world:nadia_reflet"
+      },
+      {
+       "id": "verre_nadia",
+       "label": "Monter boire un verre avec la tireuse du toit",
+       "cost": 2,
+       "once": true,
+       "if": "flag('nadia_apercue') and day() >= 18 and day() <= 23",
+       "dialogue": "act4_nadia:verre"
       }
      ]
     },
@@ -1813,6 +1905,16 @@
         "item ration 4"
        ],
        "message": "Quatre pains de pierre qui redeviennent du pain chaud au contact de ta main. La Tour nourrit ceux qui se taisent."
+      },
+      {
+       "id": "sablier_fige",
+       "label": "Prendre le sablier d'un étal figé",
+       "cost": 2,
+       "once": true,
+       "fx": [
+        "item sablier 1"
+       ],
+       "message": "Le sable ne coule pas. Il attend que tu le retournes."
       }
      ]
     },
@@ -2014,6 +2116,18 @@
         "item lame_tour 1"
        ],
        "message": "Une lame grise, sans éclat, qui ne pèse rien. Elle coupe les glyphes."
+      },
+      {
+       "id": "sabliers",
+       "label": "Enchérir sur une paire de sabliers anciens (80)",
+       "cost": 2,
+       "once": true,
+       "if": "money() >= 80",
+       "fx": [
+        "money -80",
+        "item sablier 2"
+       ],
+       "message": "Deux sabliers d'un monde qui a appris trop tard à retenir son souffle."
       }
      ],
      "hidden": "souvenir('marche_ames') or loop() >= 2"
@@ -2052,7 +2166,8 @@
     0.12
    ],
    "adjacent": [
-    "etage3"
+    "etage3",
+    "etage5"
    ],
    "entry": "etage4.vestibule",
    "desc": "Règle : on ne peut pas frapper quelqu'un avec qui l'on a partagé un repas.",
@@ -2143,6 +2258,364 @@
        "cost": 2,
        "if": "not flag('hote_vaincu')",
        "dialogue": "act3_tower:hote"
+      }
+     ]
+    }
+   }
+  },
+  "etage5": {
+   "name": "Tour — Étage 5 : Le Labyrinthe Inversé",
+   "short": "Étage 5",
+   "controller": "tour",
+   "danger": 5,
+   "color": "#aab7b8",
+   "map_pos": [
+    0.97,
+    0.08
+   ],
+   "adjacent": [
+    "etage4",
+    "etage6"
+   ],
+   "entry": "etage5.entree",
+   "desc": "Règle : la gauche est la droite, et les alliés apparaissent comme des ennemis.",
+   "music": "tower",
+   "available": "day() >= 25 and flag('passe_tour')",
+   "nodes": {
+    "etage5.entree": {
+     "name": "L'Entrée des reflets",
+     "type": "lieu",
+     "desc": "Un couloir de miroirs. Ton reflet arrive toujours une seconde avant toi.",
+     "pos": [
+      0.15,
+      0.5
+     ],
+     "links": [
+      "etage5.miroir",
+      "etage5.centre"
+     ],
+     "actions": [
+      {
+       "id": "portail_retour",
+       "label": "Portail de retour vers le Vestibule",
+       "cost": 1,
+       "travel": "etage1.vestibule"
+      }
+     ]
+    },
+    "etage5.miroir": {
+     "name": "La Galerie des miroirs",
+     "type": "cache",
+     "desc": "Un miroir ne te montre pas. Il montre le J15.",
+     "pos": [
+      0.45,
+      0.2
+     ],
+     "links": [
+      "etage5.entree"
+     ],
+     "actions": [
+      {
+       "id": "ancre",
+       "label": "Toucher le miroir du J15",
+       "cost": 2,
+       "once": true,
+       "fx": [
+        "flag ancre_retour",
+        "souvenir ancre_j15",
+        "pressure -1"
+       ],
+       "message": "Le miroir se fige sur une image : toi, au J15, épuisé, vivant. Le Registre grave une ancre. Un jour, peut-être, tu pourras revenir ici au lieu du premier jour."
+      }
+     ]
+    },
+    "etage5.centre": {
+     "name": "Le Cœur du Labyrinthe",
+     "type": "menace",
+     "desc": "Une silhouette à tête de taureau, faite de verre brisé.",
+     "pos": [
+      0.85,
+      0.5
+     ],
+     "links": [
+      "etage5.entree"
+     ],
+     "actions": [
+      {
+       "id": "minotaure",
+       "label": "Affronter le Minotaure de Miroir",
+       "cost": 2,
+       "if": "not flag('minotaure_vaincu')",
+       "dialogue": "act4_tower:minotaure"
+      }
+     ]
+    }
+   }
+  },
+  "etage6": {
+   "name": "Tour — Étage 6 : La Forêt des Pendus",
+   "short": "Étage 6",
+   "controller": "tour",
+   "danger": 5,
+   "color": "#196f3d",
+   "map_pos": [
+    0.97,
+    0.18
+   ],
+   "adjacent": [
+    "etage5",
+    "etage7"
+   ],
+   "entry": "etage6.lisiere",
+   "desc": "Règle : chaque mort de la boucle revient comme un spectre.",
+   "music": "tower",
+   "available": "day() >= 25 and flag('passe_tour')",
+   "nodes": {
+    "etage6.lisiere": {
+     "name": "La Lisière",
+     "type": "lieu",
+     "desc": "Des cordes pendent de chaque branche. Certaines bougent encore.",
+     "pos": [
+      0.15,
+      0.5
+     ],
+     "links": [
+      "etage6.clairiere",
+      "etage6.gibet"
+     ],
+     "actions": [
+      {
+       "id": "portail_retour",
+       "label": "Portail de retour vers le Vestibule",
+       "cost": 1,
+       "travel": "etage1.vestibule"
+      }
+     ]
+    },
+    "etage6.clairiere": {
+     "name": "La Clairière des morts",
+     "type": "lieu",
+     "desc": "Les morts de cette boucle t'attendent. Ils ont ton nom sur les lèvres.",
+     "pos": [
+      0.45,
+      0.8
+     ],
+     "links": [
+      "etage6.lisiere"
+     ],
+     "actions": [
+      {
+       "id": "spectres",
+       "label": "Écouter les spectres",
+       "cost": 2,
+       "once": true,
+       "dialogue": "act4_tower:spectres"
+      }
+     ]
+    },
+    "etage6.gibet": {
+     "name": "Le Gibet vert",
+     "type": "menace",
+     "desc": "Un bourreau encapuchonné de mousse, une corde dans chaque main.",
+     "pos": [
+      0.85,
+      0.4
+     ],
+     "links": [
+      "etage6.lisiere"
+     ],
+     "actions": [
+      {
+       "id": "bourreau",
+       "label": "Affronter le Bourreau Vert",
+       "cost": 2,
+       "if": "not flag('bourreau_vaincu')",
+       "dialogue": "act4_tower:bourreau"
+      }
+     ]
+    }
+   }
+  },
+  "etage7": {
+   "name": "Tour — Étage 7 : Le Tribunal",
+   "short": "Étage 7",
+   "controller": "tour",
+   "danger": 5,
+   "color": "#f8f9f9",
+   "map_pos": [
+    0.9,
+    0.03
+   ],
+   "adjacent": [
+    "etage6",
+    "etage8"
+   ],
+   "entry": "etage7.parvis",
+   "desc": "Règle : les crimes commis en surface sont jugés.",
+   "music": "tower",
+   "available": "day() >= 29 and flag('passe_tour')",
+   "nodes": {
+    "etage7.parvis": {
+     "name": "Le Parvis",
+     "type": "lieu",
+     "desc": "Des marches de marbre blanc, et des témoins sans bouche.",
+     "pos": [
+      0.15,
+      0.5
+     ],
+     "links": [
+      "etage7.tribunal"
+     ],
+     "actions": [
+      {
+       "id": "portail_retour",
+       "label": "Portail de retour vers le Vestibule",
+       "cost": 1,
+       "travel": "etage1.vestibule"
+      }
+     ]
+    },
+    "etage7.tribunal": {
+     "name": "La Salle d'audience",
+     "type": "menace",
+     "desc": "Le Juge Sans Visage attend l'accusé.",
+     "pos": [
+      0.8,
+      0.5
+     ],
+     "links": [
+      "etage7.parvis"
+     ],
+     "actions": [
+      {
+       "id": "juge",
+       "label": "Comparaître devant le Juge",
+       "cost": 2,
+       "if": "not flag('juge_vaincu')",
+       "dialogue": "act4_tower:juge"
+      }
+     ]
+    }
+   }
+  },
+  "etage8": {
+   "name": "Tour — Étage 8 : L'Arène des Rangs",
+   "short": "Étage 8",
+   "controller": "tour",
+   "danger": 5,
+   "color": "#566573",
+   "map_pos": [
+    0.83,
+    0.03
+   ],
+   "adjacent": [
+    "etage7",
+    "etage9"
+   ],
+   "entry": "etage8.vestiaire",
+   "desc": "Règle : seul le duel est autorisé.",
+   "music": "tower",
+   "available": "day() >= 29 and flag('passe_tour')",
+   "nodes": {
+    "etage8.vestiaire": {
+     "name": "Le Vestiaire",
+     "type": "lieu",
+     "desc": "Des armures vides, à ta taille. Toutes portent ton nom.",
+     "pos": [
+      0.15,
+      0.5
+     ],
+     "links": [
+      "etage8.arene"
+     ],
+     "actions": [
+      {
+       "id": "portail_retour",
+       "label": "Portail de retour vers le Vestibule",
+       "cost": 1,
+       "travel": "etage1.vestibule"
+      }
+     ]
+    },
+    "etage8.arene": {
+     "name": "L'Arène",
+     "type": "menace",
+     "desc": "Au centre du sable, un homme qui a ton visage et tes cicatrices d'avant.",
+     "pos": [
+      0.8,
+      0.5
+     ],
+     "links": [
+      "etage8.vestiaire"
+     ],
+     "actions": [
+      {
+       "id": "champion",
+       "label": "Défier le Champion d'Hier",
+       "cost": 2,
+       "if": "not flag('champion_vaincu')",
+       "dialogue": "act4_tower:champion"
+      }
+     ]
+    }
+   }
+  },
+  "etage9": {
+   "name": "Tour — Étage 9 : Le Jardin des Fins",
+   "short": "Étage 9",
+   "controller": "tour",
+   "danger": 5,
+   "color": "#a9cce3",
+   "map_pos": [
+    0.76,
+    0.03
+   ],
+   "adjacent": [
+    "etage8"
+   ],
+   "entry": "etage9.allee",
+   "desc": "Règle : le Registre ne fonctionne pas. Les Fins poussent comme des fleurs.",
+   "music": "tower",
+   "available": "day() >= 29 and flag('passe_tour')",
+   "nodes": {
+    "etage9.allee": {
+     "name": "L'Allée des Fins",
+     "type": "lieu",
+     "desc": "Des fleurs de papier. Sur chaque pétale, une date, une heure, un nom.",
+     "pos": [
+      0.15,
+      0.5
+     ],
+     "links": [
+      "etage9.serre"
+     ],
+     "actions": [
+      {
+       "id": "portail_retour",
+       "label": "Portail de retour vers le Vestibule",
+       "cost": 1,
+       "travel": "etage1.vestibule"
+      }
+     ]
+    },
+    "etage9.serre": {
+     "name": "La Serre de la Jardinière",
+     "type": "menace",
+     "desc": "Une femme voilée taille des Fins avec un sécateur d'argent.",
+     "pos": [
+      0.8,
+      0.5
+     ],
+     "links": [
+      "etage9.allee"
+     ],
+     "actions": [
+      {
+       "id": "jardiniere",
+       "label": "Approcher la Jardinière",
+       "cost": 2,
+       "if": "not flag('jardiniere_vaincue')",
+       "dialogue": "act4_tower:jardiniere"
       }
      ]
     }

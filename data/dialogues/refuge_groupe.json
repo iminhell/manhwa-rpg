@@ -1,0 +1,521 @@
+{
+ "id": "refuge_groupe",
+ "title": "Scènes de groupe au Refuge et Quêtes de Conciliation",
+ "start": "start",
+ "speakers": {},
+ "blocks": {
+  "start": [
+   {
+    "s": "narrator",
+    "t": "Le Refuge est plein de voix."
+   },
+   {
+    "end": true
+   }
+  ],
+  "lecon_anatomie": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Haneul a demandé à Seo-Yeon de lui apprendre « comment marche un corps humain ». Seo-Yeon a sorti un vieux manuel d'anatomie. Toi, tu sers de modèle, torse nu, assis sur une caisse."
+   },
+   {
+    "s": "haneul",
+    "t": "Et ça ? Pourquoi ça fait battre son cœur plus vite quand je touche là ?",
+    "e": "tilt",
+    "v": true
+   },
+   {
+    "s": "seo_yeon",
+    "t": "C'est… le système nerveux autonome. Haneul, enlève ta main de… Bon. D'accord. Non, laisse-la.",
+    "e": "embarrassed",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "La leçon dérape lentement. Deux paires de mains sur ta peau, l'une méthodique et l'autre curieuse, et deux femmes qui découvrent ensemble qu'elles rougissent aux mêmes endroits. Le manuel finit par terre, ouvert à la page du cœur."
+   },
+   {
+    "fx": [
+     "add aff.seo_yeon 5",
+     "add aff.haneul 5",
+     "flag duo_seo_haneul",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "deux_voix": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Une enceinte à piles, une bouteille de soju, et deux micros qui ne marchent pas. Aoi chante juste. Maricel chante fort. Ensemble, c'est un désastre magnifique."
+   },
+   {
+    "s": "maricel",
+    "t": "Ay, la star ! Tu chantes comme un ange. Moi, comme une porte de garage. Gwapo, départage-nous !",
+    "e": "laugh",
+    "v": true
+   },
+   {
+    "s": "aoi",
+    "t": "Il ne départagera rien. Il va nous embrasser toutes les deux, pour être juste. Hein ?",
+    "e": "true_smile",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Tu es juste. Très juste. La chanson suivante, personne ne la finit. Le soju roule sous le lit, les rires deviennent des soupirs, et la porte reste grande ouverte, parce que Maricel l'a demandé et qu'Aoi a trouvé ça beau."
+   },
+   {
+    "fx": [
+     "add aff.aoi 5",
+     "add aff.maricel 5",
+     "flag duo_aoi_maricel",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "deux_lames": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Aube, sur le toit. Ryeon et Nadia s'affrontent à l'entraînement : sabre de bois contre baïonnette émoussée. Toi, tu arbitres. Personne ne t'écoute."
+   },
+   {
+    "s": "ryeon",
+    "t": "Tu te bats comme une voleuse. Sans honneur.",
+    "e": "tsundere"
+   },
+   {
+    "s": "nadia",
+    "t": "Je me bats comme quelqu'un qui est encore vivant. Ça s'apprend, princesse.",
+    "e": "aim"
+   },
+   {
+    "s": "narrator",
+    "t": "Ça finit en match nul, les deux couchées dans la neige fondue, essoufflées, l'une contre l'autre, en train de rire. Puis à la source chaude sous le Refuge, toutes les trois dans la même eau, où elles comparent leurs cicatrices une à une, en silence, et où chacune laisse l'autre toucher celles qu'elle ne montre à personne."
+   },
+   {
+    "fx": [
+     "add aff.ryeon 5",
+     "add aff.nadia 5",
+     "flag duo_lames",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "mahjong_reines": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Une table de mahjong. Deux reines. Un enjeu total : la place de Première dans la Maison. Hae-in joue comme on gère un bilan. Xiaoyu joue comme on danse avec un couteau."
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Présidente. Si je gagne, vous m'appelez « Madame Long » jusqu'à la Descente.",
+    "e": "fan",
+    "v": true
+   },
+   {
+    "s": "hae_in",
+    "t": "Si je gagne, vous rendez les ponts au conseil de la ville. Avec un sourire.",
+    "e": "threat",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "Quête de Conciliation — Personne ne doit perdre la face."
+   },
+   {
+    "choice": [
+     {
+      "t": "Tricher pour qu'elles fassent match nul, et laisser chacune deviner que tu as triché.",
+      "goto": "reines_nul",
+      "fx": [
+       "add trust.hae_in 5",
+       "add trust.xiaoyu 5"
+      ]
+     },
+     {
+      "t": "Laisser le jeu décider.",
+      "goto": "reines_jeu"
+     }
+    ]
+   }
+  ],
+  "reines_nul": [
+   {
+    "s": "narrator",
+    "t": "Match nul, à la dernière tuile. Elles te regardent toutes les deux. Elles savent. Elles savent que l'autre sait. Hae-in rit la première, une vraie fois, et Xiaoyu ouvre son éventail pour cacher qu'elle rit aussi."
+   },
+   {
+    "s": "hae_in",
+    "t": "Une partie truquée en faveur de la paix. C'est la transaction la plus élégante que j'aie vue depuis neuf ans.",
+    "e": "neutral"
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Ce soir, mon chou, les deux reines dorment dans le même lit. Le tien. Pour surveiller la triche.",
+    "e": "desire",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elles se disputent la place de gauche pendant dix minutes. Puis elles cessent de se disputer, et découvrent qu'elles sont d'accord sur à peu près tout ce qui compte, quand les lumières sont éteintes."
+   },
+   {
+    "fx": [
+     "flag concil.reines",
+     "add aff.hae_in 5",
+     "add aff.xiaoyu 5",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "reines_jeu": [
+   {
+    "s": "narrator",
+    "t": "Xiaoyu gagne. Hae-in pose ses tuiles avec une dignité de reine en exil. Elle l'appellera « Madame Long » pendant trois jours, avec une politesse si glaciale que tout le Refuge frissonne."
+   },
+   {
+    "fx": [
+     "flag concil.reines_froide",
+     "add aff.xiaoyu 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "serum": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Toute la nuit au laboratoire de fortune. Seo-Yeon a l'éthique. Minh-Anh a le génie. Elles ne se supportent pas, et elles synthétisent un vaccin à partir du sang immunisé de Seo-Yeon."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Vous avez tué neuf personnes chez Haesong. Je le sais. Je ne vous pardonne pas.",
+    "e": "contempt"
+   },
+   {
+    "s": "minh_anh",
+    "t": "Je ne te demande pas de pardonner. Je te demande de tenir la pipette droite. Le pardon n'est pas une donnée.",
+    "e": "neutral"
+   },
+   {
+    "s": "narrator",
+    "t": "À l'aube, une ampoule de vaccin de masse brille sous la lampe. Elles se regardent. Seo-Yeon tend la main la première."
+   },
+   {
+    "s": "registre",
+    "t": "Quête de Conciliation — Sérum H-07. Un vaccin contre la Souche de la Tour."
+   },
+   {
+    "fx": [
+     "flag concil.serum",
+     "flag vaccin_masse",
+     "add aff.seo_yeon 4",
+     "add aff.minh_anh 4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "sujet": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Minh-Anh pose un disque dur sur la table, devant Haneul. Dessus : trois ans de données sur la sonde ARCHE. Sur elle."
+   },
+   {
+    "s": "haneul",
+    "t": "C'est moi, là-dedans ?",
+    "e": "tilt",
+    "v": true
+   },
+   {
+    "s": "minh_anh",
+    "t": "C'est toi réduite en nombres. J'ai construit une machine avec tes nombres. Je… je n'en ai plus besoin.",
+    "e": "red_leds",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Minh-Anh plonge le disque dans un seau d'acide. Haneul regarde les bulles monter. Puis elle prend la main de la scientifique, qui sursaute, et ne la lâche pas."
+   },
+   {
+    "s": "registre",
+    "t": "Quête de Conciliation — Je ne suis pas un sujet."
+   },
+   {
+    "fx": [
+     "flag concil.sujet",
+     "add aff.haneul 4",
+     "add aff.minh_anh 4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "silo": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone et Minh-Anh, penchées sur les plans du silo de Yongsan. La militaire et la scientifique, qui se méprisent poliment depuis le premier jour."
+   },
+   {
+    "s": "simone",
+    "t": "Si l'extérieur relance le Protocole Cendre après la Descente, il faut que le silo ne puisse plus jamais tirer.",
+    "e": "neutral"
+   },
+   {
+    "s": "minh_anh",
+    "t": "Je peux transformer le déclencheur en grille-pain. Littéralement. J'ai les schémas.",
+    "e": "neutral"
+   },
+   {
+    "s": "narrator",
+    "t": "Elles y passent la nuit. Au matin, le déclencheur du silo fait griller du pain. Simone mange la première tartine en riant aux larmes."
+   },
+   {
+    "s": "registre",
+    "t": "Quête de Conciliation — Le Silo."
+   },
+   {
+    "fx": [
+     "flag concil.silo",
+     "add aff.simone 4",
+     "add aff.minh_anh 4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "nuit_des_trois": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Le dortoir, trois matelas poussés ensemble. Maricel a eu l'idée. Aoi a dit oui avant d'avoir compris. Seo-Yeon a rougi, protesté au nom de l'hygiène, puis enlevé ses lunettes."
+   },
+   {
+    "s": "maricel",
+    "t": "Personne n'est jalouse ce soir. Règle de la maison. Celle qui boude fait la vaisselle une semaine.",
+    "e": "wink",
+    "v": true
+   },
+   {
+    "s": "aoi",
+    "t": "Je… je n'ai jamais… avec plusieurs… Dites-moi si je fais mal quelque chose.",
+    "e": "embarrassed",
+    "v": true
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Personne ne fait rien de mal ici. Je suis médecin. Je vérifie.",
+    "e": "desire",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Trois femmes et un seul homme dans un lit trop petit, et une règle simple qu'elles se rappellent en riant : chacune dit ce qu'elle veut, à voix haute. Les vêtements s'empilent par terre au fil des aveux. Maricel mène, Aoi chante tout bas contre une épaule, Seo-Yeon compte des battements de cœur et perd le compte. La porte est restée ouverte. Personne ne s'en soucie."
+   },
+   {
+    "fx": [
+     "add aff.seo_yeon 4",
+     "add aff.aoi 4",
+     "add aff.maricel 4",
+     "flag trio_nuit",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "reines_lames": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Le bureau du Refuge, tard. Deux reines, une épéiste, une commandante. Elles ont prévu une réunion stratégique. La stratégie a duré quarante minutes."
+   },
+   {
+    "s": "simone",
+    "t": "Ordre du jour, point deux : le Rang F a l'air trop sûr de lui. Proposition : on règle ça.",
+    "e": "cigar",
+    "v": true
+   },
+   {
+    "s": "ryeon",
+    "t": "Je… je ne sais pas ce que vous proposez, mais je ne reculerai pas.",
+    "e": "tsundere",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in tient les comptes, Xiaoyu tient les paris, Simone donne les ordres et Ryeon les conteste par principe. Les chemisiers, les qipao, les jeogori et les débardeurs s'empilent sur le bureau comme des dossiers traités. C'est la réunion la plus longue de l'histoire de la Maison. Personne ne prend de notes, sauf Hae-in, qui finit par abandonner son stylo."
+   },
+   {
+    "fx": [
+     "add aff.hae_in 4",
+     "add aff.xiaoyu 4",
+     "add aff.ryeon 4",
+     "add aff.simone 4",
+     "flag quatuor_nuit",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "nuit_maison": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "La salle commune, les matelas, le poêle. Une Nuit de la Maison : personne ne dort seule, personne ne compte les heures."
+   },
+   {
+    "s": "haneul",
+    "t": "Quand on est tous ensemble, le Registre se tait. Je ne l'avais jamais entendu se taire.",
+    "e": "tilt",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "La nuit se passe en vagues : des conversations qui deviennent des baisers, des baisers qui deviennent des rires, des groupes qui se font et se défont autour du poêle au gré des envies, et quelqu'un qui chante toujours, quelque part, à voix basse. À l'aube, tout le monde dort en tas, et toi au milieu."
+   },
+   {
+    "fx": [
+     "add aff.seo_yeon 2",
+     "add aff.haneul 2",
+     "add aff.aoi 2",
+     "add aff.maricel 2",
+     "add aff.ryeon 2",
+     "add aff.xiaoyu 2",
+     "add aff.hae_in 2",
+     "add aff.nadia 2",
+     "add aff.simone 2",
+     "add aff.minh_anh 2",
+     "flag nuit_maison",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "portrait_dix": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Minh-Anh a réglé un appareil photo sur un trépied. Simone a donné l'ordre. Hae-in a choisi l'éclairage. Xiaoyu a choisi les tenues : aucune."
+   },
+   {
+    "s": "maricel",
+    "t": "Tout le monde rentre le ventre ! Sauf Haneul, elle n'en a pas.",
+    "e": "laugh",
+    "v": true
+   },
+   {
+    "s": "aoi",
+    "t": "Souriez ! Pas le sourire de scène. Le vrai.",
+    "e": "true_smile",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Dix femmes et un homme, sur les matelas de la salle commune, dans la lumière orange du poêle. Ryeon cache son visage, Nadia regarde l'objectif comme une cible, Seo-Yeon a gardé ses lunettes, et Haneul brille. Le déclencheur claque. La photo est floue. C'est la plus belle de l'apocalypse."
+   },
+   {
+    "s": "narrator",
+    "t": "Ensuite, plus personne ne pose. La nuit des Dix appartient aux Dix, et à celui qu'elles ont choisi."
+   },
+   {
+    "s": "registre",
+    "t": "Portrait des Dix. Formation des Dix : l'Ultime collective s'éveille."
+   },
+   {
+    "fx": [
+     "flag portrait_dix",
+     "flag formation_dix",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ]
+ }
+}

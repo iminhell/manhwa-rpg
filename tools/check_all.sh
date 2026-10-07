@@ -19,9 +19,9 @@ step "3/4 Tests unitaires (état, dialogues, combat, carte, fuzz)"
 "$GODOT" --headless --path . -s res://tests/run_tests.gd >/dev/null 2>&1 || fail=1
 
 if [[ "${1:-}" != "--quick" ]]; then
-  step "4/4 Parties automatiques complètes (prologue → fin de l'Acte III)"
-  for variant in "" "--alt" "--autotest-regress" "--act1-only"; do
-    expected="FIN DE L'ACTE 3"
+  step "4/4 Parties automatiques complètes (prologue → Nuit du Déversement, Acte IV)"
+  for variant in "" "--alt" "--autotest-regress" "--act1-only" "--mode=histoire" "--mode=survie"; do
+    expected="FIN DE L'ACTE 4"
     [[ "$variant" == "--act1-only" ]] && expected="FIN DE L'ACTE 1"
     log=$(mktemp)
     if timeout 900 "$GODOT" --headless --path . -- --autotest $variant >"$log" 2>&1 && grep -q "$expected" "$log" && ! grep -qE "SCRIPT ERROR|^ERROR" "$log"; then

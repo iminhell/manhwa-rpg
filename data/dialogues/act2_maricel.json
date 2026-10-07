@@ -354,6 +354,10 @@
     "then": "tunnels_etayes"
    },
    {
+    "if": "loop() >= 2 and flag('echo.maricel_morte') and not flag('forage_interdit')",
+    "then": "tunnels_echo"
+   },
+   {
     "if": "flag('forage_interdit')",
     "then": "tunnels_forage_stop"
    },
@@ -384,6 +388,26 @@
       ]
      }
     ]
+   }
+  ],
+  "tunnels_echo": [
+   {
+    "s": "maricel",
+    "t": "…Non. On ne descend pas aujourd'hui. J'ai un mauvais pressentiment. Comme si j'étais déjà restée en bas, une fois.",
+    "e": "fear",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle rappelle les gamins un par un. Vingt minutes plus tard, un grondement fait trembler tout le marché."
+   },
+   {
+    "s": "maricel",
+    "t": "Gwapo. Tu étais là, dans mon rêve. Tu creusais à mains nues.",
+    "e": "tears"
+   },
+   {
+    "goto": "tunnels_sauvee"
    }
   ],
   "tunnels_etayes": [

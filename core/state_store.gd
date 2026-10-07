@@ -131,6 +131,40 @@ func loop() -> int:
 	return int(get_var("loop", 1))
 
 
+## Mode de difficulté de la boucle : "histoire" | "normal" | "survie" (data/world/difficulty.json).
+func mode() -> String:
+	return str(get_var("difficulte", "normal"))
+
+
+## Nombre de membres du groupe (Elias compris).
+func party_size() -> int:
+	var n := 1
+	for f in flags:
+		if str(f).begins_with("party."):
+			n += 1
+	return n
+
+
+## Nombre de liens forts : héroïnes du groupe dont l'Affinité atteint le seuil.
+func bonds(threshold: float = 30.0) -> int:
+	var n := 0
+	for f in flags:
+		if str(f).begins_with("party.") and aff(str(f).substr(6)) >= threshold:
+			n += 1
+	return n
+
+
+## Indice de Résilience de la ville (§14.3), calculé à partir de data/world/resilience.json.
+var resilience: Dictionary = {}
+
+func ir() -> int:
+	var total := int(resilience.get("base", 0))
+	for r in resilience.get("rules", []):
+		if check(str(r.get("if", ""))):
+			total += int(r.get("pts", 0))
+	return total
+
+
 # --- Temps (1 jour = 4 phases = 16 ticks ; 1 tick = ¼ de phase) ---------------------
 const TICKS_PER_PHASE := 4
 const TICKS_PER_DAY := 16
@@ -180,6 +214,11 @@ func at(node_id: String) -> bool:
 
 func in_sector(sector_id: String) -> bool:
 	return str(get_var("pos.sector", "")) == sector_id
+
+
+## Elias est-il dans la Tour (étages) ?
+func in_tower() -> bool:
+	return str(get_var("pos.sector", "")).begins_with("etage")
 
 
 func party(id: String) -> bool:

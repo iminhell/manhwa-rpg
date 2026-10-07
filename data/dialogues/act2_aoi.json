@@ -86,6 +86,10 @@
     "music": "intimate"
    },
    {
+    "if": "loop() >= 2 and flag('echo.aoi_sauvee')",
+    "then": "studio_echo"
+   },
+   {
     "if": "not flag('aoi_entendue')",
     "then": "studio_premiere"
    },
@@ -97,6 +101,33 @@
     "s": "aoi",
     "t": "Le type qui dit que je chante faux. Tu reviens me critiquer le premier couplet, cette fois ?",
     "e": "true_smile"
+   },
+   {
+    "goto": "studio_coeur"
+   }
+  ],
+  "studio_echo": [
+   {
+    "s": "narrator",
+    "t": "La porte s'ouvre avant que tu frappes. Aoi te regarde comme on regarde quelqu'un qu'on attendait sans le savoir."
+   },
+   {
+    "s": "aoi",
+    "t": "Je rêve d'une chanson que je n'ai jamais écrite. Il y a un homme dedans, qui m'attend dans la foule. Il a ta tête. C'est bizarre, non ?",
+    "e": "surprise",
+    "v": true
+   },
+   {
+    "s": "elias",
+    "t": "Un peu. Je vais te raconter la fin de la chanson.",
+    "e": "smirk"
+   },
+   {
+    "fx": [
+     "flag aoi_entendue",
+     "fin aoi",
+     "add trust.aoi 6"
+    ]
    },
    {
     "goto": "studio_coeur"
