@@ -102,6 +102,7 @@ def main() -> None:
         for z in find_zips():
             install_zip(z)
         if has_cuda():
+            run([sys.executable, "-m", "pip", "install", "-q", "-r", "tools/free_assets/requirements.txt"])
             os.environ.setdefault("COQUI_TOS_AGREED", "0")
             run([sys.executable, str(FREE_GEN), "images"])
             run([sys.executable, str(FREE_GEN), "music"])

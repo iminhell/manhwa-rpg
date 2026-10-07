@@ -121,39 +121,61 @@ def enable_vae_slicing(pipe) -> str:
     return ""  # optionnel : sans tranches, l'image se décode quand même (un peu plus de VRAM)
 
 
+def token_chunks(tokenizer, text: str) -> list[list[int]]:
+    """Jetons du texte (sans BOS/EOS) découpés en tranches de 75 : la fenêtre de 77 de CLIP, moins BOS et EOS."""
+    ids = tokenizer(text, add_special_tokens=False, truncation=False)["input_ids"]
+    size = tokenizer.model_max_length - 2
+    return [ids[i:i + size] for i in range(0, len(ids), size)] or [[]]
+
+
+def encode_long_prompt(pipe, text: str, n_chunks: int, torch):
+    """Encodage SDXL sans limite de 77 jetons (remplace compel, dont l'API a changé) : chaque tranche passe dans les deux
+    encodeurs comme dans StableDiffusionXLPipeline.encode_prompt (avant-dernière couche cachée, embedding « pooled » de
+    la première tranche du second encodeur), puis les tranches sont mises bout à bout. n_chunks complète avec des tranches
+    vides, pour que le prompt et le négatif aient la même longueur."""
+    per_encoder, pooled = [], None
+    for tok, enc in ((pipe.tokenizer, pipe.text_encoder), (pipe.tokenizer_2, pipe.text_encoder_2)):
+        chunks = token_chunks(tok, text)
+        chunks += [[]] * (n_chunks - len(chunks))
+        pad = tok.pad_token_id if tok.pad_token_id is not None else tok.eos_token_id
+        dev = next(enc.parameters()).device
+        states = []
+        for k, chunk in enumerate(chunks[:n_chunks]):
+            seq = [tok.bos_token_id] + chunk + [tok.eos_token_id]
+            seq += [pad] * (tok.model_max_length - len(seq))
+            out = enc(torch.tensor([seq], device=dev), output_hidden_states=True)
+            states.append(out.hidden_states[-2])
+            if enc is pipe.text_encoder_2 and k == 0 and out[0].ndim == 2:
+                pooled = out[0]
+        per_encoder.append(torch.cat(states, dim=1))
+    return torch.cat(per_encoder, dim=-1), pooled
+
+
 class SdxlBackend:
-    def __init__(self) -> None:
+    def __init__(self, pipe=None) -> None:
         import torch  # noqa: PLC0415
-        from diffusers import EulerAncestralDiscreteScheduler, StableDiffusionXLPipeline  # noqa: PLC0415
-        dev = device()
-        dtype = torch.float16 if dev == "cuda" else torch.float32
         self.torch = torch
-        self.pipe = StableDiffusionXLPipeline.from_pretrained(IMAGE_MODEL, torch_dtype=dtype, use_safetensors=True)
-        self.pipe.scheduler = EulerAncestralDiscreteScheduler.from_config(self.pipe.scheduler.config)
-        self.pipe.to(dev)
+        self.dev = device()
+        if pipe is None:
+            from diffusers import EulerAncestralDiscreteScheduler, StableDiffusionXLPipeline  # noqa: PLC0415
+            dtype = torch.float16 if self.dev == "cuda" else torch.float32
+            pipe = StableDiffusionXLPipeline.from_pretrained(IMAGE_MODEL, torch_dtype=dtype, use_safetensors=True)
+            pipe.scheduler = EulerAncestralDiscreteScheduler.from_config(pipe.scheduler.config)
+        self.pipe = pipe.to(self.dev)
         enable_vae_slicing(self.pipe)
-        self.dev = dev
-        try:
-            from compel import Compel, ReturnedEmbeddingsType  # noqa: PLC0415
-            self.compel = Compel(tokenizer=[self.pipe.tokenizer, self.pipe.tokenizer_2],
-                                 text_encoder=[self.pipe.text_encoder, self.pipe.text_encoder_2],
-                                 returned_embeddings_type=ReturnedEmbeddingsType.PENULTIMATE_HIDDEN_STATES_NON_NORMALIZED,
-                                 requires_pooled=[False, True], truncate_long_prompts=False)
-        except ImportError:
-            self.compel = None  # prompts tronqués à 77 jetons
+
+    def embeddings(self, prompt: str, negative: str) -> dict:
+        n = max(len(token_chunks(t, s)) for t in (self.pipe.tokenizer, self.pipe.tokenizer_2) for s in (prompt, negative))
+        with self.torch.no_grad():
+            cond, pooled = encode_long_prompt(self.pipe, prompt, n, self.torch)
+            ncond, npooled = encode_long_prompt(self.pipe, negative, n, self.torch)
+        return {"prompt_embeds": cond, "pooled_prompt_embeds": pooled,
+                "negative_prompt_embeds": ncond, "negative_pooled_prompt_embeds": npooled}
 
     def render(self, prompt: str, negative: str, size: tuple[int, int], seed: int, steps: int = 28):
         gen = self.torch.Generator(self.dev).manual_seed(seed)
-        args = {"width": size[0], "height": size[1], "num_inference_steps": steps, "guidance_scale": 6.5, "generator": gen}
-        if self.compel:
-            cond, pooled = self.compel(prompt)
-            ncond, npooled = self.compel(negative)
-            cond, ncond = self.compel.pad_conditioning_tensors_to_same_length([cond, ncond])
-            args.update(prompt_embeds=cond, pooled_prompt_embeds=pooled, negative_prompt_embeds=ncond,
-                        negative_pooled_prompt_embeds=npooled)
-        else:
-            args.update(prompt=prompt, negative_prompt=negative)
-        return self.pipe(**args).images[0]
+        return self.pipe(width=size[0], height=size[1], num_inference_steps=steps, guidance_scale=6.5, generator=gen,
+                         **self.embeddings(prompt, negative)).images[0]
 
 
 def cmd_images(a, backend=None) -> int:
@@ -190,18 +212,39 @@ def music_jobs(force: bool, only: list[str] | None) -> list[tuple[str, str, Path
     return jobs
 
 
+def write_wav(path: Path, samples, rate: int) -> None:
+    """WAV 16 bits mono, sans dépendance (le flottant 32 bits n'est pas lu par toutes les versions de ffmpeg/scipy)."""
+    import wave  # noqa: PLC0415
+
+    import numpy as np  # noqa: PLC0415
+    data = np.clip(np.asarray(samples, dtype=np.float32).reshape(-1), -1.0, 1.0)
+    with wave.open(str(path), "wb") as w:
+        w.setnchannels(1)
+        w.setsampwidth(2)
+        w.setframerate(int(rate))
+        w.writeframes((data * 32767).astype("<i2").tobytes())
+
+
 class MusicgenBackend:
-    def __init__(self) -> None:
-        from transformers import AutoProcessor, MusicgenForConditionalGeneration  # noqa: PLC0415
-        self.proc = AutoProcessor.from_pretrained(MUSIC_MODEL)
-        self.model = MusicgenForConditionalGeneration.from_pretrained(MUSIC_MODEL).to(device())
+    def __init__(self, model=None, processor=None) -> None:
+        import torch  # noqa: PLC0415
+        self.torch = torch
+        if model is None:
+            # Classes explicites : AutoProcessor ne résout pas MusicGen dans toutes les versions de transformers (5.x)
+            from transformers import MusicgenForConditionalGeneration, MusicgenProcessor  # noqa: PLC0415
+            processor = MusicgenProcessor.from_pretrained(MUSIC_MODEL)
+            model = MusicgenForConditionalGeneration.from_pretrained(MUSIC_MODEL)  # float32 : 6 Go, tient sur un T4
+        self.proc, self.model = processor, model.to(device())
         self.rate = self.model.config.audio_encoder.sampling_rate
+        self.tokens_per_second = self.model.config.audio_encoder.frame_rate
 
     def render(self, prompt: str, wav: Path, seconds: int) -> None:
-        import scipy.io.wavfile  # noqa: PLC0415
-        inputs = self.proc(text=[prompt], padding=True, return_tensors="pt").to(self.model.device)
-        audio = self.model.generate(**inputs, do_sample=True, guidance_scale=3.0, max_new_tokens=int(seconds * 50))
-        scipy.io.wavfile.write(str(wav), rate=self.rate, data=audio[0, 0].cpu().numpy())
+        inputs = self.proc(text=[prompt], padding=True, return_tensors="pt")
+        inputs = {k: v.to(self.model.device) for k, v in inputs.items()}
+        with self.torch.no_grad():
+            audio = self.model.generate(**inputs, do_sample=True, guidance_scale=3.0,
+                                        max_new_tokens=int(seconds * self.tokens_per_second))
+        write_wav(wav, audio[0, 0].float().cpu().numpy(), self.rate)
 
 
 def cmd_music(a, backend=None) -> int:
@@ -242,26 +285,78 @@ def xtts_voices() -> dict[str, str]:
     return {p.stem: load_json(p).get("voice", {}).get("xtts", "") for p in CHARS.glob("*.json")}
 
 
+# Limites de caractères de XTTS-v2 par appel (tokenizer : ja 71, ko 95), avec une marge
+XTTS_LIMITS = {"ja": 65, "ko": 85}
+SENTENCE_END = re.compile(r"(?<=[。！？!?…\.])\s*")
+
+
+def split_for_tts(text: str, lang: str) -> list[str]:
+    """Découpe une réplique en morceaux sous la limite XTTS : d'abord aux fins de phrase, puis aux virgules,
+    puis en dur. (Le découpage interne de coqui-tts suppose des phrases anglaises.)"""
+    limit = XTTS_LIMITS.get(lang, 200)
+    pieces: list[str] = []
+    for sentence in (s.strip() for s in SENTENCE_END.split(text)):
+        if not sentence:
+            continue
+        sub = [sentence] if len(sentence) <= limit else [p for p in re.split(r"(?<=[、，,])\s*", sentence) if p]
+        for p in sub:
+            pieces += [p[i:i + limit] for i in range(0, len(p), limit)]
+    # regroupe les morceaux courts (moins d'appels, intonation plus naturelle)
+    sep = " " if lang == "ko" else ""
+    out: list[str] = []
+    for p in pieces:
+        if out and len(out[-1]) + len(sep) + len(p) <= limit:
+            out[-1] += sep + p
+        else:
+            out.append(p)
+    return out or [text]
+
+
 class XttsBackend:
-    def __init__(self) -> None:
-        if os.environ.get("COQUI_TOS_AGREED") != "1":
-            sys.exit("Voix : accepter la licence Coqui (usage non commercial) → COQUI_TOS_AGREED=1")
-        from TTS.api import TTS  # noqa: PLC0415  (pip install coqui-tts)
-        self.tts = TTS(XTTS_MODEL).to(device())
-        self.available = list(getattr(self.tts, "speakers", None) or [])
+    def __init__(self, tts=None) -> None:
+        if tts is None:
+            if os.environ.get("COQUI_TOS_AGREED") != "1":
+                sys.exit("Voix : accepter la licence Coqui (usage non commercial) → COQUI_TOS_AGREED=1")
+            try:
+                import torchaudio  # noqa: F401, PLC0415  (importé par XTTS sans être déclaré par coqui-tts)
+            except ImportError:
+                sys.exit("Voix : torchaudio manquant → pip install torchaudio (même version que torch)")
+            from TTS.api import TTS  # noqa: PLC0415  (pip install "coqui-tts[ja,ko]")
+            tts = TTS(XTTS_MODEL).to(device())
+        self.tts = tts
+        self.rate = int(tts.synthesizer.output_sample_rate)
+        self.available = list(getattr(tts, "speakers", None) or [])
         self.wanted = xtts_voices()
+        self.ref_failed: set[str] = set()
+        chosen = {cid: self.speaker_for(cid).get("speaker", "échantillon") for cid in sorted(self.wanted)}
+        print(f"  voix XTTS : {chosen}")
 
     def speaker_for(self, cid: str) -> dict:
         ref = ROOT / "assets/voice/refs" / f"{cid}.wav"  # échantillon personnel : clonage de voix
-        if ref.exists():
+        if ref.exists() and cid not in self.ref_failed:
             return {"speaker_wav": str(ref)}
         name = self.wanted.get(cid, "")
         if name not in self.available and self.available:
             name = self.available[seed_of(cid) % len(self.available)]
         return {"speaker": name}
 
+    def _say(self, text: str, lang: str, cid: str):
+        try:
+            return self.tts.tts(text=text, language=lang, split_sentences=False, **self.speaker_for(cid))
+        except Exception as e:  # noqa: BLE001  — échantillon illisible (torchcodec absent…) : voix prédéfinie
+            if "speaker_wav" not in self.speaker_for(cid):
+                raise
+            print(f"  ! échantillon de {cid} inutilisable ({e.__class__.__name__}) : voix XTTS prédéfinie")
+            self.ref_failed.add(cid)
+            return self.tts.tts(text=text, language=lang, split_sentences=False, **self.speaker_for(cid))
+
     def render(self, text: str, lang: str, cid: str, wav: Path) -> None:
-        self.tts.tts_to_file(text=text, language=lang, file_path=str(wav), **self.speaker_for(cid))
+        import numpy as np  # noqa: PLC0415
+        gap = np.zeros(int(self.rate * 0.15), dtype=np.float32)
+        parts = []
+        for piece in split_for_tts(text, lang):
+            parts += [np.asarray(self._say(piece, lang, cid), dtype=np.float32), gap]
+        write_wav(wav, np.concatenate(parts[:-1]), self.rate)
 
 
 def cmd_voices(a, backend=None) -> int:

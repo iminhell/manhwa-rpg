@@ -1,0 +1,10 @@
+# Versions testées ensemble (tools/free_assets/test_backends_torch.py + sonde XTTS-v2), avec torch 2.14 :
+#   - coqui-tts 0.27.5 importe transformers.pytorch_utils.isin_mps_friendly, retiré de transformers 5.x → transformers 4.57 ;
+#   - transformers 4.57 exige huggingface-hub < 1.0, or diffusers ≥ 0.40 exige ≥ 1.23 → diffusers 0.39 ;
+#   - avec torch ≥ 2.9, coqui-tts refuse de se charger sans le paquet torchcodec → extra « codec ».
+# torch, torchaudio et ffmpeg sont ceux de Colab (ne pas les réinstaller : ils doivent rester assortis).
+transformers==4.57.6
+diffusers==0.39.0
+accelerate
+scipy
+coqui-tts[ja,ko,codec]==0.27.5

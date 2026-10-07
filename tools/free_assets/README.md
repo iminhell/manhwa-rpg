@@ -23,7 +23,7 @@ Sur le PC, double-cliquer `GENERER_ASSETS.bat` (ou `./generer_assets.sh`) : il f
 ## Variantes
 ```bash
 python tools/free_assets/free_gen.py plan                 # ce qui reste à produire
-python tools/free_assets/free_gen.py images --limit 10    # sur un PC avec carte NVIDIA (pip install torch diffusers compel accelerate)
+python tools/free_assets/free_gen.py images --limit 10    # PC avec carte NVIDIA : pip install torch torchaudio -r tools/free_assets/requirements.txt
 python tools/free_assets/free_gen.py voices --only seo_yeon
 python tools/generate_assets.py --paid --budget 15        # fal.ai + RunPod, estimation et confirmation avant tout appel
 ```
@@ -31,4 +31,16 @@ python tools/generate_assets.py --paid --budget 15        # fal.ai + RunPod, est
 - Voix personnelle : déposer `assets/voice/refs/<personnage>.wav` (10 à 20 s propres) pour cloner cette voix au lieu de la voix XTTS prédéfinie.
 - Autres modèles : variables `FREE_IMAGE_MODEL` et `FREE_MUSIC_MODEL`.
 
-`test_free_gen.py` (lancé par `tools/check_all.sh`) vérifie le tout sans GPU, avec de faux moteurs.
+## Versions figées
+`requirements.txt` fixe un ensemble testé (le notebook l'installe une fois) : **transformers 4.57.6**, **diffusers 0.39.0**, **coqui-tts[ja,ko,codec] 0.27.5** ; torch, torchaudio et ffmpeg restent ceux de Colab. Pourquoi :
+- coqui-tts 0.27.5 ne se charge pas avec transformers 5.x (`isin_mps_friendly` retiré) ;
+- transformers 4.57 exige huggingface-hub < 1.0, ce qu'acceptent diffusers ≤ 0.39 ;
+- avec torch ≥ 2.9, coqui-tts exige le paquet torchcodec (extra `codec`).
+
+Les prompts longs (au-delà de 77 jetons CLIP) sont encodés par `free_gen.py` lui-même, par tranches, comme le fait `StableDiffusionXLPipeline.encode_prompt` : plus de dépendance à compel, dont l'API a changé.
+
+## Tests
+- `test_free_gen.py` : sans GPU ni bibliothèque lourde, avec de faux moteurs (chemins, reprise, Ogg, zip, découpage des répliques sous les limites XTTS de 71 caractères en japonais et 95 en coréen).
+- `test_backends_torch.py` : les **vrais** pipelines diffusers SDXL et transformers MusicGen sur des mini-modèles aléatoires construits localement (aucun téléchargement). Il est ignoré si torch n'est pas installé : `pip install torch -r tools/free_assets/requirements.txt`.
+
+Les deux sont lancés par `tools/check_all.sh`.

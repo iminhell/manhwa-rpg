@@ -94,6 +94,51 @@ def main() -> None:
     check(fg.enable_vae_slicing(old) == "pipe.enable_vae_slicing" and old.sliced, "VAE : diffusers ancien (enable_vae_slicing)")
     check(fg.enable_vae_slicing(object()) == "", "VAE : aucune méthode, pas d'erreur")
 
+    # Voix : découpage sous les limites de XTTS-v2, assemblage du WAV, voix de repli
+    import csv  # noqa: PLC0415
+    with fg.LINES.open(encoding="utf-8") as f:
+        rows = list(csv.DictReader(f))
+    for lang in fg.LANGS:
+        limit = fg.XTTS_LIMITS[lang]
+        for r in rows:
+            text = r[f"text_{lang}"]
+            pieces = fg.split_for_tts(text, lang)
+            if any(len(p) > limit for p in pieces) or not pieces:
+                failures.append(f"voix {lang} : {r['line_id']} dépasse la limite XTTS ({[len(p) for p in pieces]})")
+                break
+            if "".join(pieces).replace(" ", "") != text.replace(" ", ""):
+                failures.append(f"voix {lang} : {r['line_id']} perd du texte au découpage")
+                break
+    longest = max(rows, key=lambda r: len(r["text_ja"]))["text_ja"]
+    check(len(fg.split_for_tts(longest, "ja")) > 1, "voix : la plus longue réplique japonaise est découpée")
+
+    class FakeSynth:
+        output_sample_rate = 24000
+
+    class FakeTts:
+        speakers = ["Daisy Studious", "Claribel Dervla", "Damien Black"]
+        synthesizer = FakeSynth()
+
+        def __init__(self):
+            self.calls = []
+
+        def tts(self, text, language, split_sentences, speaker=None, speaker_wav=None):
+            self.calls.append((text, language, split_sentences, speaker))
+            return [0.1] * 2400  # 0,1 s
+
+    fake_tts = FakeTts()
+    xb = fg.XttsBackend(tts=fake_tts)
+    check(xb.speaker_for("seo_yeon") == {"speaker": "Daisy Studious"}, "voix : voix XTTS choisie pour Seo-Yeon")
+    check(xb.speaker_for("nadia")["speaker"] in FakeTts.speakers, "voix : repli sur une voix disponible")
+    with tempfile.TemporaryDirectory() as tmp:
+        wav = Path(tmp) / "v.wav"
+        xb.render(longest, "ja", "seo_yeon", wav)
+        n = len(fg.split_for_tts(longest, "ja"))
+        with wave.open(str(wav)) as w:
+            frames, rate = w.getnframes(), w.getframerate()
+        check(rate == 24000 and frames == 2400 * n + 3600 * (n - 1), f"voix : {n} morceaux assemblés avec silences ({frames})")
+        check(all(c[2] is False for c in fake_tts.calls), "voix : découpage interne de coqui désactivé")
+
     ctx = fg.art.Ctx(dry_run=True)
     manifest = fg.load_json(fg.MANIFEST)["assets"]
     tokens = [c["token"] for c in ctx.chars.values()]
