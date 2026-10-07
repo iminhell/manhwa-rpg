@@ -1998,5 +1998,153 @@
  "Souriez ! Pas le sourire de scène. Le vrai.": {
   "ko": "웃어요! 무대 미소 말고. 진짜로.",
   "ja": "笑って！ステージの笑顔じゃなくて。本物の。"
+ },
+ "Le contrat dit « présence ». Vous aurez ma présence, Seigneur Kang. Rien de ce qu'un contrat ne peut pas acheter.": {
+  "ko": "계약서에는 '동석'이라고 되어 있죠. 동석은 해 드리죠, 강 영주님. 계약으로 살 수 없는 건 하나도 드리지 않겠어요.",
+  "ja": "契約には『同席』とあります。同席はいたしますわ、カン卿。契約で買えないものは、何ひとつ差し上げません。"
+ },
+ "Trois cent quarante mille wons de dette, Kang-ssi. Je déteste devoir. Je vous propose un échange : vous effacez une ligne, et moi… je vous fais un examen complet. Gratuit. Très complet.": {
+  "ko": "빚이 삼십사만 원이에요, 강 씨. 빚지는 건 질색이에요. 거래를 하죠. 한 줄 지워 주시면, 저는… 정밀 검진을 해 드릴게요. 무료로요. 아주 정밀하게.",
+  "ja": "借金、三十四万ウォンです、カンさん。借りを作るのは大嫌いなんです。取引しましょう。一行消してくれたら、私が……精密検査をしてあげます。無料で。とても精密に。"
+ },
+ "Comment on enlève ce… Vous êtes équipé comme un convoi. Aidez-moi. Non. Laissez. Je vais trouver.": {
+  "ko": "이걸 어떻게 벗기는… 무슨 수송대처럼 장비를 하셨네요. 도와주세요. 아니. 가만히 계세요. 제가 찾을게요.",
+  "ja": "これ、どうやって外すの……輸送隊みたいな装備ですね。手伝って。いえ。じっとしてて。自分で見つけます。"
+ },
+ "Dans les Fins des gens d'en bas, tout a un prix. Le pain, les lits, les secrets. Toi aussi, tu vends tout. Alors je veux acheter quelque chose.": {
+  "ko": "아래 사람들의 결말 속에선 모든 게 값이 있어. 빵도, 침대도, 비밀도. 너도 뭐든 팔잖아. 그러니까 나도 뭔가 사고 싶어.",
+  "ja": "下の人たちの結末では、なんにでも値段がある。パンも、ベッドも、秘密も。あなたもなんでも売るでしょう。だから、わたしも何か買いたいの。"
+ },
+ "Qu'est-ce qu'on achète avec cinq cents wons ?": {
+  "ko": "오백 원으로 뭘 살 수 있는데?",
+  "ja": "五百ウォンで何が買えるんだ？"
+ },
+ "Ne compte rien. Pas ce soir. Je veux être la seule chose que tu n'aies jamais vendue.": {
+  "ko": "아무것도 세지 마. 오늘 밤은. 네가 한 번도 팔지 않은 단 하나가 되고 싶어.",
+  "ja": "何も数えないで。今夜は。あなたが一度も売らなかった、たったひとつのものになりたいの。"
+ },
+ "L'agence m'a fait signer quarante pages que je n'avais pas le droit de lire. Toi, tu adores les contrats. Alors celui-là, c'est moi qui l'écris. Tu lis tout. Tu signes, ou tu pars.": {
+  "ko": "소속사는 읽지도 못하게 한 마흔 장짜리 계약서에 사인하게 했어. 넌 계약을 좋아하잖아. 그러니까 이번 건 내가 쓸 거야. 전부 읽어. 사인하든지, 나가든지.",
+  "ja": "事務所には、読むことも許されない四十ページの契約書にサインさせられた。あなたは契約が大好きでしょ。だから、これは私が書く。全部読んで。サインするか、出ていくか。"
+ },
+ "…Tu as lu la quatre.": {
+  "ko": "…4번 읽었구나.",
+  "ja": "……四番、読んだんだ。"
+ },
+ "J'ai tout lu. C'est mon métier.": {
+  "ko": "전부 읽었어. 그게 내 일이야.",
+  "ja": "全部読んだ。それが俺の仕事だ。"
+ },
+ "Pari, gwapo. Si je te vole encore trois trucs avant l'aube, tu me dois une nuit. Si tu me rattrapes avant, c'est moi qui te la dois. Dans les deux cas, je gagne. C'est ça, le business.": {
+  "ko": "내기하자, 과뽀. 새벽 전에 내가 세 개 더 훔치면 넌 나한테 하룻밤 빚지는 거야. 그 전에 날 잡으면 내가 빚지는 거고. 어느 쪽이든 내가 이겨. 그게 장사야.",
+  "ja": "賭けよ、グワポ。夜明けまでにあと三つ盗めたら、あんたは一晩あたしに借り。その前に捕まえたら、あたしが借り。どっちでもあたしの勝ち。それが商売ってもん。"
+ },
+ "Ay, j'ai gagné. Ou j'ai perdu. Je ne sais plus compter. C'est ta faute.": {
+  "ko": "아이, 내가 이겼다. 아니, 졌나. 이제 셀 수가 없어. 네 탓이야.",
+  "ja": "アイ、勝った。いや、負けたかも。もう数えられない。あんたのせいだからね。"
+ },
+ "Un duel. Trois touches. Le vainqueur réclame un vœu, et le vaincu l'exauce, sans discuter. C'est un contrat d'honneur ! Pas un de tes marchés sordides !": {
+  "ko": "결투다. 세 번 먼저 찌르는 쪽. 이긴 자가 소원을 말하면, 진 자는 군말 없이 들어준다. 명예의 약속이다! 네 그 지저분한 거래 따위가 아니라!",
+  "ja": "決闘だ。三本先取。勝者が願いを言い、敗者は黙って叶える。これは名誉の契約だ！ 貴様の薄汚い取引とは違う！"
+ },
+ "J'ai gagné. Mon vœu… Mon vœu, c'est… Ne me le fais pas répéter. Tu as très bien compris.": {
+  "ko": "내가 이겼다. 내 소원은… 내 소원은… 두 번 말하게 하지 마. 너도 다 알아들었잖아.",
+  "ja": "私の勝ちだ。願いは……私の願いは……二度言わせるな。分かっているだろう。"
+ },
+ "Un contrat d'honneur s'énonce clairement.": {
+  "ko": "명예의 약속은 분명하게 말해야지.",
+  "ja": "名誉の契約は、はっきり口にするものだ。"
+ },
+ "Entre marchands, on ne joue pas pour de l'argent, Kang. L'argent, on en a. On joue des secrets. Chaque main perdue, un secret. Ou un vêtement, si le secret coûte trop cher.": {
+  "ko": "장사꾼끼리는 돈 걸고 안 해, 강. 돈은 있으니까. 비밀을 걸지. 한 판 질 때마다 비밀 하나. 비밀이 너무 비싸면, 옷 한 벌.",
+  "ja": "商売人同士は金を賭けないのよ、カン。金ならあるもの。賭けるのは秘密。一局負けるごとに秘密ひとつ。秘密が高すぎるなら、服を一枚。"
+ },
+ "Ce secret-là coûte plus cher. Je paie autrement. Une Long paie toujours ses dettes, avec panache.": {
+  "ko": "그 비밀은 더 비싸. 다른 걸로 치르지. 롱 가문은 언제나 빚을 갚아. 멋지게.",
+  "ja": "その秘密は高くつくわ。別のもので払う。ロンの女は必ず借りを返すの。華麗にね。"
+ },
+ "Haesong Holdings et votre petite entreprise de mercenariat, Monsieur Kang. Une fusion, pas une acquisition : je n'achète pas les hommes, je négocie avec eux. Lisez l'article quatre.": {
+  "ko": "해송 홀딩스와 당신의 작은 용병 사업이죠, 강 선생님. 인수가 아니라 합병이에요. 저는 사람을 사지 않아요. 협상하죠. 제4조를 읽어 보세요.",
+  "ja": "海松ホールディングスと、あなたの小さな傭兵稼業ですわ、カンさん。買収ではなく合併。私は人を買いません、交渉するの。第四条をお読みになって。"
+ },
+ "Vous négociez mieux que mon conseil d'administration. C'est presque vexant.": {
+  "ko": "우리 이사회보다 협상을 잘하시네요. 조금 자존심 상할 정도로.",
+  "ja": "うちの取締役会より交渉がお上手ね。少し悔しいくらい。"
+ },
+ "Entre mercenaires, on règle les choses proprement. Six capsules. Celui qui en touche le plus choisit comment finit la nuit. L'autre ne discute pas.": {
+  "ko": "용병끼리는 깔끔하게 정리하지. 병뚜껑 여섯 개. 더 많이 맞힌 쪽이 오늘 밤이 어떻게 끝날지 정해. 다른 쪽은 토 달지 않고.",
+  "ja": "傭兵同士は、きれいに片をつける。王冠が六つ。多く当てた方が、今夜の終わり方を決める。もう一方は文句を言わない。"
+ },
+ "Égalité. Alors personne ne choisit. On fait comme des égaux. Je n'ai jamais fait ça avec un client. Tu n'es pas un client.": {
+  "ko": "동점이네. 그럼 아무도 안 정해. 대등하게 하자. 고객이랑은 이런 적 없어. 넌 고객이 아니니까.",
+  "ja": "引き分け。なら誰も決めない。対等にいく。客とこんなことをしたことはない。あんたは客じゃない。"
+ },
+ "Rang F. Mon contrat prévoit une permission par mois. Je n'en ai jamais pris une seule de toute ma carrière. Ce soir, je la prends. Avec toi. Si tu es libre, contractant.": {
+  "ko": "F급. 내 계약엔 한 달에 한 번 휴가가 있어. 군 생활 내내 한 번도 안 썼지. 오늘 밤 쓰겠다. 너랑. 시간 되면 말이야, 계약자.",
+  "ja": "Fランク。私の契約には月一回の休暇がある。軍歴で一度も取ったことがない。今夜、取る。お前とだ。空いているならな、契約者。"
+ },
+ "On négociera après. En permission, je ne donne pas d'ordres. J'essaie, en tout cas.": {
+  "ko": "협상은 나중에. 휴가 중엔 명령 안 해. 적어도 노력은 하지.",
+  "ja": "交渉は後だ。休暇中は命令しない。少なくとも、努力はする。"
+ },
+ "Tu m'as rachetée. C'est une donnée que je ne supporte pas. Alors je rachète ma dette. Après ça, je ne t'appartiens pas, et ce que je ferai ensuite sera une variable libre.": {
+  "ko": "네가 날 사 왔어. 난 그 데이터를 견딜 수 없어. 그래서 내 빚을 되사는 거야. 그러면 난 네 소유가 아니고, 그다음 내가 할 일은 자유 변수가 돼.",
+  "ja": "あなたは私を買い戻した。そのデータが耐えられない。だから私が自分の借金を買い戻す。そうすれば私はあなたのものじゃない。この後の私の行動は、自由変数になる。"
+ },
+ "Dette : zéro. Variable libre. Je choisis… le protocole que je n'ai jamais osé écrire.": {
+  "ko": "빚: 0. 자유 변수. 나는… 한 번도 쓸 엄두를 못 낸 프로토콜을 선택할게.",
+  "ja": "負債、ゼロ。自由変数。私は……一度も書く勇気がなかったプロトコルを選ぶ。"
+ },
+ "J'ai relu le Pacte. Toutes les clauses. La clause de rupture ne me coûterait presque rien, maintenant : le camp est sauf, vous avez tenu chacune de vos promesses. Je pourrais partir ce soir.": {
+  "ko": "서약을 다시 읽었어요. 조항 전부요. 이제 파기 조항은 거의 대가가 없어요. 캠프는 안전하고, 당신은 약속을 하나도 어기지 않았으니까. 오늘 밤 떠날 수도 있어요.",
+  "ja": "誓約を読み直しました。全部の条項を。今なら破棄条項の代償はほとんどありません。キャンプは無事で、あなたは約束を一つも破らなかった。今夜、出ていくこともできます。"
+ },
+ "Je reste pour le camp. Je soignerai vos blessés, je recoudrai vos hommes. Mais je ne vous dois plus rien, Kang. Plus jamais.": {
+  "ko": "캠프를 위해 남을 거예요. 당신 부상자들을 치료하고, 당신 사람들을 꿰매 줄게요. 하지만 당신한텐 이제 아무것도 빚지지 않았어요, 강. 다시는.",
+  "ja": "キャンプのために残ります。あなたの負傷者を手当てして、あなたの部下を縫います。でも、あなたにはもう何の借りもない、カン。二度と。"
+ },
+ "J'ai payé ma dette, Kang. Avec les intérêts. Le Système est d'accord : je ne te dois plus rien.": {
+  "ko": "빚은 갚았어, 강. 이자까지. 시스템도 인정했지. 이제 너한테 빚진 건 없어.",
+  "ja": "借りは返したわ、カン。利子までね。システムも認めた。もうあなたには何の借りもない。"
+ },
+ "Ne le dis à personne. La reine de la pègre a perdu le contrat et gagné la partie. Personne ne comprendrait.": {
+  "ko": "아무한테도 말하지 마. 암흑가의 여왕이 계약은 잃고 판은 이겼다니. 아무도 이해 못 할 거야.",
+  "ja": "誰にも言わないで。裏社会の女王が契約を失って、勝負に勝ったなんて。誰にも分からないわ。"
+ },
+ "Une Long paie toujours. J'ai payé pour partir. La prochaine fois qu'on jouera, Kang, ce sera ta vie sur la table.": {
+  "ko": "롱 가문은 언제나 값을 치러. 떠나는 값도 치렀어. 다음에 우리가 판을 벌이면, 강, 테이블 위엔 네 목숨이 올라갈 거야.",
+  "ja": "ロンの女は必ず払う。出ていく代償も払った。次に卓を囲むときは、カン、賭けるのはあなたの命よ。"
+ },
+ "« La vassale rend compte chaque soir. » J'ai rendu compte trente soirs. Vous avez lu chaque rapport, Seigneur Kang, et vous avez tenu chaque engagement. Un associé fiable : la chose la plus rare au monde.": {
+  "ko": "'봉신은 매일 밤 보고한다.' 서른 밤을 보고했죠. 당신은 보고서를 하나도 빠짐없이 읽었고, 약속을 전부 지켰어요, 강 영주님. 믿을 수 있는 동업자. 세상에서 가장 귀한 것이죠.",
+  "ja": "『家臣は毎晩報告する』。三十夜、報告しました。あなたは報告書をすべて読み、約束をすべて守った、カン卿。信頼できる共同経営者。この世で最も稀なものですわ。"
+ },
+ "Dix pour cent. C'est le prix de ma liberté, et c'est une affaire. Ne m'appelez plus « vassale », Monsieur Kang. Appelez-moi « concurrente ».": {
+  "ko": "10퍼센트. 제 자유의 값이고, 싼 거래죠. 이제 저를 '봉신'이라 부르지 마세요, 강 선생님. '경쟁자'라고 부르세요.",
+  "ja": "十パーセント。私の自由の値段で、安い買い物ですわ。もう私を『家臣』と呼ばないで、カンさん。『競合相手』とお呼びなさい。"
+ },
+ "J'ai passé ma vie à obéir à des gens qui ne le méritaient pas. Toi, tu as tenu la clause de Protection. Chaque fois. Même quand ça te coûtait.": {
+  "ko": "평생 복종할 가치도 없는 놈들한테 복종하며 살았어. 넌 보호 조항을 지켰지. 매번. 대가가 따를 때도.",
+  "ja": "私は一生、従う価値のない連中に従ってきた。お前は保護条項を守った。毎回だ。代償があってもな。"
+ },
+ "Ce soir, c'est moi qui commande, Seigneur. Et tu vas adorer obéir.": {
+  "ko": "오늘 밤은 내가 지휘한다, 영주님. 그리고 넌 복종하는 게 아주 마음에 들 거야.",
+  "ja": "今夜は私が指揮を執る、卿。そしてお前は、従うのが病みつきになる。"
+ },
+ "Simple soldate. Ça me va. Je me bats encore pour cette ville, Rang F. Plus pour toi. Rompez.": {
+  "ko": "일개 병사. 괜찮아. 난 여전히 이 도시를 위해 싸운다, F급. 너를 위해서가 아니라. 해산.",
+  "ja": "一兵卒か。構わない。私はまだこの街のために戦う、Fランク。お前のためじゃない。解散。"
+ },
+ "Le reste, c'était de la paperasse. Ça, je le garde. J'ai changé d'employeur trois fois dans ma vie. C'est la première fois que je choisis le mien.": {
+  "ko": "나머진 서류 쪼가리였어. 이건 가질게. 살면서 고용주를 세 번 바꿨지. 내가 직접 고른 건 이번이 처음이야.",
+  "ja": "残りはただの書類だ。これは取っておく。雇い主は人生で三度変えた。自分で選んだのは、これが初めてだ。"
+ },
+ "Je sais. C'est pour ça.": {
+  "ko": "알아. 그래서야.",
+  "ja": "知ってる。だからだ。"
+ },
+ "Payée et quitte. Tu es sur ma liste, maintenant. Pas en haut. Pas encore.": {
+  "ko": "값 치렀고, 끝났어. 이제 넌 내 명단에 있어. 맨 위는 아니야. 아직은.",
+  "ja": "払った。これで貸し借りなし。あんたは今、私のリストに載ってる。一番上じゃない。まだな。"
  }
 }

@@ -2497,6 +2497,19 @@ manhwa-rpg/                    # le projet Godot est à la racine du dépôt
   - un souvenir ou un Écho lu avant d'être obtenu doit être gardé par `loop()`.
 - **Contenu 18+** : les scènes intimes (Refuge, Pactes, scènes à plusieurs) sont plus explicites et sensuelles. Elles ont des variantes par voie et par dynamique (Amour, Peur, Vassalité, Pacte), toujours dans un cadre consenti.
 
+#### 19.7.9 CG, voies et Pactes (v0.10)
+- **CG** : 61 CG au manifeste, chacune rattachée à sa scène (`"scene": "dialogue:bloc"`). Elles couvrent les nuits du Refuge, les scènes « ombre » de la voie du Tyran, les scènes à plusieurs et les Ancres de l'Acte IV (toit de la Lotte, Machine d'Inversion, Dernier Exode, Protocole Cendre, Nuit du Déversement, Épreuve des Dix, la Page). Les scènes intimes (`"nsfw": true`) passent par RunPod. Le validateur exige :
+  - une CG appelée existe au manifeste, et une CG du manifeste est appelée par sa scène ;
+  - chaque nuit (`<id>_nuit`, `trio_nuit`, `quatuor_nuit`, `nuit_maison`) affiche une CG ;
+  - une CG `nsfw` a `"backend": "runpod"`.
+- **Passages P3** : l'étape `{"text_p3_slot": [répliques]}` se place dans la continuité exacte d'une nuit consentie. Elle est vide par défaut, l'auteur la rédige, et elle est sautée si le joueur masque le P3 (Options). Les nuits de Pacte n'en ont pas.
+- **Voie** : la condition `voie()` renvoie `heros`, `tyran`, `loup`, `mercenaire` ou `""`, avec les seuils de la Résolution.
+- **Mercenaire** : une nuit par héroïne (`<id>_merc` → `<id>_merc_nuit`) : un pari, un marché ou un contrat dont **elle fixe les termes**.
+- **Pactes** (Seo-Yeon, Xiaoyu, Hae-in, Simone, Nadia) :
+  - **Dévotion** (Ambivalence ≥ 60, Affinité ≥ 70) : elle renouvelle librement le Pacte en rayant la clause de Service ; l'intimité vient d'elle (`<id>_devotion`, `<id>_devotion_nuit`).
+  - **Rupture** (Ambivalence ≤ −60) : elle paie le prix fixé à la signature, le Pacte disparaît (`<id>_pacte_rupture`), et ses scènes de repos restent froides (`<id>_froid`).
+  - Les nuits sous Pacte (« Reste ») sont un rapport de force psychologique et contractuel, sans scène intime.
+
 ### 21.1 Réponses validées
 | Question | Réponse | Section |
 |---|---|---|

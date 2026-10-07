@@ -793,6 +793,46 @@
   {
    "if": "flag('nadia_nuit') or flag('nadia_nuit_pacte') or flag('simone_nuit') or flag('simone_nuit_pacte') or flag('minh_anh_nuit')",
    "text": "Nadia, Simone ou Minh-Anh ont choisi de rester une nuit."
+  },
+  {
+   "if": "flag('seo_devotion')",
+   "text": "Seo-Yeon a renouvelé son Pacte librement, sans la clause de Service. Dévotion."
+  },
+  {
+   "if": "flag('seo_rupture')",
+   "text": "Seo-Yeon a invoqué la clause de rupture et payé le prix. Elle ne te doit plus rien."
+  },
+  {
+   "if": "flag('xiaoyu_devotion')",
+   "text": "Xiaoyu a renouvelé son Pacte librement, sans la clause de Service. Dévotion."
+  },
+  {
+   "if": "flag('xiaoyu_rupture')",
+   "text": "Xiaoyu a invoqué la clause de rupture et payé le prix. Elle ne te doit plus rien."
+  },
+  {
+   "if": "flag('haein_devotion')",
+   "text": "Hae-in a renouvelé son Pacte librement, sans la clause de Service. Dévotion."
+  },
+  {
+   "if": "flag('haein_rupture')",
+   "text": "Hae-in a invoqué la clause de rupture et payé le prix. Elle ne te doit plus rien."
+  },
+  {
+   "if": "flag('simone_devotion')",
+   "text": "Simone a renouvelé son Pacte librement, sans la clause de Service. Dévotion."
+  },
+  {
+   "if": "flag('simone_rupture')",
+   "text": "Simone a invoqué la clause de rupture et payé le prix. Elle ne te doit plus rien."
+  },
+  {
+   "if": "flag('nadia_devotion')",
+   "text": "Nadia a renouvelé son Pacte librement, sans la clause de Service. Dévotion."
+  },
+  {
+   "if": "flag('nadia_rupture')",
+   "text": "Nadia a invoqué la clause de rupture et payé le prix. Elle ne te doit plus rien."
   }
  ]
 }

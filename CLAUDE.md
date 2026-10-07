@@ -26,6 +26,9 @@ Ne jamais commiter si le script échoue. Le validateur (`tools/validate_data.py`
 - **Modes** : `data/world/difficulty.json` (`histoire`, `normal`, `survie`), lu par `mode()` ; ils règlent combat, rations et jours de répit (`item.sablier`, drapeau `repit.actif`).
 - **Échos** : `data/world/echoes.json` ; les drapeaux `echo.<id>` sont posés à la régression et se lisent toujours derrière `loop() >= 2`. **IR** : `data/world/resilience.json`, lu par `ir()`.
 - **Ancres présent / absent** : l'événement « présent » doit contenir `and not done('<id>_absent')` (validé).
+- **CG** : toute entrée `cg` du manifeste déclare sa scène (`"scene": "dialogue:bloc"`) et y est appelée (`{"cg": id}`) ; chaque nuit (`flag <id>_nuit`…) affiche une CG ; une CG `"nsfw": true` a `"backend": "runpod"`.
+- **Passages P3** : `{"text_p3_slot": [{"s", "t", "e"}…]}`, seul dans son étape, dans la continuité exacte d'une nuit consentie ; vide = sauté ; masqué par l'option P3. Jamais dans une nuit de Pacte.
+- **Voie** : `voie() == 'heros'|'tyran'|'loup'|'mercenaire'` (mêmes seuils que la Résolution).
 - **Combats** : une rencontre peut fixer `atk_mult` (difficulté) et `party` (duel, groupe imposé). Une défaite qui n'est pas une mort (duel) se branche sur un bloc dédié, jamais sur `defeat`.
 - **Conditions** : comparer une variable texte avec une valeur par défaut, `v('eau.controle', '') == 'rats'` (sinon l'expression échoue tant que la variable n'existe pas).
 - Le code GDScript n'utilise pas `class_name` : les dépendances se chargent avec `preload` (compatible avec les tests `-s`).

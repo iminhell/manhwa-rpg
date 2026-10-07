@@ -31,6 +31,7 @@ func _init() -> void:
 	test_refuge()
 	test_refuge_midloop()
 	test_systems_v09()
+	test_refuge_voies()
 	print("\n%d réussis, %d échoués" % [_passed, _failed])
 	quit(1 if _failed > 0 else 0)
 
@@ -558,3 +559,52 @@ func test_refuge() -> void:
 	w.place("yeouido.ifc")
 	s.set_time(s.day(), 3)
 	check(not w.next_event().get("id", "") == "maree", "vigie : pas de Marée dans le secteur du Refuge")
+
+
+## Parcourt un bloc en prenant toujours le premier choix ; renvoie les répliques vues.
+func _play(s, dlg: Dictionary, block: String) -> Array:
+	var r := DialogueRunner.new(s)
+	r.start(dlg, block)
+	var seen := []
+	for i in 200:
+		var st := r.next()
+		match st["kind"]:
+			"line": seen.append(st["text"])
+			"choice": r.choose(0)
+			"end": break
+	return seen
+
+
+func test_refuge_voies() -> void:
+	var dlg: Dictionary = DataDB.load_dir("res://data/dialogues")["refuge"]
+	# Voie du Mercenaire : la nuit de Seo-Yeon passe par le registre de dettes
+	var s := StateStore.new()
+	s.apply_effects(["set argent 450", "set repos.seo_yeon 1", "flag refuge.dortoir", "set aff.seo_yeon 30"])
+	var seen := _play(s, dlg, "seo_yeon")
+	check(seen.size() > 0 and seen[0].begins_with("Seo-Yeon tient un registre") and s.has_flag("seo_nuit"), "Refuge : nuit du Mercenaire (Seo-Yeon)")
+	# Même état, voie du Héros : la scène d'origine
+	s = StateStore.new()
+	s.apply_effects(["set align.protect 25", "set repos.seo_yeon 1", "flag refuge.dortoir", "set aff.seo_yeon 30"])
+	seen = _play(s, dlg, "seo_yeon")
+	check(seen.size() > 0 and seen[0].begins_with("Le dortoir, tard"), "Refuge : nuit du Héros inchangée")
+	# Pacte en Ressentiment : clause de rupture, puis porte froide
+	s = StateStore.new()
+	s.apply_effects(["flag pacte.seo_yeon", "set ambivalence.seo_yeon -70"])
+	_play(s, dlg, "seo_yeon")
+	check(not s.has_flag("pacte.seo_yeon") and s.has_flag("seo_rupture"), "Pacte : rupture invoquée")
+	seen = _play(s, dlg, "seo_yeon")
+	check(seen.size() == 1 and seen[0].begins_with("Seo-Yeon refait tes points sans un mot"), "Pacte : après la rupture, la porte reste froide")
+	# Pacte en Dévotion : renouvellement libre, puis nuit directe aux visites suivantes
+	for pre in ["seo", "xiaoyu", "haein", "simone", "nadia"]:
+		var cid: String = {"seo": "seo_yeon", "haein": "hae_in"}.get(pre, pre)
+		var pflag: String = "nadia_pactisee" if pre == "nadia" else "pacte." + cid
+		s = StateStore.new()
+		s.apply_effects(["flag " + pflag, "set ambivalence.%s 65" % cid, "set aff.%s 75" % cid])
+		_play(s, dlg, "%s_pacte" % pre)
+		check(s.has_flag(pre + "_devotion") and s.has_flag(pflag), "Pacte : Dévotion de %s (Pacte renouvelé)" % cid)
+	# Nuit de Pacte : rapport de force, sans scène intime ni passage P3
+	for blk in ["seo_pacte_reste", "xiaoyu_pacte_reste", "haein_pacte_reste", "nadia_pacte_ici", "simone_pacte_reste"]:
+		var has_slot := false
+		for st in dlg["blocks"][blk]:
+			has_slot = has_slot or st.has("text_p3_slot") or st.has("cg")
+		check(not has_slot, "Pacte : %s sans passage P3 ni CG intime" % blk)

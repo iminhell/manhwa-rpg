@@ -21,6 +21,10 @@
     "music": "intimate"
    },
    {
+    "if": "flag('seo_rupture')",
+    "then": "seo_froid"
+   },
+   {
     "if": "flag('pacte.seo_yeon')",
     "then": "seo_pacte"
    },
@@ -35,6 +39,10 @@
    {
     "if": "flag('seo_nuit') and v('repos.seo_yeon') >= 3",
     "then": "seo_nuit2"
+   },
+   {
+    "if": "voie() == 'mercenaire' and v('repos.seo_yeon') >= 1 and flag('refuge.dortoir') and aff('seo_yeon') >= 25",
+    "then": "seo_merc"
    },
    {
     "if": "v('repos.seo_yeon') >= 1 and flag('refuge.dortoir') and aff('seo_yeon') >= 25",
@@ -213,6 +221,9 @@
     "t": "Sur le lit de camp trop étroit, elle découvre qu'elle n'a pas besoin de lunettes pour ça. Ses ongles dans ton dos, sa respiration qui se casse sur ton nom, le grincement ridicule du sommier qui la fait rire au pire moment, puis plus du tout."
    },
    {
+    "text_p3_slot": []
+   },
+   {
     "s": "narrator",
     "t": "Dehors, la Marée racle les murs du Refuge. Personne ne l'entend."
    },
@@ -229,6 +240,18 @@
    }
   ],
   "seo_pacte": [
+   {
+    "if": "v('ambivalence.seo_yeon') <= -60",
+    "then": "seo_pacte_rupture"
+   },
+   {
+    "if": "v('ambivalence.seo_yeon') >= 60 and aff('seo_yeon') >= 70 and not flag('seo_devotion')",
+    "then": "seo_devotion"
+   },
+   {
+    "if": "v('ambivalence.seo_yeon') >= 60 and aff('seo_yeon') >= 70 and flag('seo_devotion')",
+    "then": "seo_devotion_nuit"
+   },
    {
     "s": "narrator",
     "t": "La clause de Résidence. Elle entre dans ta chambre à l'heure dite, sans frapper, et reste debout près de la porte, les mains croisées devant elle."
@@ -287,7 +310,7 @@
   "seo_pacte_reste": [
    {
     "s": "narrator",
-    "t": "Elle reste. Elle s'assoit au bord du lit, le dos droit comme pour un examen. Elle ne te regarde pas. Ses mains tremblent sur ses genoux, puis cessent de trembler."
+    "t": "Elle reste. Elle s'assoit au bord du lit, le dos droit comme pour un examen, les mains serrées sur les genoux. Tu ne la touches pas. Elle attend que tu le fasses, et chaque minute où tu ne le fais pas la met un peu plus en colère."
    },
    {
     "s": "seo_yeon",
@@ -297,7 +320,7 @@
    },
    {
     "s": "narrator",
-    "t": "Le collier de glyphes rouges luit dans le noir toute la nuit."
+    "t": "Elle parle jusqu'à l'aube : du camp, des morts, de ce que le Pacte lui coûte. Toi, tu écoutes. Le collier de glyphes rouges luit dans le noir toute la nuit. Au matin, elle s'est endormie dans le fauteuil, sa blouse sur les genoux, sans t'avoir pardonné."
    },
    {
     "fx": [
@@ -324,6 +347,10 @@
    {
     "if": "loop() >= 2 and flag('echo.haneul_capturee') and not flag('echo_vu.haneul') and v('repos.haneul') >= 1",
     "then": "haneul_echo"
+   },
+   {
+    "if": "voie() == 'mercenaire' and v('repos.haneul') >= 1 and flag('refuge.dortoir') and aff('haneul') >= 20",
+    "then": "haneul_merc"
    },
    {
     "if": "v('repos.haneul') >= 1 and flag('refuge.dortoir') and aff('haneul') >= 20",
@@ -474,6 +501,9 @@
     "v": true
    },
    {
+    "text_p3_slot": []
+   },
+   {
     "s": "narrator",
     "t": "À l'aube, ton corps porte encore des traces de lumière, comme des empreintes de doigts dorées. Elles mettent une heure à s'éteindre."
    },
@@ -517,6 +547,10 @@
    {
     "if": "loop() >= 2 and flag('echo.aoi_sauvee') and not flag('echo_vu.aoi') and v('repos.aoi') >= 1",
     "then": "aoi_echo"
+   },
+   {
+    "if": "voie() == 'mercenaire' and v('repos.aoi') >= 1 and flag('refuge.dortoir') and aff('aoi') >= 20",
+    "then": "aoi_merc"
    },
    {
     "if": "v('repos.aoi') >= 1 and flag('refuge.dortoir') and aff('aoi') >= 20",
@@ -720,6 +754,9 @@
     "t": "Elle chante très bas contre ton cou pendant qu'elle bouge sur toi, des bribes de mélodie qui se brisent quand le souffle lui manque. La chanson n'a qu'un seul auditeur. Il n'en manque pas une note."
    },
    {
+    "text_p3_slot": []
+   },
+   {
     "fx": [
      "add repos.aoi 1",
      "flag aoi_nuit",
@@ -744,6 +781,10 @@
    {
     "if": "loop() >= 2 and flag('echo.maricel_morte') and not flag('echo_vu.maricel') and v('repos.maricel') >= 1",
     "then": "maricel_echo"
+   },
+   {
+    "if": "voie() == 'mercenaire' and v('repos.maricel') >= 1 and flag('refuge.dortoir') and aff('maricel') >= 20",
+    "then": "maricel_merc"
    },
    {
     "if": "v('repos.maricel') >= 1 and flag('refuge.dortoir') and aff('maricel') >= 20",
@@ -879,6 +920,9 @@
     "v": true
    },
    {
+    "text_p3_slot": []
+   },
+   {
     "s": "narrator",
     "t": "Elle est bruyante, joyeuse, sans aucune honte, elle te dit quoi faire avec ses mains, en cebuano quand le coréen ne suffit plus. Dans le couloir, la porte est restée grande ouverte. Personne au Refuge ne dort cette nuit-là, et tout le monde fait semblant le lendemain."
    },
@@ -913,6 +957,9 @@
    {
     "s": "narrator",
     "t": "Elle s'assoit à califourchon sur toi, les cheveux auburn défaits qui tombent comme un rideau autour de vos deux visages. Elle prend son temps. Elle apprend ce qui te fait fermer les yeux, et elle le note, on le voit, dans un coin de sa tête de médecin."
+   },
+   {
+    "text_p3_slot": []
    },
    {
     "if": "flag('seo_marquee')",
@@ -969,6 +1016,10 @@
    {
     "if": "loop() >= 2 and flag('echo.ryeon_morte') and not flag('echo_vu.ryeon') and v('repos.ryeon') >= 1",
     "then": "ryeon_echo"
+   },
+   {
+    "if": "voie() == 'mercenaire' and v('repos.ryeon') >= 1 and flag('refuge.dortoir') and aff('ryeon') >= 20",
+    "then": "ryeon_merc"
    },
    {
     "if": "v('repos.ryeon') >= 1 and flag('refuge.dortoir') and aff('ryeon') >= 20",
@@ -1122,6 +1173,9 @@
     "e": "neutral"
    },
    {
+    "text_p3_slot": []
+   },
+   {
     "s": "narrator",
     "t": "Elle corrige. Elle est exigeante, elle recommence ce qui ne lui plaît pas, et quand quelque chose lui plaît vraiment, elle oublie complètement de rougir. Le ruban rouge de sa mère reste noué à son poignet toute la nuit. Elle ne le retire jamais. Elle le garde serré dans son poing."
    },
@@ -1145,6 +1199,10 @@
     "music": "intimate"
    },
    {
+    "if": "flag('xiaoyu_rupture')",
+    "then": "xiaoyu_froid"
+   },
+   {
     "if": "flag('pacte.xiaoyu')",
     "then": "xiaoyu_pacte"
    },
@@ -1155,6 +1213,10 @@
    {
     "if": "loop() >= 2 and flag('echo.xiaoyu_sauvee') and not flag('echo_vu.xiaoyu') and v('repos.xiaoyu') >= 1",
     "then": "xiaoyu_echo"
+   },
+   {
+    "if": "voie() == 'mercenaire' and v('repos.xiaoyu') >= 1 and flag('refuge.dortoir') and aff('xiaoyu') >= 20",
+    "then": "xiaoyu_merc"
    },
    {
     "if": "v('repos.xiaoyu') >= 1 and flag('refuge.dortoir') and aff('xiaoyu') >= 20",
@@ -1316,6 +1378,9 @@
     "t": "Elle mène, d'abord. Elle sait exactement ce qu'elle fait et elle le fait lentement, en te regardant, pour que tu comprennes qui commande. Puis tu inverses la donne, et quelque chose cède dans son regard : la reine de la pègre découvre, stupéfaite, qu'elle aime perdre contre toi."
    },
    {
+    "text_p3_slot": []
+   },
+   {
     "s": "xiaoyu",
     "t": "Ne le dis à personne. Personne. Je ferais noyer toute la ville.",
     "e": "embarrassed",
@@ -1334,6 +1399,18 @@
    }
   ],
   "xiaoyu_pacte": [
+   {
+    "if": "v('ambivalence.xiaoyu') <= -60",
+    "then": "xiaoyu_pacte_rupture"
+   },
+   {
+    "if": "v('ambivalence.xiaoyu') >= 60 and aff('xiaoyu') >= 70 and not flag('xiaoyu_devotion')",
+    "then": "xiaoyu_devotion"
+   },
+   {
+    "if": "v('ambivalence.xiaoyu') >= 60 and aff('xiaoyu') >= 70 and flag('xiaoyu_devotion')",
+    "then": "xiaoyu_devotion_nuit"
+   },
    {
     "s": "narrator",
     "t": "Clause trois du Pacte : « La perdante paie ses dettes en personne. » Elle entre dans ta chambre en qipao noir, une dette à la main, au sens propre : un jeton de jade gravé de ton nom."
@@ -1386,12 +1463,12 @@
   "xiaoyu_pacte_reste": [
    {
     "s": "narrator",
-    "t": "Elle reste. Elle pose le jeton de jade sur l'oreiller comme une mise. Elle ne fait rien qu'elle n'ait choisi, et elle choisit beaucoup, lentement, en te regardant dans les yeux d'un bout à l'autre de la nuit."
+    "t": "Elle reste. Elle pose le jeton de jade sur l'oreiller comme une mise, puis elle s'assoit en face de toi et distribue les tuiles. « Une dette se paie comme je l'entends. Ce soir, je l'entends ainsi. » Vous jouez jusqu'à l'aube. Elle gagne tout, et elle te regarde perdre avec la satisfaction d'une reine qui n'a pas encore décidé si elle te fera noyer."
    },
    {
     "s": "xiaoyu",
     "t": "Une dette payée avec intérêts. Ne t'y habitue pas, Seigneur.",
-    "e": "desire",
+    "e": "fan",
     "v": true
    },
    {
@@ -1413,6 +1490,10 @@
     "music": "haein"
    },
    {
+    "if": "flag('haein_rupture')",
+    "then": "haein_froid"
+   },
+   {
     "if": "flag('pacte.hae_in')",
     "then": "haein_pacte"
    },
@@ -1423,6 +1504,10 @@
    {
     "if": "loop() >= 2 and flag('echo.haein_sauvee') and not flag('echo_vu.hae_in') and v('repos.hae_in') >= 1",
     "then": "hae_in_echo"
+   },
+   {
+    "if": "voie() == 'mercenaire' and v('repos.hae_in') >= 1 and flag('refuge.dortoir') and aff('hae_in') >= 20",
+    "then": "haein_merc"
    },
    {
     "if": "v('repos.hae_in') >= 1 and flag('refuge.dortoir') and aff('hae_in') >= 20",
@@ -1551,6 +1636,9 @@
     "t": "Elle est inexpérimentée sous une maîtrise absolue, et cette contradiction la rend magnifique : elle donne des ordres précis d'une voix qui se brise, elle exige, elle découvre, elle perd le fil de ses propres conditions et ne le cherche plus. À la fin, c'est elle qui murmure ton prénom. Pas « Monsieur Kang ». Elias."
    },
    {
+    "text_p3_slot": []
+   },
+   {
     "s": "hae_in",
     "t": "Pour la première fois, quelqu'un d'autre a décidé. C'est… terrifiant. Recommencez.",
     "e": "desire",
@@ -1569,6 +1657,18 @@
    }
   ],
   "haein_pacte": [
+   {
+    "if": "v('ambivalence.hae_in') <= -60",
+    "then": "haein_pacte_rupture"
+   },
+   {
+    "if": "v('ambivalence.hae_in') >= 60 and aff('hae_in') >= 70 and not flag('haein_devotion')",
+    "then": "haein_devotion"
+   },
+   {
+    "if": "v('ambivalence.hae_in') >= 60 and aff('hae_in') >= 70 and flag('haein_devotion')",
+    "then": "haein_devotion_nuit"
+   },
    {
     "s": "narrator",
     "t": "Clause sept du Pacte de Vassalité, qu'elle a négociée elle-même, mot par mot : « La vassale rend compte chaque soir à son Seigneur. » Elle entre avec un dossier sous le bras, et s'assoit, impeccable."
@@ -1622,13 +1722,17 @@
   "haein_pacte_reste": [
    {
     "s": "narrator",
-    "t": "Elle pose le dossier. Elle croise les jambes. Elle te regarde comme une partie d'échecs dont elle connaît déjà la fin, et dont elle veut quand même jouer chaque coup."
+    "t": "Elle pose le dossier. Elle croise les jambes. Elle te regarde comme une partie d'échecs dont elle connaît déjà la fin."
    },
    {
     "s": "hae_in",
-    "t": "Le contrat dit « présence ». Il ne dit rien de mon consentement au reste. Celui-là, je le donne. Ce soir. Notez-le.",
-    "e": "desire",
+    "t": "Le contrat dit « présence ». Vous aurez ma présence, Seigneur Kang. Rien de ce qu'un contrat ne peut pas acheter.",
+    "e": "threat",
     "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle reste jusqu'à l'aube, droite dans le fauteuil, à corriger tes comptes à l'encre bordeaux et à te poser des questions précises sur chacune de tes décisions. Au matin, tu as été audité jusqu'à l'os, et elle a l'air de quelqu'un qui vient de trouver une faille dans un contrat."
    },
    {
     "fx": [
@@ -2084,6 +2188,9 @@
     "t": "Elle te le dit. Lentement, en cherchant ses mots, en rougissant. C'est la première fois qu'on lui demande. Le reste de la nuit lui appartient, et elle prend tout son temps."
    },
    {
+    "text_p3_slot": []
+   },
+   {
     "fx": [
      "add repos.seo_yeon 1",
      "flag seo_nuit",
@@ -2100,6 +2207,9 @@
     "t": "Elle ferme la porte. Elle s'adosse contre elle, le souffle court, et c'est elle qui défait le premier bouton de ta chemise. « Je n'ai pas peur. C'est pire : j'en ai envie. »"
    },
    {
+    "text_p3_slot": []
+   },
+   {
     "fx": [
      "add repos.seo_yeon 1",
      "flag seo_nuit",
@@ -2114,6 +2224,9 @@
    {
     "s": "narrator",
     "t": "Elle s'assoit sur tes genoux, sur le trône, ton bomber ouvert sur sa peau nue où les glyphes brillent d'un or presque noir. Elle t'embrasse comme on signe un décret. Le trône grince toute la nuit."
+   },
+   {
+    "text_p3_slot": []
    },
    {
     "fx": [
@@ -2153,6 +2266,9 @@
     "t": "Elle enlève le costume, lentement, comme on enlève une peau. Le sourire de scène tombe avec. Dessous, une fille de vingt-deux ans qui tremble, qui rit, et qui décide pour la première fois de ce qu'elle fait de ses mains, de sa bouche, de sa nuit."
    },
    {
+    "text_p3_slot": []
+   },
+   {
     "fx": [
      "add repos.aoi 1",
      "flag aoi_nuit",
@@ -2190,6 +2306,9 @@
     "t": "Elle pose le couteau. Elle vient s'asseoir contre toi, par terre, dans l'encadrement de la porte ouverte, et elle t'embrasse jusqu'à ce que la bougie s'éteigne."
    },
    {
+    "text_p3_slot": []
+   },
+   {
     "fx": [
      "add repos.maricel 1",
      "flag maricel_nuit",
@@ -2204,6 +2323,9 @@
    {
     "s": "narrator",
     "t": "Elle te laisse le prendre. Ses doigts s'ouvrent un à un. « Personne n'avait jamais osé. » Elle te pousse sur le lit, à califourchon, et c'est elle qui tient tes poignets, cette nuit."
+   },
+   {
+    "text_p3_slot": []
    },
    {
     "fx": [
@@ -2226,6 +2348,9 @@
    {
     "s": "narrator",
     "t": "Elle dénoue sa queue de cheval. Ses cheveux noirs tombent jusqu'aux genoux. Elle garde le ruban rouge serré dans son poing toute la nuit."
+   },
+   {
+    "text_p3_slot": []
    },
    {
     "fx": [
@@ -2260,6 +2385,9 @@
     "t": "Elle écrit la clause elle-même, d'une écriture superbe. Elle ne te la montre pas. Elle souffle sur l'encre, laisse tomber son peignoir rouge, et te dit de deviner ce qui est écrit. Tu as toute la nuit pour deviner."
    },
    {
+    "text_p3_slot": []
+   },
+   {
     "fx": [
      "add repos.xiaoyu 1",
      "flag xiaoyu_nuit",
@@ -2282,6 +2410,9 @@
     "t": "Elle reste. Le dragon tatoué de son dos semble bouger sous tes mains jusqu'à l'aube."
    },
    {
+    "text_p3_slot": []
+   },
+   {
     "fx": [
      "add repos.xiaoyu 1",
      "flag xiaoyu_nuit",
@@ -2298,6 +2429,9 @@
     "t": "Une heure. Elle se lève la première, en posant le verre. « Vous savez attendre. C'est rare chez les hommes qui gagnent. » Elle défait elle-même son chignon, puis ta cravate, avec la même précision."
    },
    {
+    "text_p3_slot": []
+   },
+   {
     "fx": [
      "add repos.hae_in 1",
      "flag haein_nuit",
@@ -2312,6 +2446,9 @@
    {
     "s": "narrator",
     "t": "Tu lui prends le verre. Elle te laisse faire, et cette petite défaite volontaire allume dans ses yeux quelque chose que personne n'a jamais vu. « Pour la première fois, quelqu'un d'autre décide. Ne vous arrêtez pas. »"
+   },
+   {
+    "text_p3_slot": []
    },
    {
     "fx": [
@@ -2332,8 +2469,16 @@
     "music": "night"
    },
    {
+    "if": "flag('nadia_rupture')",
+    "then": "nadia_froid"
+   },
+   {
     "if": "flag('nadia_pactisee')",
     "then": "nadia_pacte"
+   },
+   {
+    "if": "voie() == 'mercenaire' and v('repos.nadia') >= 1 and flag('refuge.dortoir') and aff('nadia') >= 20",
+    "then": "nadia_merc"
    },
    {
     "if": "v('repos.nadia') >= 1 and flag('refuge.dortoir') and aff('nadia') >= 20",
@@ -2465,6 +2610,9 @@
     "t": "Elle défait les boutons de la chemise, un à un, sans hâte, sans détourner les yeux. Sa peau est froide et elle se réchauffe sous tes mains comme le métal d'une arme qu'on tient trop longtemps. Elle ne fait aucun bruit. Puis, une fois, elle dit ton nom, en russe, et c'est pire que n'importe quel cri."
    },
    {
+    "text_p3_slot": []
+   },
+   {
     "fx": [
      "add repos.nadia 1",
      "flag nadia_nuit",
@@ -2498,6 +2646,18 @@
    }
   ],
   "nadia_pacte": [
+   {
+    "if": "v('ambivalence.nadia') <= -60",
+    "then": "nadia_pacte_rupture"
+   },
+   {
+    "if": "v('ambivalence.nadia') >= 60 and aff('nadia') >= 70 and not flag('nadia_devotion')",
+    "then": "nadia_devotion"
+   },
+   {
+    "if": "v('ambivalence.nadia') >= 60 and aff('nadia') >= 70 and flag('nadia_devotion')",
+    "then": "nadia_devotion_nuit"
+   },
    {
     "s": "narrator",
     "t": "Clause de Résidence. Elle entre dans ta chambre, pose son fusil contre le mur, le canon vers le plafond."
@@ -2550,7 +2710,7 @@
   "nadia_pacte_ici": [
    {
     "s": "narrator",
-    "t": "Elle s'allonge. Elle consent, du bout des lèvres, avec un regard qui mesure une distance. La nuit est froide et précise, comme un tir réussi. Au matin, son fusil a changé d'angle."
+    "t": "Elle s'allonge de son côté du lit, tout habillée, le fusil à portée de main. Elle ne dort pas. Toi non plus. Vous passez la nuit à vous mesurer dans le noir, sans un mot, comme deux tireurs qui attendent que l'autre bouge le premier. Au matin, son fusil a changé d'angle."
    },
    {
     "fx": [
@@ -2571,8 +2731,16 @@
     "music": "intimate"
    },
    {
+    "if": "flag('simone_rupture')",
+    "then": "simone_froid"
+   },
+   {
     "if": "flag('pacte.simone')",
     "then": "simone_pacte"
+   },
+   {
+    "if": "voie() == 'mercenaire' and v('repos.simone') >= 1 and flag('refuge.dortoir') and aff('simone') >= 20",
+    "then": "simone_merc"
    },
    {
     "if": "v('repos.simone') >= 1 and flag('refuge.dortoir') and aff('simone') >= 20",
@@ -2704,6 +2872,9 @@
     "t": "Elle hausse un sourcil. Puis sa voix de commandement revient, basse, précise : « Viens ici. Enlève ça. Plus lentement. » Tu obéis à chaque ordre. Elle rit, la première fois que tu obéis trop bien. Elle ne rit plus après."
    },
    {
+    "text_p3_slot": []
+   },
+   {
     "fx": [
      "add repos.simone 1",
      "flag simone_nuit",
@@ -2720,6 +2891,9 @@
     "t": "Les plaques tintent sur la table, les siennes et celles de Marcus. Elle te regarde faire sans bouger. Puis elle te tire contre elle avec la force tranquille de quelqu'un qui court dix kilomètres par jour, et elle pleure un peu dans ton cou, et elle t'embrasse comme si elle avait décidé de vivre."
    },
    {
+    "text_p3_slot": []
+   },
+   {
     "fx": [
      "add repos.simone 1",
      "flag simone_nuit",
@@ -2731,6 +2905,18 @@
    }
   ],
   "simone_pacte": [
+   {
+    "if": "v('ambivalence.simone') <= -60",
+    "then": "simone_pacte_rupture"
+   },
+   {
+    "if": "v('ambivalence.simone') >= 60 and aff('simone') >= 70 and not flag('simone_devotion')",
+    "then": "simone_devotion"
+   },
+   {
+    "if": "v('ambivalence.simone') >= 60 and aff('simone') >= 70 and flag('simone_devotion')",
+    "then": "simone_devotion_nuit"
+   },
    {
     "s": "narrator",
     "t": "Reddition de l'Unité 0. Elle se présente au rapport chaque soir, au garde-à-vous, le regard fixé au-dessus de ton épaule."
@@ -2779,7 +2965,7 @@
   "simone_pacte_reste": [
    {
     "s": "narrator",
-    "t": "Elle reste. Elle défait son ceinturon comme on dépose les armes, et elle consent, les mâchoires serrées, avec une franchise de soldat. « Pas parce que le contrat le dit. Parce que j'ai choisi d'arrêter de me battre ce soir. Notez la différence. »"
+    "t": "Elle reste. Au garde-à-vous d'abord, pendant une heure. Puis elle s'assoit sur la caisse de munitions près de la porte, sans demander la permission. « Le contrat dit que je reste. Il ne dit pas comment. » Jusqu'à l'aube, elle te fait le rapport complet de chaque erreur tactique que tu as commise depuis le début, sans hausser la voix une seule fois. Tu n'as jamais été aussi bien remis à ta place."
    },
    {
     "fx": [
@@ -2798,6 +2984,10 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "if": "voie() == 'mercenaire' and v('repos.minh_anh') >= 1 and flag('refuge.dortoir') and aff('minh_anh') >= 20",
+    "then": "minh_anh_merc"
    },
    {
     "if": "v('repos.minh_anh') >= 1 and flag('refuge.dortoir') and aff('minh_anh') >= 20",
@@ -2929,6 +3119,9 @@
     "t": "Elle te tend une tablette. Il y a des étapes numérotées. La troisième dit « contact cutané, zones à faible densité de récepteurs d'abord ». Tu suis le protocole à la lettre. Elle abandonne la tablette à l'étape cinq, et elle n'arrive plus à formuler une seule hypothèse jusqu'au matin."
    },
    {
+    "text_p3_slot": []
+   },
+   {
     "fx": [
      "add repos.minh_anh 1",
      "flag minh_anh_nuit",
@@ -2954,6 +3147,1334 @@
     "fx": [
      "add repos.minh_anh 1",
      "flag minh_anh_nuit",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "seo_merc": [
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon tient un registre. Un vrai, à spirale, glissé sous l'oreiller de l'infirmerie : chaque boîte d'antibiotiques que tu as vendue au camp, chaque ampoule, chaque prix. La colonne « payé » est beaucoup plus courte que l'autre."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Trois cent quarante mille wons de dette, Kang-ssi. Je déteste devoir. Je vous propose un échange : vous effacez une ligne, et moi… je vous fais un examen complet. Gratuit. Très complet.",
+    "e": "embarrassed",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle a rougi dès le mot « complet ». Elle le maintient quand même, le menton levé, comme une contre-offre en bonne et due forme."
+   },
+   {
+    "choice": [
+     {
+      "t": "« Marché conclu. J'efface la page entière. »",
+      "goto": "seo_merc_nuit",
+      "fx": [
+       "add aff.seo_yeon 6"
+      ]
+     },
+     {
+      "t": "« Je ne fais jamais crédit. Pour toi, j'ouvre un compte. »",
+      "goto": "seo_merc_nuit",
+      "fx": [
+       "add trust.seo_yeon 4",
+       "add aff.seo_yeon 3"
+      ]
+     }
+    ]
+   }
+  ],
+  "seo_merc_nuit": [
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_seo_merc"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle arrache la page elle-même, la plie en quatre et la glisse dans la poche de ta veste tactique. Puis elle reste là, la main à plat sur ta poitrine, à sentir sous ses doigts le harnais, les chargeurs, la boucle qu'elle ne sait pas défaire."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Comment on enlève ce… Vous êtes équipé comme un convoi. Aidez-moi. Non. Laissez. Je vais trouver.",
+    "e": "desire"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle trouve. Sangle après sangle, avec la concentration d'une suture, en annonçant à mi-voix chaque pièce qu'elle pose sur le lit de camp, comme un inventaire. Quand il n'y a plus rien à inventorier, c'est elle qui retire ses lunettes, et elle découvre qu'à cette distance-là, elle voit parfaitement."
+   },
+   {
+    "s": "narrator",
+    "t": "Ses mains froides, puis plus du tout. Son souffle qui compte, puis qui ne compte plus. Elle avait prévu un examen ; elle oublie le protocole à la deuxième étape et ne le retrouve jamais."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "Au matin, la page pliée en quatre est toujours dans ta poche. Au dos, de son écriture d'ordonnance : « Solde : réglé. Intérêts : à négocier. »"
+   },
+   {
+    "fx": [
+     "add repos.seo_yeon 1",
+     "flag seo_nuit",
+     "add aff.seo_yeon 4",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "haneul_merc": [
+   {
+    "s": "narrator",
+    "t": "Haneul t'attend au dortoir, assise en tailleur sur ta couchette, une pièce de cinq cents wons posée dans sa paume ouverte. Elle la regarde comme on regarde un insecte rare."
+   },
+   {
+    "s": "haneul",
+    "t": "Dans les Fins des gens d'en bas, tout a un prix. Le pain, les lits, les secrets. Toi aussi, tu vends tout. Alors je veux acheter quelque chose.",
+    "e": "tilt",
+    "v": true
+   },
+   {
+    "s": "elias",
+    "t": "Qu'est-ce qu'on achète avec cinq cents wons ?",
+    "e": "smirk"
+   },
+   {
+    "s": "haneul",
+    "t": "Une nuit où tu ne gagnes rien. Je veux voir si tu restes quand même.",
+    "e": "neutral"
+   },
+   {
+    "choice": [
+     {
+      "t": "Prendre la pièce. « Vendu. »",
+      "goto": "haneul_merc_nuit",
+      "fx": [
+       "add aff.haneul 4"
+      ]
+     },
+     {
+      "t": "Lui refermer les doigts sur la pièce. « Garde-la. Ça, je ne le vends pas. »",
+      "goto": "haneul_merc_nuit",
+      "fx": [
+       "add aff.haneul 6",
+       "add trust.haneul 4"
+      ]
+     }
+    ]
+   }
+  ],
+  "haneul_merc_nuit": [
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_haneul_merc"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle sourit comme si tu venais de réussir un examen dont elle seule connaissait les questions. Elle t'attire par le col de ta veste et t'embrasse avec la gravité de quelqu'un qui conclut sa première affaire."
+   },
+   {
+    "s": "narrator",
+    "t": "Ton bomber, qu'elle portait encore, glisse de ses épaules. Les glyphes s'allument sous ta paume, d'abord timides, puis en traînées d'or qui suivent tes doigts de sa nuque jusqu'au creux de ses reins. Elle les regarde naître avec curiosité, puis elle cesse de regarder et ferme les yeux."
+   },
+   {
+    "s": "haneul",
+    "t": "Ne compte rien. Pas ce soir. Je veux être la seule chose que tu n'aies jamais vendue.",
+    "e": "desire"
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "À l'aube, la pièce de cinq cents wons est posée sur ta poitrine, exactement sur ton cœur. Elle l'y a laissée en s'endormant, comme on laisse un pourboire beaucoup trop grand."
+   },
+   {
+    "fx": [
+     "add repos.haneul 1",
+     "flag haneul_nuit",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "aoi_merc": [
+   {
+    "s": "narrator",
+    "t": "Sur ton lit, une feuille arrachée à un carnet, couverte d'une écriture ronde. En haut, souligné deux fois : CONTRAT. Aoi est assise à côté, en sweat gris, un stylo entre les dents."
+   },
+   {
+    "s": "aoi",
+    "t": "L'agence m'a fait signer quarante pages que je n'avais pas le droit de lire. Toi, tu adores les contrats. Alors celui-là, c'est moi qui l'écris. Tu lis tout. Tu signes, ou tu pars.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Clause un : « Elle peut dire stop. N'importe quand. Sans raison. » Clause deux : « Il demande avant. Toujours. » Clause trois : « Pas de lumière de scène. » La clause quatre est raturée trois fois, puis réécrite tout petit, et elle cache la feuille de la main quand tu arrives à cette ligne."
+   },
+   {
+    "choice": [
+     {
+      "t": "Signer sans rien négocier.",
+      "goto": "aoi_merc_nuit",
+      "fx": [
+       "add trust.aoi 6"
+      ]
+     },
+     {
+      "t": "« Je contre-propose une clause cinq : tu chantes, après. »",
+      "goto": "aoi_merc_nuit",
+      "fx": [
+       "add aff.aoi 6"
+      ]
+     }
+    ]
+   }
+  ],
+  "aoi_merc_nuit": [
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_aoi_merc"
+   },
+   {
+    "s": "aoi",
+    "t": "…Tu as lu la quatre.",
+    "e": "embarrassed"
+   },
+   {
+    "s": "elias",
+    "t": "J'ai tout lu. C'est mon métier.",
+    "e": "neutral"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle rit, une vraie fois, avec la fossette. Puis elle se lève et applique la clause quatre elle-même : elle ôte le sweat gris par-dessus sa tête, lentement, les yeux dans les tiens, pour vérifier que tu demandes. Tu demandes. À chaque fois. Elle répond oui à chaque fois, un peu plus vite."
+   },
+   {
+    "s": "narrator",
+    "t": "Elle découvre qu'elle aime être celle qui fixe les termes. Elle les fixe à voix basse, en japonais, puis en coréen, puis plus du tout."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "La clause cinq est honorée vers trois heures du matin : une chanson d'Osaka, chantée faux exprès, contre ton épaule. Le contrat est plié dans la poche de ta veste. Elle t'a interdit de le perdre."
+   },
+   {
+    "fx": [
+     "add repos.aoi 1",
+     "flag aoi_nuit",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "maricel_merc": [
+   {
+    "s": "narrator",
+    "t": "Maricel t'attend dans l'encadrement de la porte grande ouverte, ta montre au poignet. Tu ne l'as pas sentie partir. Tu ne la sens jamais partir."
+   },
+   {
+    "s": "maricel",
+    "t": "Pari, gwapo. Si je te vole encore trois trucs avant l'aube, tu me dois une nuit. Si tu me rattrapes avant, c'est moi qui te la dois. Dans les deux cas, je gagne. C'est ça, le business.",
+    "e": "wink",
+    "v": true
+   },
+   {
+    "choice": [
+     {
+      "t": "« Tope là. » Et surveiller tes poches.",
+      "goto": "maricel_merc_nuit",
+      "fx": [
+       "add aff.maricel 5"
+      ]
+     },
+     {
+      "t": "Lui reprendre ta montre au poignet, d'un seul geste.",
+      "goto": "maricel_merc_nuit",
+      "fx": [
+       "add trust.maricel 4",
+       "add aff.maricel 3"
+      ]
+     }
+    ]
+   }
+  ],
+  "maricel_merc_nuit": [
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_maricel_merc"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle te vole ta ceinture en t'embrassant. Ton bandana en riant. Le troisième « truc », c'est ta veste tactique, et elle met beaucoup plus longtemps à la voler, parce qu'elle s'interrompt sans arrêt pour embrasser ce qu'il y a dessous."
+   },
+   {
+    "s": "maricel",
+    "t": "Ay, j'ai gagné. Ou j'ai perdu. Je ne sais plus compter. C'est ta faute.",
+    "e": "desire"
+   },
+   {
+    "s": "narrator",
+    "t": "Le maillot de basket suit la veste. Elle est chaude, bruyante, impatiente ; elle se moque de tes cicatrices et les embrasse une par une pour se faire pardonner. La porte reste grande ouverte. Elle te demande de la laisser ouverte, et c'est la seule chose qu'elle demande sérieusement de toute la nuit."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "À l'aube, ta montre est revenue à ton poignet, remontée et à l'heure. Elle n'a jamais rien rendu de sa vie. Elle dort en travers du matelas, ton bandana noué dans les cheveux, et ronfle comme un camion."
+   },
+   {
+    "fx": [
+     "add repos.maricel 1",
+     "flag maricel_nuit",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "ryeon_merc": [
+   {
+    "s": "narrator",
+    "t": "Ryeon t'attend dans le dojo improvisé, deux sabres de bois croisés au sol. On lui a dit que tu vendais tes services. Elle a décidé de te les acheter à sa façon."
+   },
+   {
+    "s": "ryeon",
+    "t": "Un duel. Trois touches. Le vainqueur réclame un vœu, et le vaincu l'exauce, sans discuter. C'est un contrat d'honneur ! Pas un de tes marchés sordides !",
+    "e": "tsundere",
+    "v": true
+   },
+   {
+    "choice": [
+     {
+      "t": "Te battre pour gagner.",
+      "goto": "ryeon_merc_nuit",
+      "fx": [
+       "add trust.ryeon 4"
+      ]
+     },
+     {
+      "t": "Baisser ta garde à la troisième touche.",
+      "goto": "ryeon_merc_nuit",
+      "fx": [
+       "add aff.ryeon 4"
+      ]
+     }
+    ]
+   }
+  ],
+  "ryeon_merc_nuit": [
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_ryeon_merc"
+   },
+   {
+    "s": "narrator",
+    "t": "Deux touches partout. La troisième est pour elle, de justesse : une fente basse qui t'envoie au tatami. Si tu l'as laissée gagner, elle ne le saura jamais. Elle reste au-dessus de toi, la pointe de bois sur ta gorge, essoufflée, rouge jusqu'aux oreilles."
+   },
+   {
+    "s": "ryeon",
+    "t": "J'ai gagné. Mon vœu… Mon vœu, c'est… Ne me le fais pas répéter. Tu as très bien compris.",
+    "e": "embarrassed"
+   },
+   {
+    "s": "elias",
+    "t": "Un contrat d'honneur s'énonce clairement.",
+    "e": "neutral"
+   },
+   {
+    "s": "ryeon",
+    "t": "…Toi. Cette nuit. Voilà. Tu es content ?!",
+    "e": "tsundere"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle jette le sabre de bois, défait elle-même sa queue de cheval, et c'est la seule fois de sa vie qu'elle s'avance sans garde. La veste d'entraînement tombe sur le tatami. Ses muscles d'escrimeuse frémissent sous tes mains, et elle te corrige, comme toujours, jusqu'à ce qu'il n'y ait plus rien à corriger."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "Au matin, elle note le résultat du duel dans son carnet d'entraînement : « Victoire. » Et plus bas, d'une écriture plus petite : « Vœu exaucé. À recommencer. »"
+   },
+   {
+    "fx": [
+     "add repos.ryeon 1",
+     "flag ryeon_nuit",
+     "add aff.ryeon 4",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "xiaoyu_merc": [
+   {
+    "s": "narrator",
+    "t": "La table de mahjong est mise. Deux sièges seulement. Xiaoyu, en qipao noir fendu, mélange les tuiles avec un bruit de pluie sur un toit de tôle."
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Entre marchands, on ne joue pas pour de l'argent, Kang. L'argent, on en a. On joue des secrets. Chaque main perdue, un secret. Ou un vêtement, si le secret coûte trop cher.",
+    "e": "fan",
+    "v": true
+   },
+   {
+    "choice": [
+     {
+      "t": "Jouer pour gagner.",
+      "goto": "xiaoyu_merc_nuit",
+      "fx": [
+       "add trust.xiaoyu 4"
+      ]
+     },
+     {
+      "t": "Payer en secrets. Que des vrais.",
+      "goto": "xiaoyu_merc_nuit",
+      "fx": [
+       "add aff.xiaoyu 6"
+      ]
+     }
+    ]
+   }
+  ],
+  "xiaoyu_merc_nuit": [
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_xiaoyu_merc"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle gagne les trois premières mains. Tu paies en secrets, des vrais, des lourds, et quelque chose change dans sa façon de te regarder. À la quatrième, elle perd. Elle hésite une seconde de trop sur le secret. Puis elle se lève et défait le premier bouton de jade de son col."
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Ce secret-là coûte plus cher. Je paie autrement. Une Long paie toujours ses dettes, avec panache.",
+    "e": "desire"
+   },
+   {
+    "s": "narrator",
+    "t": "La partie dure jusqu'à ce qu'il n'y ait plus rien à miser. Le qipao noir glisse sur le tapis de jeu ; le dragon de son dos semble se déplier dans la lumière des lanternes. Elle mène, d'abord, en te regardant pour que tu saches qui tient la banque. Puis elle te laisse rafler la mise, et elle découvre qu'elle aime perdre contre toi."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Comptons. Je te dois encore trois secrets. Reviens demain : je calcule les intérêts.",
+    "e": "fan"
+   },
+   {
+    "fx": [
+     "add repos.xiaoyu 1",
+     "flag xiaoyu_nuit",
+     "add aff.xiaoyu 4",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "haein_merc": [
+   {
+    "s": "narrator",
+    "t": "Hae-in t'a convoqué dans son bureau de fortune pour « une proposition de fusion ». Un contrat de deux pages sur la table. Un stylo plume. Un verre de vin de 1982 pour chacun."
+   },
+   {
+    "s": "hae_in",
+    "t": "Haesong Holdings et votre petite entreprise de mercenariat, Monsieur Kang. Une fusion, pas une acquisition : je n'achète pas les hommes, je négocie avec eux. Lisez l'article quatre.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Article quatre : « Les parties conviennent d'une période d'essai d'une nuit, à l'issue de laquelle chacune est libre de se retirer, sans pénalité. » Elle a déjà signé. L'encre est encore humide. Ses doigts, sur le pied du verre, ne tremblent pas tout à fait."
+   },
+   {
+    "choice": [
+     {
+      "t": "Signer. « Article accepté. »",
+      "goto": "haein_merc_nuit",
+      "fx": [
+       "add aff.hae_in 5"
+      ]
+     },
+     {
+      "t": "« Contre-proposition : la période d'essai est renouvelable. »",
+      "goto": "haein_merc_nuit",
+      "fx": [
+       "add trust.hae_in 5",
+       "add aff.hae_in 3"
+      ]
+     }
+    ]
+   }
+  ],
+  "haein_merc_nuit": [
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_haein_merc"
+   },
+   {
+    "s": "hae_in",
+    "t": "Vous négociez mieux que mon conseil d'administration. C'est presque vexant.",
+    "e": "desire"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle se lève, contourne la table, et dénoue elle-même la ceinture de sa robe de soie bordeaux, avec la lenteur d'une présidente qui laisse à la partie adverse le temps de mesurer ce qu'elle obtient. Les petites brûlures anciennes sur ses épaules, elle ne les cache pas. Tu les embrasses une à une ; elle ferme les yeux à la troisième."
+   },
+   {
+    "s": "narrator",
+    "t": "Elle fixe ses conditions d'une voix précise, et la voix se brise avant la fin de la première phrase. Elle exige, elle découvre, elle perd le fil de ses propres conditions et ne le cherche plus."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "Au matin, le contrat est toujours sur la table. Elle a ajouté un article cinq, à l'encre bordeaux : « Période d'essai concluante. Renouvellement tacite. » Elle a signé deux fois, comme quelqu'un qui ne veut pas qu'on lui demande de relire."
+   },
+   {
+    "fx": [
+     "add repos.hae_in 1",
+     "flag haein_nuit",
+     "add aff.hae_in 4",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "nadia_merc": [
+   {
+    "s": "narrator",
+    "t": "Sur le toit du Refuge, Nadia aligne six capsules de bière sur un rebord, à cinquante mètres. Elle te tend un pistolet, crosse en avant."
+   },
+   {
+    "s": "nadia",
+    "t": "Entre mercenaires, on règle les choses proprement. Six capsules. Celui qui en touche le plus choisit comment finit la nuit. L'autre ne discute pas.",
+    "e": "aim",
+    "v": true
+   },
+   {
+    "choice": [
+     {
+      "t": "Viser juste.",
+      "goto": "nadia_merc_nuit",
+      "fx": [
+       "add trust.nadia 4"
+      ]
+     },
+     {
+      "t": "« Tu as déjà choisi comment elle finit. Ça se voit à ta façon de tenir l'arme. »",
+      "goto": "nadia_merc_nuit",
+      "fx": [
+       "add aff.nadia 5"
+      ]
+     }
+    ]
+   }
+  ],
+  "nadia_merc_nuit": [
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_nadia_merc"
+   },
+   {
+    "s": "narrator",
+    "t": "Cinq partout. La sixième capsule, elle ne tire pas dessus. Elle baisse son arme et te regarde longtemps, dans le vent du toit."
+   },
+   {
+    "s": "nadia",
+    "t": "Égalité. Alors personne ne choisit. On fait comme des égaux. Je n'ai jamais fait ça avec un client. Tu n'es pas un client.",
+    "e": "neutral"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle te noue l'écharpe rouge de sa grand-mère autour du cou et t'emmène jusqu'au matelas, contre le mur, face à la porte. Elle défait elle-même les boutons de sa chemise d'homme, un à un, sans hâte. Sa peau est froide, puis plus du tout. Elle ne fait aucun bruit, sauf une fois : ton nom, en russe."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "Au matin, la sixième capsule est posée sur ton oreiller, percée d'une balle bien au centre. Elle a tiré à l'aube, pendant que tu dormais. Personne n'a jamais su qui avait gagné."
+   },
+   {
+    "fx": [
+     "add repos.nadia 1",
+     "flag nadia_nuit",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "simone_merc": [
+   {
+    "s": "narrator",
+    "t": "Simone fait ses comptes sur un coin de table : la solde de l'Unité 0, en rations et en munitions, que tu lui verses depuis le contrat. Elle referme le carnet en te voyant."
+   },
+   {
+    "s": "simone",
+    "t": "Rang F. Mon contrat prévoit une permission par mois. Je n'en ai jamais pris une seule de toute ma carrière. Ce soir, je la prends. Avec toi. Si tu es libre, contractant.",
+    "e": "cigar",
+    "v": true
+   },
+   {
+    "choice": [
+     {
+      "t": "« Je suis libre. »",
+      "goto": "simone_merc_nuit",
+      "fx": [
+       "add aff.simone 5"
+      ]
+     },
+     {
+      "t": "« Ça va te coûter cher, commandante. »",
+      "goto": "simone_merc_nuit",
+      "fx": [
+       "add trust.simone 3",
+       "add aff.simone 3"
+      ]
+     }
+    ]
+   }
+  ],
+  "simone_merc_nuit": [
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_simone_merc"
+   },
+   {
+    "s": "simone",
+    "t": "On négociera après. En permission, je ne donne pas d'ordres. J'essaie, en tout cas.",
+    "e": "laugh"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle essaie. Elle tient quatre minutes. Puis sa voix de commandement revient, basse et précise, et elle t'apprend exactement comment elle veut être désarmée : le ceinturon, le débardeur, et les plaques, qu'elle retire elle-même et pose sur la table, les siennes et celles de Marcus, côte à côte."
+   },
+   {
+    "s": "narrator",
+    "t": "Elle a la force tranquille de quelqu'un qui court dix kilomètres par jour, et elle ne s'en sert que pour t'attirer plus près. À un moment, elle rit, parce que c'est la première permission de sa vie et qu'elle ignorait que ça ressemblait à ça."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "À cinq heures pile, elle se lève, refait ses tresses en trois minutes et remet ses plaques. Sur la table, une note : « Permission concluante. Demande de renouvellement : approuvée. »"
+   },
+   {
+    "fx": [
+     "add repos.simone 1",
+     "flag simone_nuit",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "minh_anh_merc": [
+   {
+    "s": "narrator",
+    "t": "Minh-Anh t'attend au labo, une enveloppe posée sur le clavier. Dedans, en liasses bien rangées, exactement la somme que tu as payée à Mirae pour la faire sortir. Elle a tout compté deux fois."
+   },
+   {
+    "s": "minh_anh",
+    "t": "Tu m'as rachetée. C'est une donnée que je ne supporte pas. Alors je rachète ma dette. Après ça, je ne t'appartiens pas, et ce que je ferai ensuite sera une variable libre.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "choice": [
+     {
+      "t": "Prendre l'enveloppe. « Dette soldée. »",
+      "goto": "minh_anh_merc_nuit",
+      "fx": [
+       "add trust.minh_anh 6"
+      ]
+     },
+     {
+      "t": "« Tu ne m'as jamais appartenu. Mais j'accepte, pour que tu en sois sûre. »",
+      "goto": "minh_anh_merc_nuit",
+      "fx": [
+       "add aff.minh_anh 6"
+      ]
+     }
+    ]
+   }
+  ],
+  "minh_anh_merc_nuit": [
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_minh_anh_merc"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle note quelque chose sur sa tablette. Ses LEDs passent du blanc au bleu, puis à un rose qu'elle ne s'explique pas."
+   },
+   {
+    "s": "minh_anh",
+    "t": "Dette : zéro. Variable libre. Je choisis… le protocole que je n'ai jamais osé écrire.",
+    "e": "red_leds"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle retire ses lunettes, les remet, les retire. Puis elle défait sa tresse, une cascade noire jusqu'aux reins, et avance d'un pas, puis d'un autre, en annonçant chaque étape à voix basse comme un compte rendu d'expérience. Elle abandonne le compte rendu à l'étape quatre. À l'étape six, elle ne sait plus compter."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "À l'aube, ses LEDs sont rouges, rouges, rouges. Sur sa tablette, une seule ligne : « Hypothèse confirmée. Échantillon insuffisant. Répéter l'expérience. »"
+   },
+   {
+    "fx": [
+     "add repos.minh_anh 1",
+     "flag minh_anh_nuit",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "seo_devotion": [
+   {
+    "s": "narrator",
+    "t": "Elle entre bien avant l'heure de la clause. Elle tient le parchemin de glyphes rouges du Pacte, déroulé, et un stylo d'ordonnance."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "J'ai relu le Pacte. Toutes les clauses. La clause de rupture ne me coûterait presque rien, maintenant : le camp est sauf, vous avez tenu chacune de vos promesses. Je pourrais partir ce soir.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle barre la clause de Service personnel d'un trait net. Le Système grésille, hésite, accepte. Puis elle signe à nouveau, en bas, de son nom entier. Sans une goutte de sang, cette fois."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Allégeance, oui. Je vous ai choisi. Le reste n'est plus une clause. C'est moi qui viens. C'est moi qui décide.",
+    "e": "desire"
+   },
+   {
+    "fx": [
+     "flag seo_devotion",
+     "add ambivalence.seo_yeon 10"
+    ]
+   },
+   {
+    "choice": [
+     {
+      "t": "« Alors décide. »",
+      "goto": "seo_devotion_nuit",
+      "fx": [
+       "add aff.seo_yeon 5"
+      ]
+     },
+     {
+      "t": "Signer sous son nom. « Pacte renouvelé. Sans clause. »",
+      "goto": "seo_devotion_nuit",
+      "fx": [
+       "add trust.seo_yeon 5"
+      ]
+     }
+    ]
+   }
+  ],
+  "seo_devotion_nuit": [
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_seo_devotion"
+   },
+   {
+    "s": "narrator",
+    "t": "Le collier de glyphes, à son cou, a changé de couleur : il luit d'un or pâle, la couleur d'un contrat que plus personne n'impose. Elle le touche du bout des doigts en souriant, comme un bijou qu'elle aurait choisi."
+   },
+   {
+    "s": "narrator",
+    "t": "Elle te pousse sur le lit et prend son temps, avec la précision qu'elle met à tout. Il reste quelque chose du Pacte dans sa façon de murmurer « Seigneur Kang » contre ta bouche : plus un titre, un jeu qu'elle a décidé de jouer, et qu'elle interrompt dès qu'elle en a envie pour dire ton prénom."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "Au matin, le parchemin est rangé dans sa trousse médicale, entre le stéthoscope et les mots croisés. « Pièce à conviction », dit-elle. Elle ne précise pas contre qui."
+   },
+   {
+    "fx": [
+     "add repos.seo_yeon 1",
+     "flag seo_nuit",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "seo_pacte_rupture": [
+   {
+    "s": "narrator",
+    "t": "Elle n'entre pas. Elle reste sur le seuil, le parchemin du Pacte à la main, et le déchire devant toi, lentement, en quatre. Le collier de glyphes rouges se brise sur sa gorge comme du verre."
+   },
+   {
+    "s": "registre",
+    "t": "CLAUSE DE RUPTURE invoquée — Park Seo-Yeon. Prix fixé à la signature : son rang au camp. Payé."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Je reste pour le camp. Je soignerai vos blessés, je recoudrai vos hommes. Mais je ne vous dois plus rien, Kang. Plus jamais.",
+    "e": "contempt",
+    "v": true
+   },
+   {
+    "fx": [
+     "unflag pacte.seo_yeon",
+     "flag seo_rupture",
+     "add aff.seo_yeon -10",
+     "add trust.seo_yeon -10",
+     "add fear.seo_yeon -10",
+     "add repos.seo_yeon 1",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "seo_froid": [
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon refait tes points sans un mot, sans un regard, avec des gestes parfaitement professionnels. Puis elle range sa trousse et passe au patient suivant."
+   },
+   {
+    "fx": [
+     "add repos.seo_yeon 1",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "xiaoyu_devotion": [
+   {
+    "s": "narrator",
+    "t": "Elle entre en peignoir de soie rouge, le jeton de jade gravé de ton nom entre deux doigts. Elle le pose sur la table de mahjong. Puis elle déchire le contrat du Pacte en deux, très proprement, juste au-dessus de la clause trois."
+   },
+   {
+    "s": "xiaoyu",
+    "t": "J'ai payé ma dette, Kang. Avec les intérêts. Le Système est d'accord : je ne te dois plus rien.",
+    "e": "fan",
+    "v": true
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Alors écoute bien, je ne le dirai qu'une fois : je rejoue. Même table, même adversaire. Mais cette fois, c'est moi qui fixe la mise.",
+    "e": "desire"
+   },
+   {
+    "fx": [
+     "flag xiaoyu_devotion",
+     "add ambivalence.xiaoyu 10"
+    ]
+   },
+   {
+    "choice": [
+     {
+      "t": "« Quelle mise ? »",
+      "goto": "xiaoyu_devotion_nuit",
+      "fx": [
+       "add aff.xiaoyu 5"
+      ]
+     },
+     {
+      "t": "Lui rendre le jeton de jade. « À tes conditions. »",
+      "goto": "xiaoyu_devotion_nuit",
+      "fx": [
+       "add trust.xiaoyu 5"
+      ]
+     }
+    ]
+   }
+  ],
+  "xiaoyu_devotion_nuit": [
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_xiaoyu_devotion"
+   },
+   {
+    "s": "narrator",
+    "t": "La mise, c'est elle. Elle te le dit en dénouant la ceinture de soie, en te regardant droit dans les yeux, comme on abat une main gagnante sur la table. Le dragon noir et or se déplie dans son dos à la lumière des lanternes."
+   },
+   {
+    "s": "narrator",
+    "t": "Elle t'appelle encore « Seigneur », mais du ton dont elle dit « Kang » quand elle gagne : un titre qu'elle te prête pour la nuit et qu'elle se réserve le droit de reprendre. Elle mène, puis elle te laisse mener, et c'est elle qui choisit chaque fois le moment où elle cède."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Ne le dis à personne. La reine de la pègre a perdu le contrat et gagné la partie. Personne ne comprendrait.",
+    "e": "laugh"
+   },
+   {
+    "fx": [
+     "add repos.xiaoyu 1",
+     "flag xiaoyu_nuit",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "xiaoyu_pacte_rupture": [
+   {
+    "s": "narrator",
+    "t": "Le jeton de jade gravé de ton nom vole à travers la pièce et se brise contre le mur. Xiaoyu, debout, ouvre son éventail d'un coup sec."
+   },
+   {
+    "s": "registre",
+    "t": "CLAUSE DE RUPTURE invoquée — Long Xiaoyu. Prix fixé à la signature : une année de tribut des Triades. Payé."
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Une Long paie toujours. J'ai payé pour partir. La prochaine fois qu'on jouera, Kang, ce sera ta vie sur la table.",
+    "e": "contempt",
+    "v": true
+   },
+   {
+    "fx": [
+     "unflag pacte.xiaoyu",
+     "flag xiaoyu_rupture",
+     "add aff.xiaoyu -10",
+     "add trust.xiaoyu -10",
+     "add fear.xiaoyu -10",
+     "add repos.xiaoyu 1",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "xiaoyu_froid": [
+   {
+    "s": "narrator",
+    "t": "Xiaoyu joue seule à sa table de mahjong. Quand tu approches, elle retourne les tuiles face cachée, une à une, sans lever les yeux."
+   },
+   {
+    "fx": [
+     "add repos.xiaoyu 1",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "haein_devotion": [
+   {
+    "s": "narrator",
+    "t": "Ce soir, pas de dossier. Elle entre avec le contrat original du Pacte, celui qu'elle avait négocié mot par mot, et un stylo plume à l'encre bordeaux. Elle s'assoit, croise les jambes, et rature la clause sept."
+   },
+   {
+    "s": "hae_in",
+    "t": "« La vassale rend compte chaque soir. » J'ai rendu compte trente soirs. Vous avez lu chaque rapport, Seigneur Kang, et vous avez tenu chaque engagement. Un associé fiable : la chose la plus rare au monde.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "hae_in",
+    "t": "Je renouvelle le Pacte. Sans la clause sept. Je viendrai le soir parce que je le décide. C'est ma dernière condition, et elle n'est pas négociable.",
+    "e": "desire"
+   },
+   {
+    "fx": [
+     "flag haein_devotion",
+     "add ambivalence.hae_in 10"
+    ]
+   },
+   {
+    "choice": [
+     {
+      "t": "« Condition acceptée. »",
+      "goto": "haein_devotion_nuit",
+      "fx": [
+       "add aff.hae_in 5"
+      ]
+     },
+     {
+      "t": "« Contre-proposition : vous ne frappez plus avant d'entrer. »",
+      "goto": "haein_devotion_nuit",
+      "fx": [
+       "add trust.hae_in 5"
+      ]
+     }
+    ]
+   }
+  ],
+  "haein_devotion_nuit": [
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_haein_devotion"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle fait le tour du bureau, lentement, sa robe de soie bordeaux qui frôle le parquet. Elle s'arrête devant toi, défait elle-même la ceinture, et attend. Pas un ordre : une invitation, de quelqu'un qui a pesé chaque risque et décidé de tous les prendre."
+   },
+   {
+    "s": "narrator",
+    "t": "Elle garde l'habitude de t'appeler « Seigneur Kang ». Elle en a fait un jeu, une pièce à deux voix dont elle écrit les répliques, et qu'elle interrompt d'un seul mot quand elle veut que tu redeviennes simplement Elias."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "Au matin, le contrat raturé est encadré au-dessus de son bureau. En dessous, une note à l'encre bordeaux : « Meilleur investissement de ma carrière. »"
+   },
+   {
+    "fx": [
+     "add repos.hae_in 1",
+     "flag haein_nuit",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "haein_pacte_rupture": [
+   {
+    "s": "narrator",
+    "t": "Elle pose sur ton bureau un virement signé, et le contrat du Pacte par-dessus, découpé proprement au massicot, en lamelles."
+   },
+   {
+    "s": "registre",
+    "t": "CLAUSE DE RUPTURE invoquée — Yoon Hae-in. Prix fixé à la signature : dix pour cent de Haesong Holdings. Payé."
+   },
+   {
+    "s": "hae_in",
+    "t": "Dix pour cent. C'est le prix de ma liberté, et c'est une affaire. Ne m'appelez plus « vassale », Monsieur Kang. Appelez-moi « concurrente ».",
+    "e": "threat",
+    "v": true
+   },
+   {
+    "fx": [
+     "unflag pacte.hae_in",
+     "flag haein_rupture",
+     "add aff.hae_in -10",
+     "add trust.hae_in -10",
+     "add fear.hae_in -10",
+     "add repos.hae_in 1",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "haein_froid": [
+   {
+    "s": "narrator",
+    "t": "Hae-in t'adresse un rapport de trois lignes, au vouvoiement glacial, sur l'état des stocks. Elle part avant que tu aies fini de le lire."
+   },
+   {
+    "fx": [
+     "add repos.hae_in 1",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "simone_devotion": [
+   {
+    "s": "narrator",
+    "t": "Elle se présente au rapport, comme chaque soir. Mais elle ne se met pas au garde-à-vous. Elle pose sur ta table le parchemin du Pacte, et ses deux plaques d'identité par-dessus."
+   },
+   {
+    "s": "simone",
+    "t": "J'ai passé ma vie à obéir à des gens qui ne le méritaient pas. Toi, tu as tenu la clause de Protection. Chaque fois. Même quand ça te coûtait.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "simone",
+    "t": "Alors je me réengage. Volontaire. Comme la première fois que j'ai signé, à dix-neuf ans. La différence, c'est que cette fois, je sais pour qui.",
+    "e": "neutral"
+   },
+   {
+    "fx": [
+     "flag simone_devotion",
+     "add ambivalence.simone 10"
+    ]
+   },
+   {
+    "choice": [
+     {
+      "t": "« Engagement accepté, commandante. »",
+      "goto": "simone_devotion_nuit",
+      "fx": [
+       "add aff.simone 5"
+      ]
+     },
+     {
+      "t": "Lui rendre ses plaques. « Tu ne me dois rien. Seulement ce que tu choisis. »",
+      "goto": "simone_devotion_nuit",
+      "fx": [
+       "add trust.simone 5"
+      ]
+     }
+    ]
+   }
+  ],
+  "simone_devotion_nuit": [
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_simone_devotion"
+   },
+   {
+    "s": "simone",
+    "t": "Ce soir, c'est moi qui commande, Seigneur. Et tu vas adorer obéir.",
+    "e": "desire"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle défait ses tresses, et le volume afro qui surprend toujours tout le monde tombe sur ses épaules. Le ceinturon, le débardeur. Elle t'attire contre elle avec la force tranquille de quelqu'un qui pourrait te soulever d'une main et qui préfère, ce soir, te tenir. Les ordres reviennent, bas et précis, et entre deux ordres, elle rit."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "À cinq heures, elle se lève, refait ses tresses, remet ses plaques. Sur le seuil, elle se retourne et salue : pas un salut réglementaire, deux doigts à la tempe, avec un clin d'œil."
+   },
+   {
+    "fx": [
+     "add repos.simone 1",
+     "flag simone_nuit",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "simone_pacte_rupture": [
+   {
+    "s": "narrator",
+    "t": "Elle se présente au rapport une dernière fois. Elle arrache l'écusson de l'Unité 0 de son épaule et le pose sur le parchemin du Pacte."
+   },
+   {
+    "s": "registre",
+    "t": "CLAUSE DE RUPTURE invoquée — Simone Hayes. Prix fixé à la signature : son grade. Payé."
+   },
+   {
+    "s": "simone",
+    "t": "Simple soldate. Ça me va. Je me bats encore pour cette ville, Rang F. Plus pour toi. Rompez.",
+    "e": "anger",
+    "v": true
+   },
+   {
+    "fx": [
+     "unflag pacte.simone",
+     "flag simone_rupture",
+     "add aff.simone -10",
+     "add trust.simone -10",
+     "add fear.simone -10",
+     "add repos.simone 1",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "simone_froid": [
+   {
+    "s": "narrator",
+    "t": "Simone fait des pompes dans la cour. Elle compte à voix haute pour ne pas avoir à te parler. Elle en fait trois cents."
+   },
+   {
+    "fx": [
+     "add repos.simone 1",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "nadia_devotion": [
+   {
+    "s": "narrator",
+    "t": "Elle entre et pose son fusil contre le mur. Le canon vers le sol, cette fois. Dans l'autre main, le parchemin du Pacte. Elle le brûle à la flamme de son briquet, sans un mot, jusqu'à ce qu'il ne reste que la clause d'Allégeance."
+   },
+   {
+    "s": "nadia",
+    "t": "Le reste, c'était de la paperasse. Ça, je le garde. J'ai changé d'employeur trois fois dans ma vie. C'est la première fois que je choisis le mien.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "fx": [
+     "flag nadia_devotion",
+     "add ambivalence.nadia 10"
+    ]
+   },
+   {
+    "choice": [
+     {
+      "t": "« Je ne t'emploie pas, Nadia. »",
+      "goto": "nadia_devotion_nuit",
+      "fx": [
+       "add trust.nadia 5"
+      ]
+     },
+     {
+      "t": "Lui prendre le briquet et allumer sa cigarette.",
+      "goto": "nadia_devotion_nuit",
+      "fx": [
+       "add aff.nadia 5"
+      ]
+     }
+    ]
+   }
+  ],
+  "nadia_devotion_nuit": [
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_nadia_devotion"
+   },
+   {
+    "s": "nadia",
+    "t": "Je sais. C'est pour ça.",
+    "e": "neutral"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle t'enroule l'écharpe rouge de sa grand-mère autour du cou et te tire vers le matelas, face à la porte. Mais ce soir, c'est elle qui s'allonge dos à la porte : elle te confie l'angle mort. Elle défait sa chemise bouton par bouton, en te regardant comme à travers une lunette, sans jamais lâcher sa cible."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "Au matin, le fusil est toujours contre le mur, le canon vers le sol. Il n'a pas bougé de la nuit."
+   },
+   {
+    "fx": [
+     "add repos.nadia 1",
+     "flag nadia_nuit",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "nadia_pacte_rupture": [
+   {
+    "s": "narrator",
+    "t": "Elle entre, et pour la première fois, le canon de son fusil ne vise pas le plafond. Il vise le parchemin du Pacte, posé sur ta table. Une seule balle. Le papier part en flammes."
+   },
+   {
+    "s": "registre",
+    "t": "CLAUSE DE RUPTURE invoquée — Nadia Tsoi. Prix fixé à la signature : sa prime entière. Payé."
+   },
+   {
+    "s": "nadia",
+    "t": "Payée et quitte. Tu es sur ma liste, maintenant. Pas en haut. Pas encore.",
+    "e": "aim",
+    "v": true
+   },
+   {
+    "fx": [
+     "unflag nadia_pactisee",
+     "flag nadia_rupture",
+     "add aff.nadia -10",
+     "add trust.nadia -10",
+     "add fear.nadia -10",
+     "add repos.nadia 1",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "nadia_froid": [
+   {
+    "s": "narrator",
+    "t": "Nadia est sur le toit. Quand tu montes, elle démonte son fusil, pièce par pièce, et le remonte, en te regardant faire le tour du toit. Tu redescends."
+   },
+   {
+    "fx": [
+     "add repos.nadia 1",
      "add fatigue -4"
     ]
    },

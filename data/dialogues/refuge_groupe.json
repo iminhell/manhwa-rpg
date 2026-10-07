@@ -401,6 +401,9 @@
     "t": "Trois femmes et un seul homme dans un lit trop petit, et une règle simple qu'elles se rappellent en riant : chacune dit ce qu'elle veut, à voix haute. Les vêtements s'empilent par terre au fil des aveux. Maricel mène, Aoi chante tout bas contre une épaule, Seo-Yeon compte des battements de cœur et perd le compte. La porte est restée ouverte. Personne ne s'en soucie."
    },
    {
+    "text_p3_slot": []
+   },
+   {
     "fx": [
      "add aff.seo_yeon 4",
      "add aff.aoi 4",
@@ -444,6 +447,9 @@
     "t": "Hae-in tient les comptes, Xiaoyu tient les paris, Simone donne les ordres et Ryeon les conteste par principe. Les chemisiers, les qipao, les jeogori et les débardeurs s'empilent sur le bureau comme des dossiers traités. C'est la réunion la plus longue de l'histoire de la Maison. Personne ne prend de notes, sauf Hae-in, qui finit par abandonner son stylo."
    },
    {
+    "text_p3_slot": []
+   },
+   {
     "fx": [
      "add aff.hae_in 4",
      "add aff.xiaoyu 4",
@@ -476,6 +482,9 @@
     "t": "Quand on est tous ensemble, le Registre se tait. Je ne l'avais jamais entendu se taire.",
     "e": "tilt",
     "v": true
+   },
+   {
+    "text_p3_slot": []
    },
    {
     "s": "narrator",
@@ -534,6 +543,9 @@
    {
     "s": "narrator",
     "t": "Ensuite, plus personne ne pose. La nuit des Dix appartient aux Dix, et à celui qu'elles ont choisi."
+   },
+   {
+    "text_p3_slot": []
    },
    {
     "s": "registre",

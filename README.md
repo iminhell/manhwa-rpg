@@ -27,19 +27,20 @@ Tant que les images ne sont pas générées, le jeu affiche des **placeholders**
 
 ## Contenu actuel
 - **Monde** : 7 secteurs et les étages 1 à 10 de la Tour, 85 sous-zones (souterrains, strates effondrées, sanctuaires, Cité Silencieuse, Marché des Âmes, Banquet, Labyrinthe, Tribunal, Jardin…), 84 événements datés.
-- **Narration** : 23 fichiers de dialogues (environ 3 700 étapes).
+- **Narration** : 23 fichiers de dialogues (environ 4 000 étapes).
   - Acte I : Hae-in, Haneul, Seo-Yeon et le camp, la Tour, rencontres-teasers des 10 héroïnes.
   - Acte II : Impôt du Sang, concert-piège d'Aoi, sacrifice des Élus, Guerre de l'Eau, Fin de Seo-Yeon, Sommet des Sceaux, tunnels de Maricel, étage 2.
   - Acte III : assaut du domaine Baek, mariage-duel de Ryeon, drones de Mirae, mutinerie du Dragon Pâle, l'Héritière au J20, coup d'État chez Haesong, Marée Rouge et siège de Myeongdong, étages 3 et 4.
   - Acte IV : Nadia et Simone (J24), Machine d'Inversion (J26), Dernier Exode (J27), Protocole Cendre (J28), étages 5 à 10, Nuit du Déversement (J30) : Fins de voie, 10 épilogues, Constellations, Harem, régression.
-  - Refuge : moments de repos et nuits avec les 10 héroïnes (variantes par voie, Pactes, Échos), scènes à plusieurs (duos, conciliations, trio, quatuor, Nuit de la Maison).
+  - Refuge : moments de repos et nuits avec les 10 héroïnes (variantes Héros, Tyran et Mercenaire, Pactes : Dévotion et Rupture, Échos, emplacements P3), scènes à plusieurs (duos, conciliations, trio, quatuor, Nuit de la Maison).
 - **Systèmes** : modes de difficulté, jours de répit, cadeaux, Échos inter-boucles, Indice de Résilience, Refuge (rations, améliorations, repos), sauvegarde/chargement, méta-progression entre les boucles.
 - **Combat** : 114 compétences, 34 ennemis, 57 rencontres, groupe de 6. Réécriture, Pressentiment, Éveil, Peur, Grappin, Charme, poison, contre-attaque, paliers de Gardien, Règle du bruit, duels imposés.
-- **Audio** : musique par contexte avec fondus, voix IA par réplique (518 répliques, coréen et japonais).
+- **Audio** : musique par contexte avec fondus, voix IA par réplique (554 répliques, coréen et japonais).
+- **Art** : 61 CG rattachées à leur scène (nuits, scènes à plusieurs, Ancres de l'Acte IV), les scènes intimes passent par RunPod / ComfyUI.
 
 ## Validation
 ```bash
-GODOT=godot ./tools/check_all.sh     # validateur de données + import + 6 482 tests + 6 parties automatiques (jusqu'au J30, trois modes)
+GODOT=godot ./tools/check_all.sh     # validateur de données + import + 6 663 tests + 6 parties automatiques (jusqu'au J30, trois modes)
 AUTOPILOT_DEBUG=1 godot --headless --path . -- --autotest   # trace l'itinéraire de l'autopilote étape par étape
 godot --path . -- --capture           # captures d'écran dans user://captures/
 ```

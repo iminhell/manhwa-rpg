@@ -1056,6 +1056,216 @@
       "out": "assets/cg/cg_page_haneul.png",
       "size": "landscape_16_9",
       "scene": "act4_finale:page"
+    },
+    {
+      "id": "cg_seo_merc",
+      "kind": "cg",
+      "chars": [
+        "seo_yeon",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "seoyeon_park pulling the straps of elias_kang's sand tactical vest and ammo harness off one by one on a camp bed, glasses set aside, a folded ledger page in his pocket, auburn hair loose, playful and flustered, sensual intimate adult romance, warm lamp light",
+      "out": "assets/cg/cg_seo_merc.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:seo_merc_nuit"
+    },
+    {
+      "id": "cg_haneul_merc",
+      "kind": "cg",
+      "chars": [
+        "haneul",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "haneul_heiress kissing elias_kang in his sand tactical vest, a 500 won coin resting in her open palm, black bomber jacket sliding off her bare shoulders, golden glyphs trailing under his fingers down her back, sensual intimate adult romance, dim dormitory, golden glow",
+      "out": "assets/cg/cg_haneul_merc.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:haneul_merc_nuit"
+    },
+    {
+      "id": "cg_aoi_merc",
+      "kind": "cg",
+      "chars": [
+        "aoi",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "aoi_tsukishiro sitting on a bed beside a handwritten notebook page titled CONTRACT, pulling her grey hoodie over her head, real smile with a dimple, elias_kang in a sand tactical vest holding the pen, consensual playful sensual intimate adult romance, soft night light",
+      "out": "assets/cg/cg_aoi_merc.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:aoi_merc_nuit"
+    },
+    {
+      "id": "cg_maricel_merc",
+      "kind": "cg",
+      "chars": [
+        "maricel",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "maricel_dizon laughing while stealing elias_kang's sand tactical vest, his bandana tied in her hair, his wristwatch on her wrist, basketball jersey on the floor, the door wide open, cheeky playful sensual intimate adult romance, warm corridor light",
+      "out": "assets/cg/cg_maricel_merc.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:maricel_merc_nuit"
+    },
+    {
+      "id": "cg_ryeon_merc",
+      "kind": "cg",
+      "chars": [
+        "ryeon",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "ryeon_baek standing over elias_kang lying on a tatami after a sparring duel, wooden sword tip at his throat, flushed and breathless, ponytail coming undone, red ribbon on her wrist, tsundere embarrassment turning into desire, sensual intimate adult romance, moonlit dojo",
+      "out": "assets/cg/cg_ryeon_merc.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:ryeon_merc_nuit"
+    },
+    {
+      "id": "cg_xiaoyu_merc",
+      "kind": "cg",
+      "chars": [
+        "xiaoyu",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "xiaoyu_long at a two-seat mahjong table unfastening the first jade button of her slit black qipao after losing a hand, tiles scattered, red lanterns, dragon tattoo glimpsed on her back, elias_kang across the table, teasing gambling sensual intimate adult romance",
+      "out": "assets/cg/cg_xiaoyu_merc.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:xiaoyu_merc_nuit"
+    },
+    {
+      "id": "cg_haein_merc",
+      "kind": "cg",
+      "chars": [
+        "hae_in",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "haein_yoon untying the belt of her burgundy silk dress beside a desk with a two-page merger contract, fountain pen and two glasses of 1982 wine, candle light, elias_kang in a sand tactical vest, mature elegant sensual intimate adult romance",
+      "out": "assets/cg/cg_haein_merc.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:haein_merc_nuit"
+    },
+    {
+      "id": "cg_nadia_merc",
+      "kind": "cg",
+      "chars": [
+        "nadia",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "nadia_tsoi on a windy rooftop at night lowering a pistol beside a row of bottle caps, red knitted scarf tied around elias_kang's neck, oversized man's shirt half unbuttoned, intense equal gaze, sensual intimate adult romance, cold moonlight and city glow",
+      "out": "assets/cg/cg_nadia_merc.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:nadia_merc_nuit"
+    },
+    {
+      "id": "cg_simone_merc",
+      "kind": "cg",
+      "chars": [
+        "simone",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "simone_hayes off duty laying her two dog tags side by side on a table, tank top, braids undone, laughing, pulling elias_kang in a sand tactical vest close with muscular arms, tidy military room, sensual intimate adult romance, warm lamp light",
+      "out": "assets/cg/cg_simone_merc.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:simone_merc_nuit"
+    },
+    {
+      "id": "cg_minh_anh_merc",
+      "kind": "cg",
+      "chars": [
+        "minh_anh",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "minhanh_tran in her lab at night beside an envelope of banknotes on a keyboard, undoing her long black braid, glasses in hand, temple LEDs glowing pink, stepping toward elias_kang, shy free choice, sensual intimate adult romance, screen glow",
+      "out": "assets/cg/cg_minh_anh_merc.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:minh_anh_merc_nuit"
+    },
+    {
+      "id": "cg_seo_devotion",
+      "kind": "cg",
+      "chars": [
+        "seo_yeon",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "seoyeon_park with a glyph collar glowing pale gold instead of red, a crossed-out red glyph contract on the nightstand, pushing elias_kang onto a bed, confident smile, freely chosen devotion, sensual intimate adult romance, warm light",
+      "out": "assets/cg/cg_seo_devotion.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:seo_devotion_nuit"
+    },
+    {
+      "id": "cg_xiaoyu_devotion",
+      "kind": "cg",
+      "chars": [
+        "xiaoyu",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "xiaoyu_long tearing a contract in two above a mahjong table, a jade token engraved with a name beside the tiles, red silk robe sliding open, dragon tattoo, regal triumphant smile, freely chosen devotion, sensual intimate adult romance, red lanterns",
+      "out": "assets/cg/cg_xiaoyu_devotion.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:xiaoyu_devotion_nuit"
+    },
+    {
+      "id": "cg_haein_devotion",
+      "kind": "cg",
+      "chars": [
+        "hae_in",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "haein_yoon in a burgundy silk dress standing before elias_kang in an office, a framed contract with a crossed-out clause on the wall, fountain pen with burgundy ink, untying her belt herself, mature confident freely chosen devotion, sensual intimate adult romance, candle light",
+      "out": "assets/cg/cg_haein_devotion.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:haein_devotion_nuit"
+    },
+    {
+      "id": "cg_simone_devotion",
+      "kind": "cg",
+      "chars": [
+        "simone",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "simone_hayes with her afro hair down, setting her dog tags on top of a glyph contract, commanding grin, muscular arms pulling elias_kang close, she gives the orders tonight, freely chosen devotion, sensual intimate adult romance, warm lamp light",
+      "out": "assets/cg/cg_simone_devotion.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:simone_devotion_nuit"
+    },
+    {
+      "id": "cg_nadia_devotion",
+      "kind": "cg",
+      "chars": [
+        "nadia",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "nadia_tsoi burning a glyph contract with a lighter until only one clause remains, rifle leaning against the wall muzzle down, red scarf around elias_kang's neck, shirt unbuttoned, trusting gaze, freely chosen devotion, sensual intimate adult romance, cold moonlight",
+      "out": "assets/cg/cg_nadia_devotion.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:nadia_devotion_nuit"
     }
   ]
 }
