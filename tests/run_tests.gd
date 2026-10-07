@@ -55,6 +55,14 @@ func test_state_store() -> void:
 	var copy := StateStore.new()
 	copy.from_dict(s.to_dict())
 	check(copy.loop() == 2 and copy.has_flag("aide_choi"), "sérialisation")
+	var vs := StateStore.new()
+	check(vs.voie() == "", "voie indéterminée au départ")
+	vs.set_var("argent", 450)
+	check(vs.voie() == "mercenaire" and vs.check("voie() == 'mercenaire'"), "voie du Mercenaire")
+	vs.set_var("align.protect", -25)
+	check(vs.voie() == "tyran", "le Tyran prime sur le Mercenaire")
+	vs.set_var("align.protect", 30)
+	check(vs.voie() == "heros", "voie du Héros")
 
 
 func test_dialogue_runner() -> void:
@@ -77,6 +85,31 @@ func test_dialogue_runner() -> void:
 	check(step["kind"] == "line" and step["text"] == "Après", "reprise après événement")
 	check(r.next()["kind"] == "end", "fin")
 	check(DialogueRunner.validate({"start": "a", "blocks": {"a": [{"goto": "zz"}]}}).size() == 1, "validate détecte un bloc inconnu")
+	# Passages P3 : joués sur place, sautés s'ils sont vides ou masqués
+	var slot_dlg := {"id": "p", "start": "a", "blocks": {"a": [{"t": "avant"},
+		{"text_p3_slot": [{"s": "narrator", "t": "p3 un"}, {"s": "seo_yeon", "t": "p3 deux", "e": "desire"}]},
+		{"text_p3_slot": []}, {"t": "après"}, {"end": true}]}}
+	r = DialogueRunner.new(s)
+	r.start(slot_dlg)
+	var seen := []
+	for i in 10:
+		step = r.next()
+		if step["kind"] != "line":
+			break
+		seen.append(step["text"])
+		if step["text"] == "p3 deux":
+			check(step["id"] == "p:a:1:p3:1" and step["speaker"] == "seo_yeon" and not step["voiced"], "passage P3 : id et locuteur")
+	check(seen == ["avant", "p3 un", "p3 deux", "après"], "passage P3 joué dans la continuité %s" % [seen])
+	r = DialogueRunner.new(s)
+	r.show_p3 = false
+	r.start(slot_dlg)
+	seen = []
+	for i in 10:
+		step = r.next()
+		if step["kind"] != "line":
+			break
+		seen.append(step["text"])
+	check(seen == ["avant", "après"], "passage P3 masqué par la préférence %s" % [seen])
 
 
 func test_dialogue_data() -> void:

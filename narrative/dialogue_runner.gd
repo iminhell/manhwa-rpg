@@ -19,6 +19,8 @@ extends RefCounted
 ##   {"phase": 1}                                        avance le temps d'une phase
 ##   {"time": "2:1"}                                     place l'horloge sur J2, phase 1 (jamais en arrière)
 ##   {"music": "intimate"}                               change le contexte musical (data/audio/music.json)
+##   {"text_p3_slot": [<réplique>, ...]}                  passage P3 (explicite) rédigé par l'auteur, joué sur place ;
+##                                                        ignoré s'il est vide ou si le joueur masque le P3 (show_p3)
 ##   "v": true sur une réplique                           réplique doublée (voix IA)
 ##   {"end": true}
 ## Chaque réplique reçoit un identifiant stable "dialogue:bloc:index" (clé des voix IA).
@@ -30,7 +32,10 @@ var store  ## StateStore (ou tout objet exposant apply_effects / check)
 var block: String = ""
 var index: int = 0
 var finished: bool = false
+var show_p3: bool = true  ## faux : les passages text_p3_slot sont sautés (préférence Settings.hide_pacte_p3)
 var _pending_choices: Array = []
+var _slot: Array = []      ## répliques restantes du passage P3 en cours
+var _slot_id: String = ""
 
 
 func _init(state_store = null) -> void:
@@ -43,6 +48,7 @@ func start(dlg: Dictionary, start_block: String = "") -> void:
 	index = 0
 	finished = false
 	_pending_choices = []
+	_slot = []
 
 
 ## Avance jusqu'à la prochaine étape « présentable » et la renvoie :
@@ -56,6 +62,12 @@ func next() -> Dictionary:
 		return {"kind": "end"}
 	if not _pending_choices.is_empty():
 		return _choice_view()
+	while not _slot.is_empty():
+		var k: int = int(_slot[0][0])
+		var line: Dictionary = _slot.pop_front()[1]
+		if line.has("t"):
+			return {"kind": "line", "speaker": str(line.get("s", "narrator")), "text": str(line["t"]),
+					"expr": str(line.get("e", "neutral")), "id": "%s:p3:%d" % [_slot_id, k], "voiced": false}
 	for _guard in MAX_STEPS:
 		var steps: Array = dialogue.get("blocks", {}).get(block, [])
 		if index >= steps.size():
@@ -98,6 +110,15 @@ func next() -> Dictionary:
 			return {"kind": "time", "day": int(dp[0]), "phase": int(dp[1])}
 		if step.has("music"):
 			return {"kind": "music", "context": str(step["music"])}
+		if step.has("text_p3_slot"):
+			var lines: Array = step["text_p3_slot"]
+			if show_p3 and not lines.is_empty():
+				_slot_id = step_id
+				_slot = []
+				for k in lines.size():
+					_slot.append([k, lines[k]])
+				return next()
+			continue
 		if step.has("event"):
 			return {"kind": "event", "name": str(step["event"]), "args": step.get("args", {})}
 		if step.has("end"):

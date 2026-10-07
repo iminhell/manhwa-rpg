@@ -83,6 +83,9 @@
     "music": "intimate"
    },
    {
+    "cg": "cg_corbeau"
+   },
+   {
     "s": "narrator",
     "t": "Vingt-septième aube. Sur chaque oreiller du Refuge, une lettre anonyme. Écriture ronde, appliquée, d'une main qui a recopié beaucoup d'ordonnances."
    },
@@ -157,6 +160,9 @@
     "music": "combat.danger"
    },
    {
+    "cg": "cg_dernier_exode"
+   },
+   {
     "s": "narrator",
     "t": "Vingt-septième jour. Sur les quais du Han, des milliers de gens. Des barges surchargées tentent de traverser vers la rive sud, où la rumeur dit que la Tour ne descendra pas. La rumeur ment."
    },
@@ -167,6 +173,9 @@
    {
     "s": "registre",
     "t": "ANCRE — Le Dernier Exode. Sauver des civils… ou les rançonner."
+   },
+   {
+    "cg": ""
    },
    {
     "choice": [
@@ -414,6 +423,9 @@
     "music": "boss"
    },
    {
+    "cg": "cg_protocole_cendre"
+   },
+   {
     "s": "narrator",
     "t": "Vingt-huitième aube. Le silo d'artillerie de Yongsan. Les sirènes. Sur les écrans, le compte à rebours de l'extérieur : le Protocole Cendre, une frappe thermobarique sur un secteur entier."
    },
@@ -434,6 +446,9 @@
    {
     "s": "registre",
     "t": "ANCRE — Simone Hayes. Jour 28, Aube. Ici. Elle meurt à son poste en appuyant."
+   },
+   {
+    "cg": ""
    },
    {
     "choice": [
@@ -973,6 +988,9 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "cg": "cg_veille"
    },
    {
     "s": "narrator",

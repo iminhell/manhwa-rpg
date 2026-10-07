@@ -21,6 +21,9 @@
     "music": "intimate"
    },
    {
+    "cg": "cg_lecon_anatomie"
+   },
+   {
     "s": "narrator",
     "t": "Haneul a demandé à Seo-Yeon de lui apprendre « comment marche un corps humain ». Seo-Yeon a sorti un vieux manuel d'anatomie. Toi, tu sers de modèle, torse nu, assis sur une caisse."
    },
@@ -58,6 +61,9 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "cg": "cg_deux_voix"
    },
    {
     "s": "narrator",
@@ -99,6 +105,9 @@
     "music": "intimate"
    },
    {
+    "cg": "cg_deux_lames"
+   },
+   {
     "s": "narrator",
     "t": "Aube, sur le toit. Ryeon et Nadia s'affrontent à l'entraînement : sabre de bois contre baïonnette émoussée. Toi, tu arbitres. Personne ne t'écoute."
    },
@@ -134,6 +143,9 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "cg": "cg_mahjong_reines"
    },
    {
     "s": "narrator",
@@ -228,6 +240,9 @@
     "music": "intimate"
    },
    {
+    "cg": "cg_serum"
+   },
+   {
     "s": "narrator",
     "t": "Toute la nuit au laboratoire de fortune. Seo-Yeon a l'éthique. Minh-Anh a le génie. Elles ne se supportent pas, et elles synthétisent un vaccin à partir du sang immunisé de Seo-Yeon."
    },
@@ -267,6 +282,9 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "cg": "cg_sujet"
    },
    {
     "s": "narrator",
@@ -311,6 +329,9 @@
     "music": "intimate"
    },
    {
+    "cg": "cg_silo"
+   },
+   {
     "s": "narrator",
     "t": "Simone et Minh-Anh, penchées sur les plans du silo de Yongsan. La militaire et la scientifique, qui se méprisent poliment depuis le premier jour."
    },
@@ -349,6 +370,9 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "cg": "cg_nuit_des_trois"
    },
    {
     "s": "narrator",
@@ -397,6 +421,9 @@
     "music": "intimate"
    },
    {
+    "cg": "cg_reines_lames"
+   },
+   {
     "s": "narrator",
     "t": "Le bureau du Refuge, tard. Deux reines, une épéiste, une commandante. Elles ont prévu une réunion stratégique. La stratégie a duré quarante minutes."
    },
@@ -438,6 +465,9 @@
     "music": "intimate"
    },
    {
+    "cg": "cg_nuit_maison"
+   },
+   {
     "s": "narrator",
     "t": "La salle commune, les matelas, le poêle. Une Nuit de la Maison : personne ne dort seule, personne ne compte les heures."
    },
@@ -477,6 +507,9 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "cg": "cg_portrait_dix"
    },
    {
     "s": "narrator",

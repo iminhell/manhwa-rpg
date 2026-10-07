@@ -96,6 +96,9 @@ func start(dialogue_id: String, block: String = "") -> void:
 	var dlg: Dictionary = DataDB.dialogues.get(dialogue_id, {})
 	_speakers = dlg.get("speakers", {})
 	runner = DialogueRunner.new(GameState.store)
+	runner.show_p3 = not Settings.hide_pacte_p3
+	_cg.texture = null
+	_cg.visible = false
 	runner.start(dlg, block)
 	_advance()
 

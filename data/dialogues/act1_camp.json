@@ -202,6 +202,9 @@
     "music": "intimate"
    },
    {
+    "cg": "cg_seo_soir"
+   },
+   {
     "s": "narrator",
     "t": "Le soir du troisième jour. Les feux du camp, le ronflement des blessés. Seo-Yeon s'assoit à côté de toi sur un banc que les racines n'ont pas encore mangé."
    },
@@ -444,6 +447,9 @@
     "s": "elias",
     "t": "Non. Eux, ils prennent et ils partent. Moi, je prends et je reste. Choisissez.",
     "e": "neutral"
+   },
+   {
+    "cg": "cg_seo_pacte"
    },
    {
     "s": "narrator",

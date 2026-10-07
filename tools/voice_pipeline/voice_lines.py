@@ -71,6 +71,8 @@ def export() -> None:
                     continue
                 lid = f"{did}:{block}:{i}"
                 row = existing.get(lid, {})
+                if row.get("text_fr") != st["t"]:  # l'index a bougé (étape insérée) : ne pas reprendre la traduction d'une autre réplique
+                    row = {}
                 mem = memory.get(st["t"], {})
                 rows.append({"line_id": lid, "speaker": s, "emotion": st.get("e", "neutral"), "reason": reason,
                              "text_fr": st["t"], "text_ko": row.get("text_ko") or mem.get("ko", ""),

@@ -19,12 +19,18 @@
     "music": "boss"
    },
    {
+    "cg": "cg_machine_inversion"
+   },
+   {
     "s": "narrator",
     "t": "Vingt-sixième nuit. Sous-niveau 9 de Mirae Dynamics. Une salle ronde, sans angle. Au centre, la Machine d'Inversion : trois anneaux d'acier qui tournent autour d'un fauteuil vide, et des câbles qui descendent dans le sol, vers Yongsan."
    },
    {
     "s": "narrator",
     "t": "Une femme en blouse blanche s'attache elle-même au fauteuil. Une tresse noire jusqu'aux reins, des lunettes rectangulaires, trois ports argentés à la tempe dont les LEDs clignotent en bleu."
+   },
+   {
+    "cg": ""
    },
    {
     "if": "not knows_fin('minh_anh')",

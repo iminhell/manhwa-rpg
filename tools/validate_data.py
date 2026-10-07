@@ -7,7 +7,9 @@ Lancer : python3 tools/validate_data.py      (code de sortie 1 s'il y a des erre
 Erreurs : références cassées (bloc, rencontre, nœud, dialogue, souvenir, Fin, personnage, compétence),
 conditions invalides, effets inconnus, drapeaux ou variables LUS mais jamais ÉCRITS (orphelins),
 défaites de combat non gérées, personnages romançables mineurs, etc.
-Avertissements : drapeaux écrits mais jamais lus, blocs inatteignables, décors/CG absents du manifeste.
+CG (art) : toute CG appelée doit être au manifeste, toute CG du manifeste doit être appelée par sa scène (« scene »),
+chaque nuit (drapeau <id>_nuit, trio_nuit, nuit_maison…) affiche une CG, et une CG « nsfw » passe par RunPod.
+Avertissements : drapeaux écrits mais jamais lus, blocs inatteignables, décors absents du manifeste.
 """
 from __future__ import annotations
 
@@ -75,7 +77,8 @@ KNOWN_EVENTS = {"combat", "regress", "end_act", "world", "move"}
 EFFECT_TYPES = {"damage", "heal", "status", "fear", "delay", "haste", "revive", "cleanse", "crit_next", "swap", "advance", "awaken", "pull"}
 TARGETS = {"melee", "ranged", "pierce", "row", "all_enemies", "ally", "all_allies", "all_allies_any", "ally_other", "self", "ally_ko"}
 FUNCS = {"v", "flag", "souvenir", "aff", "loop", "day", "phase", "at", "in_sector", "party", "item", "money",
-         "trust", "fear", "done", "knows_fin", "pressure", "ticks", "in_refuge_sector", "mode", "ir", "party_size", "bonds", "in_tower"}
+         "trust", "fear", "done", "knows_fin", "pressure", "ticks", "in_refuge_sector", "mode", "ir", "party_size", "bonds", "in_tower", "voie"}
+VOIES = {"heros", "tyran", "loup", "mercenaire", ""}
 KEYWORDS = {"and", "or", "not", "true", "false", "null"}
 FX_OPS = {"set": 2, "add": 2, "flag": 1, "unflag": 1, "souvenir": 1, "item": 2, "money": 1, "fin": 1, "join": 1, "leave": 1, "pressure": 1}
 
@@ -132,6 +135,9 @@ def check_condition(cond: str, where: str) -> None:
                 err(f"{where} : secteur inconnu « {arg} »")
         elif fn == "done":
             done_read[arg].add(where)
+    for val in re.findall(r"voie\(\)\s*[!=]=\s*'([^']*)'", cond):
+        if val not in VOIES:
+            err(f"{where} : voie inconnue « {val} » (heros, tyran, loup, mercenaire)")
     stripped = re.sub(r"'[^']*'", "''", cond)
     for ident in re.findall(r"[A-Za-z_]\w*", stripped):
         if ident not in FUNCS and ident not in KEYWORDS:
@@ -213,6 +219,12 @@ for item in manifest:
         manifest_bg.add(Path(item["out"]).stem)
     if item.get("kind") == "cg":
         manifest_cg.add(Path(item["out"]).stem)
+        if Path(item["out"]).stem != item.get("id"):
+            err(f"{w} : l'identifiant d'une CG doit être le nom de son fichier")
+        if item.get("nsfw") and item.get("backend") != "runpod":
+            err(f"{w} : CG « nsfw » sans « backend »: « runpod » (fal.ai la refuserait)")
+        if ":" not in str(item.get("scene", "")):
+            err(f"{w} : CG sans scène (« scene »: « dialogue:bloc » qui l'affiche)")
 
 # --- Combat ----------------------------------------------------------------------------
 for sid, s in skills.items():
@@ -359,6 +371,7 @@ for gs in load(DATA / "world/group_scenes.json").get("scenes", []):
     ref_dialogue(gs.get("dialogue", ""), w)
 
 # --- Dialogues ------------------------------------------------------------------------------
+cg_calls: dict[str, set] = defaultdict(set)
 for did, dlg in dialogues.items():
     blocks = dlg.get("blocks", {})
     speakers = set(dlg.get("speakers", {}).keys())
@@ -421,8 +434,27 @@ for did, dlg in dialogues.items():
                     err(f"{w} : temps invalide « {st['time']} »")
             if "bg" in st and st["bg"] not in manifest_bg:
                 warn(f"{w} : décor « {st['bg']} » absent du manifeste d'art")
-            if st.get("cg") and st["cg"] not in manifest_cg:
-                warn(f"{w} : CG « {st['cg']} » absente du manifeste d'art")
+            if st.get("cg"):
+                cg_calls[st["cg"]].add(f"{did}:{b}")
+                if st["cg"] not in manifest_cg:
+                    err(f"{w} : CG « {st['cg']} » absente du manifeste d'art")
+            if "text_p3_slot" in st:
+                slot = st["text_p3_slot"]
+                if not isinstance(slot, list):
+                    err(f"{w} : text_p3_slot doit être une liste de répliques")
+                    slot = []
+                if len(st) != 1:
+                    err(f"{w} : text_p3_slot doit être seul dans son étape")
+                for k, line in enumerate(slot):
+                    if not isinstance(line, dict) or "t" not in line or set(line) - {"s", "t", "e"}:
+                        err(f"{w}/p3:{k} : réplique invalide (clés autorisées : s, t, e)")
+                        continue
+                    sp = line.get("s", "narrator")
+                    if sp not in characters and sp not in speakers and sp not in SPECIAL_SPEAKERS:
+                        err(f"{w}/p3:{k} : locuteur inconnu « {sp} »")
+                    ex = line.get("e")
+                    if ex and sp in characters and ex not in COMMON_EXPR | set(art_chars.get(sp, {}).get("signature_expressions", {}).keys()):
+                        err(f"{w}/p3:{k} : expression « {ex} » inconnue pour {sp}")
             if "music" in st and music and st["music"] not in music.get("contexts", {}):
                 err(f"{w} : contexte musical inconnu « {st['music']} »")
     # blocs inatteignables
@@ -442,6 +474,30 @@ for did, dlg in dialogues.items():
     for b in blocks:
         if b not in reachable:
             warn(f"dialogues/{did} : bloc inatteignable « {b} »")
+
+# --- CG : manifeste ↔ scènes ----------------------------------------------------------------------
+NIGHT_FLAG = re.compile(r"^(\w+_nuit|nuit_maison)$")  # les nuits de Pacte (<id>_nuit_pacte) n'ont pas de CG intime
+for item in manifest:
+    if item.get("kind") != "cg":
+        continue
+    cid = Path(item["out"]).stem
+    if cid not in cg_calls:
+        err(f"art/manifest/{cid} : CG jamais appelée par un dialogue (« cg »: « {cid} »)")
+    elif item.get("scene") and item["scene"] not in cg_calls[cid]:
+        err(f"art/manifest/{cid} : la scène « {item['scene']} » n'affiche pas cette CG (appelée dans {sorted(cg_calls[cid])})")
+for did, dlg in dialogues.items():
+    blocks = dlg.get("blocks", {})
+    preds = defaultdict(set)
+    for b, steps in blocks.items():
+        for st in steps:
+            for t in [st.get(k) for k in ("goto", "then", "else")] + [o.get("goto") for o in st.get("choice", [])]:
+                if t:
+                    preds[t].add(b)
+    shows_cg = {b for b, steps in blocks.items() if any(st.get("cg") for st in steps)}
+    for b, steps in blocks.items():
+        nights = [p.split()[1] for st in steps for p in st.get("fx", []) if str(p).startswith("flag ") and NIGHT_FLAG.match(str(p).split()[1])]
+        if nights and b not in shows_cg and not (preds[b] & shows_cg):
+            err(f"dialogues/{did}:{b} : nuit « {nights[0]} » sans CG (dans le bloc ou dans un bloc qui y mène)")
 
 # Résumés de fin d'acte (lus par le code)
 for act, lines in load(DATA / "world/act_summary.json").items():

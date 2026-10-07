@@ -402,7 +402,8 @@
       ],
       "prompt": "elias_kang lying dying on the top of a stone tower floor at night, haneul_heiress kneeling and placing her glowing hand over his eyes, golden pages swirling, blood, rain, cinematic wide shot",
       "out": "assets/cg/cg_prologue_death.png",
-      "size": "landscape_16_9"
+      "size": "landscape_16_9",
+      "scene": "prologue_j1:first_life"
     },
     {
       "id": "cg_registre_awakening",
@@ -412,7 +413,8 @@
       ],
       "prompt": "elias_kang waking up in a ruined apartment, eyes glowing gold with a clock ring, golden glyphs on his neck, system window floating in the air, dawn light",
       "out": "assets/cg/cg_registre_awakening.png",
-      "size": "landscape_16_9"
+      "size": "landscape_16_9",
+      "scene": "prologue_j1:wake"
     },
     {
       "id": "cg_haneul_porte",
@@ -423,7 +425,8 @@
       ],
       "prompt": "haneul_heiress awakening inside a cracking translucent obsidian cocoon in a round bottomless chamber, very long silver hair floating, golden glyphs under her skin, gold eyes with clock rings opening, elias_kang reaching out his hand, golden light, awe, cinematic wide shot",
       "out": "assets/cg/cg_haneul_porte.png",
-      "size": "landscape_16_9"
+      "size": "landscape_16_9",
+      "scene": "act1_haneul:rencontre"
     },
     {
       "id": "pinup_seo_yeon_0",
@@ -502,7 +505,8 @@
       "nsfw": true,
       "prompt": "haein_yoon in an open burgundy silk robe pulling elias_kang toward her by his collar in a candle-lit penthouse, ruined red city behind the panoramic window, intimate adult scene, passionate, sirens glowing outside, cinematic",
       "out": "assets/cg/cg_haein_penthouse.png",
-      "size": "landscape_16_9"
+      "size": "landscape_16_9",
+      "scene": "act1_haein:penthouse_go"
     },
     {
       "id": "cg_seo_pacte",
@@ -511,11 +515,547 @@
         "seo_yeon",
         "elias"
       ],
+      "prompt": "seoyeon_park signing a glowing red glyph contract with a drop of blood, kneeling before elias_kang in a dark tent, tears and defiance, dark drama, coercion and defiance, dramatic chiaroscuro",
+      "out": "assets/cg/cg_seo_pacte.png",
+      "size": "landscape_16_9",
+      "scene": "act1_camp:tribut"
+    },
+    {
+      "id": "cg_seo_nuit",
+      "kind": "cg",
+      "chars": [
+        "seo_yeon",
+        "elias"
+      ],
       "backend": "runpod",
       "nsfw": true,
-      "prompt": "seoyeon_park signing a glowing red glyph contract with a drop of blood, kneeling before elias_kang in a dark tent, tears and defiance, dark romance, dramatic chiaroscuro",
-      "out": "assets/cg/cg_seo_pacte.png",
-      "size": "landscape_16_9"
+      "prompt": "seoyeon_park and elias_kang on a narrow camp bed in a dim dormitory at night, her oversized sweater on the floor, bare freckled shoulders, auburn hair loose, glasses set aside, a trace of pink lipstick on his mouth that she wipes with her thumb, sensual intimate adult romance, warm low lamp light, tender",
+      "out": "assets/cg/cg_seo_nuit.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:seo_baiser"
+    },
+    {
+      "id": "cg_haneul_nuit",
+      "kind": "cg",
+      "chars": [
+        "haneul",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "haneul_heiress in a dark dormitory, black bomber jacket sliding off her bare shoulders, golden glyphs lighting up under her skin like a city at night where elias_kang touches her, wonder and laughter, sensual intimate adult romance, golden constellations glowing on her skin, ethereal light",
+      "out": "assets/cg/cg_haneul_nuit.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:haneul_baiser"
+    },
+    {
+      "id": "cg_aoi_nuit",
+      "kind": "cg",
+      "chars": [
+        "aoi",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "aoi_tsukishiro sitting astride elias_kang on a bed at night, grey hoodie discarded, bracelets stacked on the nightstand, thin pale scars on her left wrist visible and unhidden, singing softly against his neck, blushing to the collarbone, sensual intimate adult romance, soft blue night light, vulnerable and free",
+      "out": "assets/cg/cg_aoi_nuit.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:aoi_cicatrices"
+    },
+    {
+      "id": "cg_maricel_nuit",
+      "kind": "cg",
+      "chars": [
+        "maricel",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "maricel_dizon laughing in elias_kang's arms on a dormitory mattress, oversized basketball jersey on the floor, bruises and scraped knees, golden skin, the door left wide open with a lamp on in the corridor, joyful shameless sensual intimate adult romance, warm light",
+      "out": "assets/cg/cg_maricel_nuit.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:maricel_porte"
+    },
+    {
+      "id": "cg_ryeon_nuit",
+      "kind": "cg",
+      "chars": [
+        "ryeon",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "ryeon_baek in a steaming concrete hot spring basin under the shelter, long black hair floating like ink on the water, toned swordswoman shoulders, collarbone scar, red ribbon tied around her wrist, elias_kang's hand on her waist, embarrassed yet determined, sensual intimate adult romance, steam and warm rim light",
+      "out": "assets/cg/cg_ryeon_nuit.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:ryeon_bain"
+    },
+    {
+      "id": "cg_xiaoyu_nuit",
+      "kind": "cg",
+      "chars": [
+        "xiaoyu",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "xiaoyu_long letting a red silk robe fall from her shoulders, black and gold dragon tattoo running from shoulder to hip across her back, closed fan on the bed, jasmine smoke and red lanterns, looking back at elias_kang with a commanding smile that is starting to break, sensual intimate adult romance",
+      "out": "assets/cg/cg_xiaoyu_nuit.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:xiaoyu_nuit"
+    },
+    {
+      "id": "cg_haein_nuit",
+      "kind": "cg",
+      "chars": [
+        "hae_in",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "haein_yoon unbuttoning her silk blouse herself in front of a barricaded window, small old round burn scars on her shoulders, elias_kang kissing one of them, her eyes closing and arms falling to her sides, mature sensual intimate adult romance, candle light, controlled woman letting go",
+      "out": "assets/cg/cg_haein_nuit.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:haein_nuit"
+    },
+    {
+      "id": "cg_nadia_nuit",
+      "kind": "cg",
+      "chars": [
+        "nadia",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "nadia_tsoi in an oversized man's shirt on a bare mattress against a wall facing the door, red knitted scarf of her grandmother tied around elias_kang's neck, names tattooed on her ribs, cold moonlight, intense quiet gaze, sensual intimate adult romance",
+      "out": "assets/cg/cg_nadia_nuit.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:nadia_intime"
+    },
+    {
+      "id": "cg_simone_nuit",
+      "kind": "cg",
+      "chars": [
+        "simone",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "simone_hayes with her braids undone into a voluminous afro, tank top and joggers, two dog tags around her neck, muscular arms pulling elias_kang close, a tidy military room, strength and vulnerability, sensual intimate adult romance, warm lamp light",
+      "out": "assets/cg/cg_simone_nuit.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:simone_intime"
+    },
+    {
+      "id": "cg_minh_anh_nuit",
+      "kind": "cg",
+      "chars": [
+        "minh_anh",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "minhanh_tran in her improvised lab at night, long black braid undone into a cascade down to her waist, glasses half removed, a tablet with a numbered protocol in her hand, three silver ports at her temple glowing red, elias_kang taking the tablet gently, shy sensual intimate adult romance, screen glow",
+      "out": "assets/cg/cg_minh_anh_nuit.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:minh_anh_intime"
+    },
+    {
+      "id": "cg_seo_ombre",
+      "kind": "cg",
+      "chars": [
+        "seo_yeon",
+        "elias"
+      ],
+      "prompt": "seoyeon_park leaning back against a closed door in elias_kang's dark quarters, breathless, unbuttoning the first button of his shirt herself, conflicted desire, warlord ambiance with red light, dark romance tension",
+      "out": "assets/cg/cg_seo_ombre.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:seo_ombre"
+    },
+    {
+      "id": "cg_haneul_ombre",
+      "kind": "cg",
+      "chars": [
+        "haneul",
+        "elias"
+      ],
+      "prompt": "haneul_heiress sitting on a makeshift throne of scrap and steel in a shelter common room, too comfortable, golden glyphs glowing almost black under her skin, beckoning elias_kang the warlord, dark regal fantasy, ominous gold light",
+      "out": "assets/cg/cg_haneul_ombre.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:haneul_ombre"
+    },
+    {
+      "id": "cg_aoi_ombre",
+      "kind": "cg",
+      "chars": [
+        "aoi"
+      ],
+      "prompt": "aoi_tsukishiro standing in the middle of a bedroom in a white and gold idol stage costume, perfect empty stage smile without dimple, waiting for orders, heartbreaking contrast, cold spotlight, dark drama",
+      "out": "assets/cg/cg_aoi_ombre.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:aoi_ombre"
+    },
+    {
+      "id": "cg_maricel_ombre",
+      "kind": "cg",
+      "chars": [
+        "maricel"
+      ],
+      "prompt": "maricel_dizon sitting on a bed peeling an apple with a kitchen knife while staring at the viewer, half threat half invitation, mischievous dangerous smile, dim red light, dark romance tension",
+      "out": "assets/cg/cg_maricel_ombre.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:maricel_ombre"
+    },
+    {
+      "id": "cg_ryeon_ombre",
+      "kind": "cg",
+      "chars": [
+        "ryeon"
+      ],
+      "prompt": "ryeon_baek kneeling in an improvised dojo, offering her sword on both palms with the blade turned toward herself, martial oath gesture, proud and trembling, moonlight through broken shutters, dramatic",
+      "out": "assets/cg/cg_ryeon_ombre.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:ryeon_ombre"
+    },
+    {
+      "id": "cg_xiaoyu_ombre",
+      "kind": "cg",
+      "chars": [
+        "xiaoyu"
+      ],
+      "prompt": "xiaoyu_long lounging on a bed beside a calligraphed contract with the last clause left blank, brush and fresh ink, red silk, inviting provocative gaze, red lanterns, dark romance tension",
+      "out": "assets/cg/cg_xiaoyu_ombre.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:xiaoyu_ombre"
+    },
+    {
+      "id": "cg_haein_ombre",
+      "kind": "cg",
+      "chars": [
+        "hae_in"
+      ],
+      "prompt": "haein_yoon sitting in the warlord's own office chair with legs crossed, a glass of his whisky in hand, challenging smile, power play, mature elegance, amber light and ruined city behind the window",
+      "out": "assets/cg/cg_haein_ombre.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:haein_ombre"
+    },
+    {
+      "id": "cg_nuit_des_trois",
+      "kind": "cg",
+      "chars": [
+        "maricel",
+        "aoi",
+        "seo_yeon",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "three mattresses pushed together in a dormitory, maricel_dizon laughing, aoi_tsukishiro shy and curious, seoyeon_park blushing with her glasses off, clothes piled on the floor, playful consensual sensual adult romance, warm lamp light",
+      "out": "assets/cg/cg_nuit_des_trois.png",
+      "size": "landscape_16_9",
+      "scene": "refuge_groupe:nuit_des_trois"
+    },
+    {
+      "id": "cg_reines_lames",
+      "kind": "cg",
+      "chars": [
+        "hae_in",
+        "xiaoyu",
+        "simone",
+        "ryeon",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "late night in the shelter office, haein_yoon, xiaoyu_long, simone_hayes and ryeon_baek around a desk where blouses, qipao, jeogori and tank tops pile up like files, a strategy meeting turned into a teasing game, confident sensual adult romance, amber light",
+      "out": "assets/cg/cg_reines_lames.png",
+      "size": "landscape_16_9",
+      "scene": "refuge_groupe:reines_lames"
+    },
+    {
+      "id": "cg_nuit_maison",
+      "kind": "cg",
+      "chars": [
+        "haneul",
+        "seo_yeon",
+        "aoi",
+        "maricel",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "a common room full of mattresses around a makeshift stove, many women of the House resting together with elias_kang, conversations turning into kisses and laughter, warm orange stove light, intimate sensual adult found family",
+      "out": "assets/cg/cg_nuit_maison.png",
+      "size": "landscape_16_9",
+      "scene": "refuge_groupe:nuit_maison"
+    },
+    {
+      "id": "cg_portrait_dix",
+      "kind": "cg",
+      "chars": [
+        "haneul",
+        "seo_yeon",
+        "hae_in",
+        "ryeon",
+        "simone",
+        "xiaoyu",
+        "aoi",
+        "nadia",
+        "maricel",
+        "minh_anh",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "group portrait taken by a camera on a tripod, ten women and elias_kang on mattresses in orange stove light, wrapped in sheets and blankets, ryeon_baek hiding her face, nadia_tsoi staring at the lens, seoyeon_park keeping her glasses on, haneul_heiress glowing, sensual tasteful adult group portrait",
+      "out": "assets/cg/cg_portrait_dix.png",
+      "size": "landscape_16_9",
+      "scene": "refuge_groupe:portrait_dix"
+    },
+    {
+      "id": "cg_lecon_anatomie",
+      "kind": "cg",
+      "chars": [
+        "seo_yeon",
+        "haneul",
+        "elias"
+      ],
+      "prompt": "seoyeon_park with an old anatomy manual teaching haneul_heiress, elias_kang shirtless as an embarrassed living model on a chair, comedic slice of life, warm infirmary light",
+      "out": "assets/cg/cg_lecon_anatomie.png",
+      "size": "landscape_16_9",
+      "scene": "refuge_groupe:lecon_anatomie"
+    },
+    {
+      "id": "cg_deux_voix",
+      "kind": "cg",
+      "chars": [
+        "aoi",
+        "maricel"
+      ],
+      "prompt": "aoi_tsukishiro and maricel_dizon singing karaoke together with broken microphones, a battery speaker and a soju bottle, joyful chaos, colorful neon light, slice of life",
+      "out": "assets/cg/cg_deux_voix.png",
+      "size": "landscape_16_9",
+      "scene": "refuge_groupe:deux_voix"
+    },
+    {
+      "id": "cg_deux_lames",
+      "kind": "cg",
+      "chars": [
+        "ryeon",
+        "nadia"
+      ],
+      "prompt": "dawn sparring on a rooftop, ryeon_baek with a wooden sword against nadia_tsoi with a blunted bayonet, dynamic action, ruined Seoul skyline and the black Tower at sunrise",
+      "out": "assets/cg/cg_deux_lames.png",
+      "size": "landscape_16_9",
+      "scene": "refuge_groupe:deux_lames"
+    },
+    {
+      "id": "cg_mahjong_reines",
+      "kind": "cg",
+      "chars": [
+        "hae_in",
+        "xiaoyu"
+      ],
+      "prompt": "haein_yoon and xiaoyu_long facing each other over a mahjong table, two queens, tension and rivalry, tiles and tea and smoke, dramatic low light",
+      "out": "assets/cg/cg_mahjong_reines.png",
+      "size": "landscape_16_9",
+      "scene": "refuge_groupe:mahjong_reines"
+    },
+    {
+      "id": "cg_serum",
+      "kind": "cg",
+      "chars": [
+        "seo_yeon",
+        "minh_anh"
+      ],
+      "prompt": "seoyeon_park and minhanh_tran working all night in a makeshift lab, test tubes, glowing serum vial, screens, exhausted rivals cooperating, cold blue light",
+      "out": "assets/cg/cg_serum.png",
+      "size": "landscape_16_9",
+      "scene": "refuge_groupe:serum"
+    },
+    {
+      "id": "cg_sujet",
+      "kind": "cg",
+      "chars": [
+        "haneul",
+        "minh_anh"
+      ],
+      "prompt": "minhanh_tran placing a hard drive on a table in front of haneul_heiress, data screens about a probe, tense confrontation, haneul cold and hurt, golden glyphs flickering",
+      "out": "assets/cg/cg_sujet.png",
+      "size": "landscape_16_9",
+      "scene": "refuge_groupe:sujet"
+    },
+    {
+      "id": "cg_silo",
+      "kind": "cg",
+      "chars": [
+        "simone",
+        "minh_anh"
+      ],
+      "prompt": "simone_hayes and minhanh_tran leaning over blueprints of an artillery silo, soldier and scientist, polite contempt turning into respect, war room lighting",
+      "out": "assets/cg/cg_silo.png",
+      "size": "landscape_16_9",
+      "scene": "refuge_groupe:silo"
+    },
+    {
+      "id": "cg_seo_soir",
+      "kind": "cg",
+      "chars": [
+        "seo_yeon",
+        "elias"
+      ],
+      "prompt": "seoyeon_park sitting beside elias_kang on a bench overgrown with roots near camp fires at night, wounded people sleeping around, quiet exhausted intimacy, warm firelight",
+      "out": "assets/cg/cg_seo_soir.png",
+      "size": "landscape_16_9",
+      "scene": "act1_camp:seo_soir"
+    },
+    {
+      "id": "cg_xiaoyu_barge",
+      "kind": "cg",
+      "chars": [
+        "xiaoyu"
+      ],
+      "prompt": "xiaoyu_long in a slit black qipao playing mahjong alone against three empty seats on a barge, red lanterns, jasmine smoke, crimson bob haircut, mysterious dangerous allure",
+      "out": "assets/cg/cg_xiaoyu_barge.png",
+      "size": "landscape_16_9",
+      "scene": "act1_world:xiaoyu_barge"
+    },
+    {
+      "id": "cg_aoi_studio",
+      "kind": "cg",
+      "chars": [
+        "aoi"
+      ],
+      "prompt": "aoi_tsukishiro in a grey hoodie opening a padded studio door, holding a cold takoyaki skewer, shy surprised look, cozy cluttered recording studio",
+      "out": "assets/cg/cg_aoi_studio.png",
+      "size": "landscape_16_9",
+      "scene": "act2_aoi:studio2"
+    },
+    {
+      "id": "cg_xiaoyu_contrat",
+      "kind": "cg",
+      "chars": [
+        "xiaoyu"
+      ],
+      "prompt": "xiaoyu_long waiting alone at a mahjong table in the Pale Dragon parlour, a calligraphed contract with fresh ink before her, brush in hand, dark elegant power, red lanterns",
+      "out": "assets/cg/cg_xiaoyu_contrat.png",
+      "size": "landscape_16_9",
+      "scene": "act3_xiaoyu:contrat"
+    },
+    {
+      "id": "cg_corbeau",
+      "kind": "cg",
+      "chars": [
+        "seo_yeon"
+      ],
+      "prompt": "dawn in the shelter dormitory, an anonymous letter in round careful handwriting on every pillow, seoyeon_park holding one with trembling hands, ominous cold light",
+      "out": "assets/cg/cg_corbeau.png",
+      "size": "landscape_16_9",
+      "scene": "act4_world:corbeau"
+    },
+    {
+      "id": "cg_veille",
+      "kind": "cg",
+      "chars": [
+        "haneul",
+        "seo_yeon",
+        "hae_in",
+        "ryeon",
+        "simone",
+        "xiaoyu",
+        "aoi",
+        "nadia",
+        "maricel",
+        "minh_anh",
+        "elias"
+      ],
+      "prompt": "the whole House gathered around a makeshift stove in the shelter common room the night before the end, nobody sleeping, faces lit orange, quiet solidarity, emotional wide shot",
+      "out": "assets/cg/cg_veille.png",
+      "size": "landscape_16_9",
+      "scene": "act4_world:veille"
+    },
+    {
+      "id": "cg_toit_lotte",
+      "kind": "cg",
+      "chars": [
+        "nadia"
+      ],
+      "prompt": "nadia_tsoi lying prone behind an anti-materiel rifle on the roof of a 555-meter skyscraper at dusk, howling wind, red city below, a counter-sniper scope glinting on a neighbouring tower, cinematic wide shot",
+      "out": "assets/cg/cg_toit_lotte.png",
+      "size": "landscape_16_9",
+      "scene": "act4_nadia:toit"
+    },
+    {
+      "id": "cg_machine_inversion",
+      "kind": "cg",
+      "chars": [
+        "minh_anh"
+      ],
+      "prompt": "a round chamber without corners nine levels underground, the Inversion Machine with three steel rings spinning around a chair, minhanh_tran strapping herself in, silver ports at her temple glowing, ominous sci-fi light",
+      "out": "assets/cg/cg_machine_inversion.png",
+      "size": "landscape_16_9",
+      "scene": "act4_minh_anh:machine"
+    },
+    {
+      "id": "cg_dernier_exode",
+      "kind": "cg",
+      "chars": [],
+      "prompt": "thousands of refugees on the Han river docks boarding overloaded barges to the south bank, scarlet prowlers climbing the bridge pillars, the black Tower on the horizon, desperate epic wide shot",
+      "out": "assets/cg/cg_dernier_exode.png",
+      "size": "landscape_16_9",
+      "scene": "act4_world:exode"
+    },
+    {
+      "id": "cg_protocole_cendre",
+      "kind": "cg",
+      "chars": [
+        "simone"
+      ],
+      "prompt": "simone_hayes alone at a manual trigger in an artillery silo at dawn, sirens, countdown screens of a thermobaric strike, sweat and resolve, red alarm light, cinematic",
+      "out": "assets/cg/cg_protocole_cendre.png",
+      "size": "landscape_16_9",
+      "scene": "act4_world:cendre"
+    },
+    {
+      "id": "cg_nuit_deversement",
+      "kind": "cg",
+      "chars": [],
+      "prompt": "the Night of the Spill over Seoul, the black Tower inhaling the air of the city, all flags pointing toward Yongsan, birds falling from the sky, apocalyptic red and black sky, epic wide shot",
+      "out": "assets/cg/cg_nuit_deversement.png",
+      "size": "landscape_16_9",
+      "scene": "act4_finale:debut"
+    },
+    {
+      "id": "cg_epreuve_dix",
+      "kind": "cg",
+      "chars": [
+        "haneul",
+        "seo_yeon",
+        "hae_in",
+        "ryeon",
+        "simone",
+        "xiaoyu",
+        "aoi",
+        "nadia",
+        "maricel",
+        "minh_anh"
+      ],
+      "prompt": "split-panel montage of ten women each facing her own fate in ten places at the same night: a stage, docks, a silo, a rooftop, a lab, tunnels, an estate, a barge, a boardroom, a door, golden Registry glyphs linking them, epic manhwa spread",
+      "out": "assets/cg/cg_epreuve_dix.png",
+      "size": "landscape_16_9",
+      "scene": "act4_finale:epreuve_dix"
+    },
+    {
+      "id": "cg_page_haneul",
+      "kind": "cg",
+      "chars": [
+        "haneul",
+        "elias"
+      ],
+      "prompt": "a door without a lock opening by itself at 23:58, haneul_heiress revealed as the Administrator holding a giant ledger of golden pages, elias_kang before her, cosmic golden light, solemn and heartbreaking",
+      "out": "assets/cg/cg_page_haneul.png",
+      "size": "landscape_16_9",
+      "scene": "act4_finale:page"
     }
   ]
 }

@@ -356,12 +356,18 @@
     "music": "boss"
    },
    {
+    "cg": "cg_toit_lotte"
+   },
+   {
     "s": "narrator",
     "t": "Vingt-quatrième crépuscule. Le toit de la Lotte World Tower, à 555 mètres. Le vent hurle. Allongée derrière son fusil anti-matériel, Nadia vise le parvis du Musée de la Guerre, où la commandante Hayes parle aux réfugiés."
    },
    {
     "s": "narrator",
     "t": "À trois cents mètres, sur la tour voisine, un éclat de lunette : le contre-sniper de l'Unité 0. Il vise Nadia. Personne ne vise personne au hasard, ce soir."
+   },
+   {
+    "cg": ""
    },
    {
     "if": "not flag('nadia_rencontree')",

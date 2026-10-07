@@ -39,7 +39,7 @@ func _ready() -> void:
 	v.add_child(_slider("Volume de la musique", Settings.music_volume, _set_option.bind("music_volume")))
 
 	var p3 := CheckButton.new()
-	p3.text = "Masquer les scènes de Pacte P3 (préférence, sans effet sur le jeu)"
+	p3.text = "Masquer les passages P3 explicites (préférence, sans effet sur le jeu)"
 	p3.add_theme_font_size_override("font_size", 18)
 	p3.button_pressed = Settings.hide_pacte_p3
 	p3.toggled.connect(_set_option.bind("hide_pacte_p3"))

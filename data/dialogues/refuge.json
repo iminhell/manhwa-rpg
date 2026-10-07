@@ -179,6 +179,9 @@
   ],
   "seo_baiser": [
    {
+    "cg": "cg_seo_nuit"
+   },
+   {
     "s": "narrator",
     "t": "Elle rit, nerveuse, et puis elle ne rit plus. Le premier baiser est maladroit, trop rapide, ses mains ne savent pas où se poser. Le deuxième, non."
    },
@@ -444,6 +447,9 @@
   ],
   "haneul_baiser": [
    {
+    "cg": "cg_haneul_nuit"
+   },
+   {
     "s": "narrator",
     "t": "Les glyphes sous sa peau s'allument un à un sous tes doigts, comme une ville qu'on rallume quartier par quartier. Elle rit, surprise, de lumière."
    },
@@ -682,6 +688,9 @@
   ],
   "aoi_cicatrices": [
    {
+    "cg": "cg_aoi_nuit"
+   },
+   {
     "s": "aoi",
     "t": "Tu ne fais pas la tête de pitié. Tout le monde fait la tête de pitié.",
     "e": "tears",
@@ -846,6 +855,9 @@
    }
   ],
   "maricel_porte": [
+   {
+    "cg": "cg_maricel_nuit"
+   },
    {
     "s": "maricel",
     "t": "…T'es vraiment bizarre, gwapo. C'est la chose la plus romantique qu'on m'ait jamais dite.",
@@ -1092,6 +1104,9 @@
   ],
   "ryeon_bain": [
    {
+    "cg": "cg_ryeon_nuit"
+   },
+   {
     "s": "narrator",
     "t": "Dans l'eau trouble, la cicatrice de sa clavicule. Les trois grains de beauté sur son omoplate, que sa grand-mère appelait la constellation du Tigre. Des muscles longs d'escrimeuse qui se tendent quand ta main se pose sur sa taille."
    },
@@ -1284,6 +1299,9 @@
    }
   ],
   "xiaoyu_nuit": [
+   {
+    "cg": "cg_xiaoyu_nuit"
+   },
    {
     "s": "narrator",
     "t": "Le peignoir de soie rouge tombe. Le dragon noir et or court de son épaule à sa hanche, en travers du dos, et ses écailles semblent bouger quand elle respire. Sous le sein gauche, une fine cicatrice de lame. Elle te laisse la trouver du bout des doigts."
@@ -1511,6 +1529,9 @@
    }
   ],
   "haein_nuit": [
+   {
+    "cg": "cg_haein_nuit"
+   },
    {
     "s": "narrator",
     "t": "Elle défait elle-même les boutons de son chemisier, un par un, sans trembler, comme elle signerait un contrat. Sur ses épaules et ses avant-bras, de petites brûlures rondes, anciennes, blanchies. Des cigarettes. Elle ne les cache pas. Elle attend de voir ce que tu vas en faire."
@@ -1789,6 +1810,9 @@
     "music": "intimate"
    },
    {
+    "cg": "cg_seo_ombre"
+   },
+   {
     "s": "narrator",
     "t": "Elle entre sans frapper, comme on entre chez un patient grave. Elle te regarde comme on regarde quelqu'un qu'on n'arrive plus à juger."
    },
@@ -1826,6 +1850,9 @@
     "music": "intimate"
    },
    {
+    "cg": "cg_haneul_ombre"
+   },
+   {
     "s": "narrator",
     "t": "Haneul s'assoit sur le trône de fortune que tes vassaux ont monté dans la salle commune. Elle s'y trouve à l'aise. Trop."
    },
@@ -1860,6 +1887,9 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "cg": "cg_aoi_ombre"
    },
    {
     "s": "narrator",
@@ -1899,6 +1929,9 @@
     "music": "intimate"
    },
    {
+    "cg": "cg_maricel_ombre"
+   },
+   {
     "s": "narrator",
     "t": "Maricel est assise sur ton lit, un couteau de cuisine dans une main, une pomme dans l'autre. Elle épluche la pomme en te regardant."
    },
@@ -1933,6 +1966,9 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "cg": "cg_ryeon_ombre"
    },
    {
     "s": "narrator",
@@ -1972,6 +2008,9 @@
     "music": "intimate"
    },
    {
+    "cg": "cg_xiaoyu_ombre"
+   },
+   {
     "s": "narrator",
     "t": "Xiaoyu a étalé un contrat calligraphié sur le lit. L'encre est encore fraîche. La dernière clause est vide."
    },
@@ -2006,6 +2045,9 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "cg": "cg_haein_ombre"
    },
    {
     "s": "narrator",
@@ -2386,6 +2428,9 @@
   ],
   "nadia_intime": [
    {
+    "cg": "cg_nadia_nuit"
+   },
+   {
     "s": "narrator",
     "t": "Sa chambre au Refuge n'a qu'un matelas, posé contre le mur, face à la porte. Elle porte une chemise d'homme trop grande et rien d'autre. Elle a noué l'écharpe rouge de sa grand-mère autour de ton cou, avant que tu entres."
    },
@@ -2622,6 +2667,9 @@
   ],
   "simone_intime": [
    {
+    "cg": "cg_simone_nuit"
+   },
+   {
     "s": "narrator",
     "t": "Sa chambre est rangée comme un paquetage. Elle a défait ses tresses : un volume afro qui surprend tout le monde, toi le premier. Elle porte un débardeur, un jogging, et ses deux plaques au cou."
    },
@@ -2843,6 +2891,9 @@
    }
   ],
   "minh_anh_intime": [
+   {
+    "cg": "cg_minh_anh_nuit"
+   },
    {
     "s": "narrator",
     "t": "Elle t'attend dans son labo, la tresse défaite. Une cascade noire qui la couvre jusqu'aux reins comme un manteau. Elle a retiré ses lunettes, puis les a remises, puis les a retirées."

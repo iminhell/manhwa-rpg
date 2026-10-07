@@ -583,6 +583,9 @@
     "bg": "black"
    },
    {
+    "cg": "cg_haein_penthouse"
+   },
+   {
     "s": "narrator",
     "t": "Le penthouse est éclairé à la bougie. Électricité rationnée, même pour une reine. Une table pour deux, un vin de 1982, et toute la ville rouge derrière la vitre."
    },

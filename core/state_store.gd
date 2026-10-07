@@ -136,6 +136,20 @@ func mode() -> String:
 	return str(get_var("difficulte", "normal"))
 
 
+## Voie dominante d'Elias : "heros" | "tyran" | "loup" | "mercenaire" | "" (indéterminée).
+## Mêmes seuils que la Résolution de l'Acte IV (act4_finale:resolution), dans le même ordre.
+func voie() -> String:
+	if float(get_var("align.protect")) >= 20:
+		return "heros"
+	if float(get_var("align.protect")) <= -20:
+		return "tyran"
+	if float(get_var("align.bond")) <= -20:
+		return "loup"
+	if money() >= 400:
+		return "mercenaire"
+	return ""
+
+
 ## Nombre de membres du groupe (Elias compris).
 func party_size() -> int:
 	var n := 1

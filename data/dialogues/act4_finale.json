@@ -20,12 +20,18 @@
     "music": "boss"
    },
    {
+    "cg": "cg_nuit_deversement"
+   },
+   {
     "s": "narrator",
     "t": "Trentième jour. Dix-huit heures. L'Inspiration : la Tour aspire l'air de la ville. Les drapeaux se tendent tous vers Yongsan. Les oiseaux tombent du ciel."
    },
    {
     "s": "system",
     "t": "GRANDE DESCENTE — 23h58."
+   },
+   {
+    "cg": ""
    },
    {
     "if": "pressure() > 85",
@@ -358,12 +364,18 @@
   ],
   "epreuve_dix": [
    {
+    "cg": "cg_epreuve_dix"
+   },
+   {
     "s": "system",
     "t": "ÉPREUVE DES DIX. LA TOUR RÉCOLTE LES DIX FINS DE LA MAISON CETTE NUIT."
    },
    {
     "s": "narrator",
     "t": "Dix lieux. Dix Fins convergentes. Une scène à Hongdae, des quais, un silo, un toit, un laboratoire, des tunnels, un domaine, une barge, une salle de conseil, une porte sans serrure. Toutes menacées en même temps."
+   },
+   {
+    "cg": ""
    },
    {
     "if": "flag('maison_cercle') and (flag('treve_signee') or flag('concil.simone_nadia'))",
@@ -790,8 +802,14 @@
     "music": "registre"
    },
    {
+    "cg": "cg_page_haneul"
+   },
+   {
     "s": "narrator",
     "t": "Vingt-trois heures cinquante-huit. La porte sans serrure s'ouvre d'elle-même."
+   },
+   {
+    "cg": ""
    },
    {
     "if": "pressure() > 85",
@@ -965,19 +983,19 @@
     "t": "Résolution — les Fins de cette boucle."
    },
    {
-    "if": "v('align.protect') >= 20",
+    "if": "voie() == 'heros'",
     "then": "voie_heros"
    },
    {
-    "if": "v('align.protect') <= -20",
+    "if": "voie() == 'tyran'",
     "then": "voie_tyran"
    },
    {
-    "if": "v('align.bond') <= -20",
+    "if": "voie() == 'loup'",
     "then": "voie_loup"
    },
    {
-    "if": "money() >= 400",
+    "if": "voie() == 'mercenaire'",
     "then": "voie_mercenaire"
    },
    {
