@@ -388,19 +388,78 @@ def clean_alpha(rgba, opts: dict | None = None):
     return Image.fromarray(out, "RGBA")
 
 
-class SpriteBackend(SdxlBackend):
-    """Checkpoint SDXL (fichier unique) + LoRA, génération sur fond blanc, inpainting du visage pour les expressions
-    (corps identique au pixel près, clignement compris), détourage rembg (modèle isnet-anime)."""
+def enable_vae_tiling(pipe) -> None:
+    """Décodage du VAE par tuiles (grandes images du hires fix) ; même compatibilité que enable_vae_slicing."""
+    vae = getattr(pipe, "vae", None)
+    if callable(getattr(vae, "enable_tiling", None)):
+        vae.enable_tiling()
+    elif callable(getattr(pipe, "enable_vae_tiling", None)):
+        pipe.enable_vae_tiling()
 
-    def __init__(self, style: dict, pipe=None, remover=None) -> None:
+
+def box_mask(size: tuple[int, int], box, pad: float = 0.25):
+    """Masque d'inpainting rectangulaire autour d'une détection (élargi de « pad », bords adoucis)."""
+    from PIL import Image, ImageDraw, ImageFilter  # noqa: PLC0415
+    w, h = size
+    x0, y0, x1, y1 = box
+    dx, dy = (x1 - x0) * pad + 6, (y1 - y0) * pad + 6
+    mask = Image.new("L", (w, h), 0)
+    ImageDraw.Draw(mask).rectangle((max(0, x0 - dx), max(0, y0 - dy), min(w, x1 + dx), min(h, y1 + dy)), fill=255)
+    return mask.filter(ImageFilter.GaussianBlur(4))
+
+
+class Detailer:
+    """Repère les visages et les mains (modèles YOLO d'ADetailer, Bingsu/adetailer) pour les repeindre en haute
+    résolution. Facultatif : si le modèle ne se charge pas, la génération continue sans retouche (avertissement)."""
+
+    def __init__(self, cfg: dict, models: dict | None = None) -> None:
+        self.cfg = cfg or {}
+        self.models = models
+        self.failed = False
+
+    def _load(self) -> None:
+        if self.models is not None or self.failed:
+            return
+        try:
+            from huggingface_hub import hf_hub_download  # noqa: PLC0415
+            from ultralytics import YOLO  # noqa: PLC0415
+            repo = self.cfg.get("repo", "Bingsu/adetailer")
+            self.models = {k: YOLO(hf_hub_download(repo, self.cfg[f"{k}_model"])) for k in ("face", "hand")
+                           if self.cfg.get(f"{k}_model")}
+        except Exception as e:  # noqa: BLE001
+            print(f"  ! détailleur indisponible ({e.__class__.__name__}: {e}) : visages et mains non retouchés")
+            self.failed, self.models = True, {}
+
+    def boxes(self, img, kind: str) -> list[tuple[float, float, float, float]]:
+        """Boîtes (x0, y0, x1, y1) détectées, la plus grande d'abord."""
+        self._load()
+        model = (self.models or {}).get(kind)
+        if model is None:
+            return []
+        try:
+            res = model.predict(img, conf=float(self.cfg.get("confidence", 0.35)), verbose=False)[0]
+            found = [tuple(float(v) for v in b) for b in res.boxes.xyxy.cpu().numpy().tolist()]
+        except Exception as e:  # noqa: BLE001
+            print(f"  ! détection {kind} impossible ({e.__class__.__name__}) : ignorée")
+            return []
+        return sorted(found, key=lambda b: -(b[2] - b[0]) * (b[3] - b[1]))[: int(self.cfg.get("max_per_kind", 4))]
+
+
+class SpriteBackend(SdxlBackend):
+    """Checkpoint SDXL (fichier unique) + LoRA, génération sur fond blanc puis :
+    hires fix (agrandissement + img2img léger : détails et trait nets), retouche des visages et des mains détectés
+    (inpainting en 1024 px), expressions par inpainting du visage (corps identique au pixel près, clignement compris),
+    détourage rembg (isnet-anime) et nettoyage du masque."""
+
+    def __init__(self, style: dict, pipe=None, remover=None, detector_models: dict | None = None) -> None:
         import torch  # noqa: PLC0415
         if pipe is None:
-            from diffusers import EulerAncestralDiscreteScheduler, StableDiffusionXLPipeline  # noqa: PLC0415
+            from diffusers import StableDiffusionXLPipeline  # noqa: PLC0415
             ck = style["checkpoint"]
             path = fetch(ck["url"], MODELS_DIR / f"{ck['name']}.safetensors")
             dtype = torch.float16 if device() == "cuda" else torch.float32
             pipe = StableDiffusionXLPipeline.from_single_file(str(path), torch_dtype=dtype)
-            pipe.scheduler = EulerAncestralDiscreteScheduler.from_config(pipe.scheduler.config)
+        pipe.scheduler = make_scheduler(style.get("sampler", "euler_a"), pipe.scheduler.config)
         # LoRA : fichier local (« path ») ou téléchargé une fois (« url »)
         loras = [(lo["name"], Path(lo["path"]) if lo.get("path") else fetch(lo["url"], MODELS_DIR / "loras" / f"{lo['name']}.safetensors"),
                   lo["weight"]) for lo in style.get("loras", [])]
@@ -409,15 +468,20 @@ class SpriteBackend(SdxlBackend):
         if loras:
             pipe.set_adapters([n for n, _, _ in loras], adapter_weights=[w for _, _, w in loras])
         super().__init__(pipe=pipe)
-        from diffusers import StableDiffusionXLInpaintPipeline  # noqa: PLC0415
+        enable_vae_tiling(self.pipe)
+        from diffusers import StableDiffusionXLImg2ImgPipeline, StableDiffusionXLInpaintPipeline  # noqa: PLC0415
         self.inpaint_pipe = StableDiffusionXLInpaintPipeline(**self.pipe.components)
+        self.img2img_pipe = StableDiffusionXLImg2ImgPipeline(**self.pipe.components)
         self.style = style
         self.remover = remover
+        self.detailer = Detailer(style.get("detailer", {}), detector_models)
         self.masks: dict[str, object] = {}
 
     def face_mask(self, cid: str, base):
+        """Masque du visage : boîte détectée par le détailleur, sinon le haut de la silhouette."""
         if cid not in self.masks:
-            self.masks[cid] = head_mask(self.cut(base).getchannel("A"))
+            faces = self.detailer.boxes(base, "face")
+            self.masks[cid] = box_mask(base.size, faces[0], pad=0.35) if faces else head_mask(self.cut(base).getchannel("A"))
         return self.masks[cid]
 
     def cut(self, img):
@@ -429,15 +493,65 @@ class SpriteBackend(SdxlBackend):
         return clean_alpha(self.remover(img).convert("RGBA"), self.style.get("alpha_cleanup"))
 
     def generate(self, prompt: str, negative: str, seed: int):
+        """Génération complète d'une pose : base, hires fix, retouche visage/mains, taille finale."""
+        from PIL import Image  # noqa: PLC0415
         w, h = self.style["size"]
-        return self.render(prompt, negative, (w, h), seed, steps=self.style["steps"])
+        img = self.render(prompt, negative, (w, h), seed, steps=self.style["steps"])
+        hires = self.style.get("hires", {})
+        if hires.get("scale", 1.0) > 1.0:
+            size = (int(w * hires["scale"]) // 8 * 8, int(h * hires["scale"]) // 8 * 8)
+            img = self._img2img(img.resize(size, Image.LANCZOS), prompt, negative, seed, hires.get("strength", 0.38),
+                                hires.get("steps", 20))
+        img = self.detail(img, prompt, negative, seed)
+        return self.final_size(img)
+
+    def final_size(self, img):
+        from PIL import Image  # noqa: PLC0415
+        fh = int(self.style.get("final_height", 0))
+        if fh and img.height > fh:
+            img = img.resize((round(img.width * fh / img.height), fh), Image.LANCZOS)
+        return img
+
+    def detail(self, img, prompt: str, negative: str, seed: int):
+        """Repeint chaque visage et chaque main détectés (comme ADetailer)."""
+        cfg = self.style.get("detailer", {})
+        for kind, extra in (("face", cfg.get("face_prompt", "")), ("hand", cfg.get("hand_prompt", ""))):
+            for k, box in enumerate(self.detailer.boxes(img, kind)):
+                img = self._inpaint(img, box_mask(img.size, box), f"{prompt}, {extra}" if extra else prompt, negative,
+                                    seed + 17 * (k + 1), float(cfg.get("strength", 0.35)))
+        return img
+
+    def _img2img(self, img, prompt: str, negative: str, seed: int, strength: float, steps: int):
+        gen = self.torch.Generator(self.dev).manual_seed(seed)
+        return self.img2img_pipe(image=img, strength=strength, num_inference_steps=effective_steps(steps, strength), guidance_scale=self.style["guidance"],
+                                 generator=gen, **self.embeddings(prompt, negative)).images[0]
+
+    def _inpaint(self, base, mask, prompt: str, negative: str, seed: int, strength: float):
+        """Inpainting d'une zone, recadrée et générée en haute résolution (padding_mask_crop) puis recollée."""
+        crop = int(self.style.get("detail_resolution", 1024))
+        gen = self.torch.Generator(self.dev).manual_seed(seed)
+        out = self.inpaint_pipe(image=base, mask_image=mask, width=crop, height=crop, strength=strength,
+                                num_inference_steps=effective_steps(self.style["steps"], strength), guidance_scale=self.style["guidance"],
+                                padding_mask_crop=32, generator=gen, **self.embeddings(prompt, negative)).images[0]
+        return out.resize(base.size) if out.size != base.size else out
 
     def repaint_face(self, base, mask, prompt: str, negative: str, seed: int):
-        w, h = base.size
-        gen = self.torch.Generator(self.dev).manual_seed(seed)
-        return self.inpaint_pipe(image=base, mask_image=mask, width=w, height=h, strength=self.style["expression_strength"],
-                                 num_inference_steps=self.style["steps"], guidance_scale=self.style["guidance"],
-                                 padding_mask_crop=32, generator=gen, **self.embeddings(prompt, negative)).images[0]
+        return self._inpaint(base, mask, prompt, negative, seed, self.style["expression_strength"])
+
+
+def effective_steps(steps: int, strength: float) -> int:
+    """img2img et inpainting n'exécutent que steps × strength étapes : on en garantit au moins 2 (sinon diffusers
+    reçoit zéro étape et échoue sur un tenseur vide)."""
+    import math  # noqa: PLC0415
+    return max(int(steps), math.ceil(2 / max(strength, 0.05)))
+
+
+def make_scheduler(name: str, config):
+    """Échantillonneur : « dpmpp_2m_karras » (net, peu d'étapes) ou « euler_a »."""
+    from diffusers import DPMSolverMultistepScheduler, EulerAncestralDiscreteScheduler  # noqa: PLC0415
+    if name == "dpmpp_2m_karras":
+        return DPMSolverMultistepScheduler.from_config(config, use_karras_sigmas=True, algorithm_type="dpmsolver++")
+    return EulerAncestralDiscreteScheduler.from_config(config)
 
 
 def sprite_base(cid: str):

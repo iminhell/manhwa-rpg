@@ -22,14 +22,14 @@
   832,
   1216
  ],
- "steps": 36,
- "guidance": 5.5,
+ "steps": 30,
+ "guidance": 6.0,
  "expression_strength": 0.6,
- "quality": "masterpiece, best quality, amazing quality, (ultra-detailed), very aesthetic, absurdres, anime style, defined line, sweaty skin",
+ "quality": "masterpiece, best quality, amazing quality, (ultra-detailed), very aesthetic, absurdres, highres, anime style, anime coloring, (sharp lineart:1.2), clean lineart, crisp details, high definition, detailed face, detailed eyes, perfect hands, defined line, sweaty skin",
  "background": "simple background, white background, cinematic lighting, soft shadows",
- "negative": "(reality:1.5), lips, worst quality, bad quality, low quality, signature, watermark, bad anatomy, bad proportions, extra limbs, 3d render, plastic skin, photo, realistic, dark square background, nude, nipples, child, loli, childlike, young-looking, cropped, out of frame",
+ "negative": "(reality:1.5), lips, worst quality, bad quality, low quality, lowres, (blurry:1.2), soft focus, out of focus, jpeg artifacts, sketch, smudge, signature, watermark, bad anatomy, bad proportions, extra limbs, malformed limbs, bad hands, extra fingers, fused fingers, missing fingers, too many fingers, deformed hands, mutated hands, bad face, deformed face, asymmetrical eyes, 3d render, plastic skin, photo, realistic, dark square background, nude, nipples, child, loli, childlike, young-looking, cropped, out of frame",
  "pose_female": "(full body:1.4), standing, contrapposto, weight on one leg, body slightly turned, head tilt, one hand on hip, other hand touching own hair, feet visible, looking at viewer",
- "pose_male": "(full body:1.4), standing, contrapposto, weight on one leg, body slightly turned, one hand in pocket, confident stance, feet visible, looking at viewer",
+ "pose_male": "(full body:1.4), standing tall, imposing stance, feet apart, body slightly turned, one hand resting on sword hilt, coat tails flowing, feet visible, looking at viewer",
  "pose_combat": "(full body:1.4), fighting stance, dynamic pose, feet visible, looking at viewer",
  "expressions": {
   "neutral": "seductive smile, closed mouth, eyes open",
@@ -57,9 +57,9 @@
  "characters": {
   "elias": {
    "male": true,
-   "body": "1boy, solo, handsome, young adult male, adult, tall, muscular male, broad shoulders, toned, abs, veins",
-   "look": "mixed-race, tan skin, light brown skin, handsome face, sharp features, black hair, curly hair, wavy hair, short sides, curls on forehead, light stubble, hazel eyes, thick eyebrows, scar across eyebrow, burn scar on forearm, forearm tattoo",
-   "outfit": "black bomber jacket, open jacket, sleeves rolled up, grey t-shirt, tight shirt, black cargo pants, combat boots, wristwatch"
+   "body": "1boy, solo, handsome, young adult male, adult, tall, muscular male, broad shoulders, imposing, charismatic",
+   "look": "mixed-race, tan skin, light brown skin, handsome face, sharp jawline, sharp eyes, cold gaze, black hair, short curly hair, neat haircut, faded sides, light stubble, hazel eyes, thick eyebrows, scar across eyebrow",
+   "outfit": "long black coat, black trench coat, (high collar:1.1), tactical military greatcoat, leather belts, buckles, black tactical vest underneath, black gloves, black cargo pants, combat boots, sheathed sword at hip"
   },
   "seo_yeon": {
    "body": "1girl, solo, mature female, petite, slender, medium breasts, wide hips, soft body",
@@ -112,7 +112,7 @@
    "outfit": "open lab coat, white lab coat, black bodysuit, tight bodysuit, boots, holographic display"
   }
  },
- "sampler_note": "36 étapes Euler a, CFG 5,5 (Animagine conseille 5 à 7 ; plus bas = moins de déformations avec les LoRA)",
+ "sampler_note": "DPM++ 2M Karras, 30 étapes, CFG 6 : trait plus net qu'Euler a ; LoRA Takeda à 0,6 contre les déformations",
  "alpha_cleanup": {
   "min_alpha": 24,
   "shadow_band": 0.1,
@@ -123,5 +123,24 @@
    0.12,
    0.85
   ]
+ },
+ "sampler": "dpmpp_2m_karras",
+ "hires": {
+  "scale": 1.5,
+  "strength": 0.38,
+  "steps": 20,
+  "note": "hires fix : 832×1216 → 1248×1824 puis img2img léger, qui recrée les détails au lieu d'étirer les pixels"
+ },
+ "final_height": 1600,
+ "detail_resolution": 1024,
+ "detailer": {
+  "repo": "Bingsu/adetailer",
+  "face_model": "face_yolov8n.pt",
+  "hand_model": "hand_yolov8n.pt",
+  "confidence": 0.35,
+  "strength": 0.35,
+  "max_per_kind": 4,
+  "face_prompt": "detailed face, detailed eyes, sharp lineart",
+  "hand_prompt": "detailed hands, perfect hands, five fingers, sharp lineart"
  }
 }

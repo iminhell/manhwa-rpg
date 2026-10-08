@@ -151,8 +151,10 @@ def test_sprites(tmp: Path) -> None:
     from PIL import Image
     lora = make_lora(tmp)
     style = fg.load_style()
-    style.update(size=[64, 96], steps=2, loras=[{"name": "test_style", "path": str(lora), "weight": 0.8, "trigger": "test"}])
+    style.update(size=[64, 96], steps=2, loras=[{"name": "test_style", "path": str(lora), "weight": 0.8, "trigger": "test"}],
+                 hires={"scale": 1.5, "strength": 0.4, "steps": 2}, final_height=120, detail_resolution=64)
     pipe = tiny_sdxl(tmp)
+    detector = {"face": FakeYolo([(30, 8, 60, 40)]), "hand": FakeYolo([(10, 70, 26, 90), (70, 72, 90, 92)])}
     try:
         from rembg import new_session, remove
         session = new_session("isnet-anime")
@@ -162,8 +164,13 @@ def test_sprites(tmp: Path) -> None:
         print(f"  (rembg réel indisponible : {e.__class__.__name__}, faux détourage)")
         remover = lambda im: im.convert("RGBA")  # noqa: E731
         real_rembg = False
-    backend = fg.SpriteBackend(style, pipe=pipe, remover=remover)
+    backend = fg.SpriteBackend(style, pipe=pipe, remover=remover, detector_models=detector)
     check(set(pipe.get_active_adapters()) == {"test_style"}, f"LoRA chargé et actif ({pipe.get_active_adapters()})")
+    check(type(pipe.scheduler).__name__ == "DPMSolverMultistepScheduler" and pipe.scheduler.config.use_karras_sigmas,
+          "échantillonneur DPM++ 2M Karras")
+    pose = backend.generate(fg.sprite_prompt(style, "elias"), style["negative"], 3)
+    check(pose.size == (round(96 * 120 / 144), 120), f"hires fix ×1,5 puis taille finale ({pose.size})")
+    check(detector["face"].calls >= 1 and detector["hand"].calls >= 1, "détailleur : visages et mains recherchés sur l'image agrandie")
     ref = os.environ.get("SPRITE_REF_IMAGE", "")  # un vrai sprite d'anime sur fond blanc (non versionné)
     if real_rembg and ref and Path(ref).exists():
         img = Image.open(ref).convert("RGB")
@@ -187,17 +194,50 @@ def test_sprites(tmp: Path) -> None:
         check(n == 4 and all(p.exists() for p in outs), "sprites : combat, neutre, joie, colère écrits aux chemins du manifeste")
         check(all(Image.open(p).mode == "RGBA" for p in outs), "sprites : PNG avec canal alpha")
         check((fg.SPRITE_BASES / "seo_yeon.png").exists(), "sprites : pose neutre mémorisée pour l'inpainting")
-        base = fg.sprite_base("seo_yeon")
-        mask = backend.face_mask("seo_yeon", base)
+        # inpainting du visage sur une grande base : le bas du corps doit rester identique au pixel près
+        import numpy as np
+        rng = np.random.default_rng(0)
+        base = Image.fromarray(rng.integers(0, 255, (384, 256, 3), dtype=np.uint8))
+        mask = fg.box_mask(base.size, (104, 24, 152, 72), pad=0.2)
         face = backend.repaint_face(base, mask, fg.sprite_prompt(style, "seo_yeon", "joy"), style["negative"], 1)
-        box = mask.point(lambda v: 255 if v else 0).getbbox()
-        outside = [(x, y) for x in range(0, 64, 7) for y in range(0, 96, 7)
-                   if not (box and box[0] - 34 <= x <= box[2] + 34 and box[1] - 34 <= y <= box[3] + 34)]
-        same = sum(face.getpixel(p) == base.getpixel(p) for p in outside)
-        check(face.size == base.size and (not outside or same == len(outside)),
-              f"inpainting : corps identique hors du visage ({same}/{len(outside)} pixels témoins)")
+        a, b = np.asarray(face), np.asarray(base)
+        changed_top = (a[:100] != b[:100]).any()
+        same_bottom = (a[200:] == b[200:]).all()
+        check(face.size == base.size and changed_top and same_bottom,
+              f"inpainting : visage repeint, bas du corps identique au pixel près (visage modifié {changed_top}, corps intact {same_bottom})")
     finally:
         fg.ROOT, fg.SPRITE_BASES = real_root, real_bases
+
+
+class FakeYolo:
+    """Même interface que ultralytics.YOLO.predict (résultat → boxes.xyxy.cpu().numpy().tolist())."""
+
+    def __init__(self, boxes):
+        self.box_list, self.calls = boxes, 0
+
+    def predict(self, img, conf, verbose):
+        self.calls += 1
+        boxes = self.box_list
+
+        class R:
+            class boxes:  # noqa: N801
+                xyxy = torch.tensor(boxes, dtype=torch.float32)
+        return [R()]
+
+
+def test_yolo_api(tmp: Path) -> None:
+    """Le vrai ultralytics : un modèle YOLOv8 non entraîné (construit depuis sa configuration, sans téléchargement)
+    passe par Detailer.boxes sans erreur, ce qui vérifie l'appel predict() et la lecture des boîtes."""
+    try:
+        from ultralytics import YOLO
+    except ImportError:
+        print("  (ultralytics non installé : API YOLO non vérifiée)")
+        return
+    from PIL import Image
+    d = fg.Detailer({"face_model": "x", "confidence": 0.01}, models={"face": YOLO("yolov8n.yaml")})
+    boxes = d.boxes(Image.new("RGB", (320, 480), "white"), "face")
+    check(isinstance(boxes, list) and all(len(b) == 4 for b in boxes), f"ultralytics YOLO.predict → boîtes lues ({len(boxes)})")
+    check(fg.Detailer({"face_model": "x"}, models={}).boxes(Image.new("RGB", (64, 64)), "face") == [], "détailleur sans modèle : aucune boîte")
 
 
 def argparse_ns(**kw):
@@ -210,7 +250,7 @@ def argparse_ns(**kw):
 def main() -> None:
     print(f"Moteurs réels : torch {torch.__version__}, diffusers {diffusers.__version__}, transformers {transformers.__version__}")
     with tempfile.TemporaryDirectory() as tmp:
-        for test in (test_sdxl, test_weights, test_sprites, test_musicgen):
+        for test in (test_sdxl, test_weights, test_sprites, test_yolo_api, test_musicgen):
             try:
                 test(Path(tmp))
             except Exception as e:  # noqa: BLE001

@@ -36,7 +36,14 @@ Sur le PC, double-cliquer `GENERER_ASSETS.bat` (ou `./generer_assets.sh`) : il f
   - les îlots isolés et le voile qui bave autour du contour (resserrement de l'alpha).
 
   Les pixels transparents reçoivent la couleur du bord voisin, pour éviter tout halo blanc ou noir au filtrage dans Godot. Testé sur l'image de référence de Gaïa : ombre 51 038 → 11 pixels, contour conservé. Réglages : `alpha_cleanup` dans `sprite_style.json`.
-- **Paramètres** : 36 étapes, CFG 5,5, LoRA Takeda à 0,6 (moins de déformations).
+- **Netteté** :
+  - échantillonneur DPM++ 2M Karras, 30 étapes, CFG 6 ;
+  - **hires fix** : 832×1216 → ×1,5, puis img2img à 0,38 ;
+  - **retouche des visages et des mains** : détectés par les modèles YOLO d'ADetailer (`Bingsu/adetailer`), puis repeints en 1024 px ;
+  - taille finale 1600 px de haut ;
+  - tags de netteté et négatifs anti-flou et anti-mains déformées ; LoRA Takeda à 0,6.
+
+  Sans modèle de détection, la génération continue sans retouche, avec un avertissement.
 - **Refaire un personnage** : réglage `REGENERER` du notebook (ex. `elias`), ou `free_gen.py sprites --force --only elias`.
 - **Garde-fous** : le négatif garde `nude, nipples` (sprites habillés) et les tags anti-juvénilité (`child, loli, childlike, young-looking`), et tous les profils portent `mature female` / `mature male`.
 - **LoRA Civitai** : certains exigent un jeton (secret Colab `CIVITAI_TOKEN`). Les mots déclencheurs indiqués sont à vérifier sur la page de chaque LoRA. Un LoRA entraîné sur Illustrious fonctionne avec un checkpoint SDXL comme Animagine, mais son effet peut varier.
