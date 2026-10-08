@@ -7,6 +7,7 @@ extends Control
 ##   --alt               avec --autotest : embranchements alternatifs (tests/autopilot.json → choices_alt)
 ##   --capture           enregistre des captures d'écran dans user://captures/
 ##   --mode=histoire|normal|survie   mode de difficulté de l'autotest (défaut : normal)
+##   --uitest            vérifie l'interface (barre d'actions du dialogue, menu pause, fiches, galerie) puis quitte
 
 const TitleScreen := preload("res://scenes/title/title_screen.gd")
 const DialogueScene := preload("res://scenes/dialogue/dialogue_scene.gd")
@@ -16,6 +17,9 @@ const ActSummary := preload("res://scenes/world/act_summary_screen.gd")
 const OptionsPanel := preload("res://scenes/options_panel.gd")
 const SavePanel := preload("res://scenes/save_panel.gd")
 const DifficultyPanel := preload("res://scenes/difficulty_panel.gd")
+const PauseMenu := preload("res://scenes/ui/pause_menu.gd")
+const CharacterSheets := preload("res://scenes/ui/character_sheets.gd")
+const GalleryPanel := preload("res://scenes/ui/gallery_panel.gd")
 const UI := preload("res://ui/ui_style.gd")
 
 const STORY := "prologue_j1"
@@ -40,6 +44,9 @@ func _ready() -> void:
 	if args.has("--capture"):
 		_capture_tour()
 		return
+	if args.has("--uitest"):
+		_ui_test()
+		return
 	if _autotest:
 		print("[autotest] démarrage")
 		var auto := DataDB.load_json("res://tests/autopilot.json")
@@ -55,6 +62,9 @@ func _ready() -> void:
 
 func _set_screen(node: Control) -> void:
 	_clear_overlay()
+	if _overlay_combat != null and is_instance_valid(_overlay_combat):
+		_overlay_combat.queue_free()
+	_overlay_combat = null
 	if _screen != null:
 		_screen.queue_free()
 	_map = null
@@ -76,6 +86,8 @@ func _show_title() -> void:
 	t.load_game.connect(_show_load)
 	t.combat_test.connect(_start_combat_test)
 	t.options.connect(_show_options)
+	t.sheets.connect(_show_sheets.bind(false))
+	t.gallery.connect(_show_gallery)
 	t.quit_game.connect(func(): get_tree().quit())
 	_set_screen(t)
 
@@ -122,6 +134,10 @@ func _make_dialogue() -> Control:
 	d.auto_advance = _autotest
 	d.choice_overrides = _choices
 	d.event_requested.connect(_on_dialogue_event)
+	d.save_requested.connect(_open_save)
+	d.load_requested.connect(_show_load)
+	d.menu_requested.connect(_open_pause)
+	d.can_save = not GameState.checkpoint.is_empty()
 	return d
 
 
@@ -140,6 +156,7 @@ func _open_map() -> void:
 	_map.dialogue_requested.connect(_on_map_dialogue)
 	_map.combat_requested.connect(_on_map_combat)
 	_map.options_requested.connect(_show_options)
+	_map.menu_requested.connect(_open_pause)
 	MusicManager.play_context(GameState.world.sector(GameState.world.sector_id()).get("music", ""))
 
 
@@ -262,6 +279,87 @@ func _after_summary(act: int, summary: Control) -> void:
 		_dialogue.resume()
 
 
+# --- Menu pause, sauvegarde, fiches, galerie ------------------------------------------------------
+
+func _unhandled_input(event: InputEvent) -> void:
+	if _autotest or not event.is_action_pressed("ui_cancel"):
+		return
+	if _screen is TitleScreen or not get_tree().get_nodes_in_group("modal").is_empty():
+		return
+	get_viewport().set_input_as_handled()
+	_open_pause()
+
+
+func _on_map_now() -> bool:
+	return _map != null and is_instance_valid(_map) and _map.visible and _overlay == null \
+		and (_overlay_combat == null or not is_instance_valid(_overlay_combat))
+
+
+func _open_pause() -> Control:
+	var p := PauseMenu.new()
+	p.can_save = GameState.saveable_store(_on_map_now()) != null
+	p.save_hint = "" if p.can_save else "Sauvegarde possible une fois arrivé sur la carte."
+	p.chosen.connect(_on_pause)
+	add_child(p)
+	return p
+
+
+func _on_pause(action: String) -> void:
+	match action:
+		"save":
+			_open_save()
+		"load":
+			_show_load()
+		"sheets":
+			_show_sheets(true)
+		"gallery":
+			_show_gallery()
+		"options":
+			_show_options()
+		"title":
+			_show_title()
+
+
+## Sur la carte : l'état courant ; pendant une scène : le point de reprise juste avant elle.
+func _open_save() -> void:
+	var st = GameState.saveable_store(_on_map_now())
+	if st == null:
+		return
+	var p := SavePanel.new()
+	p.mode = "save"
+	p.slot_chosen.connect(func(slot: String):
+		var ok := SaveManager.save(slot, st)
+		_toast(("Partie sauvegardée (emplacement %s)" % slot) + ("" if _on_map_now() else " — reprise sur la carte, juste avant cette scène") if ok else "Échec de la sauvegarde"))
+	add_child(p)
+
+
+func _show_sheets(in_game: bool) -> Control:
+	var p := CharacterSheets.new()
+	p.in_game = in_game
+	add_child(p)
+	return p
+
+
+func _show_gallery() -> Control:
+	var p := GalleryPanel.new()
+	add_child(p)
+	return p
+
+
+func _toast(text: String) -> void:
+	var l := UI.label(text, 22, UI.GOLD)
+	l.set_anchors_and_offsets_preset(Control.PRESET_CENTER_TOP)
+	l.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	l.offset_top = 60
+	l.add_theme_color_override("font_outline_color", Color.BLACK)
+	l.add_theme_constant_override("outline_size", 6)
+	add_child(l)
+	var tw := create_tween()
+	tw.tween_interval(2.5)
+	tw.tween_property(l, "modulate:a", 0.0, 0.6)
+	tw.tween_callback(l.queue_free)
+
+
 # --- Boucle de l'autopilote ---------------------------------------------------------------------
 
 func _process(_delta: float) -> void:
@@ -290,6 +388,7 @@ func _start_combat_test() -> void:
 
 func _capture_tour() -> void:
 	DirAccess.make_dir_recursive_absolute("user://captures")
+	var meta_backup: Dictionary = SaveManager.meta.duplicate(true)  # la visite ne débloque rien pour le joueur
 	_show_title()
 	await _snap("01_titre")
 	GameState.new_game()
@@ -308,9 +407,28 @@ func _capture_tour() -> void:
 		await get_tree().process_frame
 	_dialogue._text.visible_ratio = 1.0
 	await _snap("04_dialogue_haein")
+	_dialogue.open_log()
+	await _snap("06_journal")
+	for m in get_tree().get_nodes_in_group("modal"):
+		m.queue_free()
+	_open_pause()
+	await _snap("07_menu_pause")
+	for m in get_tree().get_nodes_in_group("modal"):
+		m.queue_free()
+	_show_sheets(true).show_character("seo_yeon")
+	await _snap("08_fiches")
+	for m in get_tree().get_nodes_in_group("modal"):
+		m.queue_free()
+	SaveManager.unlock_cg("cg_seo_nuit")
+	_show_gallery()
+	await _snap("09_galerie")
+	for m in get_tree().get_nodes_in_group("modal"):
+		m.queue_free()
 	_clear_overlay()
 	_start_combat_test()
 	await _snap("05_combat")
+	SaveManager.meta = meta_backup
+	SaveManager._write(SaveManager.META_PATH, meta_backup)
 	get_tree().quit(0)
 
 
@@ -322,3 +440,159 @@ func _snap(name: String) -> void:
 	var path := "user://captures/%s.png" % name
 	img.save_png(path)
 	print("[capture] ", ProjectSettings.globalize_path(path))
+
+
+# --- Test de l'interface (--uitest) -------------------------------------------------------------
+# Joue le vrai jeu : écran titre, fiches, galerie, barre d'actions du dialogue (journal, masquer, auto, passer),
+# menu pause, sauvegarde pendant une scène (point de reprise), déblocage d'une CG. Restaure ensuite la méta-sauvegarde
+# et l'emplacement 3 du joueur.
+
+var _ui_fail := 0
+
+
+func _ui_check(cond: bool, label: String) -> void:
+	print(("[uitest] ok    " if cond else "[uitest] ÉCHEC ") + label)
+	if not cond:
+		_ui_fail += 1
+
+
+func _frames(n: int = 4) -> void:
+	for i in n:
+		await get_tree().process_frame
+
+
+func _press(code: Key) -> void:
+	var ev := InputEventKey.new()
+	ev.keycode = code
+	ev.pressed = true
+	get_viewport().push_input(ev)
+	await _frames(2)
+
+
+func _modals() -> Array:
+	return get_tree().get_nodes_in_group("modal")
+
+
+func _ui_test() -> void:
+	var meta_backup: Dictionary = SaveManager.meta.duplicate(true)
+	var slot3 := SaveManager.slot_path("3")
+	var slot3_backup := FileAccess.get_file_as_string(slot3) if FileAccess.file_exists(slot3) else ""
+
+	# 1. Écran titre : fiches et galerie
+	_show_title()
+	await _frames()
+	_ui_check(_screen.find_child("Fiches des personnages", true, false) != null and _screen.find_child("Galerie", true, false) != null,
+		"titre : boutons « Fiches des personnages » et « Galerie »")
+	var sheets = _show_sheets(false)
+	await _frames()
+	var listed := CharacterSheets.ids().filter(func(id): return sheets.find_child(id, true, false) != null)
+	_ui_check(listed.size() == DataDB.characters.size(), "fiches : %d personnages listés" % listed.size())
+	sheets.show_character("hae_in")
+	_ui_check(sheets._info.text.contains("Yoon Hae-in") and sheets._info.text.contains("Haesong") and not sheets._info.text.contains("Affinité"),
+		"fiches : identité et présentation, sans les liens hors partie")
+	await _press(KEY_ESCAPE)
+	_ui_check(_modals().is_empty(), "fiches : Échap ferme le panneau")
+	var gal = _show_gallery()
+	await _frames()
+	var cg_total: int = GalleryPanel.cg_list().size()
+	_ui_check(gal.total == cg_total and gal.find_child("Grid", true, false).get_child_count() == cg_total, "galerie : %d CG du manifeste" % cg_total)
+	gal.queue_free()
+	await _frames()
+
+	# 2. Prologue : barre d'actions, journal, masquer, auto, passer, menu pause (sans sauvegarde possible)
+	_start_story(true, "normal")
+	await _frames(6)
+	var d = _dialogue
+	_ui_check(d._quick != null and d._quick.visible and d._quick.button("save").disabled, "prologue : barre d'actions visible, « Sauver » désactivé")
+	var seen: int = d.history.size()
+	for i in 3:
+		d._typing = false
+		d._advance()
+		await _frames(2)
+	var log = d.open_log()
+	await _frames()
+	_ui_check(d.history.size() >= seen + 3 and log._text.text.length() > 20, "journal : %d répliques" % d.history.size())
+	await _press(KEY_L)
+	_ui_check(_modals().is_empty(), "journal : L ou Échap le ferme")
+	await _press(KEY_H)
+	_ui_check(not d._box.visible and not d._quick.visible, "masquer (H) : boîte de dialogue et barre cachées")
+	var click := InputEventMouseButton.new()
+	click.button_index = MOUSE_BUTTON_LEFT
+	click.pressed = true
+	click.position = get_viewport().get_visible_rect().size * Vector2(0.6, 0.4)
+	var line_before: String = d._text.text
+	get_viewport().push_input(click)
+	await _frames(2)
+	_ui_check(d._box.visible and d._quick.visible and not d.ui_hidden and d._text.text == line_before,
+		"masquer : un clic réaffiche l'interface (sans avancer la réplique)")
+	var before: String = d._text.text
+	d._typing = false
+	d._text.visible_ratio = 1.0
+	await _press(KEY_A)
+	_ui_check(d.auto_play and d._quick.button("auto").button_pressed, "auto (A) : activé, bouton enfoncé")
+	await get_tree().create_timer(d.auto_delay(d._text.get_parsed_text()) + 0.6).timeout
+	_ui_check(d._text.text != before, "auto : la réplique suivante s'affiche seule")
+	d._on_quick("auto")
+	d._on_quick("skip")
+	for i in 400:
+		await get_tree().process_frame
+		if d._current.get("kind", "") != "line":
+			break
+	_ui_check(d._current.get("kind", "") == "choice" and not d.skipping, "passer : avance jusqu'au choix puis s'arrête")
+	await _press(KEY_ESCAPE)
+	var pause: Array = _modals().filter(func(m): return m is PauseMenu)
+	_ui_check(pause.size() == 1, "Échap : menu pause ouvert")
+	if pause.size() == 1:
+		var p = pause[0]
+		for b in ["resume", "save", "load", "sheets", "gallery", "options", "title"]:
+			_ui_check(p.find_child(b, true, false) != null, "menu pause : bouton %s" % b)
+		_ui_check(p.find_child("save", true, false).disabled, "menu pause : sauvegarde impossible pendant le prologue")
+		p.find_child("sheets", true, false).pressed.emit()
+		await _frames()
+		var s: Array = _modals().filter(func(m): return m is CharacterSheets)
+		_ui_check(s.size() == 1 and s[0].in_game, "menu pause → fiches (avec les liens de la partie)")
+		for m in _modals():
+			m.queue_free()
+		await _frames()
+
+	# 3. Sur la carte : une scène lancée par une action, sauvegarde au point de reprise, CG débloquée
+	GameState.new_game()
+	GameState.world.place("yeouido.camp")
+	_open_map()
+	await _frames()
+	_ui_check(_map.find_child("Menu", true, false) != null or _map.get_children().size() > 0, "carte : bouton Menu")
+	var checkpoint_money: int = GameState.store.money()
+	GameState.mark_checkpoint(GameState.store.to_dict())
+	GameState.store.apply_effects(["money 777"])  # effet appliqué pendant la scène
+	_on_map_dialogue("refuge:seo_baiser")
+	await _frames(4)
+	_ui_check(_dialogue.can_save and not _dialogue._quick.button("save").disabled, "scène sur la carte : « Sauver » disponible")
+	_ui_check(SaveManager.cg_unlocked("cg_seo_nuit"), "galerie : la CG affichée par la scène est débloquée")
+	_dialogue._on_quick("save")
+	await _frames()
+	var panels: Array = _modals().filter(func(m): return m is SavePanel)
+	_ui_check(panels.size() == 1, "Sauver : panneau des emplacements")
+	if panels.size() == 1:
+		panels[0].slot_chosen.emit("3")
+		panels[0].queue_free()
+		await _frames()
+		var saved: Dictionary = SaveManager._read(slot3, {})
+		_ui_check(int(saved.get("summary", {}).get("money", -1)) == checkpoint_money,
+			"sauvegarde pendant une scène : état d'avant la scène (%s, pas %d)" % [saved.get("summary", {}).get("money", "?"), GameState.store.money()])
+	var g = _show_gallery()
+	await _frames()
+	var tile: Node = g.find_child("cg_seo_nuit", true, false)
+	_ui_check(g.unlocked_count >= 1 and tile != null and tile.find_child("*", true, false) != null, "galerie : CG débloquée affichée")
+	g.queue_free()
+
+	# Restauration de la méta-sauvegarde et de l'emplacement 3 du joueur
+	SaveManager.meta = meta_backup
+	SaveManager._write(SaveManager.META_PATH, meta_backup)
+	if slot3_backup != "":
+		var f := FileAccess.open(slot3, FileAccess.WRITE)
+		f.store_string(slot3_backup)
+		f.close()
+	else:
+		SaveManager.delete_slot("3")
+	print("[uitest] %s" % ("INTERFACE OK" if _ui_fail == 0 else "%d ÉCHEC(S)" % _ui_fail))
+	get_tree().quit(1 if _ui_fail else 0)

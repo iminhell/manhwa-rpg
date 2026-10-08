@@ -6,6 +6,8 @@ signal continue_game
 signal load_game
 signal combat_test
 signal options
+signal sheets
+signal gallery
 signal quit_game
 
 const UI := preload("res://ui/ui_style.gd")
@@ -43,10 +45,12 @@ func _ready() -> void:
 	entries.append(["Nouvelle boucle", new_loop])
 	if SaveManager.latest_slot() != "":
 		entries.append(["Charger", load_game])
-	entries += [["Combat de test : le Portier", combat_test], ["Options", options], ["Quitter", quit_game]]
+	entries += [["Fiches des personnages", sheets], ["Galerie", gallery], ["Combat de test : le Portier", combat_test],
+		["Options", options], ["Quitter", quit_game]]
 	for entry in entries:
 		var b := UI.button(entry[0], 30)
-		b.custom_minimum_size = Vector2(520, 64)
+		b.custom_minimum_size = Vector2(520, 58)
+		b.name = entry[0]
 		var sig: Signal = entry[1]
 		b.pressed.connect(func(): sig.emit())
 		v.add_child(b)

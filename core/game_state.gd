@@ -9,6 +9,10 @@ signal regressed(loop: int)
 
 var store: StateStore = StateStore.new()
 var world: WorldModel
+## Point de reprise : l'état juste avant que la carte lance une scène (action, Ancre, combat). Une sauvegarde faite
+## pendant un dialogue ou un combat enregistre ce point : au chargement, on revient sur la carte juste avant la scène.
+## Vide pendant le prologue (aucune sauvegarde possible avant d'arriver sur la carte).
+var checkpoint: Dictionary = {}
 
 ## 0 Aube · 1 Jour · 2 Crépuscule · 3 Nuit — le temps vit dans le store (sérialisable, testable)
 var day: int:
@@ -26,6 +30,7 @@ func _ready() -> void:
 
 
 func new_game(mode: String = "") -> void:
+	checkpoint = {}
 	store = StateStore.new()
 	store.set_var("loop", 1)
 	store.set_var("difficulte", mode if mode != "" else str(DataDB.difficulty.get("default", "normal")))
@@ -38,6 +43,7 @@ func difficulty() -> Dictionary:
 
 ## Restaure une sauvegarde (contenu de StateStore.to_dict()).
 func load_store(data: Dictionary) -> void:
+	checkpoint = {}
 	store = StateStore.new()
 	store.from_dict(data)
 	_build_world()
@@ -60,6 +66,7 @@ func advance_phase(count: int = 1) -> void:
 ## Régression : retour au J1. Persistent : les souvenirs, le compteur de boucle, le mode de difficulté,
 ## et les Échos (data/world/echoes.json) — ce qu'Elias a accompli dans les boucles précédentes.
 func regress() -> void:
+	checkpoint = {}
 	var kept_souvenirs := store.souvenirs.duplicate()
 	var loop := store.loop() + 1
 	var kept_echoes := Echoes.after_loop(store, DataDB.echoes)
@@ -75,12 +82,30 @@ func regress() -> void:
 
 
 ## Composition du groupe : Elias + les héroïnes dont le drapeau "party.<id>" est posé.
-func party_ids() -> Array:
+func party_ids(from = null) -> Array:
+	var st = from if from != null else store
 	var ids := ["elias"]
 	for id in DataDB.characters:
-		if id != "elias" and store.has_flag("party." + id):
+		if id != "elias" and st.has_flag("party." + id):
 			ids.append(id)
 	return ids
+
+
+## Mémorise le point de reprise (appelé par la carte juste avant une action ou une Ancre qui lance une scène).
+func mark_checkpoint(snapshot: Dictionary) -> void:
+	checkpoint = snapshot
+
+
+## État à enregistrer maintenant : l'état courant sur la carte, sinon le point de reprise (pendant une scène).
+## null pendant le prologue.
+func saveable_store(on_map: bool):
+	if on_map:
+		return store
+	if checkpoint.is_empty():
+		return null
+	var s := StateStore.new()
+	s.from_dict(checkpoint)
+	return s
 
 
 ## Escouade de combat : Elias + les 5 héroïnes les plus liées (la grille 3×3 ne tient pas 11 personnes).

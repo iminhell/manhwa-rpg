@@ -12,12 +12,14 @@ RPG narratif et tactique inspiré des manhwas/webtoons : régression temporelle,
 ## Jouer au prototype
 1. Installer **Godot 4.5** (version standard), ouvrir le dossier du dépôt, lancer avec F5.
 2. **Nouvelle boucle** : choix du mode (**Histoire**, **Normal**, **Survie**), prologue J1–J2, puis **la carte de Séoul** : Acte I jusqu'au Classement du J7, Acte II jusqu'au J15, Acte III jusqu'au J23, puis Acte IV jusqu'à la **Nuit du Déversement** (J30), ses Fins, et la régression vers la boucle suivante.
-   **Continuer / Charger** reprennent une partie (autosauvegarde à chaque phase, 3 emplacements manuels via le bouton **Sauvegarder** de la carte).
-3. **Options** : voix IA On/Off, langue coréenne ou japonaise, volumes.
+   **Continuer / Charger** reprennent une partie (autosauvegarde à chaque phase, 3 emplacements manuels).
+3. **Fiches des personnages** et **Galerie** des CG débloquées : depuis l'écran titre ou le menu pause (Échap, ou bouton **Menu**).
+4. **Options** : voix IA On/Off, langue coréenne ou japonaise, volumes, masquage des passages P3.
 
 | Écran | Commandes |
 |---|---|
-| Dialogue | Clic, Espace ou Entrée pour avancer. Les choix sont des boutons magenta |
+| Dialogue | Clic, Espace ou Entrée pour avancer. Les choix sont des boutons magenta. Barre d'actions au-dessus du texte : **Sauver** (pendant une scène, la sauvegarde reprend sur la carte juste avant elle), **Charger**, **Auto** (A), **Passer** jusqu'au prochain choix (Tab), **Masquer** l'interface (H, clic pour la réafficher), **Journal** (L ou molette vers le haut), **Menu** (Échap) |
+| Menu pause | Échap ou bouton **Menu** (carte, dialogue) : Reprendre, Sauvegarder, Charger, Fiches des personnages, Galerie, Options, Retour au titre |
 | Carte | Clic sur un secteur (gauche) pour voyager. Clic sur une zone voisine (cercle bleu) pour s'y déplacer. Les actions sont listées en bas. Le bouton **Registre** affiche les Fins et les souvenirs |
 | Refuge | Sur un nœud refuge : **Établir le Refuge**, puis **Gérer** (déposer ou retirer des rations, améliorations, vente de Fragments), **Moment de repos** avec chaque héroïne (une fois par héroïne et par jour, dès le crépuscule), **Cadeaux**, **scènes à plusieurs**, **Jour de répit** (à l'aube, avec un Sablier ; illimité en mode Histoire), **Dormir** |
 | Combat | Une compétence, puis une case dorée. **Réécriture** (après la première mort) annule la dernière action |
@@ -41,9 +43,10 @@ Tant que les images ne sont pas générées, le jeu affiche des **placeholders**
 
 ## Validation
 ```bash
-GODOT=godot ./tools/check_all.sh     # validateur de données + import + 6 663 tests + 6 parties automatiques (jusqu'au J30, trois modes)
+GODOT=godot ./tools/check_all.sh     # validateur + générateur d'assets + import + 6 663 tests + interface (--uitest) + 6 parties automatiques
 AUTOPILOT_DEBUG=1 godot --headless --path . -- --autotest   # trace l'itinéraire de l'autopilote étape par étape
-godot --path . -- --capture           # captures d'écran dans user://captures/
+godot --path . -- --uitest            # interface : barre d'actions du dialogue, menu pause, fiches, galerie
+godot --path . -- --capture           # captures d'écran dans user://captures/ (titre, carte, dialogue, journal, pause, fiches, galerie, combat)
 ```
 
 ## Outils

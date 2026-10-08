@@ -7,6 +7,7 @@ const UI := preload("res://ui/ui_style.gd")
 
 
 func _ready() -> void:
+	add_to_group("modal")
 	set_anchors_and_offsets_preset(Control.PRESET_CENTER)
 	grow_horizontal = Control.GROW_DIRECTION_BOTH
 	grow_vertical = Control.GROW_DIRECTION_BOTH
@@ -78,3 +79,9 @@ func _set_lang(index: int) -> void:
 func _close() -> void:
 	closed.emit()
 	queue_free()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	get_viewport().set_input_as_handled()
+	if event.is_action_pressed("ui_cancel"):
+		_close()

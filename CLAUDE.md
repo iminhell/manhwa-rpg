@@ -30,6 +30,7 @@ Ne jamais commiter si le script échoue. Le validateur (`tools/validate_data.py`
 - **CG** : toute entrée `cg` du manifeste déclare sa scène (`"scene": "dialogue:bloc"`) et y est appelée (`{"cg": id}`) ; chaque nuit (`flag <id>_nuit`…) affiche une CG ; une CG `"nsfw": true` a `"backend": "runpod"`.
 - **Passages P3** : `{"text_p3_slot": [{"s", "t", "e"}…]}`, seul dans son étape, dans la continuité exacte d'une nuit consentie ; vide = sauté ; masqué par l'option P3. Jamais dans une nuit de Pacte.
 - **Voie** : `voie() == 'heros'|'tyran'|'loup'|'mercenaire'` (mêmes seuils que la Résolution).
+- **Interface** : barre d'actions du dialogue (`scenes/ui/quick_menu.gd`), menu pause, fiches (`data/characters/*.json` → `bio`, `trait`), galerie (`meta["cgs"]`, `SaveManager.unlock_cg`). Une sauvegarde pendant une scène enregistre `GameState.checkpoint`, posé par la carte juste avant l'action ou l'Ancre. Toute fenêtre modale rejoint le groupe `modal`. `--uitest` vérifie le tout (lancé par `check_all.sh`).
 - **Combats** : une rencontre peut fixer `atk_mult` (difficulté) et `party` (duel, groupe imposé). Une défaite qui n'est pas une mort (duel) se branche sur un bloc dédié, jamais sur `defeat`.
 - **Conditions** : comparer une variable texte avec une valeur par défaut, `v('eau.controle', '') == 'rats'` (sinon l'expression échoue tant que la variable n'existe pas).
 - Le code GDScript n'utilise pas `class_name` : les dépendances se chargent avec `preload` (compatible avec les tests `-s`).

@@ -3,7 +3,8 @@ extends Node
 ##   RunSave  : la boucle en cours (tout l'état vit dans le StateStore : variables, drapeaux, souvenirs,
 ##              temps, position, Refuge). 3 emplacements manuels + 1 automatique (à chaque nouvelle phase sur la carte).
 ##   MetaSave : ce qui survit à tout (boucles vécues, actes terminés, Fins et souvenirs jamais vus).
-## Les sauvegardes ne se font que sur la carte (jamais au milieu d'un dialogue ou d'un combat).
+## Pendant un dialogue ou un combat, on enregistre le point de reprise (GameState.checkpoint) : l'état juste avant la
+## scène. Au chargement, on revient sur la carte juste avant elle.
 
 const SaveFormat := preload("res://core/save_format.gd")
 const VERSION := SaveFormat.VERSION
@@ -23,8 +24,9 @@ func slot_path(slot: String) -> String:
 	return "%s/slot_%s.json" % [DIR, slot]
 
 
-func save(slot: String) -> bool:
-	var data := SaveFormat.build_save(GameState.store, GameState.party_ids())
+func save(slot: String, store = null) -> bool:
+	var st = store if store != null else GameState.store
+	var data := SaveFormat.build_save(st, GameState.party_ids(st))
 	update_meta(GameState.store)
 	var ok := _write(slot_path(slot), data)
 	if ok:
@@ -96,6 +98,21 @@ func update_meta(store) -> void:
 		if key.begins_with("issue.") and not meta["endings"].has(key.substr(6)):
 			meta["endings"].append(key.substr(6))
 	_write(META_PATH, meta)
+
+
+## Galerie : une CG vue une fois reste débloquée pour toutes les boucles.
+func unlock_cg(id: String) -> void:
+	if id == "":
+		return
+	if not meta.has("cgs"):
+		meta["cgs"] = []
+	if not meta["cgs"].has(id):
+		meta["cgs"].append(id)
+		_write(META_PATH, meta)
+
+
+func cg_unlocked(id: String) -> bool:
+	return meta.get("cgs", []).has(id)
 
 
 func record_act(act: int) -> void:

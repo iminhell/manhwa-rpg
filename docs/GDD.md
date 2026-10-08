@@ -2497,6 +2497,19 @@ manhwa-rpg/                    # le projet Godot est à la racine du dépôt
   - un souvenir ou un Écho lu avant d'être obtenu doit être gardé par `loop()`.
 - **Contenu 18+** : les scènes intimes (Refuge, Pactes, scènes à plusieurs) sont plus explicites et sensuelles. Elles ont des variantes par voie et par dynamique (Amour, Peur, Vassalité, Pacte), toujours dans un cadre consenti.
 
+#### 19.7.10 Interface (v0.11)
+- **Barre d'actions du dialogue** (au-dessus de la boîte de texte) :
+  - **Sauver** : pendant une scène, enregistre le point de reprise, l'état juste avant l'action ou l'Ancre qui a lancé la scène (au chargement, on revient sur la carte avant elle) ; désactivé pendant le prologue ;
+  - **Charger** ;
+  - **Auto** (A) : 1,2 s + 35 ms par caractère, attend la fin de la voix ;
+  - **Passer** (Tab) : jusqu'au prochain choix ou événement ;
+  - **Masquer** (H) ;
+  - **Journal** (L, molette vers le haut) : 300 dernières répliques ;
+  - **Menu** (Échap).
+- **Menu pause** (Échap, bouton Menu de la carte et du dialogue) : Reprendre, Sauvegarder, Charger, Fiches, Galerie, Options, Retour au titre.
+- **Fiches des personnages** (titre et pause) : portrait, identité, présentation sans spoiler (`bio`, `trait`). En partie s'y ajoutent l'Affinité, la Confiance, la Peur, le statut dans la boucle et la Fin lue.
+- **Galerie** (titre et pause) : les 61 CG du manifeste. Une CG vue en jeu reste débloquée pour toutes les boucles (`meta["cgs"]`) ; les CG nsfw sont masquées si l'option P3 l'est.
+
 #### 19.7.9 CG, voies et Pactes (v0.10)
 - **CG** : 61 CG au manifeste, chacune rattachée à sa scène (`"scene": "dialogue:bloc"`). Elles couvrent les nuits du Refuge, les scènes « ombre » de la voie du Tyran, les scènes à plusieurs et les Ancres de l'Acte IV (toit de la Lotte, Machine d'Inversion, Dernier Exode, Protocole Cendre, Nuit du Déversement, Épreuve des Dix, la Page). Les scènes intimes (`"nsfw": true`) passent par RunPod. Le validateur exige :
   - une CG appelée existe au manifeste, et une CG du manifeste est appelée par sa scène ;

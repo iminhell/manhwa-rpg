@@ -5,6 +5,7 @@ extends Control
 signal dialogue_requested(ref: String)
 signal combat_requested(encounter: String, win_fx: Array)
 signal options_requested
+signal menu_requested
 
 const UI := preload("res://ui/ui_style.gd")
 const MapView := preload("res://scenes/world/map_view.gd")
@@ -69,6 +70,10 @@ func _ready() -> void:
 	var opt := UI.button("Options", 20)
 	opt.pressed.connect(func(): options_requested.emit())
 	top.add_child(opt)
+	var menu := UI.button("Menu", 20, UI.MAGENTA)
+	menu.tooltip_text = "Fiches, galerie, sauvegarde… (Échap)"
+	menu.pressed.connect(func(): menu_requested.emit())
+	top.add_child(menu)
 
 	var body := HBoxContainer.new()
 	body.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -237,11 +242,13 @@ func _cost_text(ticks: int) -> String:
 func _check_event() -> void:
 	if _busy:
 		return
+	var snapshot: Dictionary = GameState.store.to_dict()
 	var ev: Dictionary = model.take_event()
 	if OS.get_cmdline_user_args().has("--autotest") and not ev.is_empty():
 		print("[autotest] événement %s (J%d %s, %s)" % [ev["id"], GameState.day, GameState.phase_name(), model.node_id()])
 	if not ev.is_empty():
 		_busy = true
+		GameState.mark_checkpoint(snapshot)
 		dialogue_requested.emit(str(ev["dialogue"]))
 
 
@@ -273,7 +280,10 @@ func _on_node(nid: String) -> void:
 func _on_action(a: Dictionary) -> void:
 	if _busy:
 		return
+	var snapshot: Dictionary = GameState.store.to_dict()
 	var res: Dictionary = model.do_action(a)
+	if res.has("encounter") or res.has("dialogue"):
+		GameState.mark_checkpoint(snapshot)
 	if res.has("panel"):
 		_open_refuge()
 		return

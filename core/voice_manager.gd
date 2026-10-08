@@ -55,6 +55,10 @@ func on_line(line: Dictionary) -> void:
 	_player.play()
 
 
+func is_playing() -> bool:
+	return _player != null and _player.playing
+
+
 func stop() -> void:
 	if _player.playing:
 		_player.stop()

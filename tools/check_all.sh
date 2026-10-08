@@ -16,9 +16,16 @@ python3 tools/free_assets/test_backends_torch.py | tail -1 || fail=1   # vrais m
 step "2/4 Import Godot (erreurs d'analyse GDScript)"
 if "$GODOT" --headless --path . --import 2>&1 | grep -E "SCRIPT ERROR|Parse Error"; then fail=1; else echo "OK"; fi
 
-step "3/4 Tests unitaires (état, dialogues, combat, carte, fuzz)"
+step "3/4 Tests unitaires (état, dialogues, combat, carte, fuzz) et interface"
 "$GODOT" --headless --path . -s res://tests/run_tests.gd 2>&1 | grep -E "ÉCHEC|réussis" || fail=1
 "$GODOT" --headless --path . -s res://tests/run_tests.gd >/dev/null 2>&1 || fail=1
+uilog=$(mktemp)
+if timeout 300 "$GODOT" --headless --path . -- --uitest >"$uilog" 2>&1 && grep -q "INTERFACE OK" "$uilog"; then
+  echo "Interface : $(grep -c '\[uitest\] ok' "$uilog") contrôles réussis (barre d'actions, menu pause, fiches, galerie)"
+else
+  echo "ÉCHEC de l'interface :"; grep -E "ÉCHEC|ERROR" "$uilog" | head -20; fail=1
+fi
+rm -f "$uilog"
 
 if [[ "${1:-}" != "--quick" ]]; then
   step "4/4 Parties automatiques complètes (prologue → Nuit du Déversement, Acte IV)"

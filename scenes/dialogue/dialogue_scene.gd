@@ -4,12 +4,21 @@ extends Control
 
 signal event_requested(name: String, args: Dictionary)
 signal finished
+signal save_requested
+signal load_requested
+signal menu_requested
 
 const UI := preload("res://ui/ui_style.gd")
 const DialogueRunner := preload("res://narrative/dialogue_runner.gd")
 const PortraitView := preload("res://scenes/dialogue/portrait_view.gd")
+const QuickMenu := preload("res://scenes/ui/quick_menu.gd")
+const HistoryPanel := preload("res://scenes/ui/history_panel.gd")
 
 const CHARS_PER_SEC := 55.0
+const HISTORY_MAX := 300
+
+## Journal partagé par toutes les scènes de la session (le plus ancien en premier).
+static var history: Array = []
 
 var runner: DialogueRunner
 var auto_advance := false        ## mode test : avance et choisit seul
@@ -27,6 +36,15 @@ var _hud: Label
 var _typing := false
 var _paused := false
 var _current: Dictionary = {}
+var _quick: Control
+var auto_play := false     ## lecture automatique (bouton Auto)
+var skipping := false      ## avance rapide jusqu'au prochain choix (bouton Passer)
+var ui_hidden := false     ## interface masquée (bouton Masquer)
+var can_save := false:     ## fixé par main.gd : faux pendant le prologue
+	set(value):
+		can_save = value
+		_sync_quick()
+var _auto_timer := 0.0
 
 
 func _ready() -> void:
@@ -86,6 +104,16 @@ func _ready() -> void:
 	_hud.position = Vector2(24, 16)
 	add_child(_hud)
 
+	_quick = QuickMenu.new()
+	_quick.anchor_left = 0.36
+	_quick.anchor_right = 0.96
+	_quick.anchor_top = 0.668
+	_quick.anchor_bottom = 0.712
+	_quick.action.connect(_on_quick)
+	add_child(_quick)
+	_quick.visible = not auto_advance
+	_sync_quick()
+
 
 ## Accepte « fichier » ou « fichier:bloc ».
 func start(dialogue_id: String, block: String = "") -> void:
@@ -124,6 +152,8 @@ func _advance() -> void:
 			_set_background(_current["id"])
 			_advance()
 		"cg":
+			if _current["id"] != "" and not auto_advance:
+				SaveManager.unlock_cg(_current["id"])
 			var tex: Texture2D = AssetDB.cg(_current["id"]) if _current["id"] != "" else null
 			_cg.texture = tex
 			_cg.visible = tex != null
@@ -139,6 +169,8 @@ func _advance() -> void:
 			_advance()
 		"event":
 			_paused = true
+			skipping = false
+			_sync_quick()
 			event_requested.emit(_current["name"], _current["args"])
 		"end":
 			VoiceManager.stop()
@@ -173,11 +205,20 @@ func _show_line(line: Dictionary) -> void:
 	_text.text = text
 	_text.visible_characters = 0
 	_typing = true
+	_auto_timer = 0.0
+	history.append({"name": "" if speaker == "narrator" else display, "text": line["text"],
+		"color": _name_label.get_theme_color("font_color")})
+	if history.size() > HISTORY_MAX:
+		history.pop_front()
 	VoiceManager.on_line(line)
 
 
 func _show_choices(options: Array) -> void:
 	_clear_choices()
+	skipping = false
+	_sync_quick()
+	if ui_hidden:
+		_set_ui_hidden(false)
 	_text.visible_ratio = 1.0
 	_typing = false
 	for opt in options:
@@ -218,6 +259,17 @@ func _process(delta: float) -> void:
 	if _typing and auto_advance:
 		_text.visible_ratio = 1.0
 		_typing = false
+	if not auto_advance and _current.get("kind", "") == "line" and not _paused and not _modal_open():
+		if skipping:
+			_text.visible_ratio = 1.0
+			_typing = false
+			_advance()
+			return
+		if auto_play and not _typing and not VoiceManager.is_playing():
+			_auto_timer += delta
+			if _auto_timer >= auto_delay(_text.get_parsed_text()):
+				_advance()
+				return
 	if _typing:
 		_text.visible_characters += max(1, int(CHARS_PER_SEC * delta * 2.0))
 		if _text.visible_ratio >= 1.0:
@@ -227,10 +279,29 @@ func _process(delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if _modal_open():
+		return
 	var click: bool = event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT
 	var touch: bool = event is InputEventScreenTouch and event.pressed
+	if ui_hidden and (click or touch or event.is_action_pressed("ui_advance") or _key(event, KEY_H)):
+		get_viewport().set_input_as_handled()
+		_set_ui_hidden(false)
+		return
+	for shortcut in [[KEY_A, "auto"], [KEY_TAB, "skip"], [KEY_H, "hide"], [KEY_L, "log"]]:
+		if _key(event, shortcut[0]):
+			get_viewport().set_input_as_handled()
+			_on_quick(shortcut[1])
+			return
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_WHEEL_UP:
+		get_viewport().set_input_as_handled()
+		_on_quick("log")
+		return
 	if not (click or touch or event.is_action_pressed("ui_advance")):
 		return
+	if auto_play or skipping:  # un clic interrompt la lecture automatique
+		auto_play = false
+		skipping = false
+		_sync_quick()
 	if _paused or _current.get("kind", "") != "line":
 		return
 	get_viewport().set_input_as_handled()
@@ -239,3 +310,62 @@ func _unhandled_input(event: InputEvent) -> void:
 		_typing = false
 	else:
 		_advance()
+
+
+# --- Barre d'actions ----------------------------------------------------------------------------
+
+func _on_quick(name: String) -> void:
+	match name:
+		"save":
+			if can_save:
+				save_requested.emit()
+		"load":
+			load_requested.emit()
+		"menu":
+			menu_requested.emit()
+		"auto":
+			auto_play = not auto_play
+			skipping = false
+			_auto_timer = 0.0
+		"skip":
+			skipping = not skipping
+			auto_play = false
+		"hide":
+			_set_ui_hidden(not ui_hidden)
+		"log":
+			open_log()
+	_sync_quick()
+
+
+func open_log() -> Control:
+	var p := HistoryPanel.new()
+	p.entries = history
+	add_child(p)
+	return p
+
+
+func _set_ui_hidden(hidden: bool) -> void:
+	ui_hidden = hidden
+	for n in [_box, _quick, _hud, _choices]:
+		n.visible = not hidden
+	if hidden:
+		auto_play = false
+		skipping = false
+
+
+func _sync_quick() -> void:
+	if _quick != null and _quick.is_node_ready():
+		_quick.set_state(auto_play, skipping, can_save)
+
+
+## Durée d'affichage d'une réplique en lecture automatique : 1,2 s + 35 ms par caractère.
+static func auto_delay(text: String) -> float:
+	return 1.2 + 0.035 * text.length()
+
+
+func _modal_open() -> bool:
+	return not get_tree().get_nodes_in_group("modal").is_empty()
+
+
+static func _key(event: InputEvent, code: Key) -> bool:
+	return event is InputEventKey and event.pressed and not event.echo and event.keycode == code
