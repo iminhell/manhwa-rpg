@@ -32,6 +32,7 @@ func _init() -> void:
 	test_refuge_midloop()
 	test_systems_v09()
 	test_refuge_voies()
+	test_scene_matrix()
 	print("\n%d réussis, %d échoués" % [_passed, _failed])
 	quit(1 if _failed > 0 else 0)
 
@@ -667,3 +668,128 @@ func test_refuge_voies() -> void:
 		for st in dlg["blocks"][blk]:
 			has_slot = has_slot or st.has("text_p3_slot") or st.has("cg")
 		check(not has_slot, "Pacte : %s sans passage P3 ni CG intime" % blk)
+
+
+# --- Matrice des scènes : chaque voie et chaque état de Pacte mène à une scène cohérente, rien n'est bloqué ---------
+
+## Joue un bloc (premier choix à chaque fois) ; renvoie les blocs traversés.
+func _route(s, dlg: Dictionary, block: String) -> Array:
+	var r := DialogueRunner.new(s)
+	var seen: Array = []
+	r.on_enter = func(ref): seen.append(str(ref).get_slice(":", 1))
+	r.start(dlg, block)
+	for i in 300:
+		var st := r.next()
+		if st["kind"] == "choice":
+			r.choose(0)
+		elif st["kind"] == "end":
+			break
+	return seen
+
+
+func _intimate(dlg: Dictionary, blocks: Array) -> bool:
+	for b in blocks:
+		for st in dlg["blocks"].get(b, []):
+			if st.has("text_p3_slot"):
+				return true
+	return false
+
+
+func test_scene_matrix() -> void:
+	var all: Dictionary = DataDB.load_dir("res://data/dialogues")
+	var dlg: Dictionary = all["refuge"]
+	var grp: Dictionary = all["refuge_groupe"]
+	var H := ["seo_yeon", "haneul", "aoi", "maricel", "ryeon", "xiaoyu", "hae_in", "nadia", "simone", "minh_anh"]
+	var PRE := {"seo_yeon": "seo", "hae_in": "haein"}
+	var PACT := {"seo_yeon": "pacte.seo_yeon", "xiaoyu": "pacte.xiaoyu", "hae_in": "pacte.hae_in", "simone": "pacte.simone",
+		"nadia": "nadia_pactisee", "aoi": "aoi_dominee"}
+	var ECHO := {"seo_yeon": "seo_morte", "haneul": "haneul_capturee", "aoi": "aoi_sauvee", "maricel": "maricel_morte",
+		"ryeon": "ryeon_morte", "xiaoyu": "xiaoyu_sauvee", "hae_in": "haein_sauvee", "nadia": "nadia_tir",
+		"simone": "simone_sauvee", "minh_anh": "minh_anh_sauvee"}
+	for h in H:
+		var p: String = PRE.get(h, h)
+		var nf := p + "_nuit"
+		var base := ["set repos.%s 1" % h, "flag refuge.dortoir", "set aff.%s 45" % h]
+		# Voies, héroïne libre : chaque voie a sa nuit
+		for v in [["heros", "set align.protect 25", p + "_intime"], ["tyran", "set align.protect -25", p + "_ombre"],
+				["loup", "set align.bond -25", p + "_loup"], ["mercenaire", "set argent 450", p + "_merc"]]:
+			var s := StateStore.new()
+			s.apply_effects(base + [v[1]])
+			var seen := _route(s, dlg, h)
+			check(seen.size() > 1 and seen[1] == v[2] and _intimate(dlg, seen) and s.has_flag(nf),
+				"Matrice : %s, voie %s → %s %s" % [h, v[0], v[2], seen])
+		# Seconde nuit, puis Écho (récurrence 2)
+		var s2 := StateStore.new()
+		s2.apply_effects(base + ["set align.protect 25", "flag " + nf, "set repos.%s 3" % h])
+		var seen2 := _route(s2, dlg, h)
+		check(seen2.size() > 1 and seen2[1] == p + "_nuit2", "Matrice : %s, seconde nuit %s" % [h, seen2])
+		var s3 := StateStore.new()
+		s3.apply_effects(base + ["set loop 2", "flag echo." + ECHO[h]])
+		var seen3 := _route(s3, dlg, h)
+		var echo_b: String = {"seo_yeon": "seo_yeon_echo", "hae_in": "hae_in_echo"}.get(h, h + "_echo")
+		check(seen3.size() > 1 and seen3[1] == echo_b and s3.has_flag("echo_vu." + h), "Matrice : %s, Écho %s" % [h, seen3])
+		if not PACT.has(h):
+			continue
+		var F: String = PACT[h]
+		# Pacte imposé (contrainte puis ambivalence), même sur la voie du Tyran : jamais d'intimité
+		for amb in [-30, 10]:
+			for side in ["set align.protect -25", "set align.protect 25"]:
+				var sp := StateStore.new()
+				sp.apply_effects(base + ["flag " + F, "set ambivalence.%s %d" % [h, amb], side])
+				var seenp := _route(sp, dlg, h)
+				check(not _intimate(dlg, seenp) and not sp.has_flag(nf), "Matrice : %s sous Pacte (ambivalence %d), sans intimité %s" % [h, amb, seenp])
+		# Contrat renégocié : nuit consentie, puis moments ordinaires (seconde nuit), puis Dévotion possible
+		var sr := StateStore.new()
+		sr.apply_effects(base + ["flag " + F, "set ambivalence.%s 35" % h])
+		var seenr := _route(sr, dlg, h)
+		check(seenr.has(p + "_pacte_renegocie") and seenr.has(p + "_pacte_consentie") and sr.has_flag(nf), "Matrice : %s, contrat renégocié %s" % [h, seenr])
+		sr.apply_effects(["set repos.%s 3" % h, "set align.protect 25"])
+		var seenr2 := _route(sr, dlg, h)
+		check(seenr2.size() > 1 and seenr2[1] == p + "_nuit2", "Matrice : %s, après le contrat renégocié → seconde nuit %s" % [h, seenr2])
+		sr.apply_effects(["set ambivalence.%s 70" % h, "set aff.%s 75" % h])
+		var seenr3 := _route(sr, dlg, h)
+		check(seenr3.has(p + "_devotion") or seenr3.has(p + "_devotion_nuit"), "Matrice : %s, contrat renégocié → Dévotion %s" % [h, seenr3])
+	# Scènes à plusieurs : toutes accessibles sur au moins une voie ; jamais verrouillées par un Pacte imposé
+	var gs: Array = DataDB.load_json("res://data/world/group_scenes.json")["scenes"]
+	for g in gs:
+		var ok := false
+		var any_store = null
+		for voie in ["set align.protect 25", "set align.protect -25", "set argent 450"]:
+			var s := StateStore.new()
+			s.set_time(25, 2)
+			s.apply_effects(["set loop 2", "flag refuge.dortoir", "flag concil.reines", voie])
+			for h in H:
+				s.apply_effects(["join " + h, "set aff.%s 70" % h, "flag " + PRE.get(h, h) + "_nuit"])
+			if s.check(str(g.get("if", ""))):
+				ok = true
+				any_store = s
+				break
+		check(ok, "Groupe : « %s » accessible" % g["id"])
+		if not ok:
+			continue
+		var blk: String = str(g["dialogue"]).get_slice(":", 1)
+		var pacted: Array = g.get("members", []).filter(func(m): return PACT.has(m))
+		if pacted.is_empty() and g.get("members", []).is_empty() and _intimate(grp, [blk]) and g["id"] != "harem_ombre":
+			any_store.apply_effects(["flag pacte.seo_yeon"])
+			check(any_store.check(str(g.get("if", ""))), "Groupe : « %s » reste accessible avec une héroïne sous Pacte" % g["id"])
+			var r := DialogueRunner.new(any_store)
+			r.start(grp, blk)
+			var note := false
+			for i in 40:
+				var st := r.next()
+				if st["kind"] == "line" and st["text"].begins_with("Celles qui portent encore un contrat"):
+					note = true
+				if st["kind"] == "end" or st["kind"] == "choice":
+					break
+			check(note, "Groupe : « %s », absence de l'héroïne sous contrat imposé mentionnée" % g["id"])
+		for m in pacted:
+			any_store.apply_effects(["flag " + PACT[m]])
+			check(any_store.check(str(g.get("if", ""))), "Groupe : « %s » non verrouillée par le Pacte de %s" % [g["id"], m])
+			var seen := _route(any_store, grp, blk)
+			if _intimate(grp, [blk]):
+				check(seen.size() > 1 and seen[1] == "pacte_groupe_" + m and not _intimate(grp, seen.slice(1)),
+					"Groupe : « %s » avec %s sous contrat imposé → variante sans intimité %s" % [g["id"], m, seen])
+			else:
+				check(not _intimate(grp, seen), "Groupe : soirée « %s » jouable avec %s sous Pacte, sans intimité" % [g["id"], m])
+			any_store.apply_effects(["unflag " + PACT[m]])
+
