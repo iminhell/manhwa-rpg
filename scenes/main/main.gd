@@ -547,6 +547,18 @@ func _ui_test() -> void:
 		"fiches : identité et présentation, sans les liens hors partie")
 	_ui_check(sheets._info.text.contains("PV ") and sheets._info.text.contains("Vitesse") and sheets._info.text.contains("mana"),
 		"fiches : statistiques et compétences de combat")
+	# Cadrage des sprites (façon visual novel) : tête du plus grand en haut de l'écran, taille relative, pieds sous l'écran
+	var PV = DialogueScene.PortraitView
+	var tall: Rect2 = PV.placement(Vector2(1000, 1600), Rect2(100, 50, 800, 1500), Vector2(1920, 1080), true, 184.0, 0.21)
+	var small: Rect2 = PV.placement(Vector2(1000, 1600), Rect2(100, 50, 800, 1500), Vector2(1920, 1080), true, 157.0, 0.21)
+	var head_tall: float = tall.position.y + 50.0 * tall.size.y / 1600.0
+	var head_small: float = small.position.y + 50.0 * small.size.y / 1600.0
+	var feet_small: float = small.position.y + 1550.0 * small.size.y / 1600.0
+	_ui_check(absf(head_tall - 1080 * 0.035) < 2.0 and head_small > head_tall + 150.0 and feet_small > 1080.0,
+		"sprites : cadrage visual novel, taille relative (tête %d px contre %d px)" % [int(head_tall), int(head_small)])
+	var fit: Rect2 = PV.placement(Vector2(1000, 1600), Rect2(100, 50, 800, 1500), Vector2(420, 800), false, 184.0, 0.5)
+	_ui_check(fit.position.y + 50.0 * fit.size.y / 1600.0 >= 0.0 and fit.position.y + 1550.0 * fit.size.y / 1600.0 <= 800.0,
+		"sprites : silhouette entière dans les fiches")
 	_ui_check(DialogueScene.choice_feedback(["add align.protect 2", "add aff.seo_yeon 5", "flag x"]) == "Protéger +2   ·   Affinité Seo-Yeon +5",
 		"dialogue : retour sur l'effet d'un choix (alignement, Affinité)")
 	await _press(KEY_ESCAPE)

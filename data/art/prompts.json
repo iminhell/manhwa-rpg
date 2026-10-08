@@ -63,7 +63,7 @@
         "#d4651e",
         "#e8b23a"
       ],
-      "core": "elias_kang, 29-year-old handsome young mixed-race man with a Korean mother and a French-Martinican father, tall 184cm, broad shoulders, lean V-shaped muscular fighter build, warm caramel tan skin, handsome youthful face with sharp features, defined jawline with slightly cleft chin, high cheekbones, straight nose with a slightly wide tip, full lips with a one-sided ironic smile, light stubble, hooded almond hazel-amber eyes under thick straight brows, thick black curly wavy hair with short faded sides and loose curls falling on the forehead, vertical scar splitting the left eyebrow, burn scar on the right forearm, Korean handwritten tattoo on the inner left forearm, sleeves rolled up to the elbows",
+      "core": "elias_kang, 29-year-old handsome young mixed-race man with a Korean mother and a French-Martinican father, tall 184cm, broad shoulders, lean V-shaped muscular fighter build, warm caramel tan skin, handsome youthful face with sharp features, defined jawline with slightly cleft chin, high cheekbones, straight nose with a slightly wide tip, full lips with a one-sided ironic smile, clean-shaven, hooded almond hazel-amber eyes under thick straight brows, thick black hair of medium length, tousled and slightly spiky, soft loose waves, strands falling on the forehead and past the nape, vertical scar splitting the left eyebrow, burn scar on the right forearm, Korean handwritten tattoo on the inner left forearm, sleeves rolled up to the elbows",
       "outfits": {
         "base": "long black tactical military greatcoat with a high collar, leather belts and buckles, black tactical vest, black gloves, black cargo pants, combat boots, sheathed tower-forged blade at the hip, broken military wristwatch",
         "hero": "long pearl-grey high-collared coat, white armband, reinforced gloves, light chest plate",
@@ -81,9 +81,9 @@
       },
       "checklist_fr": [
         "Cicatrice au sourcil GAUCHE",
-        "Cheveux bouclés courts, coupe nette (jamais lisses)",
+        "Cheveux noirs mi-longs, souples, un peu en pique, qui dépassent sur la nuque (ni lisses, ni longs)",
         "Peau caramel métisse, pas pâle",
-        "Visage jeune et beau, regard froid et charismatique",
+        "Visage jeune et beau, calme au repos ; imberbe (ni barbe, ni barbe naissante)",
         "Long manteau noir tactique (le bomber est donné à Haneul à l'Acte I)",
         "Montre cassée à 23h58",
         "Tatouage avant-bras GAUCHE"
@@ -219,9 +219,9 @@
         "#c9a227",
         "#b03a2e"
       ],
-      "core": "simone_hayes, 38-year-old African-American woman, powerful muscular athletic build 178cm, broad shoulders, defined arms and abs, solid hips and thighs, deep dark-brown skin with a warm copper undertone, strong square jaw with a diagonal scar on the left jawline, high cheekbones, wide straight nose, full lips, piercing very dark eyes, tight black cornrows on top and on the right side with a shaved undercut on the left side, two military dog tags and an engagement ring on a chain around her neck, eagle unit tattoo on the right shoulder",
+      "core": "simone_hayes, 38-year-old African-American woman, powerful curvy muscular build 178cm, the tallest woman of the cast, very large heavy bust, broad shoulders, defined arms and visible abs, wide hips and thick thighs, mature commanding presence, deep dark-brown skin with a warm copper undertone, strong square jaw with a diagonal scar on the left jawline, high cheekbones, wide straight nose, full lips, piercing very dark eyes, tight black cornrows on top and on the right side with a shaved undercut on the left side, two military dog tags and an engagement ring on a chain around her neck, eagle unit tattoo on the right shoulder",
       "outfits": {
-        "base": "multicam fatigues, command jacket with sleeves rolled up, plate carrier vest, black beret tucked under the shoulder strap, combat boots",
+        "base": "open officer command jacket with epaulettes over a cropped tactical top with a plunging neckline, bare midriff showing her abs and a small scar, utility belt with a thigh holster, multicam cargo pants, red beret, fingerless gloves, combat boots",
         "combat": "light military exoskeleton over the fatigues, awakened assault rifle with glowing runes",
         "casual": "khaki tank top, sweatpants, barefoot, hair unbound into a natural afro, cigar",
         "night": "black sports bra and tight boxer briefs, dog tags on bare skin, hair unbound into an afro"
@@ -235,7 +235,8 @@
         "Cicatrice mâchoire GAUCHE",
         "Undercut côté GAUCHE",
         "Plaques et bague de fiançailles",
-        "Carrure puissante"
+        "Carrure puissante",
+        "Silhouette de commandante : la plus grande, poitrine imposante, ventre et abdos visibles"
       ],
       "body": "powerful muscular body, broad shoulders, muscular arms, six-pack abs, full firm bust, thick strong thighs",
       "pinup_poses": [
@@ -256,7 +257,7 @@
         "#a3122a",
         "#3f8f6b"
       ],
-      "core": "xiaoyu_long, 31-year-old Chinese woman, tall feline slender figure 170cm, wasp waist, long legs, heart-shaped face, cat-like upturned eyes with sharp black winged eyeliner, amber-gold irises, beauty mark under the left eye, carmine red lips with a teasing smirk, sleek chin-length blunt bob with straight-cut bangs dyed deep crimson red with glossy black roots, jade hairpin, long red lacquered nails, black and gold dragon tattoo across the back from the right shoulder to the left hip, pale ivory skin",
+      "core": "xiaoyu_long, 31-year-old Chinese woman, tall feline curvy figure 170cm, full bust, wasp waist, wide hips, long legs, mature sultry allure, heart-shaped face, cat-like upturned eyes with sharp black winged eyeliner, amber-gold irises, beauty mark under the left eye, carmine red lips with a teasing smirk, sleek chin-length blunt bob with straight-cut bangs dyed deep crimson red with glossy black roots, jade hairpin, long red lacquered nails, black and gold dragon tattoo across the back from the right shoulder to the left hip, pale ivory skin",
       "outfits": {
         "base": "modern black qipao with a high slit embroidered with golden dragons, fitted black leather jacket, heeled ankle boots, black stockings, steel folding fan",
         "combat": "same qipao, gauntlets with poison needles, belt of small vials, fan blades extended",
@@ -408,7 +409,7 @@
       ],
       "core": "minhanh_tran, 36-year-old Vietnamese-Korean woman, slender willowy build 166cm, delicate oval face, soft cheekbones, small upturned nose, full naturally dark lips, very dark almost black eyes behind thin black rectangular glasses, purple shadows under the eyes, extremely long straight black hair in a single braid down to her lower back tied with an electric cable, cybernetic implant on the right temple with three silver ports and a strip of glowing blue LEDs, chipped black nail polish, light golden olive skin",
       "outfits": {
-        "base": "long white lab coat over a fitted black bodysuit, safety boots, holographic tablet on the wrist",
+        "base": "long white lab coat over a fitted black high-collar bodysuit traced with glowing cyan circuit lines, utility belt with test tubes, ID badge, thigh-high boots, holographic tablet on the wrist",
         "combat": "lab coat unfolding into a swarm of small drones, analysis visor",
         "casual": "oversized black turtleneck sweater, mismatched socks, iced coffee",
         "night": "unbuttoned lab coat over a black lace bodysuit, glasses, braid over the shoulder"

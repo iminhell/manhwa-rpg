@@ -76,6 +76,7 @@ all_nodes = {nid: n for s in sectors.values() for nid, n in s.get("nodes", {}).i
 art_chars = {c["id"]: c for c in prompts.get("characters", [])}
 COMMON_EXPR = set(prompts.get("expressions", {}).keys())
 SPECIAL_SPEAKERS = {"narrator", "system", "registre"}
+MODERN_LIMIT = re.compile(r"mots? d'arrêt|safe ?word|mot de sécurité", re.I)  # limites des Pactes : clauses du lore
 KNOWN_EVENTS = {"combat", "regress", "end_act", "world", "move"}
 EFFECT_TYPES = {"damage", "heal", "status", "fear", "delay", "haste", "revive", "cleanse", "crit_next", "swap", "advance", "awaken", "pull"}
 TARGETS = {"melee", "ranged", "pierce", "row", "all_enemies", "ally", "all_allies", "all_allies_any", "ally_other", "self", "ally_ko"}
@@ -408,6 +409,8 @@ for did, dlg in dialogues.items():
                             err(f"{wo} : bloc inconnu « {opt['goto']} »")
                     else:
                         warn(f"{wo} : choix sans goto (continue le bloc)")
+            if "t" in st and MODERN_LIMIT.search(str(st["t"])):
+                err(f"{w} : « mot d'arrêt » trop moderne pour le lore — Clause du Sceau, Ancre de Sang ou Condition du Pacte")
             if "t" in st:
                 s = st.get("s", "narrator")
                 if s not in characters and s not in speakers and s not in SPECIAL_SPEAKERS:

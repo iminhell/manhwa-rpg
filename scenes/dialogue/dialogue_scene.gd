@@ -58,11 +58,9 @@ func _ready() -> void:
 	_set_background("black")
 
 	_portrait = PortraitView.new()
-	_portrait.anchor_left = 0.04
-	_portrait.anchor_right = 0.36
-	_portrait.anchor_top = 0.06
-	_portrait.anchor_bottom = 0.70
-	add_child(_portrait)
+	_portrait.stage = true      # façon visual novel : grand, pieds derrière la boîte de texte, taille relative
+	_portrait.center_x = 0.21
+	add_child(UI.full_rect(_portrait))
 	_portrait.visible = false
 
 	_cg = TextureRect.new()

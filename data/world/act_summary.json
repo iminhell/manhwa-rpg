@@ -864,7 +864,7 @@
   },
   {
    "if": "flag('seo_pacte_accepte') or flag('xiaoyu_pacte_accepte') or flag('haein_pacte_accepte') or flag('simone_pacte_accepte') or flag('nadia_pacte_accepte') or flag('aoi_pacte_accepte')",
-   "text": "Des contrats imposés ont été réécrits par celles qui les portaient : un mot d'arrêt, le droit de partir, et le choix de rester."
+   "text": "Des contrats imposés ont été réécrits par celles qui les portaient : une Clause du Sceau qu'elles seules peuvent invoquer, le droit de partir, et le choix de rester."
   }
  ]
 }

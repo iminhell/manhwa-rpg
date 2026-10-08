@@ -3526,7 +3526,7 @@
    },
    {
     "s": "narrator",
-    "t": "Clause un : « Elle peut dire stop. N'importe quand. Sans raison. » Clause deux : « Il demande avant. Toujours. » Clause trois : « Pas de lumière de scène. » La clause quatre est raturée trois fois, puis réécrite tout petit, et elle cache la feuille de la main quand tu arrives à cette ligne."
+    "t": "Clause un : « D'un geste, elle suspend tout. N'importe quand. Sans raison. » Clause deux : « Il demande avant. Toujours. » Clause trois : « Pas de lumière de scène. » La clause quatre est raturée trois fois, puis réécrite tout petit, et elle cache la feuille de la main quand tu arrives à cette ligne."
    },
    {
     "choice": [
@@ -4785,7 +4785,7 @@
    },
    {
     "s": "simone",
-    "t": "Permission de parler franchement. Toute ma vie, j'ai donné les ordres. Ce soir, je veux en recevoir. De toi. Le mot pour tout arrêter, c'est « cessez-le-feu ». Tu le respectes à la seconde, ou je te brise le bras.",
+    "t": "Permission de parler franchement. Toute ma vie, j'ai donné les ordres. Ce soir, je veux en recevoir. De toi. Si je retire mes plaques, tout s'arrête, à la seconde. Tu le respectes, ou je te brise le bras.",
     "e": "neutral",
     "v": true
    },
@@ -4862,7 +4862,7 @@
    },
    {
     "s": "minh_anh",
-    "t": "Je contrôle tout. Mes données, mes tests, mes pensées. Je veux mesurer ce qui se passe quand quelqu'un d'autre décide. Toi. Le mot d'arrêt est « erreur ». Je l'ai écrit en gras.",
+    "t": "Je contrôle tout. Mes données, mes tests, mes pensées. Je veux mesurer ce qui se passe quand quelqu'un d'autre décide. Toi. J'ai gravé une Condition dans mon implant : si mes LEDs passent au blanc, tout s'arrête. Je l'ai vérifiée trois fois.",
     "e": "neutral",
     "v": true
    },
@@ -4907,7 +4907,7 @@
   "minh_anh_ombre_poser": [
    {
     "s": "narrator",
-    "t": "L'écran s'éteint contre le bois. Elle sursaute, puis elle rit, nerveuse, et ses LEDs passent au rose. « Pas de données, alors. Seulement toi. » Elle ne prononce pas le mot d'arrêt de la nuit."
+    "t": "L'écran s'éteint contre le bois. Elle sursaute, puis elle rit, nerveuse, et ses LEDs passent au rose. « Pas de données, alors. Seulement toi. » De toute la nuit, ses LEDs ne passent pas une seule fois au blanc."
    },
    {
     "text_p3_slot": []
@@ -5944,13 +5944,13 @@
    },
    {
     "s": "seo_yeon",
-    "t": "J'ai réécrit le contrat. Un mot d'arrêt : « suture ». Le droit de partir quand je veux. Et la clause de Résidence… je la garde. Parce que je l'ai choisie, cette fois. Signez, Kang-ssi.",
+    "t": "J'ai réécrit le contrat. Une Ancre de Sang : une goutte du mien sur le collier. Si je pose la main dessus, le Pacte se tait. Le droit de partir. Et la clause de Résidence… je la garde, parce que je l'ai choisie. Signez, Kang-ssi.",
     "e": "neutral",
     "v": true
    },
    {
     "s": "registre",
-    "t": "PACTE — Révision proposée par la vassale : un mot d'arrêt, le droit de partir, des clauses librement consenties. Le Système attend ta signature."
+    "t": "PACTE — Révision proposée par la vassale : une Ancre de Sang, que Seo-Yeon seule peut invoquer pour faire taire le Pacte, et le droit de partir. Le Système attend ta signature."
    },
    {
     "choice": [
@@ -6003,7 +6003,7 @@
    },
    {
     "s": "seo_yeon",
-    "t": "Vous commandez. Je dis « suture », vous arrêtez. C'est tout ce que je demande. …Et c'est beaucoup, je sais.",
+    "t": "Vous commandez. Si je touche le collier, le Pacte se tait, et vous vous arrêtez. C'est tout ce que je demande. …Et c'est beaucoup, je sais.",
     "e": "desire",
     "v": true
    },
@@ -6016,7 +6016,7 @@
    },
    {
     "s": "narrator",
-    "t": "Au matin, elle n'a pas dit le mot d'arrêt une seule fois. Elle le répète quand même en partant, comme une prière : « suture ». Pour s'assurer qu'il existe."
+    "t": "Au matin, elle n'a pas touché le collier une seule fois. Elle l'effleure quand même en partant, du bout des doigts, comme une prière : l'Ancre de Sang est toujours là."
    },
    {
     "fx": [
@@ -6037,13 +6037,13 @@
    },
    {
     "s": "xiaoyu",
-    "t": "La dette est payée, Seigneur. Je te propose un nouveau jeu : je perds quand je veux, je gagne quand je veux, et les mots « fin de partie » arrêtent tout. Tu signes ?",
+    "t": "La dette est payée, Seigneur. Je te propose un nouveau jeu, scellé du Sceau de Longwei : je perds quand je veux, je gagne quand je veux, et si je retourne ce jeton de jade, la partie s'arrête. Tu signes ?",
     "e": "fan",
     "v": true
    },
    {
     "s": "registre",
-    "t": "PACTE — Révision proposée par la vassale : un mot d'arrêt, le droit de partir, des clauses librement consenties. Le Système attend ta signature."
+    "t": "PACTE — Révision proposée par la vassale : une Clause du Sceau de Longwei, que Xiaoyu seule peut invoquer pour faire taire le Pacte, et le droit de partir. Le Système attend ta signature."
    },
    {
     "choice": [
@@ -6130,13 +6130,13 @@
    },
    {
     "s": "hae_in",
-    "t": "Avenant numéro un, Seigneur Kang : la vassale peut résilier à tout moment, par le mot « clôture ». Avenant deux : elle choisit de rester. Les autres clauses sont négociables. Ce soir.",
+    "t": "Avenant numéro un, Seigneur Kang, scellé par la Balance : si je pose la main sur le Sceau, le contrat est suspendu, sans délai ni pénalité. Avenant deux : elle choisit de rester. Les autres clauses sont négociables. Ce soir.",
     "e": "desire",
     "v": true
    },
    {
     "s": "registre",
-    "t": "PACTE — Révision proposée par la vassale : un mot d'arrêt, le droit de partir, des clauses librement consenties. Le Système attend ta signature."
+    "t": "PACTE — Révision proposée par la vassale : une Condition scellée par la Balance, que Hae-in seule peut invoquer pour faire taire le Pacte, et le droit de partir. Le Système attend ta signature."
    },
    {
     "choice": [
@@ -6223,13 +6223,13 @@
    },
    {
     "s": "simone",
-    "t": "Nouveau règlement, Rang F. Le mot d'arrêt est « cessez-le-feu ». Je romps les rangs quand je veux. Et j'obéis parce que je l'ai décidé, pas parce que tu as gagné.",
+    "t": "Nouveau règlement, Rang F. Une Ancre de Sang sur mes plaques : si je les retire, je redeviens commandante, et le Pacte se tait. Je romps les rangs quand je veux. Et j'obéis parce que je l'ai décidé, pas parce que tu as gagné.",
     "e": "cigar",
     "v": true
    },
    {
     "s": "registre",
-    "t": "PACTE — Révision proposée par la vassale : un mot d'arrêt, le droit de partir, des clauses librement consenties. Le Système attend ta signature."
+    "t": "PACTE — Révision proposée par la vassale : une Ancre de Sang gravée sur ses plaques, que Simone seule peut invoquer pour faire taire le Pacte, et le droit de partir. Le Système attend ta signature."
    },
    {
     "choice": [
@@ -6278,7 +6278,7 @@
    },
    {
     "s": "narrator",
-    "t": "Elle retire ses plaques et les pose sur la table, à côté de celles de Marcus. Ce soir, elle ne commande personne, et personne ne la commande sans son accord."
+    "t": "Elle garde ses plaques au cou, contre la peau : l'Ancre de Sang à portée de main, à côté de celles de Marcus. Ce soir, elle ne commande personne, et personne ne la commande sans son accord."
    },
    {
     "s": "simone",
@@ -6316,13 +6316,13 @@
    },
    {
     "s": "nadia",
-    "t": "Le contrat à vie, je le garde. Mais je fixe les clauses. Le mot d'arrêt, c'est « Dmitri ». Je pars quand je veux. Et quand je reste, c'est que je l'ai choisi.",
+    "t": "Le contrat à vie, je le garde. Mais je fixe la Condition. Elle est nouée à l'écharpe de ma grand-mère : si je la dénoue, le Pacte se rompt, sans prix. Je pars quand je veux. Et quand je reste, c'est que je l'ai choisi.",
     "e": "neutral",
     "v": true
    },
    {
     "s": "registre",
-    "t": "PACTE — Révision proposée par la vassale : un mot d'arrêt, le droit de partir, des clauses librement consenties. Le Système attend ta signature."
+    "t": "PACTE — Révision proposée par la vassale : une Condition du Pacte nouée à l'écharpe de sa grand-mère, que Nadia seule peut invoquer pour faire taire le Pacte, et le droit de partir. Le Système attend ta signature."
    },
    {
     "choice": [
@@ -6381,7 +6381,7 @@
    },
    {
     "s": "narrator",
-    "t": "Elle s'abandonne sans jamais lâcher ton regard, comme on garde un œil dans la lunette. Elle ne dit pas le mot d'arrêt. Elle te dit, plusieurs fois, de continuer."
+    "t": "Elle s'abandonne sans jamais lâcher ton regard, comme on garde un œil dans la lunette. Elle ne dénoue pas l'écharpe. Elle te dit, plusieurs fois, de continuer."
    },
    {
     "text_p3_slot": []
@@ -6409,13 +6409,13 @@
    },
    {
     "s": "aoi",
-    "t": "Je veux bien t'appartenir. Mais c'est moi qui choisis comment. Mon mot d'arrêt, c'est « rappel », comme à la fin d'un concert. Tu signes, Monsieur ?",
+    "t": "Je veux bien t'appartenir. Mais c'est moi qui choisis comment. J'ai scellé une clause dans ma voix : si je chante la dernière note de ma première chanson, le contrat se tait. Tu signes, Monsieur ?",
     "e": "true_smile",
     "v": true
    },
    {
     "s": "registre",
-    "t": "PACTE — Révision proposée par la vassale : un mot d'arrêt, le droit de partir, des clauses librement consenties. Le Système attend ta signature."
+    "t": "PACTE — Révision proposée par la vassale : une Clause du Sceau scellée dans sa voix, que Aoi seule peut invoquer pour faire taire le Pacte, et le droit de partir. Le Système attend ta signature."
    },
    {
     "choice": [
@@ -6474,7 +6474,7 @@
    },
    {
     "s": "narrator",
-    "t": "Elle obéit avec un plaisir qu'elle n'essaie pas de cacher, improvise, proteste pour rire, et réclame un « rappel » qu'elle n'utilise jamais comme mot d'arrêt."
+    "t": "Elle obéit avec un plaisir qu'elle n'essaie pas de cacher, improvise, proteste pour rire, et fredonne parfois les premières mesures de sa première chanson, sans jamais aller jusqu'à la dernière note."
    },
    {
     "text_p3_slot": []

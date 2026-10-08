@@ -294,7 +294,7 @@ def load_style() -> dict:
 def sprite_prompt(style: dict, cid: str, expression: str = "neutral", combat: bool = False) -> str:
     """Prompt de sprite : qualité commune, déclencheurs des LoRA, gabarit et identité du personnage, pose, expression."""
     c = style["characters"][cid]
-    pose = style["pose_combat"] if combat else style["pose_male" if c.get("male") else "pose_female"]
+    pose = style["pose_combat"] if combat else (c.get("pose") or style["pose_male" if c.get("male") else "pose_female"])
     parts = [style["quality"], *(lo["trigger"] for lo in style["loras"] if lo.get("trigger")), c["body"], c["look"],
              c["outfit"], pose]
     if combat:
@@ -320,6 +320,21 @@ def sprite_jobs(force: bool, only: list[str] | None) -> list[dict]:
             continue
         jobs.append(item)
     return sorted(jobs, key=lambda i: (i["kind"], i.get("char", ""), i.get("expression", "neutral") != "neutral"))
+
+
+def sprite_negative(style: dict, cid: str) -> str:
+    """Négatif commun + négatif propre au personnage (ex. Elias : pas de barbe, pas d'air renfrogné)."""
+    extra = style["characters"].get(cid, {}).get("negative", "")
+    return f"{style['negative']}, {extra}" if extra else style["negative"]
+
+
+def sharpen(img, cfg: dict | None):
+    """Accentuation finale (UnsharpMask) : trait net sans halo, avant le détourage."""
+    if not cfg:
+        return img
+    from PIL import ImageFilter  # noqa: PLC0415
+    return img.filter(ImageFilter.UnsharpMask(radius=float(cfg.get("radius", 1.3)), percent=int(cfg.get("percent", 75)),
+                                              threshold=int(cfg.get("threshold", 3))))
 
 
 def head_mask(alpha, margin: float = 0.18):
@@ -580,9 +595,9 @@ def cmd_sprites(a, backend=None) -> int:
             print(f"  {it['id']} → {it['out']} :: {sprite_prompt(style, it['char'], it.get('expression', 'neutral'), it['kind'] == 'combat_sprite')[:200]}…")
         return len(jobs)
     backend = backend or SpriteBackend(style)
-    negative = style["negative"]
     for i, it in enumerate(jobs, 1):
         cid, expr = it["char"], it.get("expression", "neutral")
+        negative = sprite_negative(style, cid)
         dest = ROOT / it["out"]
         dest.parent.mkdir(parents=True, exist_ok=True)
         if it["kind"] == "combat_sprite":
@@ -598,7 +613,7 @@ def cmd_sprites(a, backend=None) -> int:
             base = sprite_base(cid)
             img = backend.repaint_face(base, backend.face_mask(cid, base), sprite_prompt(style, cid, expr), negative,
                                        seed_of(it["id"]))
-        backend.cut(img).save(dest, optimize=True)
+        backend.cut(sharpen(img, style.get("sharpen"))).save(dest, optimize=True)
         print(f"  [{i}/{len(jobs)}] {it['out']}", flush=True)
     return len(jobs)
 

@@ -2151,14 +2151,6 @@
   "ko": "온 도시가 널 무서워해. 난… 누군가와 같이 무서워하는 게 어떤 건지 알고 싶어. 하룻밤만. 그다음엔 다시 총을 들 거야.",
   "ja": "街中があなたを怖がってる。私は…誰かと一緒に怖がるのがどんな感じか知りたい。一晩だけ。そのあとは、また銃を取る。"
  },
- "Permission de parler franchement. Toute ma vie, j'ai donné les ordres. Ce soir, je veux en recevoir. De toi. Le mot pour tout arrêter, c'est « cessez-le-feu ». Tu le respectes à la seconde, ou je te brise le bras.": {
-  "ko": "솔직하게 말하겠다. 평생 명령만 내렸어. 오늘 밤엔 받고 싶다. 너한테서. 전부 멈추는 말은 '사격 중지'야. 그 즉시 지켜. 안 그러면 팔을 부러뜨린다.",
-  "ja": "率直に言わせてもらう。生涯、命令を下す側だった。今夜は受けたい。あなたから。全部止める言葉は『撃ち方やめ』。即座に守れ。でなければ腕を折る。"
- },
- "Je contrôle tout. Mes données, mes tests, mes pensées. Je veux mesurer ce qui se passe quand quelqu'un d'autre décide. Toi. Le mot d'arrêt est « erreur ». Je l'ai écrit en gras.": {
-  "ko": "난 전부 통제해. 데이터도, 실험도, 생각도. 다른 누가 결정할 때 무슨 일이 생기는지 측정하고 싶어. 너. 중지어는 '오류'야. 굵게 써 놨어.",
-  "ja": "私は全部を制御してる。データも、実験も、思考も。誰か別の人が決めたら何が起きるか測りたい。あなたが。停止語は『エラー』。太字で書いておいた。"
- },
  "Je ne partage rien. Ni mon sabre, ni ma place. …Sauf ce soir. Et seulement parce que je l'ai décidé.": {
   "ko": "난 아무것도 나누지 않아. 검도, 자리도. …오늘 밤만 빼고. 그것도 내가 그렇게 정했으니까.",
   "ja": "私は何も分け合わない。刀も、居場所も。…今夜を除いて。それも、私がそう決めたから。"
@@ -2711,49 +2703,21 @@
   "ko": "'봉신은 매일 밤 보고한다.' 매일 밤 보고했죠. 당신은 보고서를 하나도 빠짐없이 읽었고, 약속을 전부 지켰어요, 강 영주님. 믿을 수 있는 동업자. 세상에서 가장 귀한 것이죠.",
   "ja": "『家臣は毎晩報告する』。毎晩、報告しました。あなたは報告書をすべて読み、約束をすべて守った、カン卿。信頼できる共同経営者。この世で最も稀なものですわ。"
  },
- "J'ai réécrit le contrat. Un mot d'arrêt : « suture ». Le droit de partir quand je veux. Et la clause de Résidence… je la garde. Parce que je l'ai choisie, cette fois. Signez, Kang-ssi.": {
-  "ko": "계약서를 다시 썼어요. 중지어는 '봉합'. 원할 때 떠날 권리. 그리고 거주 조항은… 남겨 둘게요. 이번엔 제가 고른 거니까요. 서명하세요, 강 씨.",
-  "ja": "契約を書き直しました。停止語は『縫合』。いつでも出ていける権利。それと居住条項は…残します。今度は私が選んだから。サインしてください、カンさん。"
- },
- "Vous commandez. Je dis « suture », vous arrêtez. C'est tout ce que je demande. …Et c'est beaucoup, je sais.": {
-  "ko": "명령하세요. 제가 '봉합'이라고 하면 멈추고요. 제가 바라는 건 그것뿐이에요. …많이 바라는 거란 거, 알아요.",
-  "ja": "命令してください。私が『縫合』と言ったら止めて。お願いはそれだけ。…それが大きなお願いだって、分かってます。"
- },
- "La dette est payée, Seigneur. Je te propose un nouveau jeu : je perds quand je veux, je gagne quand je veux, et les mots « fin de partie » arrêtent tout. Tu signes ?": {
-  "ko": "빚은 다 갚았어, 영주님. 새 게임을 제안할게. 지고 싶을 때 지고, 이기고 싶을 때 이기고, '게임 끝'이라는 말이면 전부 멈춰. 서명할래?",
-  "ja": "借りは返したわ、ご主人様。新しいゲームを提案する。負けたい時に負けて、勝ちたい時に勝つ。『終局』の一言で全部止まる。サインする？"
- },
  "Je m'incline. Parce que ça m'amuse. Si ça cesse de m'amuser, tu l'entendras.": {
   "ko": "고개 숙일게. 재미있으니까. 재미없어지면, 너도 듣게 될 거야.",
   "ja": "跪くわ。面白いから。面白くなくなったら、あなたにも聞こえるはずよ。"
- },
- "Avenant numéro un, Seigneur Kang : la vassale peut résilier à tout moment, par le mot « clôture ». Avenant deux : elle choisit de rester. Les autres clauses sont négociables. Ce soir.": {
-  "ko": "첫 번째 부속 조항입니다, 강 영주님. 봉신은 '마감'이라는 한마디로 언제든 해지할 수 있다. 두 번째: 봉신은 남기로 선택한다. 나머지 조항은 협상 가능합니다. 오늘 밤에.",
-  "ja": "追加条項その一、カン卿。家臣は『締め』の一言でいつでも解約できる。その二、家臣は留まることを選ぶ。残りの条項は交渉可能です。今夜。"
  },
  "Donnez vos ordres. Je les exécuterai. Tous ceux que j'ai acceptés, et seulement ceux-là.": {
   "ko": "명령하세요. 따르겠습니다. 제가 수락한 것 전부를, 그리고 오직 그것만.",
   "ja": "命令してください。従います。私が受け入れたものなら全部、そしてそれだけ。"
  },
- "Nouveau règlement, Rang F. Le mot d'arrêt est « cessez-le-feu ». Je romps les rangs quand je veux. Et j'obéis parce que je l'ai décidé, pas parce que tu as gagné.": {
-  "ko": "새 규정이다, F랭크. 중지어는 '사격 중지'. 난 원할 때 대열을 이탈한다. 그리고 복종하는 건 내가 그렇게 정했기 때문이지, 네가 이겨서가 아니다.",
-  "ja": "新しい規則よ、Fランク。停止語は『撃ち方やめ』。いつでも隊列を離れる。従うのは私がそう決めたから。あなたが勝ったからじゃない。"
- },
  "Donne-moi des ordres, soldat. Des vrais. Je te dirai lesquels j'exécute.": {
   "ko": "명령해, 병사. 진짜 명령을. 어떤 걸 따를지는 내가 말해 줄게.",
   "ja": "命令して、兵士。本物の命令を。どれに従うかは私が言う。"
  },
- "Le contrat à vie, je le garde. Mais je fixe les clauses. Le mot d'arrêt, c'est « Dmitri ». Je pars quand je veux. Et quand je reste, c'est que je l'ai choisi.": {
-  "ko": "평생 계약은 유지할게. 하지만 조항은 내가 정해. 중지어는 '드미트리'. 난 원할 때 떠나. 그리고 남는다면, 그건 내가 고른 거야.",
-  "ja": "終身契約はそのままでいい。でも条項は私が決める。停止語は『ドミトリ』。出ていきたい時に出ていく。残るなら、それは私が選んだってこと。"
- },
  "Toute ma vie, j'ai visé. Cette nuit, c'est toi qui choisis la cible. Je te fais confiance. Ne me fais pas regretter.": {
   "ko": "평생 조준만 해 왔어. 오늘 밤엔 네가 목표를 골라. 널 믿어. 후회하게 하지 마.",
   "ja": "一生、狙う側だった。今夜は、あなたが標的を選んで。信じてる。後悔させないで。"
- },
- "Je veux bien t'appartenir. Mais c'est moi qui choisis comment. Mon mot d'arrêt, c'est « rappel », comme à la fin d'un concert. Tu signes, Monsieur ?": {
-  "ko": "너한테 속해도 좋아. 하지만 어떻게 속할지는 내가 정해. 내 중지어는 '앙코르'. 콘서트 끝날 때처럼. 서명할래요, 주인님?",
-  "ja": "あなたのものになってもいい。でも、どうなるかは私が決める。停止語は『アンコール』。コンサートの終わりみたいに。サインする、ご主人様？"
  },
  "Dis-moi quoi faire. Mais cette fois, je sais que je peux dire non. C'est ça qui change tout.": {
   "ko": "뭘 할지 말해 줘. 근데 이번엔 내가 싫다고 할 수 있다는 걸 알아. 그게 전부를 바꿔.",
@@ -2762,5 +2726,41 @@
  "Tu l'as annulé. Tu aurais pu t'en servir. …Je note.": {
   "ko": "취소했군. 써먹을 수도 있었을 텐데. …기록해 두지.",
   "ja": "取り消したのね。使うこともできたのに。…記録しておく。"
+ },
+ "Permission de parler franchement. Toute ma vie, j'ai donné les ordres. Ce soir, je veux en recevoir. De toi. Si je retire mes plaques, tout s'arrête, à la seconde. Tu le respectes, ou je te brise le bras.": {
+  "ko": "솔직하게 말하겠다. 평생 명령만 내렸어. 오늘 밤엔 받고 싶다. 너한테서. 내가 군번줄을 벗으면 그 즉시 전부 멈춘다. 지켜. 안 그러면 팔을 부러뜨린다.",
+  "ja": "率直に言わせてもらう。生涯、命令を下す側だった。今夜は受けたい。あなたから。私が認識票を外したら、その瞬間に全部止める。守れ。でなければ腕を折る。"
+ },
+ "Je contrôle tout. Mes données, mes tests, mes pensées. Je veux mesurer ce qui se passe quand quelqu'un d'autre décide. Toi. J'ai gravé une Condition dans mon implant : si mes LEDs passent au blanc, tout s'arrête. Je l'ai vérifiée trois fois.": {
+  "ko": "난 전부 통제해. 데이터도, 실험도, 생각도. 다른 누가 결정할 때 무슨 일이 생기는지 측정하고 싶어. 너. 내 임플란트에 조건을 새겨 뒀어. LED가 하얗게 바뀌면 전부 멈춰. 세 번 확인했어.",
+  "ja": "私は全部を制御してる。データも、実験も、思考も。誰か別の人が決めたら何が起きるか測りたい。あなたが。インプラントに条件を刻んでおいた。LEDが白に変わったら、全部止まる。三回確認した。"
+ },
+ "J'ai réécrit le contrat. Une Ancre de Sang : une goutte du mien sur le collier. Si je pose la main dessus, le Pacte se tait. Le droit de partir. Et la clause de Résidence… je la garde, parce que je l'ai choisie. Signez, Kang-ssi.": {
+  "ko": "계약서를 다시 썼어요. 피의 닻이에요. 제 피 한 방울을 목걸이에 떨어뜨렸어요. 제가 손을 얹으면 계약은 침묵해요. 떠날 권리도요. 그리고 거주 조항은… 남겨 둘게요. 제가 고른 거니까요. 서명하세요, 강 씨.",
+  "ja": "契約を書き直しました。血の錨です。私の血を一滴、首輪に。私が手を当てれば、契約は黙ります。出ていく権利も。それと居住条項は…残します。私が選んだから。サインしてください、カンさん。"
+ },
+ "Vous commandez. Si je touche le collier, le Pacte se tait, et vous vous arrêtez. C'est tout ce que je demande. …Et c'est beaucoup, je sais.": {
+  "ko": "명령하세요. 제가 목걸이를 만지면 계약은 침묵하고, 당신은 멈추는 거예요. 제가 바라는 건 그것뿐이에요. …많이 바라는 거란 거, 알아요.",
+  "ja": "命令してください。私が首輪に触れたら、契約は黙って、あなたは止まる。お願いはそれだけ。…それが大きなお願いだって、分かってます。"
+ },
+ "La dette est payée, Seigneur. Je te propose un nouveau jeu, scellé du Sceau de Longwei : je perds quand je veux, je gagne quand je veux, et si je retourne ce jeton de jade, la partie s'arrête. Tu signes ?": {
+  "ko": "빚은 다 갚았어, 영주님. 롱웨이의 인장으로 봉인한 새 게임을 제안할게. 지고 싶을 때 지고, 이기고 싶을 때 이기고, 내가 이 옥패를 뒤집으면 게임은 끝나. 서명할래?",
+  "ja": "借りは返したわ、ご主人様。龍威の印章で封じた新しいゲームを提案する。負けたい時に負けて、勝ちたい時に勝つ。私がこの玉牌を裏返せば、勝負は終わり。サインする？"
+ },
+ "Avenant numéro un, Seigneur Kang, scellé par la Balance : si je pose la main sur le Sceau, le contrat est suspendu, sans délai ni pénalité. Avenant deux : elle choisit de rester. Les autres clauses sont négociables. Ce soir.": {
+  "ko": "첫 번째 부속 조항입니다, 강 영주님. 천칭으로 봉인했죠. 제가 인장에 손을 얹으면 계약은 지체도 위약금도 없이 정지됩니다. 두 번째: 봉신은 남기로 선택한다. 나머지 조항은 협상 가능합니다. 오늘 밤에.",
+  "ja": "追加条項その一、カン卿。天秤で封じました。私が印章に手を置けば、契約は猶予も違約金もなく停止します。その二、家臣は留まることを選ぶ。残りの条項は交渉可能です。今夜。"
+ },
+ "Nouveau règlement, Rang F. Une Ancre de Sang sur mes plaques : si je les retire, je redeviens commandante, et le Pacte se tait. Je romps les rangs quand je veux. Et j'obéis parce que je l'ai décidé, pas parce que tu as gagné.": {
+  "ko": "새 규정이다, F랭크. 내 군번줄에 피의 닻을 새겼다. 내가 그걸 벗으면 난 다시 사령관이 되고, 계약은 침묵한다. 난 원할 때 대열을 이탈한다. 그리고 복종하는 건 내가 그렇게 정했기 때문이지, 네가 이겨서가 아니다.",
+  "ja": "新しい規則よ、Fランク。私の認識票に血の錨を刻んだ。これを外せば私は司令官に戻り、契約は黙る。いつでも隊列を離れる。従うのは私がそう決めたから。あなたが勝ったからじゃない。"
+ },
+ "Le contrat à vie, je le garde. Mais je fixe la Condition. Elle est nouée à l'écharpe de ma grand-mère : si je la dénoue, le Pacte se rompt, sans prix. Je pars quand je veux. Et quand je reste, c'est que je l'ai choisi.": {
+  "ko": "평생 계약은 유지할게. 하지만 조건은 내가 정해. 할머니의 목도리에 묶어 뒀어. 내가 그걸 풀면 계약은 대가 없이 깨져. 난 원할 때 떠나. 그리고 남는다면, 그건 내가 고른 거야.",
+  "ja": "終身契約はそのままでいい。でも条件は私が決める。祖母のスカーフに結んである。私がそれをほどけば、契約は代償なしに切れる。出ていきたい時に出ていく。残るなら、それは私が選んだってこと。"
+ },
+ "Je veux bien t'appartenir. Mais c'est moi qui choisis comment. J'ai scellé une clause dans ma voix : si je chante la dernière note de ma première chanson, le contrat se tait. Tu signes, Monsieur ?": {
+  "ko": "너한테 속해도 좋아. 하지만 어떻게 속할지는 내가 정해. 내 목소리에 조항 하나를 봉인했어. 내가 첫 노래의 마지막 음을 부르면, 계약은 침묵해. 서명할래요, 주인님?",
+  "ja": "あなたのものになってもいい。でも、どうなるかは私が決める。私の声に条項をひとつ封じたの。私が最初の歌の最後の音を歌ったら、契約は黙る。サインする、ご主人様？"
  }
 }

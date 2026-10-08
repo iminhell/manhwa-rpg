@@ -1620,7 +1620,7 @@
    },
    {
     "s": "narrator",
-    "t": "Elles posent une seule règle, à voix haute : chacune choisit, chacune peut dire stop, et personne n'est laissée au bord du lit. La règle tient toute la nuit."
+    "t": "Elles posent une seule règle, à voix haute : chacune choisit, chacune peut tout suspendre d'un geste, et personne n'est laissée au bord du lit. La règle tient toute la nuit."
    },
    {
     "text_p3_slot": []
@@ -3327,7 +3327,7 @@
    },
    {
     "s": "narrator",
-    "t": "Elles ont fixé leurs règles l'après-midi, sur une feuille punaisée à la porte : on demande, on écoute, on s'arrête quand une seule dit stop. La feuille reste punaisée toute la nuit."
+    "t": "Elles ont fixé leurs règles l'après-midi, sur une feuille punaisée à la porte : on demande, on écoute, on s'arrête dès qu'une seule lève la main. La feuille reste punaisée toute la nuit."
    },
    {
     "text_p3_slot": []
@@ -3395,11 +3395,11 @@
    },
    {
     "s": "registre",
-    "t": "Cour de l'Ombre — six mots d'arrêt, six couronnes, un seul trône vide."
+    "t": "Cour de l'Ombre — six Clauses du Sceau, six couronnes, un seul trône vide."
    },
    {
     "s": "narrator",
-    "t": "Chacune donne son mot d'arrêt avant d'entrer, et chacune règne à son tour. Tu commandes autant que tu obéis. Personne n'est à genoux sans l'avoir choisi, et tout le monde peut se relever."
+    "t": "Chacune scelle sa Clause avant d'entrer, celle qui fait tout taire d'un geste, et chacune règne à son tour. Tu commandes autant que tu obéis. Personne n'est à genoux sans l'avoir choisi, et tout le monde peut se relever."
    },
    {
     "text_p3_slot": []

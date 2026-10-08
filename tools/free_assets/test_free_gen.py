@@ -159,13 +159,27 @@ def main() -> None:
         check(("1boy" in p) == bool(style["characters"][cid].get("male")) and "(full body:1.4)" in p and "white background" in p,
               f"prompt de sprite {cid}")
     check("child" in style["negative"] and "loli" in style["negative"], "négatif des sprites : garde-fous d'âge")
-    # Charadesign d'Elias (manteau long noir tactique, peau caramel, sabre) et réglages de netteté
+    # Charadesign d'Elias (manteau long noir tactique, peau caramel, imberbe, cheveux mi-longs, visage calme) et netteté
     pe = fg.sprite_prompt(style, "elias")
-    check(all(t in pe for t in ("long black coat", "tactical military greatcoat", "caramel skin", "sheathed sword at hip", "short curly hair"))
-          and "sweaty skin" not in pe and "seductive smile" not in pe and "confident smirk" in pe, "prompt d'Elias : manteau, peau caramel, sabre")
+    check(all(t in pe for t in ("long black coat", "tactical military greatcoat", "caramel skin", "sheathed sword at hip",
+                                "medium-length hair", "clean-shaven", "calm expression"))
+          and "sweaty skin" not in pe and "seductive smile" not in pe and "stubble" not in pe and "cold gaze" not in pe,
+          "prompt d'Elias : manteau, peau caramel, imberbe, cheveux mi-longs, visage calme")
+    ne = fg.sprite_negative(style, "elias")
+    check("beard" in ne and "stubble" in ne and ne.startswith(style["negative"]), "négatif d'Elias : barbe et air renfrogné exclus")
+    check(fg.sprite_negative(style, "aoi") == style["negative"], "négatif commun pour les autres personnages")
     check("seductive smile" in fg.sprite_prompt(style, "seo_yeon"), "expressions communes inchangées pour les héroïnes")
+    ps = fg.sprite_prompt(style, "simone")
+    check("thigh holster" in ps and "plunging neckline" in ps and "visible abs" in ps and "standing straight" in ps,
+          "Simone : tenue de commandante, pose propre au personnage")
     check(style["hires"]["scale"] == 1.5 and style["detailer"]["face_model"] and style["detailer"]["hand_model"]
-          and "sharp lineart" in style["quality"], "netteté : seconde passe ×1,5, retouche visages et mains, prompts")
+          and "sharp lineart" in style["quality"] and "soft shadows" not in style["background"] and "drop shadow" in style["negative"],
+          "netteté : seconde passe ×1,5, retouche visages et mains, sans ombre portée")
+    from PIL import Image as _Im, ImageDraw as _Dr  # noqa: PLC0415
+    _im = _Im.new("RGB", (64, 64), "white")
+    _Dr.Draw(_im).rectangle((20, 20, 44, 44), fill=(120, 120, 120))
+    _sh = fg.sharpen(_im, style["sharpen"])
+    check(_sh.size == _im.size and _sh.getpixel((21, 32))[0] < 120 and fg.sharpen(_im, None) is _im, "accentuation finale du trait")
     from PIL import Image, ImageDraw  # noqa: PLC0415
     alpha = Image.new("L", (200, 400), 0)
     ImageDraw.Draw(alpha).rectangle((60, 40, 140, 390), fill=255)
