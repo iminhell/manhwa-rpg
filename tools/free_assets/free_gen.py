@@ -334,6 +334,60 @@ def head_mask(alpha, margin: float = 0.18):
     return mask.filter(ImageFilter.GaussianBlur(6))
 
 
+ALPHA_DEFAULTS = {"min_alpha": 24, "shadow_band": 0.1, "min_island": 0.002, "white": 210, "white_alpha": 0.6,
+                  "choke": [0.12, 0.85]}
+
+
+def clean_alpha(rgba, opts: dict | None = None):
+    """Nettoie un détourage rembg fait sur fond blanc (sprites d'anime), sans toucher aux couleurs visibles : le trait de
+    contour (lineart), souvent semi-transparent au bord, doit rester intact.
+    1. fond résiduel : alpha faible, et pixels presque blancs à l'alpha incertain (voile autour des cheveux, fond coincé
+       entre deux éléments) → transparents ;
+    2. ombre portée sous les pieds : dans la bande basse de la silhouette, gris neutre semi-transparent (sa couleur,
+       une fois le blanc du fond retiré, est sombre et sans saturation) → transparent ;
+    3. îlots détachés plus petits qu'une fraction de la silhouette → transparents ;
+    4. « resserrement » de l'alpha (niveaux bas/haut) : le voile qui bave autour du contour disparaît, le trait reste ;
+    5. « alpha bleeding » : les pixels transparents prennent la couleur du bord visible voisin, pour que le filtrage
+       bilinéaire de Godot ne fasse pas apparaître de halo blanc ou noir autour du sprite."""
+    import numpy as np  # noqa: PLC0415
+    from PIL import Image, ImageFilter  # noqa: PLC0415
+    o = {**ALPHA_DEFAULTS, **(opts or {})}
+    arr = np.asarray(rgba.convert("RGBA"), dtype=np.float32)
+    rgb, a = arr[..., :3].copy(), arr[..., 3] / 255.0
+    lum, sat = rgb.mean(axis=2), rgb.max(axis=2) - rgb.min(axis=2)
+    a[a < o["min_alpha"] / 255.0] = 0.0
+    a[(a < o["white_alpha"]) & (sat < 20) & (lum > o["white"])] = 0.0
+    solid = a > 0.5
+    if solid.any():
+        rows = np.where(solid.any(axis=1))[0]
+        top, bottom = rows[0], rows[-1]
+        band = np.zeros_like(solid)
+        band[int(bottom - (bottom - top) * o["shadow_band"]):, :] = True
+        true = np.clip((rgb - (1.0 - a[..., None]) * 255.0) / np.maximum(a[..., None], 0.05), 0, 255)
+        true_sat = true.max(axis=2) - true.min(axis=2)
+        a[band & (a < 0.85) & (true_sat < 30) & (true.mean(axis=2) < 150)] = 0.0
+        try:
+            from scipy import ndimage  # noqa: PLC0415
+            labels, n = ndimage.label(a > 0.1)
+            if n > 1:
+                sizes = ndimage.sum(np.ones_like(a), labels, index=np.arange(1, n + 1))
+                a[np.isin(labels, np.where(sizes < o["min_island"] * sizes.max())[0] + 1)] = 0.0
+        except ImportError:
+            pass
+    lo, hi = o["choke"]
+    a = np.clip((a - lo) / max(hi - lo, 1e-3), 0.0, 1.0)
+    clear = a <= 0.0
+    if clear.any() and (~clear).any():
+        blur = ImageFilter.GaussianBlur(4)
+        num = [np.asarray(Image.fromarray(np.clip(rgb[..., c] * a, 0, 255).astype(np.uint8)).filter(blur), np.float32)
+               for c in range(3)]
+        den = np.asarray(Image.fromarray((a * 255).astype(np.uint8)).filter(blur), np.float32) / 255.0
+        spread = np.dstack(num) / np.maximum(den[..., None], 1e-3)
+        rgb[clear] = np.where(den[clear, None] > 0.002, spread[clear], 0.0)
+    out = np.dstack([np.clip(rgb, 0, 255), a * 255.0]).round().astype(np.uint8)
+    return Image.fromarray(out, "RGBA")
+
+
 class SpriteBackend(SdxlBackend):
     """Checkpoint SDXL (fichier unique) + LoRA, génération sur fond blanc, inpainting du visage pour les expressions
     (corps identique au pixel près, clignement compris), détourage rembg (modèle isnet-anime)."""
@@ -367,12 +421,12 @@ class SpriteBackend(SdxlBackend):
         return self.masks[cid]
 
     def cut(self, img):
-        """Fond blanc → transparent."""
+        """Fond blanc → transparent : détourage rembg, puis nettoyage du masque (clean_alpha)."""
         if self.remover is None:
             from rembg import new_session, remove  # noqa: PLC0415
             session = new_session(os.environ.get("REMBG_MODEL", "isnet-anime"))
             self.remover = lambda im: remove(im, session=session)
-        return self.remover(img).convert("RGBA")
+        return clean_alpha(self.remover(img).convert("RGBA"), self.style.get("alpha_cleanup"))
 
     def generate(self, prompt: str, negative: str, seed: int):
         w, h = self.style["size"]

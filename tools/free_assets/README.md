@@ -30,7 +30,14 @@ Sur le PC, double-cliquer `GENERER_ASSETS.bat` (ou `./generer_assets.sh`) : il f
   - les tags de chaque expression.
 - **Pondération** : la syntaxe A1111 (`(full body:1.4)`, `(mot)`, `[mot]`) est appliquée aux embeddings.
 - **Cohérence** : la pose neutre de chaque personnage est générée une fois et gardée dans `art_work/sprite_bases/`. Chaque autre expression, clignement compris, est produite par **inpainting du seul visage** : le corps est identique au pixel près, et le clignement ne fait pas sauter le personnage.
-- **Détourage** : `rembg` avec le modèle `isnet-anime` retire le fond blanc. Testé sur l'image de référence de Gaïa : fond entièrement transparent, robe blanche conservée.
+- **Détourage** : `rembg` avec le modèle `isnet-anime` retire le fond blanc, puis `clean_alpha` nettoie le masque **sans toucher aux couleurs visibles**, pour que le trait de contour reste intact. Il supprime :
+  - le fond blanc résiduel à l'alpha incertain (voile, fond coincé entre deux éléments) ;
+  - l'ombre portée sous les pieds (gris neutre semi-transparent dans le bas de la silhouette) ;
+  - les îlots isolés et le voile qui bave autour du contour (resserrement de l'alpha).
+
+  Les pixels transparents reçoivent la couleur du bord voisin, pour éviter tout halo blanc ou noir au filtrage dans Godot. Testé sur l'image de référence de Gaïa : ombre 51 038 → 11 pixels, contour conservé. Réglages : `alpha_cleanup` dans `sprite_style.json`.
+- **Paramètres** : 36 étapes, CFG 5,5, LoRA Takeda à 0,6 (moins de déformations).
+- **Refaire un personnage** : réglage `REGENERER` du notebook (ex. `elias`), ou `free_gen.py sprites --force --only elias`.
 - **Garde-fous** : le négatif garde `nude, nipples` (sprites habillés) et les tags anti-juvénilité (`child, loli, childlike, young-looking`), et tous les profils portent `mature female` / `mature male`.
 - **LoRA Civitai** : certains exigent un jeton (secret Colab `CIVITAI_TOKEN`). Les mots déclencheurs indiqués sont à vérifier sur la page de chaque LoRA. Un LoRA entraîné sur Illustrious fonctionne avec un checkpoint SDXL comme Animagine, mais son effet peut varier.
 

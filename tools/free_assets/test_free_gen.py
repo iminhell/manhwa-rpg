@@ -165,6 +165,28 @@ def main() -> None:
     box = fg.head_mask(alpha).point(lambda v: 255 if v > 128 else 0).getbbox()
     check(box and box[1] <= 40 and 100 < box[3] < 160 and box[0] < 60 and box[2] > 140, f"masque du visage : haut de la silhouette {box}")
 
+    # Nettoyage du détourage : ombre, îlot et voile supprimés, contour (lineart) et couleurs conservés
+    import numpy as np  # noqa: PLC0415
+    rgba = np.zeros((300, 200, 4), np.uint8)
+    rgba[..., :3] = 255
+    rgba[40:260, 70:130] = (230, 180, 150, 255)          # silhouette (peau)
+    rgba[40:260, 68:70] = rgba[40:260, 130:132] = (15, 15, 20, 200)   # trait de contour, semi-transparent au bord
+    rgba[262:285, 40:160] = (190, 190, 190, 120)         # ombre portée grise sous les pieds
+    rgba[10:13, 10:13] = (90, 60, 40, 255)               # îlot isolé (poussière)
+    rgba[30:40, 60:140] = (245, 245, 245, 70)            # voile blanc au-dessus de la tête
+    out = np.asarray(fg.clean_alpha(Image.fromarray(rgba, "RGBA")))
+    check(out[270, 100, 3] == 0, f"détourage : ombre sous les pieds supprimée (alpha {out[270, 100, 3]})")
+    try:
+        import scipy  # noqa: F401, PLC0415  (installé avec rembg ; absent du Python système de certains conteneurs)
+        check(out[11, 11, 3] == 0, "détourage : îlot isolé supprimé")
+    except ImportError:
+        print("  (scipy absent : suppression des îlots non vérifiée ici)")
+    check(out[35, 100, 3] == 0, "détourage : voile blanc supprimé")
+    check(out[150, 100, 3] == 255 and tuple(out[150, 100, :3]) == (230, 180, 150), "détourage : silhouette et couleurs intactes")
+    check(out[150, 68, 3] > 200 and out[150, 68, :3].max() < 40, f"détourage : trait de contour conservé ({out[150, 68]})")
+    near = out[150, 60]
+    check(near[3] == 0 and near[:3].max() > 0, f"détourage : pixels transparents colorés par le bord voisin, pas noirs ({near})")
+
     ctx = fg.art.Ctx(dry_run=True)
     tokens = [c["token"] for c in ctx.chars.values()]
     real_root = fg.ROOT

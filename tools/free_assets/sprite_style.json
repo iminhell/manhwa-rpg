@@ -5,12 +5,25 @@
   "url": "https://huggingface.co/cagliostrolab/animagine-xl-3.1/resolve/main/animagine-xl-3.1.safetensors"
  },
  "loras": [
-  {"name": "takeda_hiromitsu", "url": "https://civitai.com/api/download/models/1746228", "weight": 0.8, "trigger": "takeda hiromitsu"},
-  {"name": "add_detail_xl", "url": "https://civitai.com/api/download/models/135867", "weight": 1.0, "trigger": ""}
+  {
+   "name": "takeda_hiromitsu",
+   "url": "https://civitai.com/api/download/models/1746228",
+   "weight": 0.6,
+   "trigger": "takeda hiromitsu"
+  },
+  {
+   "name": "add_detail_xl",
+   "url": "https://civitai.com/api/download/models/135867",
+   "weight": 1.0,
+   "trigger": ""
+  }
  ],
- "size": [832, 1216],
- "steps": 28,
- "guidance": 6.0,
+ "size": [
+  832,
+  1216
+ ],
+ "steps": 36,
+ "guidance": 5.5,
  "expression_strength": 0.6,
  "quality": "masterpiece, best quality, amazing quality, (ultra-detailed), very aesthetic, absurdres, anime style, defined line, sweaty skin",
  "background": "simple background, white background, cinematic lighting, soft shadows",
@@ -44,8 +57,8 @@
  "characters": {
   "elias": {
    "male": true,
-   "body": "1boy, solo, mature male, tall, muscular male, broad shoulders, toned, abs, veins",
-   "look": "dark-skinned male, light brown skin, black hair, curly hair, short hair, undercut, stubble, hazel eyes, thick eyebrows, scar across eyebrow, burn scar on forearm, forearm tattoo",
+   "body": "1boy, solo, handsome, young adult male, adult, tall, muscular male, broad shoulders, toned, abs, veins",
+   "look": "mixed-race, tan skin, light brown skin, handsome face, sharp features, black hair, curly hair, wavy hair, short sides, curls on forehead, light stubble, hazel eyes, thick eyebrows, scar across eyebrow, burn scar on forearm, forearm tattoo",
    "outfit": "black bomber jacket, open jacket, sleeves rolled up, grey t-shirt, tight shirt, black cargo pants, combat boots, wristwatch"
   },
   "seo_yeon": {
@@ -98,5 +111,17 @@
    "look": "very long hair, black hair, single braid, black eyes, rectangular eyewear, glasses, eye bags, glowing blue lights on temple, cybernetic implant, olive skin, black nails",
    "outfit": "open lab coat, white lab coat, black bodysuit, tight bodysuit, boots, holographic display"
   }
+ },
+ "sampler_note": "36 étapes Euler a, CFG 5,5 (Animagine conseille 5 à 7 ; plus bas = moins de déformations avec les LoRA)",
+ "alpha_cleanup": {
+  "min_alpha": 24,
+  "shadow_band": 0.1,
+  "min_island": 0.002,
+  "white": 210,
+  "white_alpha": 0.6,
+  "choke": [
+   0.12,
+   0.85
+  ]
  }
 }
