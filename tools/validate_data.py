@@ -64,6 +64,7 @@ gifts = load(DATA / "world/gifts.json").get("gifts", {})
 difficulty = load(DATA / "world/difficulty.json")
 resilience = load(DATA / "world/resilience.json")
 fins = load(DATA / "world/fins.json").get("fins", {})
+gallery = load(DATA / "world/gallery.json")
 prompts = load(DATA / "art/prompts.json")
 manifest = load(DATA / "art/manifest.json").get("assets", [])
 music_path = DATA / "audio/music.json"
@@ -498,6 +499,84 @@ for did, dlg in dialogues.items():
         nights = [p.split()[1] for st in steps for p in st.get("fx", []) if str(p).startswith("flag ") and NIGHT_FLAG.match(str(p).split()[1])]
         if nights and b not in shows_cg and not (preds[b] & shows_cg):
             err(f"dialogues/{did}:{b} : nuit « {nights[0]} » sans CG (dans le bloc ou dans un bloc qui y mène)")
+
+# --- Galerie : catalogue des CG clés et des scènes intimes (data/world/gallery.json) ----------------
+# Chaque CG du manifeste a son entrée ; chaque bloc intime (palier P3 ou drapeau de nuit) est atteint depuis les blocs
+# qui débloquent une entrée ; une entrée « prevue » n'a ni scène ni déblocage, mais dit ce qui manque (« setup »).
+G_STATUS = {"ecrite", "amorce", "prevue"}
+cg_nsfw = {Path(i["out"]).stem: bool(i.get("nsfw")) for i in manifest if i.get("kind") == "cg"}
+
+
+def _block_ok(ref: str, where: str) -> bool:
+    did, _, b = str(ref).partition(":")
+    if b in dialogues.get(did, {}).get("blocks", {}):
+        return True
+    err(f"{where} : bloc inconnu « {ref} »")
+    return False
+
+
+def _closure(ref: str) -> set:
+    did, _, b0 = ref.partition(":")
+    blocks = dialogues[did]["blocks"]
+    seen, stack = set(), [b0]
+    while stack:
+        b = stack.pop()
+        if b in seen or b not in blocks:
+            continue
+        seen.add(b)
+        for st in blocks[b]:
+            stack += [st[k] for k in ("goto", "then", "else") if isinstance(st.get(k), str)]
+            stack += [o["goto"] for o in st.get("choice", []) if o.get("goto")]
+    return {(did, b) for b in seen}
+
+
+g_ids, g_cgs, g_covered = set(), {}, set()
+for e in gallery.get("entries", []):
+    w = f"gallery/{e.get('id')}"
+    if e.get("id") in g_ids:
+        err(f"{w} : identifiant en double")
+    g_ids.add(e.get("id"))
+    for key, table in (("tab", "tabs"), ("cat", "categories"), ("route", "routes")):
+        if e.get(key) not in gallery.get(table, {}):
+            err(f"{w} : {key} inconnu « {e.get(key)} »")
+    for m in e.get("members", []):
+        if m not in characters:
+            err(f"{w} : personnage inconnu « {m} »")
+    if not e.get("title") or not e.get("hint"):
+        err(f"{w} : titre ou indice manquant")
+    status = e.get("status")
+    if status not in G_STATUS:
+        err(f"{w} : statut inconnu « {status} » ({', '.join(sorted(G_STATUS))})")
+    elif status == "prevue":
+        if e.get("scene") or e.get("unlock") or e.get("cg"):
+            err(f"{w} : une entrée prévue n'a ni scène, ni déblocage, ni CG")
+        if not e.get("setup"):
+            err(f"{w} : entrée prévue sans « setup » (ce qui manque pour l'écrire)")
+    else:
+        if not e.get("unlock"):
+            err(f"{w} : aucun bloc de déblocage (« unlock »)")
+        _block_ok(e.get("scene", ""), w + ".scene")
+        for ref in e.get("unlock", []):
+            if _block_ok(ref, w + ".unlock"):
+                g_covered |= _closure(ref)
+    cg = e.get("cg")
+    if cg:
+        if cg not in cg_nsfw:
+            err(f"{w} : CG inconnue « {cg} »")
+        elif cg in g_cgs:
+            err(f"{w} : CG « {cg} » déjà cataloguée par « {g_cgs[cg]} »")
+        g_cgs[cg] = e.get("id")
+        if e.get("route") == "pacte" and cg_nsfw.get(cg):
+            err(f"{w} : une nuit de Pacte n'a pas de CG intime")
+for cg in cg_nsfw:
+    if cg not in g_cgs:
+        err(f"gallery : la CG « {cg} » n'a pas d'entrée")
+for did, dlg in dialogues.items():
+    for b, steps in dlg.get("blocks", {}).items():
+        intimate = any("text_p3_slot" in st for st in steps) or any(
+            str(p).startswith("flag ") and NIGHT_FLAG.match(str(p).split()[1]) for st in steps for p in st.get("fx", []))
+        if intimate and (did, b) not in g_covered:
+            err(f"dialogues/{did}:{b} : scène intime absente de la galerie (aucune entrée ne la débloque)")
 
 # Résumés de fin d'acte (lus par le code)
 for act, lines in load(DATA / "world/act_summary.json").items():

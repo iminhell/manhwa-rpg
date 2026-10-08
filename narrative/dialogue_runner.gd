@@ -33,6 +33,7 @@ var block: String = ""
 var index: int = 0
 var finished: bool = false
 var show_p3: bool = true  ## faux : les passages text_p3_slot sont sautés (préférence Settings.hide_pacte_p3)
+var on_enter: Callable     ## appelé avec « dialogue:bloc » à l'entrée de chaque bloc (déblocage de la galerie)
 var _pending_choices: Array = []
 var _slot: Array = []      ## répliques restantes du passage P3 en cours
 var _slot_id: String = ""
@@ -49,6 +50,7 @@ func start(dlg: Dictionary, start_block: String = "") -> void:
 	finished = false
 	_pending_choices = []
 	_slot = []
+	_entered()
 
 
 ## Avance jusqu'à la prochaine étape « présentable » et la renvoie :
@@ -160,6 +162,12 @@ func _jump(target: String) -> void:
 		return
 	block = target
 	index = 0
+	_entered()
+
+
+func _entered() -> void:
+	if on_enter.is_valid():
+		on_enter.call("%s:%s" % [dialogue.get("id", "?"), block])
 
 
 ## Vérifie la cohérence d'un dialogue (blocs cibles existants). Renvoie la liste des erreurs.

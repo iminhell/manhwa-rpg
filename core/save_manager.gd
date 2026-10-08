@@ -115,6 +115,30 @@ func cg_unlocked(id: String) -> bool:
 	return meta.get("cgs", []).has(id)
 
 
+## Galerie : une scène commencée une fois (entrée d'un bloc « unlock » de data/world/gallery.json) reste débloquée
+## pour toutes les boucles, dans meta["scenes"].
+func unlock_scene(ref: String) -> void:
+	var ids: Array = DataDB.gallery_unlocks.get(ref, [])
+	if ids.is_empty():
+		return
+	if not meta.has("scenes"):
+		meta["scenes"] = []
+	var changed := false
+	for id in ids:
+		if not meta["scenes"].has(id):
+			meta["scenes"].append(id)
+			changed = true
+	if changed:
+		_write(META_PATH, meta)
+
+
+## Entrée de galerie débloquée : scène commencée, ou CG déjà vue (sauvegardes antérieures à la galerie par scènes).
+func entry_unlocked(entry: Dictionary) -> bool:
+	if entry.get("status", "") == "prevue":
+		return false
+	return meta.get("scenes", []).has(entry.get("id", "")) or (entry.get("cg", "") != "" and cg_unlocked(entry["cg"]))
+
+
 func record_act(act: int) -> void:
 	if not meta["acts"].has(act):
 		meta["acts"].append(act)

@@ -13,7 +13,7 @@ RPG narratif et tactique inspiré des manhwas/webtoons : régression temporelle,
 1. Installer **Godot 4.5** (version standard), ouvrir le dossier du dépôt, lancer avec F5.
 2. **Nouvelle boucle** : choix du mode (**Histoire**, **Normal**, **Survie**), prologue J1–J2, puis **la carte de Séoul** : Acte I jusqu'au Classement du J7, Acte II jusqu'au J15, Acte III jusqu'au J23, puis Acte IV jusqu'à la **Nuit du Déversement** (J30), ses Fins, et la régression vers la boucle suivante.
    **Continuer / Charger** reprennent une partie (autosauvegarde à chaque phase, 3 emplacements manuels).
-3. **Fiches des personnages** et **Galerie** des CG débloquées : depuis l'écran titre ou le menu pause (Échap, ou bouton **Menu**).
+3. **Fiches des personnages** et **Galerie** (onglets « Histoire / CG clés » et « Scènes intimes », compteurs par catégorie et par voie, indices, « Revoir » ; inventaire : `docs/GALERIE.md`) : depuis l'écran titre ou le menu pause (Échap, ou bouton **Menu**).
 4. **Options** : voix IA On/Off, langue coréenne ou japonaise, volumes, masquage des passages P3.
 
 | Écran | Commandes |
@@ -46,7 +46,7 @@ Tant que les images ne sont pas générées, le jeu affiche des **placeholders**
 GODOT=godot ./tools/check_all.sh     # validateur + générateur d'assets + import + 6 663 tests + interface (--uitest) + 6 parties automatiques
 AUTOPILOT_DEBUG=1 godot --headless --path . -- --autotest   # trace l'itinéraire de l'autopilote étape par étape
 godot --path . -- --uitest            # interface : barre d'actions du dialogue, menu pause, fiches, galerie
-godot --path . -- --capture           # captures d'écran dans user://captures/ (titre, carte, dialogue, journal, pause, fiches, galerie, combat)
+godot --path . -- --capture           # captures d'écran dans user://captures/ (titre, carte, dialogue, journal, pause, fiches, galerie et son onglet intime, combat)
 ```
 
 ## Outils

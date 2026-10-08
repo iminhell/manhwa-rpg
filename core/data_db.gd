@@ -18,6 +18,8 @@ var resilience: Dictionary = {}
 var gifts: Dictionary = {}
 var echoes: Dictionary = {}
 var group_scenes: Dictionary = {}
+var gallery: Dictionary = {}
+var gallery_unlocks: Dictionary = {}  ## « dialogue:bloc » → identifiants des entrées de galerie qu'il débloque
 
 
 func _ready() -> void:
@@ -42,6 +44,13 @@ func reload() -> void:
 	gifts = load_json("res://data/world/gifts.json")
 	echoes = load_json("res://data/world/echoes.json").get("echoes", {})
 	group_scenes = load_json("res://data/world/group_scenes.json")
+	gallery = load_json("res://data/world/gallery.json")
+	gallery_unlocks = {}
+	for e in gallery.get("entries", []):
+		for ref in e.get("unlock", []):
+			if not gallery_unlocks.has(ref):
+				gallery_unlocks[ref] = []
+			gallery_unlocks[ref].append(e["id"])
 
 
 static func load_json(path: String) -> Dictionary:

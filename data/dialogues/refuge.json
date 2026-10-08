@@ -2477,6 +2477,10 @@
     "then": "nadia_pacte"
    },
    {
+    "if": "v('repos.nadia') >= 1 and flag('refuge.dortoir') and aff('nadia') >= 20 and v('align.protect') <= -15",
+    "then": "nadia_ombre"
+   },
+   {
     "if": "voie() == 'mercenaire' and v('repos.nadia') >= 1 and flag('refuge.dortoir') and aff('nadia') >= 20",
     "then": "nadia_merc"
    },
@@ -2739,6 +2743,10 @@
     "then": "simone_pacte"
    },
    {
+    "if": "v('repos.simone') >= 1 and flag('refuge.dortoir') and aff('simone') >= 20 and v('align.protect') <= -15",
+    "then": "simone_ombre"
+   },
+   {
     "if": "voie() == 'mercenaire' and v('repos.simone') >= 1 and flag('refuge.dortoir') and aff('simone') >= 20",
     "then": "simone_merc"
    },
@@ -2984,6 +2992,10 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "if": "v('repos.minh_anh') >= 1 and flag('refuge.dortoir') and aff('minh_anh') >= 20 and v('align.protect') <= -15",
+    "then": "minh_anh_ombre"
    },
    {
     "if": "voie() == 'mercenaire' and v('repos.minh_anh') >= 1 and flag('refuge.dortoir') and aff('minh_anh') >= 20",
@@ -4475,6 +4487,237 @@
    {
     "fx": [
      "add repos.nadia 1",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "nadia_ombre": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_nadia_ombre"
+   },
+   {
+    "s": "narrator",
+    "t": "Sur le toit, Nadia démonte son fusil pièce par pièce et pose chaque pièce dans ta main, comme on rend les armes. Le dernier morceau, c'est la culasse. Elle la garde."
+   },
+   {
+    "s": "nadia",
+    "t": "Toute la ville a peur de toi. Moi, je veux savoir ce que ça fait, d'avoir peur avec quelqu'un. Une nuit. Après, je reprends mon fusil.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "choice": [
+     {
+      "t": "Lui rendre les pièces, une à une.",
+      "goto": "nadia_ombre_rendre",
+      "fx": [
+       "add trust.nadia 5"
+      ]
+     },
+     {
+      "t": "Garder le fusil jusqu'à l'aube, comme elle le demande.",
+      "goto": "nadia_ombre_garder",
+      "fx": [
+       "add aff.nadia 4"
+      ]
+     }
+    ]
+   }
+  ],
+  "nadia_ombre_rendre": [
+   {
+    "s": "narrator",
+    "t": "Elle remonte le fusil les yeux fermés, en quarante secondes, et le pose contre le mur, canon vers le sol. Puis elle dénoue l'écharpe rouge et la noue à ton poignet. « Égaux. Même ici. » Le reste de la nuit, c'est elle qui donne le rythme."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add repos.nadia 1",
+     "flag nadia_nuit",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "nadia_ombre_garder": [
+   {
+    "s": "narrator",
+    "t": "Tu gardes le fusil. Elle te regarde le tenir comme on regarde quelqu'un tenir sa vie. Personne ne l'a jamais désarmée ; ce soir, c'est elle qui l'a décidé, et elle le dit à voix haute avant que tu ne la touches."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add repos.nadia 1",
+     "flag nadia_nuit",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "simone_ombre": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_simone_ombre"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle se présente au rapport, au garde-à-vous, dans ton bureau de seigneur de guerre. Puis elle pose son béret sur la table, et sa voix change."
+   },
+   {
+    "s": "simone",
+    "t": "Permission de parler franchement. Toute ma vie, j'ai donné les ordres. Ce soir, je veux en recevoir. De toi. Le mot pour tout arrêter, c'est « cessez-le-feu ». Tu le respectes à la seconde, ou je te brise le bras.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "choice": [
+     {
+      "t": "« Cessez-le-feu. Je le respecterai. »",
+      "goto": "simone_ombre_ordre",
+      "fx": [
+       "add trust.simone 5"
+      ]
+     },
+     {
+      "t": "« Assieds-toi. Et ne bouge plus tant que je ne l'ai pas dit. »",
+      "goto": "simone_ombre_jeu",
+      "fx": [
+       "add aff.simone 4"
+      ]
+     }
+    ]
+   }
+  ],
+  "simone_ombre_ordre": [
+   {
+    "s": "narrator",
+    "t": "Elle hoche la tête, une fois, comme on valide un plan de bataille. Puis elle attend tes ordres, et pour la première fois depuis des années, ses épaules se relâchent."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add repos.simone 1",
+     "flag simone_nuit",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "simone_ombre_jeu": [
+   {
+    "s": "narrator",
+    "t": "Elle s'assoit. Elle ne bouge plus. Elle rit, une seule fois, quand tu tardes exprès à donner l'ordre suivant ; puis elle ne rit plus, et elle obéit à chacun en te regardant droit dans les yeux, parce que c'est elle qui l'a choisi."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add repos.simone 1",
+     "flag simone_nuit",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "minh_anh_ombre": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_minh_anh_ombre"
+   },
+   {
+    "s": "narrator",
+    "t": "Minh-Anh t'attend dans ton bureau, sa tablette serrée contre la poitrine. Sur l'écran, un seul titre : « Protocole d'abandon du contrôle ». Ses LEDs clignotent au blanc."
+   },
+   {
+    "s": "minh_anh",
+    "t": "Je contrôle tout. Mes données, mes tests, mes pensées. Je veux mesurer ce qui se passe quand quelqu'un d'autre décide. Toi. Le mot d'arrêt est « erreur ». Je l'ai écrit en gras.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "choice": [
+     {
+      "t": "Lire tout le protocole, ligne par ligne, avant de décider.",
+      "goto": "minh_anh_ombre_lire",
+      "fx": [
+       "add trust.minh_anh 5"
+      ]
+     },
+     {
+      "t": "Lui prendre la tablette et la poser, écran contre la table.",
+      "goto": "minh_anh_ombre_poser",
+      "fx": [
+       "add aff.minh_anh 4"
+      ]
+     }
+    ]
+   }
+  ],
+  "minh_anh_ombre_lire": [
+   {
+    "s": "narrator",
+    "t": "Tu lis tout. Tu poses deux questions. Elle rougit à la deuxième, et ajoute une ligne. Puis elle te tend la tablette, signée : elle a choisi, et maintenant elle veut que tu décides."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add repos.minh_anh 1",
+     "flag minh_anh_nuit",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "minh_anh_ombre_poser": [
+   {
+    "s": "narrator",
+    "t": "L'écran s'éteint contre le bois. Elle sursaute, puis elle rit, nerveuse, et ses LEDs passent au rose. « Pas de données, alors. Seulement toi. » Elle ne prononce pas le mot d'arrêt de la nuit."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add repos.minh_anh 1",
+     "flag minh_anh_nuit",
      "add fatigue -4"
     ]
    },

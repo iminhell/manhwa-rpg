@@ -1778,6 +1778,42 @@
       "out": "assets/cg/cg_nadia_devotion.png",
       "size": "landscape_16_9",
       "scene": "refuge:nadia_devotion_nuit"
+    },
+    {
+      "id": "cg_nadia_ombre",
+      "kind": "cg",
+      "chars": [
+        "nadia",
+        "elias"
+      ],
+      "prompt": "nadia_tsoi on a rooftop at night handing the parts of her disassembled rifle to elias_kang in a long black coat, keeping the bolt in her hand, red scarf, cold wind, intense trust, dark romance tension",
+      "out": "assets/cg/cg_nadia_ombre.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:nadia_ombre"
+    },
+    {
+      "id": "cg_simone_ombre",
+      "kind": "cg",
+      "chars": [
+        "simone",
+        "elias"
+      ],
+      "prompt": "simone_hayes standing at attention in a warlord's office then setting her beret on the desk, looking straight at elias_kang in a long black coat, candid trust, dark romance tension, amber light",
+      "out": "assets/cg/cg_simone_ombre.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:simone_ombre"
+    },
+    {
+      "id": "cg_minh_anh_ombre",
+      "kind": "cg",
+      "chars": [
+        "minh_anh",
+        "elias"
+      ],
+      "prompt": "minhanh_tran holding a tablet titled control protocol against her chest in a dark office, temple LEDs blinking white, nervous determined look at elias_kang in a long black coat, dark romance tension",
+      "out": "assets/cg/cg_minh_anh_ombre.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:minh_anh_ombre"
     }
   ]
 }

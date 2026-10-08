@@ -10,6 +10,7 @@ step() { printf '\n\033[1;36m== %s ==\033[0m\n' "$1"; }
 
 step "1/4 Validation des données (lore, variables, références)"
 python3 tools/validate_data.py || fail=1
+python3 tools/build_gallery_doc.py --check || fail=1
 python3 tools/free_assets/test_free_gen.py >/dev/null || { python3 tools/free_assets/test_free_gen.py | tail -5; fail=1; }
 python3 tools/free_assets/test_backends_torch.py | tail -1 || fail=1   # vrais moteurs (ignoré sans torch/diffusers)
 

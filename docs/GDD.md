@@ -2508,7 +2508,14 @@ manhwa-rpg/                    # le projet Godot est à la racine du dépôt
   - **Menu** (Échap).
 - **Menu pause** (Échap, bouton Menu de la carte et du dialogue) : Reprendre, Sauvegarder, Charger, Fiches, Galerie, Options, Retour au titre.
 - **Fiches des personnages** (titre et pause) : portrait, identité, présentation sans spoiler (`bio`, `trait`). En partie s'y ajoutent l'Affinité, la Confiance, la Peur, le statut dans la boucle et la Fin lue.
-- **Galerie** (titre et pause) : les 61 CG du manifeste. Une CG vue en jeu reste débloquée pour toutes les boucles (`meta["cgs"]`) ; les CG nsfw sont masquées si l'option P3 l'est.
+- **Galerie** (titre et pause), catalogue `data/world/gallery.json` (inventaire généré : `docs/GALERIE.md`) :
+  - deux onglets, **Histoire / CG clés** (CG du récit et soirées du Refuge) et **Scènes intimes** (solo, duos, trios, quatuors, constellations de 5 à 9, harem) ;
+  - compteurs global, par onglet, par catégorie et par voie (Affinités, Échos, Tyran/Ombre, Tyran/Pacte, Dévotion, Mercenaire, Loup, Groupe) ;
+  - une scène se débloque dès qu'elle **commence** en jeu, pour toutes les boucles (`meta["scenes"]`, les CG vues comptent aussi) ; même une scène dont le texte s'arrête au baiser a son emplacement ;
+  - bouton **Indice** sur chaque emplacement verrouillé : la condition exacte (« Récurrence 2 ou plus : tu as sauvé Aoi dans une boucle précédente… », « Forcer le contrat avec Hae-in — … ») ;
+  - **Revoir** rejoue la scène dans un état vierge, sans toucher à la partie (ni temps, ni combat) ;
+  - les emplacements **prévus** (scène pas encore écrite) apparaissent « En préparation » avec leur indice ; `docs/GALERIE.md` liste ce qui manque pour chacun ;
+  - les CG nsfw sont masquées si l'option P3 l'est ; les nuits de Pacte restent des rapports de force, sans intimité ni CG intime.
 
 #### 19.7.9 CG, voies et Pactes (v0.10)
 - **CG** : 61 CG au manifeste, chacune rattachée à sa scène (`"scene": "dialogue:bloc"`). Elles couvrent les nuits du Refuge, les scènes « ombre » de la voie du Tyran, les scènes à plusieurs et les Ancres de l'Acte IV (toit de la Lotte, Machine d'Inversion, Dernier Exode, Protocole Cendre, Nuit du Déversement, Épreuve des Dix, la Page). Les scènes intimes (`"nsfw": true`) passent par RunPod. Le validateur exige :

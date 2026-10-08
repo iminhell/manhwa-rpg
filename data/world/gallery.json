@@ -1,0 +1,2616 @@
+{
+ "note": "Catalogue de la galerie. Onglets « histoire » (CG clés) et « intime » (scènes intimes). Une entrée se débloque dès qu'un de ses blocs « unlock » commence (SaveManager.meta.scenes) ; « Revoir » rejoue « scene » sans toucher à la partie. status : ecrite (scène complète jusqu'au palier P3), amorce (début jouable, texte à compléter), prevue (emplacement réservé, « setup » dit ce qui manque). Les nuits de Pacte sont des rapports de force, sans intimité. Validé par tools/validate_data.py.",
+ "tabs": {
+  "histoire": "Histoire / CG clés",
+  "intime": "Scènes intimes"
+ },
+ "categories": {
+  "cg": "CG clés",
+  "refuge": "Soirées au Refuge",
+  "solo": "Solo",
+  "duo": "Duos",
+  "trio": "Trios",
+  "quatuor": "Quatuors",
+  "constellation": "Constellations (5 à 9)",
+  "harem": "Harem"
+ },
+ "routes": {
+  "histoire": "Histoire",
+  "refuge": "Refuge",
+  "lien": "Affinités (Lien)",
+  "echo": "Échos",
+  "ombre": "Tyran (Ombre)",
+  "pacte": "Tyran (Pacte)",
+  "devotion": "Dévotion",
+  "mercenaire": "Mercenaire",
+  "loup": "Loup",
+  "groupe": "Groupe"
+ },
+ "entries": [
+  {
+   "id": "seo_lien",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "lien",
+   "members": [
+    "seo_yeon"
+   ],
+   "title": "Nuit de Lien — Seo-Yeon",
+   "scene": "refuge:seo_intime",
+   "unlock": [
+    "refuge:seo_intime"
+   ],
+   "cg": "cg_seo_nuit",
+   "status": "ecrite",
+   "hint": "Affinité de Seo-Yeon ≥ 25, s'être déjà reposé au Refuge avec elle, Dortoir construit ; ni sur la pente du Tyran (Protéger > −15) ni en Mercenaire."
+  },
+  {
+   "id": "haneul_lien",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "lien",
+   "members": [
+    "haneul"
+   ],
+   "title": "Nuit de Lien — Haneul",
+   "scene": "refuge:haneul_intime",
+   "unlock": [
+    "refuge:haneul_intime"
+   ],
+   "cg": "cg_haneul_nuit",
+   "status": "ecrite",
+   "hint": "Affinité de Haneul ≥ 20, s'être déjà reposé au Refuge avec elle, Dortoir construit ; ni sur la pente du Tyran (Protéger > −15) ni en Mercenaire."
+  },
+  {
+   "id": "aoi_lien",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "lien",
+   "members": [
+    "aoi"
+   ],
+   "title": "Nuit de Lien — Aoi",
+   "scene": "refuge:aoi_intime",
+   "unlock": [
+    "refuge:aoi_intime"
+   ],
+   "cg": "cg_aoi_nuit",
+   "status": "ecrite",
+   "hint": "Affinité de Aoi ≥ 20, s'être déjà reposé au Refuge avec elle, Dortoir construit ; ni sur la pente du Tyran (Protéger > −15) ni en Mercenaire."
+  },
+  {
+   "id": "maricel_lien",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "lien",
+   "members": [
+    "maricel"
+   ],
+   "title": "Nuit de Lien — Maricel",
+   "scene": "refuge:maricel_intime",
+   "unlock": [
+    "refuge:maricel_intime"
+   ],
+   "cg": "cg_maricel_nuit",
+   "status": "ecrite",
+   "hint": "Affinité de Maricel ≥ 20, s'être déjà reposé au Refuge avec elle, Dortoir construit ; ni sur la pente du Tyran (Protéger > −15) ni en Mercenaire."
+  },
+  {
+   "id": "ryeon_lien",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "lien",
+   "members": [
+    "ryeon"
+   ],
+   "title": "Nuit de Lien — Ryeon",
+   "scene": "refuge:ryeon_intime",
+   "unlock": [
+    "refuge:ryeon_intime"
+   ],
+   "cg": "cg_ryeon_nuit",
+   "status": "ecrite",
+   "hint": "Affinité de Ryeon ≥ 20, s'être déjà reposé au Refuge avec elle, Dortoir construit ; ni sur la pente du Tyran (Protéger > −15) ni en Mercenaire."
+  },
+  {
+   "id": "xiaoyu_lien",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "lien",
+   "members": [
+    "xiaoyu"
+   ],
+   "title": "Nuit de Lien — Xiaoyu",
+   "scene": "refuge:xiaoyu_intime",
+   "unlock": [
+    "refuge:xiaoyu_intime"
+   ],
+   "cg": "cg_xiaoyu_nuit",
+   "status": "ecrite",
+   "hint": "Affinité de Xiaoyu ≥ 20, s'être déjà reposé au Refuge avec elle, Dortoir construit ; ni sur la pente du Tyran (Protéger > −15) ni en Mercenaire."
+  },
+  {
+   "id": "haein_lien",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "lien",
+   "members": [
+    "hae_in"
+   ],
+   "title": "Nuit de Lien — Hae-in",
+   "scene": "refuge:haein_intime",
+   "unlock": [
+    "refuge:haein_intime"
+   ],
+   "cg": "cg_haein_nuit",
+   "status": "ecrite",
+   "hint": "Affinité de Hae-in ≥ 20, s'être déjà reposé au Refuge avec elle, Dortoir construit ; ni sur la pente du Tyran (Protéger > −15) ni en Mercenaire."
+  },
+  {
+   "id": "nadia_lien",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "lien",
+   "members": [
+    "nadia"
+   ],
+   "title": "Nuit de Lien — Nadia",
+   "scene": "refuge:nadia_intime",
+   "unlock": [
+    "refuge:nadia_intime"
+   ],
+   "cg": "cg_nadia_nuit",
+   "status": "ecrite",
+   "hint": "Affinité de Nadia ≥ 20, s'être déjà reposé au Refuge avec elle, Dortoir construit ; ni sur la pente du Tyran (Protéger > −15) ni en Mercenaire."
+  },
+  {
+   "id": "simone_lien",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "lien",
+   "members": [
+    "simone"
+   ],
+   "title": "Nuit de Lien — Simone",
+   "scene": "refuge:simone_intime",
+   "unlock": [
+    "refuge:simone_intime"
+   ],
+   "cg": "cg_simone_nuit",
+   "status": "ecrite",
+   "hint": "Affinité de Simone ≥ 20, s'être déjà reposé au Refuge avec elle, Dortoir construit ; ni sur la pente du Tyran (Protéger > −15) ni en Mercenaire."
+  },
+  {
+   "id": "minh_anh_lien",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "lien",
+   "members": [
+    "minh_anh"
+   ],
+   "title": "Nuit de Lien — Minh-Anh",
+   "scene": "refuge:minh_anh_intime",
+   "unlock": [
+    "refuge:minh_anh_intime"
+   ],
+   "cg": "cg_minh_anh_nuit",
+   "status": "ecrite",
+   "hint": "Affinité de Minh-Anh ≥ 20, s'être déjà reposé au Refuge avec elle, Dortoir construit ; ni sur la pente du Tyran (Protéger > −15) ni en Mercenaire."
+  },
+  {
+   "id": "hae_in_penthouse",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "lien",
+   "members": [
+    "hae_in"
+   ],
+   "title": "Le Penthouse — Hae-in",
+   "scene": "act1_haein:penthouse_go",
+   "unlock": [
+    "act1_haein:penthouse_go"
+   ],
+   "cg": "cg_haein_penthouse",
+   "status": "ecrite",
+   "hint": "Acte I : livrer l'archive à Hae-in, puis, le jour 6 au crépuscule, monter dans sa voiture."
+  },
+  {
+   "id": "seo_nuit2",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "lien",
+   "members": [
+    "seo_yeon"
+   ],
+   "title": "Seconde nuit — Seo-Yeon",
+   "scene": "refuge:seo_nuit2",
+   "unlock": [
+    "refuge:seo_nuit2"
+   ],
+   "status": "amorce",
+   "hint": "Après la Nuit de Lien avec Seo-Yeon, se reposer encore deux fois avec elle (3 repos en tout). Variante si Haneul l'a marquée."
+  },
+  {
+   "id": "haneul_nuit2",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "lien",
+   "members": [
+    "haneul"
+   ],
+   "title": "Seconde nuit — Haneul",
+   "status": "prevue",
+   "hint": "Après la Nuit de Lien avec Haneul, se reposer encore deux fois avec elle.",
+   "setup": "Bloc refuge:haneul_nuit2 à écrire, aiguillage « flag('haneul_nuit') and v('repos.haneul') >= 3 » dans refuge:haneul."
+  },
+  {
+   "id": "aoi_nuit2",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "lien",
+   "members": [
+    "aoi"
+   ],
+   "title": "Seconde nuit — Aoi",
+   "status": "prevue",
+   "hint": "Après la Nuit de Lien avec Aoi, se reposer encore deux fois avec elle.",
+   "setup": "Bloc refuge:aoi_nuit2 à écrire, aiguillage « flag('aoi_nuit') and v('repos.aoi') >= 3 » dans refuge:aoi."
+  },
+  {
+   "id": "maricel_nuit2",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "lien",
+   "members": [
+    "maricel"
+   ],
+   "title": "Seconde nuit — Maricel",
+   "status": "prevue",
+   "hint": "Après la Nuit de Lien avec Maricel, se reposer encore deux fois avec elle.",
+   "setup": "Bloc refuge:maricel_nuit2 à écrire, aiguillage « flag('maricel_nuit') and v('repos.maricel') >= 3 » dans refuge:maricel."
+  },
+  {
+   "id": "ryeon_nuit2",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "lien",
+   "members": [
+    "ryeon"
+   ],
+   "title": "Seconde nuit — Ryeon",
+   "status": "prevue",
+   "hint": "Après la Nuit de Lien avec Ryeon, se reposer encore deux fois avec elle.",
+   "setup": "Bloc refuge:ryeon_nuit2 à écrire, aiguillage « flag('ryeon_nuit') and v('repos.ryeon') >= 3 » dans refuge:ryeon."
+  },
+  {
+   "id": "xiaoyu_nuit2",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "lien",
+   "members": [
+    "xiaoyu"
+   ],
+   "title": "Seconde nuit — Xiaoyu",
+   "status": "prevue",
+   "hint": "Après la Nuit de Lien avec Xiaoyu, se reposer encore deux fois avec elle.",
+   "setup": "Bloc refuge:xiaoyu_nuit2 à écrire, aiguillage « flag('xiaoyu_nuit') and v('repos.xiaoyu') >= 3 » dans refuge:xiaoyu."
+  },
+  {
+   "id": "haein_nuit2",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "lien",
+   "members": [
+    "hae_in"
+   ],
+   "title": "Seconde nuit — Hae-in",
+   "status": "prevue",
+   "hint": "Après la Nuit de Lien avec Hae-in, se reposer encore deux fois avec elle.",
+   "setup": "Bloc refuge:haein_nuit2 à écrire, aiguillage « flag('haein_nuit') and v('repos.hae_in') >= 3 » dans refuge:hae_in."
+  },
+  {
+   "id": "nadia_nuit2",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "lien",
+   "members": [
+    "nadia"
+   ],
+   "title": "Seconde nuit — Nadia",
+   "status": "prevue",
+   "hint": "Après la Nuit de Lien avec Nadia, se reposer encore deux fois avec elle.",
+   "setup": "Bloc refuge:nadia_nuit2 à écrire, aiguillage « flag('nadia_nuit') and v('repos.nadia') >= 3 » dans refuge:nadia."
+  },
+  {
+   "id": "simone_nuit2",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "lien",
+   "members": [
+    "simone"
+   ],
+   "title": "Seconde nuit — Simone",
+   "status": "prevue",
+   "hint": "Après la Nuit de Lien avec Simone, se reposer encore deux fois avec elle.",
+   "setup": "Bloc refuge:simone_nuit2 à écrire, aiguillage « flag('simone_nuit') and v('repos.simone') >= 3 » dans refuge:simone."
+  },
+  {
+   "id": "minh_anh_nuit2",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "lien",
+   "members": [
+    "minh_anh"
+   ],
+   "title": "Seconde nuit — Minh-Anh",
+   "status": "prevue",
+   "hint": "Après la Nuit de Lien avec Minh-Anh, se reposer encore deux fois avec elle.",
+   "setup": "Bloc refuge:minh_anh_nuit2 à écrire, aiguillage « flag('minh_anh_nuit') and v('repos.minh_anh') >= 3 » dans refuge:minh_anh."
+  },
+  {
+   "id": "seo_echo",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "echo",
+   "members": [
+    "seo_yeon"
+   ],
+   "title": "Écho — Seo-Yeon",
+   "scene": "refuge:seo_yeon_echo",
+   "unlock": [
+    "refuge:seo_yeon_echo"
+   ],
+   "status": "amorce",
+   "hint": "Récurrence 2 ou plus : Seo-Yeon est morte dans une boucle précédente. Se reposer avec elle au Refuge dans la boucle suivante."
+  },
+  {
+   "id": "haneul_echo",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "echo",
+   "members": [
+    "haneul"
+   ],
+   "title": "Écho — Haneul",
+   "scene": "refuge:haneul_echo",
+   "unlock": [
+    "refuge:haneul_echo"
+   ],
+   "status": "amorce",
+   "hint": "Récurrence 2 ou plus : Haneul a été capturée dans une boucle précédente. Se reposer avec elle au Refuge dans la boucle suivante."
+  },
+  {
+   "id": "aoi_echo",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "echo",
+   "members": [
+    "aoi"
+   ],
+   "title": "Écho — Aoi",
+   "scene": "refuge:aoi_echo",
+   "unlock": [
+    "refuge:aoi_echo"
+   ],
+   "status": "amorce",
+   "hint": "Récurrence 2 ou plus : tu as sauvé Aoi dans une boucle précédente. Se reposer avec elle au Refuge dans la boucle suivante."
+  },
+  {
+   "id": "maricel_echo",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "echo",
+   "members": [
+    "maricel"
+   ],
+   "title": "Écho — Maricel",
+   "scene": "refuge:maricel_echo",
+   "unlock": [
+    "refuge:maricel_echo"
+   ],
+   "status": "amorce",
+   "hint": "Récurrence 2 ou plus : Maricel est morte dans une boucle précédente. Se reposer avec elle au Refuge dans la boucle suivante."
+  },
+  {
+   "id": "ryeon_echo",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "echo",
+   "members": [
+    "ryeon"
+   ],
+   "title": "Écho — Ryeon",
+   "scene": "refuge:ryeon_echo",
+   "unlock": [
+    "refuge:ryeon_echo"
+   ],
+   "status": "amorce",
+   "hint": "Récurrence 2 ou plus : Ryeon est morte dans une boucle précédente. Se reposer avec elle au Refuge dans la boucle suivante."
+  },
+  {
+   "id": "xiaoyu_echo",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "echo",
+   "members": [
+    "xiaoyu"
+   ],
+   "title": "Écho — Xiaoyu",
+   "scene": "refuge:xiaoyu_echo",
+   "unlock": [
+    "refuge:xiaoyu_echo"
+   ],
+   "status": "amorce",
+   "hint": "Récurrence 2 ou plus : tu as sauvé Xiaoyu dans une boucle précédente. Se reposer avec elle au Refuge dans la boucle suivante."
+  },
+  {
+   "id": "haein_echo",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "echo",
+   "members": [
+    "hae_in"
+   ],
+   "title": "Écho — Hae-in",
+   "scene": "refuge:hae_in_echo",
+   "unlock": [
+    "refuge:hae_in_echo"
+   ],
+   "status": "amorce",
+   "hint": "Récurrence 2 ou plus : tu as sauvé Hae-in dans une boucle précédente. Se reposer avec elle au Refuge dans la boucle suivante."
+  },
+  {
+   "id": "nadia_echo",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "echo",
+   "members": [
+    "nadia"
+   ],
+   "title": "Écho — Nadia",
+   "status": "prevue",
+   "hint": "Récurrence 2 ou plus : l'avoir sauvée (ou croisée dans la lunette, pour Nadia) dans une boucle précédente, puis se reposer avec elle.",
+   "setup": "Bloc refuge:nadia_echo à écrire, aiguillage « loop() >= 2 and flag('echo.nadia_tir') » dans refuge:nadia."
+  },
+  {
+   "id": "simone_echo",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "echo",
+   "members": [
+    "simone"
+   ],
+   "title": "Écho — Simone",
+   "status": "prevue",
+   "hint": "Récurrence 2 ou plus : l'avoir sauvée (ou croisée dans la lunette, pour Nadia) dans une boucle précédente, puis se reposer avec elle.",
+   "setup": "Bloc refuge:simone_echo à écrire, aiguillage « loop() >= 2 and flag('echo.simone_sauvee') » dans refuge:simone."
+  },
+  {
+   "id": "minh_anh_echo",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "echo",
+   "members": [
+    "minh_anh"
+   ],
+   "title": "Écho — Minh-Anh",
+   "status": "prevue",
+   "hint": "Récurrence 2 ou plus : l'avoir sauvée (ou croisée dans la lunette, pour Nadia) dans une boucle précédente, puis se reposer avec elle.",
+   "setup": "Bloc refuge:minh_anh_echo à écrire, aiguillage « loop() >= 2 and flag('echo.minh_anh_sauvee') » dans refuge:minh_anh."
+  },
+  {
+   "id": "seo_ombre",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "ombre",
+   "members": [
+    "seo_yeon"
+   ],
+   "title": "Nuit d'Ombre — Seo-Yeon",
+   "scene": "refuge:seo_ombre",
+   "unlock": [
+    "refuge:seo_ombre"
+   ],
+   "cg": "cg_seo_ombre",
+   "status": "ecrite",
+   "hint": "Sur la pente du Tyran (Protéger ≤ −15), mais sans contrat forcé : Affinité de Seo-Yeon ≥ 20, s'être déjà reposé au Refuge avec elle, Dortoir construit. Elle vient d'elle-même, avec ses règles."
+  },
+  {
+   "id": "haneul_ombre",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "ombre",
+   "members": [
+    "haneul"
+   ],
+   "title": "Nuit d'Ombre — Haneul",
+   "scene": "refuge:haneul_ombre",
+   "unlock": [
+    "refuge:haneul_ombre"
+   ],
+   "cg": "cg_haneul_ombre",
+   "status": "ecrite",
+   "hint": "Sur la pente du Tyran (Protéger ≤ −15), mais sans contrat forcé : Affinité de Haneul ≥ 20, s'être déjà reposé au Refuge avec elle, Dortoir construit. Elle vient d'elle-même, avec ses règles."
+  },
+  {
+   "id": "aoi_ombre",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "ombre",
+   "members": [
+    "aoi"
+   ],
+   "title": "Nuit d'Ombre — Aoi",
+   "scene": "refuge:aoi_ombre",
+   "unlock": [
+    "refuge:aoi_ombre"
+   ],
+   "cg": "cg_aoi_ombre",
+   "status": "ecrite",
+   "hint": "Sur la pente du Tyran (Protéger ≤ −15), mais sans contrat forcé : Affinité de Aoi ≥ 20, s'être déjà reposé au Refuge avec elle, Dortoir construit. Elle vient d'elle-même, avec ses règles."
+  },
+  {
+   "id": "maricel_ombre",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "ombre",
+   "members": [
+    "maricel"
+   ],
+   "title": "Nuit d'Ombre — Maricel",
+   "scene": "refuge:maricel_ombre",
+   "unlock": [
+    "refuge:maricel_ombre"
+   ],
+   "cg": "cg_maricel_ombre",
+   "status": "ecrite",
+   "hint": "Sur la pente du Tyran (Protéger ≤ −15), mais sans contrat forcé : Affinité de Maricel ≥ 20, s'être déjà reposé au Refuge avec elle, Dortoir construit. Elle vient d'elle-même, avec ses règles."
+  },
+  {
+   "id": "ryeon_ombre",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "ombre",
+   "members": [
+    "ryeon"
+   ],
+   "title": "Nuit d'Ombre — Ryeon",
+   "scene": "refuge:ryeon_ombre",
+   "unlock": [
+    "refuge:ryeon_ombre"
+   ],
+   "cg": "cg_ryeon_ombre",
+   "status": "ecrite",
+   "hint": "Sur la pente du Tyran (Protéger ≤ −15), mais sans contrat forcé : Affinité de Ryeon ≥ 20, s'être déjà reposé au Refuge avec elle, Dortoir construit. Elle vient d'elle-même, avec ses règles."
+  },
+  {
+   "id": "xiaoyu_ombre",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "ombre",
+   "members": [
+    "xiaoyu"
+   ],
+   "title": "Nuit d'Ombre — Xiaoyu",
+   "scene": "refuge:xiaoyu_ombre",
+   "unlock": [
+    "refuge:xiaoyu_ombre"
+   ],
+   "cg": "cg_xiaoyu_ombre",
+   "status": "ecrite",
+   "hint": "Sur la pente du Tyran (Protéger ≤ −15), mais sans contrat forcé : Affinité de Xiaoyu ≥ 20, s'être déjà reposé au Refuge avec elle, Dortoir construit. Elle vient d'elle-même, avec ses règles."
+  },
+  {
+   "id": "haein_ombre",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "ombre",
+   "members": [
+    "hae_in"
+   ],
+   "title": "Nuit d'Ombre — Hae-in",
+   "scene": "refuge:haein_ombre",
+   "unlock": [
+    "refuge:haein_ombre"
+   ],
+   "cg": "cg_haein_ombre",
+   "status": "ecrite",
+   "hint": "Sur la pente du Tyran (Protéger ≤ −15), mais sans contrat forcé : Affinité de Hae-in ≥ 20, s'être déjà reposé au Refuge avec elle, Dortoir construit. Elle vient d'elle-même, avec ses règles."
+  },
+  {
+   "id": "nadia_ombre",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "ombre",
+   "members": [
+    "nadia"
+   ],
+   "title": "Nuit d'Ombre — Nadia",
+   "scene": "refuge:nadia_ombre",
+   "unlock": [
+    "refuge:nadia_ombre"
+   ],
+   "cg": "cg_nadia_ombre",
+   "status": "ecrite",
+   "hint": "Sur la pente du Tyran (Protéger ≤ −15), mais sans contrat forcé : Affinité de Nadia ≥ 20, s'être déjà reposé au Refuge avec elle, Dortoir construit. Elle vient d'elle-même, avec ses règles."
+  },
+  {
+   "id": "simone_ombre",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "ombre",
+   "members": [
+    "simone"
+   ],
+   "title": "Nuit d'Ombre — Simone",
+   "scene": "refuge:simone_ombre",
+   "unlock": [
+    "refuge:simone_ombre"
+   ],
+   "cg": "cg_simone_ombre",
+   "status": "ecrite",
+   "hint": "Sur la pente du Tyran (Protéger ≤ −15), mais sans contrat forcé : Affinité de Simone ≥ 20, s'être déjà reposé au Refuge avec elle, Dortoir construit. Elle vient d'elle-même, avec ses règles."
+  },
+  {
+   "id": "minh_anh_ombre",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "ombre",
+   "members": [
+    "minh_anh"
+   ],
+   "title": "Nuit d'Ombre — Minh-Anh",
+   "scene": "refuge:minh_anh_ombre",
+   "unlock": [
+    "refuge:minh_anh_ombre"
+   ],
+   "cg": "cg_minh_anh_ombre",
+   "status": "ecrite",
+   "hint": "Sur la pente du Tyran (Protéger ≤ −15), mais sans contrat forcé : Affinité de Minh-Anh ≥ 20, s'être déjà reposé au Refuge avec elle, Dortoir construit. Elle vient d'elle-même, avec ses règles."
+  },
+  {
+   "id": "seo_merc",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "mercenaire",
+   "members": [
+    "seo_yeon"
+   ],
+   "title": "Contrat de nuit — Seo-Yeon",
+   "scene": "refuge:seo_merc",
+   "unlock": [
+    "refuge:seo_merc"
+   ],
+   "cg": "cg_seo_merc",
+   "status": "ecrite",
+   "hint": "Voie du Mercenaire (400 ₩ en poche, ni Héros, ni Tyran, ni Loup) : Affinité de Seo-Yeon ≥ 25, s'être déjà reposé au Refuge avec elle, Dortoir construit."
+  },
+  {
+   "id": "haneul_merc",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "mercenaire",
+   "members": [
+    "haneul"
+   ],
+   "title": "Contrat de nuit — Haneul",
+   "scene": "refuge:haneul_merc",
+   "unlock": [
+    "refuge:haneul_merc"
+   ],
+   "cg": "cg_haneul_merc",
+   "status": "ecrite",
+   "hint": "Voie du Mercenaire (400 ₩ en poche, ni Héros, ni Tyran, ni Loup) : Affinité de Haneul ≥ 20, s'être déjà reposé au Refuge avec elle, Dortoir construit."
+  },
+  {
+   "id": "aoi_merc",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "mercenaire",
+   "members": [
+    "aoi"
+   ],
+   "title": "Contrat de nuit — Aoi",
+   "scene": "refuge:aoi_merc",
+   "unlock": [
+    "refuge:aoi_merc"
+   ],
+   "cg": "cg_aoi_merc",
+   "status": "ecrite",
+   "hint": "Voie du Mercenaire (400 ₩ en poche, ni Héros, ni Tyran, ni Loup) : Affinité de Aoi ≥ 20, s'être déjà reposé au Refuge avec elle, Dortoir construit."
+  },
+  {
+   "id": "maricel_merc",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "mercenaire",
+   "members": [
+    "maricel"
+   ],
+   "title": "Contrat de nuit — Maricel",
+   "scene": "refuge:maricel_merc",
+   "unlock": [
+    "refuge:maricel_merc"
+   ],
+   "cg": "cg_maricel_merc",
+   "status": "ecrite",
+   "hint": "Voie du Mercenaire (400 ₩ en poche, ni Héros, ni Tyran, ni Loup) : Affinité de Maricel ≥ 20, s'être déjà reposé au Refuge avec elle, Dortoir construit."
+  },
+  {
+   "id": "ryeon_merc",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "mercenaire",
+   "members": [
+    "ryeon"
+   ],
+   "title": "Contrat de nuit — Ryeon",
+   "scene": "refuge:ryeon_merc",
+   "unlock": [
+    "refuge:ryeon_merc"
+   ],
+   "cg": "cg_ryeon_merc",
+   "status": "ecrite",
+   "hint": "Voie du Mercenaire (400 ₩ en poche, ni Héros, ni Tyran, ni Loup) : Affinité de Ryeon ≥ 20, s'être déjà reposé au Refuge avec elle, Dortoir construit."
+  },
+  {
+   "id": "xiaoyu_merc",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "mercenaire",
+   "members": [
+    "xiaoyu"
+   ],
+   "title": "Contrat de nuit — Xiaoyu",
+   "scene": "refuge:xiaoyu_merc",
+   "unlock": [
+    "refuge:xiaoyu_merc"
+   ],
+   "cg": "cg_xiaoyu_merc",
+   "status": "ecrite",
+   "hint": "Voie du Mercenaire (400 ₩ en poche, ni Héros, ni Tyran, ni Loup) : Affinité de Xiaoyu ≥ 20, s'être déjà reposé au Refuge avec elle, Dortoir construit."
+  },
+  {
+   "id": "haein_merc",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "mercenaire",
+   "members": [
+    "hae_in"
+   ],
+   "title": "Contrat de nuit — Hae-in",
+   "scene": "refuge:haein_merc",
+   "unlock": [
+    "refuge:haein_merc"
+   ],
+   "cg": "cg_haein_merc",
+   "status": "ecrite",
+   "hint": "Voie du Mercenaire (400 ₩ en poche, ni Héros, ni Tyran, ni Loup) : Affinité de Hae-in ≥ 20, s'être déjà reposé au Refuge avec elle, Dortoir construit."
+  },
+  {
+   "id": "nadia_merc",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "mercenaire",
+   "members": [
+    "nadia"
+   ],
+   "title": "Contrat de nuit — Nadia",
+   "scene": "refuge:nadia_merc",
+   "unlock": [
+    "refuge:nadia_merc"
+   ],
+   "cg": "cg_nadia_merc",
+   "status": "ecrite",
+   "hint": "Voie du Mercenaire (400 ₩ en poche, ni Héros, ni Tyran, ni Loup) : Affinité de Nadia ≥ 20, s'être déjà reposé au Refuge avec elle, Dortoir construit."
+  },
+  {
+   "id": "simone_merc",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "mercenaire",
+   "members": [
+    "simone"
+   ],
+   "title": "Contrat de nuit — Simone",
+   "scene": "refuge:simone_merc",
+   "unlock": [
+    "refuge:simone_merc"
+   ],
+   "cg": "cg_simone_merc",
+   "status": "ecrite",
+   "hint": "Voie du Mercenaire (400 ₩ en poche, ni Héros, ni Tyran, ni Loup) : Affinité de Simone ≥ 20, s'être déjà reposé au Refuge avec elle, Dortoir construit."
+  },
+  {
+   "id": "minh_anh_merc",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "mercenaire",
+   "members": [
+    "minh_anh"
+   ],
+   "title": "Contrat de nuit — Minh-Anh",
+   "scene": "refuge:minh_anh_merc",
+   "unlock": [
+    "refuge:minh_anh_merc"
+   ],
+   "cg": "cg_minh_anh_merc",
+   "status": "ecrite",
+   "hint": "Voie du Mercenaire (400 ₩ en poche, ni Héros, ni Tyran, ni Loup) : Affinité de Minh-Anh ≥ 20, s'être déjà reposé au Refuge avec elle, Dortoir construit."
+  },
+  {
+   "id": "seo_pacte",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "pacte",
+   "members": [
+    "seo_yeon"
+   ],
+   "title": "Nuit de Pacte — Seo-Yeon",
+   "scene": "refuge:seo_pacte",
+   "unlock": [
+    "refuge:seo_pacte_libre",
+    "refuge:seo_pacte_reste"
+   ],
+   "status": "ecrite",
+   "hint": "Forcer le contrat avec Seo-Yeon — Jour 4 au camp de Yeouido, exiger un tribut et l'obéissance de Seo-Yeon (ou, à l'Acte II, la racheter avec son collier). Puis l'appeler au Refuge. Rapport de force, sans intimité."
+  },
+  {
+   "id": "xiaoyu_pacte",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "pacte",
+   "members": [
+    "xiaoyu"
+   ],
+   "title": "Nuit de Pacte — Xiaoyu",
+   "scene": "refuge:xiaoyu_pacte",
+   "unlock": [
+    "refuge:xiaoyu_pacte_jeu",
+    "refuge:xiaoyu_pacte_reste"
+   ],
+   "status": "ecrite",
+   "hint": "Forcer le contrat avec Xiaoyu — Acte III, pendant la mutinerie : jouer son Sceau et elle-même au mahjong. Puis l'appeler au Refuge. Rapport de force, sans intimité."
+  },
+  {
+   "id": "haein_pacte",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "pacte",
+   "members": [
+    "hae_in"
+   ],
+   "title": "Nuit de Pacte — Hae-in",
+   "scene": "refuge:haein_pacte",
+   "unlock": [
+    "refuge:haein_pacte_rapport",
+    "refuge:haein_pacte_reste"
+   ],
+   "status": "ecrite",
+   "hint": "Forcer le contrat avec Hae-in — Acte III : prendre le Sceau de la Balance « et toi avec ». Puis l'appeler au Refuge. Rapport de force, sans intimité."
+  },
+  {
+   "id": "simone_pacte",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "pacte",
+   "members": [
+    "simone"
+   ],
+   "title": "Nuit de Pacte — Simone",
+   "scene": "refuge:simone_pacte",
+   "unlock": [
+    "refuge:simone_pacte_repos",
+    "refuge:simone_pacte_reste"
+   ],
+   "status": "ecrite",
+   "hint": "Forcer le contrat avec Simone — Jour 28, Protocole Cendre : prendre le code de force (Protéger ≤ −15). Puis l'appeler au Refuge. Rapport de force, sans intimité."
+  },
+  {
+   "id": "nadia_pacte",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "pacte",
+   "members": [
+    "nadia"
+   ],
+   "title": "Nuit de Pacte — Nadia",
+   "scene": "refuge:nadia_pacte",
+   "unlock": [
+    "refuge:nadia_pacte_libre",
+    "refuge:nadia_pacte_ici"
+   ],
+   "status": "ecrite",
+   "hint": "Forcer le contrat avec Nadia — Jour 24 sur le toit de la Lotte : racheter son contrat à vie (300 ₩, Protéger ≤ −10). Puis l'appeler au Refuge. Rapport de force, sans intimité."
+  },
+  {
+   "id": "aoi_pacte",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "pacte",
+   "members": [
+    "aoi"
+   ],
+   "title": "Nuit de Pacte — Aoi",
+   "scene": "refuge:aoi_dominee",
+   "unlock": [
+    "refuge:aoi_dominee_libre",
+    "refuge:aoi_dominee_chante"
+   ],
+   "status": "ecrite",
+   "hint": "Forcer le contrat avec Aoi — Acte II, au studio : la racheter à Mirae pour qu'elle chante pour toi. Puis l'appeler au Refuge. Rapport de force, sans intimité."
+  },
+  {
+   "id": "seo_devotion",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "devotion",
+   "members": [
+    "seo_yeon"
+   ],
+   "title": "Dévotion — Seo-Yeon",
+   "scene": "refuge:seo_devotion",
+   "unlock": [
+    "refuge:seo_devotion",
+    "refuge:seo_devotion_nuit"
+   ],
+   "cg": "cg_seo_devotion",
+   "status": "ecrite",
+   "hint": "Sous Pacte avec Seo-Yeon, la traiter avec respect jusqu'à ce que l'ambivalence atteigne +60 et l'Affinité 70 : elle choisit de rester, librement."
+  },
+  {
+   "id": "xiaoyu_devotion",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "devotion",
+   "members": [
+    "xiaoyu"
+   ],
+   "title": "Dévotion — Xiaoyu",
+   "scene": "refuge:xiaoyu_devotion",
+   "unlock": [
+    "refuge:xiaoyu_devotion",
+    "refuge:xiaoyu_devotion_nuit"
+   ],
+   "cg": "cg_xiaoyu_devotion",
+   "status": "ecrite",
+   "hint": "Sous Pacte avec Xiaoyu, la traiter avec respect jusqu'à ce que l'ambivalence atteigne +60 et l'Affinité 70 : elle choisit de rester, librement."
+  },
+  {
+   "id": "haein_devotion",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "devotion",
+   "members": [
+    "hae_in"
+   ],
+   "title": "Dévotion — Hae-in",
+   "scene": "refuge:haein_devotion",
+   "unlock": [
+    "refuge:haein_devotion",
+    "refuge:haein_devotion_nuit"
+   ],
+   "cg": "cg_haein_devotion",
+   "status": "ecrite",
+   "hint": "Sous Pacte avec Hae-in, la traiter avec respect jusqu'à ce que l'ambivalence atteigne +60 et l'Affinité 70 : elle choisit de rester, librement."
+  },
+  {
+   "id": "simone_devotion",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "devotion",
+   "members": [
+    "simone"
+   ],
+   "title": "Dévotion — Simone",
+   "scene": "refuge:simone_devotion",
+   "unlock": [
+    "refuge:simone_devotion",
+    "refuge:simone_devotion_nuit"
+   ],
+   "cg": "cg_simone_devotion",
+   "status": "ecrite",
+   "hint": "Sous Pacte avec Simone, la traiter avec respect jusqu'à ce que l'ambivalence atteigne +60 et l'Affinité 70 : elle choisit de rester, librement."
+  },
+  {
+   "id": "nadia_devotion",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "devotion",
+   "members": [
+    "nadia"
+   ],
+   "title": "Dévotion — Nadia",
+   "scene": "refuge:nadia_devotion",
+   "unlock": [
+    "refuge:nadia_devotion",
+    "refuge:nadia_devotion_nuit"
+   ],
+   "cg": "cg_nadia_devotion",
+   "status": "ecrite",
+   "hint": "Sous Pacte avec Nadia, la traiter avec respect jusqu'à ce que l'ambivalence atteigne +60 et l'Affinité 70 : elle choisit de rester, librement."
+  },
+  {
+   "id": "aoi_devotion",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "devotion",
+   "members": [
+    "aoi"
+   ],
+   "title": "Dévotion — Aoi",
+   "status": "prevue",
+   "hint": "Après l'avoir rachetée à Mirae, lui rendre sa voix jusqu'à ce qu'elle choisisse de chanter pour toi.",
+   "setup": "Variables ambivalence.aoi à introduire dans act2_aoi:studio_tyran, blocs refuge:aoi_devotion / aoi_devotion_nuit, CG cg_aoi_devotion (RunPod)."
+  },
+  {
+   "id": "seo_loup",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "loup",
+   "members": [
+    "seo_yeon"
+   ],
+   "title": "Nuit du Loup — Seo-Yeon",
+   "status": "prevue",
+   "hint": "Voie du Loup (Lien ≤ −20) : Seo-Yeon trouve la faille dans ta solitude. Affinité ≥ 20, Dortoir.",
+   "setup": "Bloc refuge:seo_loup à écrire (aiguillage « voie() == 'loup' » avant la Nuit de Lien), CG cg_seo_loup."
+  },
+  {
+   "id": "haneul_loup",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "loup",
+   "members": [
+    "haneul"
+   ],
+   "title": "Nuit du Loup — Haneul",
+   "status": "prevue",
+   "hint": "Voie du Loup (Lien ≤ −20) : Haneul trouve la faille dans ta solitude. Affinité ≥ 20, Dortoir.",
+   "setup": "Bloc refuge:haneul_loup à écrire (aiguillage « voie() == 'loup' » avant la Nuit de Lien), CG cg_haneul_loup."
+  },
+  {
+   "id": "aoi_loup",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "loup",
+   "members": [
+    "aoi"
+   ],
+   "title": "Nuit du Loup — Aoi",
+   "status": "prevue",
+   "hint": "Voie du Loup (Lien ≤ −20) : Aoi trouve la faille dans ta solitude. Affinité ≥ 20, Dortoir.",
+   "setup": "Bloc refuge:aoi_loup à écrire (aiguillage « voie() == 'loup' » avant la Nuit de Lien), CG cg_aoi_loup."
+  },
+  {
+   "id": "maricel_loup",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "loup",
+   "members": [
+    "maricel"
+   ],
+   "title": "Nuit du Loup — Maricel",
+   "status": "prevue",
+   "hint": "Voie du Loup (Lien ≤ −20) : Maricel trouve la faille dans ta solitude. Affinité ≥ 20, Dortoir.",
+   "setup": "Bloc refuge:maricel_loup à écrire (aiguillage « voie() == 'loup' » avant la Nuit de Lien), CG cg_maricel_loup."
+  },
+  {
+   "id": "ryeon_loup",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "loup",
+   "members": [
+    "ryeon"
+   ],
+   "title": "Nuit du Loup — Ryeon",
+   "status": "prevue",
+   "hint": "Voie du Loup (Lien ≤ −20) : Ryeon trouve la faille dans ta solitude. Affinité ≥ 20, Dortoir.",
+   "setup": "Bloc refuge:ryeon_loup à écrire (aiguillage « voie() == 'loup' » avant la Nuit de Lien), CG cg_ryeon_loup."
+  },
+  {
+   "id": "xiaoyu_loup",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "loup",
+   "members": [
+    "xiaoyu"
+   ],
+   "title": "Nuit du Loup — Xiaoyu",
+   "status": "prevue",
+   "hint": "Voie du Loup (Lien ≤ −20) : Xiaoyu trouve la faille dans ta solitude. Affinité ≥ 20, Dortoir.",
+   "setup": "Bloc refuge:xiaoyu_loup à écrire (aiguillage « voie() == 'loup' » avant la Nuit de Lien), CG cg_xiaoyu_loup."
+  },
+  {
+   "id": "haein_loup",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "loup",
+   "members": [
+    "hae_in"
+   ],
+   "title": "Nuit du Loup — Hae-in",
+   "status": "prevue",
+   "hint": "Voie du Loup (Lien ≤ −20) : Hae-in trouve la faille dans ta solitude. Affinité ≥ 20, Dortoir.",
+   "setup": "Bloc refuge:haein_loup à écrire (aiguillage « voie() == 'loup' » avant la Nuit de Lien), CG cg_haein_loup."
+  },
+  {
+   "id": "nadia_loup",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "loup",
+   "members": [
+    "nadia"
+   ],
+   "title": "Nuit du Loup — Nadia",
+   "status": "prevue",
+   "hint": "Voie du Loup (Lien ≤ −20) : Nadia trouve la faille dans ta solitude. Affinité ≥ 20, Dortoir.",
+   "setup": "Bloc refuge:nadia_loup à écrire (aiguillage « voie() == 'loup' » avant la Nuit de Lien), CG cg_nadia_loup."
+  },
+  {
+   "id": "simone_loup",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "loup",
+   "members": [
+    "simone"
+   ],
+   "title": "Nuit du Loup — Simone",
+   "status": "prevue",
+   "hint": "Voie du Loup (Lien ≤ −20) : Simone trouve la faille dans ta solitude. Affinité ≥ 20, Dortoir.",
+   "setup": "Bloc refuge:simone_loup à écrire (aiguillage « voie() == 'loup' » avant la Nuit de Lien), CG cg_simone_loup."
+  },
+  {
+   "id": "minh_anh_loup",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "loup",
+   "members": [
+    "minh_anh"
+   ],
+   "title": "Nuit du Loup — Minh-Anh",
+   "status": "prevue",
+   "hint": "Voie du Loup (Lien ≤ −20) : Minh-Anh trouve la faille dans ta solitude. Affinité ≥ 20, Dortoir.",
+   "setup": "Bloc refuge:minh_anh_loup à écrire (aiguillage « voie() == 'loup' » avant la Nuit de Lien), CG cg_minh_anh_loup."
+  },
+  {
+   "id": "paire_ryeon_nadia",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "ryeon",
+    "nadia"
+   ],
+   "title": "Lame et Lunette : Ryeon et Nadia",
+   "scene": "refuge_groupe:paire_ryeon_nadia",
+   "unlock": [
+    "refuge_groupe:paire_ryeon_nadia"
+   ],
+   "status": "amorce",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Ryeon et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge."
+  },
+  {
+   "id": "paire_simone_nadia",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "simone",
+    "nadia"
+   ],
+   "title": "Feu Croisé : Simone et Nadia",
+   "scene": "refuge_groupe:paire_simone_nadia",
+   "unlock": [
+    "refuge_groupe:paire_simone_nadia"
+   ],
+   "status": "amorce",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Simone et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge."
+  },
+  {
+   "id": "paire_hae_in_xiaoyu",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "hae_in",
+    "xiaoyu"
+   ],
+   "title": "OPA Hostile : Hae-in et Xiaoyu",
+   "scene": "refuge_groupe:paire_hae_in_xiaoyu",
+   "unlock": [
+    "refuge_groupe:paire_hae_in_xiaoyu"
+   ],
+   "status": "amorce",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Hae-in et Xiaoyu, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge."
+  },
+  {
+   "id": "paire_seo_yeon_minh_anh",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "seo_yeon",
+    "minh_anh"
+   ],
+   "title": "Sérum H-07 : Seo-Yeon et Minh-Anh",
+   "scene": "refuge_groupe:paire_seo_yeon_minh_anh",
+   "unlock": [
+    "refuge_groupe:paire_seo_yeon_minh_anh"
+   ],
+   "status": "amorce",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Seo-Yeon et Minh-Anh, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge."
+  },
+  {
+   "id": "paire_maricel_xiaoyu",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "maricel",
+    "xiaoyu"
+   ],
+   "title": "Contrebande : Maricel et Xiaoyu",
+   "scene": "refuge_groupe:paire_maricel_xiaoyu",
+   "unlock": [
+    "refuge_groupe:paire_maricel_xiaoyu"
+   ],
+   "status": "amorce",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Maricel et Xiaoyu, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge."
+  },
+  {
+   "id": "paire_minh_anh_haneul",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "minh_anh",
+    "haneul"
+   ],
+   "title": "Équation du Seuil : Minh-Anh et Haneul",
+   "scene": "refuge_groupe:paire_minh_anh_haneul",
+   "unlock": [
+    "refuge_groupe:paire_minh_anh_haneul"
+   ],
+   "status": "amorce",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Minh-Anh et Haneul, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge."
+  },
+  {
+   "id": "paire_simone_ryeon",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "simone",
+    "ryeon"
+   ],
+   "title": "Avant-Garde : Simone et Ryeon",
+   "scene": "refuge_groupe:paire_simone_ryeon",
+   "unlock": [
+    "refuge_groupe:paire_simone_ryeon"
+   ],
+   "status": "amorce",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Simone et Ryeon, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge."
+  },
+  {
+   "id": "paire_aoi_haneul",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "aoi",
+    "haneul"
+   ],
+   "title": "Hymne du Seuil : Aoi et Haneul",
+   "scene": "refuge_groupe:paire_aoi_haneul",
+   "unlock": [
+    "refuge_groupe:paire_aoi_haneul"
+   ],
+   "status": "amorce",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Aoi et Haneul, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge."
+  },
+  {
+   "id": "paire_hae_in_simone",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "hae_in",
+    "simone"
+   ],
+   "title": "Loi Martiale : Hae-in et Simone",
+   "scene": "refuge_groupe:paire_hae_in_simone",
+   "unlock": [
+    "refuge_groupe:paire_hae_in_simone"
+   ],
+   "status": "amorce",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Hae-in et Simone, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge."
+  },
+  {
+   "id": "paire_seo_yeon_aoi",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "seo_yeon",
+    "aoi"
+   ],
+   "title": "Ballade du Triage : Seo-Yeon et Aoi",
+   "scene": "refuge_groupe:paire_seo_yeon_aoi",
+   "unlock": [
+    "refuge_groupe:paire_seo_yeon_aoi"
+   ],
+   "status": "amorce",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Seo-Yeon et Aoi, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge."
+  },
+  {
+   "id": "paire_seo_yeon_haneul",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "seo_yeon",
+    "haneul"
+   ],
+   "title": "Seo-Yeon et Haneul",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Seo-Yeon et Haneul, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_seo_yeon_haneul à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_seo_yeon_maricel",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "seo_yeon",
+    "maricel"
+   ],
+   "title": "Seo-Yeon et Maricel",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Seo-Yeon et Maricel, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_seo_yeon_maricel à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_seo_yeon_ryeon",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "seo_yeon",
+    "ryeon"
+   ],
+   "title": "Seo-Yeon et Ryeon",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Seo-Yeon et Ryeon, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_seo_yeon_ryeon à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_seo_yeon_xiaoyu",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "seo_yeon",
+    "xiaoyu"
+   ],
+   "title": "Seo-Yeon et Xiaoyu",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Seo-Yeon et Xiaoyu, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_seo_yeon_xiaoyu à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_seo_yeon_hae_in",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "seo_yeon",
+    "hae_in"
+   ],
+   "title": "Seo-Yeon et Hae-in",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Seo-Yeon et Hae-in, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_seo_yeon_hae_in à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_seo_yeon_nadia",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "seo_yeon",
+    "nadia"
+   ],
+   "title": "Seo-Yeon et Nadia",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Seo-Yeon et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_seo_yeon_nadia à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_seo_yeon_simone",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "seo_yeon",
+    "simone"
+   ],
+   "title": "Seo-Yeon et Simone",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Seo-Yeon et Simone, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_seo_yeon_simone à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_haneul_maricel",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "haneul",
+    "maricel"
+   ],
+   "title": "Haneul et Maricel",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Haneul et Maricel, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_haneul_maricel à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_haneul_ryeon",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "haneul",
+    "ryeon"
+   ],
+   "title": "Haneul et Ryeon",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Haneul et Ryeon, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_haneul_ryeon à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_haneul_xiaoyu",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "haneul",
+    "xiaoyu"
+   ],
+   "title": "Haneul et Xiaoyu",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Haneul et Xiaoyu, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_haneul_xiaoyu à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_haneul_hae_in",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "haneul",
+    "hae_in"
+   ],
+   "title": "Haneul et Hae-in",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Haneul et Hae-in, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_haneul_hae_in à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_haneul_nadia",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "haneul",
+    "nadia"
+   ],
+   "title": "Haneul et Nadia",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Haneul et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_haneul_nadia à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_haneul_simone",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "haneul",
+    "simone"
+   ],
+   "title": "Haneul et Simone",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Haneul et Simone, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_haneul_simone à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_aoi_maricel",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "aoi",
+    "maricel"
+   ],
+   "title": "Aoi et Maricel",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Aoi et Maricel, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_aoi_maricel à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_aoi_ryeon",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "aoi",
+    "ryeon"
+   ],
+   "title": "Aoi et Ryeon",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Aoi et Ryeon, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_aoi_ryeon à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_aoi_xiaoyu",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "aoi",
+    "xiaoyu"
+   ],
+   "title": "Aoi et Xiaoyu",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Aoi et Xiaoyu, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_aoi_xiaoyu à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_aoi_hae_in",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "aoi",
+    "hae_in"
+   ],
+   "title": "Aoi et Hae-in",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Aoi et Hae-in, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_aoi_hae_in à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_aoi_nadia",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "aoi",
+    "nadia"
+   ],
+   "title": "Aoi et Nadia",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Aoi et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_aoi_nadia à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_aoi_simone",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "aoi",
+    "simone"
+   ],
+   "title": "Aoi et Simone",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Aoi et Simone, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_aoi_simone à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_aoi_minh_anh",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "aoi",
+    "minh_anh"
+   ],
+   "title": "Aoi et Minh-Anh",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Aoi et Minh-Anh, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_aoi_minh_anh à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_maricel_ryeon",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "maricel",
+    "ryeon"
+   ],
+   "title": "Maricel et Ryeon",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Maricel et Ryeon, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_maricel_ryeon à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_maricel_hae_in",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "maricel",
+    "hae_in"
+   ],
+   "title": "Maricel et Hae-in",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Maricel et Hae-in, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_maricel_hae_in à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_maricel_nadia",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "maricel",
+    "nadia"
+   ],
+   "title": "Maricel et Nadia",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Maricel et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_maricel_nadia à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_maricel_simone",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "maricel",
+    "simone"
+   ],
+   "title": "Maricel et Simone",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Maricel et Simone, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_maricel_simone à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_maricel_minh_anh",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "maricel",
+    "minh_anh"
+   ],
+   "title": "Maricel et Minh-Anh",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Maricel et Minh-Anh, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_maricel_minh_anh à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_ryeon_xiaoyu",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "ryeon",
+    "xiaoyu"
+   ],
+   "title": "Ryeon et Xiaoyu",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Ryeon et Xiaoyu, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_ryeon_xiaoyu à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_ryeon_hae_in",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "ryeon",
+    "hae_in"
+   ],
+   "title": "Ryeon et Hae-in",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Ryeon et Hae-in, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_ryeon_hae_in à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_ryeon_minh_anh",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "ryeon",
+    "minh_anh"
+   ],
+   "title": "Ryeon et Minh-Anh",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Ryeon et Minh-Anh, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_ryeon_minh_anh à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_xiaoyu_nadia",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "xiaoyu",
+    "nadia"
+   ],
+   "title": "Xiaoyu et Nadia",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Xiaoyu et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_xiaoyu_nadia à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_xiaoyu_simone",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "xiaoyu",
+    "simone"
+   ],
+   "title": "Xiaoyu et Simone",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Xiaoyu et Simone, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_xiaoyu_simone à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_xiaoyu_minh_anh",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "xiaoyu",
+    "minh_anh"
+   ],
+   "title": "Xiaoyu et Minh-Anh",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Xiaoyu et Minh-Anh, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_xiaoyu_minh_anh à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_hae_in_nadia",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "hae_in",
+    "nadia"
+   ],
+   "title": "Hae-in et Nadia",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Hae-in et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_hae_in_nadia à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_hae_in_minh_anh",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "hae_in",
+    "minh_anh"
+   ],
+   "title": "Hae-in et Minh-Anh",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Hae-in et Minh-Anh, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_hae_in_minh_anh à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_nadia_minh_anh",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "nadia",
+    "minh_anh"
+   ],
+   "title": "Nadia et Minh-Anh",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Nadia et Minh-Anh, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_nadia_minh_anh à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "paire_simone_minh_anh",
+   "tab": "intime",
+   "cat": "duo",
+   "route": "groupe",
+   "members": [
+    "simone",
+    "minh_anh"
+   ],
+   "title": "Simone et Minh-Anh",
+   "status": "prevue",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Simone et Minh-Anh, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge.",
+   "setup": "Bloc refuge_groupe:paire_simone_minh_anh à écrire + entrée data/world/group_scenes.json (même déclencheur que les autres paires)."
+  },
+  {
+   "id": "nuit_des_trois",
+   "tab": "intime",
+   "cat": "trio",
+   "route": "groupe",
+   "members": [
+    "seo_yeon",
+    "aoi",
+    "maricel"
+   ],
+   "title": "La Nuit des Trois : Seo-Yeon, Aoi et Maricel",
+   "scene": "refuge_groupe:nuit_des_trois",
+   "unlock": [
+    "refuge_groupe:nuit_des_trois"
+   ],
+   "status": "ecrite",
+   "hint": "Affinité ≥ 20 avec Seo-Yeon, Aoi et Maricel, les trois dans le groupe, Dortoir construit.",
+   "cg": "cg_nuit_des_trois"
+  },
+  {
+   "id": "trio_trois_lames",
+   "tab": "intime",
+   "cat": "trio",
+   "route": "groupe",
+   "members": [
+    "ryeon",
+    "simone",
+    "nadia"
+   ],
+   "title": "Les Trois Lames",
+   "scene": "refuge_groupe:trio_trois_lames",
+   "unlock": [
+    "refuge_groupe:trio_trois_lames"
+   ],
+   "status": "amorce",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Ryeon, Simone et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge."
+  },
+  {
+   "id": "trio_reines",
+   "tab": "intime",
+   "cat": "trio",
+   "route": "groupe",
+   "members": [
+    "hae_in",
+    "xiaoyu",
+    "ryeon"
+   ],
+   "title": "Les Reines",
+   "scene": "refuge_groupe:trio_reines",
+   "unlock": [
+    "refuge_groupe:trio_reines"
+   ],
+   "status": "amorce",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Hae-in, Xiaoyu et Ryeon, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge."
+  },
+  {
+   "id": "trio_invisibles",
+   "tab": "intime",
+   "cat": "trio",
+   "route": "groupe",
+   "members": [
+    "aoi",
+    "maricel",
+    "nadia"
+   ],
+   "title": "Les Invisibles",
+   "scene": "refuge_groupe:trio_invisibles",
+   "unlock": [
+    "refuge_groupe:trio_invisibles"
+   ],
+   "status": "amorce",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Aoi, Maricel et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge."
+  },
+  {
+   "id": "trio_filles_fleuve",
+   "tab": "intime",
+   "cat": "trio",
+   "route": "groupe",
+   "members": [
+    "xiaoyu",
+    "maricel",
+    "nadia"
+   ],
+   "title": "Les Filles du Fleuve",
+   "scene": "refuge_groupe:trio_filles_fleuve",
+   "unlock": [
+    "refuge_groupe:trio_filles_fleuve"
+   ],
+   "status": "amorce",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Xiaoyu, Maricel et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge."
+  },
+  {
+   "id": "trio_laboratoire",
+   "tab": "intime",
+   "cat": "trio",
+   "route": "groupe",
+   "members": [
+    "minh_anh",
+    "seo_yeon",
+    "haneul"
+   ],
+   "title": "Le Laboratoire",
+   "scene": "refuge_groupe:trio_laboratoire",
+   "unlock": [
+    "refuge_groupe:trio_laboratoire"
+   ],
+   "status": "amorce",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Minh-Anh, Seo-Yeon et Haneul, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge."
+  },
+  {
+   "id": "trio_sceptres",
+   "tab": "intime",
+   "cat": "trio",
+   "route": "groupe",
+   "members": [
+    "hae_in",
+    "minh_anh",
+    "xiaoyu"
+   ],
+   "title": "Les Sceptres",
+   "scene": "refuge_groupe:trio_sceptres",
+   "unlock": [
+    "refuge_groupe:trio_sceptres"
+   ],
+   "status": "amorce",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Hae-in, Minh-Anh et Xiaoyu, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge."
+  },
+  {
+   "id": "trio_gardiennes",
+   "tab": "intime",
+   "cat": "trio",
+   "route": "groupe",
+   "members": [
+    "haneul",
+    "ryeon",
+    "aoi"
+   ],
+   "title": "Les Gardiennes du Seuil",
+   "scene": "refuge_groupe:trio_gardiennes",
+   "unlock": [
+    "refuge_groupe:trio_gardiennes"
+   ],
+   "status": "amorce",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Haneul, Ryeon et Aoi, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge."
+  },
+  {
+   "id": "trio_garde_fer",
+   "tab": "intime",
+   "cat": "trio",
+   "route": "groupe",
+   "members": [
+    "simone",
+    "ryeon",
+    "seo_yeon"
+   ],
+   "title": "La Garde de Fer",
+   "scene": "refuge_groupe:trio_garde_fer",
+   "unlock": [
+    "refuge_groupe:trio_garde_fer"
+   ],
+   "status": "amorce",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Simone, Ryeon et Seo-Yeon, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge."
+  },
+  {
+   "id": "trio_trois_verites",
+   "tab": "intime",
+   "cat": "trio",
+   "route": "groupe",
+   "members": [
+    "seo_yeon",
+    "hae_in",
+    "haneul"
+   ],
+   "title": "Les Trois Vérités",
+   "scene": "refuge_groupe:trio_trois_verites",
+   "unlock": [
+    "refuge_groupe:trio_trois_verites"
+   ],
+   "status": "amorce",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Seo-Yeon, Hae-in et Haneul, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge — seulement à partir de la deuxième récurrence."
+  },
+  {
+   "id": "reines_lames",
+   "tab": "intime",
+   "cat": "quatuor",
+   "route": "groupe",
+   "members": [
+    "hae_in",
+    "xiaoyu",
+    "ryeon",
+    "simone"
+   ],
+   "title": "Les Reines et les Lames",
+   "scene": "refuge_groupe:reines_lames",
+   "unlock": [
+    "refuge_groupe:reines_lames"
+   ],
+   "status": "ecrite",
+   "hint": "Affinité ≥ 20 avec Hae-in, Xiaoyu, Ryeon et Simone, toutes dans le groupe, et avoir réconcilié les Reines au Mahjong (scène du Refuge).",
+   "cg": "cg_reines_lames"
+  },
+  {
+   "id": "quatuor_quatre_fins",
+   "tab": "intime",
+   "cat": "quatuor",
+   "route": "groupe",
+   "members": [
+    "aoi",
+    "seo_yeon",
+    "maricel",
+    "ryeon"
+   ],
+   "title": "Les Quatre Fins",
+   "scene": "refuge_groupe:quatuor_quatre_fins",
+   "unlock": [
+    "refuge_groupe:quatuor_quatre_fins"
+   ],
+   "status": "amorce",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Aoi, Seo-Yeon, Maricel et Ryeon, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge, à partir du jour 18."
+  },
+  {
+   "id": "quatuor_loin_de_chez_soi",
+   "tab": "intime",
+   "cat": "quatuor",
+   "route": "groupe",
+   "members": [
+    "simone",
+    "nadia",
+    "maricel",
+    "aoi"
+   ],
+   "title": "Loin de chez soi",
+   "scene": "refuge_groupe:quatuor_loin_de_chez_soi",
+   "unlock": [
+    "refuge_groupe:quatuor_loin_de_chez_soi"
+   ],
+   "status": "amorce",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Simone, Nadia, Maricel et Aoi, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge."
+  },
+  {
+   "id": "constellation_cinq",
+   "tab": "intime",
+   "cat": "constellation",
+   "route": "groupe",
+   "members": [],
+   "title": "La Constellation de cinq",
+   "scene": "refuge_groupe:constellation_cinq",
+   "unlock": [
+    "refuge_groupe:constellation_cinq"
+   ],
+   "status": "amorce",
+   "hint": "Cinq héroïnes du groupe à Affinité ≥ 50, Dortoir construit."
+  },
+  {
+   "id": "nuit_maison",
+   "tab": "intime",
+   "cat": "constellation",
+   "route": "groupe",
+   "members": [],
+   "title": "La Nuit de la Maison (six)",
+   "scene": "refuge_groupe:nuit_maison",
+   "unlock": [
+    "refuge_groupe:nuit_maison"
+   ],
+   "status": "ecrite",
+   "hint": "Six héroïnes du groupe à Affinité ≥ 30, Dortoir construit.",
+   "cg": "cg_nuit_maison"
+  },
+  {
+   "id": "constellation_sept",
+   "tab": "intime",
+   "cat": "constellation",
+   "route": "groupe",
+   "title": "La Constellation de sept",
+   "status": "prevue",
+   "hint": "Sept héroïnes du groupe à Affinité ≥ 55, Dortoir construit.",
+   "setup": "Bloc refuge_groupe:constellation_sept + entrée group_scenes « bonds(55) >= 7 and flag('refuge.dortoir') ».",
+   "members": []
+  },
+  {
+   "id": "constellation_huit",
+   "tab": "intime",
+   "cat": "constellation",
+   "route": "groupe",
+   "members": [],
+   "title": "La Constellation de huit",
+   "scene": "refuge_groupe:constellation_huit",
+   "unlock": [
+    "refuge_groupe:constellation_huit"
+   ],
+   "status": "amorce",
+   "hint": "Huit héroïnes du groupe à Affinité ≥ 60, Dortoir construit."
+  },
+  {
+   "id": "constellation_neuf",
+   "tab": "intime",
+   "cat": "constellation",
+   "route": "groupe",
+   "title": "La Constellation de neuf",
+   "status": "prevue",
+   "hint": "Neuf héroïnes du groupe à Affinité ≥ 65, Dortoir construit.",
+   "setup": "Bloc refuge_groupe:constellation_neuf + entrée group_scenes « bonds(65) >= 9 and flag('refuge.dortoir') ».",
+   "members": []
+  },
+  {
+   "id": "portrait_dix",
+   "tab": "intime",
+   "cat": "harem",
+   "route": "groupe",
+   "members": [],
+   "title": "Le Portrait des Dix",
+   "scene": "refuge_groupe:portrait_dix",
+   "unlock": [
+    "refuge_groupe:portrait_dix"
+   ],
+   "status": "ecrite",
+   "hint": "Les dix héroïnes dans le groupe, toutes à Affinité ≥ 30.",
+   "cg": "cg_portrait_dix"
+  },
+  {
+   "id": "harem_aube",
+   "tab": "intime",
+   "cat": "harem",
+   "route": "lien",
+   "title": "L'Aube des Dix",
+   "status": "prevue",
+   "hint": "Atteindre la Fin de l'Aube avec les dix héroïnes dans le groupe (Épreuve des Dix réussie).",
+   "setup": "Bloc act4_finale:aube_dix après l'Épreuve des Dix, CG cg_aube_dix (RunPod).",
+   "members": []
+  },
+  {
+   "id": "harem_mercenaire",
+   "tab": "intime",
+   "cat": "harem",
+   "route": "mercenaire",
+   "title": "Le Contrat collectif",
+   "status": "prevue",
+   "hint": "Voie du Mercenaire avec au moins six nuits de contrat déjà conclues.",
+   "setup": "Bloc refuge_groupe:harem_mercenaire + entrée group_scenes (voie() == 'mercenaire', six drapeaux de nuit).",
+   "members": []
+  },
+  {
+   "id": "harem_ombre",
+   "tab": "intime",
+   "cat": "harem",
+   "route": "ombre",
+   "title": "La Cour de l'Ombre",
+   "status": "prevue",
+   "hint": "Sur la pente du Tyran sans aucun contrat forcé : six nuits d'Ombre consenties.",
+   "setup": "Bloc refuge_groupe:harem_ombre + entrée group_scenes (Protéger ≤ −15, aucun drapeau pacte.*, six nuits).",
+   "members": []
+  },
+  {
+   "id": "cg_prologue_death",
+   "tab": "histoire",
+   "cat": "cg",
+   "route": "histoire",
+   "members": [
+    "haneul"
+   ],
+   "title": "La première mort",
+   "scene": "prologue_j1:first_life",
+   "unlock": [
+    "prologue_j1:first_life"
+   ],
+   "cg": "cg_prologue_death",
+   "status": "ecrite",
+   "hint": "Prologue : la première vie d'Elias."
+  },
+  {
+   "id": "cg_registre_awakening",
+   "tab": "histoire",
+   "cat": "cg",
+   "route": "histoire",
+   "members": [],
+   "title": "L'éveil du Registre",
+   "scene": "prologue_j1:wake",
+   "unlock": [
+    "prologue_j1:wake"
+   ],
+   "cg": "cg_registre_awakening",
+   "status": "ecrite",
+   "hint": "Prologue : l'éveil du Registre."
+  },
+  {
+   "id": "cg_haneul_porte",
+   "tab": "histoire",
+   "cat": "cg",
+   "route": "histoire",
+   "members": [
+    "haneul"
+   ],
+   "title": "La porte sans serrure",
+   "scene": "act1_haneul:rencontre",
+   "unlock": [
+    "act1_haneul:rencontre"
+   ],
+   "cg": "cg_haneul_porte",
+   "status": "ecrite",
+   "hint": "Acte I, étage 1 de la Tour : ouvrir la porte sans serrure avant que Haneul soit capturée."
+  },
+  {
+   "id": "cg_seo_pacte",
+   "tab": "histoire",
+   "cat": "cg",
+   "route": "histoire",
+   "members": [
+    "seo_yeon"
+   ],
+   "title": "Le tribut",
+   "scene": "act1_camp:tribut",
+   "unlock": [
+    "act1_camp:tribut"
+   ],
+   "cg": "cg_seo_pacte",
+   "status": "ecrite",
+   "hint": "Jour 4 au camp de Yeouido : exiger un tribut et l'obéissance de Seo-Yeon."
+  },
+  {
+   "id": "cg_lecon_anatomie",
+   "tab": "histoire",
+   "cat": "refuge",
+   "route": "refuge",
+   "members": [
+    "seo_yeon",
+    "haneul"
+   ],
+   "title": "Leçon d'anatomie",
+   "scene": "refuge_groupe:lecon_anatomie",
+   "unlock": [
+    "refuge_groupe:lecon_anatomie"
+   ],
+   "cg": "cg_lecon_anatomie",
+   "status": "ecrite",
+   "hint": "Refuge : Seo-Yeon et Haneul dans le groupe, Affinité ≥ 15 pour les deux."
+  },
+  {
+   "id": "cg_deux_voix",
+   "tab": "histoire",
+   "cat": "refuge",
+   "route": "refuge",
+   "members": [
+    "aoi",
+    "maricel"
+   ],
+   "title": "Karaoké à deux voix",
+   "scene": "refuge_groupe:deux_voix",
+   "unlock": [
+    "refuge_groupe:deux_voix"
+   ],
+   "cg": "cg_deux_voix",
+   "status": "ecrite",
+   "hint": "Refuge : Aoi et Maricel dans le groupe, Affinité ≥ 15 pour les deux."
+  },
+  {
+   "id": "cg_deux_lames",
+   "tab": "histoire",
+   "cat": "refuge",
+   "route": "refuge",
+   "members": [
+    "ryeon",
+    "nadia"
+   ],
+   "title": "Deux lames sur le toit",
+   "scene": "refuge_groupe:deux_lames",
+   "unlock": [
+    "refuge_groupe:deux_lames"
+   ],
+   "cg": "cg_deux_lames",
+   "status": "ecrite",
+   "hint": "Refuge : Ryeon et Nadia dans le groupe, Affinité ≥ 15 pour les deux."
+  },
+  {
+   "id": "cg_mahjong_reines",
+   "tab": "histoire",
+   "cat": "refuge",
+   "route": "refuge",
+   "members": [
+    "hae_in",
+    "xiaoyu"
+   ],
+   "title": "Le Mahjong des Reines",
+   "scene": "refuge_groupe:mahjong_reines",
+   "unlock": [
+    "refuge_groupe:mahjong_reines"
+   ],
+   "cg": "cg_mahjong_reines",
+   "status": "ecrite",
+   "hint": "Refuge : Hae-in et Xiaoyu dans le groupe, Affinité ≥ 10 pour les deux."
+  },
+  {
+   "id": "cg_serum",
+   "tab": "histoire",
+   "cat": "refuge",
+   "route": "refuge",
+   "members": [
+    "seo_yeon",
+    "minh_anh"
+   ],
+   "title": "Sérum H-07",
+   "scene": "refuge_groupe:serum",
+   "unlock": [
+    "refuge_groupe:serum"
+   ],
+   "cg": "cg_serum",
+   "status": "ecrite",
+   "hint": "Refuge : Seo-Yeon et Minh-Anh dans le groupe, Affinité ≥ 10 pour les deux."
+  },
+  {
+   "id": "cg_sujet",
+   "tab": "histoire",
+   "cat": "refuge",
+   "route": "refuge",
+   "members": [
+    "haneul",
+    "minh_anh"
+   ],
+   "title": "Je ne suis pas un sujet",
+   "scene": "refuge_groupe:sujet",
+   "unlock": [
+    "refuge_groupe:sujet"
+   ],
+   "cg": "cg_sujet",
+   "status": "ecrite",
+   "hint": "Refuge : Haneul et Minh-Anh dans le groupe, Affinité de Minh-Anh ≥ 10."
+  },
+  {
+   "id": "cg_silo",
+   "tab": "histoire",
+   "cat": "refuge",
+   "route": "refuge",
+   "members": [
+    "simone",
+    "minh_anh"
+   ],
+   "title": "Le Silo",
+   "scene": "refuge_groupe:silo",
+   "unlock": [
+    "refuge_groupe:silo"
+   ],
+   "cg": "cg_silo",
+   "status": "ecrite",
+   "hint": "Refuge : Simone et Minh-Anh dans le groupe, Affinité ≥ 10 pour les deux."
+  },
+  {
+   "id": "cg_seo_soir",
+   "tab": "histoire",
+   "cat": "cg",
+   "route": "histoire",
+   "members": [
+    "seo_yeon"
+   ],
+   "title": "Le soir au camp",
+   "scene": "act1_camp:seo_soir",
+   "unlock": [
+    "act1_camp:seo_soir"
+   ],
+   "cg": "cg_seo_soir",
+   "status": "ecrite",
+   "hint": "Jour 3 au soir, avec Seo-Yeon dans le groupe."
+  },
+  {
+   "id": "cg_xiaoyu_barge",
+   "tab": "histoire",
+   "cat": "cg",
+   "route": "histoire",
+   "members": [
+    "xiaoyu"
+   ],
+   "title": "La barge de Longwei",
+   "scene": "act1_world:xiaoyu_barge",
+   "unlock": [
+    "act1_world:xiaoyu_barge"
+   ],
+   "cg": "cg_xiaoyu_barge",
+   "status": "ecrite",
+   "hint": "Acte I : monter à bord de la barge de Xiaoyu (Ponts du Han)."
+  },
+  {
+   "id": "cg_aoi_studio",
+   "tab": "histoire",
+   "cat": "cg",
+   "route": "histoire",
+   "members": [
+    "aoi"
+   ],
+   "title": "Le studio",
+   "scene": "act2_aoi:studio2",
+   "unlock": [
+    "act2_aoi:studio2"
+   ],
+   "cg": "cg_aoi_studio",
+   "status": "ecrite",
+   "hint": "Jours 8-9 : rendre visite à Aoi au studio de Hongdae avant le concert."
+  },
+  {
+   "id": "cg_xiaoyu_contrat",
+   "tab": "histoire",
+   "cat": "cg",
+   "route": "histoire",
+   "members": [
+    "xiaoyu"
+   ],
+   "title": "Le contrat de Xiaoyu",
+   "scene": "act3_xiaoyu:contrat",
+   "unlock": [
+    "act3_xiaoyu:contrat"
+   ],
+   "cg": "cg_xiaoyu_contrat",
+   "status": "ecrite",
+   "hint": "Acte III : Xiaoyu a survécu à la mutinerie ; la retrouver à sa barge à partir du jour 20."
+  },
+  {
+   "id": "cg_corbeau",
+   "tab": "histoire",
+   "cat": "cg",
+   "route": "histoire",
+   "members": [
+    "seo_yeon"
+   ],
+   "title": "Le Corbeau",
+   "scene": "act4_world:corbeau",
+   "unlock": [
+    "act4_world:corbeau"
+   ],
+   "cg": "cg_corbeau",
+   "status": "ecrite",
+   "hint": "À partir du jour 27, au moins trois liens forts dans le groupe, le Prophète encore masqué."
+  },
+  {
+   "id": "cg_veille",
+   "tab": "histoire",
+   "cat": "cg",
+   "route": "histoire",
+   "members": [
+    "haneul",
+    "seo_yeon",
+    "hae_in",
+    "ryeon",
+    "simone",
+    "xiaoyu",
+    "aoi",
+    "nadia",
+    "maricel",
+    "minh_anh"
+   ],
+   "title": "La veille",
+   "scene": "act4_world:veille",
+   "unlock": [
+    "act4_world:veille"
+   ],
+   "cg": "cg_veille",
+   "status": "ecrite",
+   "hint": "Jour 29 au soir, au moins quatre liens forts dans le groupe."
+  },
+  {
+   "id": "cg_toit_lotte",
+   "tab": "histoire",
+   "cat": "cg",
+   "route": "histoire",
+   "members": [
+    "nadia"
+   ],
+   "title": "Le toit de la Lotte",
+   "scene": "act4_nadia:toit",
+   "unlock": [
+    "act4_nadia:toit"
+   ],
+   "cg": "cg_toit_lotte",
+   "status": "ecrite",
+   "hint": "Jour 24 après-midi : honorer le rendez-vous de Nadia sur le toit de la Lotte."
+  },
+  {
+   "id": "cg_machine_inversion",
+   "tab": "histoire",
+   "cat": "cg",
+   "route": "histoire",
+   "members": [
+    "minh_anh"
+   ],
+   "title": "La machine d'inversion",
+   "scene": "act4_minh_anh:machine",
+   "unlock": [
+    "act4_minh_anh:machine"
+   ],
+   "cg": "cg_machine_inversion",
+   "status": "ecrite",
+   "hint": "Jour 26 au soir : être présent quand Minh-Anh lance la machine."
+  },
+  {
+   "id": "cg_dernier_exode",
+   "tab": "histoire",
+   "cat": "cg",
+   "route": "histoire",
+   "members": [],
+   "title": "Le dernier exode",
+   "scene": "act4_world:exode",
+   "unlock": [
+    "act4_world:exode"
+   ],
+   "cg": "cg_dernier_exode",
+   "status": "ecrite",
+   "hint": "Jour 27 : mener l'exode en journée."
+  },
+  {
+   "id": "cg_protocole_cendre",
+   "tab": "histoire",
+   "cat": "cg",
+   "route": "histoire",
+   "members": [
+    "simone"
+   ],
+   "title": "Le Protocole Cendre",
+   "scene": "act4_world:cendre",
+   "unlock": [
+    "act4_world:cendre"
+   ],
+   "cg": "cg_protocole_cendre",
+   "status": "ecrite",
+   "hint": "Jour 28 au matin : être là quand le Protocole Cendre est déclenché."
+  },
+  {
+   "id": "cg_nuit_deversement",
+   "tab": "histoire",
+   "cat": "cg",
+   "route": "histoire",
+   "members": [],
+   "title": "La Nuit du Déversement",
+   "scene": "act4_finale:debut",
+   "unlock": [
+    "act4_finale:debut"
+   ],
+   "cg": "cg_nuit_deversement",
+   "status": "ecrite",
+   "hint": "Jour 30 : la Nuit du Déversement commence."
+  },
+  {
+   "id": "cg_epreuve_dix",
+   "tab": "histoire",
+   "cat": "cg",
+   "route": "histoire",
+   "members": [
+    "haneul",
+    "seo_yeon",
+    "hae_in",
+    "ryeon",
+    "simone",
+    "xiaoyu",
+    "aoi",
+    "nadia",
+    "maricel",
+    "minh_anh"
+   ],
+   "title": "L'Épreuve des Dix",
+   "scene": "act4_finale:epreuve_dix",
+   "unlock": [
+    "act4_finale:epreuve_dix"
+   ],
+   "cg": "cg_epreuve_dix",
+   "status": "ecrite",
+   "hint": "Nuit du Déversement : affronter l'Épreuve avec dix liens forts."
+  },
+  {
+   "id": "cg_page_haneul",
+   "tab": "histoire",
+   "cat": "cg",
+   "route": "histoire",
+   "members": [
+    "haneul"
+   ],
+   "title": "La page de Haneul",
+   "scene": "act4_finale:page",
+   "unlock": [
+    "act4_finale:page"
+   ],
+   "cg": "cg_page_haneul",
+   "status": "ecrite",
+   "hint": "Nuit du Déversement : atteindre le Seuil et la dernière page de Haneul."
+  }
+ ]
+}

@@ -561,6 +561,938 @@
    {
     "end": true
    }
+  ],
+  "paire_ryeon_nadia": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Après l'entraînement, sur le toit, Ryeon et Nadia ne se disputent plus pour savoir qui a gagné. Elles se disputent pour savoir laquelle des deux t'a regardé en premier ce matin. Puis elles cessent de se disputer."
+   },
+   {
+    "s": "ryeon",
+    "t": "Je ne partage rien. Ni mon sabre, ni ma place. …Sauf ce soir. Et seulement parce que je l'ai décidé.",
+    "e": "tsundere",
+    "v": true
+   },
+   {
+    "s": "nadia",
+    "t": "Elle vise mal quand elle rougit. Laisse-la viser.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Le ruban rouge de Ryeon et l'écharpe rouge de Nadia finissent noués ensemble au pied du matelas. Chacune dit ce qu'elle veut, à voix basse, et l'autre l'entend aussi. Personne ne gagne. Personne ne compte les touches."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.ryeon 3",
+     "add aff.nadia 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_simone_nadia": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone et Nadia ont fini la bouteille de vodka et la discussion sur les angles de tir. Elles te regardent entrer comme on évalue une position à prendre."
+   },
+   {
+    "s": "simone",
+    "t": "Feu croisé, Rang F. Tu es à découvert. On te propose une reddition honorable.",
+    "e": "cigar",
+    "v": true
+   },
+   {
+    "s": "nadia",
+    "t": "Ou pas honorable. On a voté. Deux contre un.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elles se déshabillent comme on dépose l'équipement après une mission : méthodiquement, en riant de leurs cicatrices, en comparant les impacts. Puis elles cessent de comparer, et chacune réclame sa part de la nuit, à voix haute."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.simone 3",
+     "add aff.nadia 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_hae_in_xiaoyu": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "La partie de mahjong entre Hae-in et Xiaoyu s'est terminée sur une égalité parfaite. Aucune des deux ne supporte l'égalité. Elles ont trouvé un autre moyen de départager la soirée."
+   },
+   {
+    "s": "hae_in",
+    "t": "Proposition de fusion, Monsieur Kang. Deux actionnaires majoritaires, un seul actif. Vous.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Et chacune garde un droit de veto. Si l'une dit non, on arrête. Une Long respecte les contrats.",
+    "e": "fan",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "La soie bordeaux et le qipao noir glissent sur la table de jeu, parmi les tuiles. Elles négocient chaque geste à voix basse, chaque concession, chaque victoire, et finissent par oublier qui tient la banque."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.hae_in 3",
+     "add aff.xiaoyu 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_seo_yeon_minh_anh": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Au laboratoire, tard. La dernière série de tests est stable. Seo-Yeon et Minh-Anh s'en rendent compte en même temps, et, pour une fois, elles ne trouvent rien à se reprocher."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "On a travaillé toute la nuit pour les autres. Je voudrais… faire quelque chose qui n'a rien à voir avec ça. Avec vous deux.",
+    "e": "desire",
+    "v": true
+   },
+   {
+    "s": "minh_anh",
+    "t": "Hypothèse : nous fonctionnons mieux à trois. Méthode : expérimentale. Consentement : enregistré. Deux fois.",
+    "e": "red_leds",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elles se découvrent comme on relit un protocole : Seo-Yeon avec ses mains de médecin, Minh-Anh avec une précision qui s'effondre à la troisième étape. Les blouses s'empilent sur la paillasse. Les LEDs virent au rouge, et Seo-Yeon en tient le compte, puis ne le tient plus."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.seo_yeon 3",
+     "add aff.minh_anh 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_maricel_xiaoyu": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Sur la barge de Xiaoyu, Maricel a volé trois bouteilles, deux montres et un éventail. Xiaoyu l'a laissée faire, pour voir jusqu'où elle irait. Elle est allée jusqu'à la cabine."
+   },
+   {
+    "s": "maricel",
+    "t": "Ay, la reine, ta cabine est plus grande que tout mon tunnel. On la partage avec le gwapo ? Je promets de ne rien voler. Presque rien.",
+    "e": "wink",
+    "v": true
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Tu as déjà volé mon éventail. Rends-le, ou paie-le. J'accepte les deux devises.",
+    "e": "fan",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Maricel paie, et Xiaoyu rend la monnaie. Le qipao et le maillot de basket finissent par terre, le dragon noir et or à côté du soleil à huit rayons. Elles rient beaucoup, se volent des baisers, et te volent tout le reste."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.maricel 3",
+     "add aff.xiaoyu 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_minh_anh_haneul": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Haneul a demandé à Minh-Anh de lui apprendre « ce que mesurent ses machines ». Minh-Anh a branché les capteurs. Les capteurs ont saturé."
+   },
+   {
+    "s": "haneul",
+    "t": "Tes lumières deviennent rouges quand je te touche. Mes glyphes deviennent dorés. On parle la même langue.",
+    "e": "tilt",
+    "v": true
+   },
+   {
+    "s": "minh_anh",
+    "t": "Ce n'est pas scientifique. …Continue. Et toi aussi, Elias. J'ai besoin d'un groupe témoin.",
+    "e": "red_leds",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Les glyphes de Haneul s'allument sous les doigts de Minh-Anh, les LEDs de Minh-Anh rougissent sous ceux de Haneul, et toi, au milieu, tu deviens la variable que personne ne veut plus isoler. Les capteurs enregistrent tout. Personne ne relira les données."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.minh_anh 3",
+     "add aff.haneul 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_simone_ryeon": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone a battu Ryeon au bras de fer. Ryeon exige une revanche. Simone propose une autre épreuve, plus longue, et te désigne comme arbitre."
+   },
+   {
+    "s": "ryeon",
+    "t": "Je n'ai jamais perdu deux fois contre la même personne. …Ce n'est pas une défaite, si je l'ai choisi.",
+    "e": "tsundere",
+    "v": true
+   },
+   {
+    "s": "simone",
+    "t": "Règles simples, soldate : tout le monde dit oui à voix haute, et personne ne joue au plus fort. Ce soir, on se couvre.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Le hanbok et le treillis tombent sur le tatami. Elles se protègent l'une l'autre comme sur un champ de bataille, et elles t'apprennent, entre deux rires, que la meilleure défense est de ne jamais laisser l'autre seule."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.simone 3",
+     "add aff.ryeon 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_aoi_haneul": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi a appris une chanson à Haneul. Haneul a appris à Aoi à la chanter sans faire semblant. Elles la chantent pour toi, à voix basse, assises sur ton lit."
+   },
+   {
+    "s": "aoi",
+    "t": "C'est la première chanson que je chante pour moi. Pour nous. Je veux que tu restes jusqu'à la fin. Et après aussi.",
+    "e": "true_smile",
+    "v": true
+   },
+   {
+    "s": "haneul",
+    "t": "Quand elle chante, le temps s'arrête. Je l'ai vu. Je voudrais qu'il s'arrête un peu, avec vous deux.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "La chanson se défait en souffles et en rires. Aoi décide de chaque geste à voix haute, en japonais puis en coréen, et Haneul répète chaque mot comme une incantation, ses glyphes allumés jusqu'aux hanches."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.aoi 3",
+     "add aff.haneul 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_hae_in_simone": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in a convoqué Simone pour un audit de la défense du Refuge. Simone a convoqué Hae-in pour un audit de ses mensonges. Elles t'ont convoqué tous les deux pour arbitrer, à minuit."
+   },
+   {
+    "s": "hae_in",
+    "t": "La commandante pense que je calcule tout. Ce soir, je propose de ne rien calculer. Une seule condition : on se dit tout à voix haute.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "simone",
+    "t": "Noté. Et tu ne gardes pas ton chignon. Ordre de sécurité.",
+    "e": "cigar",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Le chignon tombe, les plaques tintent sur la table, le tailleur blanc rejoint le treillis. La présidente et la commandante découvrent qu'elles se ressemblent : deux femmes qui ne lâchent jamais rien, et qui, ce soir, choisissent de tout lâcher."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.hae_in 3",
+     "add aff.simone 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_seo_yeon_aoi": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon refait les pansements des doigts d'Aoi, comme chaque soir. Ce soir, Aoi ne repart pas. Elle garde la main de Seo-Yeon dans la sienne, et te fait signe d'approcher."
+   },
+   {
+    "s": "aoi",
+    "t": "Elle soigne tout le monde. Personne ne la soigne, elle. Ce soir, on s'occupe d'elle. D'accord, Seo-Yeon ?",
+    "e": "true_smile",
+    "v": true
+   },
+   {
+    "s": "seo_yeon",
+    "t": "…D'accord. Mais doucement. Et vous me dites tout ce que vous faites. Je suis médecin, j'ai besoin de savoir.",
+    "e": "embarrassed",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elles s'occupent d'elle, puis Seo-Yeon s'occupe d'elles, parce qu'elle ne sait pas faire autrement. Les lunettes rondes sur la table de chevet, le sweat gris par terre, une chanson fredonnée contre une épaule, et des battements de cœur que plus personne ne compte."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.seo_yeon 3",
+     "add aff.aoi 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "trio_trois_lames": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Ryeon, Simone et Nadia sortent de l'entraînement, couvertes de sueur et de bleus, et d'humeur à fêter on ne sait quoi. Elles ont posé leurs trois armes en étoile sur le toit, et pris une décision à l'unanimité, à main levée."
+   },
+   {
+    "s": "simone",
+    "t": "Vote clos, trois voix pour. Le Rang F est réquisitionné jusqu'à l'aube.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "ryeon",
+    "t": "Je n'ai pas levé la main la première. …Mais je l'ai levée.",
+    "e": "tsundere",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Sabre, fusil, baïonnette restent hors de portée, par prudence et par respect. Elles se déshabillent comme après une victoire, cicatrices exposées et comparées, et chacune dit à voix haute ce qu'elle veut des deux autres, et de toi."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.ryeon 3",
+     "add aff.simone 3",
+     "add aff.nadia 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "trio_reines": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Trois héritières de Sceaux autour d'une table. Trois femmes qui ne se sont jamais inclinées devant personne. Elles ont décidé de ne pas s'incliner ce soir non plus : elles régneront ensemble."
+   },
+   {
+    "s": "hae_in",
+    "t": "Chacune garde son Sceau, son veto et sa voix. Et nous partageons le reste.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Le reste, c'est lui. Ryeon, tu rougis. Tu peux encore te retirer, rien n'est signé.",
+    "e": "fan",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Ryeon ne se retire pas. Elle le dit clairement, en relevant le menton comme devant un tribunal. Les trois reines défont leurs parures de soie et de jade, et la nuit se règle à l'unanimité."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.hae_in 3",
+     "add aff.xiaoyu 3",
+     "add aff.ryeon 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "trio_invisibles": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Trois femmes que personne ne voyait : une idole qu'on pesait chaque lundi, une voleuse qu'on a vendue, une tireuse qu'on louait à la journée. Ce soir, elles ont choisi ta chambre. Elles ont choisi la nuit."
+   },
+   {
+    "s": "maricel",
+    "t": "Personne ne nous a jamais demandé ce qu'on voulait. Alors on le dit. Chacune son tour. Moi d'abord.",
+    "e": "wink",
+    "v": true
+   },
+   {
+    "s": "nadia",
+    "t": "Ensuite moi. Aoi en dernier : c'est elle qui décide quand on s'arrête.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi décide. Elle prend son temps. Pour la première fois de leur vie, trois femmes qu'on a achetées, vendues, effacées sont exactement là où elles ont choisi d'être, et elles ne laissent personne en douter."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.aoi 3",
+     "add aff.maricel 3",
+     "add aff.nadia 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "trio_filles_fleuve": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Sur le pont de la plus grande barge de Xiaoyu, sous les lanternes rouges, trois femmes et un seul homme, et le Han qui coule sans bruit."
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Contrebande et silence, Kang. Ce qui se passe sur ma barge reste sur ma barge.",
+    "e": "fan",
+    "v": true
+   },
+   {
+    "s": "maricel",
+    "t": "Sauf si c'est trop bien. Là, je le raconte à tout le tunnel.",
+    "e": "wink",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Le qipao, la chemise d'homme, le maillot de basket. Elles se volent, se cachent et se retrouvent, comme sur le fleuve, au rythme des lanternes qui tanguent. Nadia ne dit rien ; elle n'a pas besoin."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.xiaoyu 3",
+     "add aff.maricel 3",
+     "add aff.nadia 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "trio_laboratoire": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Une nuit de travail au laboratoire s'achève. Minh-Anh a rédigé le compte rendu, Seo-Yeon l'a relu, Haneul l'a regardé briller sur l'écran. Il manque une conclusion."
+   },
+   {
+    "s": "minh_anh",
+    "t": "Conclusion proposée : célébrer. Méthode : nous trois, et toi. Consentement : unanime, j'ai vérifié deux fois.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Trois fois. Je suis médecin.",
+    "e": "laugh",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Haneul rit de leurs protocoles et les défait un à un. Les blouses s'empilent, les LEDs rougissent, les glyphes dorent la pénombre, et la science, pour une nuit, se contente d'observer."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.minh_anh 3",
+     "add aff.seo_yeon 3",
+     "add aff.haneul 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "trio_sceptres": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in a les comptes, Minh-Anh les brevets, Xiaoyu les routes. Elles ont passé la soirée à dessiner l'empire de la Friche sur une nappe. Ce soir, elles fêtent un monopole qui n'existe encore que sur papier."
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Le capital, la technologie et le crime organisé, Kang. On n'a jamais été aussi bien assorties.",
+    "e": "fan",
+    "v": true
+   },
+   {
+    "s": "hae_in",
+    "t": "Chaque clause se discute. Chaque clause se refuse. C'est notre seule règle, Monsieur Kang.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elles négocient chaque geste comme un contrat, et elles en signent beaucoup. Minh-Anh prend des notes jusqu'à la troisième clause, puis abandonne sa tablette, comme toujours."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.hae_in 3",
+     "add aff.minh_anh 3",
+     "add aff.xiaoyu 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "trio_gardiennes": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Une clé, un sabre et un chant. Haneul, Ryeon et Aoi ont passé la soirée à parler de la porte sans serrure. Ce soir, elles ne veulent plus parler de portes : elles veulent seulement être ensemble, avec toi."
+   },
+   {
+    "s": "aoi",
+    "t": "On a parlé de fins du monde toute la journée. Ce soir, je veux qu'on parle d'autre chose. Juste nous.",
+    "e": "true_smile",
+    "v": true
+   },
+   {
+    "s": "haneul",
+    "t": "Le chant, le sabre et moi. Et toi au milieu. Le Registre se tait quand on est quatre.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Ryeon garde son ruban rouge au poignet. Aoi chante à voix basse. Haneul s'allume de partout. Chacune dit oui, à son tour, et la nuit se referme sur eux quatre comme un sceau."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.haneul 3",
+     "add aff.ryeon 3",
+     "add aff.aoi 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "trio_garde_fer": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Après une longue garde, Simone, Ryeon et Seo-Yeon ont protégé tout le monde pendant des jours. Ce soir, elles veulent qu'on les protège, elles."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Trois jours sans dormir. Je prescris une nuit. Avec toi. Avec elles. C'est un ordre médical.",
+    "e": "desire",
+    "v": true
+   },
+   {
+    "s": "simone",
+    "t": "Ordre confirmé. Et personne ne monte la garde ce soir. Ni toi, ni nous.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Le treillis, le hanbok, la blouse. Elles se laissent enfin porter, une à une, puis toutes ensemble, et c'est toi qui veilles sur elles, pour une fois, jusqu'à ce qu'elles oublient de veiller sur qui que ce soit."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.simone 3",
+     "add aff.ryeon 3",
+     "add aff.seo_yeon 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "trio_trois_verites": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Trois femmes qui ne supportent pas le mensonge : une médecin qui a falsifié un triage, une présidente qui a tout caché, une héritière qui ne se souvient de rien. Une boucle de plus, et une nuit pour se dire la vérité."
+   },
+   {
+    "s": "hae_in",
+    "t": "Nous mentons à toute la ville pour la sauver. Pas entre nous. Disons-la, maintenant. Chacune la sienne.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "haneul",
+    "t": "La mienne est simple. Je veux rester. Avec vous trois.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elles se disent tout : les peurs, les envies, les limites. Puis elles cessent de parler. Les lunettes, le chignon, le bomber trop grand. La vérité, cette nuit-là, se dit sans mots, et personne ne ment."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.seo_yeon 3",
+     "add aff.hae_in 3",
+     "add aff.haneul 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "quatuor_quatre_fins": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi, Seo-Yeon, Maricel et Ryeon savent, maintenant, que le Registre leur avait donné les quatre Fins les plus proches. Le dix-septième jour est passé. Elles sont toutes là. Elles ont décidé de fêter chaque aube volée."
+   },
+   {
+    "s": "maricel",
+    "t": "Quatre aubes de rab, gwapo. On les fête toutes ce soir. Dans l'ordre !",
+    "e": "wink",
+    "v": true
+   },
+   {
+    "s": "ryeon",
+    "t": "Il n'y a pas d'ordre. …Il y a ce que chacune demande, et tu écoutes.",
+    "e": "tsundere",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Chacune demande. Chacune est entendue. Le dortoir est trop petit, les rires trop forts, et la nuit trop courte pour quatre aubes ; elles s'en moquent."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.aoi 3",
+     "add aff.seo_yeon 3",
+     "add aff.maricel 3",
+     "add aff.ryeon 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "quatuor_loin_de_chez_soi": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Une Américaine, une Kazakhe, une Philippine, une Japonaise et un Coréano-Martiniquais. Loin de chez eux, au même endroit, la même nuit."
+   },
+   {
+    "s": "simone",
+    "t": "Personne ici n'est né à Séoul. Ce soir, on décide que c'est chez nous.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "aoi",
+    "t": "Chez nous. J'aime bien quand tu le dis comme ça.",
+    "e": "true_smile",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elles parlent chacune leur langue, puis plus aucune. Quatre femmes qui ont tout quitté choisissent, ce soir, de ne plus rien quitter du tout."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.simone 3",
+     "add aff.nadia 3",
+     "add aff.maricel 3",
+     "add aff.aoi 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "constellation_cinq": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Cinq femmes, ce soir, dans la grande chambre du Refuge. Elles ne se sont pas concertées : elles sont venues une à une, et aucune n'est repartie."
+   },
+   {
+    "s": "narrator",
+    "t": "Elles posent une seule règle, à voix haute : chacune choisit, chacune peut dire stop, et personne n'est laissée au bord du lit. La règle tient toute la nuit."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "constellation_huit": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Huit. La Constellation a assez d'étoiles pour éclairer la salle commune sans lampe. Elles ont poussé tous les matelas, et elles ont attendu que tu entres."
+   },
+   {
+    "s": "registre",
+    "t": "Constellation de huit — Synergies allégées. Cohésion +10."
+   },
+   {
+    "s": "narrator",
+    "t": "La nuit se fait par vagues, au gré de chacune ; quelqu'un chante, quelqu'un rit, quelqu'un s'endort la première et se réveille la dernière. Personne ne compte. Personne n'est oubliée."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
   ]
  }
 }

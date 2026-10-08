@@ -45,6 +45,9 @@ var can_save := false:     ## fixé par main.gd : faux pendant le prologue
 		can_save = value
 		_sync_quick()
 var _auto_timer := 0.0
+var replay := false   ## relecture depuis la galerie : état « bac à sable », temps et événements ignorés
+var sandbox = null    ## StateStore de la relecture (sinon GameState.store)
+var replay_title := ""
 
 
 func _ready() -> void:
@@ -123,8 +126,10 @@ func start(dialogue_id: String, block: String = "") -> void:
 	VoiceManager.begin_scene()
 	var dlg: Dictionary = DataDB.dialogues.get(dialogue_id, {})
 	_speakers = dlg.get("speakers", {})
-	runner = DialogueRunner.new(GameState.store)
+	runner = DialogueRunner.new(sandbox if sandbox != null else GameState.store)
 	runner.show_p3 = not Settings.hide_pacte_p3
+	if not auto_advance:
+		runner.on_enter = SaveManager.unlock_scene
 	_cg.texture = null
 	_cg.visible = false
 	runner.start(dlg, block)
@@ -159,15 +164,20 @@ func _advance() -> void:
 			_cg.visible = tex != null
 			_advance()
 		"phase":
-			GameState.advance_phase(_current["count"])
+			if not replay:
+				GameState.advance_phase(_current["count"])
 			_advance()
 		"time":
-			GameState.store.set_time(_current["day"], _current["phase"])
+			if not replay:
+				GameState.store.set_time(_current["day"], _current["phase"])
 			_advance()
 		"music":
 			MusicManager.play_context(_current["context"])
 			_advance()
 		"event":
+			if replay:  # pas de combat ni de carte en relecture
+				_advance()
+				return
 			_paused = true
 			skipping = false
 			_sync_quick()
@@ -252,6 +262,9 @@ func _set_background(id: String) -> void:
 
 
 func _update_hud() -> void:
+	if replay:
+		_hud.text = "GALERIE — %s   ·   Échap ou Menu pour revenir" % replay_title
+		return
 	_hud.text = "JOUR %d — %s   ·   Boucle %d" % [GameState.day, GameState.phase_name(), GameState.store.loop()]
 
 
@@ -363,8 +376,12 @@ static func auto_delay(text: String) -> float:
 	return 1.2 + 0.035 * text.length()
 
 
+## Une fenêtre modale ouverte par-dessus la scène (la galerie qui lance une relecture, ancêtre de la scène, ne compte pas).
 func _modal_open() -> bool:
-	return not get_tree().get_nodes_in_group("modal").is_empty()
+	for m in get_tree().get_nodes_in_group("modal"):
+		if m != self and not m.is_ancestor_of(self):
+			return true
+	return false
 
 
 static func _key(event: InputEvent, code: Key) -> bool:

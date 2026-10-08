@@ -73,6 +73,8 @@ func test_dialogue_runner() -> void:
 		"c": [{"event": "combat", "args": {"encounter": "e"}}, {"t": "Après"}, {"end": true}]}}
 	var s := StateStore.new()
 	var r := DialogueRunner.new(s)
+	var entered: Array = []
+	r.on_enter = func(ref): entered.append(ref)
 	r.start(dlg)
 	var step := r.next()
 	check(step["kind"] == "line" and step["text"] == "Salut" and step["id"] == "t:a:0", "première réplique + id")
@@ -85,6 +87,7 @@ func test_dialogue_runner() -> void:
 	step = r.next()
 	check(step["kind"] == "line" and step["text"] == "Après", "reprise après événement")
 	check(r.next()["kind"] == "end", "fin")
+	check(entered == ["t:a", "t:b", "t:c"], "entrée de chaque bloc signalée (déblocage de la galerie)")
 	check(DialogueRunner.validate({"start": "a", "blocks": {"a": [{"goto": "zz"}]}}).size() == 1, "validate détecte un bloc inconnu")
 	# Passages P3 : joués sur place, sautés s'ils sont vides ou masqués
 	var slot_dlg := {"id": "p", "start": "a", "blocks": {"a": [{"t": "avant"},

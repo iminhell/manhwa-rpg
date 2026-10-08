@@ -118,6 +118,266 @@
    "if": "bonds() >= 10",
    "once": true,
    "dialogue": "refuge_groupe:portrait_dix"
+  },
+  {
+   "id": "paire_ryeon_nadia",
+   "label": "Lame et Lunette : Ryeon et Nadia",
+   "members": [
+    "ryeon",
+    "nadia"
+   ],
+   "if": "flag('ryeon_nuit') and flag('nadia_nuit') and aff('ryeon') >= 50 and aff('nadia') >= 50 and flag('refuge.dortoir')",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_ryeon_nadia"
+  },
+  {
+   "id": "paire_simone_nadia",
+   "label": "Feu Croisé : Simone et Nadia",
+   "members": [
+    "simone",
+    "nadia"
+   ],
+   "if": "flag('simone_nuit') and flag('nadia_nuit') and aff('simone') >= 50 and aff('nadia') >= 50 and flag('refuge.dortoir')",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_simone_nadia"
+  },
+  {
+   "id": "paire_hae_in_xiaoyu",
+   "label": "OPA Hostile : Hae-in et Xiaoyu",
+   "members": [
+    "hae_in",
+    "xiaoyu"
+   ],
+   "if": "flag('haein_nuit') and flag('xiaoyu_nuit') and aff('hae_in') >= 50 and aff('xiaoyu') >= 50 and flag('refuge.dortoir')",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_hae_in_xiaoyu"
+  },
+  {
+   "id": "paire_seo_yeon_minh_anh",
+   "label": "Sérum H-07 : Seo-Yeon et Minh-Anh",
+   "members": [
+    "seo_yeon",
+    "minh_anh"
+   ],
+   "if": "flag('seo_nuit') and flag('minh_anh_nuit') and aff('seo_yeon') >= 50 and aff('minh_anh') >= 50 and flag('refuge.dortoir')",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_seo_yeon_minh_anh"
+  },
+  {
+   "id": "paire_maricel_xiaoyu",
+   "label": "Contrebande : Maricel et Xiaoyu",
+   "members": [
+    "maricel",
+    "xiaoyu"
+   ],
+   "if": "flag('maricel_nuit') and flag('xiaoyu_nuit') and aff('maricel') >= 50 and aff('xiaoyu') >= 50 and flag('refuge.dortoir')",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_maricel_xiaoyu"
+  },
+  {
+   "id": "paire_minh_anh_haneul",
+   "label": "Équation du Seuil : Minh-Anh et Haneul",
+   "members": [
+    "minh_anh",
+    "haneul"
+   ],
+   "if": "flag('minh_anh_nuit') and flag('haneul_nuit') and aff('minh_anh') >= 50 and aff('haneul') >= 50 and flag('refuge.dortoir')",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_minh_anh_haneul"
+  },
+  {
+   "id": "paire_simone_ryeon",
+   "label": "Avant-Garde : Simone et Ryeon",
+   "members": [
+    "simone",
+    "ryeon"
+   ],
+   "if": "flag('simone_nuit') and flag('ryeon_nuit') and aff('simone') >= 50 and aff('ryeon') >= 50 and flag('refuge.dortoir')",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_simone_ryeon"
+  },
+  {
+   "id": "paire_aoi_haneul",
+   "label": "Hymne du Seuil : Aoi et Haneul",
+   "members": [
+    "aoi",
+    "haneul"
+   ],
+   "if": "flag('aoi_nuit') and flag('haneul_nuit') and aff('aoi') >= 50 and aff('haneul') >= 50 and flag('refuge.dortoir')",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_aoi_haneul"
+  },
+  {
+   "id": "paire_hae_in_simone",
+   "label": "Loi Martiale : Hae-in et Simone",
+   "members": [
+    "hae_in",
+    "simone"
+   ],
+   "if": "flag('haein_nuit') and flag('simone_nuit') and aff('hae_in') >= 50 and aff('simone') >= 50 and flag('refuge.dortoir')",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_hae_in_simone"
+  },
+  {
+   "id": "paire_seo_yeon_aoi",
+   "label": "Ballade du Triage : Seo-Yeon et Aoi",
+   "members": [
+    "seo_yeon",
+    "aoi"
+   ],
+   "if": "flag('seo_nuit') and flag('aoi_nuit') and aff('seo_yeon') >= 50 and aff('aoi') >= 50 and flag('refuge.dortoir')",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_seo_yeon_aoi"
+  },
+  {
+   "id": "trio_trois_lames",
+   "label": "Les Trois Lames",
+   "members": [
+    "ryeon",
+    "simone",
+    "nadia"
+   ],
+   "if": "flag('ryeon_nuit') and flag('simone_nuit') and flag('nadia_nuit') and aff('ryeon') >= 50 and aff('simone') >= 50 and aff('nadia') >= 50 and flag('refuge.dortoir')",
+   "once": false,
+   "dialogue": "refuge_groupe:trio_trois_lames"
+  },
+  {
+   "id": "trio_reines",
+   "label": "Les Reines",
+   "members": [
+    "hae_in",
+    "xiaoyu",
+    "ryeon"
+   ],
+   "if": "flag('haein_nuit') and flag('xiaoyu_nuit') and flag('ryeon_nuit') and aff('hae_in') >= 50 and aff('xiaoyu') >= 50 and aff('ryeon') >= 50 and flag('refuge.dortoir')",
+   "once": false,
+   "dialogue": "refuge_groupe:trio_reines"
+  },
+  {
+   "id": "trio_invisibles",
+   "label": "Les Invisibles",
+   "members": [
+    "aoi",
+    "maricel",
+    "nadia"
+   ],
+   "if": "flag('aoi_nuit') and flag('maricel_nuit') and flag('nadia_nuit') and aff('aoi') >= 50 and aff('maricel') >= 50 and aff('nadia') >= 50 and flag('refuge.dortoir')",
+   "once": false,
+   "dialogue": "refuge_groupe:trio_invisibles"
+  },
+  {
+   "id": "trio_filles_fleuve",
+   "label": "Les Filles du Fleuve",
+   "members": [
+    "xiaoyu",
+    "maricel",
+    "nadia"
+   ],
+   "if": "flag('xiaoyu_nuit') and flag('maricel_nuit') and flag('nadia_nuit') and aff('xiaoyu') >= 50 and aff('maricel') >= 50 and aff('nadia') >= 50 and flag('refuge.dortoir')",
+   "once": false,
+   "dialogue": "refuge_groupe:trio_filles_fleuve"
+  },
+  {
+   "id": "trio_laboratoire",
+   "label": "Le Laboratoire",
+   "members": [
+    "minh_anh",
+    "seo_yeon",
+    "haneul"
+   ],
+   "if": "flag('minh_anh_nuit') and flag('seo_nuit') and flag('haneul_nuit') and aff('minh_anh') >= 50 and aff('seo_yeon') >= 50 and aff('haneul') >= 50 and flag('refuge.dortoir')",
+   "once": false,
+   "dialogue": "refuge_groupe:trio_laboratoire"
+  },
+  {
+   "id": "trio_sceptres",
+   "label": "Les Sceptres",
+   "members": [
+    "hae_in",
+    "minh_anh",
+    "xiaoyu"
+   ],
+   "if": "flag('haein_nuit') and flag('minh_anh_nuit') and flag('xiaoyu_nuit') and aff('hae_in') >= 50 and aff('minh_anh') >= 50 and aff('xiaoyu') >= 50 and flag('refuge.dortoir')",
+   "once": false,
+   "dialogue": "refuge_groupe:trio_sceptres"
+  },
+  {
+   "id": "trio_gardiennes",
+   "label": "Les Gardiennes du Seuil",
+   "members": [
+    "haneul",
+    "ryeon",
+    "aoi"
+   ],
+   "if": "flag('haneul_nuit') and flag('ryeon_nuit') and flag('aoi_nuit') and aff('haneul') >= 50 and aff('ryeon') >= 50 and aff('aoi') >= 50 and flag('refuge.dortoir')",
+   "once": false,
+   "dialogue": "refuge_groupe:trio_gardiennes"
+  },
+  {
+   "id": "trio_garde_fer",
+   "label": "La Garde de Fer",
+   "members": [
+    "simone",
+    "ryeon",
+    "seo_yeon"
+   ],
+   "if": "flag('simone_nuit') and flag('ryeon_nuit') and flag('seo_nuit') and aff('simone') >= 50 and aff('ryeon') >= 50 and aff('seo_yeon') >= 50 and flag('refuge.dortoir')",
+   "once": false,
+   "dialogue": "refuge_groupe:trio_garde_fer"
+  },
+  {
+   "id": "trio_trois_verites",
+   "label": "Les Trois Vérités",
+   "members": [
+    "seo_yeon",
+    "hae_in",
+    "haneul"
+   ],
+   "if": "flag('seo_nuit') and flag('haein_nuit') and flag('haneul_nuit') and aff('seo_yeon') >= 50 and aff('hae_in') >= 50 and aff('haneul') >= 50 and flag('refuge.dortoir') and loop() >= 2",
+   "once": false,
+   "dialogue": "refuge_groupe:trio_trois_verites"
+  },
+  {
+   "id": "quatuor_quatre_fins",
+   "label": "Les Quatre Fins",
+   "members": [
+    "aoi",
+    "seo_yeon",
+    "maricel",
+    "ryeon"
+   ],
+   "if": "flag('aoi_nuit') and flag('seo_nuit') and flag('maricel_nuit') and flag('ryeon_nuit') and aff('aoi') >= 50 and aff('seo_yeon') >= 50 and aff('maricel') >= 50 and aff('ryeon') >= 50 and flag('refuge.dortoir') and day() >= 18",
+   "once": false,
+   "dialogue": "refuge_groupe:quatuor_quatre_fins"
+  },
+  {
+   "id": "quatuor_loin_de_chez_soi",
+   "label": "Loin de chez soi",
+   "members": [
+    "simone",
+    "nadia",
+    "maricel",
+    "aoi"
+   ],
+   "if": "flag('simone_nuit') and flag('nadia_nuit') and flag('maricel_nuit') and flag('aoi_nuit') and aff('simone') >= 50 and aff('nadia') >= 50 and aff('maricel') >= 50 and aff('aoi') >= 50 and flag('refuge.dortoir')",
+   "once": false,
+   "dialogue": "refuge_groupe:quatuor_loin_de_chez_soi"
+  },
+  {
+   "id": "constellation_cinq",
+   "label": "La Constellation de cinq",
+   "members": [],
+   "if": "bonds(50) >= 5 and flag('refuge.dortoir')",
+   "once": false,
+   "dialogue": "refuge_groupe:constellation_cinq"
+  },
+  {
+   "id": "constellation_huit",
+   "label": "La Constellation de huit",
+   "members": [],
+   "if": "bonds(60) >= 8 and flag('refuge.dortoir')",
+   "once": false,
+   "dialogue": "refuge_groupe:constellation_huit"
   }
  ]
 }

@@ -420,8 +420,17 @@ func _capture_tour() -> void:
 	for m in get_tree().get_nodes_in_group("modal"):
 		m.queue_free()
 	SaveManager.unlock_cg("cg_seo_nuit")
-	_show_gallery()
+	for id in ["seo_lien", "paire_ryeon_nadia", "trio_reines", "seo_echo"]:
+		if not SaveManager.meta.has("scenes"):
+			SaveManager.meta["scenes"] = []
+		SaveManager.meta["scenes"].append(id)
+	var gal = _show_gallery()
 	await _snap("09_galerie")
+	gal._set_filter("intime", "", "")
+	for e in GalleryPanel.entries():
+		if e["id"] == "seo_ombre":
+			gal.show_hint(e)
+	await _snap("10_galerie_intime")
 	for m in get_tree().get_nodes_in_group("modal"):
 		m.queue_free()
 	_clear_overlay()
@@ -494,8 +503,25 @@ func _ui_test() -> void:
 	_ui_check(_modals().is_empty(), "fiches : Échap ferme le panneau")
 	var gal = _show_gallery()
 	await _frames()
-	var cg_total: int = GalleryPanel.cg_list().size()
-	_ui_check(gal.total == cg_total and gal.find_child("Grid", true, false).get_child_count() == cg_total, "galerie : %d CG du manifeste" % cg_total)
+	var all_entries: Array = GalleryPanel.entries()
+	var by_tab := func(t: String) -> int: return all_entries.filter(func(e): return e["tab"] == t).size()
+	var grid: Node = gal.find_child("Grid", true, false)
+	_ui_check(gal.total + gal.planned == all_entries.size() and grid.get_child_count() == by_tab.call("histoire"),
+		"galerie : onglet Histoire, %d CG clés ; %d entrées dont %d prévues" % [grid.get_child_count(), all_entries.size(), gal.planned])
+	gal.find_child("intime", true, false).pressed.emit()
+	await _frames()
+	_ui_check(gal.tab == "intime" and grid.get_child_count() == by_tab.call("intime"), "galerie : onglet Scènes intimes, %d emplacements" % grid.get_child_count())
+	gal.find_child("route_mercenaire", true, false).pressed.emit()
+	await _frames()
+	var merc: Array = all_entries.filter(func(e): return e["tab"] == "intime" and e["route"] == "mercenaire")
+	_ui_check(grid.get_child_count() == merc.size() and gal.find_child("route_mercenaire", true, false).text.contains("/"),
+		"galerie : filtre Mercenaire avec compteur (%d)" % grid.get_child_count())
+	gal._set_filter("intime", "", "pacte")
+	await _frames()
+	var hint_btn: Node = grid.get_child(0).find_child("Indice", true, false)
+	if hint_btn != null:
+		hint_btn.pressed.emit()
+	_ui_check(hint_btn != null and gal._detail.text.contains("Forcer le contrat"), "galerie : indice d'une nuit de Pacte (« Forcer le contrat… »)")
 	gal.queue_free()
 	await _frames()
 
@@ -579,10 +605,38 @@ func _ui_test() -> void:
 		var saved: Dictionary = SaveManager._read(slot3, {})
 		_ui_check(int(saved.get("summary", {}).get("money", -1)) == checkpoint_money,
 			"sauvegarde pendant une scène : état d'avant la scène (%s, pas %d)" % [saved.get("summary", {}).get("money", "?"), GameState.store.money()])
+	_dialogue.start("refuge_groupe:paire_ryeon_nadia")
+	await _frames()
+	_ui_check(SaveManager.meta.get("scenes", []).has("paire_ryeon_nadia"), "galerie : une scène intime se débloque dès son début")
 	var g = _show_gallery()
 	await _frames()
-	var tile: Node = g.find_child("cg_seo_nuit", true, false)
-	_ui_check(g.unlocked_count >= 1 and tile != null and tile.find_child("*", true, false) != null, "galerie : CG débloquée affichée")
+	g._set_filter("intime", "solo", "lien")
+	await _frames()
+	var tile: Node = g.find_child("seo_lien", true, false)
+	_ui_check(g.unlocked_count >= 2 and tile != null and tile.find_child("Revoir", true, false) != null, "galerie : nuit de Seo-Yeon débloquée par sa CG, bouton « Revoir »")
+	g._set_filter("intime", "duo", "")
+	await _frames()
+	var duo: Node = g.find_child("paire_ryeon_nadia", true, false)
+	var revoir: Node = duo.find_child("Revoir", true, false) if duo != null else null
+	var money_before: int = GameState.store.money()
+	var flags_before: int = GameState.store.flags.size()
+	if revoir != null:
+		revoir.pressed.emit()
+		await _frames(6)
+	_ui_check(g._replay != null and not g._panel.visible and g._replay._current.get("kind", "") == "line", "galerie : « Revoir » rejoue la scène")
+	await _press(KEY_ESCAPE)
+	_ui_check(g._replay == null and g._panel.visible and _modals().has(g), "galerie : Échap quitte la relecture et revient à la galerie")
+	duo = g.find_child("paire_ryeon_nadia", true, false)
+	duo.find_child("Revoir", true, false).pressed.emit()
+	await _frames(4)
+	if g._replay != null:
+		g._replay._on_quick("skip")
+		for i in 600:
+			await get_tree().process_frame
+			if g._replay == null:
+				break
+	_ui_check(g._replay == null and g._panel.visible, "galerie : la relecture terminée ramène à la galerie")
+	_ui_check(GameState.store.money() == money_before and GameState.store.flags.size() == flags_before, "galerie : la relecture ne touche pas à la partie")
 	g.queue_free()
 
 	# Restauration de la méta-sauvegarde et de l'emplacement 3 du joueur

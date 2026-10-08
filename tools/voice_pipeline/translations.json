@@ -2146,5 +2146,185 @@
  "Payée et quitte. Tu es sur ma liste, maintenant. Pas en haut. Pas encore.": {
   "ko": "값 치렀고, 끝났어. 이제 넌 내 명단에 있어. 맨 위는 아니야. 아직은.",
   "ja": "払った。これで貸し借りなし。あんたは今、私のリストに載ってる。一番上じゃない。まだな。"
+ },
+ "Toute la ville a peur de toi. Moi, je veux savoir ce que ça fait, d'avoir peur avec quelqu'un. Une nuit. Après, je reprends mon fusil.": {
+  "ko": "온 도시가 널 무서워해. 난… 누군가와 같이 무서워하는 게 어떤 건지 알고 싶어. 하룻밤만. 그다음엔 다시 총을 들 거야.",
+  "ja": "街中があなたを怖がってる。私は…誰かと一緒に怖がるのがどんな感じか知りたい。一晩だけ。そのあとは、また銃を取る。"
+ },
+ "Permission de parler franchement. Toute ma vie, j'ai donné les ordres. Ce soir, je veux en recevoir. De toi. Le mot pour tout arrêter, c'est « cessez-le-feu ». Tu le respectes à la seconde, ou je te brise le bras.": {
+  "ko": "솔직하게 말하겠다. 평생 명령만 내렸어. 오늘 밤엔 받고 싶다. 너한테서. 전부 멈추는 말은 '사격 중지'야. 그 즉시 지켜. 안 그러면 팔을 부러뜨린다.",
+  "ja": "率直に言わせてもらう。生涯、命令を下す側だった。今夜は受けたい。あなたから。全部止める言葉は『撃ち方やめ』。即座に守れ。でなければ腕を折る。"
+ },
+ "Je contrôle tout. Mes données, mes tests, mes pensées. Je veux mesurer ce qui se passe quand quelqu'un d'autre décide. Toi. Le mot d'arrêt est « erreur ». Je l'ai écrit en gras.": {
+  "ko": "난 전부 통제해. 데이터도, 실험도, 생각도. 다른 누가 결정할 때 무슨 일이 생기는지 측정하고 싶어. 너. 중지어는 '오류'야. 굵게 써 놨어.",
+  "ja": "私は全部を制御してる。データも、実験も、思考も。誰か別の人が決めたら何が起きるか測りたい。あなたが。停止語は『エラー』。太字で書いておいた。"
+ },
+ "Je ne partage rien. Ni mon sabre, ni ma place. …Sauf ce soir. Et seulement parce que je l'ai décidé.": {
+  "ko": "난 아무것도 나누지 않아. 검도, 자리도. …오늘 밤만 빼고. 그것도 내가 그렇게 정했으니까.",
+  "ja": "私は何も分け合わない。刀も、居場所も。…今夜を除いて。それも、私がそう決めたから。"
+ },
+ "Elle vise mal quand elle rougit. Laisse-la viser.": {
+  "ko": "얼굴 빨개지면 조준이 엉망이 돼. 그냥 조준하게 둬.",
+  "ja": "赤くなると狙いが甘くなるの。好きに狙わせてあげて。"
+ },
+ "Feu croisé, Rang F. Tu es à découvert. On te propose une reddition honorable.": {
+  "ko": "교차 사격이다, F랭크. 넌 노출됐어. 명예로운 항복을 제안하지.",
+  "ja": "十字砲火よ、Fランク。あなたは丸見え。名誉ある降伏を提案する。"
+ },
+ "Ou pas honorable. On a voté. Deux contre un.": {
+  "ko": "아니면 안 명예로운 거든가. 투표했어. 2대 1.",
+  "ja": "名誉なくてもいいけど。投票したの。二対一で。"
+ },
+ "Proposition de fusion, Monsieur Kang. Deux actionnaires majoritaires, un seul actif. Vous.": {
+  "ko": "합병 제안이에요, 강 씨. 대주주 둘, 자산은 하나. 당신.",
+  "ja": "合併のご提案よ、カンさん。筆頭株主が二人、資産はひとつ。あなた。"
+ },
+ "Et chacune garde un droit de veto. Si l'une dit non, on arrête. Une Long respecte les contrats.": {
+  "ko": "그리고 각자 거부권을 가져. 한 명이라도 싫다고 하면 멈춰. 롱 가문은 계약을 지켜.",
+  "ja": "それに、どちらも拒否権を持つ。一人でも嫌と言えばやめる。ロン家は契約を守るの。"
+ },
+ "On a travaillé toute la nuit pour les autres. Je voudrais… faire quelque chose qui n'a rien à voir avec ça. Avec vous deux.": {
+  "ko": "밤새 남들을 위해 일했잖아요. 이번엔… 그거랑 아무 상관 없는 걸 하고 싶어요. 두 사람이랑.",
+  "ja": "一晩中、他の人のために働いたでしょう。今度は…それとは関係ないことがしたいんです。お二人と。"
+ },
+ "Hypothèse : nous fonctionnons mieux à trois. Méthode : expérimentale. Consentement : enregistré. Deux fois.": {
+  "ko": "가설: 우리는 셋일 때 더 잘 작동한다. 방법: 실험적. 동의: 기록 완료. 두 번.",
+  "ja": "仮説：私たちは三人のほうがうまく機能する。方法：実験的。同意：記録済み。二回。"
+ },
+ "Ay, la reine, ta cabine est plus grande que tout mon tunnel. On la partage avec le gwapo ? Je promets de ne rien voler. Presque rien.": {
+  "ko": "아이, 여왕님, 네 선실이 우리 터널 전체보다 크네. 과포랑 같이 쓸까? 아무것도 안 훔칠게. 거의 아무것도.",
+  "ja": "アイ、女王様、あんたの船室、私のトンネル全部より広いじゃん。グワポと三人で使う？何も盗まないって約束する。ほとんど何も。"
+ },
+ "Tu as déjà volé mon éventail. Rends-le, ou paie-le. J'accepte les deux devises.": {
+  "ko": "이미 내 부채를 훔쳤잖아. 돌려주든가, 값을 치르든가. 둘 다 받아.",
+  "ja": "もう私の扇子を盗んだでしょう。返すか、払うか。どちらの通貨でも受け付けるわ。"
+ },
+ "Tes lumières deviennent rouges quand je te touche. Mes glyphes deviennent dorés. On parle la même langue.": {
+  "ko": "내가 만지면 네 불빛이 빨개져. 내 문양은 금빛이 되고. 우린 같은 언어를 쓰는 거야.",
+  "ja": "私が触ると、あなたの光は赤くなる。私の紋様は金色になる。同じ言葉を話してるのよ。"
+ },
+ "Ce n'est pas scientifique. …Continue. Et toi aussi, Elias. J'ai besoin d'un groupe témoin.": {
+  "ko": "과학적이지 않아. …계속해. 너도, 엘리아스. 대조군이 필요해.",
+  "ja": "科学的じゃない。…続けて。あなたもよ、エリアス。対照群が必要なの。"
+ },
+ "Je n'ai jamais perdu deux fois contre la même personne. …Ce n'est pas une défaite, si je l'ai choisi.": {
+  "ko": "같은 상대에게 두 번 진 적은 없어. …내가 고른 거라면, 그건 패배가 아니야.",
+  "ja": "同じ相手に二度負けたことはない。…自分で選んだのなら、それは負けじゃない。"
+ },
+ "Règles simples, soldate : tout le monde dit oui à voix haute, et personne ne joue au plus fort. Ce soir, on se couvre.": {
+  "ko": "규칙은 간단하다, 병사: 모두 소리 내서 좋다고 말하고, 아무도 센 척하지 않는다. 오늘 밤은 서로 엄호한다.",
+  "ja": "ルールは簡単よ、兵士：全員が声に出してイエスと言う。誰も強がらない。今夜は互いに援護する。"
+ },
+ "C'est la première chanson que je chante pour moi. Pour nous. Je veux que tu restes jusqu'à la fin. Et après aussi.": {
+  "ko": "나를 위해 부르는 첫 노래야. 우리를 위해. 끝까지 있어 줘. 그다음에도.",
+  "ja": "自分のために歌う、初めての歌。私たちのために。最後までいて。そのあとも。"
+ },
+ "Quand elle chante, le temps s'arrête. Je l'ai vu. Je voudrais qu'il s'arrête un peu, avec vous deux.": {
+  "ko": "그녀가 노래하면 시간이 멈춰. 내가 봤어. 너희 둘이랑, 조금만 멈춰 줬으면 좋겠어.",
+  "ja": "彼女が歌うと時間が止まる。私は見た。あなたたち二人と一緒に、少しだけ止まってほしい。"
+ },
+ "La commandante pense que je calcule tout. Ce soir, je propose de ne rien calculer. Une seule condition : on se dit tout à voix haute.": {
+  "ko": "사령관은 내가 전부 계산한다고 생각하죠. 오늘 밤엔 아무것도 계산하지 말자고 제안할게요. 조건은 하나: 전부 소리 내서 말하기.",
+  "ja": "司令官は、私が何でも計算すると思ってる。今夜は何も計算しないことを提案するわ。条件はひとつ：全部声に出して言うこと。"
+ },
+ "Noté. Et tu ne gardes pas ton chignon. Ordre de sécurité.": {
+  "ko": "접수. 그리고 그 올림머리는 풀어. 안전 명령이다.",
+  "ja": "了解。それと、そのまとめ髪はほどくこと。安全上の命令よ。"
+ },
+ "Elle soigne tout le monde. Personne ne la soigne, elle. Ce soir, on s'occupe d'elle. D'accord, Seo-Yeon ?": {
+  "ko": "언니는 모두를 치료해. 언니를 치료해 주는 사람은 없고. 오늘 밤엔 우리가 돌봐 줄게. 괜찮지, 서연 언니?",
+  "ja": "彼女はみんなを治す。でも誰も彼女を治さない。今夜は私たちが面倒を見る。いいよね、ソヨン？"
+ },
+ "…D'accord. Mais doucement. Et vous me dites tout ce que vous faites. Je suis médecin, j'ai besoin de savoir.": {
+  "ko": "…좋아요. 하지만 천천히. 그리고 뭘 하는지 전부 말해 줘요. 전 의사예요, 알아야 해요.",
+  "ja": "…わかりました。でも、ゆっくり。それと、何をするか全部言ってください。医者ですから、知っておかないと。"
+ },
+ "Vote clos, trois voix pour. Le Rang F est réquisitionné jusqu'à l'aube.": {
+  "ko": "투표 종료, 찬성 셋. F랭크는 새벽까지 징발이다.",
+  "ja": "投票終了、賛成三。Fランクは夜明けまで徴用する。"
+ },
+ "Je n'ai pas levé la main la première. …Mais je l'ai levée.": {
+  "ko": "처음으로 손을 든 건 내가 아니야. …그래도 들었어.",
+  "ja": "最初に手を挙げたのは私じゃない。…でも、挙げた。"
+ },
+ "Chacune garde son Sceau, son veto et sa voix. Et nous partageons le reste.": {
+  "ko": "각자 자기 인장과 거부권과 목소리를 지켜요. 나머지는 나누고요.",
+  "ja": "それぞれが自分の印章と、拒否権と、声を持つ。残りは分け合うの。"
+ },
+ "Le reste, c'est lui. Ryeon, tu rougis. Tu peux encore te retirer, rien n'est signé.": {
+  "ko": "나머지는 저 남자고. 련, 얼굴 빨개졌어. 아직 빠져도 돼, 서명한 건 없으니까.",
+  "ja": "残りは彼よ。リョン、赤くなってる。まだ降りてもいいのよ、何も署名してないから。"
+ },
+ "Personne ne nous a jamais demandé ce qu'on voulait. Alors on le dit. Chacune son tour. Moi d'abord.": {
+  "ko": "아무도 우리가 뭘 원하는지 물어본 적 없어. 그러니까 우리가 말하자. 한 명씩 차례로. 나부터.",
+  "ja": "誰も私たちが何を望むか聞いてくれなかった。だから自分で言う。一人ずつ順番に。まず私から。"
+ },
+ "Ensuite moi. Aoi en dernier : c'est elle qui décide quand on s'arrête.": {
+  "ko": "다음은 나. 아오이가 마지막: 언제 멈출지는 아오이가 정해.",
+  "ja": "次は私。葵は最後：いつやめるかは彼女が決める。"
+ },
+ "Contrebande et silence, Kang. Ce qui se passe sur ma barge reste sur ma barge.": {
+  "ko": "밀수와 침묵이야, 강. 내 바지선에서 일어난 일은 내 바지선에 남아.",
+  "ja": "密輸と沈黙よ、カン。私の艀で起きたことは、私の艀に残る。"
+ },
+ "Sauf si c'est trop bien. Là, je le raconte à tout le tunnel.": {
+  "ko": "너무 좋았으면 빼고. 그땐 터널 전체에 소문낼 거야.",
+  "ja": "よすぎたら別だけどね。そしたらトンネル中に言いふらす。"
+ },
+ "Conclusion proposée : célébrer. Méthode : nous trois, et toi. Consentement : unanime, j'ai vérifié deux fois.": {
+  "ko": "제안된 결론: 축하. 방법: 우리 셋, 그리고 너. 동의: 만장일치, 두 번 확인했어.",
+  "ja": "提案する結論：祝うこと。方法：私たち三人と、あなた。同意：全会一致、二回確認した。"
+ },
+ "Trois fois. Je suis médecin.": {
+  "ko": "세 번이요. 전 의사니까요.",
+  "ja": "三回です。医者ですから。"
+ },
+ "Le capital, la technologie et le crime organisé, Kang. On n'a jamais été aussi bien assorties.": {
+  "ko": "자본, 기술, 그리고 조직범죄야, 강. 우리가 이렇게 잘 어울린 적은 없었지.",
+  "ja": "資本、技術、そして組織犯罪よ、カン。こんなにお似合いだったことはないわ。"
+ },
+ "Chaque clause se discute. Chaque clause se refuse. C'est notre seule règle, Monsieur Kang.": {
+  "ko": "모든 조항은 협상할 수 있어요. 모든 조항은 거절할 수 있고요. 그게 우리의 유일한 규칙이에요, 강 씨.",
+  "ja": "どの条項も交渉できる。どの条項も断れる。それが私たちの唯一のルールよ、カンさん。"
+ },
+ "On a parlé de fins du monde toute la journée. Ce soir, je veux qu'on parle d'autre chose. Juste nous.": {
+  "ko": "하루 종일 세상의 끝 얘기만 했잖아. 오늘 밤엔 다른 얘기 하고 싶어. 우리끼리만.",
+  "ja": "一日中、世界の終わりの話ばかりしてた。今夜は別の話がしたい。私たちだけで。"
+ },
+ "Le chant, le sabre et moi. Et toi au milieu. Le Registre se tait quand on est quatre.": {
+  "ko": "노래와 검과 나. 그리고 한가운데 너. 우리가 넷이면 장부도 조용해져.",
+  "ja": "歌と、刀と、私。そして真ん中にあなた。四人でいると、帳簿も黙る。"
+ },
+ "Trois jours sans dormir. Je prescris une nuit. Avec toi. Avec elles. C'est un ordre médical.": {
+  "ko": "사흘 동안 못 잤잖아요. 하룻밤을 처방할게요. 당신이랑. 이 사람들이랑. 의사의 지시예요.",
+  "ja": "三日も寝てないでしょう。一晩を処方します。あなたと。彼女たちと。医師の指示です。"
+ },
+ "Ordre confirmé. Et personne ne monte la garde ce soir. Ni toi, ni nous.": {
+  "ko": "명령 확인. 그리고 오늘 밤엔 아무도 보초 서지 않는다. 너도, 우리도.",
+  "ja": "命令確認。それと今夜は誰も見張りに立たない。あなたも、私たちも。"
+ },
+ "Nous mentons à toute la ville pour la sauver. Pas entre nous. Disons-la, maintenant. Chacune la sienne.": {
+  "ko": "우리는 도시를 구하려고 도시 전체에 거짓말을 해요. 우리끼리는 아니에요. 지금 말해요. 각자의 진실을.",
+  "ja": "私たちは街を救うために街中に嘘をついてる。でも私たちの間では違う。今、言いましょう。それぞれの真実を。"
+ },
+ "La mienne est simple. Je veux rester. Avec vous trois.": {
+  "ko": "내 건 간단해. 남고 싶어. 너희 셋이랑.",
+  "ja": "私のは簡単。ここにいたい。あなたたち三人と。"
+ },
+ "Quatre aubes de rab, gwapo. On les fête toutes ce soir. Dans l'ordre !": {
+  "ko": "덤으로 얻은 새벽이 네 번이야, 과포. 오늘 밤에 전부 축하하자. 순서대로!",
+  "ja": "おまけの夜明けが四つだよ、グワポ。今夜全部お祝いしよう。順番にね！"
+ },
+ "Il n'y a pas d'ordre. …Il y a ce que chacune demande, et tu écoutes.": {
+  "ko": "순서 같은 건 없어. …각자 원하는 게 있고, 넌 그걸 들어.",
+  "ja": "順番なんてない。…それぞれが望むことがあって、あなたはそれを聞く。"
+ },
+ "Personne ici n'est né à Séoul. Ce soir, on décide que c'est chez nous.": {
+  "ko": "여기 서울에서 태어난 사람은 아무도 없어. 오늘 밤, 여기를 우리 집으로 정한다.",
+  "ja": "ここにはソウル生まれは一人もいない。今夜、ここを私たちの家と決める。"
+ },
+ "Chez nous. J'aime bien quand tu le dis comme ça.": {
+  "ko": "우리 집. 네가 그렇게 말하니까 좋다.",
+  "ja": "私たちの家。あなたがそう言うの、好き。"
  }
 }
