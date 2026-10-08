@@ -186,7 +186,7 @@
   },
   {
    "id": "seo_liberee",
-   "when": "flag('vassaux_liberes') and flag('seo_vassale_cheonma')",
+   "when": "flag('vassaux_liberes') and flag('seo_vassale_cheonma') and not flag('seo_morte')",
    "where": "gangnam.marche_vassaux",
    "dialogue": "act2_seo:liberee",
    "priority": 80,

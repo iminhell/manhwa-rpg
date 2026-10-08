@@ -1590,7 +1590,7 @@
        "label": "Racheter Park Seo-Yeon (150)",
        "cost": 2,
        "once": true,
-       "if": "flag('seo_vassale_cheonma') and money() >= 150",
+       "if": "flag('seo_vassale_cheonma') and money() >= 150 and not flag('seo_morte')",
        "fx": [
         "money -150"
        ],

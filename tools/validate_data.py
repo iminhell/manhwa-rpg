@@ -547,11 +547,8 @@ for e in gallery.get("entries", []):
     status = e.get("status")
     if status not in G_STATUS:
         err(f"{w} : statut inconnu « {status} » ({', '.join(sorted(G_STATUS))})")
-    elif status == "prevue":
-        if e.get("scene") or e.get("unlock") or e.get("cg"):
-            err(f"{w} : une entrée prévue n'a ni scène, ni déblocage, ni CG")
-        if not e.get("setup"):
-            err(f"{w} : entrée prévue sans « setup » (ce qui manque pour l'écrire)")
+    elif status == "prevue":  # tout le catalogue doit être jouable : écrire au moins l'amorce et son déclencheur
+        err(f"{w} : emplacement « prevue » sans scène jouable ({e.get('setup', '?')})")
     else:
         if not e.get("unlock"):
             err(f"{w} : aucun bloc de déblocage (« unlock »)")

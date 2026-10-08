@@ -605,6 +605,17 @@ func test_refuge_voies() -> void:
 		s.apply_effects(["flag " + pflag, "set ambivalence.%s 65" % cid, "set aff.%s 75" % cid])
 		_play(s, dlg, "%s_pacte" % pre)
 		check(s.has_flag(pre + "_devotion") and s.has_flag(pflag), "Pacte : Dévotion de %s (Pacte renouvelé)" % cid)
+	# Après la Dévotion, le Pacte est renouvelé librement : plus de nuit de Pacte en boucle, retour aux moments ordinaires
+	s = StateStore.new()
+	s.apply_effects(["flag pacte.seo_yeon", "flag seo_devotion", "flag seo_nuit", "set ambivalence.seo_yeon 70", "set aff.seo_yeon 75",
+		"set repos.seo_yeon 3", "flag refuge.dortoir"])
+	seen = _play(s, dlg, "seo_yeon")
+	check(seen.size() > 0 and seen[0].begins_with("Elle a pris l'habitude"), "Pacte : après la Dévotion, seconde nuit ordinaire (pas de boucle)")
+	# Aoi rachetée à Mirae : le contrat prime à chaque repos, même après le premier
+	s = StateStore.new()
+	s.apply_effects(["flag aoi_dominee", "set repos.aoi 3", "flag refuge.dortoir", "set aff.aoi 40", "flag aoi_nuit"])
+	seen = _play(s, dlg, "aoi")
+	check(seen.size() > 0 and seen[0].begins_with("Vous voulez que je chante") and not s.has_flag("aoi_devotion"), "Pacte : Aoi dominée, le contrat est vérifié en premier")
 	# Nuit de Pacte : rapport de force, sans scène intime ni passage P3
 	for blk in ["seo_pacte_reste", "xiaoyu_pacte_reste", "haein_pacte_reste", "nadia_pacte_ici", "simone_pacte_reste"]:
 		var has_slot := false

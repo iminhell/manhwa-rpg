@@ -86,7 +86,7 @@
     "aoi",
     "maricel"
    ],
-   "if": "aff('seo_yeon') >= 20 and aff('aoi') >= 20 and aff('maricel') >= 20 and flag('refuge.dortoir')",
+   "if": "aff('seo_yeon') >= 20 and aff('aoi') >= 20 and aff('maricel') >= 20 and flag('refuge.dortoir') and (not flag('pacte.seo_yeon') or flag('seo_devotion')) and (not flag('aoi_dominee') or flag('aoi_devotion'))",
    "once": false,
    "dialogue": "refuge_groupe:nuit_des_trois"
   },
@@ -99,7 +99,7 @@
     "ryeon",
     "simone"
    ],
-   "if": "aff('hae_in') >= 20 and aff('xiaoyu') >= 20 and aff('ryeon') >= 20 and aff('simone') >= 20 and flag('concil.reines')",
+   "if": "aff('hae_in') >= 20 and aff('xiaoyu') >= 20 and aff('ryeon') >= 20 and aff('simone') >= 20 and flag('concil.reines') and (not flag('pacte.hae_in') or flag('haein_devotion')) and (not flag('pacte.xiaoyu') or flag('xiaoyu_devotion')) and (not flag('pacte.simone') or flag('simone_devotion'))",
    "once": false,
    "dialogue": "refuge_groupe:reines_lames"
   },
@@ -107,7 +107,7 @@
    "id": "nuit_maison",
    "label": "La Nuit de la Maison",
    "members": [],
-   "if": "bonds() >= 6 and flag('refuge.dortoir')",
+   "if": "bonds() >= 6 and flag('refuge.dortoir') and not (party('seo_yeon') and flag('pacte.seo_yeon') and not flag('seo_devotion')) and not (party('xiaoyu') and flag('pacte.xiaoyu') and not flag('xiaoyu_devotion')) and not (party('hae_in') and flag('pacte.hae_in') and not flag('haein_devotion')) and not (party('simone') and flag('pacte.simone') and not flag('simone_devotion')) and not (party('nadia') and flag('nadia_pactisee') and not flag('nadia_devotion')) and not (party('aoi') and flag('aoi_dominee') and not flag('aoi_devotion'))",
    "once": false,
    "dialogue": "refuge_groupe:nuit_maison"
   },
@@ -115,7 +115,7 @@
    "id": "portrait_dix",
    "label": "Le Portrait des Dix",
    "members": [],
-   "if": "bonds() >= 10",
+   "if": "bonds() >= 10 and not (party('seo_yeon') and flag('pacte.seo_yeon') and not flag('seo_devotion')) and not (party('xiaoyu') and flag('pacte.xiaoyu') and not flag('xiaoyu_devotion')) and not (party('hae_in') and flag('pacte.hae_in') and not flag('haein_devotion')) and not (party('simone') and flag('pacte.simone') and not flag('simone_devotion')) and not (party('nadia') and flag('nadia_pactisee') and not flag('nadia_devotion')) and not (party('aoi') and flag('aoi_dominee') and not flag('aoi_devotion'))",
    "once": true,
    "dialogue": "refuge_groupe:portrait_dix"
   },
@@ -126,7 +126,7 @@
     "ryeon",
     "nadia"
    ],
-   "if": "flag('ryeon_nuit') and flag('nadia_nuit') and aff('ryeon') >= 50 and aff('nadia') >= 50 and flag('refuge.dortoir')",
+   "if": "flag('ryeon_nuit') and flag('nadia_nuit') and aff('ryeon') >= 50 and aff('nadia') >= 50 and flag('refuge.dortoir') and (not flag('nadia_pactisee') or flag('nadia_devotion'))",
    "once": false,
    "dialogue": "refuge_groupe:paire_ryeon_nadia"
   },
@@ -137,7 +137,7 @@
     "simone",
     "nadia"
    ],
-   "if": "flag('simone_nuit') and flag('nadia_nuit') and aff('simone') >= 50 and aff('nadia') >= 50 and flag('refuge.dortoir')",
+   "if": "flag('simone_nuit') and flag('nadia_nuit') and aff('simone') >= 50 and aff('nadia') >= 50 and flag('refuge.dortoir') and (not flag('pacte.simone') or flag('simone_devotion')) and (not flag('nadia_pactisee') or flag('nadia_devotion'))",
    "once": false,
    "dialogue": "refuge_groupe:paire_simone_nadia"
   },
@@ -148,7 +148,7 @@
     "hae_in",
     "xiaoyu"
    ],
-   "if": "flag('haein_nuit') and flag('xiaoyu_nuit') and aff('hae_in') >= 50 and aff('xiaoyu') >= 50 and flag('refuge.dortoir')",
+   "if": "flag('haein_nuit') and flag('xiaoyu_nuit') and aff('hae_in') >= 50 and aff('xiaoyu') >= 50 and flag('refuge.dortoir') and (not flag('pacte.hae_in') or flag('haein_devotion')) and (not flag('pacte.xiaoyu') or flag('xiaoyu_devotion'))",
    "once": false,
    "dialogue": "refuge_groupe:paire_hae_in_xiaoyu"
   },
@@ -159,7 +159,7 @@
     "seo_yeon",
     "minh_anh"
    ],
-   "if": "flag('seo_nuit') and flag('minh_anh_nuit') and aff('seo_yeon') >= 50 and aff('minh_anh') >= 50 and flag('refuge.dortoir')",
+   "if": "flag('seo_nuit') and flag('minh_anh_nuit') and aff('seo_yeon') >= 50 and aff('minh_anh') >= 50 and flag('refuge.dortoir') and (not flag('pacte.seo_yeon') or flag('seo_devotion'))",
    "once": false,
    "dialogue": "refuge_groupe:paire_seo_yeon_minh_anh"
   },
@@ -170,7 +170,7 @@
     "maricel",
     "xiaoyu"
    ],
-   "if": "flag('maricel_nuit') and flag('xiaoyu_nuit') and aff('maricel') >= 50 and aff('xiaoyu') >= 50 and flag('refuge.dortoir')",
+   "if": "flag('maricel_nuit') and flag('xiaoyu_nuit') and aff('maricel') >= 50 and aff('xiaoyu') >= 50 and flag('refuge.dortoir') and (not flag('pacte.xiaoyu') or flag('xiaoyu_devotion'))",
    "once": false,
    "dialogue": "refuge_groupe:paire_maricel_xiaoyu"
   },
@@ -192,7 +192,7 @@
     "simone",
     "ryeon"
    ],
-   "if": "flag('simone_nuit') and flag('ryeon_nuit') and aff('simone') >= 50 and aff('ryeon') >= 50 and flag('refuge.dortoir')",
+   "if": "flag('simone_nuit') and flag('ryeon_nuit') and aff('simone') >= 50 and aff('ryeon') >= 50 and flag('refuge.dortoir') and (not flag('pacte.simone') or flag('simone_devotion'))",
    "once": false,
    "dialogue": "refuge_groupe:paire_simone_ryeon"
   },
@@ -203,7 +203,7 @@
     "aoi",
     "haneul"
    ],
-   "if": "flag('aoi_nuit') and flag('haneul_nuit') and aff('aoi') >= 50 and aff('haneul') >= 50 and flag('refuge.dortoir')",
+   "if": "flag('aoi_nuit') and flag('haneul_nuit') and aff('aoi') >= 50 and aff('haneul') >= 50 and flag('refuge.dortoir') and (not flag('aoi_dominee') or flag('aoi_devotion'))",
    "once": false,
    "dialogue": "refuge_groupe:paire_aoi_haneul"
   },
@@ -214,7 +214,7 @@
     "hae_in",
     "simone"
    ],
-   "if": "flag('haein_nuit') and flag('simone_nuit') and aff('hae_in') >= 50 and aff('simone') >= 50 and flag('refuge.dortoir')",
+   "if": "flag('haein_nuit') and flag('simone_nuit') and aff('hae_in') >= 50 and aff('simone') >= 50 and flag('refuge.dortoir') and (not flag('pacte.hae_in') or flag('haein_devotion')) and (not flag('pacte.simone') or flag('simone_devotion'))",
    "once": false,
    "dialogue": "refuge_groupe:paire_hae_in_simone"
   },
@@ -225,7 +225,7 @@
     "seo_yeon",
     "aoi"
    ],
-   "if": "flag('seo_nuit') and flag('aoi_nuit') and aff('seo_yeon') >= 50 and aff('aoi') >= 50 and flag('refuge.dortoir')",
+   "if": "flag('seo_nuit') and flag('aoi_nuit') and aff('seo_yeon') >= 50 and aff('aoi') >= 50 and flag('refuge.dortoir') and (not flag('pacte.seo_yeon') or flag('seo_devotion')) and (not flag('aoi_dominee') or flag('aoi_devotion'))",
    "once": false,
    "dialogue": "refuge_groupe:paire_seo_yeon_aoi"
   },
@@ -237,7 +237,7 @@
     "simone",
     "nadia"
    ],
-   "if": "flag('ryeon_nuit') and flag('simone_nuit') and flag('nadia_nuit') and aff('ryeon') >= 50 and aff('simone') >= 50 and aff('nadia') >= 50 and flag('refuge.dortoir')",
+   "if": "flag('ryeon_nuit') and flag('simone_nuit') and flag('nadia_nuit') and aff('ryeon') >= 50 and aff('simone') >= 50 and aff('nadia') >= 50 and flag('refuge.dortoir') and (not flag('pacte.simone') or flag('simone_devotion')) and (not flag('nadia_pactisee') or flag('nadia_devotion'))",
    "once": false,
    "dialogue": "refuge_groupe:trio_trois_lames"
   },
@@ -249,7 +249,7 @@
     "xiaoyu",
     "ryeon"
    ],
-   "if": "flag('haein_nuit') and flag('xiaoyu_nuit') and flag('ryeon_nuit') and aff('hae_in') >= 50 and aff('xiaoyu') >= 50 and aff('ryeon') >= 50 and flag('refuge.dortoir')",
+   "if": "flag('haein_nuit') and flag('xiaoyu_nuit') and flag('ryeon_nuit') and aff('hae_in') >= 50 and aff('xiaoyu') >= 50 and aff('ryeon') >= 50 and flag('refuge.dortoir') and (not flag('pacte.hae_in') or flag('haein_devotion')) and (not flag('pacte.xiaoyu') or flag('xiaoyu_devotion'))",
    "once": false,
    "dialogue": "refuge_groupe:trio_reines"
   },
@@ -261,7 +261,7 @@
     "maricel",
     "nadia"
    ],
-   "if": "flag('aoi_nuit') and flag('maricel_nuit') and flag('nadia_nuit') and aff('aoi') >= 50 and aff('maricel') >= 50 and aff('nadia') >= 50 and flag('refuge.dortoir')",
+   "if": "flag('aoi_nuit') and flag('maricel_nuit') and flag('nadia_nuit') and aff('aoi') >= 50 and aff('maricel') >= 50 and aff('nadia') >= 50 and flag('refuge.dortoir') and (not flag('aoi_dominee') or flag('aoi_devotion')) and (not flag('nadia_pactisee') or flag('nadia_devotion'))",
    "once": false,
    "dialogue": "refuge_groupe:trio_invisibles"
   },
@@ -273,7 +273,7 @@
     "maricel",
     "nadia"
    ],
-   "if": "flag('xiaoyu_nuit') and flag('maricel_nuit') and flag('nadia_nuit') and aff('xiaoyu') >= 50 and aff('maricel') >= 50 and aff('nadia') >= 50 and flag('refuge.dortoir')",
+   "if": "flag('xiaoyu_nuit') and flag('maricel_nuit') and flag('nadia_nuit') and aff('xiaoyu') >= 50 and aff('maricel') >= 50 and aff('nadia') >= 50 and flag('refuge.dortoir') and (not flag('pacte.xiaoyu') or flag('xiaoyu_devotion')) and (not flag('nadia_pactisee') or flag('nadia_devotion'))",
    "once": false,
    "dialogue": "refuge_groupe:trio_filles_fleuve"
   },
@@ -285,7 +285,7 @@
     "seo_yeon",
     "haneul"
    ],
-   "if": "flag('minh_anh_nuit') and flag('seo_nuit') and flag('haneul_nuit') and aff('minh_anh') >= 50 and aff('seo_yeon') >= 50 and aff('haneul') >= 50 and flag('refuge.dortoir')",
+   "if": "flag('minh_anh_nuit') and flag('seo_nuit') and flag('haneul_nuit') and aff('minh_anh') >= 50 and aff('seo_yeon') >= 50 and aff('haneul') >= 50 and flag('refuge.dortoir') and (not flag('pacte.seo_yeon') or flag('seo_devotion'))",
    "once": false,
    "dialogue": "refuge_groupe:trio_laboratoire"
   },
@@ -297,7 +297,7 @@
     "minh_anh",
     "xiaoyu"
    ],
-   "if": "flag('haein_nuit') and flag('minh_anh_nuit') and flag('xiaoyu_nuit') and aff('hae_in') >= 50 and aff('minh_anh') >= 50 and aff('xiaoyu') >= 50 and flag('refuge.dortoir')",
+   "if": "flag('haein_nuit') and flag('minh_anh_nuit') and flag('xiaoyu_nuit') and aff('hae_in') >= 50 and aff('minh_anh') >= 50 and aff('xiaoyu') >= 50 and flag('refuge.dortoir') and (not flag('pacte.hae_in') or flag('haein_devotion')) and (not flag('pacte.xiaoyu') or flag('xiaoyu_devotion'))",
    "once": false,
    "dialogue": "refuge_groupe:trio_sceptres"
   },
@@ -309,7 +309,7 @@
     "ryeon",
     "aoi"
    ],
-   "if": "flag('haneul_nuit') and flag('ryeon_nuit') and flag('aoi_nuit') and aff('haneul') >= 50 and aff('ryeon') >= 50 and aff('aoi') >= 50 and flag('refuge.dortoir')",
+   "if": "flag('haneul_nuit') and flag('ryeon_nuit') and flag('aoi_nuit') and aff('haneul') >= 50 and aff('ryeon') >= 50 and aff('aoi') >= 50 and flag('refuge.dortoir') and (not flag('aoi_dominee') or flag('aoi_devotion'))",
    "once": false,
    "dialogue": "refuge_groupe:trio_gardiennes"
   },
@@ -321,7 +321,7 @@
     "ryeon",
     "seo_yeon"
    ],
-   "if": "flag('simone_nuit') and flag('ryeon_nuit') and flag('seo_nuit') and aff('simone') >= 50 and aff('ryeon') >= 50 and aff('seo_yeon') >= 50 and flag('refuge.dortoir')",
+   "if": "flag('simone_nuit') and flag('ryeon_nuit') and flag('seo_nuit') and aff('simone') >= 50 and aff('ryeon') >= 50 and aff('seo_yeon') >= 50 and flag('refuge.dortoir') and (not flag('pacte.simone') or flag('simone_devotion')) and (not flag('pacte.seo_yeon') or flag('seo_devotion'))",
    "once": false,
    "dialogue": "refuge_groupe:trio_garde_fer"
   },
@@ -333,7 +333,7 @@
     "hae_in",
     "haneul"
    ],
-   "if": "flag('seo_nuit') and flag('haein_nuit') and flag('haneul_nuit') and aff('seo_yeon') >= 50 and aff('hae_in') >= 50 and aff('haneul') >= 50 and flag('refuge.dortoir') and loop() >= 2",
+   "if": "flag('seo_nuit') and flag('haein_nuit') and flag('haneul_nuit') and aff('seo_yeon') >= 50 and aff('hae_in') >= 50 and aff('haneul') >= 50 and flag('refuge.dortoir') and loop() >= 2 and (not flag('pacte.seo_yeon') or flag('seo_devotion')) and (not flag('pacte.hae_in') or flag('haein_devotion'))",
    "once": false,
    "dialogue": "refuge_groupe:trio_trois_verites"
   },
@@ -346,7 +346,7 @@
     "maricel",
     "ryeon"
    ],
-   "if": "flag('aoi_nuit') and flag('seo_nuit') and flag('maricel_nuit') and flag('ryeon_nuit') and aff('aoi') >= 50 and aff('seo_yeon') >= 50 and aff('maricel') >= 50 and aff('ryeon') >= 50 and flag('refuge.dortoir') and day() >= 18",
+   "if": "flag('aoi_nuit') and flag('seo_nuit') and flag('maricel_nuit') and flag('ryeon_nuit') and aff('aoi') >= 50 and aff('seo_yeon') >= 50 and aff('maricel') >= 50 and aff('ryeon') >= 50 and flag('refuge.dortoir') and day() >= 18 and (not flag('aoi_dominee') or flag('aoi_devotion')) and (not flag('pacte.seo_yeon') or flag('seo_devotion'))",
    "once": false,
    "dialogue": "refuge_groupe:quatuor_quatre_fins"
   },
@@ -359,7 +359,7 @@
     "maricel",
     "aoi"
    ],
-   "if": "flag('simone_nuit') and flag('nadia_nuit') and flag('maricel_nuit') and flag('aoi_nuit') and aff('simone') >= 50 and aff('nadia') >= 50 and aff('maricel') >= 50 and aff('aoi') >= 50 and flag('refuge.dortoir')",
+   "if": "flag('simone_nuit') and flag('nadia_nuit') and flag('maricel_nuit') and flag('aoi_nuit') and aff('simone') >= 50 and aff('nadia') >= 50 and aff('maricel') >= 50 and aff('aoi') >= 50 and flag('refuge.dortoir') and (not flag('pacte.simone') or flag('simone_devotion')) and (not flag('nadia_pactisee') or flag('nadia_devotion')) and (not flag('aoi_dominee') or flag('aoi_devotion'))",
    "once": false,
    "dialogue": "refuge_groupe:quatuor_loin_de_chez_soi"
   },
@@ -367,7 +367,7 @@
    "id": "constellation_cinq",
    "label": "La Constellation de cinq",
    "members": [],
-   "if": "bonds(50) >= 5 and flag('refuge.dortoir')",
+   "if": "bonds(50) >= 5 and flag('refuge.dortoir') and not (party('seo_yeon') and flag('pacte.seo_yeon') and not flag('seo_devotion')) and not (party('xiaoyu') and flag('pacte.xiaoyu') and not flag('xiaoyu_devotion')) and not (party('hae_in') and flag('pacte.hae_in') and not flag('haein_devotion')) and not (party('simone') and flag('pacte.simone') and not flag('simone_devotion')) and not (party('nadia') and flag('nadia_pactisee') and not flag('nadia_devotion')) and not (party('aoi') and flag('aoi_dominee') and not flag('aoi_devotion'))",
    "once": false,
    "dialogue": "refuge_groupe:constellation_cinq"
   },
@@ -375,9 +375,426 @@
    "id": "constellation_huit",
    "label": "La Constellation de huit",
    "members": [],
-   "if": "bonds(60) >= 8 and flag('refuge.dortoir')",
+   "if": "bonds(60) >= 8 and flag('refuge.dortoir') and not (party('seo_yeon') and flag('pacte.seo_yeon') and not flag('seo_devotion')) and not (party('xiaoyu') and flag('pacte.xiaoyu') and not flag('xiaoyu_devotion')) and not (party('hae_in') and flag('pacte.hae_in') and not flag('haein_devotion')) and not (party('simone') and flag('pacte.simone') and not flag('simone_devotion')) and not (party('nadia') and flag('nadia_pactisee') and not flag('nadia_devotion')) and not (party('aoi') and flag('aoi_dominee') and not flag('aoi_devotion'))",
    "once": false,
    "dialogue": "refuge_groupe:constellation_huit"
+  },
+  {
+   "id": "paire_seo_yeon_haneul",
+   "label": "Leçon d'anatomie, deuxième partie : Seo-Yeon et Haneul",
+   "members": [
+    "seo_yeon",
+    "haneul"
+   ],
+   "if": "flag('seo_nuit') and flag('haneul_nuit') and aff('seo_yeon') >= 50 and aff('haneul') >= 50 and flag('refuge.dortoir') and (not flag('pacte.seo_yeon') or flag('seo_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_seo_yeon_haneul"
+  },
+  {
+   "id": "paire_seo_yeon_maricel",
+   "label": "Contrebande médicale : Seo-Yeon et Maricel",
+   "members": [
+    "seo_yeon",
+    "maricel"
+   ],
+   "if": "flag('seo_nuit') and flag('maricel_nuit') and aff('seo_yeon') >= 50 and aff('maricel') >= 50 and flag('refuge.dortoir') and (not flag('pacte.seo_yeon') or flag('seo_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_seo_yeon_maricel"
+  },
+  {
+   "id": "paire_seo_yeon_ryeon",
+   "label": "Garde de nuit : Seo-Yeon et Ryeon",
+   "members": [
+    "seo_yeon",
+    "ryeon"
+   ],
+   "if": "flag('seo_nuit') and flag('ryeon_nuit') and aff('seo_yeon') >= 50 and aff('ryeon') >= 50 and flag('refuge.dortoir') and (not flag('pacte.seo_yeon') or flag('seo_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_seo_yeon_ryeon"
+  },
+  {
+   "id": "paire_seo_yeon_xiaoyu",
+   "label": "Ordonnance de luxe : Seo-Yeon et Xiaoyu",
+   "members": [
+    "seo_yeon",
+    "xiaoyu"
+   ],
+   "if": "flag('seo_nuit') and flag('xiaoyu_nuit') and aff('seo_yeon') >= 50 and aff('xiaoyu') >= 50 and flag('refuge.dortoir') and (not flag('pacte.seo_yeon') or flag('seo_devotion')) and (not flag('pacte.xiaoyu') or flag('xiaoyu_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_seo_yeon_xiaoyu"
+  },
+  {
+   "id": "paire_seo_yeon_hae_in",
+   "label": "Bilan de santé : Seo-Yeon et Hae-in",
+   "members": [
+    "seo_yeon",
+    "hae_in"
+   ],
+   "if": "flag('seo_nuit') and flag('haein_nuit') and aff('seo_yeon') >= 50 and aff('hae_in') >= 50 and flag('refuge.dortoir') and (not flag('pacte.seo_yeon') or flag('seo_devotion')) and (not flag('pacte.hae_in') or flag('haein_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_seo_yeon_hae_in"
+  },
+  {
+   "id": "paire_seo_yeon_nadia",
+   "label": "Point de suture : Seo-Yeon et Nadia",
+   "members": [
+    "seo_yeon",
+    "nadia"
+   ],
+   "if": "flag('seo_nuit') and flag('nadia_nuit') and aff('seo_yeon') >= 50 and aff('nadia') >= 50 and flag('refuge.dortoir') and (not flag('pacte.seo_yeon') or flag('seo_devotion')) and (not flag('nadia_pactisee') or flag('nadia_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_seo_yeon_nadia"
+  },
+  {
+   "id": "paire_seo_yeon_simone",
+   "label": "Visite réglementaire : Seo-Yeon et Simone",
+   "members": [
+    "seo_yeon",
+    "simone"
+   ],
+   "if": "flag('seo_nuit') and flag('simone_nuit') and aff('seo_yeon') >= 50 and aff('simone') >= 50 and flag('refuge.dortoir') and (not flag('pacte.seo_yeon') or flag('seo_devotion')) and (not flag('pacte.simone') or flag('simone_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_seo_yeon_simone"
+  },
+  {
+   "id": "paire_haneul_maricel",
+   "label": "La porte et les tunnels : Haneul et Maricel",
+   "members": [
+    "haneul",
+    "maricel"
+   ],
+   "if": "flag('haneul_nuit') and flag('maricel_nuit') and aff('haneul') >= 50 and aff('maricel') >= 50 and flag('refuge.dortoir')",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_haneul_maricel"
+  },
+  {
+   "id": "paire_haneul_ryeon",
+   "label": "Deux héritières : Haneul et Ryeon",
+   "members": [
+    "haneul",
+    "ryeon"
+   ],
+   "if": "flag('haneul_nuit') and flag('ryeon_nuit') and aff('haneul') >= 50 and aff('ryeon') >= 50 and flag('refuge.dortoir')",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_haneul_ryeon"
+  },
+  {
+   "id": "paire_haneul_xiaoyu",
+   "label": "Le pari de l'Héritière : Haneul et Xiaoyu",
+   "members": [
+    "haneul",
+    "xiaoyu"
+   ],
+   "if": "flag('haneul_nuit') and flag('xiaoyu_nuit') and aff('haneul') >= 50 and aff('xiaoyu') >= 50 and flag('refuge.dortoir') and (not flag('pacte.xiaoyu') or flag('xiaoyu_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_haneul_xiaoyu"
+  },
+  {
+   "id": "paire_haneul_hae_in",
+   "label": "Audit : Haneul et Hae-in",
+   "members": [
+    "haneul",
+    "hae_in"
+   ],
+   "if": "flag('haneul_nuit') and flag('haein_nuit') and aff('haneul') >= 50 and aff('hae_in') >= 50 and flag('refuge.dortoir') and (not flag('pacte.hae_in') or flag('haein_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_haneul_hae_in"
+  },
+  {
+   "id": "paire_haneul_nadia",
+   "label": "La lunette et le Registre : Haneul et Nadia",
+   "members": [
+    "haneul",
+    "nadia"
+   ],
+   "if": "flag('haneul_nuit') and flag('nadia_nuit') and aff('haneul') >= 50 and aff('nadia') >= 50 and flag('refuge.dortoir') and (not flag('nadia_pactisee') or flag('nadia_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_haneul_nadia"
+  },
+  {
+   "id": "paire_haneul_simone",
+   "label": "Briefing : Haneul et Simone",
+   "members": [
+    "haneul",
+    "simone"
+   ],
+   "if": "flag('haneul_nuit') and flag('simone_nuit') and aff('haneul') >= 50 and aff('simone') >= 50 and flag('refuge.dortoir') and (not flag('pacte.simone') or flag('simone_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_haneul_simone"
+  },
+  {
+   "id": "paire_aoi_maricel",
+   "label": "Après le karaoké : Aoi et Maricel",
+   "members": [
+    "aoi",
+    "maricel"
+   ],
+   "if": "flag('aoi_nuit') and flag('maricel_nuit') and aff('aoi') >= 50 and aff('maricel') >= 50 and flag('refuge.dortoir') and (not flag('aoi_dominee') or flag('aoi_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_aoi_maricel"
+  },
+  {
+   "id": "paire_aoi_ryeon",
+   "label": "Le ruban et la scène : Aoi et Ryeon",
+   "members": [
+    "aoi",
+    "ryeon"
+   ],
+   "if": "flag('aoi_nuit') and flag('ryeon_nuit') and aff('aoi') >= 50 and aff('ryeon') >= 50 and flag('refuge.dortoir') and (not flag('aoi_dominee') or flag('aoi_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_aoi_ryeon"
+  },
+  {
+   "id": "paire_aoi_xiaoyu",
+   "label": "Contrat d'artiste : Aoi et Xiaoyu",
+   "members": [
+    "aoi",
+    "xiaoyu"
+   ],
+   "if": "flag('aoi_nuit') and flag('xiaoyu_nuit') and aff('aoi') >= 50 and aff('xiaoyu') >= 50 and flag('refuge.dortoir') and (not flag('aoi_dominee') or flag('aoi_devotion')) and (not flag('pacte.xiaoyu') or flag('xiaoyu_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_aoi_xiaoyu"
+  },
+  {
+   "id": "paire_aoi_hae_in",
+   "label": "Sans caméra : Aoi et Hae-in",
+   "members": [
+    "aoi",
+    "hae_in"
+   ],
+   "if": "flag('aoi_nuit') and flag('haein_nuit') and aff('aoi') >= 50 and aff('hae_in') >= 50 and flag('refuge.dortoir') and (not flag('aoi_dominee') or flag('aoi_devotion')) and (not flag('pacte.hae_in') or flag('haein_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_aoi_hae_in"
+  },
+  {
+   "id": "paire_aoi_nadia",
+   "label": "Silence radio : Aoi et Nadia",
+   "members": [
+    "aoi",
+    "nadia"
+   ],
+   "if": "flag('aoi_nuit') and flag('nadia_nuit') and aff('aoi') >= 50 and aff('nadia') >= 50 and flag('refuge.dortoir') and (not flag('aoi_dominee') or flag('aoi_devotion')) and (not flag('nadia_pactisee') or flag('nadia_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_aoi_nadia"
+  },
+  {
+   "id": "paire_aoi_simone",
+   "label": "Permission : Aoi et Simone",
+   "members": [
+    "aoi",
+    "simone"
+   ],
+   "if": "flag('aoi_nuit') and flag('simone_nuit') and aff('aoi') >= 50 and aff('simone') >= 50 and flag('refuge.dortoir') and (not flag('aoi_dominee') or flag('aoi_devotion')) and (not flag('pacte.simone') or flag('simone_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_aoi_simone"
+  },
+  {
+   "id": "paire_aoi_minh_anh",
+   "label": "Fréquences : Aoi et Minh-Anh",
+   "members": [
+    "aoi",
+    "minh_anh"
+   ],
+   "if": "flag('aoi_nuit') and flag('minh_anh_nuit') and aff('aoi') >= 50 and aff('minh_anh') >= 50 and flag('refuge.dortoir') and (not flag('aoi_dominee') or flag('aoi_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_aoi_minh_anh"
+  },
+  {
+   "id": "paire_maricel_ryeon",
+   "label": "Le couteau et le sabre : Maricel et Ryeon",
+   "members": [
+    "maricel",
+    "ryeon"
+   ],
+   "if": "flag('maricel_nuit') and flag('ryeon_nuit') and aff('maricel') >= 50 and aff('ryeon') >= 50 and flag('refuge.dortoir')",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_maricel_ryeon"
+  },
+  {
+   "id": "paire_maricel_hae_in",
+   "label": "Redistribution : Maricel et Hae-in",
+   "members": [
+    "maricel",
+    "hae_in"
+   ],
+   "if": "flag('maricel_nuit') and flag('haein_nuit') and aff('maricel') >= 50 and aff('hae_in') >= 50 and flag('refuge.dortoir') and (not flag('pacte.hae_in') or flag('haein_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_maricel_hae_in"
+  },
+  {
+   "id": "paire_maricel_nadia",
+   "label": "Les oubliées : Maricel et Nadia",
+   "members": [
+    "maricel",
+    "nadia"
+   ],
+   "if": "flag('maricel_nuit') and flag('nadia_nuit') and aff('maricel') >= 50 and aff('nadia') >= 50 and flag('refuge.dortoir') and (not flag('nadia_pactisee') or flag('nadia_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_maricel_nadia"
+  },
+  {
+   "id": "paire_maricel_simone",
+   "label": "Reddition : Maricel et Simone",
+   "members": [
+    "maricel",
+    "simone"
+   ],
+   "if": "flag('maricel_nuit') and flag('simone_nuit') and aff('maricel') >= 50 and aff('simone') >= 50 and flag('refuge.dortoir') and (not flag('pacte.simone') or flag('simone_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_maricel_simone"
+  },
+  {
+   "id": "paire_maricel_minh_anh",
+   "label": "Échantillons : Maricel et Minh-Anh",
+   "members": [
+    "maricel",
+    "minh_anh"
+   ],
+   "if": "flag('maricel_nuit') and flag('minh_anh_nuit') and aff('maricel') >= 50 and aff('minh_anh') >= 50 and flag('refuge.dortoir')",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_maricel_minh_anh"
+  },
+  {
+   "id": "paire_ryeon_xiaoyu",
+   "label": "Alliance des Maisons : Ryeon et Xiaoyu",
+   "members": [
+    "ryeon",
+    "xiaoyu"
+   ],
+   "if": "flag('ryeon_nuit') and flag('xiaoyu_nuit') and aff('ryeon') >= 50 and aff('xiaoyu') >= 50 and flag('refuge.dortoir') and (not flag('pacte.xiaoyu') or flag('xiaoyu_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_ryeon_xiaoyu"
+  },
+  {
+   "id": "paire_ryeon_hae_in",
+   "label": "Revanche : Ryeon et Hae-in",
+   "members": [
+    "ryeon",
+    "hae_in"
+   ],
+   "if": "flag('ryeon_nuit') and flag('haein_nuit') and aff('ryeon') >= 50 and aff('hae_in') >= 50 and flag('refuge.dortoir') and (not flag('pacte.hae_in') or flag('haein_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_ryeon_hae_in"
+  },
+  {
+   "id": "paire_ryeon_minh_anh",
+   "label": "Expérience de contrôle : Ryeon et Minh-Anh",
+   "members": [
+    "ryeon",
+    "minh_anh"
+   ],
+   "if": "flag('ryeon_nuit') and flag('minh_anh_nuit') and aff('ryeon') >= 50 and aff('minh_anh') >= 50 and flag('refuge.dortoir')",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_ryeon_minh_anh"
+  },
+  {
+   "id": "paire_xiaoyu_nadia",
+   "label": "Contrat rompu : Xiaoyu et Nadia",
+   "members": [
+    "xiaoyu",
+    "nadia"
+   ],
+   "if": "flag('xiaoyu_nuit') and flag('nadia_nuit') and aff('xiaoyu') >= 50 and aff('nadia') >= 50 and flag('refuge.dortoir') and (not flag('pacte.xiaoyu') or flag('xiaoyu_devotion')) and (not flag('nadia_pactisee') or flag('nadia_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_xiaoyu_nadia"
+  },
+  {
+   "id": "paire_xiaoyu_simone",
+   "label": "Cessez-le-feu : Xiaoyu et Simone",
+   "members": [
+    "xiaoyu",
+    "simone"
+   ],
+   "if": "flag('xiaoyu_nuit') and flag('simone_nuit') and aff('xiaoyu') >= 50 and aff('simone') >= 50 and flag('refuge.dortoir') and (not flag('pacte.xiaoyu') or flag('xiaoyu_devotion')) and (not flag('pacte.simone') or flag('simone_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_xiaoyu_simone"
+  },
+  {
+   "id": "paire_xiaoyu_minh_anh",
+   "label": "Inspection : Xiaoyu et Minh-Anh",
+   "members": [
+    "xiaoyu",
+    "minh_anh"
+   ],
+   "if": "flag('xiaoyu_nuit') and flag('minh_anh_nuit') and aff('xiaoyu') >= 50 and aff('minh_anh') >= 50 and flag('refuge.dortoir') and (not flag('pacte.xiaoyu') or flag('xiaoyu_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_xiaoyu_minh_anh"
+  },
+  {
+   "id": "paire_hae_in_nadia",
+   "label": "Garde rapprochée : Hae-in et Nadia",
+   "members": [
+    "hae_in",
+    "nadia"
+   ],
+   "if": "flag('haein_nuit') and flag('nadia_nuit') and aff('hae_in') >= 50 and aff('nadia') >= 50 and flag('refuge.dortoir') and (not flag('pacte.hae_in') or flag('haein_devotion')) and (not flag('nadia_pactisee') or flag('nadia_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_hae_in_nadia"
+  },
+  {
+   "id": "paire_hae_in_minh_anh",
+   "label": "Contrat de travail : Hae-in et Minh-Anh",
+   "members": [
+    "hae_in",
+    "minh_anh"
+   ],
+   "if": "flag('haein_nuit') and flag('minh_anh_nuit') and aff('hae_in') >= 50 and aff('minh_anh') >= 50 and flag('refuge.dortoir') and (not flag('pacte.hae_in') or flag('haein_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_hae_in_minh_anh"
+  },
+  {
+   "id": "paire_nadia_minh_anh",
+   "label": "Balistique : Nadia et Minh-Anh",
+   "members": [
+    "nadia",
+    "minh_anh"
+   ],
+   "if": "flag('nadia_nuit') and flag('minh_anh_nuit') and aff('nadia') >= 50 and aff('minh_anh') >= 50 and flag('refuge.dortoir') and (not flag('nadia_pactisee') or flag('nadia_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_nadia_minh_anh"
+  },
+  {
+   "id": "paire_simone_minh_anh",
+   "label": "Le Silo, la nuit : Simone et Minh-Anh",
+   "members": [
+    "simone",
+    "minh_anh"
+   ],
+   "if": "flag('simone_nuit') and flag('minh_anh_nuit') and aff('simone') >= 50 and aff('minh_anh') >= 50 and flag('refuge.dortoir') and (not flag('pacte.simone') or flag('simone_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:paire_simone_minh_anh"
+  },
+  {
+   "id": "constellation_sept",
+   "label": "La Constellation de sept",
+   "members": [],
+   "if": "bonds(55) >= 7 and flag('refuge.dortoir') and not (party('seo_yeon') and flag('pacte.seo_yeon') and not flag('seo_devotion')) and not (party('xiaoyu') and flag('pacte.xiaoyu') and not flag('xiaoyu_devotion')) and not (party('hae_in') and flag('pacte.hae_in') and not flag('haein_devotion')) and not (party('simone') and flag('pacte.simone') and not flag('simone_devotion')) and not (party('nadia') and flag('nadia_pactisee') and not flag('nadia_devotion')) and not (party('aoi') and flag('aoi_dominee') and not flag('aoi_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:constellation_sept"
+  },
+  {
+   "id": "constellation_neuf",
+   "label": "La Constellation de neuf",
+   "members": [],
+   "if": "bonds(65) >= 9 and flag('refuge.dortoir') and not (party('seo_yeon') and flag('pacte.seo_yeon') and not flag('seo_devotion')) and not (party('xiaoyu') and flag('pacte.xiaoyu') and not flag('xiaoyu_devotion')) and not (party('hae_in') and flag('pacte.hae_in') and not flag('haein_devotion')) and not (party('simone') and flag('pacte.simone') and not flag('simone_devotion')) and not (party('nadia') and flag('nadia_pactisee') and not flag('nadia_devotion')) and not (party('aoi') and flag('aoi_dominee') and not flag('aoi_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:constellation_neuf"
+  },
+  {
+   "id": "harem_mercenaire",
+   "label": "Le Contrat collectif",
+   "members": [],
+   "if": "voie() == 'mercenaire' and bonds(50) >= 6 and flag('refuge.dortoir') and not (party('seo_yeon') and flag('pacte.seo_yeon') and not flag('seo_devotion')) and not (party('xiaoyu') and flag('pacte.xiaoyu') and not flag('xiaoyu_devotion')) and not (party('hae_in') and flag('pacte.hae_in') and not flag('haein_devotion')) and not (party('simone') and flag('pacte.simone') and not flag('simone_devotion')) and not (party('nadia') and flag('nadia_pactisee') and not flag('nadia_devotion')) and not (party('aoi') and flag('aoi_dominee') and not flag('aoi_devotion'))",
+   "once": false,
+   "dialogue": "refuge_groupe:harem_mercenaire"
+  },
+  {
+   "id": "harem_ombre",
+   "label": "La Cour de l'Ombre",
+   "members": [],
+   "if": "voie() == 'tyran' and bonds(50) >= 6 and flag('refuge.dortoir') and not flag('pacte.seo_yeon') and not flag('pacte.xiaoyu') and not flag('pacte.hae_in') and not flag('pacte.simone') and not flag('nadia_pactisee') and not flag('aoi_dominee')",
+   "once": false,
+   "dialogue": "refuge_groupe:harem_ombre"
   }
  ]
 }

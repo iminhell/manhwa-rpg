@@ -2326,5 +2326,389 @@
  "Chez nous. J'aime bien quand tu le dis comme ça.": {
   "ko": "우리 집. 네가 그렇게 말하니까 좋다.",
   "ja": "私たちの家。あなたがそう言うの、好き。"
+ },
+ "La dernière fois, j'ai appris à Haneul le nom des os. Ce soir, elle veut savoir à quoi ils servent. Je n'ai… pas de réponse médicale à ça.": {
+  "ko": "지난번엔 하늘에게 뼈 이름을 가르쳐 줬어요. 오늘 밤엔 그게 어디에 쓰이는지 알고 싶대요. 거기엔… 의학적인 답이 없네요.",
+  "ja": "前回はハヌルに骨の名前を教えました。今夜は、それが何のためにあるのか知りたいそうです。それには…医学的な答えがありません。"
+ },
+ "Elle rougit du cou jusqu'aux oreilles. Ça n'est écrit dans aucune Fin. Je veux le voir de près.": {
+  "ko": "목에서 귀까지 빨개졌어. 그런 건 어떤 결말에도 적혀 있지 않아. 가까이서 보고 싶어.",
+  "ja": "首から耳まで真っ赤。そんなこと、どの結末にも書いてない。近くで見たい。"
+ },
+ "Ay, doktora, je te rends tout. Une boîte à la fois. Avec les intérêts. Le gwapo sert de témoin.": {
+  "ko": "아이, 닥터, 다 돌려줄게. 한 상자씩. 이자까지 쳐서. 과포가 증인이야.",
+  "ja": "アイ、ドクター、全部返すよ。一箱ずつ。利子つきでね。グワポが証人。"
+ },
+ "Vous êtes impossible. Kang-ssi, fermez la porte. Elle ne repartira pas avant d'avoir tout rendu.": {
+  "ko": "정말 못 말리겠네요. 강 씨, 문 닫아 주세요. 전부 돌려주기 전엔 못 나가요.",
+  "ja": "本当に手に負えない人。カンさん、扉を閉めて。全部返すまで帰しません。"
+ },
+ "Je me suis blessée à l'entraînement. Rien de grave. …Je suis venue pour qu'elle me soigne. Et pour toi.": {
+  "ko": "수련하다 다쳤어. 별것 아니야. …그녀에게 치료받으러 왔어. 그리고 너 때문에.",
+  "ja": "稽古で怪我をした。大したことはない。…彼女に手当てしてもらいに来た。それと、お前に会いに。"
+ },
+ "Trois entailles cette semaine, Ryeon. Je commence à croire que vous le faites exprès. …Restez. Tous les deux.": {
+  "ko": "이번 주에만 세 번째예요, 련 씨. 일부러 그러는 것 같네요. …있어요. 두 사람 다.",
+  "ja": "今週で三回目ですよ、リョンさん。わざとやってるとしか思えません。…いてください。お二人とも。"
+ },
+ "Docteur, je n'ai rien. C'est bien le problème. Prescrivez-moi quelque chose. Kang paiera la consultation.": {
+  "ko": "의사 선생님, 난 아무 데도 아프지 않아. 그게 문제지. 뭐라도 처방해 줘. 진료비는 강이 낼 거야.",
+  "ja": "先生、私はどこも悪くないの。それが問題。何か処方して。診察代はカンが払うわ。"
+ },
+ "Repos. Et lui. C'est tout ce que j'ai en stock, Madame Long. Posologie : jusqu'à l'aube.": {
+  "ko": "휴식. 그리고 이 사람. 재고는 그것뿐이에요, 롱 씨. 용법: 새벽까지.",
+  "ja": "休養。それと、この人。在庫はそれだけです、ロンさん。用法：夜明けまで。"
+ },
+ "J'ai demandé que vous assistiez à mon bilan, Monsieur Kang. Je ne délègue jamais ce qui me concerne.": {
+  "ko": "제 검진에 입회해 달라고 했어요, 강 씨. 저와 관련된 일은 절대 남에게 맡기지 않거든요.",
+  "ja": "私の健診に立ち会ってほしいと頼んだの、カンさん。自分に関わることは決して人に任せないから。"
+ },
+ "Pour la science. Uniquement pour la science. …Enlevez votre veste de tailleur, Présidente.": {
+  "ko": "과학을 위해서예요. 오로지 과학을 위해서. …재킷 벗으세요, 회장님.",
+  "ja": "科学のためです。あくまで科学のため。…ジャケットを脱いでください、会長。"
+ },
+ "Elle trouve triste que je ne sente rien. Moi, je trouve jolies ses mains. Restez. Tous les deux.": {
+  "ko": "내가 아무것도 못 느끼는 게 슬프대. 난 그녀 손이 예쁘다고 생각해. 있어. 둘 다.",
+  "ja": "私が何も感じないのが悲しいって。私は彼女の手がきれいだと思う。いて。二人とも。"
+ },
+ "Ne bougez pas. Et vous, Kang-ssi, tenez-lui la main. Non, pas comme ça. Comme ça.": {
+  "ko": "움직이지 마세요. 그리고 강 씨, 손 잡아 주세요. 아니, 그렇게 말고. 이렇게.",
+  "ja": "動かないで。カンさんは手を握ってあげて。いえ、そうじゃなくて。こう。"
+ },
+ "Déshabillez-vous, Rang F. C'est le règlement. Le docteur aussi, elle n'a pas passé sa visite depuis le premier jour.": {
+  "ko": "옷 벗어, F랭크. 규정이다. 닥터도. 첫날부터 검진을 안 받았거든.",
+  "ja": "脱ぎなさい、Fランク。規則よ。ドクターもね。初日から検診を受けてないんだから。"
+ },
+ "Dans mon infirmerie, c'est moi qui donne les ordres, Commandante. …Mais je retiens l'idée.": {
+  "ko": "제 의무실에선 제가 명령해요, 사령관님. …그래도 그 생각은 접수할게요.",
+  "ja": "私の医務室では、命令するのは私です、司令官。…でも、その案は採用します。"
+ },
+ "Elle vient d'une porte sans serrure, moi de tunnels sans lumière. On est faites pour s'entendre, prinsesa. Et toi au milieu, gwapo.": {
+  "ko": "얜 자물쇠 없는 문에서 왔고, 난 빛 없는 터널에서 왔지. 우린 잘 맞을 수밖에 없어, 프린세사. 그리고 그 가운데 너, 과포.",
+  "ja": "この子は鍵のない扉から、私は光のないトンネルから来た。気が合うに決まってるよ、プリンセサ。真ん中にはあんた、グワポ。"
+ },
+ "Elle sent le fleuve et le fer. Je veux apprendre son odeur et la tienne, l'une contre l'autre.": {
+  "ko": "그녀에게선 강과 쇠 냄새가 나. 그녀 냄새와 네 냄새를, 서로 맞닿은 채로 배우고 싶어.",
+  "ja": "彼女は川と鉄の匂いがする。彼女の匂いとあなたの匂いを、重ねたまま覚えたい。"
+ },
+ "On nous appelle toutes les deux « l'Héritière ». Moi d'une maison, elle d'une Tour. Ce soir, aucune de nous n'hérite de rien.": {
+  "ko": "우린 둘 다 '후계자'라고 불려. 나는 가문의, 그녀는 탑의. 오늘 밤엔 아무도 아무것도 물려받지 않아.",
+  "ja": "私たちはどちらも『後継者』と呼ばれる。私は家の、彼女は塔の。今夜は、どちらも何も継がない。"
+ },
+ "Elle tient son sabre comme je tiens mes glyphes : pour ne pas trembler. Je veux qu'elle tremble un peu. Avec nous.": {
+  "ko": "그녀는 내가 문양을 붙잡듯이 검을 쥐어. 떨지 않으려고. 조금은 떨었으면 좋겠어. 우리랑 같이.",
+  "ja": "彼女は、私が紋様を握るみたいに刀を握る。震えないために。少しだけ震えてほしい。私たちと一緒に。"
+ },
+ "Si je gagne, elle me dit ma Fin. Si elle gagne… je ne parle plus de contrats jusqu'à l'aube. Kang distribue.": {
+  "ko": "내가 이기면, 그녀가 내 결말을 말해 줘. 그녀가 이기면… 새벽까지 계약 얘기는 안 해. 패는 강이 돌려.",
+  "ja": "私が勝ったら、彼女が私の結末を教える。彼女が勝ったら…夜明けまで契約の話はしない。牌はカンが配って。"
+ },
+ "J'ai gagné. Tu n'as plus le droit de parler de contrats. Alors parle d'autre chose. Ou ne parle plus du tout.": {
+  "ko": "내가 이겼어. 이제 계약 얘기는 금지야. 그러니까 다른 얘기를 해. 아니면 아예 말하지 마.",
+  "ja": "私の勝ち。もう契約の話は禁止。だから別の話をして。それとも、もう何も話さないで。"
+ },
+ "Je fais auditer tout ce que je ne comprends pas, Monsieur Kang. Elle est la première chose que je ne comprends pas. L'audit sera… approfondi.": {
+  "ko": "저는 이해 못 하는 건 전부 감사해요, 강 씨. 그녀는 제가 처음으로 이해 못 하는 존재예요. 감사는… 아주 철저할 거예요.",
+  "ja": "理解できないものは全部監査するの、カンさん。彼女は私が初めて理解できないもの。監査は…徹底的にやるわ。"
+ },
+ "Elle prend des notes. Moi aussi. On comparera à la fin. Tu seras notre seul document.": {
+  "ko": "그녀가 메모해. 나도 해. 끝나고 비교할 거야. 넌 우리의 유일한 자료야.",
+  "ja": "彼女がメモを取る。私も取る。最後に見比べるの。あなたが私たちの唯一の資料。"
+ },
+ "Je l'ai vue dans ma lunette, une fois. Dans une autre vie. Elle m'a souri à huit cents mètres. Ça ne s'oublie pas.": {
+  "ko": "스코프로 그녀를 본 적이 있어. 다른 생에서. 팔백 미터 거리에서 나한테 웃어 줬지. 그건 안 잊혀.",
+  "ja": "スコープ越しに彼女を見たことがある。別の人生で。八百メートル先から、私に微笑んだ。忘れられない。"
+ },
+ "Je me souviens de ton tir. Il m'a manquée exprès. Ce soir, ne manque rien.": {
+  "ko": "네 총성을 기억해. 일부러 날 빗나갔지. 오늘 밤엔 아무것도 놓치지 마.",
+  "ja": "あなたの銃声を覚えてる。わざと外したでしょう。今夜は、何も外さないで。"
+ },
+ "Briefing, soldat. L'Héritière ne connaît pas nos règles. Je vais les lui apprendre. Toi, tu sers d'exemple pratique.": {
+  "ko": "브리핑이다, 병사. 후계자는 우리 규칙을 몰라. 내가 가르칠 거다. 넌 실습 예시를 맡아.",
+  "ja": "ブリーフィングよ、兵士。後継者は私たちのルールを知らない。私が教える。あなたは実地の見本役。"
+ },
+ "Elle donne ses ordres très doucement quand elle croit que personne n'écoute. J'écoute.": {
+  "ko": "그녀는 아무도 안 듣는다고 생각할 때 아주 부드럽게 명령해. 난 듣고 있어.",
+  "ja": "誰も聞いていないと思うと、彼女はとても優しく命令する。私は聞いてる。"
+ },
+ "On a chanté jusqu'à griller le micro, gwapo. Maintenant on a chaud et plus de chanson. Trouve-nous une idée.": {
+  "ko": "마이크가 탈 때까지 불렀어, 과포. 이제 덥고 노래도 없어. 뭐 좋은 생각 없어?",
+  "ja": "マイクが焼けるまで歌ったよ、グワポ。もう暑いし、歌もない。何か考えて。"
+ },
+ "Moi, j'en ai une. Mais elle se chante à trois. Et sans micro.": {
+  "ko": "나한테 하나 있어. 근데 셋이서 부르는 거야. 마이크 없이.",
+  "ja": "私、ひとつあるよ。でも三人で歌うやつ。マイクなしでね。"
+ },
+ "Ryeon ne m'a jamais applaudie. Ce soir, elle a dénoué son ruban pour m'attacher les cheveux. C'est mieux qu'une ovation.": {
+  "ko": "련은 한 번도 박수를 쳐 준 적이 없어. 오늘 밤엔 리본을 풀어서 내 머리를 묶어 줬어. 기립박수보다 좋아.",
+  "ja": "リョンは一度も拍手してくれたことがない。今夜はリボンをほどいて、私の髪を結んでくれた。スタンディングオベーションよりうれしい。"
+ },
+ "Ne le répète pas. …Et chante moins fort. Je veux entendre aussi ce qu'il répond.": {
+  "ko": "말하고 다니지 마. …그리고 좀 작게 불러. 저 사람이 뭐라고 대답하는지도 듣고 싶으니까.",
+  "ja": "言いふらすな。…それと、もう少し小さく歌え。彼が何と答えるかも聞きたい。"
+ },
+ "Mirae t'a achetée trois cents millions. Moi, je t'offre un contrat d'une nuit, sans aucune clause. C'est toi qui fixes le cachet.": {
+  "ko": "미래는 너를 삼억에 샀지. 난 조항 하나 없는 하룻밤 계약을 제안할게. 출연료는 네가 정해.",
+  "ja": "ミライはあなたを三億で買った。私は条項ひとつない、一晩の契約を差し出すわ。ギャラはあなたが決めて。"
+ },
+ "Mon cachet, c'est que personne ne me dise de sourire. Tu signes, Xiaoyu ? Toi aussi, Elias.": {
+  "ko": "내 출연료는, 아무도 나한테 웃으라고 하지 않는 거야. 서명할래, 샤오위? 엘리아스, 너도.",
+  "ja": "私のギャラは、誰も私に笑えって言わないこと。サインする、シャオユー？エリアスも。"
+ },
+ "Ce soir, aucune caméra, aucun communiqué. Je ne sais pas faire, Monsieur Kang. Elle a promis de m'apprendre.": {
+  "ko": "오늘 밤엔 카메라도, 보도자료도 없어요. 저는 그런 걸 할 줄 몰라요, 강 씨. 그녀가 가르쳐 준다고 약속했어요.",
+  "ja": "今夜はカメラもプレスリリースもない。私にはやり方がわからないの、カンさん。彼女が教えてくれると約束したわ。"
+ },
+ "C'est facile, Présidente. On enlève le maquillage, on éteint la dernière lumière, et on ne joue plus aucun rôle.": {
+  "ko": "쉬워요, 회장님. 화장을 지우고, 마지막 불을 끄고, 더는 아무 역할도 하지 않는 거예요.",
+  "ja": "簡単ですよ、会長。メイクを落として、最後の明かりを消して、もう何の役も演じないの。"
+ },
+ "Elle m'a demandé de lui apprendre le silence. Je lui ai appris à retenir son souffle avant le tir.": {
+  "ko": "그녀가 침묵을 가르쳐 달라고 했어. 그래서 쏘기 전에 숨 참는 법을 가르쳐 줬지.",
+  "ja": "彼女に沈黙を教えてって頼まれた。だから撃つ前に息を止める方法を教えた。"
+ },
+ "Ce soir, je le retiens pour autre chose. Et toi, Nadia, tu as le droit de parler. Dis-nous ce que tu veux.": {
+  "ko": "오늘 밤엔 다른 일로 숨을 참을 거야. 나디아, 넌 말해도 돼. 뭘 원하는지 말해 줘.",
+  "ja": "今夜は別のことで息を止める。ナディア、あなたは話していいよ。何がしたいか言って。"
+ },
+ "Ma petite sœur chantait cette chanson dans le Humvee. Je ne l'ai jamais dit à personne. Chante-la-moi, soldate. Doucement.": {
+  "ko": "내 여동생이 험비 안에서 이 노래를 불렀어. 아무한테도 말한 적 없다. 불러 줘, 병사. 조용히.",
+  "ja": "妹がハンヴィーの中でこの歌を歌ってた。誰にも言ったことはない。歌って、兵士。静かに。"
+ },
+ "Pour toi, Commandante, je chante doucement. Et après, c'est toi qui chantes. Elias, tu tiens le rythme.": {
+  "ko": "사령관님을 위해서라면 조용히 부를게요. 그다음엔 사령관님이 불러요. 엘리아스, 박자 맞춰 줘.",
+  "ja": "司令官のためなら静かに歌う。そのあとは司令官が歌って。エリアス、リズムをお願い。"
+ },
+ "Mirae a mesuré ta voix pour attirer la Marée. Moi, je veux mesurer ce qu'elle fait à mes LEDs.": {
+  "ko": "미래는 마레를 부르려고 네 목소리를 측정했어. 난 그게 내 LED에 무슨 일을 하는지 측정하고 싶어.",
+  "ja": "ミライは潮を呼ぶためにあなたの声を測った。私は、それが私のLEDに何をするのか測りたい。"
+ },
+ "Elles virent au rouge à chaque note. Tu vois, docteure ? Même ta science chante faux pour moi.": {
+  "ko": "음 하나마다 빨개지잖아. 봐, 박사님? 박사님 과학도 나 때문에 음이탈하네.",
+  "ja": "音ごとに赤くなってる。ほら、博士？あなたの科学まで、私のせいで音を外してる。"
+ },
+ "Une princesse des Collines chez les Rats. Ay, Ryeon, t'as même enlevé tes chaussures. Tu sais où t'es, au moins ?": {
+  "ko": "언덕의 공주님이 쥐들 소굴에. 아이, 련, 신발까지 벗었네. 여기가 어딘지는 알아?",
+  "ja": "丘のお姫様がネズミの巣に。アイ、リョン、靴まで脱いじゃって。ここがどこか分かってる？"
+ },
+ "Je sais où je suis. Je l'ai choisi. Montre-moi ce que les Rats font des princesses, et je te montrerai ce que les Baek font des voleuses.": {
+  "ko": "내가 어디 있는지 알아. 내가 고른 곳이야. 쥐들이 공주를 어떻게 하는지 보여 줘. 그럼 백가가 도둑을 어떻게 하는지 보여 주지.",
+  "ja": "どこにいるかは分かっている。私が選んだ。ネズミが姫をどうするのか見せてみろ。白家が泥棒をどうするか見せてやる。"
+ },
+ "T'as tout l'argent de Séoul, présidente. Moi, j'ai tout volé à des gens comme toi. Ce soir, on redistribue.": {
+  "ko": "회장님은 서울의 돈을 다 가졌잖아. 난 회장님 같은 사람들한테 다 훔쳤고. 오늘 밤엔 재분배하자.",
+  "ja": "社長はソウル中のお金を持ってる。私はあんたみたいな人から全部盗んだ。今夜は再分配しよう。"
+ },
+ "J'ai fait évaluer votre proposition, Mademoiselle Dizon. Elle est absurde. J'accepte. Monsieur Kang servira de garantie.": {
+  "ko": "디존 씨의 제안을 검토시켰어요. 터무니없더군요. 수락하죠. 강 씨가 담보가 될 거예요.",
+  "ja": "ディゾンさん、あなたの提案を査定させたわ。馬鹿げてる。受けましょう。カンさんが担保よ。"
+ },
+ "Elle connaît mon vrai nom. Elle ne le dit qu'à moi. Je crois que c'est ça, avoir une amie.": {
+  "ko": "그녀는 내 진짜 이름을 알아. 나한테만 불러 줘. 친구가 있다는 게 이런 건가 봐.",
+  "ja": "彼女は私の本当の名前を知ってる。私にだけ呼ぶ。友達がいるって、こういうことなんだと思う。"
+ },
+ "Les filles qu'on oublie se reconnaissent, gwapo. Ce soir, personne n'oublie personne. Surtout pas toi.": {
+  "ko": "잊힌 여자들은 서로 알아봐, 과포. 오늘 밤엔 아무도 아무도 잊지 않아. 특히 너는.",
+  "ja": "忘れられた女の子同士は、お互いに分かるんだよ、グワポ。今夜は誰も誰も忘れない。特にあんたはね。"
+ },
+ "Je suis venue négocier la reddition de la reine des Rats. Conditions honorables, Rang F en otage.": {
+  "ko": "쥐들의 여왕에게 항복을 받으러 왔다. 명예로운 조건으로. F랭크는 인질이다.",
+  "ja": "ネズミの女王の降伏を交渉しに来た。名誉ある条件で。Fランクは人質。"
+ },
+ "La reine se rend, Commandante. Mais à ses conditions. Et l'otage signe aussi.": {
+  "ko": "여왕은 항복해요, 사령관님. 단, 여왕의 조건으로. 그리고 인질도 서명해야 해.",
+  "ja": "女王は降伏するよ、司令官。ただし女王の条件でね。それと人質もサインして。"
+ },
+ "Elle a volé mon badge, mes échantillons et mon cœur, dans cet ordre. Tu juges.": {
+  "ko": "그녀가 내 출입증, 샘플, 그리고 내 마음을 훔쳤어. 이 순서로. 네가 판결해.",
+  "ja": "彼女は私の入館証と、サンプルと、心を盗んだ。この順番で。あなたが裁いて。"
+ },
+ "Ay, docteure, je rends tout. Sauf le cœur. Ça, je le garde. Et je prends le juge en prime.": {
+  "ko": "아이, 박사님, 다 돌려줄게. 마음만 빼고. 그건 내가 가질래. 판사는 덤으로 가져가고.",
+  "ja": "アイ、博士、全部返すよ。心以外はね。それはもらっとく。おまけに裁判官もね。"
+ },
+ "Je propose de sceller une alliance ici, entre nos deux Maisons. Sans notaire. Kang sera le témoin.": {
+  "ko": "여기서 우리 두 가문의 동맹을 맺자고 제안할게. 공증인 없이. 강이 증인이야.",
+  "ja": "ここで、私たち二つの家の同盟を結ぶことを提案するわ。公証人なしで。カンが証人よ。"
+ },
+ "Une Baek ne scelle rien sans témoin. …Tu seras le témoin. Et tu ne diras rien à personne.": {
+  "ko": "백가는 증인 없이 아무것도 맺지 않아. …네가 증인이야. 그리고 아무한테도 말하지 마.",
+  "ja": "白家は証人なしに何も結ばない。…お前が証人だ。そして誰にも言うな。"
+ },
+ "Mademoiselle Baek réclame une revanche, Monsieur Kang. J'ai accepté, à une condition : vous arbitrez.": {
+  "ko": "백 양이 재대결을 요구했어요, 강 씨. 조건 하나를 걸고 수락했죠. 당신이 심판을 보는 거예요.",
+  "ja": "白さんが再戦を求めてきたの、カンさん。条件ひとつで受けたわ。あなたが審判をすること。"
+ },
+ "Une revanche sans sabre ni Sceau. Juste nous deux, et lui. Je ne perdrai pas deux fois.": {
+  "ko": "검도 인장도 없는 재대결. 우리 둘하고, 저 사람만. 두 번은 지지 않아.",
+  "ja": "刀も印章もない再戦。私たち二人と、彼だけ。二度は負けない。"
+ },
+ "Sa condition : je retire mes lunettes et j'arrête de compter. Je… essaie.": {
+  "ko": "그녀의 조건: 내가 안경을 벗고 숫자 세는 걸 그만두는 것. 나… 노력 중이야.",
+  "ja": "彼女の条件：私が眼鏡を外して、数えるのをやめること。私…頑張ってる。"
+ },
+ "Elle compte même quand elle respire. Fais-la taire, Elias. Gentiment.": {
+  "ko": "숨 쉴 때도 숫자를 세. 조용히 시켜, 엘리아스. 다정하게.",
+  "ja": "息をする時でさえ数えている。黙らせろ、エリアス。優しくな。"
+ },
+ "Elle ne m'a jamais demandé pourquoi je n'ai pas tiré. C'est pour ça que je suis là.": {
+  "ko": "그녀는 내가 왜 안 쐈는지 한 번도 묻지 않았어. 그래서 내가 여기 있는 거야.",
+  "ja": "彼女は、私がなぜ撃たなかったのか一度も聞かなかった。だから私はここにいる。"
+ },
+ "Je n'ai pas besoin de savoir pourquoi. Je paie ma dette, Nadia. En nature. Kang, tu es l'intérêt.": {
+  "ko": "이유는 알 필요 없어. 빚은 갚을게, 나디아. 현물로. 강, 넌 이자야.",
+  "ja": "理由なんて知らなくていい。借りは返すわ、ナディア。現物でね。カン、あなたは利子よ。"
+ },
+ "Je propose un cessez-le-feu. Clause unique : on ne parle pas affaires. Le Rang F surveille l'application.": {
+  "ko": "휴전을 제안한다. 조항은 하나: 사업 얘기는 금지. F랭크가 이행을 감시한다.",
+  "ja": "停戦を提案する。条項はひとつ：仕事の話はしない。Fランクが履行を監視する。"
+ },
+ "Accepté, Commandante. Mais je garde mon éventail. Il me sert à cacher quand je souris.": {
+  "ko": "수락할게요, 사령관님. 단, 부채는 갖고 있을래. 웃을 때 가리는 용도니까.",
+  "ja": "受けるわ、司令官。でも扇子は持っておく。笑う時に隠すためにね。"
+ },
+ "J'inspecte l'investissement, docteure. Kang, tu tiens la lampe.": {
+  "ko": "투자를 점검하러 왔어, 박사님. 강, 넌 램프 들어.",
+  "ja": "投資の視察よ、博士。カン、ランプを持って。"
+ },
+ "Inspection acceptée. Protocole : tout ce qui est touché doit être nommé. À voix haute. C'est la règle de mon labo.": {
+  "ko": "점검 수락. 프로토콜: 만지는 건 전부 이름을 말할 것. 소리 내서. 내 연구실 규칙이야.",
+  "ja": "視察を受け入れる。プロトコル：触れるものはすべて名前を言うこと。声に出して。私の研究室のルール。"
+ },
+ "Elle a fixé son tarif sans me le dire, Monsieur Kang. C'est la première fois que je signe sans lire.": {
+  "ko": "그녀가 금액을 말해 주지도 않고 정했어요, 강 씨. 읽지도 않고 서명한 건 처음이에요.",
+  "ja": "彼女は金額を言わずに決めたの、カンさん。読まずにサインしたのは初めてよ。"
+ },
+ "Mon tarif : elle enlève son tailleur, toi ton manteau. Je protège mieux ce que je vois.": {
+  "ko": "내 요금은, 그녀는 정장을, 넌 코트를 벗는 거야. 보이는 걸 더 잘 지키거든.",
+  "ja": "私の料金：彼女はスーツを、あなたはコートを脱ぐ。見えるものの方がよく守れる。"
+ },
+ "Le docteur Tran a préparé ses propres articles, Monsieur Kang. Je n'ai jamais négocié avec quelqu'un d'aussi bien préparé.": {
+  "ko": "트란 박사가 직접 조항을 준비했어요, 강 씨. 이렇게 준비가 철저한 상대와 협상하는 건 처음이에요.",
+  "ja": "トラン博士が自分で条項を用意してきたの、カンさん。こんなに準備のいい相手と交渉するのは初めて。"
+ },
+ "Article premier : la directrice scientifique choisit ses protocoles. Article deux : celui-ci se fait à trois. Signature : maintenant.": {
+  "ko": "제1조: 연구 책임자가 프로토콜을 선택한다. 제2조: 이번 건은 셋이서 진행한다. 서명: 지금.",
+  "ja": "第一条：研究責任者がプロトコルを選ぶ。第二条：今回は三人で行う。署名：今すぐ。"
+ },
+ "Hypothèse : mes équations sont plus précises que son instinct. Je propose une vérification expérimentale. Consentement requis.": {
+  "ko": "가설: 내 방정식이 그녀의 직감보다 정확하다. 실험으로 검증할 것을 제안함. 동의 필요.",
+  "ja": "仮説：私の方程式は彼女の直感より正確。実験による検証を提案する。同意が必要。"
+ },
+ "J'ai déjà gagné. Mais elle veut revérifier. Toute la nuit. Oui.": {
+  "ko": "난 이미 이겼어. 근데 그녀가 다시 확인하고 싶대. 밤새도록. 좋아.",
+  "ja": "もう私の勝ち。でも彼女が確かめ直したいって。一晩中。いいよ。"
+ },
+ "Mission accomplie. Maintenant je prends ma permission, soldat. La docteure a donné son accord écrit.": {
+  "ko": "임무 완료. 이제 휴가를 쓰겠다, 병사. 박사가 서면으로 동의했다.",
+  "ja": "任務完了。これから休暇を取るわ、兵士。博士は書面で同意した。"
+ },
+ "Accord écrit, et oral. Les LEDs sont rouges depuis vingt minutes. Ce n'est pas un dysfonctionnement.": {
+  "ko": "서면 동의, 그리고 구두 동의. LED가 이십 분째 빨개. 오작동 아니야.",
+  "ja": "書面でも、口頭でも同意。LEDが二十分前から赤い。故障じゃない。"
+ },
+ "Vous ne parlez plus à personne, Kang-ssi. Vous mangez seul, vous dormez seul. Je suis médecin : la solitude, ça se soigne aussi. Laissez-moi essayer.": {
+  "ko": "강 씨, 이제 아무하고도 말을 안 하시네요. 혼자 먹고, 혼자 자고. 전 의사예요. 외로움도 치료할 수 있어요. 해 보게 해 주세요.",
+  "ja": "カンさん、もう誰とも話さないんですね。一人で食べて、一人で眠って。私は医者です。孤独だって治療できます。試させてください。"
+ },
+ "J'ai appris un mot nouveau aujourd'hui, dans une Fin heureuse : « habitude ». Je veux que tu deviennes mon habitude.": {
+  "ko": "오늘 행복한 결말에서 새 단어를 배웠어. '습관'. 네가 내 습관이 됐으면 좋겠어.",
+  "ja": "今日、幸せな結末の中で新しい言葉を覚えた。『習慣』。あなたに、私の習慣になってほしい。"
+ },
+ "Tu fais comme moi derrière la porte : tu attends que personne ne vienne. Moi, je suis venue. Tu ne peux pas m'en empêcher, je n'ai pas besoin de clé.": {
+  "ko": "넌 문 뒤의 나처럼 굴어. 아무도 안 오길 기다리지. 그래서 내가 왔어. 날 막을 순 없어. 난 열쇠가 필요 없거든.",
+  "ja": "あなたは扉の向こうの私と同じ。誰も来ないのを待ってる。だから私が来た。止められないよ。私に鍵はいらないから。"
+ },
+ "Ce soir, pas de chanson. Je veux t'entendre, toi. Tous les petits bruits que tu fais quand tu ne joues aucun rôle.": {
+  "ko": "오늘 밤엔 노래 안 해. 너를 듣고 싶어. 아무 역할도 하지 않을 때 네가 내는 작은 소리들 전부.",
+  "ja": "今夜は歌わない。あなたを聴きたいの。何の役も演じてない時にあなたが立てる、小さな音を全部。"
+ },
+ "Tu as le visage que j'avais après un concert. Des milliers de gens t'aiment, et personne ne te connaît. Je connais le remède.": {
+  "ko": "넌 콘서트 끝난 뒤의 내 얼굴을 하고 있어. 수천 명이 널 사랑하는데, 아무도 널 몰라. 난 약을 알아.",
+  "ja": "コンサートの後の私と同じ顔してる。何千人に愛されても、誰にも知られてない顔。私、治し方を知ってるよ。"
+ },
+ "On fait les choses bien, cette fois, gwapo. Enfin… presque bien. La bougie est volée.": {
+  "ko": "이번엔 제대로 하자, 과포. 음… 거의 제대로. 초는 훔친 거야.",
+  "ja": "今回はちゃんとやろう、グワポ。まあ…ほぼちゃんと。ロウソクは盗品だけど。"
+ },
+ "Les loups seuls crèvent l'hiver, gwapo. Même ceux qui mordent fort. Pousse-toi, je réchauffe ta tanière.": {
+  "ko": "혼자인 늑대는 겨울에 죽어, 과포. 세게 무는 녀석들도. 비켜 봐, 네 굴 좀 데워 줄게.",
+  "ja": "一匹狼は冬に死ぬんだよ、グワポ。強く噛む奴でもね。どいて、あんたの巣を温めてあげる。"
+ },
+ "La première fois, c'était une défaite que j'avais choisie. Ce soir, c'est une habitude que je choisis. Ne souris pas comme ça.": {
+  "ko": "처음엔 내가 고른 패배였어. 오늘 밤은 내가 고른 습관이야. 그렇게 웃지 마.",
+  "ja": "最初は、自分で選んだ敗北だった。今夜は、自分で選んだ習慣だ。そんな顔で笑うな。"
+ },
+ "Tu t'entraînes seul, tu combats seul, tu saignes seul. Mon père appelait ça la voie du sabre. Il est mort seul. Pas toi.": {
+  "ko": "혼자 수련하고, 혼자 싸우고, 혼자 피 흘리지. 아버지는 그걸 검의 길이라 불렀어. 그분은 혼자 돌아가셨어. 넌 그러지 마.",
+  "ja": "一人で稽古し、一人で戦い、一人で血を流す。父はそれを剣の道と呼んだ。父は一人で死んだ。お前はそうはさせない。"
+ },
+ "La première nuit était une transaction. Je n'en fais jamais deux identiques. Ce soir, je n'apporte rien. Seulement moi.": {
+  "ko": "첫날 밤은 거래였어. 난 같은 거래를 두 번 하지 않아. 오늘 밤은 아무것도 안 가져왔어. 나 자신만.",
+  "ja": "最初の夜は取引だった。同じ取引は二度しない。今夜は何も持ってこなかった。私だけ。"
+ },
+ "Je viens te faire une offre que personne d'autre n'oserait, Kang : une nuit sans rien te demander. Pas d'intérêts. Pas d'échéance.": {
+  "ko": "아무도 감히 못 할 제안을 하러 왔어, 강. 아무것도 요구하지 않는 하룻밤. 이자도, 기한도 없이.",
+  "ja": "誰も言い出せない申し出をしに来たわ、カン。何も求めない一夜。利子も、期限もなし。"
+ },
+ "J'ai annulé le conseil de demain matin. C'est la première fois de ma vie. Ne me faites pas regretter cette décision, Monsieur Kang.": {
+  "ko": "내일 아침 이사회를 취소했어요. 태어나서 처음이에요. 이 결정을 후회하게 만들지 마세요, 강 씨.",
+  "ja": "明日の朝の取締役会をキャンセルしたわ。生まれて初めてよ。この決断を後悔させないで、カンさん。"
+ },
+ "Vous fermez toutes les portes, Monsieur Kang. J'ai appliqué cette stratégie vingt ans. Elle mène à un bureau vide au dernier étage. Ouvrez celle-ci.": {
+  "ko": "모든 문을 닫고 계시네요, 강 씨. 저도 그 전략을 이십 년 썼어요. 그 끝은 꼭대기 층의 텅 빈 사무실이죠. 이 문은 열어 두세요.",
+  "ja": "あなたは全ての扉を閉ざしてる、カンさん。私も二十年その戦略を取ったわ。行き着く先は最上階の空っぽのオフィス。この扉は開けて。"
+ },
+ "Je dors dos au mur depuis dix ans. Cette nuit, je veux dormir dos à toi. C'est toute la confiance que j'ai.": {
+  "ko": "십 년 동안 벽에 등을 대고 잤어. 오늘 밤엔 너한테 등을 대고 자고 싶어. 그게 내가 가진 신뢰 전부야.",
+  "ja": "十年間、壁に背を向けて寝てきた。今夜は、あなたに背を向けて寝たい。それが私の持ってる信頼のすべて。"
+ },
+ "Je sais ce que c'est, d'être celui qu'on regarde de loin. Pas de mots. Pas de promesse. Juste ne pas être seul ce soir.": {
+  "ko": "멀리서만 바라보는 존재가 어떤 건지 알아. 말도, 약속도 필요 없어. 그냥 오늘 밤 혼자가 아니면 돼.",
+  "ja": "遠くから見られるだけの存在がどんなものか、知ってる。言葉も約束もいらない。今夜、一人じゃなければいい。"
+ },
+ "Pas d'ordres ce soir, soldat. Je veux savoir ce que je fais quand personne ne m'en donne.": {
+  "ko": "오늘 밤엔 명령 없다, 병사. 아무도 명령하지 않을 때 내가 뭘 하는지 알고 싶어.",
+  "ja": "今夜は命令なしよ、兵士。誰にも命令されない時、自分が何をするのか知りたい。"
+ },
+ "Un soldat qui se coupe de son unité finit par croire que personne ne viendra le chercher. Mauvais calcul, Rang F. Je viens te chercher.": {
+  "ko": "부대에서 스스로 떨어져 나간 병사는 결국 아무도 자길 찾으러 오지 않을 거라고 믿게 되지. 잘못된 계산이다, F랭크. 내가 찾으러 왔다.",
+  "ja": "部隊から自分を切り離した兵士は、誰も迎えに来ないと思い込む。計算違いよ、Fランク。私が迎えに来た。"
+ },
+ "Deuxième essai. Variables contrôlées : aucune. J'ai décidé de ne rien contrôler du tout.": {
+  "ko": "두 번째 시도. 통제 변수: 없음. 아무것도 통제하지 않기로 했어.",
+  "ja": "二回目の試行。制御変数：なし。何ひとつ制御しないと決めた。"
+ },
+ "Tes constantes sont mauvaises. Isolement prolongé, sommeil fragmenté. Je n'ai pas de traitement. J'ai une hypothèse : moi.": {
+  "ko": "네 바이탈이 안 좋아. 장기 고립, 단편적인 수면. 치료법은 없어. 가설은 있어. 나.",
+  "ja": "あなたのバイタルは悪い。長期の孤立、断片的な睡眠。治療法はない。仮説はある。私。"
+ },
+ "Tu m'as achetée. Et puis, soir après soir, tu m'as laissée ne rien faire. Personne ne m'avait jamais laissée ne rien faire.": {
+  "ko": "넌 나를 샀어. 그리고 밤마다 아무것도 안 해도 되게 내버려 뒀지. 그런 사람은 처음이었어.",
+  "ja": "あなたは私を買った。それから毎晩、何もしなくていいって言ってくれた。そんな人、初めてだった。"
+ },
+ "Maintenant je chante pour toi parce que j'en ai envie. C'est complètement différent. Tu entends la différence ?": {
+  "ko": "이제는 내가 하고 싶어서 너를 위해 노래해. 완전히 달라. 그 차이 들려?",
+  "ja": "今は、歌いたいからあなたのために歌うの。全然違うんだよ。違い、聞こえる？"
+ },
+ "Dix Fins, et aucune ne finit. Je les ai toutes relues cette nuit. Elles commencent toutes ici.": {
+  "ko": "열 개의 결말, 그런데 아무것도 끝나지 않아. 오늘 밤 전부 다시 읽었어. 전부 여기서 시작해.",
+  "ja": "十の結末、なのにどれも終わらない。今夜、全部読み返した。全部、ここから始まってる。"
+ },
+ "Ay, gwapo, t'as l'air terrifié. C'est normal. On est dix. Et on a toutes dit oui.": {
+  "ko": "아이, 과포, 겁먹은 얼굴이네. 당연하지. 우린 열 명이야. 그리고 다 좋다고 했어.",
+  "ja": "アイ、グワポ、怯えた顔してる。当然だよ。私たち十人だもん。で、全員イエスって言った。"
+ },
+ "Je soignerai vos blessés, parce que c'est mon métier. Mais je ne vous dois plus rien, Kang. Ni la chaîne, ni le prix.": {
+  "ko": "부상자는 치료할게요. 그게 제 일이니까요. 하지만 이제 당신한테 빚진 건 없어요, 강 씨. 사슬도, 값도.",
+  "ja": "怪我人は治します。それが私の仕事だから。でも、もうあなたには何の借りもありません、カンさん。鎖も、代金も。"
+ },
+ "J'ai relu le Pacte. Vous m'avez rachetée au marché de Cheonma, et depuis, vous n'avez jamais tiré sur la chaîne. Pas une fois. Je pourrais partir ce soir.": {
+  "ko": "계약서를 다시 읽었어요. 당신은 천마 시장에서 저를 샀고, 그 뒤로 한 번도 사슬을 당기지 않았죠. 단 한 번도요. 오늘 밤 떠날 수도 있어요.",
+  "ja": "契約を読み返しました。あなたは天魔の市場で私を買い戻して、それから一度も鎖を引かなかった。一度もです。今夜、出て行くこともできます。"
+ },
+ "« La vassale rend compte chaque soir. » J'ai rendu compte chaque soir. Vous avez lu chaque rapport, Seigneur Kang, et vous avez tenu chaque engagement. Un associé fiable : la chose la plus rare au monde.": {
+  "ko": "'봉신은 매일 밤 보고한다.' 매일 밤 보고했죠. 당신은 보고서를 하나도 빠짐없이 읽었고, 약속을 전부 지켰어요, 강 영주님. 믿을 수 있는 동업자. 세상에서 가장 귀한 것이죠.",
+  "ja": "『家臣は毎晩報告する』。毎晩、報告しました。あなたは報告書をすべて読み、約束をすべて守った、カン卿。信頼できる共同経営者。この世で最も稀なものですわ。"
  }
 }

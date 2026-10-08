@@ -22,10 +22,10 @@
   },
   {
    "if": "flag('seo_rupture')",
-   "text": "Seo-Yeon a brisé le Pacte et fui vers le Sanctuaire."
+   "text": "Seo-Yeon a brisé le Pacte et repris sa liberté. Elle ne te doit plus rien."
   },
   {
-   "if": "flag('seo_vassale_cheonma')",
+   "if": "flag('seo_vassale_cheonma') and not flag('seo_morte')",
    "text": "Seo-Yeon est esclave de Cheonma. À cause de toi."
   },
   {
@@ -315,8 +315,12 @@
    "text": "Haneul a parlé en dormant d'une autre Lectrice, aux lunettes rondes."
   },
   {
-   "if": "flag('seo_nuit') or flag('seo_nuit_pacte')",
+   "if": "flag('seo_nuit')",
    "text": "Une nuit avec Seo-Yeon, au Refuge."
+  },
+  {
+   "if": "flag('seo_nuit_pacte')",
+   "text": "Des nuits de Pacte : venue sur ordre, elle est restée éveillée face à toi jusqu'à l'aube. Rien d'autre ne s'est passé."
   },
   {
    "if": "flag('haneul_nuit')",
@@ -485,12 +489,20 @@
    "text": "Ryeon a gardé le ruban de sa mère serré dans son poing toute la nuit."
   },
   {
-   "if": "flag('xiaoyu_nuit') or flag('xiaoyu_nuit_pacte')",
+   "if": "flag('xiaoyu_nuit')",
    "text": "Xiaoyu a découvert qu'elle aimait perdre contre toi."
   },
   {
-   "if": "flag('haein_nuit') or flag('haein_nuit_pacte')",
+   "if": "flag('xiaoyu_nuit_pacte')",
+   "text": "Des nuits de Pacte : venue sur ordre, elle est restée éveillée face à toi jusqu'à l'aube. Rien d'autre ne s'est passé."
+  },
+  {
+   "if": "flag('haein_nuit')",
    "text": "Pour la première fois, quelqu'un d'autre a décidé, pour Yoon Hae-in."
+  },
+  {
+   "if": "flag('haein_nuit_pacte')",
+   "text": "Des nuits de Pacte : venue sur ordre, elle est restée éveillée face à toi jusqu'à l'aube. Rien d'autre ne s'est passé."
   },
   {
    "if": "souvenir('descente_annoncee')",
@@ -791,8 +803,12 @@
    "text": "Des nuits partagées à plusieurs, au Refuge."
   },
   {
-   "if": "flag('nadia_nuit') or flag('nadia_nuit_pacte') or flag('simone_nuit') or flag('simone_nuit_pacte') or flag('minh_anh_nuit')",
+   "if": "flag('nadia_nuit') or flag('simone_nuit') or flag('minh_anh_nuit')",
    "text": "Nadia, Simone ou Minh-Anh ont choisi de rester une nuit."
+  },
+  {
+   "if": "flag('nadia_nuit_pacte') or flag('simone_nuit_pacte')",
+   "text": "Des nuits de Pacte : venue sur ordre, elle est restée éveillée face à toi jusqu'à l'aube. Rien d'autre ne s'est passé."
   },
   {
    "if": "flag('seo_devotion')",
@@ -833,6 +849,10 @@
   {
    "if": "flag('nadia_rupture')",
    "text": "Nadia a invoqué la clause de rupture et payé le prix. Elle ne te doit plus rien."
+  },
+  {
+   "if": "flag('issue.seo_yeon_pacte') or flag('issue.hae_in_pacte') or flag('issue.xiaoyu_pacte') or flag('issue.simone_pacte') or flag('issue.nadia_pacte') or flag('issue.aoi_pacte')",
+   "text": "Certaines Fins d'héroïnes se sont écrites sous contrat forcé : une obéissance parfaite, et rien d'autre."
   }
  ]
 }

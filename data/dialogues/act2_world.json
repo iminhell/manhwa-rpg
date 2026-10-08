@@ -1090,7 +1090,7 @@
   ],
   "classement_pacte": [
    {
-    "if": "flag('pacte.seo_yeon') and party('seo_yeon') and v('ambivalence.seo_yeon') <= -30",
+    "if": "flag('pacte.seo_yeon') and flag('camp_vassal') and party('seo_yeon') and v('ambivalence.seo_yeon') <= -30",
     "then": "revolte"
    },
    {

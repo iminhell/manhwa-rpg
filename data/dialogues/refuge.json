@@ -25,7 +25,7 @@
     "then": "seo_froid"
    },
    {
-    "if": "flag('pacte.seo_yeon')",
+    "if": "flag('pacte.seo_yeon') and not flag('seo_devotion')",
     "then": "seo_pacte"
    },
    {
@@ -43,6 +43,10 @@
    {
     "if": "voie() == 'mercenaire' and v('repos.seo_yeon') >= 1 and flag('refuge.dortoir') and aff('seo_yeon') >= 25",
     "then": "seo_merc"
+   },
+   {
+    "if": "voie() == 'loup' and v('repos.seo_yeon') >= 1 and flag('refuge.dortoir') and aff('seo_yeon') >= 25",
+    "then": "seo_loup"
    },
    {
     "if": "v('repos.seo_yeon') >= 1 and flag('refuge.dortoir') and aff('seo_yeon') >= 25",
@@ -349,8 +353,16 @@
     "then": "haneul_echo"
    },
    {
+    "if": "flag('haneul_nuit') and v('repos.haneul') >= 3",
+    "then": "haneul_nuit2"
+   },
+   {
     "if": "voie() == 'mercenaire' and v('repos.haneul') >= 1 and flag('refuge.dortoir') and aff('haneul') >= 20",
     "then": "haneul_merc"
+   },
+   {
+    "if": "voie() == 'loup' and v('repos.haneul') >= 1 and flag('refuge.dortoir') and aff('haneul') >= 20",
+    "then": "haneul_loup"
    },
    {
     "if": "v('repos.haneul') >= 1 and flag('refuge.dortoir') and aff('haneul') >= 20",
@@ -541,6 +553,10 @@
     "music": "intimate"
    },
    {
+    "if": "flag('aoi_dominee') and not flag('aoi_devotion')",
+    "then": "aoi_dominee"
+   },
+   {
     "if": "v('repos.aoi') >= 1 and flag('refuge.dortoir') and aff('aoi') >= 20 and v('align.protect') <= -15",
     "then": "aoi_ombre"
    },
@@ -549,8 +565,16 @@
     "then": "aoi_echo"
    },
    {
+    "if": "flag('aoi_nuit') and v('repos.aoi') >= 3",
+    "then": "aoi_nuit2"
+   },
+   {
     "if": "voie() == 'mercenaire' and v('repos.aoi') >= 1 and flag('refuge.dortoir') and aff('aoi') >= 20",
     "then": "aoi_merc"
+   },
+   {
+    "if": "voie() == 'loup' and v('repos.aoi') >= 1 and flag('refuge.dortoir') and aff('aoi') >= 20",
+    "then": "aoi_loup"
    },
    {
     "if": "v('repos.aoi') >= 1 and flag('refuge.dortoir') and aff('aoi') >= 20",
@@ -559,10 +583,6 @@
    {
     "if": "v('repos.aoi') >= 1",
     "then": "aoi_court"
-   },
-   {
-    "if": "flag('aoi_dominee')",
-    "then": "aoi_dominee"
    },
    {
     "s": "narrator",
@@ -616,6 +636,14 @@
   ],
   "aoi_dominee": [
    {
+    "if": "v('ambivalence.aoi') >= 60 and aff('aoi') >= 70 and not flag('aoi_devotion')",
+    "then": "aoi_devotion"
+   },
+   {
+    "if": "v('ambivalence.aoi') >= 60 and aff('aoi') >= 70 and flag('aoi_devotion')",
+    "then": "aoi_devotion_nuit"
+   },
+   {
     "s": "aoi",
     "t": "Vous voulez que je chante, Monsieur ? Ou autre chose ? Dites-moi juste quoi faire. C'est plus simple.",
     "e": "stage_smile"
@@ -627,14 +655,16 @@
       "goto": "aoi_dominee_libre",
       "fx": [
        "add fear.aoi -5",
-       "add trust.aoi 5"
+       "add trust.aoi 5",
+       "add ambivalence.aoi 15"
       ]
      },
      {
       "t": "« Chante. »",
       "goto": "aoi_dominee_chante",
       "fx": [
-       "add fear.aoi 3"
+       "add fear.aoi 3",
+       "add ambivalence.aoi -5"
       ]
      }
     ]
@@ -783,8 +813,16 @@
     "then": "maricel_echo"
    },
    {
+    "if": "flag('maricel_nuit') and v('repos.maricel') >= 3",
+    "then": "maricel_nuit2"
+   },
+   {
     "if": "voie() == 'mercenaire' and v('repos.maricel') >= 1 and flag('refuge.dortoir') and aff('maricel') >= 20",
     "then": "maricel_merc"
+   },
+   {
+    "if": "voie() == 'loup' and v('repos.maricel') >= 1 and flag('refuge.dortoir') and aff('maricel') >= 20",
+    "then": "maricel_loup"
    },
    {
     "if": "v('repos.maricel') >= 1 and flag('refuge.dortoir') and aff('maricel') >= 20",
@@ -1018,8 +1056,16 @@
     "then": "ryeon_echo"
    },
    {
+    "if": "flag('ryeon_nuit') and v('repos.ryeon') >= 3",
+    "then": "ryeon_nuit2"
+   },
+   {
     "if": "voie() == 'mercenaire' and v('repos.ryeon') >= 1 and flag('refuge.dortoir') and aff('ryeon') >= 20",
     "then": "ryeon_merc"
+   },
+   {
+    "if": "voie() == 'loup' and v('repos.ryeon') >= 1 and flag('refuge.dortoir') and aff('ryeon') >= 20",
+    "then": "ryeon_loup"
    },
    {
     "if": "v('repos.ryeon') >= 1 and flag('refuge.dortoir') and aff('ryeon') >= 20",
@@ -1203,7 +1249,7 @@
     "then": "xiaoyu_froid"
    },
    {
-    "if": "flag('pacte.xiaoyu')",
+    "if": "flag('pacte.xiaoyu') and not flag('xiaoyu_devotion')",
     "then": "xiaoyu_pacte"
    },
    {
@@ -1215,8 +1261,16 @@
     "then": "xiaoyu_echo"
    },
    {
+    "if": "flag('xiaoyu_nuit') and v('repos.xiaoyu') >= 3",
+    "then": "xiaoyu_nuit2"
+   },
+   {
     "if": "voie() == 'mercenaire' and v('repos.xiaoyu') >= 1 and flag('refuge.dortoir') and aff('xiaoyu') >= 20",
     "then": "xiaoyu_merc"
+   },
+   {
+    "if": "voie() == 'loup' and v('repos.xiaoyu') >= 1 and flag('refuge.dortoir') and aff('xiaoyu') >= 20",
+    "then": "xiaoyu_loup"
    },
    {
     "if": "v('repos.xiaoyu') >= 1 and flag('refuge.dortoir') and aff('xiaoyu') >= 20",
@@ -1439,7 +1493,7 @@
       "t": "« Reste. »",
       "goto": "xiaoyu_pacte_reste",
       "fx": [
-       "add ambivalence.xiaoyu 5"
+       "add ambivalence.xiaoyu -10"
       ]
      }
     ]
@@ -1494,7 +1548,7 @@
     "then": "haein_froid"
    },
    {
-    "if": "flag('pacte.hae_in')",
+    "if": "flag('pacte.hae_in') and not flag('haein_devotion')",
     "then": "haein_pacte"
    },
    {
@@ -1506,8 +1560,16 @@
     "then": "hae_in_echo"
    },
    {
+    "if": "flag('haein_nuit') and v('repos.hae_in') >= 3",
+    "then": "haein_nuit2"
+   },
+   {
     "if": "voie() == 'mercenaire' and v('repos.hae_in') >= 1 and flag('refuge.dortoir') and aff('hae_in') >= 20",
     "then": "haein_merc"
+   },
+   {
+    "if": "voie() == 'loup' and v('repos.hae_in') >= 1 and flag('refuge.dortoir') and aff('hae_in') >= 20",
+    "then": "haein_loup"
    },
    {
     "if": "v('repos.hae_in') >= 1 and flag('refuge.dortoir') and aff('hae_in') >= 20",
@@ -1689,7 +1751,7 @@
       "t": "Lire le rapport. Seulement le rapport.",
       "goto": "haein_pacte_rapport",
       "fx": [
-       "add ambivalence.hae_in 10",
+       "add ambivalence.hae_in 20",
        "add trust.hae_in 5"
       ]
      },
@@ -1697,7 +1759,7 @@
       "t": "« Pose le dossier. »",
       "goto": "haein_pacte_reste",
       "fx": [
-       "add ambivalence.hae_in -5",
+       "add ambivalence.hae_in -10",
        "add fear.hae_in 5"
       ]
      }
@@ -2473,7 +2535,7 @@
     "then": "nadia_froid"
    },
    {
-    "if": "flag('nadia_pactisee')",
+    "if": "flag('nadia_pactisee') and not flag('nadia_devotion')",
     "then": "nadia_pacte"
    },
    {
@@ -2481,8 +2543,20 @@
     "then": "nadia_ombre"
    },
    {
+    "if": "loop() >= 2 and flag('echo.nadia_tir') and not flag('echo_vu.nadia') and v('repos.nadia') >= 1",
+    "then": "nadia_echo"
+   },
+   {
+    "if": "flag('nadia_nuit') and v('repos.nadia') >= 3",
+    "then": "nadia_nuit2"
+   },
+   {
     "if": "voie() == 'mercenaire' and v('repos.nadia') >= 1 and flag('refuge.dortoir') and aff('nadia') >= 20",
     "then": "nadia_merc"
+   },
+   {
+    "if": "voie() == 'loup' and v('repos.nadia') >= 1 and flag('refuge.dortoir') and aff('nadia') >= 20",
+    "then": "nadia_loup"
    },
    {
     "if": "v('repos.nadia') >= 1 and flag('refuge.dortoir') and aff('nadia') >= 20",
@@ -2682,7 +2756,7 @@
       "t": "« Dors où tu veux. Je ne te retiens pas. »",
       "goto": "nadia_pacte_libre",
       "fx": [
-       "add ambivalence.nadia 15",
+       "add ambivalence.nadia 25",
        "add trust.nadia 4"
       ]
      },
@@ -2690,7 +2764,7 @@
       "t": "« Ici. »",
       "goto": "nadia_pacte_ici",
       "fx": [
-       "add ambivalence.nadia -5"
+       "add ambivalence.nadia -15"
       ]
      }
     ]
@@ -2739,7 +2813,7 @@
     "then": "simone_froid"
    },
    {
-    "if": "flag('pacte.simone')",
+    "if": "flag('pacte.simone') and not flag('simone_devotion')",
     "then": "simone_pacte"
    },
    {
@@ -2747,8 +2821,20 @@
     "then": "simone_ombre"
    },
    {
+    "if": "loop() >= 2 and flag('echo.simone_sauvee') and not flag('echo_vu.simone') and v('repos.simone') >= 1",
+    "then": "simone_echo"
+   },
+   {
+    "if": "flag('simone_nuit') and v('repos.simone') >= 3",
+    "then": "simone_nuit2"
+   },
+   {
     "if": "voie() == 'mercenaire' and v('repos.simone') >= 1 and flag('refuge.dortoir') and aff('simone') >= 20",
     "then": "simone_merc"
+   },
+   {
+    "if": "voie() == 'loup' and v('repos.simone') >= 1 and flag('refuge.dortoir') and aff('simone') >= 20",
+    "then": "simone_loup"
    },
    {
     "if": "v('repos.simone') >= 1 and flag('refuge.dortoir') and aff('simone') >= 20",
@@ -2941,7 +3027,7 @@
       "t": "« Repos, commandante. Va dormir. »",
       "goto": "simone_pacte_repos",
       "fx": [
-       "add ambivalence.simone 15",
+       "add ambivalence.simone 45",
        "add trust.simone 4"
       ]
      },
@@ -2949,7 +3035,7 @@
       "t": "« Reste. »",
       "goto": "simone_pacte_reste",
       "fx": [
-       "add ambivalence.simone -5"
+       "add ambivalence.simone -20"
       ]
      }
     ]
@@ -2998,8 +3084,20 @@
     "then": "minh_anh_ombre"
    },
    {
+    "if": "loop() >= 2 and flag('echo.minh_anh_sauvee') and not flag('echo_vu.minh_anh') and v('repos.minh_anh') >= 1",
+    "then": "minh_anh_echo"
+   },
+   {
+    "if": "flag('minh_anh_nuit') and v('repos.minh_anh') >= 3",
+    "then": "minh_anh_nuit2"
+   },
+   {
     "if": "voie() == 'mercenaire' and v('repos.minh_anh') >= 1 and flag('refuge.dortoir') and aff('minh_anh') >= 20",
     "then": "minh_anh_merc"
+   },
+   {
+    "if": "voie() == 'loup' and v('repos.minh_anh') >= 1 and flag('refuge.dortoir') and aff('minh_anh') >= 20",
+    "then": "minh_anh_loup"
    },
    {
     "if": "v('repos.minh_anh') >= 1 and flag('refuge.dortoir') and aff('minh_anh') >= 20",
@@ -3899,6 +3997,10 @@
   ],
   "seo_devotion": [
    {
+    "if": "flag('seo_rachetee')",
+    "then": "seo_devotion_rachat"
+   },
+   {
     "s": "narrator",
     "t": "Elle entre bien avant l'heure de la clause. Elle tient le parchemin de glyphes rouges du Pacte, déroulé, et un stylo d'ordonnance."
    },
@@ -3976,6 +4078,10 @@
    }
   ],
   "seo_pacte_rupture": [
+   {
+    "if": "flag('seo_rachetee')",
+    "then": "seo_pacte_rupture_rachat"
+   },
    {
     "s": "narrator",
     "t": "Elle n'entre pas. Elle reste sur le seuil, le parchemin du Pacte à la main, et le déchire devant toi, lentement, en quatre. Le collier de glyphes rouges se brise sur sa gorge comme du verre."
@@ -4147,7 +4253,7 @@
    },
    {
     "s": "hae_in",
-    "t": "« La vassale rend compte chaque soir. » J'ai rendu compte trente soirs. Vous avez lu chaque rapport, Seigneur Kang, et vous avez tenu chaque engagement. Un associé fiable : la chose la plus rare au monde.",
+    "t": "« La vassale rend compte chaque soir. » J'ai rendu compte chaque soir. Vous avez lu chaque rapport, Seigneur Kang, et vous avez tenu chaque engagement. Un associé fiable : la chose la plus rare au monde.",
     "e": "neutral",
     "v": true
    },
@@ -4723,6 +4829,1020 @@
    },
    {
     "end": true
+   }
+  ],
+  "seo_loup": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_seo_loup"
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon a trouvé ta porte fermée trois soirs de suite. Le quatrième, elle a frappé avec sa trousse médicale, comme pour une urgence."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Vous ne parlez plus à personne, Kang-ssi. Vous mangez seul, vous dormez seul. Je suis médecin : la solitude, ça se soigne aussi. Laissez-moi essayer.",
+    "e": "sad",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Tu ne dis rien. Elle attend quand même ta réponse, et ne fait rien avant de l'avoir entendue. Tu dis oui. Elle aussi, à voix haute, pour que ce soit clair."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "Au matin, ta porte est restée ouverte. Tu ne la refermes pas."
+   },
+   {
+    "fx": [
+     "add repos.seo_yeon 1",
+     "flag seo_nuit",
+     "add align.bond 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "haneul_nuit2": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle t'attend déjà sous la couverture, le bomber roulé en oreiller. Elle a appris à fermer la porte derrière elle. Elle en est très fière."
+   },
+   {
+    "s": "haneul",
+    "t": "J'ai appris un mot nouveau aujourd'hui, dans une Fin heureuse : « habitude ». Je veux que tu deviennes mon habitude.",
+    "e": "tilt",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle te fait répéter chaque geste de la première nuit, puis en invente d'autres, en demandant à chaque fois si c'est permis. Ça l'est."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "Ses glyphes s'éteignent avant l'aube. Elle dort pour de vrai, comme une humaine, et ronfle un peu."
+   },
+   {
+    "fx": [
+     "add repos.haneul 1",
+     "add aff.haneul 4",
+     "add trust.haneul 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "haneul_loup": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_haneul_loup"
+   },
+   {
+    "s": "narrator",
+    "t": "Ta porte est verrouillée. Haneul est quand même dans la pièce, assise sur ton lit, les glyphes allumés."
+   },
+   {
+    "s": "haneul",
+    "t": "Tu fais comme moi derrière la porte : tu attends que personne ne vienne. Moi, je suis venue. Tu ne peux pas m'en empêcher, je n'ai pas besoin de clé.",
+    "e": "tilt",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Tu ne dis rien. Elle attend quand même ta réponse, et ne fait rien avant de l'avoir entendue. Tu dis oui. Elle aussi, à voix haute, pour que ce soit clair."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "Au matin, ta porte est restée ouverte. Tu ne la refermes pas."
+   },
+   {
+    "fx": [
+     "add repos.haneul 1",
+     "flag haneul_nuit",
+     "add align.bond 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "aoi_nuit2": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi entre sans maquillage, en t-shirt trop grand, les cheveux attachés n'importe comment. Elle s'est regardée dans le miroir avant de venir, et elle a ri."
+   },
+   {
+    "s": "aoi",
+    "t": "Ce soir, pas de chanson. Je veux t'entendre, toi. Tous les petits bruits que tu fais quand tu ne joues aucun rôle.",
+    "e": "true_smile",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle écoute, la tête contre ta poitrine, puis elle te dit ce qu'elle veut, sans détour, d'une voix qu'aucun public n'a jamais entendue."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "Au matin, elle chante quand même. Une seule note, très bas, en se brossant les dents."
+   },
+   {
+    "fx": [
+     "add repos.aoi 1",
+     "add aff.aoi 4",
+     "add trust.aoi 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "aoi_loup": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_aoi_loup"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi t'a vu manger seul, dos au mur, comme elle mangeait seule dans les loges après les concerts. Elle est venue avec deux bols."
+   },
+   {
+    "s": "aoi",
+    "t": "Tu as le visage que j'avais après un concert. Des milliers de gens t'aiment, et personne ne te connaît. Je connais le remède.",
+    "e": "sad",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Tu ne dis rien. Elle attend quand même ta réponse, et ne fait rien avant de l'avoir entendue. Tu dis oui. Elle aussi, à voix haute, pour que ce soit clair."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "Au matin, ta porte est restée ouverte. Tu ne la refermes pas."
+   },
+   {
+    "fx": [
+     "add repos.aoi 1",
+     "flag aoi_nuit",
+     "add align.bond 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "maricel_nuit2": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Maricel a volé une vraie couverture en laine, une bougie et deux mangues. Elle a tout disposé sur ton matelas comme un autel."
+   },
+   {
+    "s": "maricel",
+    "t": "On fait les choses bien, cette fois, gwapo. Enfin… presque bien. La bougie est volée.",
+    "e": "wink",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle te nourrit de mangue, rit de toi, puis cesse de rire et te demande, très sérieusement, si tu veux bien. Tu veux bien."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "La bougie s'est éteinte toute seule. Maricel dort enroulée dans la couverture volée, un pied dehors, le couteau sous l'oreiller."
+   },
+   {
+    "fx": [
+     "add repos.maricel 1",
+     "add aff.maricel 4",
+     "add trust.maricel 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "maricel_loup": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_maricel_loup"
+   },
+   {
+    "s": "narrator",
+    "t": "Il fait froid dans ta chambre. Tu ne l'avais pas remarqué. Maricel, si : elle est entrée avec trois couvertures volées."
+   },
+   {
+    "s": "maricel",
+    "t": "Les loups seuls crèvent l'hiver, gwapo. Même ceux qui mordent fort. Pousse-toi, je réchauffe ta tanière.",
+    "e": "wink",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Tu ne dis rien. Elle attend quand même ta réponse, et ne fait rien avant de l'avoir entendue. Tu dis oui. Elle aussi, à voix haute, pour que ce soit clair."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "Au matin, ta porte est restée ouverte. Tu ne la refermes pas."
+   },
+   {
+    "fx": [
+     "add repos.maricel 1",
+     "flag maricel_nuit",
+     "add align.bond 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "ryeon_nuit2": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Ryeon frappe trois coups, comme la première fois. Puis elle entre sans attendre, contrairement à la première fois."
+   },
+   {
+    "s": "ryeon",
+    "t": "La première fois, c'était une défaite que j'avais choisie. Ce soir, c'est une habitude que je choisis. Ne souris pas comme ça.",
+    "e": "tsundere",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle défait son ruban sans trembler, cette fois, et c'est elle qui demande, à voix basse, ce que tu veux. Puis elle le dit, elle aussi."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "Au matin, le ruban rouge est noué à ton poignet. Elle prétend ne pas savoir comment il est arrivé là."
+   },
+   {
+    "fx": [
+     "add repos.ryeon 1",
+     "add aff.ryeon 4",
+     "add trust.ryeon 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "ryeon_loup": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_ryeon_loup"
+   },
+   {
+    "s": "narrator",
+    "t": "Tu t'entraînais seul, à minuit. Ryeon a pris le sabre de bois à côté du tien sans rien demander, et elle a croisé le fer jusqu'à ce que tu le lâches."
+   },
+   {
+    "s": "ryeon",
+    "t": "Tu t'entraînes seul, tu combats seul, tu saignes seul. Mon père appelait ça la voie du sabre. Il est mort seul. Pas toi.",
+    "e": "sad",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Tu ne dis rien. Elle attend quand même ta réponse, et ne fait rien avant de l'avoir entendue. Tu dis oui. Elle aussi, à voix haute, pour que ce soit clair."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "Au matin, ta porte est restée ouverte. Tu ne la refermes pas."
+   },
+   {
+    "fx": [
+     "add repos.ryeon 1",
+     "flag ryeon_nuit",
+     "add align.bond 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "xiaoyu_nuit2": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu arrive sans éventail, sans bijoux et sans contrat. Elle a l'air presque nue sans ses armes habituelles."
+   },
+   {
+    "s": "xiaoyu",
+    "t": "La première nuit était une transaction. Je n'en fais jamais deux identiques. Ce soir, je n'apporte rien. Seulement moi.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle ne négocie rien. Elle demande, simplement, et attend la réponse, ce qui est pour elle la chose la plus risquée du monde."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "À l'aube, elle te regarde dormir et ne calcule rien. Elle s'en étonne pendant tout le petit déjeuner."
+   },
+   {
+    "fx": [
+     "add repos.xiaoyu 1",
+     "add aff.xiaoyu 4",
+     "add trust.xiaoyu 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "xiaoyu_loup": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_xiaoyu_loup"
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu a fait le compte : tu n'as plus d'alliés, seulement des créances. Elle est venue quand même, sans dossier."
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Je viens te faire une offre que personne d'autre n'oserait, Kang : une nuit sans rien te demander. Pas d'intérêts. Pas d'échéance.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Tu ne dis rien. Elle attend quand même ta réponse, et ne fait rien avant de l'avoir entendue. Tu dis oui. Elle aussi, à voix haute, pour que ce soit clair."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "Au matin, ta porte est restée ouverte. Tu ne la refermes pas."
+   },
+   {
+    "fx": [
+     "add repos.xiaoyu 1",
+     "flag xiaoyu_nuit",
+     "add align.bond 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "haein_nuit2": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in a laissé son téléphone satellite dans son bureau. Elle l'a annoncé en entrant, comme une décision du conseil."
+   },
+   {
+    "s": "hae_in",
+    "t": "J'ai annulé le conseil de demain matin. C'est la première fois de ma vie. Ne me faites pas regretter cette décision, Monsieur Kang.",
+    "e": "embarrassed",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle pose ses conditions, puis les retire une à une, et finit par n'en garder qu'une : qu'on se dise tout à voix haute."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "Elle se réveille à six heures par habitude, regarde le plafond, et se rendort. C'est une première, aussi."
+   },
+   {
+    "fx": [
+     "add repos.hae_in 1",
+     "add aff.hae_in 4",
+     "add trust.hae_in 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "haein_loup": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_haein_loup"
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in a monté les escaliers jusqu'à ta chambre au dernier étage du Refuge. Elle reconnaît l'endroit : c'est son bureau, en plus petit."
+   },
+   {
+    "s": "hae_in",
+    "t": "Vous fermez toutes les portes, Monsieur Kang. J'ai appliqué cette stratégie vingt ans. Elle mène à un bureau vide au dernier étage. Ouvrez celle-ci.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Tu ne dis rien. Elle attend quand même ta réponse, et ne fait rien avant de l'avoir entendue. Tu dis oui. Elle aussi, à voix haute, pour que ce soit clair."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "Au matin, ta porte est restée ouverte. Tu ne la refermes pas."
+   },
+   {
+    "fx": [
+     "add repos.hae_in 1",
+     "flag haein_nuit",
+     "add align.bond 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "nadia_nuit2": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia a déplacé son matelas. Il n'est plus face à la porte. C'est la première chose que tu remarques, et elle le sait."
+   },
+   {
+    "s": "nadia",
+    "t": "Je dors dos au mur depuis dix ans. Cette nuit, je veux dormir dos à toi. C'est toute la confiance que j'ai.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle parle davantage, cette fois. Quelques mots, à voix basse, pour dire ce qu'elle veut et ce qu'elle ne veut pas. Tu écoutes tout."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "Elle dort jusqu'à huit heures, dos à toi, le fusil à l'autre bout de la pièce. Dmitri ne l'aurait jamais crue."
+   },
+   {
+    "fx": [
+     "add repos.nadia 1",
+     "add aff.nadia 4",
+     "add trust.nadia 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "nadia_echo": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "registre"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia démonte son fusil sans le regarder. Elle s'arrête sur la lunette. « Je t'ai vu dedans. Pas aujourd'hui : avant. Plusieurs fois. Tu me regardais comme si tu savais que je ne tirerais pas. » Elle pose la lunette contre ta joue, comme pour vérifier que tu es bien réel."
+   },
+   {
+    "fx": [
+     "add repos.nadia 1",
+     "add aff.nadia 3",
+     "flag echo_vu.nadia",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "nadia_loup": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_nadia_loup"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia ne frappe pas. Elle s'assoit par terre contre ta porte, de l'autre côté, et elle attend. Au bout d'une heure, tu ouvres."
+   },
+   {
+    "s": "nadia",
+    "t": "Je sais ce que c'est, d'être celui qu'on regarde de loin. Pas de mots. Pas de promesse. Juste ne pas être seul ce soir.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Tu ne dis rien. Elle attend quand même ta réponse, et ne fait rien avant de l'avoir entendue. Tu dis oui. Elle aussi, à voix haute, pour que ce soit clair."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "Au matin, ta porte est restée ouverte. Tu ne la refermes pas."
+   },
+   {
+    "fx": [
+     "add repos.nadia 1",
+     "flag nadia_nuit",
+     "add align.bond 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "simone_nuit2": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone entre en civil. Tu ne l'avais jamais vue en civil. Elle non plus, à vrai dire, depuis des années."
+   },
+   {
+    "s": "simone",
+    "t": "Pas d'ordres ce soir, soldat. Je veux savoir ce que je fais quand personne ne m'en donne.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle hésite. Ça ne lui ressemble pas. Puis elle demande, comme on demande une faveur, et rit d'elle-même en t'entendant dire oui."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "Au matin, elle n'a pas fait son lit au carré. Elle le remarque, et le laisse comme ça."
+   },
+   {
+    "fx": [
+     "add repos.simone 1",
+     "add aff.simone 4",
+     "add trust.simone 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "simone_echo": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "registre"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone sort de sa poche de poitrine un vieux cigare qu'elle ne se souvient pas d'avoir reçu. « Il était là ce matin. Je ne fume jamais ceux qu'on m'offre. Celui-là, je sais qu'il vient de toi. » Elle l'allume, tire une fois, et te le tend."
+   },
+   {
+    "fx": [
+     "add repos.simone 1",
+     "add aff.simone 3",
+     "flag echo_vu.simone",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "simone_loup": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_simone_loup"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone a lu ton dossier de service, celui qu'elle tient sur toi depuis le premier jour. La dernière ligne dit : « Isolé. Ne demande plus d'aide. »"
+   },
+   {
+    "s": "simone",
+    "t": "Un soldat qui se coupe de son unité finit par croire que personne ne viendra le chercher. Mauvais calcul, Rang F. Je viens te chercher.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Tu ne dis rien. Elle attend quand même ta réponse, et ne fait rien avant de l'avoir entendue. Tu dis oui. Elle aussi, à voix haute, pour que ce soit clair."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "Au matin, ta porte est restée ouverte. Tu ne la refermes pas."
+   },
+   {
+    "fx": [
+     "add repos.simone 1",
+     "flag simone_nuit",
+     "add align.bond 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "minh_anh_nuit2": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Minh-Anh arrive avec sa tablette, qu'elle pose face contre la table. Elle n'enregistrera rien, ce soir."
+   },
+   {
+    "s": "minh_anh",
+    "t": "Deuxième essai. Variables contrôlées : aucune. J'ai décidé de ne rien contrôler du tout.",
+    "e": "red_leds",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle oublie de compter, puis oublie qu'elle avait décidé d'oublier. Elle demande, à chaque pas, et tu réponds à chaque fois."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "Au matin, la tablette est toujours face contre la table. Ses LEDs ont la couleur de l'aube."
+   },
+   {
+    "fx": [
+     "add repos.minh_anh 1",
+     "add aff.minh_anh 4",
+     "add trust.minh_anh 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "minh_anh_echo": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "registre"
+   },
+   {
+    "s": "narrator",
+    "t": "Minh-Anh ouvre un dossier chiffré qu'elle ne se souvient pas d'avoir créé : ton nom, une date qui n'a pas encore eu lieu, et un mot, « régresseur ». Ses LEDs clignotent. « Je t'ai déjà étudié. Dans une autre version de moi. Ce que j'ai noté à la fin… je préfère le découvrir avec toi. »"
+   },
+   {
+    "fx": [
+     "add repos.minh_anh 1",
+     "add aff.minh_anh 3",
+     "flag echo_vu.minh_anh",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "minh_anh_loup": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_minh_anh_loup"
+   },
+   {
+    "s": "narrator",
+    "t": "Minh-Anh mesure tes constantes depuis des semaines, de loin. Ce soir, elle est venue les mesurer de près."
+   },
+   {
+    "s": "minh_anh",
+    "t": "Tes constantes sont mauvaises. Isolement prolongé, sommeil fragmenté. Je n'ai pas de traitement. J'ai une hypothèse : moi.",
+    "e": "red_leds",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Tu ne dis rien. Elle attend quand même ta réponse, et ne fait rien avant de l'avoir entendue. Tu dis oui. Elle aussi, à voix haute, pour que ce soit clair."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "Au matin, ta porte est restée ouverte. Tu ne la refermes pas."
+   },
+   {
+    "fx": [
+     "add repos.minh_anh 1",
+     "flag minh_anh_nuit",
+     "add align.bond 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "aoi_devotion": [
+   {
+    "s": "narrator",
+    "t": "Aoi entre sans sourire de scène. Elle tient le contrat de Mirae, celui que tu as racheté, plié en quatre comme une lettre qu'on n'ose pas envoyer."
+   },
+   {
+    "s": "aoi",
+    "t": "Tu m'as achetée. Et puis, soir après soir, tu m'as laissée ne rien faire. Personne ne m'avait jamais laissée ne rien faire.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle déchire le contrat en deux, puis en quatre, puis en confettis qu'elle lance au-dessus de vos têtes, comme à la fin d'un concert."
+   },
+   {
+    "s": "aoi",
+    "t": "Maintenant je chante pour toi parce que j'en ai envie. C'est complètement différent. Tu entends la différence ?",
+    "e": "true_smile",
+    "v": true
+   },
+   {
+    "fx": [
+     "flag aoi_devotion",
+     "add ambivalence.aoi 10"
+    ]
+   },
+   {
+    "choice": [
+     {
+      "t": "« Je l'entends. »",
+      "goto": "aoi_devotion_nuit",
+      "fx": [
+       "add aff.aoi 5"
+      ]
+     },
+     {
+      "t": "« Chante ce que tu veux. Pour toi d'abord. »",
+      "goto": "aoi_devotion_nuit",
+      "fx": [
+       "add trust.aoi 5"
+      ]
+     }
+    ]
+   }
+  ],
+  "aoi_devotion_nuit": [
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_aoi_devotion"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle chante tout bas, une chanson sans paroles, le front contre le tien. Le sourire de scène ne revient pas une seule fois ; le vrai, personne ne l'avait jamais vu d'aussi près."
+   },
+   {
+    "s": "narrator",
+    "t": "Elle t'attire sur le matelas en riant, et cette fois c'est elle qui décide de tout : du rythme, de la lenteur, de chaque silence. Elle demande, tu réponds, elle décide."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "Au matin, il reste des confettis de contrat dans ses cheveux. Elle refuse qu'on les enlève."
+   },
+   {
+    "fx": [
+     "add repos.aoi 1",
+     "flag aoi_nuit",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "seo_pacte_rupture_rachat": [
+   {
+    "s": "narrator",
+    "t": "Elle n'entre pas. Elle reste sur le seuil, le parchemin du Pacte à la main, et le déchire devant toi, lentement, en quatre. Le collier de glyphes rouges se brise sur sa gorge comme du verre."
+   },
+   {
+    "s": "registre",
+    "t": "CLAUSE DE RUPTURE invoquée — Park Seo-Yeon. Prix fixé au rachat : la dette de Cheonma, remboursée jusqu'au dernier won. Payé."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Je soignerai vos blessés, parce que c'est mon métier. Mais je ne vous dois plus rien, Kang. Ni la chaîne, ni le prix.",
+    "e": "contempt",
+    "v": true
+   },
+   {
+    "fx": [
+     "unflag pacte.seo_yeon",
+     "flag seo_rupture",
+     "add aff.seo_yeon -10",
+     "add trust.seo_yeon -10",
+     "add fear.seo_yeon -10",
+     "add repos.seo_yeon 1",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "seo_devotion_rachat": [
+   {
+    "s": "narrator",
+    "t": "Elle entre bien avant l'heure de la clause. Elle tient le parchemin de glyphes rouges du Pacte, déroulé, et un stylo d'ordonnance."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "J'ai relu le Pacte. Vous m'avez rachetée au marché de Cheonma, et depuis, vous n'avez jamais tiré sur la chaîne. Pas une fois. Je pourrais partir ce soir.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle barre la clause de Service personnel d'un trait net. Le Système grésille, hésite, accepte. Puis elle signe à nouveau, en bas, de son nom entier. Sans une goutte de sang, cette fois."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Allégeance, oui. Je vous ai choisi. Le reste n'est plus une clause. C'est moi qui viens. C'est moi qui décide.",
+    "e": "desire"
+   },
+   {
+    "fx": [
+     "flag seo_devotion",
+     "add ambivalence.seo_yeon 10",
+     "unflag pacte.seo_yeon"
+    ]
+   },
+   {
+    "choice": [
+     {
+      "t": "« Alors décide. »",
+      "goto": "seo_devotion_nuit",
+      "fx": [
+       "add aff.seo_yeon 5"
+      ]
+     },
+     {
+      "t": "Signer sous son nom. « Pacte renouvelé. Sans clause. »",
+      "goto": "seo_devotion_nuit",
+      "fx": [
+       "add trust.seo_yeon 5"
+      ]
+     }
+    ]
    }
   ]
  }

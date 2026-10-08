@@ -1493,6 +1493,1565 @@
    {
     "end": true
    }
+  ],
+  "paire_seo_yeon_haneul": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Le cahier d'anatomie de Seo-Yeon est resté ouvert sur la page du cœur. Haneul a posé la main dessus, puis sur ta poitrine, puis sur celle du docteur, pour comparer."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "La dernière fois, j'ai appris à Haneul le nom des os. Ce soir, elle veut savoir à quoi ils servent. Je n'ai… pas de réponse médicale à ça.",
+    "e": "embarrassed",
+    "v": true
+   },
+   {
+    "s": "haneul",
+    "t": "Elle rougit du cou jusqu'aux oreilles. Ça n'est écrit dans aucune Fin. Je veux le voir de près.",
+    "e": "tilt",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon referme le cahier. Elle demande à Haneul si elle est sûre ; Haneul répond oui, puis te le demande à toi. Le docteur éteint la lampe la dernière."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.seo_yeon 3",
+     "add aff.haneul 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_seo_yeon_maricel": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Maricel s'est glissée dans l'infirmerie avec trois boîtes de gaze sous le bras, celles qu'elle avait volées la semaine dernière. Seo-Yeon l'attendait, les bras croisés."
+   },
+   {
+    "s": "maricel",
+    "t": "Ay, doktora, je te rends tout. Une boîte à la fois. Avec les intérêts. Le gwapo sert de témoin.",
+    "e": "wink",
+    "v": true
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Vous êtes impossible. Kang-ssi, fermez la porte. Elle ne repartira pas avant d'avoir tout rendu.",
+    "e": "embarrassed",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Les intérêts se négocient longtemps, à voix basse, et chacune fixe ses conditions avant de rire. Les boîtes de gaze finissent rangées. Pas tout de suite."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.seo_yeon 3",
+     "add aff.maricel 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_seo_yeon_ryeon": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Une entaille propre sur l'avant-bras de Ryeon, la troisième de la semaine. Seo-Yeon nettoie, recoud, et ne dit rien jusqu'au dernier point."
+   },
+   {
+    "s": "ryeon",
+    "t": "Je me suis blessée à l'entraînement. Rien de grave. …Je suis venue pour qu'elle me soigne. Et pour toi.",
+    "e": "tsundere",
+    "v": true
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Trois entailles cette semaine, Ryeon. Je commence à croire que vous le faites exprès. …Restez. Tous les deux.",
+    "e": "lie",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Ryeon défait son ruban elle-même. Seo-Yeon enlève ses lunettes et les pose sur la trousse. Elles se demandent, chacune à son tour, si l'autre veut bien. Elles veulent bien."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.seo_yeon 3",
+     "add aff.ryeon 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_seo_yeon_xiaoyu": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu est arrivée à l'infirmerie avec du thé de Hangzhou, des draps de soie et une bouteille qui vaut plus que tout le camp de Yeouido."
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Docteur, je n'ai rien. C'est bien le problème. Prescrivez-moi quelque chose. Kang paiera la consultation.",
+    "e": "fan",
+    "v": true
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Repos. Et lui. C'est tout ce que j'ai en stock, Madame Long. Posologie : jusqu'à l'aube.",
+    "e": "lie",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Les draps de soie finissent sur le lit de camp de l'infirmerie, ridicules et parfaits. Le thé refroidit. Personne ne le remarque."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.seo_yeon 3",
+     "add aff.xiaoyu 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_seo_yeon_hae_in": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Le médecin personnel de Hae-in est mort le premier jour. Seo-Yeon a accepté de lui faire un bilan complet, à condition que ce soit à l'infirmerie et pas au dernier étage d'une tour."
+   },
+   {
+    "s": "hae_in",
+    "t": "J'ai demandé que vous assistiez à mon bilan, Monsieur Kang. Je ne délègue jamais ce qui me concerne.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Pour la science. Uniquement pour la science. …Enlevez votre veste de tailleur, Présidente.",
+    "e": "embarrassed",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Le stéthoscope passe de l'une à l'autre, puis à toi. Le bilan n'a plus grand-chose de médical quand Hae-in, d'une voix parfaitement calme, demande la suite. Seo-Yeon dit oui."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.seo_yeon 3",
+     "add aff.hae_in 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_seo_yeon_nadia": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon recoud l'épaule de Nadia sans anesthésie : il n'en reste plus. Nadia ne bronche pas. C'est ce qui inquiète le plus le docteur."
+   },
+   {
+    "s": "nadia",
+    "t": "Elle trouve triste que je ne sente rien. Moi, je trouve jolies ses mains. Restez. Tous les deux.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Ne bougez pas. Et vous, Kang-ssi, tenez-lui la main. Non, pas comme ça. Comme ça.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Le dernier point posé, Seo-Yeon ne lâche pas l'épaule. Nadia ne lâche pas ta main. Elles se regardent longtemps, puis l'une demande et l'autre répond oui. Toi aussi."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.seo_yeon 3",
+     "add aff.nadia 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_seo_yeon_simone": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone est entrée dans l'infirmerie au pas, une liste à la main : « Visite médicale réglementaire, tout le personnel. » Ton nom est en dernier. Souligné deux fois."
+   },
+   {
+    "s": "simone",
+    "t": "Déshabillez-vous, Rang F. C'est le règlement. Le docteur aussi, elle n'a pas passé sa visite depuis le premier jour.",
+    "e": "cigar",
+    "v": true
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Dans mon infirmerie, c'est moi qui donne les ordres, Commandante. …Mais je retiens l'idée.",
+    "e": "lie",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elles se disputent le commandement pendant trois minutes, puis le partagent. Chacune dit à voix haute ce qu'elle veut. La liste réglementaire finit sous le lit."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.seo_yeon 3",
+     "add aff.simone 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_haneul_maricel": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Maricel a emmené Haneul dans les tunnels sous le marché, là où personne ne vient. Elles y sont restées des heures. En revenant, elles t'ont pris chacune par une main."
+   },
+   {
+    "s": "maricel",
+    "t": "Elle vient d'une porte sans serrure, moi de tunnels sans lumière. On est faites pour s'entendre, prinsesa. Et toi au milieu, gwapo.",
+    "e": "wink",
+    "v": true
+   },
+   {
+    "s": "haneul",
+    "t": "Elle sent le fleuve et le fer. Je veux apprendre son odeur et la tienne, l'une contre l'autre.",
+    "e": "desire",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Les glyphes de Haneul éclairent le visage de Maricel d'une lumière dorée. Maricel demande si elle peut ; Haneul dit oui, et te demande si toi aussi. Oui."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.haneul 3",
+     "add aff.maricel 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_haneul_ryeon": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Ryeon s'entraîne au sabre dans la cour. Haneul la regarde depuis une heure sans cligner des yeux. Ryeon a fini par poser le sabre."
+   },
+   {
+    "s": "ryeon",
+    "t": "On nous appelle toutes les deux « l'Héritière ». Moi d'une maison, elle d'une Tour. Ce soir, aucune de nous n'hérite de rien.",
+    "e": "tsundere",
+    "v": true
+   },
+   {
+    "s": "haneul",
+    "t": "Elle tient son sabre comme je tiens mes glyphes : pour ne pas trembler. Je veux qu'elle tremble un peu. Avec nous.",
+    "e": "tilt",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Le ruban rouge de Ryeon s'enroule autour du poignet de Haneul, où les glyphes s'éteignent un à un. Elles se demandent la permission dans deux langues anciennes, et se la donnent."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.haneul 3",
+     "add aff.ryeon 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_haneul_xiaoyu": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Haneul a lu la Fin de Xiaoyu et refuse de lui dire laquelle. Xiaoyu a sorti le mahjong. L'enjeu se décide à voix basse, avant la première tuile."
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Si je gagne, elle me dit ma Fin. Si elle gagne… je ne parle plus de contrats jusqu'à l'aube. Kang distribue.",
+    "e": "fan",
+    "v": true
+   },
+   {
+    "s": "haneul",
+    "t": "J'ai gagné. Tu n'as plus le droit de parler de contrats. Alors parle d'autre chose. Ou ne parle plus du tout.",
+    "e": "desire",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu referme son éventail. Pour une fois, elle ne négocie rien : elle dit oui, simplement, et c'est elle qui rougit la première."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.haneul 3",
+     "add aff.xiaoyu 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_haneul_hae_in": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in a fait venir Haneul au dernier étage du Refuge, avec un bloc-notes et un stylo à plume. Haneul a apporté un bloc-notes aussi. Elle ne sait pas écrire avec."
+   },
+   {
+    "s": "hae_in",
+    "t": "Je fais auditer tout ce que je ne comprends pas, Monsieur Kang. Elle est la première chose que je ne comprends pas. L'audit sera… approfondi.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "haneul",
+    "t": "Elle prend des notes. Moi aussi. On comparera à la fin. Tu seras notre seul document.",
+    "e": "tilt",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Le stylo à plume tombe sur le tapis au bout de dix minutes. Hae-in ne le ramasse pas. Elle pose ses conditions à voix haute ; Haneul les accepte toutes, et ajoute les siennes."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.haneul 3",
+     "add aff.hae_in 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_haneul_nadia": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia nettoie sa lunette sur le toit. Haneul s'est assise juste devant l'objectif, à quelques centimètres, et la regarde à travers."
+   },
+   {
+    "s": "nadia",
+    "t": "Je l'ai vue dans ma lunette, une fois. Dans une autre vie. Elle m'a souri à huit cents mètres. Ça ne s'oublie pas.",
+    "e": "aim",
+    "v": true
+   },
+   {
+    "s": "haneul",
+    "t": "Je me souviens de ton tir. Il m'a manquée exprès. Ce soir, ne manque rien.",
+    "e": "desire",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia démonte la lunette et la range. Elle n'a plus besoin de regarder de loin. Elles disent oui toutes les deux, Haneul la première, Nadia d'un signe de tête, puis à voix haute parce que tu le demandes."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.haneul 3",
+     "add aff.nadia 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_haneul_simone": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone a déplié une carte de Séoul sur la table de la salle commune. Haneul a posé un doigt sur la Tour. Simone l'a laissée faire, ce qui ne lui ressemble pas."
+   },
+   {
+    "s": "simone",
+    "t": "Briefing, soldat. L'Héritière ne connaît pas nos règles. Je vais les lui apprendre. Toi, tu sers d'exemple pratique.",
+    "e": "cigar",
+    "v": true
+   },
+   {
+    "s": "haneul",
+    "t": "Elle donne ses ordres très doucement quand elle croit que personne n'écoute. J'écoute.",
+    "e": "tilt",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "La première règle de Simone : tout le monde dit oui à voix haute. Haneul la répète, puis l'applique. La carte de Séoul glisse de la table."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.haneul 3",
+     "add aff.simone 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_aoi_maricel": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Le micro du karaoké a grillé à la vingtième chanson. Aoi et Maricel ont continué a cappella, puis ont arrêté de chanter, puis t'ont regardé."
+   },
+   {
+    "s": "maricel",
+    "t": "On a chanté jusqu'à griller le micro, gwapo. Maintenant on a chaud et plus de chanson. Trouve-nous une idée.",
+    "e": "wink",
+    "v": true
+   },
+   {
+    "s": "aoi",
+    "t": "Moi, j'en ai une. Mais elle se chante à trois. Et sans micro.",
+    "e": "true_smile",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elles décident ensemble, à voix haute, entre deux fous rires. Aoi fredonne le premier couplet contre ton cou, Maricel le deuxième contre le sien."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.aoi 3",
+     "add aff.maricel 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_aoi_ryeon": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Avant de chanter ce soir, Aoi avait les cheveux attachés par un ruban rouge. Le ruban de Ryeon. Ryeon a fait semblant de ne pas le remarquer pendant toute la chanson."
+   },
+   {
+    "s": "aoi",
+    "t": "Ryeon ne m'a jamais applaudie. Ce soir, elle a dénoué son ruban pour m'attacher les cheveux. C'est mieux qu'une ovation.",
+    "e": "true_smile",
+    "v": true
+   },
+   {
+    "s": "ryeon",
+    "t": "Ne le répète pas. …Et chante moins fort. Je veux entendre aussi ce qu'il répond.",
+    "e": "tsundere",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Ryeon défait le ruban des cheveux d'Aoi, lentement, et le garde au poignet. Elles se demandent la permission sans se regarder, puis en se regardant. Oui, deux fois."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.aoi 3",
+     "add aff.ryeon 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_aoi_xiaoyu": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu a posé un contrat vierge sur la table, à côté d'un stylo d'or. Aoi le regarde comme on regarde un serpent."
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Mirae t'a achetée trois cents millions. Moi, je t'offre un contrat d'une nuit, sans aucune clause. C'est toi qui fixes le cachet.",
+    "e": "fan",
+    "v": true
+   },
+   {
+    "s": "aoi",
+    "t": "Mon cachet, c'est que personne ne me dise de sourire. Tu signes, Xiaoyu ? Toi aussi, Elias.",
+    "e": "true_smile",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu signe. Tu signes. Aoi déchire le contrat avant d'avoir signé, et dit oui à voix haute à la place. C'est plus valable, dit-elle."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.aoi 3",
+     "add aff.xiaoyu 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_aoi_hae_in": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in a géré l'image d'idoles toute sa carrière. Aoi le sait. Elle a éteint toutes les lumières de la salle commune sauf une."
+   },
+   {
+    "s": "hae_in",
+    "t": "Ce soir, aucune caméra, aucun communiqué. Je ne sais pas faire, Monsieur Kang. Elle a promis de m'apprendre.",
+    "e": "embarrassed",
+    "v": true
+   },
+   {
+    "s": "aoi",
+    "t": "C'est facile, Présidente. On enlève le maquillage, on éteint la dernière lumière, et on ne joue plus aucun rôle.",
+    "e": "true_smile",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in enlève ses boucles d'oreilles, une à une, comme on signe un document important. Elles disent oui dans le noir. Personne ne prend de photo."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.aoi 3",
+     "add aff.hae_in 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_aoi_nadia": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi parle tout le temps. Nadia ne parle jamais. Elles ont passé l'après-midi sur le toit à échanger leurs défauts."
+   },
+   {
+    "s": "nadia",
+    "t": "Elle m'a demandé de lui apprendre le silence. Je lui ai appris à retenir son souffle avant le tir.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "aoi",
+    "t": "Ce soir, je le retiens pour autre chose. Et toi, Nadia, tu as le droit de parler. Dis-nous ce que tu veux.",
+    "e": "desire",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia le dit. Trois mots, à voix basse, et c'est la plus longue phrase qu'elle ait prononcée de la journée. Aoi répond oui en chantant."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.aoi 3",
+     "add aff.nadia 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_aoi_simone": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone a demandé une chanson. Une précise, une vieille chanson d'Aoi qu'elle connaît par cœur, et qu'elle prétendait ne jamais avoir entendue."
+   },
+   {
+    "s": "simone",
+    "t": "Ma petite sœur chantait cette chanson dans le Humvee. Je ne l'ai jamais dit à personne. Chante-la-moi, soldate. Doucement.",
+    "e": "sad",
+    "v": true
+   },
+   {
+    "s": "aoi",
+    "t": "Pour toi, Commandante, je chante doucement. Et après, c'est toi qui chantes. Elias, tu tiens le rythme.",
+    "e": "true_smile",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Simone chante faux, et ne s'excuse pas. À la fin de la chanson, elle pose son béret sur la chaise et dit oui, comme on accepte une permission longtemps refusée."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.aoi 3",
+     "add aff.simone 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_aoi_minh_anh": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Minh-Anh a branché trois capteurs sur ses tempes et un micro devant Aoi. Elle voulait mesurer la voix d'Aoi. Elle mesure autre chose."
+   },
+   {
+    "s": "minh_anh",
+    "t": "Mirae a mesuré ta voix pour attirer la Marée. Moi, je veux mesurer ce qu'elle fait à mes LEDs.",
+    "e": "red_leds",
+    "v": true
+   },
+   {
+    "s": "aoi",
+    "t": "Elles virent au rouge à chaque note. Tu vois, docteure ? Même ta science chante faux pour moi.",
+    "e": "laugh",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Minh-Anh débranche les capteurs. Elle demande, protocole oblige, le consentement de chacun ; Aoi répond en chantant, toi en riant. Les LEDs restent rouges."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.aoi 3",
+     "add aff.minh_anh 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_maricel_ryeon": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Ryeon est descendue dans le tunnel de Maricel. Elle a enlevé ses chaussures à l'entrée, comme dans une maison noble. Maricel ne s'en remet pas."
+   },
+   {
+    "s": "maricel",
+    "t": "Une princesse des Collines chez les Rats. Ay, Ryeon, t'as même enlevé tes chaussures. Tu sais où t'es, au moins ?",
+    "e": "wink",
+    "v": true
+   },
+   {
+    "s": "ryeon",
+    "t": "Je sais où je suis. Je l'ai choisi. Montre-moi ce que les Rats font des princesses, et je te montrerai ce que les Baek font des voleuses.",
+    "e": "tsundere",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Le couteau de Maricel et le sabre de Ryeon finissent posés côte à côte, lame contre lame. Elles fixent leurs règles en se défiant du regard, puis en riant. Oui, dit chacune."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.maricel 3",
+     "add aff.ryeon 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_maricel_hae_in": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Maricel a volé le stylo à plume de Hae-in. Hae-in l'a fait savoir. Maricel a répondu qu'elle le rendrait en personne, au dernier étage, la nuit."
+   },
+   {
+    "s": "maricel",
+    "t": "T'as tout l'argent de Séoul, présidente. Moi, j'ai tout volé à des gens comme toi. Ce soir, on redistribue.",
+    "e": "wink",
+    "v": true
+   },
+   {
+    "s": "hae_in",
+    "t": "J'ai fait évaluer votre proposition, Mademoiselle Dizon. Elle est absurde. J'accepte. Monsieur Kang servira de garantie.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Le stylo est rendu. Puis la veste, la montre, les boucles d'oreilles, une à une, chaque objet contre un oui prononcé à voix haute. La redistribution dure jusqu'à l'aube."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.maricel 3",
+     "add aff.hae_in 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_maricel_nadia": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Maricel a deviné le nom de naissance de Nadia en une nuit, dans les tunnels. Personne ne le connaît. Nadia ne lui en veut pas. C'est ce qui l'étonne le plus."
+   },
+   {
+    "s": "nadia",
+    "t": "Elle connaît mon vrai nom. Elle ne le dit qu'à moi. Je crois que c'est ça, avoir une amie.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "maricel",
+    "t": "Les filles qu'on oublie se reconnaissent, gwapo. Ce soir, personne n'oublie personne. Surtout pas toi.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Maricel murmure le vrai nom de Nadia. Nadia répond oui à ce nom-là, pour la première fois depuis des années. L'écharpe rouge finit sur les épaules de Maricel."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.maricel 3",
+     "add aff.nadia 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_maricel_simone": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Les Rats du Han ont désarmé une escouade de l'Unité 0 avec des cuillères et un plan des égouts. Simone est venue négocier en personne."
+   },
+   {
+    "s": "simone",
+    "t": "Je suis venue négocier la reddition de la reine des Rats. Conditions honorables, Rang F en otage.",
+    "e": "cigar",
+    "v": true
+   },
+   {
+    "s": "maricel",
+    "t": "La reine se rend, Commandante. Mais à ses conditions. Et l'otage signe aussi.",
+    "e": "wink",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Les conditions sont lues à voix haute, discutées, acceptées. Simone note que c'est la première reddition de sa carrière où tout le monde gagne."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.maricel 3",
+     "add aff.simone 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_maricel_minh_anh": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Maricel a volé le badge de Minh-Anh, ses échantillons et sa tablette, dans cet ordre. Minh-Anh a porté plainte auprès de toi, par écrit, en trois exemplaires."
+   },
+   {
+    "s": "minh_anh",
+    "t": "Elle a volé mon badge, mes échantillons et mon cœur, dans cet ordre. Tu juges.",
+    "e": "red_leds",
+    "v": true
+   },
+   {
+    "s": "maricel",
+    "t": "Ay, docteure, je rends tout. Sauf le cœur. Ça, je le garde. Et je prends le juge en prime.",
+    "e": "wink",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Le verdict est rendu à l'unanimité, après une délibération très longue où chacune énonce ses conditions. La tablette de Minh-Anh enregistre tout. Elle oublie de l'éteindre."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.maricel 3",
+     "add aff.minh_anh 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_ryeon_xiaoyu": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "La Maison Baek et le Consortium Longwei n'ont jamais signé d'alliance en trois générations. Xiaoyu a apporté un pinceau et de l'encre."
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Je propose de sceller une alliance ici, entre nos deux Maisons. Sans notaire. Kang sera le témoin.",
+    "e": "fan",
+    "v": true
+   },
+   {
+    "s": "ryeon",
+    "t": "Une Baek ne scelle rien sans témoin. …Tu seras le témoin. Et tu ne diras rien à personne.",
+    "e": "tsundere",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "L'encre sèche sur un papier où il n'y a qu'une ligne : « Les deux parties consentent. » Elles signent. Tu signes. L'éventail et le ruban rouge restent sur le traité."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.ryeon 3",
+     "add aff.xiaoyu 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_ryeon_hae_in": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Ryeon a perdu face à Hae-in au conseil de la Maison, la semaine dernière. Elle a exigé une revanche. Hae-in a choisi le terrain."
+   },
+   {
+    "s": "hae_in",
+    "t": "Mademoiselle Baek réclame une revanche, Monsieur Kang. J'ai accepté, à une condition : vous arbitrez.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "ryeon",
+    "t": "Une revanche sans sabre ni Sceau. Juste nous deux, et lui. Je ne perdrai pas deux fois.",
+    "e": "tsundere",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Les règles de la revanche sont énoncées à voix haute, longuement. La première est qu'on peut arrêter quand on veut. Personne ne gagne. Elles le savaient en entrant."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.ryeon 3",
+     "add aff.hae_in 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_ryeon_minh_anh": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Minh-Anh a mesuré les réflexes de Ryeon : vingt-trois pour cent au-dessus de la moyenne. Elle veut comprendre pourquoi. Ryeon a accepté de servir de sujet, à une condition."
+   },
+   {
+    "s": "minh_anh",
+    "t": "Sa condition : je retire mes lunettes et j'arrête de compter. Je… essaie.",
+    "e": "red_leds",
+    "v": true
+   },
+   {
+    "s": "ryeon",
+    "t": "Elle compte même quand elle respire. Fais-la taire, Elias. Gentiment.",
+    "e": "tsundere",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Minh-Anh compte jusqu'à quatre, puis s'arrête. Elle demande si elles sont d'accord ; Ryeon dit oui sans hésiter, ce qui fausse toutes ses données."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.ryeon 3",
+     "add aff.minh_anh 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_xiaoyu_nadia": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Longwei a payé Nadia, un jour, pour viser Xiaoyu. Nadia n'a pas tiré. Xiaoyu ne lui a jamais demandé pourquoi. Ce soir non plus."
+   },
+   {
+    "s": "nadia",
+    "t": "Elle ne m'a jamais demandé pourquoi je n'ai pas tiré. C'est pour ça que je suis là.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Je n'ai pas besoin de savoir pourquoi. Je paie ma dette, Nadia. En nature. Kang, tu es l'intérêt.",
+    "e": "fan",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia pose son fusil contre le mur, crosse en bas, comme on rend les armes. Elles conviennent de tout à voix basse. La dette est soldée avant l'aube."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.xiaoyu 3",
+     "add aff.nadia 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_xiaoyu_simone": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Longwei a vendu des armes aux ennemis de Simone pendant dix ans. Simone a frappé à la porte de la cabine de Xiaoyu à minuit, sans arme."
+   },
+   {
+    "s": "simone",
+    "t": "Je propose un cessez-le-feu. Clause unique : on ne parle pas affaires. Le Rang F surveille l'application.",
+    "e": "cigar",
+    "v": true
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Accepté, Commandante. Mais je garde mon éventail. Il me sert à cacher quand je souris.",
+    "e": "fan",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Le cessez-le-feu est respecté à la lettre. L'éventail tombe vers une heure du matin, et Xiaoyu ne cache plus rien."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.xiaoyu 3",
+     "add aff.simone 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_xiaoyu_minh_anh": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Le Consortium finance le laboratoire de Minh-Anh depuis la fin de Mirae. Xiaoyu a annoncé une inspection, à minuit, sans préavis."
+   },
+   {
+    "s": "xiaoyu",
+    "t": "J'inspecte l'investissement, docteure. Kang, tu tiens la lampe.",
+    "e": "fan",
+    "v": true
+   },
+   {
+    "s": "minh_anh",
+    "t": "Inspection acceptée. Protocole : tout ce qui est touché doit être nommé. À voix haute. C'est la règle de mon labo.",
+    "e": "red_leds",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Le protocole est respecté. Il rend l'inspection très longue, et très bavarde. La lampe finit par terre, toujours allumée."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.xiaoyu 3",
+     "add aff.minh_anh 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_hae_in_nadia": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia a refusé trois fois d'être la garde du corps de Hae-in. Ce soir, elle a accepté une mission d'une nuit, à son tarif."
+   },
+   {
+    "s": "hae_in",
+    "t": "Elle a fixé son tarif sans me le dire, Monsieur Kang. C'est la première fois que je signe sans lire.",
+    "e": "embarrassed",
+    "v": true
+   },
+   {
+    "s": "nadia",
+    "t": "Mon tarif : elle enlève son tailleur, toi ton manteau. Je protège mieux ce que je vois.",
+    "e": "aim",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia vérifie la porte, les fenêtres, puis vous deux, et demande à chacun s'il est d'accord. Oui. Elle pose le fusil. La mission dure jusqu'au matin."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.hae_in 3",
+     "add aff.nadia 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_hae_in_minh_anh": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Haesong a racheté les brevets de Mirae, et la directrice scientifique avec. Hae-in tenait à négocier le contrat de travail en personne. De nuit."
+   },
+   {
+    "s": "hae_in",
+    "t": "Le docteur Tran a préparé ses propres articles, Monsieur Kang. Je n'ai jamais négocié avec quelqu'un d'aussi bien préparé.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "minh_anh",
+    "t": "Article premier : la directrice scientifique choisit ses protocoles. Article deux : celui-ci se fait à trois. Signature : maintenant.",
+    "e": "red_leds",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in relit les articles deux fois, par habitude, puis signe. Chaque clause est dite à voix haute avant d'être appliquée. C'est la négociation la plus courte de sa carrière."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.hae_in 3",
+     "add aff.minh_anh 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_nadia_minh_anh": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia calcule les trajectoires à l'instinct. Minh-Anh avec trois équations. Elles ont parié sur laquelle des deux te comprend le mieux."
+   },
+   {
+    "s": "minh_anh",
+    "t": "Hypothèse : mes équations sont plus précises que son instinct. Je propose une vérification expérimentale. Consentement requis.",
+    "e": "red_leds",
+    "v": true
+   },
+   {
+    "s": "nadia",
+    "t": "J'ai déjà gagné. Mais elle veut revérifier. Toute la nuit. Oui.",
+    "e": "aim",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Le pari n'est jamais tranché. Minh-Anh refait ses calculs à voix haute ; Nadia lui ferme doucement la bouche, et elles recommencent."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.nadia 3",
+     "add aff.minh_anh 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "paire_simone_minh_anh": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Le silo est sûr, les codes changés, la docteure en sécurité. Simone a rendu son rapport, puis elle est revenue sans son béret."
+   },
+   {
+    "s": "simone",
+    "t": "Mission accomplie. Maintenant je prends ma permission, soldat. La docteure a donné son accord écrit.",
+    "e": "cigar",
+    "v": true
+   },
+   {
+    "s": "minh_anh",
+    "t": "Accord écrit, et oral. Les LEDs sont rouges depuis vingt minutes. Ce n'est pas un dysfonctionnement.",
+    "e": "red_leds",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Le silo, qui a été une prison, devient pour une nuit l'endroit le plus calme de Séoul. Simone ne monte pas la garde. Personne ne la lui demande."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add aff.simone 3",
+     "add aff.minh_anh 3",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "constellation_sept": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Sept. Quelqu'un a compté les matelas, puis les oreillers, puis s'est arrêtée de compter. La salle commune sent le thé, la poudre et le savon volé."
+   },
+   {
+    "s": "registre",
+    "t": "Constellation de sept — les Fins se croisent sans se heurter."
+   },
+   {
+    "s": "narrator",
+    "t": "Chacune dit oui à son tour, à voix haute, en riant de s'entendre. Il n'y a ni ordre ni préséance : il y a ce que chacune demande, et tu écoutes."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "constellation_neuf": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Neuf. Il ne manque qu'une étoile à la Constellation, et ce soir personne ne la cherche. Le Refuge entier a été rendu au silence, sauf une pièce."
+   },
+   {
+    "s": "registre",
+    "t": "Constellation de neuf — le Registre n'écrit plus. Il écoute."
+   },
+   {
+    "s": "narrator",
+    "t": "Elles ont fixé leurs règles l'après-midi, sur une feuille punaisée à la porte : on demande, on écoute, on s'arrête quand une seule dit stop. La feuille reste punaisée toute la nuit."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "harem_mercenaire": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Six contrats soldés, six dettes effacées. Elles ont mis leurs créances en commun, et rédigé un seul contrat, sur une seule page : ce soir, c'est toi qu'on rachète."
+   },
+   {
+    "s": "registre",
+    "t": "Contrat collectif — clauses individuelles. Chaque signataire peut se retirer à tout moment."
+   },
+   {
+    "s": "narrator",
+    "t": "Chacune lit sa clause à voix haute avant de signer. Certaines sont tendres, d'autres très précises, une est franchement indécente. Toutes sont acceptées."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "harem_ombre": [
+   {
+    "bg": "black"
+   },
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Aucune n'a signé de Pacte. Aucune n'est venue par peur. Elles ont vu ce que tu es devenu, l'ombre au-dessus de Séoul, et elles ont décidé d'y entrer quand même, avec leurs propres règles."
+   },
+   {
+    "s": "registre",
+    "t": "Cour de l'Ombre — six mots d'arrêt, six couronnes, un seul trône vide."
+   },
+   {
+    "s": "narrator",
+    "t": "Chacune donne son mot d'arrêt avant d'entrer, et chacune règne à son tour. Tu commandes autant que tu obéis. Personne n'est à genoux sans l'avoir choisi, et tout le monde peut se relever."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
   ]
  }
 }

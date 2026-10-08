@@ -59,8 +59,8 @@ def build() -> str:
             w("")
     todo = [e for e in entries if e["status"] == "prevue"]
     w(f"## À mettre en place ({len(todo)} emplacements prévus)\n")
-    w("Chaque emplacement est déjà visible dans la galerie (« En préparation », avec son indice). Pour le rendre jouable : "
-      "écrire la scène, ajouter son déclencheur, puis passer l'entrée en « amorce » ou « ecrite » avec `scene` et `unlock`.\n")
+    if not todo:
+        w("Aucun : chaque emplacement de la galerie se déclenche en jeu (le validateur refuse le statut « prevue »).\n")
     for e in todo:
         w(f"- **{e['title']}** (`{e['id']}`) — {e['setup']}")
     amorces = [e for e in entries if e["status"] == "amorce"]

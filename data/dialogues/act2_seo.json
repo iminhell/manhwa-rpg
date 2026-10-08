@@ -781,7 +781,7 @@
       "fx": [
        "add align.protect -5",
        "flag pacte.seo_yeon",
-       "set ambivalence.seo_yeon -60",
+       "set ambivalence.seo_yeon -50",
        "add fear.seo_yeon 25"
       ]
      }

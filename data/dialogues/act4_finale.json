@@ -230,7 +230,7 @@
   ],
   "trahison_2": [
    {
-    "if": "flag('pacte.hae_in') and v('ambivalence.hae_in') <= -40",
+    "if": "flag('pacte.hae_in') and v('ambivalence.hae_in') <= -40 and party('hae_in')",
     "then": "haein_couteau"
    },
    {
@@ -265,7 +265,7 @@
   ],
   "trahison_3": [
    {
-    "if": "flag('pacte.xiaoyu') and v('ambivalence.xiaoyu') < 0",
+    "if": "flag('pacte.xiaoyu') and v('ambivalence.xiaoyu') < 0 and party('xiaoyu')",
     "then": "xiaoyu_couteau"
    },
    {
@@ -294,7 +294,7 @@
   ],
   "trahison_4": [
    {
-    "if": "flag('nadia_pactisee') and v('ambivalence.nadia') <= -30",
+    "if": "flag('nadia_pactisee') and v('ambivalence.nadia') <= -30 and party('nadia')",
     "then": "nadia_couteau"
    },
    {
@@ -325,7 +325,7 @@
   ],
   "trahison_5": [
    {
-    "if": "flag('pacte.seo_yeon') and v('ambivalence.seo_yeon') <= -50",
+    "if": "flag('pacte.seo_yeon') and v('ambivalence.seo_yeon') <= -50 and party('seo_yeon')",
     "then": "seo_couteau"
    },
    {
@@ -346,7 +346,8 @@
    {
     "fx": [
      "flag rupture_seo",
-     "leave seo_yeon"
+     "leave seo_yeon",
+     "unflag pacte.seo_yeon"
     ]
    },
    {
@@ -1060,7 +1061,11 @@
   ],
   "epi_seo": [
    {
-    "if": "party('seo_yeon') and aff('seo_yeon') >= 25",
+    "if": "party('seo_yeon') and flag('pacte.seo_yeon') and not flag('seo_devotion')",
+    "then": "epi_seo_pacte"
+   },
+   {
+    "if": "party('seo_yeon') and aff('seo_yeon') >= 25 and (not flag('pacte.seo_yeon') or flag('seo_devotion'))",
     "then": "epi_seo_ok"
    },
    {
@@ -1114,7 +1119,11 @@
   ],
   "epi_haein": [
    {
-    "if": "party('hae_in') and aff('hae_in') >= 25",
+    "if": "party('hae_in') and flag('pacte.hae_in') and not flag('haein_devotion')",
+    "then": "epi_haein_pacte"
+   },
+   {
+    "if": "party('hae_in') and aff('hae_in') >= 25 and (not flag('pacte.hae_in') or flag('haein_devotion'))",
     "then": "epi_haein_ok"
    },
    {
@@ -1168,7 +1177,11 @@
   ],
   "epi_simone": [
    {
-    "if": "party('simone') and aff('simone') >= 25",
+    "if": "party('simone') and flag('pacte.simone') and not flag('simone_devotion')",
+    "then": "epi_simone_pacte"
+   },
+   {
+    "if": "party('simone') and aff('simone') >= 25 and (not flag('pacte.simone') or flag('simone_devotion'))",
     "then": "epi_simone_ok"
    },
    {
@@ -1195,7 +1208,11 @@
   ],
   "epi_xiaoyu": [
    {
-    "if": "party('xiaoyu') and aff('xiaoyu') >= 25",
+    "if": "party('xiaoyu') and flag('pacte.xiaoyu') and not flag('xiaoyu_devotion')",
+    "then": "epi_xiaoyu_pacte"
+   },
+   {
+    "if": "party('xiaoyu') and aff('xiaoyu') >= 25 and (not flag('pacte.xiaoyu') or flag('xiaoyu_devotion'))",
     "then": "epi_xiaoyu_ok"
    },
    {
@@ -1222,7 +1239,11 @@
   ],
   "epi_aoi": [
    {
-    "if": "party('aoi') and aff('aoi') >= 25",
+    "if": "party('aoi') and flag('aoi_dominee') and not flag('aoi_devotion')",
+    "then": "epi_aoi_pacte"
+   },
+   {
+    "if": "party('aoi') and aff('aoi') >= 25 and (not flag('aoi_dominee') or flag('aoi_devotion'))",
     "then": "epi_aoi_ok"
    },
    {
@@ -1249,7 +1270,11 @@
   ],
   "epi_nadia": [
    {
-    "if": "party('nadia') and aff('nadia') >= 25",
+    "if": "party('nadia') and flag('nadia_pactisee') and not flag('nadia_devotion')",
+    "then": "epi_nadia_pacte"
+   },
+   {
+    "if": "party('nadia') and aff('nadia') >= 25 and (not flag('nadia_pactisee') or flag('nadia_devotion'))",
     "then": "epi_nadia_ok"
    },
    {
@@ -1330,6 +1355,10 @@
   ],
   "constellation": [
    {
+    "if": "bonds() >= 8 and v('align.protect') <= -20 and (flag('couteau_haein') or flag('couteau_xiaoyu') or flag('couteau_nadia'))",
+    "then": "harem_couteaux"
+   },
+   {
     "if": "bonds() >= 10",
     "then": "harem"
    },
@@ -1392,16 +1421,7 @@
     "t": "Dix femmes autour d'une table construite exprès, dans la salle commune du Refuge agrandi. Les disputes, les rires, les jalousies réglées à voix haute, les nuits partagées à plusieurs quand personne ne veut être seule."
    },
    {
-    "s": "registre",
-    "t": "Fin du Harem Absolu — LA MAISON DES DIX. La plus lumineuse du jeu. Celui que dix destins ont choisi."
-   },
-   {
-    "fx": [
-     "flag issue.maison_des_dix"
-    ]
-   },
-   {
-    "goto": "fin_boucle"
+    "goto": "aube_dix"
    }
   ],
   "harem_trone": [
@@ -1482,6 +1502,154 @@
    },
    {
     "end": true
+   }
+  ],
+  "aube_dix": [
+   {
+    "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "La première aube de l'Ère des Strates se lève sur le toit du Refuge. Dix femmes, une couverture trop petite, et personne qui veuille être ailleurs."
+   },
+   {
+    "s": "haneul",
+    "t": "Dix Fins, et aucune ne finit. Je les ai toutes relues cette nuit. Elles commencent toutes ici.",
+    "e": "tilt",
+    "v": true
+   },
+   {
+    "s": "maricel",
+    "t": "Ay, gwapo, t'as l'air terrifié. C'est normal. On est dix. Et on a toutes dit oui.",
+    "e": "wink",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Chacune le redit, une par une, à voix haute, comme un serment prêté à l'aube. Puis le soleil passe la ligne des ruines, et plus personne ne parle."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "registre",
+    "t": "Fin du Harem Absolu — LA MAISON DES DIX. La plus lumineuse du jeu. Celui que dix destins ont choisi."
+   },
+   {
+    "fx": [
+     "flag issue.maison_des_dix"
+    ]
+   },
+   {
+    "goto": "fin_boucle"
+   }
+  ],
+  "epi_seo_pacte": [
+   {
+    "s": "registre",
+    "t": "Fin d'héroïne — LE COLLIER ROUGE."
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon dirige l'hôpital de l'IFC sous ton autorité. Elle soigne tout le monde, sauf toi : tes blessures, elle les confie à une infirmière. Le collier de glyphes rouges ne s'est jamais éteint."
+   },
+   {
+    "fx": [
+     "flag issue.seo_yeon_pacte"
+    ]
+   },
+   {
+    "goto": "epi_haneul"
+   }
+  ],
+  "epi_haein_pacte": [
+   {
+    "s": "registre",
+    "t": "Fin d'héroïne — LA VASSALE DU CONSEIL."
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in rend compte chaque soir, à la minute, comme le veut le Pacte. Ses rapports sont parfaits. Ils ne contiennent jamais un mot de trop, ni un seul mot pour toi."
+   },
+   {
+    "fx": [
+     "flag issue.hae_in_pacte"
+    ]
+   },
+   {
+    "goto": "epi_ryeon"
+   }
+  ],
+  "epi_xiaoyu_pacte": [
+   {
+    "s": "registre",
+    "t": "Fin d'héroïne — LA DETTE DE JEU."
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu honore le pari jusqu'au dernier jour, avec une politesse impeccable. Le Consortium prospère sous ton nom. Elle n'ouvre plus jamais son éventail devant toi."
+   },
+   {
+    "fx": [
+     "flag issue.xiaoyu_pacte"
+    ]
+   },
+   {
+    "goto": "epi_aoi"
+   }
+  ],
+  "epi_simone_pacte": [
+   {
+    "s": "registre",
+    "t": "Fin d'héroïne — L'UNITÉ SOUS CONTRAINTE."
+   },
+   {
+    "s": "narrator",
+    "t": "Simone obéit. L'Unité 0 obéit. Chaque ordre est exécuté, chaque salut est réglementaire, et pas un soldat ne sourit quand tu passes."
+   },
+   {
+    "fx": [
+     "flag issue.simone_pacte"
+    ]
+   },
+   {
+    "goto": "epi_xiaoyu"
+   }
+  ],
+  "epi_nadia_pacte": [
+   {
+    "s": "registre",
+    "t": "Fin d'héroïne — LE CONTRAT À VIE."
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia veille sur toi depuis les toits, comme le contrat l'exige. Elle ne manque jamais une cible. Elle ne descend jamais dîner."
+   },
+   {
+    "fx": [
+     "flag issue.nadia_pacte"
+    ]
+   },
+   {
+    "goto": "epi_maricel"
+   }
+  ],
+  "epi_aoi_pacte": [
+   {
+    "s": "registre",
+    "t": "Fin d'héroïne — LE SOURIRE DE SCÈNE."
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi chante pour toi chaque soir, parfaitement, sans une fausse note. Le sourire de scène ne la quitte plus. Personne ne se souvient de l'autre."
+   },
+   {
+    "fx": [
+     "flag issue.aoi_pacte"
+    ]
+   },
+   {
+    "goto": "epi_nadia"
    }
   ]
  }

@@ -327,7 +327,8 @@
    },
    {
     "fx": [
-     "flag aoi_dominee"
+     "flag aoi_dominee",
+     "set ambivalence.aoi -40"
     ]
    },
    {

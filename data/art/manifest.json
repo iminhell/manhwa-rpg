@@ -1814,6 +1814,160 @@
       "out": "assets/cg/cg_minh_anh_ombre.png",
       "size": "landscape_16_9",
       "scene": "refuge:minh_anh_ombre"
+    },
+    {
+      "id": "cg_seo_loup",
+      "kind": "cg",
+      "chars": [
+        "seo_yeon",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "seoyeon_park sitting on the edge of elias_kang's bed in a bare dark room, medical bag at her feet, glasses in hand, gently touching his face, the lone wolf finally letting someone in, sensual intimate adult romance, candlelight",
+      "out": "assets/cg/cg_seo_loup.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:seo_loup"
+    },
+    {
+      "id": "cg_haneul_loup",
+      "kind": "cg",
+      "chars": [
+        "haneul",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "haneul_heiress sitting cross-legged on elias_kang's bed inside a locked dark room, golden glyphs glowing on her skin, reaching for his hand, the lone wolf found, sensual intimate adult romance, golden glow",
+      "out": "assets/cg/cg_haneul_loup.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:haneul_loup"
+    },
+    {
+      "id": "cg_aoi_loup",
+      "kind": "cg",
+      "chars": [
+        "aoi",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "aoi_tsukishiro without makeup in an oversized t-shirt, two bowls set aside, curling up against elias_kang alone in a bare room, soft true smile, the lone wolf comforted, sensual intimate adult romance, dim lamp",
+      "out": "assets/cg/cg_aoi_loup.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:aoi_loup"
+    },
+    {
+      "id": "cg_maricel_loup",
+      "kind": "cg",
+      "chars": [
+        "maricel",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "maricel_dizon wrapping stolen blankets around elias_kang in a cold bare room, mischievous warm smile, knife set aside, the lone wolf warmed, sensual intimate adult romance, cold blue light and warm skin",
+      "out": "assets/cg/cg_maricel_loup.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:maricel_loup"
+    },
+    {
+      "id": "cg_ryeon_loup",
+      "kind": "cg",
+      "chars": [
+        "ryeon",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "ryeon_baek after midnight sword practice, wooden swords dropped on the floor, red ribbon undone, pulling elias_kang close in an empty training hall, fierce tender eyes, the lone wolf disarmed, sensual intimate adult romance, moonlight",
+      "out": "assets/cg/cg_ryeon_loup.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:ryeon_loup"
+    },
+    {
+      "id": "cg_xiaoyu_loup",
+      "kind": "cg",
+      "chars": [
+        "xiaoyu",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "xiaoyu_long without her fan or jewels, sitting close to elias_kang in a bare room, unusually soft expression, no contract on the table, the lone wolf offered something for free, sensual intimate adult romance, lantern light",
+      "out": "assets/cg/cg_xiaoyu_loup.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:xiaoyu_loup"
+    },
+    {
+      "id": "cg_haein_loup",
+      "kind": "cg",
+      "chars": [
+        "hae_in",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "haein_yoon in an open silk blouse standing in the doorway of elias_kang's top-floor room, city ruins behind the window, hand on the door frame, the lone wolf's door opened, sensual intimate adult romance, cold night light",
+      "out": "assets/cg/cg_haein_loup.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:haein_loup"
+    },
+    {
+      "id": "cg_nadia_loup",
+      "kind": "cg",
+      "chars": [
+        "nadia",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "nadia_tsoi sitting on the floor against a door, red scarf around her neck, looking up at elias_kang as he opens it, rifle left behind, the lone wolf not alone, sensual intimate adult romance, hallway shadows",
+      "out": "assets/cg/cg_nadia_loup.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:nadia_loup"
+    },
+    {
+      "id": "cg_simone_loup",
+      "kind": "cg",
+      "chars": [
+        "simone",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "simone_hayes in uniform shirt sleeves rolled up, beret on the table, a service file left open, taking elias_kang's hand in a bare room, firm caring gaze, the lone wolf retrieved, sensual intimate adult romance, warm tungsten light",
+      "out": "assets/cg/cg_simone_loup.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:simone_loup"
+    },
+    {
+      "id": "cg_minh_anh_loup",
+      "kind": "cg",
+      "chars": [
+        "minh_anh",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "minhanh_tran with glasses off and braid undone, tablet face-down on a nightstand, temple LEDs glowing red, sitting beside elias_kang in a bare room, the lone wolf as her hypothesis, sensual intimate adult romance, screen glow",
+      "out": "assets/cg/cg_minh_anh_loup.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:minh_anh_loup"
+    },
+    {
+      "id": "cg_aoi_devotion",
+      "kind": "cg",
+      "chars": [
+        "aoi",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "aoi_tsukishiro laughing under falling confetti made of a torn idol contract, pulling elias_kang onto a mattress, genuine smile without stage makeup, freely chosen devotion, sensual intimate adult romance, warm light",
+      "out": "assets/cg/cg_aoi_devotion.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:aoi_devotion_nuit"
     }
   ]
 }
