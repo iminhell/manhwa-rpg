@@ -372,6 +372,14 @@
     "music": "intimate"
    },
    {
+    "if": "flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')",
+    "then": "pacte_groupe_seo_yeon"
+   },
+   {
+    "if": "flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte')",
+    "then": "pacte_groupe_aoi"
+   },
+   {
     "cg": "cg_nuit_des_trois"
    },
    {
@@ -424,6 +432,18 @@
     "music": "intimate"
    },
    {
+    "if": "flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')",
+    "then": "pacte_groupe_hae_in"
+   },
+   {
+    "if": "flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')",
+    "then": "pacte_groupe_xiaoyu"
+   },
+   {
+    "if": "flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')",
+    "then": "pacte_groupe_simone"
+   },
+   {
     "cg": "cg_reines_lames"
    },
    {
@@ -471,6 +491,11 @@
     "music": "intimate"
    },
    {
+    "s": "narrator",
+    "t": "Celles qui portent encore un contrat qu'elles n'ont pas choisi ne sont pas là ce soir : personne ne les a convoquées, et personne ne le fera.",
+    "when": "(party('seo_yeon') and flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')) or (party('xiaoyu') and flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')) or (party('hae_in') and flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')) or (party('simone') and flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')) or (party('nadia') and flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')) or (party('aoi') and flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte'))"
+   },
+   {
     "cg": "cg_nuit_maison"
    },
    {
@@ -516,6 +541,11 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Celles qui portent encore un contrat qu'elles n'ont pas choisi ne sont pas là ce soir : personne ne les a convoquées, et personne ne le fera.",
+    "when": "(party('seo_yeon') and flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')) or (party('xiaoyu') and flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')) or (party('hae_in') and flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')) or (party('simone') and flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')) or (party('nadia') and flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')) or (party('aoi') and flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte'))"
    },
    {
     "cg": "cg_portrait_dix"
@@ -570,6 +600,10 @@
     "music": "intimate"
    },
    {
+    "if": "flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')",
+    "then": "pacte_groupe_nadia"
+   },
+   {
     "s": "narrator",
     "t": "Après l'entraînement, sur le toit, Ryeon et Nadia ne se disputent plus pour savoir qui a gagné. Elles se disputent pour savoir laquelle des deux t'a regardé en premier ce matin. Puis elles cessent de se disputer."
    },
@@ -609,6 +643,14 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "if": "flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')",
+    "then": "pacte_groupe_simone"
+   },
+   {
+    "if": "flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')",
+    "then": "pacte_groupe_nadia"
    },
    {
     "s": "narrator",
@@ -652,6 +694,14 @@
     "music": "intimate"
    },
    {
+    "if": "flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')",
+    "then": "pacte_groupe_hae_in"
+   },
+   {
+    "if": "flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')",
+    "then": "pacte_groupe_xiaoyu"
+   },
+   {
     "s": "narrator",
     "t": "La partie de mahjong entre Hae-in et Xiaoyu s'est terminée sur une égalité parfaite. Aucune des deux ne supporte l'égalité. Elles ont trouvé un autre moyen de départager la soirée."
    },
@@ -693,6 +743,10 @@
     "music": "intimate"
    },
    {
+    "if": "flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')",
+    "then": "pacte_groupe_seo_yeon"
+   },
+   {
     "s": "narrator",
     "t": "Au laboratoire, tard. La dernière série de tests est stable. Seo-Yeon et Minh-Anh s'en rendent compte en même temps, et, pour une fois, elles ne trouvent rien à se reprocher."
    },
@@ -732,6 +786,10 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "if": "flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')",
+    "then": "pacte_groupe_xiaoyu"
    },
    {
     "s": "narrator",
@@ -816,6 +874,10 @@
     "music": "intimate"
    },
    {
+    "if": "flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')",
+    "then": "pacte_groupe_simone"
+   },
+   {
     "s": "narrator",
     "t": "Simone a battu Ryeon au bras de fer. Ryeon exige une revanche. Simone propose une autre épreuve, plus longue, et te désigne comme arbitre."
    },
@@ -855,6 +917,10 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "if": "flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte')",
+    "then": "pacte_groupe_aoi"
    },
    {
     "s": "narrator",
@@ -898,6 +964,14 @@
     "music": "intimate"
    },
    {
+    "if": "flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')",
+    "then": "pacte_groupe_hae_in"
+   },
+   {
+    "if": "flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')",
+    "then": "pacte_groupe_simone"
+   },
+   {
     "s": "narrator",
     "t": "Hae-in a convoqué Simone pour un audit de la défense du Refuge. Simone a convoqué Hae-in pour un audit de ses mensonges. Elles t'ont convoqué tous les deux pour arbitrer, à minuit."
    },
@@ -939,6 +1013,14 @@
     "music": "intimate"
    },
    {
+    "if": "flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')",
+    "then": "pacte_groupe_seo_yeon"
+   },
+   {
+    "if": "flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte')",
+    "then": "pacte_groupe_aoi"
+   },
+   {
     "s": "narrator",
     "t": "Seo-Yeon refait les pansements des doigts d'Aoi, comme chaque soir. Ce soir, Aoi ne repart pas. Elle garde la main de Seo-Yeon dans la sienne, et te fait signe d'approcher."
    },
@@ -978,6 +1060,14 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "if": "flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')",
+    "then": "pacte_groupe_simone"
+   },
+   {
+    "if": "flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')",
+    "then": "pacte_groupe_nadia"
    },
    {
     "s": "narrator",
@@ -1022,6 +1112,14 @@
     "music": "intimate"
    },
    {
+    "if": "flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')",
+    "then": "pacte_groupe_hae_in"
+   },
+   {
+    "if": "flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')",
+    "then": "pacte_groupe_xiaoyu"
+   },
+   {
     "s": "narrator",
     "t": "Trois héritières de Sceaux autour d'une table. Trois femmes qui ne se sont jamais inclinées devant personne. Elles ont décidé de ne pas s'incliner ce soir non plus : elles régneront ensemble."
    },
@@ -1062,6 +1160,14 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "if": "flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte')",
+    "then": "pacte_groupe_aoi"
+   },
+   {
+    "if": "flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')",
+    "then": "pacte_groupe_nadia"
    },
    {
     "s": "narrator",
@@ -1106,6 +1212,14 @@
     "music": "intimate"
    },
    {
+    "if": "flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')",
+    "then": "pacte_groupe_xiaoyu"
+   },
+   {
+    "if": "flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')",
+    "then": "pacte_groupe_nadia"
+   },
+   {
     "s": "narrator",
     "t": "Sur le pont de la plus grande barge de Xiaoyu, sous les lanternes rouges, trois femmes et un seul homme, et le Han qui coule sans bruit."
    },
@@ -1146,6 +1260,10 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "if": "flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')",
+    "then": "pacte_groupe_seo_yeon"
    },
    {
     "s": "narrator",
@@ -1190,6 +1308,14 @@
     "music": "intimate"
    },
    {
+    "if": "flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')",
+    "then": "pacte_groupe_hae_in"
+   },
+   {
+    "if": "flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')",
+    "then": "pacte_groupe_xiaoyu"
+   },
+   {
     "s": "narrator",
     "t": "Hae-in a les comptes, Minh-Anh les brevets, Xiaoyu les routes. Elles ont passé la soirée à dessiner l'empire de la Friche sur une nappe. Ce soir, elles fêtent un monopole qui n'existe encore que sur papier."
    },
@@ -1230,6 +1356,10 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "if": "flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte')",
+    "then": "pacte_groupe_aoi"
    },
    {
     "s": "narrator",
@@ -1274,6 +1404,14 @@
     "music": "intimate"
    },
    {
+    "if": "flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')",
+    "then": "pacte_groupe_simone"
+   },
+   {
+    "if": "flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')",
+    "then": "pacte_groupe_seo_yeon"
+   },
+   {
     "s": "narrator",
     "t": "Après une longue garde, Simone, Ryeon et Seo-Yeon ont protégé tout le monde pendant des jours. Ce soir, elles veulent qu'on les protège, elles."
    },
@@ -1314,6 +1452,14 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "if": "flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')",
+    "then": "pacte_groupe_seo_yeon"
+   },
+   {
+    "if": "flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')",
+    "then": "pacte_groupe_hae_in"
    },
    {
     "s": "narrator",
@@ -1358,6 +1504,14 @@
     "music": "intimate"
    },
    {
+    "if": "flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte')",
+    "then": "pacte_groupe_aoi"
+   },
+   {
+    "if": "flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')",
+    "then": "pacte_groupe_seo_yeon"
+   },
+   {
     "s": "narrator",
     "t": "Aoi, Seo-Yeon, Maricel et Ryeon savent, maintenant, que le Registre leur avait donné les quatre Fins les plus proches. Le dix-septième jour est passé. Elles sont toutes là. Elles ont décidé de fêter chaque aube volée."
    },
@@ -1399,6 +1553,18 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "if": "flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')",
+    "then": "pacte_groupe_simone"
+   },
+   {
+    "if": "flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')",
+    "then": "pacte_groupe_nadia"
+   },
+   {
+    "if": "flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte')",
+    "then": "pacte_groupe_aoi"
    },
    {
     "s": "narrator",
@@ -1445,6 +1611,11 @@
    },
    {
     "s": "narrator",
+    "t": "Celles qui portent encore un contrat qu'elles n'ont pas choisi ne sont pas là ce soir : personne ne les a convoquées, et personne ne le fera.",
+    "when": "(party('seo_yeon') and flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')) or (party('xiaoyu') and flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')) or (party('hae_in') and flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')) or (party('simone') and flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')) or (party('nadia') and flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')) or (party('aoi') and flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte'))"
+   },
+   {
+    "s": "narrator",
     "t": "Cinq femmes, ce soir, dans la grande chambre du Refuge. Elles ne se sont pas concertées : elles sont venues une à une, et aucune n'est repartie."
    },
    {
@@ -1469,6 +1640,11 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Celles qui portent encore un contrat qu'elles n'ont pas choisi ne sont pas là ce soir : personne ne les a convoquées, et personne ne le fera.",
+    "when": "(party('seo_yeon') and flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')) or (party('xiaoyu') and flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')) or (party('hae_in') and flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')) or (party('simone') and flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')) or (party('nadia') and flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')) or (party('aoi') and flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte'))"
    },
    {
     "s": "narrator",
@@ -1500,6 +1676,10 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "if": "flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')",
+    "then": "pacte_groupe_seo_yeon"
    },
    {
     "s": "narrator",
@@ -1543,6 +1723,10 @@
     "music": "intimate"
    },
    {
+    "if": "flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')",
+    "then": "pacte_groupe_seo_yeon"
+   },
+   {
     "s": "narrator",
     "t": "Maricel s'est glissée dans l'infirmerie avec trois boîtes de gaze sous le bras, celles qu'elle avait volées la semaine dernière. Seo-Yeon l'attendait, les bras croisés."
    },
@@ -1582,6 +1766,10 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "if": "flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')",
+    "then": "pacte_groupe_seo_yeon"
    },
    {
     "s": "narrator",
@@ -1625,6 +1813,14 @@
     "music": "intimate"
    },
    {
+    "if": "flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')",
+    "then": "pacte_groupe_seo_yeon"
+   },
+   {
+    "if": "flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')",
+    "then": "pacte_groupe_xiaoyu"
+   },
+   {
     "s": "narrator",
     "t": "Xiaoyu est arrivée à l'infirmerie avec du thé de Hangzhou, des draps de soie et une bouteille qui vaut plus que tout le camp de Yeouido."
    },
@@ -1664,6 +1860,14 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "if": "flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')",
+    "then": "pacte_groupe_seo_yeon"
+   },
+   {
+    "if": "flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')",
+    "then": "pacte_groupe_hae_in"
    },
    {
     "s": "narrator",
@@ -1707,6 +1911,14 @@
     "music": "intimate"
    },
    {
+    "if": "flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')",
+    "then": "pacte_groupe_seo_yeon"
+   },
+   {
+    "if": "flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')",
+    "then": "pacte_groupe_nadia"
+   },
+   {
     "s": "narrator",
     "t": "Seo-Yeon recoud l'épaule de Nadia sans anesthésie : il n'en reste plus. Nadia ne bronche pas. C'est ce qui inquiète le plus le docteur."
    },
@@ -1746,6 +1958,14 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "if": "flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')",
+    "then": "pacte_groupe_seo_yeon"
+   },
+   {
+    "if": "flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')",
+    "then": "pacte_groupe_simone"
    },
    {
     "s": "narrator",
@@ -1871,6 +2091,10 @@
     "music": "intimate"
    },
    {
+    "if": "flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')",
+    "then": "pacte_groupe_xiaoyu"
+   },
+   {
     "s": "narrator",
     "t": "Haneul a lu la Fin de Xiaoyu et refuse de lui dire laquelle. Xiaoyu a sorti le mahjong. L'enjeu se décide à voix basse, avant la première tuile."
    },
@@ -1910,6 +2134,10 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "if": "flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')",
+    "then": "pacte_groupe_hae_in"
    },
    {
     "s": "narrator",
@@ -1953,6 +2181,10 @@
     "music": "intimate"
    },
    {
+    "if": "flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')",
+    "then": "pacte_groupe_nadia"
+   },
+   {
     "s": "narrator",
     "t": "Nadia nettoie sa lunette sur le toit. Haneul s'est assise juste devant l'objectif, à quelques centimètres, et la regarde à travers."
    },
@@ -1992,6 +2224,10 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "if": "flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')",
+    "then": "pacte_groupe_simone"
    },
    {
     "s": "narrator",
@@ -2035,6 +2271,10 @@
     "music": "intimate"
    },
    {
+    "if": "flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte')",
+    "then": "pacte_groupe_aoi"
+   },
+   {
     "s": "narrator",
     "t": "Le micro du karaoké a grillé à la vingtième chanson. Aoi et Maricel ont continué a cappella, puis ont arrêté de chanter, puis t'ont regardé."
    },
@@ -2074,6 +2314,10 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "if": "flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte')",
+    "then": "pacte_groupe_aoi"
    },
    {
     "s": "narrator",
@@ -2117,6 +2361,14 @@
     "music": "intimate"
    },
    {
+    "if": "flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte')",
+    "then": "pacte_groupe_aoi"
+   },
+   {
+    "if": "flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')",
+    "then": "pacte_groupe_xiaoyu"
+   },
+   {
     "s": "narrator",
     "t": "Xiaoyu a posé un contrat vierge sur la table, à côté d'un stylo d'or. Aoi le regarde comme on regarde un serpent."
    },
@@ -2156,6 +2408,14 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "if": "flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte')",
+    "then": "pacte_groupe_aoi"
+   },
+   {
+    "if": "flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')",
+    "then": "pacte_groupe_hae_in"
    },
    {
     "s": "narrator",
@@ -2199,6 +2459,14 @@
     "music": "intimate"
    },
    {
+    "if": "flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte')",
+    "then": "pacte_groupe_aoi"
+   },
+   {
+    "if": "flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')",
+    "then": "pacte_groupe_nadia"
+   },
+   {
     "s": "narrator",
     "t": "Aoi parle tout le temps. Nadia ne parle jamais. Elles ont passé l'après-midi sur le toit à échanger leurs défauts."
    },
@@ -2240,6 +2508,14 @@
     "music": "intimate"
    },
    {
+    "if": "flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte')",
+    "then": "pacte_groupe_aoi"
+   },
+   {
+    "if": "flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')",
+    "then": "pacte_groupe_simone"
+   },
+   {
     "s": "narrator",
     "t": "Simone a demandé une chanson. Une précise, une vieille chanson d'Aoi qu'elle connaît par cœur, et qu'elle prétendait ne jamais avoir entendue."
    },
@@ -2279,6 +2555,10 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "if": "flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte')",
+    "then": "pacte_groupe_aoi"
    },
    {
     "s": "narrator",
@@ -2363,6 +2643,10 @@
     "music": "intimate"
    },
    {
+    "if": "flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')",
+    "then": "pacte_groupe_hae_in"
+   },
+   {
     "s": "narrator",
     "t": "Maricel a volé le stylo à plume de Hae-in. Hae-in l'a fait savoir. Maricel a répondu qu'elle le rendrait en personne, au dernier étage, la nuit."
    },
@@ -2404,6 +2688,10 @@
     "music": "intimate"
    },
    {
+    "if": "flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')",
+    "then": "pacte_groupe_nadia"
+   },
+   {
     "s": "narrator",
     "t": "Maricel a deviné le nom de naissance de Nadia en une nuit, dans les tunnels. Personne ne le connaît. Nadia ne lui en veut pas. C'est ce qui l'étonne le plus."
    },
@@ -2443,6 +2731,10 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "if": "flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')",
+    "then": "pacte_groupe_simone"
    },
    {
     "s": "narrator",
@@ -2527,6 +2819,10 @@
     "music": "intimate"
    },
    {
+    "if": "flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')",
+    "then": "pacte_groupe_xiaoyu"
+   },
+   {
     "s": "narrator",
     "t": "La Maison Baek et le Consortium Longwei n'ont jamais signé d'alliance en trois générations. Xiaoyu a apporté un pinceau et de l'encre."
    },
@@ -2566,6 +2862,10 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "if": "flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')",
+    "then": "pacte_groupe_hae_in"
    },
    {
     "s": "narrator",
@@ -2650,6 +2950,14 @@
     "music": "intimate"
    },
    {
+    "if": "flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')",
+    "then": "pacte_groupe_xiaoyu"
+   },
+   {
+    "if": "flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')",
+    "then": "pacte_groupe_nadia"
+   },
+   {
     "s": "narrator",
     "t": "Longwei a payé Nadia, un jour, pour viser Xiaoyu. Nadia n'a pas tiré. Xiaoyu ne lui a jamais demandé pourquoi. Ce soir non plus."
    },
@@ -2689,6 +2997,14 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "if": "flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')",
+    "then": "pacte_groupe_xiaoyu"
+   },
+   {
+    "if": "flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')",
+    "then": "pacte_groupe_simone"
    },
    {
     "s": "narrator",
@@ -2732,6 +3048,10 @@
     "music": "intimate"
    },
    {
+    "if": "flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')",
+    "then": "pacte_groupe_xiaoyu"
+   },
+   {
     "s": "narrator",
     "t": "Le Consortium finance le laboratoire de Minh-Anh depuis la fin de Mirae. Xiaoyu a annoncé une inspection, à minuit, sans préavis."
    },
@@ -2771,6 +3091,14 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "if": "flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')",
+    "then": "pacte_groupe_hae_in"
+   },
+   {
+    "if": "flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')",
+    "then": "pacte_groupe_nadia"
    },
    {
     "s": "narrator",
@@ -2814,6 +3142,10 @@
     "music": "intimate"
    },
    {
+    "if": "flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')",
+    "then": "pacte_groupe_hae_in"
+   },
+   {
     "s": "narrator",
     "t": "Haesong a racheté les brevets de Mirae, et la directrice scientifique avec. Hae-in tenait à négocier le contrat de travail en personne. De nuit."
    },
@@ -2855,6 +3187,10 @@
     "music": "intimate"
    },
    {
+    "if": "flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')",
+    "then": "pacte_groupe_nadia"
+   },
+   {
     "s": "narrator",
     "t": "Nadia calcule les trajectoires à l'instinct. Minh-Anh avec trois équations. Elles ont parié sur laquelle des deux te comprend le mieux."
    },
@@ -2894,6 +3230,10 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "if": "flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')",
+    "then": "pacte_groupe_simone"
    },
    {
     "s": "narrator",
@@ -2938,6 +3278,11 @@
    },
    {
     "s": "narrator",
+    "t": "Celles qui portent encore un contrat qu'elles n'ont pas choisi ne sont pas là ce soir : personne ne les a convoquées, et personne ne le fera.",
+    "when": "(party('seo_yeon') and flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')) or (party('xiaoyu') and flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')) or (party('hae_in') and flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')) or (party('simone') and flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')) or (party('nadia') and flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')) or (party('aoi') and flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte'))"
+   },
+   {
+    "s": "narrator",
     "t": "Sept. Quelqu'un a compté les matelas, puis les oreillers, puis s'est arrêtée de compter. La salle commune sent le thé, la poudre et le savon volé."
    },
    {
@@ -2966,6 +3311,11 @@
    },
    {
     "music": "intimate"
+   },
+   {
+    "s": "narrator",
+    "t": "Celles qui portent encore un contrat qu'elles n'ont pas choisi ne sont pas là ce soir : personne ne les a convoquées, et personne ne le fera.",
+    "when": "(party('seo_yeon') and flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')) or (party('xiaoyu') and flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')) or (party('hae_in') and flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')) or (party('simone') and flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')) or (party('nadia') and flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')) or (party('aoi') and flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte'))"
    },
    {
     "s": "narrator",
@@ -3000,6 +3350,11 @@
    },
    {
     "s": "narrator",
+    "t": "Celles qui portent encore un contrat qu'elles n'ont pas choisi ne sont pas là ce soir : personne ne les a convoquées, et personne ne le fera.",
+    "when": "(party('seo_yeon') and flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')) or (party('xiaoyu') and flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')) or (party('hae_in') and flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')) or (party('simone') and flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')) or (party('nadia') and flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')) or (party('aoi') and flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte'))"
+   },
+   {
+    "s": "narrator",
     "t": "Six contrats soldés, six dettes effacées. Elles ont mis leurs créances en commun, et rédigé un seul contrat, sur une seule page : ce soir, c'est toi qu'on rachète."
    },
    {
@@ -3031,7 +3386,12 @@
    },
    {
     "s": "narrator",
-    "t": "Aucune n'a signé de Pacte. Aucune n'est venue par peur. Elles ont vu ce que tu es devenu, l'ombre au-dessus de Séoul, et elles ont décidé d'y entrer quand même, avec leurs propres règles."
+    "t": "Celles qui portent encore un contrat qu'elles n'ont pas choisi ne sont pas là ce soir : personne ne les a convoquées, et personne ne le fera.",
+    "when": "(party('seo_yeon') and flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')) or (party('xiaoyu') and flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')) or (party('hae_in') and flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')) or (party('simone') and flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')) or (party('nadia') and flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')) or (party('aoi') and flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte'))"
+   },
+   {
+    "s": "narrator",
+    "t": "Aucune n'est venue par peur. Certaines ont signé un Pacte, puis l'ont réécrit de leur main ; les autres n'ont jamais rien signé. Elles ont vu ce que tu es devenu, l'ombre au-dessus de Séoul, et elles ont décidé d'y entrer, avec leurs propres règles."
    },
    {
     "s": "registre",
@@ -3043,6 +3403,384 @@
    },
    {
     "text_p3_slot": []
+   },
+   {
+    "fx": [
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "pacte_groupe_seo_yeon": [
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon arrive la dernière, le collier de glyphes rouges au cou. Les autres le voient. Le silence tombe sur la chambre."
+   },
+   {
+    "s": "registre",
+    "t": "Une nuit à plusieurs ne se commande pas. Elle se demande, à chacune."
+   },
+   {
+    "choice": [
+     {
+      "t": "« Ce soir, le contrat ne s'applique pas. Tu restes si tu veux, tu pars si tu veux. »",
+      "goto": "pacte_groupe_seo_yeon_libre",
+      "fx": [
+       "add ambivalence.seo_yeon 20",
+       "add trust.seo_yeon 5"
+      ]
+     },
+     {
+      "t": "« Le contrat s'applique partout. »",
+      "goto": "pacte_groupe_seo_yeon_ordre",
+      "fx": [
+       "add ambivalence.seo_yeon -10",
+       "add fear.seo_yeon 5",
+       "add align.protect -2"
+      ]
+     }
+    ]
+   }
+  ],
+  "pacte_groupe_seo_yeon_libre": [
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon reste. Pas pour ce que les autres croyaient : pour parler. La nuit tourne à la veillée, puis au fou rire, puis au sommeil, tout le monde habillé, entassé sur les matelas. Pour la première fois, elle rit avec elles."
+   },
+   {
+    "s": "registre",
+    "t": "Le contrat ne s'est pas appliqué ce soir. Elle s'en souviendra."
+   },
+   {
+    "fx": [
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "pacte_groupe_seo_yeon_ordre": [
+   {
+    "s": "narrator",
+    "t": "Personne ne bouge. Puis, une à une, les autres se lèvent. « Pas comme ça », dit l'une d'elles. Elles emmènent Seo-Yeon avec elles. La porte se referme sur une chambre vide."
+   },
+   {
+    "fx": [
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "pacte_groupe_xiaoyu": [
+   {
+    "s": "narrator",
+    "t": "Xiaoyu arrive la dernière, le jeton de jade du Pacte pendu à son cou. Les autres le voient. Le silence tombe sur la chambre."
+   },
+   {
+    "s": "registre",
+    "t": "Une nuit à plusieurs ne se commande pas. Elle se demande, à chacune."
+   },
+   {
+    "choice": [
+     {
+      "t": "« Ce soir, le contrat ne s'applique pas. Tu restes si tu veux, tu pars si tu veux. »",
+      "goto": "pacte_groupe_xiaoyu_libre",
+      "fx": [
+       "add ambivalence.xiaoyu 20",
+       "add trust.xiaoyu 5"
+      ]
+     },
+     {
+      "t": "« Le contrat s'applique partout. »",
+      "goto": "pacte_groupe_xiaoyu_ordre",
+      "fx": [
+       "add ambivalence.xiaoyu -10",
+       "add fear.xiaoyu 5",
+       "add align.protect -2"
+      ]
+     }
+    ]
+   }
+  ],
+  "pacte_groupe_xiaoyu_libre": [
+   {
+    "s": "narrator",
+    "t": "Xiaoyu reste. Pas pour ce que les autres croyaient : pour parler. La nuit tourne à la veillée, puis au fou rire, puis au sommeil, tout le monde habillé, entassé sur les matelas. Pour la première fois, elle rit avec elles."
+   },
+   {
+    "s": "registre",
+    "t": "Le contrat ne s'est pas appliqué ce soir. Elle s'en souviendra."
+   },
+   {
+    "fx": [
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "pacte_groupe_xiaoyu_ordre": [
+   {
+    "s": "narrator",
+    "t": "Personne ne bouge. Puis, une à une, les autres se lèvent. « Pas comme ça », dit l'une d'elles. Elles emmènent Xiaoyu avec elles. La porte se referme sur une chambre vide."
+   },
+   {
+    "fx": [
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "pacte_groupe_hae_in": [
+   {
+    "s": "narrator",
+    "t": "Hae-in arrive la dernière, l'insigne de vassalité épinglé à son tailleur. Les autres le voient. Le silence tombe sur la chambre."
+   },
+   {
+    "s": "registre",
+    "t": "Une nuit à plusieurs ne se commande pas. Elle se demande, à chacune."
+   },
+   {
+    "choice": [
+     {
+      "t": "« Ce soir, le contrat ne s'applique pas. Tu restes si tu veux, tu pars si tu veux. »",
+      "goto": "pacte_groupe_hae_in_libre",
+      "fx": [
+       "add ambivalence.hae_in 20",
+       "add trust.hae_in 5"
+      ]
+     },
+     {
+      "t": "« Le contrat s'applique partout. »",
+      "goto": "pacte_groupe_hae_in_ordre",
+      "fx": [
+       "add ambivalence.hae_in -10",
+       "add fear.hae_in 5",
+       "add align.protect -2"
+      ]
+     }
+    ]
+   }
+  ],
+  "pacte_groupe_hae_in_libre": [
+   {
+    "s": "narrator",
+    "t": "Hae-in reste. Pas pour ce que les autres croyaient : pour parler. La nuit tourne à la veillée, puis au fou rire, puis au sommeil, tout le monde habillé, entassé sur les matelas. Pour la première fois, elle rit avec elles."
+   },
+   {
+    "s": "registre",
+    "t": "Le contrat ne s'est pas appliqué ce soir. Elle s'en souviendra."
+   },
+   {
+    "fx": [
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "pacte_groupe_hae_in_ordre": [
+   {
+    "s": "narrator",
+    "t": "Personne ne bouge. Puis, une à une, les autres se lèvent. « Pas comme ça », dit l'une d'elles. Elles emmènent Hae-in avec elles. La porte se referme sur une chambre vide."
+   },
+   {
+    "fx": [
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "pacte_groupe_simone": [
+   {
+    "s": "narrator",
+    "t": "Simone arrive la dernière, l'insigne de reddition de l'Unité 0 sur l'épaule. Les autres le voient. Le silence tombe sur la chambre."
+   },
+   {
+    "s": "registre",
+    "t": "Une nuit à plusieurs ne se commande pas. Elle se demande, à chacune."
+   },
+   {
+    "choice": [
+     {
+      "t": "« Ce soir, le contrat ne s'applique pas. Tu restes si tu veux, tu pars si tu veux. »",
+      "goto": "pacte_groupe_simone_libre",
+      "fx": [
+       "add ambivalence.simone 20",
+       "add trust.simone 5"
+      ]
+     },
+     {
+      "t": "« Le contrat s'applique partout. »",
+      "goto": "pacte_groupe_simone_ordre",
+      "fx": [
+       "add ambivalence.simone -10",
+       "add fear.simone 5",
+       "add align.protect -2"
+      ]
+     }
+    ]
+   }
+  ],
+  "pacte_groupe_simone_libre": [
+   {
+    "s": "narrator",
+    "t": "Simone reste. Pas pour ce que les autres croyaient : pour parler. La nuit tourne à la veillée, puis au fou rire, puis au sommeil, tout le monde habillé, entassé sur les matelas. Pour la première fois, elle rit avec elles."
+   },
+   {
+    "s": "registre",
+    "t": "Le contrat ne s'est pas appliqué ce soir. Elle s'en souviendra."
+   },
+   {
+    "fx": [
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "pacte_groupe_simone_ordre": [
+   {
+    "s": "narrator",
+    "t": "Personne ne bouge. Puis, une à une, les autres se lèvent. « Pas comme ça », dit l'une d'elles. Elles emmènent Simone avec elles. La porte se referme sur une chambre vide."
+   },
+   {
+    "fx": [
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "pacte_groupe_nadia": [
+   {
+    "s": "narrator",
+    "t": "Nadia arrive la dernière, le fusil en bandoulière, comme l'exige la clause de Résidence. Les autres le voient. Le silence tombe sur la chambre."
+   },
+   {
+    "s": "registre",
+    "t": "Une nuit à plusieurs ne se commande pas. Elle se demande, à chacune."
+   },
+   {
+    "choice": [
+     {
+      "t": "« Ce soir, le contrat ne s'applique pas. Tu restes si tu veux, tu pars si tu veux. »",
+      "goto": "pacte_groupe_nadia_libre",
+      "fx": [
+       "add ambivalence.nadia 20",
+       "add trust.nadia 5"
+      ]
+     },
+     {
+      "t": "« Le contrat s'applique partout. »",
+      "goto": "pacte_groupe_nadia_ordre",
+      "fx": [
+       "add ambivalence.nadia -10",
+       "add fear.nadia 5",
+       "add align.protect -2"
+      ]
+     }
+    ]
+   }
+  ],
+  "pacte_groupe_nadia_libre": [
+   {
+    "s": "narrator",
+    "t": "Nadia reste. Pas pour ce que les autres croyaient : pour parler. La nuit tourne à la veillée, puis au fou rire, puis au sommeil, tout le monde habillé, entassé sur les matelas. Pour la première fois, elle rit avec elles."
+   },
+   {
+    "s": "registre",
+    "t": "Le contrat ne s'est pas appliqué ce soir. Elle s'en souviendra."
+   },
+   {
+    "fx": [
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "pacte_groupe_nadia_ordre": [
+   {
+    "s": "narrator",
+    "t": "Personne ne bouge. Puis, une à une, les autres se lèvent. « Pas comme ça », dit l'une d'elles. Elles emmènent Nadia avec elles. La porte se referme sur une chambre vide."
+   },
+   {
+    "fx": [
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "pacte_groupe_aoi": [
+   {
+    "s": "narrator",
+    "t": "Aoi arrive la dernière, le sourire de scène vissé au visage. Les autres le voient. Le silence tombe sur la chambre."
+   },
+   {
+    "s": "registre",
+    "t": "Une nuit à plusieurs ne se commande pas. Elle se demande, à chacune."
+   },
+   {
+    "choice": [
+     {
+      "t": "« Ce soir, le contrat ne s'applique pas. Tu restes si tu veux, tu pars si tu veux. »",
+      "goto": "pacte_groupe_aoi_libre",
+      "fx": [
+       "add ambivalence.aoi 20",
+       "add trust.aoi 5"
+      ]
+     },
+     {
+      "t": "« Le contrat s'applique partout. »",
+      "goto": "pacte_groupe_aoi_ordre",
+      "fx": [
+       "add ambivalence.aoi -10",
+       "add fear.aoi 5",
+       "add align.protect -2"
+      ]
+     }
+    ]
+   }
+  ],
+  "pacte_groupe_aoi_libre": [
+   {
+    "s": "narrator",
+    "t": "Aoi reste. Pas pour ce que les autres croyaient : pour parler. La nuit tourne à la veillée, puis au fou rire, puis au sommeil, tout le monde habillé, entassé sur les matelas. Pour la première fois, elle rit avec elles."
+   },
+   {
+    "s": "registre",
+    "t": "Le contrat ne s'est pas appliqué ce soir. Elle s'en souviendra."
+   },
+   {
+    "fx": [
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "pacte_groupe_aoi_ordre": [
+   {
+    "s": "narrator",
+    "t": "Personne ne bouge. Puis, une à une, les autres se lèvent. « Pas comme ça », dit l'une d'elles. Elles emmènent Aoi avec elles. La porte se referme sur une chambre vide."
    },
    {
     "fx": [

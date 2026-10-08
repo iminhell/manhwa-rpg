@@ -7,6 +7,7 @@ signal finished(result: String)
 const UI := preload("res://ui/ui_style.gd")
 const CombatState := preload("res://combat/combat_state.gd")
 const UnitCard := preload("res://scenes/combat/unit_card.gd")
+const CombatTutorial := preload("res://scenes/combat/combat_tutorial.gd")
 
 const ENEMY_DELAY := 0.7
 
@@ -24,6 +25,7 @@ var _hint: Label
 var _log: RichTextLabel
 var _rewrite_btn: Button
 var _over := false
+var tutorial: Control = null   ## tutoriel pas à pas (premier combat, si le joueur l'active)
 
 
 func setup(encounter_id: String, party_ids: Array, seed_value: int = 0) -> void:
@@ -43,13 +45,28 @@ func setup(encounter_id: String, party_ids: Array, seed_value: int = 0) -> void:
 	state.logged.connect(_on_log)
 	_build_ui(enc)
 	_on_log("— %s —" % enc.get("name", encounter_id))
-	if TUTORIAL.has(encounter_id) and GameState.store.loop() == 1:
+	var guided: bool = encounter_id == "tuto_rodeur" and GameState.store.loop() == 1 and not auto_battle and Settings.combat_tutorial == ""
+	if TUTORIAL.has(encounter_id) and GameState.store.loop() == 1 and not guided:
 		for l in TUTORIAL[encounter_id]:
 			_on_log(l)
 	for l in _pending_log:
 		_on_log(l)
 	_rewrite_btn.visible = GameState.store.loop() >= 2  # la Réécriture n'existe qu'après la première régression
-	_next_turn.call_deferred()
+	if guided:
+		_refresh()  # grilles et frise visibles pendant l'introduction
+		start_tutorial()
+	else:
+		_next_turn.call_deferred()
+
+
+## Tutoriel pas à pas : le premier tour attend la fin de l'introduction (ou le refus du joueur).
+func start_tutorial() -> Control:
+	tutorial = CombatTutorial.new()
+	tutorial.targets = {"timeline": _timeline, "allies": _ally_grid, "enemies": _enemy_grid, "skills": _skills_box}
+	tutorial.intro_done.connect(func(): _next_turn.call_deferred(), CONNECT_ONE_SHOT)
+	tutorial.closed.connect(func(): tutorial = null)
+	add_child(tutorial)
+	return tutorial
 
 
 ## Fatigue (§3.1) et équipement : la lame du forgeron Gu, etc.
@@ -201,6 +218,8 @@ func _on_skill(sid: String) -> void:
 		_execute(sid, _actor)
 		return
 	_pending_skill = sid
+	if tutorial != null:
+		tutorial.notify("skill")
 	_hint.text = "Choisis une cible pour « %s » (cases dorées)." % state.skill(sid).get("name", sid)
 	_refresh()
 
@@ -216,9 +235,12 @@ func _on_card(uid: String) -> void:
 func _execute(sid: String, target) -> void:
 	state.take_snapshot()
 	_rewind_actor = _actor.uid
+	var by_player: bool = _actor.side == "ally" and not auto_battle
 	state.use_skill(_actor, sid, target)
 	_pending_skill = ""
 	_refresh()
+	if by_player and tutorial != null:
+		tutorial.notify("action")
 	_next_turn.call_deferred()
 
 

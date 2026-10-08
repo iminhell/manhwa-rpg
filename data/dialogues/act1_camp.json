@@ -16,7 +16,7 @@
     "bg": "yeouido_camp"
    },
    {
-    "if": "flag('seo_rupture')",
+    "if": "flag('seo_fuite')",
     "then": "visite_absente"
    },
    {
@@ -732,7 +732,8 @@
      "leave seo_yeon",
      "unflag pacte.seo_yeon",
      "flag seo_rupture",
-     "add align.protect -3"
+     "add align.protect -3",
+     "flag seo_fuite"
     ]
    },
    {

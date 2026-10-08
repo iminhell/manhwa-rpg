@@ -46,6 +46,14 @@ func _ready() -> void:
 	p3.toggled.connect(_set_option.bind("hide_pacte_p3"))
 	v.add_child(p3)
 
+	var tuto := CheckButton.new()
+	tuto.name = "TutorielCombat"
+	tuto.text = "Proposer le tutoriel de combat au premier combat d'une nouvelle partie"
+	tuto.add_theme_font_size_override("font_size", 18)
+	tuto.button_pressed = Settings.combat_tutorial == ""
+	tuto.toggled.connect(func(on: bool): _set_option("" if on else "off", "combat_tutorial"))
+	v.add_child(tuto)
+
 	var close := UI.button("Fermer", 24)
 	close.pressed.connect(_close)
 	v.add_child(close)

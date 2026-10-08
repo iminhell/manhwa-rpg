@@ -21,6 +21,7 @@
   "echo": "Échos",
   "ombre": "Tyran (Ombre)",
   "pacte": "Tyran (Pacte)",
+  "contrat": "Tyran (Contrat renégocié)",
   "devotion": "Dévotion",
   "mercenaire": "Mercenaire",
   "loup": "Loup",
@@ -889,7 +890,24 @@
     "refuge:seo_pacte_reste"
    ],
    "status": "ecrite",
-   "hint": "Forcer le contrat avec Seo-Yeon — Jour 4 au camp de Yeouido, exiger un tribut et l'obéissance de Seo-Yeon (ou, à l'Acte II, la racheter avec son collier). Puis l'appeler au Refuge. Rapport de force, sans intimité."
+   "hint": "Forcer le contrat avec Seo-Yeon — Jour 4 au camp de Yeouido, exiger un tribut et l'obéissance de Seo-Yeon (ou, à l'Acte II, la racheter avec son collier). Puis l'appeler au Refuge. Rapport de force, sans intimité ; le Pacte évolue ensuite selon tes choix (ambivalence, renégociation, Dévotion)."
+  },
+  {
+   "id": "seo_pacte_consentie",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "contrat",
+   "members": [
+    "seo_yeon"
+   ],
+   "title": "Contrat renégocié — Seo-Yeon",
+   "scene": "refuge:seo_pacte_renegocie",
+   "unlock": [
+    "refuge:seo_pacte_renegocie"
+   ],
+   "cg": "cg_seo_pacte_consentie",
+   "status": "ecrite",
+   "hint": "Sous contrat avec Seo-Yeon, lui laisser sa liberté soir après soir jusqu'à ce que l'ambivalence atteigne +30 et l'Affinité 40 : elle réécrit elle-même le contrat (mot d'arrêt, droit de partir). Signer ses conditions."
   },
   {
    "id": "xiaoyu_pacte",
@@ -906,7 +924,24 @@
     "refuge:xiaoyu_pacte_reste"
    ],
    "status": "ecrite",
-   "hint": "Forcer le contrat avec Xiaoyu — Acte III, pendant la mutinerie : jouer son Sceau et elle-même au mahjong. Puis l'appeler au Refuge. Rapport de force, sans intimité."
+   "hint": "Forcer le contrat avec Xiaoyu — Acte III, pendant la mutinerie : jouer son Sceau et elle-même au mahjong. Puis l'appeler au Refuge. Rapport de force, sans intimité ; le Pacte évolue ensuite selon tes choix (ambivalence, renégociation, Dévotion)."
+  },
+  {
+   "id": "xiaoyu_pacte_consentie",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "contrat",
+   "members": [
+    "xiaoyu"
+   ],
+   "title": "Contrat renégocié — Xiaoyu",
+   "scene": "refuge:xiaoyu_pacte_renegocie",
+   "unlock": [
+    "refuge:xiaoyu_pacte_renegocie"
+   ],
+   "cg": "cg_xiaoyu_pacte_consentie",
+   "status": "ecrite",
+   "hint": "Sous contrat avec Xiaoyu, lui laisser sa liberté soir après soir jusqu'à ce que l'ambivalence atteigne +30 et l'Affinité 40 : elle réécrit elle-même le contrat (mot d'arrêt, droit de partir). Signer ses conditions."
   },
   {
    "id": "haein_pacte",
@@ -923,7 +958,24 @@
     "refuge:haein_pacte_reste"
    ],
    "status": "ecrite",
-   "hint": "Forcer le contrat avec Hae-in — Acte III : prendre le Sceau de la Balance « et toi avec ». Puis l'appeler au Refuge. Rapport de force, sans intimité."
+   "hint": "Forcer le contrat avec Hae-in — Acte III : prendre le Sceau de la Balance « et toi avec ». Puis l'appeler au Refuge. Rapport de force, sans intimité ; le Pacte évolue ensuite selon tes choix (ambivalence, renégociation, Dévotion)."
+  },
+  {
+   "id": "haein_pacte_consentie",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "contrat",
+   "members": [
+    "hae_in"
+   ],
+   "title": "Contrat renégocié — Hae-in",
+   "scene": "refuge:haein_pacte_renegocie",
+   "unlock": [
+    "refuge:haein_pacte_renegocie"
+   ],
+   "cg": "cg_haein_pacte_consentie",
+   "status": "ecrite",
+   "hint": "Sous contrat avec Hae-in, lui laisser sa liberté soir après soir jusqu'à ce que l'ambivalence atteigne +30 et l'Affinité 40 : elle réécrit elle-même le contrat (mot d'arrêt, droit de partir). Signer ses conditions."
   },
   {
    "id": "simone_pacte",
@@ -940,7 +992,24 @@
     "refuge:simone_pacte_reste"
    ],
    "status": "ecrite",
-   "hint": "Forcer le contrat avec Simone — Jour 28, Protocole Cendre : prendre le code de force (Protéger ≤ −15). Puis l'appeler au Refuge. Rapport de force, sans intimité."
+   "hint": "Forcer le contrat avec Simone — Jour 28, Protocole Cendre : prendre le code de force (Protéger ≤ −15). Puis l'appeler au Refuge. Rapport de force, sans intimité ; le Pacte évolue ensuite selon tes choix (ambivalence, renégociation, Dévotion)."
+  },
+  {
+   "id": "simone_pacte_consentie",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "contrat",
+   "members": [
+    "simone"
+   ],
+   "title": "Contrat renégocié — Simone",
+   "scene": "refuge:simone_pacte_renegocie",
+   "unlock": [
+    "refuge:simone_pacte_renegocie"
+   ],
+   "cg": "cg_simone_pacte_consentie",
+   "status": "ecrite",
+   "hint": "Sous contrat avec Simone, lui laisser sa liberté soir après soir jusqu'à ce que l'ambivalence atteigne +30 et l'Affinité 40 : elle réécrit elle-même le contrat (mot d'arrêt, droit de partir). Signer ses conditions."
   },
   {
    "id": "nadia_pacte",
@@ -957,7 +1026,24 @@
     "refuge:nadia_pacte_ici"
    ],
    "status": "ecrite",
-   "hint": "Forcer le contrat avec Nadia — Jour 24 sur le toit de la Lotte : racheter son contrat à vie (300 ₩, Protéger ≤ −10). Puis l'appeler au Refuge. Rapport de force, sans intimité."
+   "hint": "Forcer le contrat avec Nadia — Jour 24 sur le toit de la Lotte : racheter son contrat à vie (300 ₩, Protéger ≤ −10). Puis l'appeler au Refuge. Rapport de force, sans intimité ; le Pacte évolue ensuite selon tes choix (ambivalence, renégociation, Dévotion)."
+  },
+  {
+   "id": "nadia_pacte_consentie",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "contrat",
+   "members": [
+    "nadia"
+   ],
+   "title": "Contrat renégocié — Nadia",
+   "scene": "refuge:nadia_pacte_renegocie",
+   "unlock": [
+    "refuge:nadia_pacte_renegocie"
+   ],
+   "cg": "cg_nadia_pacte_consentie",
+   "status": "ecrite",
+   "hint": "Sous contrat avec Nadia, lui laisser sa liberté soir après soir jusqu'à ce que l'ambivalence atteigne +30 et l'Affinité 40 : elle réécrit elle-même le contrat (mot d'arrêt, droit de partir). Signer ses conditions."
   },
   {
    "id": "aoi_pacte",
@@ -974,7 +1060,24 @@
     "refuge:aoi_dominee_chante"
    ],
    "status": "ecrite",
-   "hint": "Forcer le contrat avec Aoi — Acte II, au studio : la racheter à Mirae pour qu'elle chante pour toi. Puis l'appeler au Refuge. Rapport de force, sans intimité."
+   "hint": "Forcer le contrat avec Aoi — Acte II, au studio : la racheter à Mirae pour qu'elle chante pour toi. Puis l'appeler au Refuge. Rapport de force, sans intimité ; le Pacte évolue ensuite selon tes choix (ambivalence, renégociation, Dévotion)."
+  },
+  {
+   "id": "aoi_pacte_consentie",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "contrat",
+   "members": [
+    "aoi"
+   ],
+   "title": "Contrat renégocié — Aoi",
+   "scene": "refuge:aoi_pacte_renegocie",
+   "unlock": [
+    "refuge:aoi_pacte_renegocie"
+   ],
+   "cg": "cg_aoi_pacte_consentie",
+   "status": "ecrite",
+   "hint": "Sous contrat avec Aoi, lui laisser sa liberté soir après soir jusqu'à ce que l'ambivalence atteigne +30 et l'Affinité 40 : elle réécrit elle-même le contrat (mot d'arrêt, droit de partir). Signer ses conditions."
   },
   {
    "id": "seo_devotion",
@@ -1269,7 +1372,7 @@
     "refuge_groupe:paire_ryeon_nadia"
    ],
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Ryeon et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat)."
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Ryeon et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord."
   },
   {
    "id": "paire_simone_nadia",
@@ -1286,7 +1389,7 @@
     "refuge_groupe:paire_simone_nadia"
    ],
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Simone et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat)."
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Simone et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord."
   },
   {
    "id": "paire_hae_in_xiaoyu",
@@ -1303,7 +1406,7 @@
     "refuge_groupe:paire_hae_in_xiaoyu"
    ],
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Hae-in et Xiaoyu, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat)."
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Hae-in et Xiaoyu, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord."
   },
   {
    "id": "paire_seo_yeon_minh_anh",
@@ -1320,7 +1423,7 @@
     "refuge_groupe:paire_seo_yeon_minh_anh"
    ],
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Seo-Yeon et Minh-Anh, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat)."
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Seo-Yeon et Minh-Anh, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord."
   },
   {
    "id": "paire_maricel_xiaoyu",
@@ -1337,7 +1440,7 @@
     "refuge_groupe:paire_maricel_xiaoyu"
    ],
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Maricel et Xiaoyu, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat)."
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Maricel et Xiaoyu, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord."
   },
   {
    "id": "paire_minh_anh_haneul",
@@ -1354,7 +1457,7 @@
     "refuge_groupe:paire_minh_anh_haneul"
    ],
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Minh-Anh et Haneul, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat)."
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Minh-Anh et Haneul, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord."
   },
   {
    "id": "paire_simone_ryeon",
@@ -1371,7 +1474,7 @@
     "refuge_groupe:paire_simone_ryeon"
    ],
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Simone et Ryeon, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat)."
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Simone et Ryeon, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord."
   },
   {
    "id": "paire_aoi_haneul",
@@ -1388,7 +1491,7 @@
     "refuge_groupe:paire_aoi_haneul"
    ],
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Aoi et Haneul, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat)."
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Aoi et Haneul, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord."
   },
   {
    "id": "paire_hae_in_simone",
@@ -1405,7 +1508,7 @@
     "refuge_groupe:paire_hae_in_simone"
    ],
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Hae-in et Simone, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat)."
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Hae-in et Simone, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord."
   },
   {
    "id": "paire_seo_yeon_aoi",
@@ -1422,7 +1525,7 @@
     "refuge_groupe:paire_seo_yeon_aoi"
    ],
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Seo-Yeon et Aoi, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat)."
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Seo-Yeon et Aoi, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord."
   },
   {
    "id": "paire_seo_yeon_haneul",
@@ -1435,7 +1538,7 @@
    ],
    "title": "Leçon d'anatomie, deuxième partie : Seo-Yeon et Haneul",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Seo-Yeon et Haneul, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Seo-Yeon et Haneul, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_seo_yeon_haneul",
    "unlock": [
     "refuge_groupe:paire_seo_yeon_haneul"
@@ -1452,7 +1555,7 @@
    ],
    "title": "Contrebande médicale : Seo-Yeon et Maricel",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Seo-Yeon et Maricel, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Seo-Yeon et Maricel, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_seo_yeon_maricel",
    "unlock": [
     "refuge_groupe:paire_seo_yeon_maricel"
@@ -1469,7 +1572,7 @@
    ],
    "title": "Garde de nuit : Seo-Yeon et Ryeon",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Seo-Yeon et Ryeon, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Seo-Yeon et Ryeon, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_seo_yeon_ryeon",
    "unlock": [
     "refuge_groupe:paire_seo_yeon_ryeon"
@@ -1486,7 +1589,7 @@
    ],
    "title": "Ordonnance de luxe : Seo-Yeon et Xiaoyu",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Seo-Yeon et Xiaoyu, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Seo-Yeon et Xiaoyu, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_seo_yeon_xiaoyu",
    "unlock": [
     "refuge_groupe:paire_seo_yeon_xiaoyu"
@@ -1503,7 +1606,7 @@
    ],
    "title": "Bilan de santé : Seo-Yeon et Hae-in",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Seo-Yeon et Hae-in, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Seo-Yeon et Hae-in, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_seo_yeon_hae_in",
    "unlock": [
     "refuge_groupe:paire_seo_yeon_hae_in"
@@ -1520,7 +1623,7 @@
    ],
    "title": "Point de suture : Seo-Yeon et Nadia",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Seo-Yeon et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Seo-Yeon et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_seo_yeon_nadia",
    "unlock": [
     "refuge_groupe:paire_seo_yeon_nadia"
@@ -1537,7 +1640,7 @@
    ],
    "title": "Visite réglementaire : Seo-Yeon et Simone",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Seo-Yeon et Simone, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Seo-Yeon et Simone, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_seo_yeon_simone",
    "unlock": [
     "refuge_groupe:paire_seo_yeon_simone"
@@ -1554,7 +1657,7 @@
    ],
    "title": "La porte et les tunnels : Haneul et Maricel",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Haneul et Maricel, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Haneul et Maricel, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_haneul_maricel",
    "unlock": [
     "refuge_groupe:paire_haneul_maricel"
@@ -1571,7 +1674,7 @@
    ],
    "title": "Deux héritières : Haneul et Ryeon",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Haneul et Ryeon, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Haneul et Ryeon, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_haneul_ryeon",
    "unlock": [
     "refuge_groupe:paire_haneul_ryeon"
@@ -1588,7 +1691,7 @@
    ],
    "title": "Le pari de l'Héritière : Haneul et Xiaoyu",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Haneul et Xiaoyu, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Haneul et Xiaoyu, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_haneul_xiaoyu",
    "unlock": [
     "refuge_groupe:paire_haneul_xiaoyu"
@@ -1605,7 +1708,7 @@
    ],
    "title": "Audit : Haneul et Hae-in",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Haneul et Hae-in, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Haneul et Hae-in, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_haneul_hae_in",
    "unlock": [
     "refuge_groupe:paire_haneul_hae_in"
@@ -1622,7 +1725,7 @@
    ],
    "title": "La lunette et le Registre : Haneul et Nadia",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Haneul et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Haneul et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_haneul_nadia",
    "unlock": [
     "refuge_groupe:paire_haneul_nadia"
@@ -1639,7 +1742,7 @@
    ],
    "title": "Briefing : Haneul et Simone",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Haneul et Simone, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Haneul et Simone, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_haneul_simone",
    "unlock": [
     "refuge_groupe:paire_haneul_simone"
@@ -1656,7 +1759,7 @@
    ],
    "title": "Après le karaoké : Aoi et Maricel",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Aoi et Maricel, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Aoi et Maricel, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_aoi_maricel",
    "unlock": [
     "refuge_groupe:paire_aoi_maricel"
@@ -1673,7 +1776,7 @@
    ],
    "title": "Le ruban et la scène : Aoi et Ryeon",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Aoi et Ryeon, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Aoi et Ryeon, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_aoi_ryeon",
    "unlock": [
     "refuge_groupe:paire_aoi_ryeon"
@@ -1690,7 +1793,7 @@
    ],
    "title": "Contrat d'artiste : Aoi et Xiaoyu",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Aoi et Xiaoyu, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Aoi et Xiaoyu, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_aoi_xiaoyu",
    "unlock": [
     "refuge_groupe:paire_aoi_xiaoyu"
@@ -1707,7 +1810,7 @@
    ],
    "title": "Sans caméra : Aoi et Hae-in",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Aoi et Hae-in, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Aoi et Hae-in, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_aoi_hae_in",
    "unlock": [
     "refuge_groupe:paire_aoi_hae_in"
@@ -1724,7 +1827,7 @@
    ],
    "title": "Silence radio : Aoi et Nadia",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Aoi et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Aoi et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_aoi_nadia",
    "unlock": [
     "refuge_groupe:paire_aoi_nadia"
@@ -1741,7 +1844,7 @@
    ],
    "title": "Permission : Aoi et Simone",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Aoi et Simone, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Aoi et Simone, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_aoi_simone",
    "unlock": [
     "refuge_groupe:paire_aoi_simone"
@@ -1758,7 +1861,7 @@
    ],
    "title": "Fréquences : Aoi et Minh-Anh",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Aoi et Minh-Anh, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Aoi et Minh-Anh, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_aoi_minh_anh",
    "unlock": [
     "refuge_groupe:paire_aoi_minh_anh"
@@ -1775,7 +1878,7 @@
    ],
    "title": "Le couteau et le sabre : Maricel et Ryeon",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Maricel et Ryeon, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Maricel et Ryeon, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_maricel_ryeon",
    "unlock": [
     "refuge_groupe:paire_maricel_ryeon"
@@ -1792,7 +1895,7 @@
    ],
    "title": "Redistribution : Maricel et Hae-in",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Maricel et Hae-in, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Maricel et Hae-in, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_maricel_hae_in",
    "unlock": [
     "refuge_groupe:paire_maricel_hae_in"
@@ -1809,7 +1912,7 @@
    ],
    "title": "Les oubliées : Maricel et Nadia",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Maricel et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Maricel et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_maricel_nadia",
    "unlock": [
     "refuge_groupe:paire_maricel_nadia"
@@ -1826,7 +1929,7 @@
    ],
    "title": "Reddition : Maricel et Simone",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Maricel et Simone, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Maricel et Simone, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_maricel_simone",
    "unlock": [
     "refuge_groupe:paire_maricel_simone"
@@ -1843,7 +1946,7 @@
    ],
    "title": "Échantillons : Maricel et Minh-Anh",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Maricel et Minh-Anh, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Maricel et Minh-Anh, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_maricel_minh_anh",
    "unlock": [
     "refuge_groupe:paire_maricel_minh_anh"
@@ -1860,7 +1963,7 @@
    ],
    "title": "Alliance des Maisons : Ryeon et Xiaoyu",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Ryeon et Xiaoyu, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Ryeon et Xiaoyu, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_ryeon_xiaoyu",
    "unlock": [
     "refuge_groupe:paire_ryeon_xiaoyu"
@@ -1877,7 +1980,7 @@
    ],
    "title": "Revanche : Ryeon et Hae-in",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Ryeon et Hae-in, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Ryeon et Hae-in, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_ryeon_hae_in",
    "unlock": [
     "refuge_groupe:paire_ryeon_hae_in"
@@ -1894,7 +1997,7 @@
    ],
    "title": "Expérience de contrôle : Ryeon et Minh-Anh",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Ryeon et Minh-Anh, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Ryeon et Minh-Anh, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_ryeon_minh_anh",
    "unlock": [
     "refuge_groupe:paire_ryeon_minh_anh"
@@ -1911,7 +2014,7 @@
    ],
    "title": "Contrat rompu : Xiaoyu et Nadia",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Xiaoyu et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Xiaoyu et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_xiaoyu_nadia",
    "unlock": [
     "refuge_groupe:paire_xiaoyu_nadia"
@@ -1928,7 +2031,7 @@
    ],
    "title": "Cessez-le-feu : Xiaoyu et Simone",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Xiaoyu et Simone, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Xiaoyu et Simone, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_xiaoyu_simone",
    "unlock": [
     "refuge_groupe:paire_xiaoyu_simone"
@@ -1945,7 +2048,7 @@
    ],
    "title": "Inspection : Xiaoyu et Minh-Anh",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Xiaoyu et Minh-Anh, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Xiaoyu et Minh-Anh, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_xiaoyu_minh_anh",
    "unlock": [
     "refuge_groupe:paire_xiaoyu_minh_anh"
@@ -1962,7 +2065,7 @@
    ],
    "title": "Garde rapprochée : Hae-in et Nadia",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Hae-in et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Hae-in et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_hae_in_nadia",
    "unlock": [
     "refuge_groupe:paire_hae_in_nadia"
@@ -1979,7 +2082,7 @@
    ],
    "title": "Contrat de travail : Hae-in et Minh-Anh",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Hae-in et Minh-Anh, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Hae-in et Minh-Anh, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_hae_in_minh_anh",
    "unlock": [
     "refuge_groupe:paire_hae_in_minh_anh"
@@ -1996,7 +2099,7 @@
    ],
    "title": "Balistique : Nadia et Minh-Anh",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Nadia et Minh-Anh, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Nadia et Minh-Anh, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_nadia_minh_anh",
    "unlock": [
     "refuge_groupe:paire_nadia_minh_anh"
@@ -2013,7 +2116,7 @@
    ],
    "title": "Le Silo, la nuit : Simone et Minh-Anh",
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Simone et Minh-Anh, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Simone et Minh-Anh, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "scene": "refuge_groupe:paire_simone_minh_anh",
    "unlock": [
     "refuge_groupe:paire_simone_minh_anh"
@@ -2035,7 +2138,7 @@
     "refuge_groupe:nuit_des_trois"
    ],
    "status": "ecrite",
-   "hint": "Affinité ≥ 20 avec Seo-Yeon, Aoi et Maricel, les trois dans le groupe, Dortoir construit. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Affinité ≥ 20 avec Seo-Yeon, Aoi et Maricel, les trois dans le groupe, Dortoir construit. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "cg": "cg_nuit_des_trois"
   },
   {
@@ -2054,7 +2157,7 @@
     "refuge_groupe:trio_trois_lames"
    ],
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Ryeon, Simone et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat)."
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Ryeon, Simone et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord."
   },
   {
    "id": "trio_reines",
@@ -2072,7 +2175,7 @@
     "refuge_groupe:trio_reines"
    ],
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Hae-in, Xiaoyu et Ryeon, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat)."
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Hae-in, Xiaoyu et Ryeon, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord."
   },
   {
    "id": "trio_invisibles",
@@ -2090,7 +2193,7 @@
     "refuge_groupe:trio_invisibles"
    ],
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Aoi, Maricel et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat)."
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Aoi, Maricel et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord."
   },
   {
    "id": "trio_filles_fleuve",
@@ -2108,7 +2211,7 @@
     "refuge_groupe:trio_filles_fleuve"
    ],
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Xiaoyu, Maricel et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat)."
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Xiaoyu, Maricel et Nadia, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord."
   },
   {
    "id": "trio_laboratoire",
@@ -2126,7 +2229,7 @@
     "refuge_groupe:trio_laboratoire"
    ],
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Minh-Anh, Seo-Yeon et Haneul, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat)."
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Minh-Anh, Seo-Yeon et Haneul, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord."
   },
   {
    "id": "trio_sceptres",
@@ -2144,7 +2247,7 @@
     "refuge_groupe:trio_sceptres"
    ],
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Hae-in, Minh-Anh et Xiaoyu, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat)."
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Hae-in, Minh-Anh et Xiaoyu, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord."
   },
   {
    "id": "trio_gardiennes",
@@ -2162,7 +2265,7 @@
     "refuge_groupe:trio_gardiennes"
    ],
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Haneul, Ryeon et Aoi, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat)."
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Haneul, Ryeon et Aoi, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord."
   },
   {
    "id": "trio_garde_fer",
@@ -2180,7 +2283,7 @@
     "refuge_groupe:trio_garde_fer"
    ],
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Simone, Ryeon et Seo-Yeon, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat)."
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Simone, Ryeon et Seo-Yeon, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord."
   },
   {
    "id": "trio_trois_verites",
@@ -2198,7 +2301,7 @@
     "refuge_groupe:trio_trois_verites"
    ],
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Seo-Yeon, Hae-in et Haneul, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge — seulement à partir de la deuxième récurrence. Aucune ne doit être sous contrat forcé (Pacte ou rachat)."
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Seo-Yeon, Hae-in et Haneul, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge — seulement à partir de la deuxième récurrence. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord."
   },
   {
    "id": "reines_lames",
@@ -2217,7 +2320,7 @@
     "refuge_groupe:reines_lames"
    ],
    "status": "ecrite",
-   "hint": "Affinité ≥ 20 avec Hae-in, Xiaoyu, Ryeon et Simone, toutes dans le groupe, et avoir réconcilié les Reines au Mahjong (scène du Refuge). Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Affinité ≥ 20 avec Hae-in, Xiaoyu, Ryeon et Simone, toutes dans le groupe, et avoir réconcilié les Reines au Mahjong (scène du Refuge). Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "cg": "cg_reines_lames"
   },
   {
@@ -2237,7 +2340,7 @@
     "refuge_groupe:quatuor_quatre_fins"
    ],
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Aoi, Seo-Yeon, Maricel et Ryeon, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge, à partir du jour 18. Aucune ne doit être sous contrat forcé (Pacte ou rachat)."
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Aoi, Seo-Yeon, Maricel et Ryeon, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge, à partir du jour 18. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord."
   },
   {
    "id": "quatuor_loin_de_chez_soi",
@@ -2256,7 +2359,7 @@
     "refuge_groupe:quatuor_loin_de_chez_soi"
    ],
    "status": "amorce",
-   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Simone, Nadia, Maricel et Aoi, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Aucune ne doit être sous contrat forcé (Pacte ou rachat)."
+   "hint": "Avoir passé une nuit (Lien, Ombre, Mercenaire ou Dévotion) avec Simone, Nadia, Maricel et Aoi, Affinité ≥ 50 pour chacune, Dortoir construit, toutes dans le groupe ; la scène est alors proposée au Refuge. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord."
   },
   {
    "id": "constellation_cinq",
@@ -2270,7 +2373,7 @@
     "refuge_groupe:constellation_cinq"
    ],
    "status": "amorce",
-   "hint": "Cinq héroïnes du groupe à Affinité ≥ 50, Dortoir construit. Aucune ne doit être sous contrat forcé (Pacte ou rachat)."
+   "hint": "Cinq héroïnes du groupe à Affinité ≥ 50, Dortoir construit. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord."
   },
   {
    "id": "nuit_maison",
@@ -2284,7 +2387,7 @@
     "refuge_groupe:nuit_maison"
    ],
    "status": "ecrite",
-   "hint": "Six héroïnes du groupe à Affinité ≥ 30, Dortoir construit. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Six héroïnes du groupe à Affinité ≥ 30, Dortoir construit. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "cg": "cg_nuit_maison"
   },
   {
@@ -2294,7 +2397,7 @@
    "route": "groupe",
    "title": "La Constellation de sept",
    "status": "amorce",
-   "hint": "Sept héroïnes du groupe à Affinité ≥ 55, Dortoir construit. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Sept héroïnes du groupe à Affinité ≥ 55, Dortoir construit. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "members": [],
    "scene": "refuge_groupe:constellation_sept",
    "unlock": [
@@ -2313,7 +2416,7 @@
     "refuge_groupe:constellation_huit"
    ],
    "status": "amorce",
-   "hint": "Huit héroïnes du groupe à Affinité ≥ 60, Dortoir construit. Aucune ne doit être sous contrat forcé (Pacte ou rachat)."
+   "hint": "Huit héroïnes du groupe à Affinité ≥ 60, Dortoir construit. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord."
   },
   {
    "id": "constellation_neuf",
@@ -2322,7 +2425,7 @@
    "route": "groupe",
    "title": "La Constellation de neuf",
    "status": "amorce",
-   "hint": "Neuf héroïnes du groupe à Affinité ≥ 65, Dortoir construit. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Neuf héroïnes du groupe à Affinité ≥ 65, Dortoir construit. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "members": [],
    "scene": "refuge_groupe:constellation_neuf",
    "unlock": [
@@ -2341,7 +2444,7 @@
     "refuge_groupe:portrait_dix"
    ],
    "status": "ecrite",
-   "hint": "Les dix héroïnes dans le groupe, toutes à Affinité ≥ 30. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Les dix héroïnes dans le groupe, toutes à Affinité ≥ 30. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "cg": "cg_portrait_dix"
   },
   {
@@ -2365,7 +2468,7 @@
    "route": "mercenaire",
    "title": "Le Contrat collectif",
    "status": "amorce",
-   "hint": "Voie du Mercenaire (400 ₩ en poche) avec six héroïnes du groupe à Affinité ≥ 50, Dortoir construit. Aucune ne doit être sous contrat forcé (Pacte ou rachat).",
+   "hint": "Voie du Mercenaire (400 ₩ en poche) avec six héroïnes du groupe à Affinité ≥ 50, Dortoir construit. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
    "members": [],
    "scene": "refuge_groupe:harem_mercenaire",
    "unlock": [

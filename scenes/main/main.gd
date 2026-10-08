@@ -468,6 +468,17 @@ func _capture_tour() -> void:
 	await _snap("12_guide")
 	for m in get_tree().get_nodes_in_group("modal"):
 		m.queue_free()
+	var tuto_backup: String = Settings.combat_tutorial
+	Settings.combat_tutorial = ""
+	_clear_overlay()
+	var cb = _start_combat("tuto_rodeur", func(_r): pass)
+	await _frames()
+	cb.tutorial.find_child("Activer", true, false).pressed.emit()
+	cb.tutorial.find_child("Suivant", true, false).pressed.emit()
+	await _snap("13_tutoriel_combat")
+	cb.queue_free()
+	Settings.combat_tutorial = tuto_backup
+	Settings.save_settings()
 	_clear_overlay()
 	_start_combat_test()
 	await _snap("05_combat")
@@ -696,6 +707,54 @@ func _ui_test() -> void:
 	_ui_check(g._replay == null and g._panel.visible, "galerie : la relecture terminée ramène à la galerie")
 	_ui_check(GameState.store.money() == money_before and GameState.store.flags.size() == flags_before, "galerie : la relecture ne touche pas à la partie")
 	g.queue_free()
+
+	# 4. Tutoriel de combat : choix explicite, puis étapes pas à pas (compétence, cible, Suivant)
+	var tuto_backup: String = Settings.combat_tutorial
+	_clear_overlay()
+	GameState.new_game()
+	Settings.combat_tutorial = ""
+	var cb = _start_combat("tuto_rodeur", func(_r): pass)
+	await _frames()
+	_ui_check(cb.tutorial != null and cb.tutorial.find_child("Activer", true, false) != null and cb.tutorial.find_child("Ignorer", true, false) != null,
+		"combat : tutoriel proposé (Activer / Ignorer)")
+	cb.tutorial.find_child("Activer", true, false).pressed.emit()
+	await _frames()
+	var t = cb.tutorial
+	_ui_check(t.current_id() == "frise" and Settings.combat_tutorial == "on", "tutoriel : étape 1, la frise")
+	t.find_child("Suivant", true, false).pressed.emit()
+	t.find_child("Suivant", true, false).pressed.emit()
+	_ui_check(t.current_id() == "competence", "tutoriel : attend le choix d'une compétence")
+	for i in 600:
+		await get_tree().process_frame
+		if cb._actor != null and cb._actor.side == "ally":
+			break
+	var sid := ""
+	for s in cb._actor.skills:
+		if cb.state.needs_target_choice(s) and cb.state.can_use(cb._actor, s):
+			sid = s
+			break
+	cb._on_skill(sid)
+	_ui_check(t.current_id() == "cible", "tutoriel : compétence choisie → choisir une cible")
+	cb._on_card(cb.state.valid_targets(cb._actor, sid)[0].uid)
+	await _frames()
+	_ui_check(t.current_id() == "pressentiment", "tutoriel : action jouée → Pressentiment")
+	for i in 3:
+		t.find_child("Suivant", true, false).pressed.emit()
+	await _frames()
+	_ui_check(cb.tutorial == null and not is_instance_valid(t) or t.is_queued_for_deletion(), "tutoriel : terminé, le combat continue")
+	cb.queue_free()
+	Settings.combat_tutorial = ""
+	var cb2 = _start_combat("tuto_rodeur", func(_r): pass)
+	await _frames()
+	cb2.tutorial.find_child("Ignorer", true, false).pressed.emit()
+	for i in 600:
+		await get_tree().process_frame
+		if cb2._actor != null:
+			break
+	_ui_check(cb2.tutorial == null and Settings.combat_tutorial == "off" and cb2._actor != null, "tutoriel : « Ignorer » lance le combat sans aide")
+	cb2.queue_free()
+	Settings.combat_tutorial = tuto_backup
+	Settings.save_settings()
 
 	# Restauration de la méta-sauvegarde et de l'emplacement 3 du joueur
 	SaveManager.meta = meta_backup

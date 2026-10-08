@@ -58,8 +58,15 @@
   "elias": {
    "male": true,
    "body": "1boy, solo, handsome, young adult male, adult, tall, muscular male, broad shoulders, imposing, charismatic",
-   "look": "mixed-race, tan skin, light brown skin, handsome face, sharp jawline, sharp eyes, cold gaze, black hair, short curly hair, neat haircut, faded sides, light stubble, hazel eyes, thick eyebrows, scar across eyebrow",
-   "outfit": "long black coat, black trench coat, (high collar:1.1), tactical military greatcoat, leather belts, buckles, black tactical vest underneath, black gloves, black cargo pants, combat boots, sheathed sword at hip"
+   "look": "mixed-race, caramel skin, tan skin, light brown skin, handsome face, sharp jawline, sharp eyes, cold gaze, black hair, short curly hair, neat haircut, faded sides, light stubble, hazel eyes, thick eyebrows, scar across eyebrow",
+   "outfit": "long black coat, black trench coat, (high collar:1.1), tactical military greatcoat, leather belts, buckles, black tactical vest underneath, black gloves, black cargo pants, combat boots, sheathed sword at hip",
+   "expressions": {
+    "neutral": "confident smirk, closed mouth, eyes open, intense gaze, composed expression",
+    "joy": "confident smile, eyes open, warm gaze"
+   },
+   "drop_tags": [
+    "sweaty skin"
+   ]
   },
   "seo_yeon": {
    "body": "1girl, solo, mature female, petite, slender, medium breasts, wide hips, soft body",

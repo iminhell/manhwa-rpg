@@ -88,6 +88,15 @@ func test_dialogue_runner() -> void:
 	check(step["kind"] == "line" and step["text"] == "Après", "reprise après événement")
 	check(r.next()["kind"] == "end", "fin")
 	check(entered == ["t:a", "t:b", "t:c"], "entrée de chaque bloc signalée (déblocage de la galerie)")
+	var wd := {"id": "w", "start": "a", "blocks": {"a": [{"t": "toujours"}, {"t": "si x", "when": "flag('x')"}, {"t": "fin"}]}}
+	var ws := StateStore.new()
+	var wr := DialogueRunner.new(ws)
+	wr.start(wd)
+	check(wr.next()["text"] == "toujours" and wr.next()["text"] == "fin", "étape « when » sautée si fausse")
+	ws.set_flag("x")
+	wr.start(wd)
+	wr.next()
+	check(wr.next()["text"] == "si x", "étape « when » jouée si vraie")
 	check(DialogueRunner.validate({"start": "a", "blocks": {"a": [{"goto": "zz"}]}}).size() == 1, "validate détecte un bloc inconnu")
 	# Passages P3 : joués sur place, sautés s'ils sont vides ou masqués
 	var slot_dlg := {"id": "p", "start": "a", "blocks": {"a": [{"t": "avant"},
@@ -616,6 +625,42 @@ func test_refuge_voies() -> void:
 	s.apply_effects(["flag aoi_dominee", "set repos.aoi 3", "flag refuge.dortoir", "set aff.aoi 40", "flag aoi_nuit"])
 	seen = _play(s, dlg, "aoi")
 	check(seen.size() > 0 and seen[0].begins_with("Vous voulez que je chante") and not s.has_flag("aoi_devotion"), "Pacte : Aoi dominée, le contrat est vérifié en premier")
+	# Pacte évolutif : ambivalence → contrat renégocié par l'héroïne → nuit consentie → moments ordinaires
+	for pre in ["seo", "xiaoyu", "haein", "simone", "nadia", "aoi"]:
+		var cid: String = {"seo": "seo_yeon", "haein": "hae_in"}.get(pre, pre)
+		var pflag: String = {"nadia": "nadia_pactisee", "aoi": "aoi_dominee"}.get(pre, "pacte." + cid)
+		s = StateStore.new()
+		s.apply_effects(["flag " + pflag, "set ambivalence.%s 35" % cid, "set aff.%s 45" % cid, "set repos.%s 1" % cid, "flag refuge.dortoir"])
+		_play(s, dlg, cid)
+		check(s.has_flag(pre + "_pacte_accepte") and s.has_flag({"seo": "seo_nuit", "haein": "haein_nuit"}.get(pre, cid + "_nuit")),
+			"Pacte : %s renégocie le contrat, nuit consentie" % cid)
+		var r2 := DialogueRunner.new(s)
+		r2.start(dlg, cid)
+		var k2 := r2.next()
+		while k2.get("kind", "") != "line" and k2.get("kind", "") != "choice" and k2.get("kind", "") != "end":
+			k2 = r2.next()
+		check(not r2.block.contains("pacte") and not r2.block.contains("dominee"), "Pacte : %s, contrat renégocié → moments ordinaires (%s)" % [cid, r2.block])
+	s = StateStore.new()
+	s.apply_effects(["flag pacte.seo_yeon", "set ambivalence.seo_yeon 10"])
+	var seen3 := _play(s, dlg, "seo_pacte")
+	check(seen3.any(func(t): return t.begins_with("Pacte de Vassalité — Ambivalence : elle ne sait plus")) and not seen3.any(func(t): return t.contains("elle te hait et elle a peur")),
+		"Pacte : le texte du Registre suit l'ambivalence")
+	# Scènes à plusieurs : jamais verrouillées ; héroïne sous contrat imposé → variante sans intimité
+	var grp: Dictionary = DataDB.load_dir("res://data/dialogues")["refuge_groupe"]
+	s = StateStore.new()
+	s.apply_effects(["flag pacte.seo_yeon", "join seo_yeon", "join aoi"])
+	var r3 := DialogueRunner.new(s)
+	r3.start(grp, "paire_seo_yeon_aoi")
+	var first := r3.next()
+	while first.get("kind", "") != "line" and first.get("kind", "") != "end":
+		first = r3.next()
+	check(r3.block == "pacte_groupe_seo_yeon" and first.get("kind", "") == "line", "Groupe : variante de Pacte (Seo-Yeon sous contrat imposé)")
+	s.apply_effects(["flag seo_pacte_accepte"])
+	r3.start(grp, "paire_seo_yeon_aoi")
+	first = r3.next()
+	while first.get("kind", "") != "line" and first.get("kind", "") != "end":
+		first = r3.next()
+	check(r3.block == "paire_seo_yeon_aoi", "Groupe : contrat renégocié, scène normale")
 	# Nuit de Pacte : rapport de force, sans scène intime ni passage P3
 	for blk in ["seo_pacte_reste", "xiaoyu_pacte_reste", "haein_pacte_reste", "nadia_pacte_ici", "simone_pacte_reste"]:
 		var has_slot := false

@@ -638,7 +638,7 @@
     ]
    },
    {
-    "goto": "cendre_simone_rejoint"
+    "goto": "cendre_code"
    }
   ],
   "cendre_laisser": [
@@ -1161,6 +1161,65 @@
    },
    {
     "end": true
+   }
+  ],
+  "cendre_code": [
+   {
+    "s": "narrator",
+    "t": "Sur l'écran, le compte à rebours de l'extérieur tombe sous la minute. Simone te tend le boîtier du déclencheur, et le code, d'une voix sans timbre. C'est ta main sur le pupitre, maintenant."
+   },
+   {
+    "choice": [
+     {
+      "t": "Taper le code d'annulation.",
+      "goto": "cendre_code_annule",
+      "fx": [
+       "add ambivalence.simone 10",
+       "add align.protect 2"
+      ]
+     },
+     {
+      "t": "Suspendre la frappe, et garder le code.",
+      "goto": "cendre_code_garde",
+      "fx": [
+       "add align.protect -3",
+       "add ambivalence.simone -5"
+      ]
+     }
+    ]
+   }
+  ],
+  "cendre_code_annule": [
+   {
+    "s": "narrator",
+    "t": "Le compte à rebours s'arrête à 00:00:09. Un message s'affiche, en anglais puis en coréen : « Protocole annulé par l'autorité de tir. » Personne, dehors, ne sait que l'autorité de tir porte un manteau noir."
+   },
+   {
+    "s": "simone",
+    "t": "Tu l'as annulé. Tu aurais pu t'en servir. …Je note.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "goto": "cendre_simone_rejoint"
+   }
+  ],
+  "cendre_code_garde": [
+   {
+    "s": "narrator",
+    "t": "Tu suspends la frappe, sans l'annuler. Le code reste dans ta poche, la frappe reste armée, et l'extérieur reçoit un message qu'il n'a jamais reçu : « Autorité de tir transférée. »"
+   },
+   {
+    "s": "registre",
+    "t": "PROTOCOLE CENDRE — suspendu. Tu détiens le code. Séoul vit sous ton doigt."
+   },
+   {
+    "fx": [
+     "flag cendre_code_garde"
+    ]
+   },
+   {
+    "goto": "cendre_simone_rejoint"
    }
   ]
  }

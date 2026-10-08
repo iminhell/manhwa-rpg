@@ -21,8 +21,8 @@
    "text": "Park Seo-Yeon est ta vassale, liée par un Pacte qu'elle hait."
   },
   {
-   "if": "flag('seo_rupture')",
-   "text": "Seo-Yeon a brisé le Pacte et repris sa liberté. Elle ne te doit plus rien."
+   "if": "flag('seo_fuite')",
+   "text": "Seo-Yeon a brisé le Pacte et fui vers le Sanctuaire avec les blessés : son Seigneur n'était pas là quand ses vassaux mouraient."
   },
   {
    "if": "flag('seo_vassale_cheonma') and not flag('seo_morte')",
@@ -159,6 +159,10 @@
   {
    "if": "flag('tour_ouverte')",
    "text": "L'étage 1 est ouvert. Le compte à rebours a commencé."
+  },
+  {
+   "if": "flag('seo_rupture') and not flag('seo_fuite')",
+   "text": "Seo-Yeon a invoqué la clause de rupture au Refuge. Elle reste soigner les tiens, mais ne te doit plus rien."
   }
  ],
  "act2": [
@@ -815,7 +819,7 @@
    "text": "Seo-Yeon a renouvelé son Pacte librement, sans la clause de Service. Dévotion."
   },
   {
-   "if": "flag('seo_rupture')",
+   "if": "flag('seo_rupture') and not flag('seo_fuite')",
    "text": "Seo-Yeon a invoqué la clause de rupture et payé le prix. Elle ne te doit plus rien."
   },
   {
@@ -853,6 +857,14 @@
   {
    "if": "flag('issue.seo_yeon_pacte') or flag('issue.hae_in_pacte') or flag('issue.xiaoyu_pacte') or flag('issue.simone_pacte') or flag('issue.nadia_pacte') or flag('issue.aoi_pacte')",
    "text": "Certaines Fins d'héroïnes se sont écrites sous contrat forcé : une obéissance parfaite, et rien d'autre."
+  },
+  {
+   "if": "flag('cendre_code_garde')",
+   "text": "Tu détiens le code du Protocole Cendre. Dehors, on ne sait pas qui tu es ; on sait seulement qu'il faut te craindre."
+  },
+  {
+   "if": "flag('seo_pacte_accepte') or flag('xiaoyu_pacte_accepte') or flag('haein_pacte_accepte') or flag('simone_pacte_accepte') or flag('nadia_pacte_accepte') or flag('aoi_pacte_accepte')",
+   "text": "Des contrats imposés ont été réécrits par celles qui les portaient : un mot d'arrêt, le droit de partir, et le choix de rester."
   }
  ]
 }

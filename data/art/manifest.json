@@ -1968,6 +1968,90 @@
       "out": "assets/cg/cg_aoi_devotion.png",
       "size": "landscape_16_9",
       "scene": "refuge:aoi_devotion_nuit"
+    },
+    {
+      "id": "cg_seo_pacte_consentie",
+      "kind": "cg",
+      "chars": [
+        "seo_yeon",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "seoyeon_park kneeling by her own choice on a bed, placing the chain of her glowing red glyph collar into elias_kang's hand, a contract rewritten in blue ink on the nightstand, proud consenting gaze, consensual power exchange, sensual intimate adult romance, warm low light",
+      "out": "assets/cg/cg_seo_pacte_consentie.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:seo_pacte_consentie"
+    },
+    {
+      "id": "cg_xiaoyu_pacte_consentie",
+      "kind": "cg",
+      "chars": [
+        "xiaoyu",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "xiaoyu_long in a black qipao bowing playfully over a handwritten contract and a jade token engraved with a name, mahjong tiles forgotten on the table, elias_kang seated, teasing consenting smile, consensual power exchange, sensual intimate adult romance, lantern light",
+      "out": "assets/cg/cg_xiaoyu_pacte_consentie.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:xiaoyu_pacte_consentie"
+    },
+    {
+      "id": "cg_haein_pacte_consentie",
+      "kind": "cg",
+      "chars": [
+        "hae_in",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "haein_yoon in an open silk blouse sitting on the edge of a desk beside a signed contract amendment and a capped fountain pen, offering elias_kang her wrist with a composed consenting smile, consensual power exchange, sensual intimate adult romance, cold city light",
+      "out": "assets/cg/cg_haein_pacte_consentie.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:haein_pacte_consentie"
+    },
+    {
+      "id": "cg_simone_pacte_consentie",
+      "kind": "cg",
+      "chars": [
+        "simone",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "simone_hayes without her beret, dog tags laid on a table beside a handwritten rulebook, standing at ease in front of elias_kang with a challenging consenting half-smile, consensual power exchange, sensual intimate adult romance, warm tungsten light",
+      "out": "assets/cg/cg_simone_pacte_consentie.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:simone_pacte_consentie"
+    },
+    {
+      "id": "cg_nadia_pacte_consentie",
+      "kind": "cg",
+      "chars": [
+        "nadia",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "nadia_tsoi with her disassembled rifle on a table, wrists loosely tied with her red scarf in a knot she could undo, looking steadily at elias_kang, trusting consenting gaze, consensual power exchange, sensual intimate adult romance, night city glow",
+      "out": "assets/cg/cg_nadia_pacte_consentie.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:nadia_pacte_consentie"
+    },
+    {
+      "id": "cg_aoi_pacte_consentie",
+      "kind": "cg",
+      "chars": [
+        "aoi",
+        "elias"
+      ],
+      "backend": "runpod",
+      "nsfw": true,
+      "prompt": "aoi_tsukishiro without stage makeup holding out a satin ribbon to elias_kang, an idol contract rewritten in pink marker pinned on the wall, playful consenting smile, consensual power exchange, sensual intimate adult romance, soft pink lamp light",
+      "out": "assets/cg/cg_aoi_pacte_consentie.png",
+      "size": "landscape_16_9",
+      "scene": "refuge:aoi_pacte_consentie"
     }
   ]
 }

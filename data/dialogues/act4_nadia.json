@@ -644,6 +644,14 @@
     ]
    },
    {
+    "s": "narrator",
+    "t": "Premier ordre du contrat, le seul qui compte ce soir : tu lui fais lever le canon. Elle obéit sans un mot. Sur la tour voisine, l'éclat de lunette du contre-sniper de l'Unité 0 hésite, puis s'éteint : la cible ne vise plus personne."
+   },
+   {
+    "s": "narrator",
+    "t": "En bas, sur le parvis du Musée, la commandante Hayes termine son discours. Elle lève les yeux vers le toit de la Lotte, une seconde, comme si elle avait senti le vent tourner."
+   },
+   {
     "goto": "toit_sauvee"
    }
   ],

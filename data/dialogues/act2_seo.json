@@ -187,7 +187,7 @@
     "t": "Des voix d'enfants, étouffées, derrière une porte de salle de jeux. Six. Ils se cachent ici parce qu'au camp, on leur donne une demi-ration."
    },
    {
-    "if": "flag('seo_rupture')",
+    "if": "flag('seo_fuite')",
     "then": "hopital_rupture"
    },
    {
@@ -532,7 +532,7 @@
   ],
   "hopital_reecrite": [
    {
-    "if": "flag('seo_rupture')",
+    "if": "flag('seo_fuite')",
     "then": "reecrite_rupture"
    },
    {
@@ -573,6 +573,7 @@
    },
    {
     "fx": [
+     "unflag seo_fuite",
      "unflag seo_rupture",
      "join seo_yeon",
      "add trust.seo_yeon 10"

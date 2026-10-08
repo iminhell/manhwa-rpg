@@ -11,6 +11,7 @@ var voice_lang: String = "ko"       ## "ko" (coréen) ou "ja" (japonais)
 var voice_volume: float = 0.9
 var music_volume: float = 0.7
 var hide_pacte_p3: bool = false     ## préférence de confort (§11.4.5)
+var combat_tutorial: String = ""    ## "" : proposer au premier combat · "on" : suivi · "off" : ignoré
 
 
 func _ready() -> void:
@@ -26,6 +27,7 @@ func load_settings() -> void:
 	voice_volume = cfg.get_value("audio", "voice_volume", voice_volume)
 	music_volume = cfg.get_value("audio", "music_volume", music_volume)
 	hide_pacte_p3 = cfg.get_value("contenu", "hide_pacte_p3", hide_pacte_p3)
+	combat_tutorial = cfg.get_value("jeu", "combat_tutorial", combat_tutorial)
 	if not VOICE_LANGS.has(voice_lang):
 		voice_lang = "ko"
 
@@ -37,5 +39,6 @@ func save_settings() -> void:
 	cfg.set_value("audio", "voice_volume", voice_volume)
 	cfg.set_value("audio", "music_volume", music_volume)
 	cfg.set_value("contenu", "hide_pacte_p3", hide_pacte_p3)
+	cfg.set_value("jeu", "combat_tutorial", combat_tutorial)
 	cfg.save(PATH)
 	changed.emit()

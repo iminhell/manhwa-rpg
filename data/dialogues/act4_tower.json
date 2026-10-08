@@ -757,6 +757,10 @@
     "t": "Aoi Tsukishiro revient. La Tour réclamera une autre Fin."
    },
    {
+    "if": "flag('aoi_dominee')",
+    "then": "fleur_aoi_libre"
+   },
+   {
     "fx": [
      "flag aoi_ramenee",
      "join aoi",
@@ -781,6 +785,10 @@
    {
     "s": "registre",
     "t": "Park Seo-Yeon revient. La Tour réclamera une autre Fin."
+   },
+   {
+    "if": "flag('pacte.seo_yeon')",
+    "then": "fleur_seo_libre"
    },
    {
     "fx": [
@@ -861,6 +869,10 @@
     "t": "Long Xiaoyu revient. La Tour réclamera une autre Fin."
    },
    {
+    "if": "flag('pacte.xiaoyu')",
+    "then": "fleur_xiaoyu_libre"
+   },
+   {
     "fx": [
      "flag xiaoyu_ramenee",
      "join xiaoyu",
@@ -885,6 +897,10 @@
    {
     "s": "registre",
     "t": "Yoon Hae-in revient. La Tour réclamera une autre Fin."
+   },
+   {
+    "if": "flag('pacte.hae_in')",
+    "then": "fleur_haein_libre"
    },
    {
     "fx": [
@@ -913,6 +929,10 @@
     "t": "Nadia Tsoi revient. La Tour réclamera une autre Fin."
    },
    {
+    "if": "flag('nadia_pactisee')",
+    "then": "fleur_nadia_libre"
+   },
+   {
     "fx": [
      "flag nadia_ramenee",
      "join nadia",
@@ -937,6 +957,10 @@
    {
     "s": "registre",
     "t": "Simone Hayes revient. La Tour réclamera une autre Fin."
+   },
+   {
+    "if": "flag('pacte.simone')",
+    "then": "fleur_simone_libre"
    },
    {
     "fx": [
@@ -1027,6 +1051,114 @@
    },
    {
     "end": true
+   }
+  ],
+  "fleur_seo_libre": [
+   {
+    "s": "registre",
+    "t": "Le parchemin du Pacte s'est consumé à sa mort : un contrat ne lie que les vivants. La fleur repousse sans clause. Seo-Yeon revient libre, et elle le sait."
+   },
+   {
+    "fx": [
+     "flag seo_yeon_ramenee",
+     "join seo_yeon",
+     "pressure 5",
+     "unflag pacte.seo_yeon",
+     "set ambivalence.seo_yeon 0"
+    ]
+   },
+   {
+    "goto": "jardiniere_fin"
+   }
+  ],
+  "fleur_xiaoyu_libre": [
+   {
+    "s": "registre",
+    "t": "Le parchemin du Pacte s'est consumé à sa mort : un contrat ne lie que les vivants. La fleur repousse sans clause. Xiaoyu revient libre, et elle le sait."
+   },
+   {
+    "fx": [
+     "flag xiaoyu_ramenee",
+     "join xiaoyu",
+     "pressure 5",
+     "unflag pacte.xiaoyu",
+     "set ambivalence.xiaoyu 0"
+    ]
+   },
+   {
+    "goto": "jardiniere_fin"
+   }
+  ],
+  "fleur_haein_libre": [
+   {
+    "s": "registre",
+    "t": "Le parchemin du Pacte s'est consumé à sa mort : un contrat ne lie que les vivants. La fleur repousse sans clause. Hae-in revient libre, et elle le sait."
+   },
+   {
+    "fx": [
+     "flag hae_in_ramenee",
+     "join hae_in",
+     "pressure 5",
+     "unflag pacte.hae_in",
+     "set ambivalence.hae_in 0"
+    ]
+   },
+   {
+    "goto": "jardiniere_fin"
+   }
+  ],
+  "fleur_simone_libre": [
+   {
+    "s": "registre",
+    "t": "Le parchemin du Pacte s'est consumé à sa mort : un contrat ne lie que les vivants. La fleur repousse sans clause. Simone revient libre, et elle le sait."
+   },
+   {
+    "fx": [
+     "flag simone_ramenee",
+     "join simone",
+     "pressure 5",
+     "unflag pacte.simone",
+     "set ambivalence.simone 0"
+    ]
+   },
+   {
+    "goto": "jardiniere_fin"
+   }
+  ],
+  "fleur_nadia_libre": [
+   {
+    "s": "registre",
+    "t": "Le parchemin du Pacte s'est consumé à sa mort : un contrat ne lie que les vivants. La fleur repousse sans clause. Nadia revient libre, et elle le sait."
+   },
+   {
+    "fx": [
+     "flag nadia_ramenee",
+     "join nadia",
+     "pressure 5",
+     "unflag nadia_pactisee",
+     "set ambivalence.nadia 0"
+    ]
+   },
+   {
+    "goto": "jardiniere_fin"
+   }
+  ],
+  "fleur_aoi_libre": [
+   {
+    "s": "registre",
+    "t": "Le parchemin du Pacte s'est consumé à sa mort : un contrat ne lie que les vivants. La fleur repousse sans clause. Aoi revient libre, et elle le sait."
+   },
+   {
+    "fx": [
+     "flag aoi_ramenee",
+     "join aoi",
+     "pressure 5",
+     "unflag aoi_dominee",
+     "set ambivalence.aoi 0"
+    ]
+   },
+   {
+    "goto": "jardiniere_fin"
    }
   ]
  }

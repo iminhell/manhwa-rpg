@@ -391,6 +391,8 @@ for did, dlg in dialogues.items():
                         err(f"{w} : bloc inconnu « {st[k]} »")
             if "if" in st:
                 check_condition(st["if"], w)
+            if "when" in st:
+                check_condition(st["when"], w)
             if "fx" in st:
                 check_effects(st["fx"], w)
             if "choice" in st:
@@ -779,6 +781,8 @@ for (d, b), w in win.items():
                 reads.append((opt["if"], f"{d}:{b}:{i}", _inter(w, day_window(opt["if"]))))
         if st.get("if"):
             reads.append((st["if"], f"{d}:{b}:{i}", w))
+        if st.get("when"):
+            reads.append((st["when"], f"{d}:{b}:{i}", w))
 for where, a, aw in action_windows:
     _note_writes(a.get("fx", []) + a.get("win_fx", []), aw[0])
     if a.get("if"):

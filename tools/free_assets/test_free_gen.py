@@ -159,6 +159,13 @@ def main() -> None:
         check(("1boy" in p) == bool(style["characters"][cid].get("male")) and "(full body:1.4)" in p and "white background" in p,
               f"prompt de sprite {cid}")
     check("child" in style["negative"] and "loli" in style["negative"], "négatif des sprites : garde-fous d'âge")
+    # Charadesign d'Elias (manteau long noir tactique, peau caramel, sabre) et réglages de netteté
+    pe = fg.sprite_prompt(style, "elias")
+    check(all(t in pe for t in ("long black coat", "tactical military greatcoat", "caramel skin", "sheathed sword at hip", "short curly hair"))
+          and "sweaty skin" not in pe and "seductive smile" not in pe and "confident smirk" in pe, "prompt d'Elias : manteau, peau caramel, sabre")
+    check("seductive smile" in fg.sprite_prompt(style, "seo_yeon"), "expressions communes inchangées pour les héroïnes")
+    check(style["hires"]["scale"] == 1.5 and style["detailer"]["face_model"] and style["detailer"]["hand_model"]
+          and "sharp lineart" in style["quality"], "netteté : seconde passe ×1,5, retouche visages et mains, prompts")
     from PIL import Image, ImageDraw  # noqa: PLC0415
     alpha = Image.new("L", (200, 400), 0)
     ImageDraw.Draw(alpha).rectangle((60, 40, 140, 390), fill=255)

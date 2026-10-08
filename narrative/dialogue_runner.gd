@@ -13,6 +13,7 @@ extends RefCounted
 ##   {"cg": "cg_prologue_death"} / {"cg": ""}            affiche / masque une CG
 ##   {"fx": ["add align.protect 2", "flag x"]}           effets sur l'état
 ##   {"if": "loop() > 1", "then": "bloc", "else": "bloc"} saut conditionnel (else optionnel)
+##   "when": "cond" sur n'importe quelle étape : l'étape n'est jouée que si la condition est vraie (variantes de texte)
 ##   {"goto": "bloc"}
 ##   {"choice": [{"t": "...", "goto": "bloc", "fx": [...], "if": "cond"}]}
 ##   {"event": "combat", "args": {"encounter": "..."}}   met en pause, l'hôte appelle resume()
@@ -78,6 +79,8 @@ func next() -> Dictionary:
 		var step: Dictionary = steps[index]
 		var step_id := "%s:%s:%d" % [dialogue.get("id", "?"), block, index]
 		index += 1
+		if step.has("when") and not store.check(str(step["when"])):
+			continue  # étape conditionnelle (variante de texte selon l'état)
 		if step.has("t"):
 			return {"kind": "line", "speaker": str(step.get("s", "narrator")), "text": str(step["t"]),
 					"expr": str(step.get("e", "neutral")), "id": step_id, "voiced": bool(step.get("v", false))}

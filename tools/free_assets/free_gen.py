@@ -300,10 +300,12 @@ def sprite_prompt(style: dict, cid: str, expression: str = "neutral", combat: bo
     if combat:
         weapons = {x["id"]: x.get("weapon", "") for x in load_json(PROMPTS)["characters"]}
         parts.append(weapons.get(cid, ""))
-    else:
-        parts.append(style["expressions"].get(expression, expression))
+    else:  # expression propre au personnage d'abord (Elias : charisme froid plutôt que sourire séducteur)
+        parts.append(c.get("expressions", {}).get(expression) or style["expressions"].get(expression, expression))
     parts.append(style["background"])
-    return ", ".join(p for p in parts if p)
+    drop = set(c.get("drop_tags", []))  # étiquettes communes qui ne conviennent pas à ce personnage
+    tags = [t.strip() for p in parts if p for t in p.split(",")]
+    return ", ".join(t for t in tags if t and t not in drop)
 
 
 def sprite_jobs(force: bool, only: list[str] | None) -> list[dict]:

@@ -962,6 +962,16 @@ Une jauge cachée propre au Pacte, **l'Ambivalence**, va de −100 (Ressentiment
 | **Couteau** (Masque) | Ambivalence ≤ −40 et Ambition cachée ≥ 60 | Elle porte un **Masque** et prépare sa trahison au moment critique (§11.6). Les scènes restent jouables : le joueur peut être trompé |
 | **Rupture** | Elle invoque la clause de rupture (Ambivalence ≤ −60, ou déclencheur absolu) | Elle paie le prix et part, hostile. Une confrontation ou une quête de reconquête peut suivre |
 
+**Évolution du Pacte (implémentée, `data/dialogues/refuge.json`)** : un Pacte n'est jamais figé. À chaque repos, la scène de Pacte suit l'ambivalence :
+1. **Contrainte** (ambivalence < 0) : rapport de force psychologique, sans intimité ni CG intime ; « Reste » la fait baisser, la liberté rendue la fait monter.
+2. **Ambivalence** (0 à +29) : le texte du Registre change (« elle ne sait plus si elle te hait… »), le rapport de force se fissure.
+3. **Contrat renégocié** (ambivalence ≥ +30 et Affinité ≥ 40) : c'est **l'héroïne qui réécrit le contrat** (un mot d'arrêt, le droit de partir, les clauses qu'elle garde). Signer ses conditions (`<préfixe>_pacte_accepte`) ouvre une nuit consentie (soumission choisie, CG, palier P3) puis les moments ordinaires (seconde nuit, Lien) ; refuser fait retomber l'ambivalence.
+4. **Dévotion** (ambivalence ≥ +60 et Affinité ≥ 70) : Pacte renouvelé librement.
+
+Les **scènes de groupe ne sont jamais verrouillées** par un Pacte : avec une héroïne encore sous contrat imposé, une variante se joue (les autres voient le collier ; rendre sa soirée à l'héroïne fait monter l'ambivalence, imposer le contrat vide la chambre), et l'emplacement de galerie se débloque. Sur l'écran du Refuge, l'Échec ou la rupture restent possibles : Couteau (finale) et Rupture (−60).
+
+Morts et retours : un Pacte ne lie que les vivants. Une héroïne ramenée par les fleurs de la Tour (Acte IV) revient **libre**, ambivalence remise à 0.
+
 #### 11.4.5 Règles de lore et garde-fous
 - **Le Système refuse les contrats signés par une « coquille »** : une héroïne inconsciente, droguée ou effacée ne peut pas signer. C'est pourquoi **Haneul ne peut jamais être sous Pacte** (§12.10).
 - **Effets de la Dette temporelle** : aux boucles suivantes, une héroïne qui a vécu un Pacte en Ressentiment démarre avec Peur +10 et des cauchemars. Si elle l'a vécu en Dévotion, elle démarre avec un trouble inexpliqué en présence d'Elias (Affinité +10).

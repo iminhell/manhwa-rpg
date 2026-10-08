@@ -1061,11 +1061,11 @@
   ],
   "epi_seo": [
    {
-    "if": "party('seo_yeon') and flag('pacte.seo_yeon') and not flag('seo_devotion')",
+    "if": "party('seo_yeon') and flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')",
     "then": "epi_seo_pacte"
    },
    {
-    "if": "party('seo_yeon') and aff('seo_yeon') >= 25 and (not flag('pacte.seo_yeon') or flag('seo_devotion'))",
+    "if": "party('seo_yeon') and aff('seo_yeon') >= 25 and (not flag('pacte.seo_yeon') or flag('seo_devotion') or flag('seo_pacte_accepte'))",
     "then": "epi_seo_ok"
    },
    {
@@ -1119,11 +1119,11 @@
   ],
   "epi_haein": [
    {
-    "if": "party('hae_in') and flag('pacte.hae_in') and not flag('haein_devotion')",
+    "if": "party('hae_in') and flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')",
     "then": "epi_haein_pacte"
    },
    {
-    "if": "party('hae_in') and aff('hae_in') >= 25 and (not flag('pacte.hae_in') or flag('haein_devotion'))",
+    "if": "party('hae_in') and aff('hae_in') >= 25 and (not flag('pacte.hae_in') or flag('haein_devotion') or flag('haein_pacte_accepte'))",
     "then": "epi_haein_ok"
    },
    {
@@ -1177,11 +1177,11 @@
   ],
   "epi_simone": [
    {
-    "if": "party('simone') and flag('pacte.simone') and not flag('simone_devotion')",
+    "if": "party('simone') and flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')",
     "then": "epi_simone_pacte"
    },
    {
-    "if": "party('simone') and aff('simone') >= 25 and (not flag('pacte.simone') or flag('simone_devotion'))",
+    "if": "party('simone') and aff('simone') >= 25 and (not flag('pacte.simone') or flag('simone_devotion') or flag('simone_pacte_accepte'))",
     "then": "epi_simone_ok"
    },
    {
@@ -1208,11 +1208,11 @@
   ],
   "epi_xiaoyu": [
    {
-    "if": "party('xiaoyu') and flag('pacte.xiaoyu') and not flag('xiaoyu_devotion')",
+    "if": "party('xiaoyu') and flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')",
     "then": "epi_xiaoyu_pacte"
    },
    {
-    "if": "party('xiaoyu') and aff('xiaoyu') >= 25 and (not flag('pacte.xiaoyu') or flag('xiaoyu_devotion'))",
+    "if": "party('xiaoyu') and aff('xiaoyu') >= 25 and (not flag('pacte.xiaoyu') or flag('xiaoyu_devotion') or flag('xiaoyu_pacte_accepte'))",
     "then": "epi_xiaoyu_ok"
    },
    {
@@ -1239,11 +1239,11 @@
   ],
   "epi_aoi": [
    {
-    "if": "party('aoi') and flag('aoi_dominee') and not flag('aoi_devotion')",
+    "if": "party('aoi') and flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte')",
     "then": "epi_aoi_pacte"
    },
    {
-    "if": "party('aoi') and aff('aoi') >= 25 and (not flag('aoi_dominee') or flag('aoi_devotion'))",
+    "if": "party('aoi') and aff('aoi') >= 25 and (not flag('aoi_dominee') or flag('aoi_devotion') or flag('aoi_pacte_accepte'))",
     "then": "epi_aoi_ok"
    },
    {
@@ -1270,11 +1270,11 @@
   ],
   "epi_nadia": [
    {
-    "if": "party('nadia') and flag('nadia_pactisee') and not flag('nadia_devotion')",
+    "if": "party('nadia') and flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')",
     "then": "epi_nadia_pacte"
    },
    {
-    "if": "party('nadia') and aff('nadia') >= 25 and (not flag('nadia_pactisee') or flag('nadia_devotion'))",
+    "if": "party('nadia') and aff('nadia') >= 25 and (not flag('nadia_pactisee') or flag('nadia_devotion') or flag('nadia_pacte_accepte'))",
     "then": "epi_nadia_ok"
    },
    {

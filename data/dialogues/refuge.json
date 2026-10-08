@@ -25,7 +25,11 @@
     "then": "seo_froid"
    },
    {
-    "if": "flag('pacte.seo_yeon') and not flag('seo_devotion')",
+    "if": "flag('pacte.seo_yeon') and flag('seo_pacte_accepte') and not flag('seo_devotion') and v('ambivalence.seo_yeon') >= 60 and aff('seo_yeon') >= 70",
+    "then": "seo_devotion"
+   },
+   {
+    "if": "flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')",
     "then": "seo_pacte"
    },
    {
@@ -257,6 +261,10 @@
     "then": "seo_devotion_nuit"
    },
    {
+    "if": "v('ambivalence.seo_yeon') >= 30 and aff('seo_yeon') >= 40",
+    "then": "seo_pacte_renegocie"
+   },
+   {
     "s": "narrator",
     "t": "La clause de Résidence. Elle entre dans ta chambre à l'heure dite, sans frapper, et reste debout près de la porte, les mains croisées devant elle."
    },
@@ -268,7 +276,13 @@
    },
    {
     "s": "registre",
-    "t": "Pacte de Vassalité — Ambivalence actuelle : elle te hait et elle a peur. Et quelque chose d'autre, qu'elle refuse de nommer."
+    "t": "Pacte de Vassalité — Ambivalence actuelle : elle te hait et elle a peur. Et quelque chose d'autre, qu'elle refuse de nommer.",
+    "when": "v('ambivalence.seo_yeon') < 0"
+   },
+   {
+    "s": "registre",
+    "t": "Pacte de Vassalité — Ambivalence : elle ne sait plus si elle te hait. Elle reste un peu plus longtemps à la porte, chaque soir.",
+    "when": "v('ambivalence.seo_yeon') >= 0"
    },
    {
     "choice": [
@@ -553,7 +567,11 @@
     "music": "intimate"
    },
    {
-    "if": "flag('aoi_dominee') and not flag('aoi_devotion')",
+    "if": "flag('aoi_dominee') and flag('aoi_pacte_accepte') and not flag('aoi_devotion') and v('ambivalence.aoi') >= 60 and aff('aoi') >= 70",
+    "then": "aoi_devotion"
+   },
+   {
+    "if": "flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte')",
     "then": "aoi_dominee"
    },
    {
@@ -644,9 +662,23 @@
     "then": "aoi_devotion_nuit"
    },
    {
+    "if": "v('ambivalence.aoi') >= 30 and aff('aoi') >= 40",
+    "then": "aoi_pacte_renegocie"
+   },
+   {
     "s": "aoi",
     "t": "Vous voulez que je chante, Monsieur ? Ou autre chose ? Dites-moi juste quoi faire. C'est plus simple.",
     "e": "stage_smile"
+   },
+   {
+    "s": "registre",
+    "t": "Contrat de rachat — Aoi Tsukishiro. Elle joue le rôle qu'on attend d'elle, parfaitement. C'est ce qui fait peur.",
+    "when": "v('ambivalence.aoi') < 0"
+   },
+   {
+    "s": "registre",
+    "t": "Contrat de rachat — Aoi Tsukishiro. Ambivalence : le sourire de scène tombe parfois, quand elle croit que tu ne regardes pas.",
+    "when": "v('ambivalence.aoi') >= 0"
    },
    {
     "choice": [
@@ -1249,7 +1281,11 @@
     "then": "xiaoyu_froid"
    },
    {
-    "if": "flag('pacte.xiaoyu') and not flag('xiaoyu_devotion')",
+    "if": "flag('pacte.xiaoyu') and flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion') and v('ambivalence.xiaoyu') >= 60 and aff('xiaoyu') >= 70",
+    "then": "xiaoyu_devotion"
+   },
+   {
+    "if": "flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')",
     "then": "xiaoyu_pacte"
    },
    {
@@ -1466,6 +1502,10 @@
     "then": "xiaoyu_devotion_nuit"
    },
    {
+    "if": "v('ambivalence.xiaoyu') >= 30 and aff('xiaoyu') >= 40",
+    "then": "xiaoyu_pacte_renegocie"
+   },
+   {
     "s": "narrator",
     "t": "Clause trois du Pacte : « La perdante paie ses dettes en personne. » Elle entre dans ta chambre en qipao noir, une dette à la main, au sens propre : un jeton de jade gravé de ton nom."
    },
@@ -1477,7 +1517,13 @@
    },
    {
     "s": "registre",
-    "t": "Pacte — Long Xiaoyu. Ambivalence : elle a perdu loyalement, et elle respecte les dettes. Elle peut encore refuser une clause qui n'est pas écrite."
+    "t": "Pacte — Long Xiaoyu. Ambivalence : elle a perdu loyalement, et elle respecte les dettes. Elle peut encore refuser une clause qui n'est pas écrite.",
+    "when": "v('ambivalence.xiaoyu') < 0"
+   },
+   {
+    "s": "registre",
+    "t": "Pacte — Long Xiaoyu. Ambivalence : la dette devient un jeu, et le jeu lui plaît plus qu'elle ne l'avoue.",
+    "when": "v('ambivalence.xiaoyu') >= 0"
    },
    {
     "choice": [
@@ -1548,7 +1594,11 @@
     "then": "haein_froid"
    },
    {
-    "if": "flag('pacte.hae_in') and not flag('haein_devotion')",
+    "if": "flag('pacte.hae_in') and flag('haein_pacte_accepte') and not flag('haein_devotion') and v('ambivalence.hae_in') >= 60 and aff('hae_in') >= 70",
+    "then": "haein_devotion"
+   },
+   {
+    "if": "flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')",
     "then": "haein_pacte"
    },
    {
@@ -1732,6 +1782,10 @@
     "then": "haein_devotion_nuit"
    },
    {
+    "if": "v('ambivalence.hae_in') >= 30 and aff('hae_in') >= 40",
+    "then": "haein_pacte_renegocie"
+   },
+   {
     "s": "narrator",
     "t": "Clause sept du Pacte de Vassalité, qu'elle a négociée elle-même, mot par mot : « La vassale rend compte chaque soir à son Seigneur. » Elle entre avec un dossier sous le bras, et s'assoit, impeccable."
    },
@@ -1743,7 +1797,13 @@
    },
    {
     "s": "registre",
-    "t": "Pacte de Vassalité — Yoon Hae-in. Ambivalence : glaciale. Elle a signé par calcul ; elle calcule encore."
+    "t": "Pacte de Vassalité — Yoon Hae-in. Ambivalence : glaciale. Elle a signé par calcul ; elle calcule encore.",
+    "when": "v('ambivalence.hae_in') < 0"
+   },
+   {
+    "s": "registre",
+    "t": "Pacte de Vassalité — Yoon Hae-in. Ambivalence : ses rapports ont commencé à contenir des remarques qui ne sont pas comptables.",
+    "when": "v('ambivalence.hae_in') >= 0"
    },
    {
     "choice": [
@@ -2535,7 +2595,11 @@
     "then": "nadia_froid"
    },
    {
-    "if": "flag('nadia_pactisee') and not flag('nadia_devotion')",
+    "if": "flag('nadia_pactisee') and flag('nadia_pacte_accepte') and not flag('nadia_devotion') and v('ambivalence.nadia') >= 60 and aff('nadia') >= 70",
+    "then": "nadia_devotion"
+   },
+   {
+    "if": "flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')",
     "then": "nadia_pacte"
    },
    {
@@ -2737,6 +2801,10 @@
     "then": "nadia_devotion_nuit"
    },
    {
+    "if": "v('ambivalence.nadia') >= 30 and aff('nadia') >= 40",
+    "then": "nadia_pacte_renegocie"
+   },
+   {
     "s": "narrator",
     "t": "Clause de Résidence. Elle entre dans ta chambre, pose son fusil contre le mur, le canon vers le plafond."
    },
@@ -2748,7 +2816,13 @@
    },
    {
     "s": "registre",
-    "t": "Pacte de Vassalité — Nadia Tsoi. Si l'Ambivalence tombe trop bas, elle tirera au pire moment."
+    "t": "Pacte de Vassalité — Nadia Tsoi. Si l'Ambivalence tombe trop bas, elle tirera au pire moment.",
+    "when": "v('ambivalence.nadia') < 0"
+   },
+   {
+    "s": "registre",
+    "t": "Pacte de Vassalité — Nadia Tsoi. Ambivalence : le canon de son fusil ne vise plus la porte. Il ne vise plus rien.",
+    "when": "v('ambivalence.nadia') >= 0"
    },
    {
     "choice": [
@@ -2813,7 +2887,11 @@
     "then": "simone_froid"
    },
    {
-    "if": "flag('pacte.simone') and not flag('simone_devotion')",
+    "if": "flag('pacte.simone') and flag('simone_pacte_accepte') and not flag('simone_devotion') and v('ambivalence.simone') >= 60 and aff('simone') >= 70",
+    "then": "simone_devotion"
+   },
+   {
+    "if": "flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')",
     "then": "simone_pacte"
    },
    {
@@ -3012,6 +3090,10 @@
     "then": "simone_devotion_nuit"
    },
    {
+    "if": "v('ambivalence.simone') >= 30 and aff('simone') >= 40",
+    "then": "simone_pacte_renegocie"
+   },
+   {
     "s": "narrator",
     "t": "Reddition de l'Unité 0. Elle se présente au rapport chaque soir, au garde-à-vous, le regard fixé au-dessus de ton épaule."
    },
@@ -3020,6 +3102,16 @@
     "t": "Commandante Hayes, au rapport. Je suis à vos ordres, Seigneur. Le contrat le dit. Je n'ai jamais désobéi qu'une fois.",
     "e": "contempt",
     "v": true
+   },
+   {
+    "s": "registre",
+    "t": "Pacte de Vassalité — Simone Hayes. Elle obéit, et elle compte chacun de tes ordres.",
+    "when": "v('ambivalence.simone') < 0"
+   },
+   {
+    "s": "registre",
+    "t": "Pacte de Vassalité — Simone Hayes. Ambivalence : elle regarde ton visage, maintenant, et plus au-dessus de ton épaule.",
+    "when": "v('ambivalence.simone') >= 0"
    },
    {
     "choice": [
@@ -5843,6 +5935,564 @@
       ]
      }
     ]
+   }
+  ],
+  "seo_pacte_renegocie": [
+   {
+    "s": "narrator",
+    "t": "Elle entre à l'heure de la clause, mais pas comme d'habitude : elle tient le parchemin du Pacte et un stylo d'ordonnance. Elle a raturé la moitié des clauses à l'encre bleue."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "J'ai réécrit le contrat. Un mot d'arrêt : « suture ». Le droit de partir quand je veux. Et la clause de Résidence… je la garde. Parce que je l'ai choisie, cette fois. Signez, Kang-ssi.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "PACTE — Révision proposée par la vassale : un mot d'arrêt, le droit de partir, des clauses librement consenties. Le Système attend ta signature."
+   },
+   {
+    "choice": [
+     {
+      "t": "Signer ses conditions.",
+      "goto": "seo_pacte_consentie",
+      "fx": [
+       "flag seo_pacte_accepte",
+       "add ambivalence.seo_yeon 10",
+       "add trust.seo_yeon 6",
+       "add align.protect 2"
+      ]
+     },
+     {
+      "t": "« Le contrat reste tel quel. »",
+      "goto": "seo_pacte_refus",
+      "fx": [
+       "add ambivalence.seo_yeon -25",
+       "add fear.seo_yeon 5"
+      ]
+     }
+    ]
+   }
+  ],
+  "seo_pacte_refus": [
+   {
+    "s": "narrator",
+    "t": "Elle replie la feuille, très lentement. Quelque chose se referme derrière ses yeux, et elle reprend sa place près de la porte."
+   },
+   {
+    "fx": [
+     "add repos.seo_yeon 1",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "seo_pacte_consentie": [
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_seo_pacte_consentie"
+   },
+   {
+    "s": "narrator",
+    "t": "Le collier de glyphes rouges est toujours là, mais c'est elle qui en tient le fil. Elle te le met dans la main, puis referme tes doigts dessus, un par un."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Vous commandez. Je dis « suture », vous arrêtez. C'est tout ce que je demande. …Et c'est beaucoup, je sais.",
+    "e": "desire",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle se met à genoux d'elle-même et te regarde d'en bas, avec une fierté que le Pacte ne lui avait jamais donnée. Le pouvoir change de main toute la nuit, au rythme qu'elle fixe."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "Au matin, elle n'a pas dit le mot d'arrêt une seule fois. Elle le répète quand même en partant, comme une prière : « suture ». Pour s'assurer qu'il existe."
+   },
+   {
+    "fx": [
+     "add repos.seo_yeon 1",
+     "flag seo_nuit",
+     "add aff.seo_yeon 5",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "xiaoyu_pacte_renegocie": [
+   {
+    "s": "narrator",
+    "t": "Elle pose sur ta table un contrat neuf, calligraphié à la main, et le jeton de jade gravé de ton nom par-dessus."
+   },
+   {
+    "s": "xiaoyu",
+    "t": "La dette est payée, Seigneur. Je te propose un nouveau jeu : je perds quand je veux, je gagne quand je veux, et les mots « fin de partie » arrêtent tout. Tu signes ?",
+    "e": "fan",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "PACTE — Révision proposée par la vassale : un mot d'arrêt, le droit de partir, des clauses librement consenties. Le Système attend ta signature."
+   },
+   {
+    "choice": [
+     {
+      "t": "Signer ses conditions.",
+      "goto": "xiaoyu_pacte_consentie",
+      "fx": [
+       "flag xiaoyu_pacte_accepte",
+       "add ambivalence.xiaoyu 10",
+       "add trust.xiaoyu 6",
+       "add align.protect 2"
+      ]
+     },
+     {
+      "t": "« Le contrat reste tel quel. »",
+      "goto": "xiaoyu_pacte_refus",
+      "fx": [
+       "add ambivalence.xiaoyu -25",
+       "add fear.xiaoyu 5"
+      ]
+     }
+    ]
+   }
+  ],
+  "xiaoyu_pacte_refus": [
+   {
+    "s": "narrator",
+    "t": "Elle replie la feuille, très lentement. Quelque chose se referme derrière ses yeux, et elle reprend sa place près de la porte."
+   },
+   {
+    "fx": [
+     "add repos.xiaoyu 1",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "xiaoyu_pacte_consentie": [
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_xiaoyu_pacte_consentie"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle a gardé le titre, « Seigneur », mais elle le prononce désormais comme une mise qu'elle choisit de jouer. Les tuiles de mahjong restent sur la table, oubliées."
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Je m'incline. Parce que ça m'amuse. Si ça cesse de m'amuser, tu l'entendras.",
+    "e": "desire",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle se plie à chacun de tes ordres avec une lenteur de joueuse qui fait monter les enchères, et fixe elle-même le prix de chacun."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "Au matin, le jeton de jade est sur ton oreiller. Elle a gravé un deuxième nom au dos : le sien."
+   },
+   {
+    "fx": [
+     "add repos.xiaoyu 1",
+     "flag xiaoyu_nuit",
+     "add aff.xiaoyu 5",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "haein_pacte_renegocie": [
+   {
+    "s": "narrator",
+    "t": "Le dossier qu'elle pose sur ta table ne contient pas de comptes. C'est un avenant au Pacte, rédigé à la plume, annoté à l'encre bordeaux."
+   },
+   {
+    "s": "hae_in",
+    "t": "Avenant numéro un, Seigneur Kang : la vassale peut résilier à tout moment, par le mot « clôture ». Avenant deux : elle choisit de rester. Les autres clauses sont négociables. Ce soir.",
+    "e": "desire",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "PACTE — Révision proposée par la vassale : un mot d'arrêt, le droit de partir, des clauses librement consenties. Le Système attend ta signature."
+   },
+   {
+    "choice": [
+     {
+      "t": "Signer ses conditions.",
+      "goto": "haein_pacte_consentie",
+      "fx": [
+       "flag haein_pacte_accepte",
+       "add ambivalence.hae_in 10",
+       "add trust.hae_in 6",
+       "add align.protect 2"
+      ]
+     },
+     {
+      "t": "« Le contrat reste tel quel. »",
+      "goto": "haein_pacte_refus",
+      "fx": [
+       "add ambivalence.hae_in -25",
+       "add fear.hae_in 5"
+      ]
+     }
+    ]
+   }
+  ],
+  "haein_pacte_refus": [
+   {
+    "s": "narrator",
+    "t": "Elle replie la feuille, très lentement. Quelque chose se referme derrière ses yeux, et elle reprend sa place près de la porte."
+   },
+   {
+    "fx": [
+     "add repos.hae_in 1",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "haein_pacte_consentie": [
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_haein_pacte_consentie"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle a laissé son stylo à plume sur le dossier, capuchon fermé : rien de ce qui suit ne sera rédigé. Pour la première fois, Yoon Hae-in ne contrôle pas l'ordre du jour, et c'est elle qui l'a voulu."
+   },
+   {
+    "s": "hae_in",
+    "t": "Donnez vos ordres. Je les exécuterai. Tous ceux que j'ai acceptés, et seulement ceux-là.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle obéit avec la précision d'une présidente qui exécute une décision du conseil, puis, au milieu de la nuit, renverse la séance d'un regard et prend la présidence. Tu la lui laisses."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "Au matin, l'avenant est signé deux fois. Sous ta signature, elle a ajouté une ligne : « Exécution conforme. À renouveler. »"
+   },
+   {
+    "fx": [
+     "add repos.hae_in 1",
+     "flag haein_nuit",
+     "add aff.hae_in 5",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "simone_pacte_renegocie": [
+   {
+    "s": "narrator",
+    "t": "Elle se présente au rapport sans le garde-à-vous. Elle tient une feuille pliée en quatre : le règlement de l'Unité 0, réécrit à la main au dos."
+   },
+   {
+    "s": "simone",
+    "t": "Nouveau règlement, Rang F. Le mot d'arrêt est « cessez-le-feu ». Je romps les rangs quand je veux. Et j'obéis parce que je l'ai décidé, pas parce que tu as gagné.",
+    "e": "cigar",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "PACTE — Révision proposée par la vassale : un mot d'arrêt, le droit de partir, des clauses librement consenties. Le Système attend ta signature."
+   },
+   {
+    "choice": [
+     {
+      "t": "Signer ses conditions.",
+      "goto": "simone_pacte_consentie",
+      "fx": [
+       "flag simone_pacte_accepte",
+       "add ambivalence.simone 10",
+       "add trust.simone 6",
+       "add align.protect 2"
+      ]
+     },
+     {
+      "t": "« Le contrat reste tel quel. »",
+      "goto": "simone_pacte_refus",
+      "fx": [
+       "add ambivalence.simone -25",
+       "add fear.simone 5"
+      ]
+     }
+    ]
+   }
+  ],
+  "simone_pacte_refus": [
+   {
+    "s": "narrator",
+    "t": "Elle replie la feuille, très lentement. Quelque chose se referme derrière ses yeux, et elle reprend sa place près de la porte."
+   },
+   {
+    "fx": [
+     "add repos.simone 1",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "simone_pacte_consentie": [
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_simone_pacte_consentie"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle retire ses plaques et les pose sur la table, à côté de celles de Marcus. Ce soir, elle ne commande personne, et personne ne la commande sans son accord."
+   },
+   {
+    "s": "simone",
+    "t": "Donne-moi des ordres, soldat. Des vrais. Je te dirai lesquels j'exécute.",
+    "e": "desire",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle exécute, elle discute, elle désobéit une fois en riant pour voir ce qui se passe, puis exécute de nouveau. Elle n'a jamais été aussi libre sous des ordres."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "Au matin, son lit est fait au carré. Le tien aussi : elle l'a fait pendant que tu dormais. « Règlement », dit-elle, sans s'excuser."
+   },
+   {
+    "fx": [
+     "add repos.simone 1",
+     "flag simone_nuit",
+     "add aff.simone 5",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "nadia_pacte_renegocie": [
+   {
+    "s": "narrator",
+    "t": "Elle pose le fusil sur la table, culasse ouverte, chargeur à côté. C'est la première fois qu'elle le désarme devant toi."
+   },
+   {
+    "s": "nadia",
+    "t": "Le contrat à vie, je le garde. Mais je fixe les clauses. Le mot d'arrêt, c'est « Dmitri ». Je pars quand je veux. Et quand je reste, c'est que je l'ai choisi.",
+    "e": "neutral",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "PACTE — Révision proposée par la vassale : un mot d'arrêt, le droit de partir, des clauses librement consenties. Le Système attend ta signature."
+   },
+   {
+    "choice": [
+     {
+      "t": "Signer ses conditions.",
+      "goto": "nadia_pacte_consentie",
+      "fx": [
+       "flag nadia_pacte_accepte",
+       "add ambivalence.nadia 10",
+       "add trust.nadia 6",
+       "add align.protect 2"
+      ]
+     },
+     {
+      "t": "« Le contrat reste tel quel. »",
+      "goto": "nadia_pacte_refus",
+      "fx": [
+       "add ambivalence.nadia -25",
+       "add fear.nadia 5"
+      ]
+     }
+    ]
+   }
+  ],
+  "nadia_pacte_refus": [
+   {
+    "s": "narrator",
+    "t": "Elle replie la feuille, très lentement. Quelque chose se referme derrière ses yeux, et elle reprend sa place près de la porte."
+   },
+   {
+    "fx": [
+     "add repos.nadia 1",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "nadia_pacte_consentie": [
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_nadia_pacte_consentie"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle te tend l'écharpe rouge de sa grand-mère et te laisse lui nouer les poignets avec, d'un nœud lâche qu'elle pourrait défaire d'un geste. Elle ne le défait pas."
+   },
+   {
+    "s": "nadia",
+    "t": "Toute ma vie, j'ai visé. Cette nuit, c'est toi qui choisis la cible. Je te fais confiance. Ne me fais pas regretter.",
+    "e": "desire",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle s'abandonne sans jamais lâcher ton regard, comme on garde un œil dans la lunette. Elle ne dit pas le mot d'arrêt. Elle te dit, plusieurs fois, de continuer."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "Au matin, le fusil est remonté, à sa place contre le mur, le canon vers le plafond. L'écharpe est restée autour de ton poignet."
+   },
+   {
+    "fx": [
+     "add repos.nadia 1",
+     "flag nadia_nuit",
+     "add aff.nadia 5",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "aoi_pacte_renegocie": [
+   {
+    "s": "narrator",
+    "t": "Aoi arrive avec le contrat de Mirae, celui que tu as racheté, et un feutre rose. Elle a barré « l'artiste s'engage à » et écrit au-dessus : « Aoi décide de »."
+   },
+   {
+    "s": "aoi",
+    "t": "Je veux bien t'appartenir. Mais c'est moi qui choisis comment. Mon mot d'arrêt, c'est « rappel », comme à la fin d'un concert. Tu signes, Monsieur ?",
+    "e": "true_smile",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "PACTE — Révision proposée par la vassale : un mot d'arrêt, le droit de partir, des clauses librement consenties. Le Système attend ta signature."
+   },
+   {
+    "choice": [
+     {
+      "t": "Signer ses conditions.",
+      "goto": "aoi_pacte_consentie",
+      "fx": [
+       "flag aoi_pacte_accepte",
+       "add ambivalence.aoi 10",
+       "add trust.aoi 6",
+       "add align.protect 2"
+      ]
+     },
+     {
+      "t": "« Le contrat reste tel quel. »",
+      "goto": "aoi_pacte_refus",
+      "fx": [
+       "add ambivalence.aoi -25",
+       "add fear.aoi 5"
+      ]
+     }
+    ]
+   }
+  ],
+  "aoi_pacte_refus": [
+   {
+    "s": "narrator",
+    "t": "Elle replie la feuille, très lentement. Quelque chose se referme derrière ses yeux, et elle reprend sa place près de la porte."
+   },
+   {
+    "fx": [
+     "add repos.aoi 1",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "aoi_pacte_consentie": [
+   {
+    "music": "intimate"
+   },
+   {
+    "cg": "cg_aoi_pacte_consentie"
+   },
+   {
+    "s": "narrator",
+    "t": "Elle ne porte pas le sourire de scène. Elle te tend elle-même un ruban de satin, et t'explique en riant exactement où le nouer."
+   },
+   {
+    "s": "aoi",
+    "t": "Dis-moi quoi faire. Mais cette fois, je sais que je peux dire non. C'est ça qui change tout.",
+    "e": "desire",
+    "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Elle obéit avec un plaisir qu'elle n'essaie pas de cacher, improvise, proteste pour rire, et réclame un « rappel » qu'elle n'utilise jamais comme mot d'arrêt."
+   },
+   {
+    "text_p3_slot": []
+   },
+   {
+    "s": "narrator",
+    "t": "Au matin, elle chante sous la douche une chanson qu'elle n'a jamais chantée en public. Le contrat raturé est punaisé au mur, comme une affiche de concert."
+   },
+   {
+    "fx": [
+     "add repos.aoi 1",
+     "flag aoi_nuit",
+     "add aff.aoi 5",
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
    }
   ]
  }

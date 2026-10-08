@@ -54,7 +54,7 @@
   {
    "id": "combat",
    "title": "Combat",
-   "text": "Le combat se joue sur deux grilles de 3 × 3 (rangée avant, milieu, arrière).\n• La FRISE en haut montre l'ordre des tours : la Vitesse décide qui agit en premier.\n• Choisis une compétence, puis une case cible dorée. Certaines ne se lancent que depuis certaines rangées ; la mêlée ne touche que la rangée avant ennemie.\n• Le chiffre entre parenthèses est le coût en mana.\n• Les cases magenta sont le Pressentiment du Registre : ce que l'ennemi va faire.\n• L'Éveil (barre dorée) se remplit à chaque action ; plein, il libère la technique ultime de l'héroïne (bouton doré).\n• La Réécriture (à partir de la deuxième boucle) rétablit le combat tel qu'il était avant ta dernière action : une seconde chance par combat."
+   "text": "Le combat se joue sur deux grilles de 3 × 3 (rangée avant, milieu, arrière).\n• La FRISE en haut montre l'ordre des tours : la Vitesse décide qui agit en premier.\n• Choisis une compétence, puis une case cible dorée. Certaines ne se lancent que depuis certaines rangées ; la mêlée ne touche que la rangée avant ennemie.\n• Le chiffre entre parenthèses est le coût en mana.\n• Les cases magenta sont le Pressentiment du Registre : ce que l'ennemi va faire.\n• L'Éveil (barre dorée) se remplit à chaque action ; plein, il libère la technique ultime de l'héroïne (bouton doré).\n• La Réécriture (à partir de la deuxième boucle) rétablit le combat tel qu'il était avant ta dernière action : une seconde chance par combat.\n\nAu tout premier combat, le jeu propose un tutoriel pas à pas (« Activer le tutoriel de combat » ou « Ignorer »). Pour qu'il soit de nouveau proposé : Options → « Proposer le tutoriel de combat »."
   },
   {
    "id": "galerie",
