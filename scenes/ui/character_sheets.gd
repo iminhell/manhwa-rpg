@@ -93,6 +93,7 @@ func show_character(id: String) -> void:
 		out += "%s\n\n" % c["bio"]
 	if c.has("trait"):
 		out += "[i]%s[/i]\n\n" % c["trait"]
+	out += combat_text(c)
 	if in_game and id != "elias":
 		var st = GameState.store
 		var status := "dans le groupe" if st.has_flag("party." + id) else ("rencontrée" if st.aff(id) != 0 or st.trust(id) != 0 else "pas encore rencontrée")
@@ -105,9 +106,34 @@ func show_character(id: String) -> void:
 		b.button_pressed = b.name == id
 
 
+const ROWS := ["avant", "milieu", "arrière"]
+
+
+## Fiche de combat : statistiques, rangée de départ et compétences (data/combat/skills.json).
+static func combat_text(c: Dictionary) -> String:
+	var cb: Dictionary = c.get("combat", {})
+	if cb.is_empty():
+		return ""
+	var gold := UI.GOLD.to_html(false)
+	var s: Dictionary = cb.get("stats", {})
+	var out := "[b][color=#%s]Combat[/color][/b]\n" % gold
+	out += "PV %d · Attaque %d · Défense %d · Vitesse %d · Mana %d" % [int(s.get("hp", 0)), int(s.get("atk", 0)), int(s.get("def", 0)),
+		int(s.get("spd", 0)), int(s.get("mana", 0))]
+	var pos: Array = cb.get("position", [])
+	if pos.size() == 2:
+		out += " · rangée %s" % ROWS[clampi(int(pos[0]), 0, 2)]
+	out += "\n"
+	for sid in cb.get("skills", []):
+		var sk: Dictionary = DataDB.skills.get(sid, {})
+		var cost := int(sk.get("cost", 0))
+		out += "• [b]%s[/b]%s%s — %s\n" % [sk.get("name", sid), " (%d mana)" % cost if cost > 0 else "",
+			" [color=#%s][Éveil][/color]" % gold if sk.get("awaken", false) else "", sk.get("desc", "")]
+	return out + "\n"
+
+
 static func _bar(value: float) -> String:
 	var n := clampi(int(round(value / 10.0)), 0, 10)
-	return "%s%s %d" % ["■".repeat(n), "□".repeat(10 - n), int(value)]
+	return "[bgcolor=#%s]%s[/bgcolor][bgcolor=#2a2f3a]%s[/bgcolor] %d" % [UI.GOLD.to_html(false), "  ".repeat(n), "  ".repeat(10 - n), int(value)]
 
 
 func _unhandled_input(event: InputEvent) -> void:

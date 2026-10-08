@@ -183,6 +183,14 @@
     "t": "Archives : 5 pages récupérées."
    },
    {
+    "s": "registre",
+    "t": "Une FIN : le jour, l'heure et la manière dont quelqu'un mourra si rien ne change. Ces pages sont tes SOUVENIRS : la mort ne les efface pas."
+   },
+   {
+    "s": "registre",
+    "t": "Consulte-les à tout moment : bouton « Registre » sur la carte (touche R)."
+   },
+   {
     "fx": [
      "souvenir s1_bunker_b6",
      "souvenir s2_medecin_j12",
@@ -210,6 +218,10 @@
     "s": "elias",
     "t": "J'ai vécu ces trente jours. Et je suis mort au bout.",
     "e": "anger"
+   },
+   {
+    "s": "registre",
+    "t": "RÉGRESSION — Si le Lecteur meurt, il revient à l'aube du Jour 1. Les Souvenirs restent. Tout le reste est à reconstruire."
    },
    {
     "goto": "neighbor"
@@ -251,6 +263,10 @@
    {
     "s": "narrator",
     "t": "Dehors, quelque chose racle le bitume. Ça approche."
+   },
+   {
+    "s": "registre",
+    "t": "Le Registre compte tout : protéger ou dominer, lier ou rester seul. Chaque choix pèse sur ta Voie."
    },
    {
     "choice": [
@@ -383,7 +399,7 @@
    },
    {
     "s": "system",
-    "t": "QUÊTE OBLIGATOIRE accomplie. Récompense : Niveau 2."
+    "t": "QUÊTE OBLIGATOIRE accomplie. Récompense : un jour de plus à vivre."
    },
    {
     "s": "elias",
@@ -711,7 +727,15 @@
    },
    {
     "s": "registre",
-    "t": "CARTE DE SÉOUL déverrouillée. Chaque déplacement coûte du temps. Les Ancres du calendrier n'attendent personne."
+    "t": "CARTE DE SÉOUL déverrouillée. Chaque déplacement et chaque action coûtent du temps. Une journée a quatre phases : Aube, Jour, Crépuscule, Nuit."
+   },
+   {
+    "s": "registre",
+    "t": "ANCRE — un événement daté qui aura lieu à son heure, que tu sois là ou non. Sois présent pour en changer l'issue."
+   },
+   {
+    "s": "registre",
+    "t": "FATIGUE — À partir de 5 phases éveillé, tu faiblis ; à 8, tu t'effondres. Dors dans un Refuge : ton appartement d'Itaewon, à Yongsan, pour commencer."
    },
    {
     "event": "world",
@@ -743,6 +767,10 @@
    {
     "s": "registre",
     "t": "Régression."
+   },
+   {
+    "s": "registre",
+    "t": "Retour à l'aube du Jour 1. Restent : les Souvenirs, les Échos, les Fins déjà lues. Repartent à zéro : l'argent, les objets, le groupe, les liens."
    },
    {
     "event": "regress",

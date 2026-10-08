@@ -20,6 +20,8 @@ const DifficultyPanel := preload("res://scenes/difficulty_panel.gd")
 const PauseMenu := preload("res://scenes/ui/pause_menu.gd")
 const CharacterSheets := preload("res://scenes/ui/character_sheets.gd")
 const GalleryPanel := preload("res://scenes/ui/gallery_panel.gd")
+const InventoryPanel := preload("res://scenes/ui/inventory_panel.gd")
+const GuidePanel := preload("res://scenes/ui/guide_panel.gd")
 const UI := preload("res://ui/ui_style.gd")
 
 const STORY := "prologue_j1"
@@ -157,6 +159,13 @@ func _open_map() -> void:
 	_map.combat_requested.connect(_on_map_combat)
 	_map.options_requested.connect(_show_options)
 	_map.menu_requested.connect(_open_pause)
+	_map.inventory_requested.connect(_show_inventory)
+	# Première arrivée sur la carte (toutes boucles confondues) : le Guide s'ouvre sur « Premiers pas ».
+	if not _autotest and not SaveManager.meta.get("guide_vu", false) and not OS.get_cmdline_user_args().has("--uitest") \
+			and not OS.get_cmdline_user_args().has("--capture"):
+		SaveManager.meta["guide_vu"] = true
+		SaveManager._write(SaveManager.META_PATH, SaveManager.meta)
+		_show_guide("premiers_pas")
 	MusicManager.play_context(GameState.world.sector(GameState.world.sector_id()).get("music", ""))
 
 
@@ -314,6 +323,10 @@ func _on_pause(action: String) -> void:
 			_show_sheets(true)
 		"gallery":
 			_show_gallery()
+		"inventory":
+			_show_inventory()
+		"guide":
+			_show_guide()
 		"options":
 			_show_options()
 		"title":
@@ -342,6 +355,19 @@ func _show_sheets(in_game: bool) -> Control:
 
 func _show_gallery() -> Control:
 	var p := GalleryPanel.new()
+	add_child(p)
+	return p
+
+
+func _show_inventory() -> Control:
+	var p := InventoryPanel.new()
+	add_child(p)
+	return p
+
+
+func _show_guide(page: String = "") -> Control:
+	var p := GuidePanel.new()
+	p.page = page
 	add_child(p)
 	return p
 
@@ -433,6 +459,15 @@ func _capture_tour() -> void:
 	await _snap("10_galerie_intime")
 	for m in get_tree().get_nodes_in_group("modal"):
 		m.queue_free()
+	GameState.store.apply_effects(["item sablier 2", "item serum_h07 1", "item lame_gu 1", "item cadeau_cigare 1"])
+	_show_inventory()
+	await _snap("11_inventaire")
+	for m in get_tree().get_nodes_in_group("modal"):
+		m.queue_free()
+	_show_guide("regression")
+	await _snap("12_guide")
+	for m in get_tree().get_nodes_in_group("modal"):
+		m.queue_free()
 	_clear_overlay()
 	_start_combat_test()
 	await _snap("05_combat")
@@ -499,6 +534,10 @@ func _ui_test() -> void:
 	sheets.show_character("hae_in")
 	_ui_check(sheets._info.text.contains("Yoon Hae-in") and sheets._info.text.contains("Haesong") and not sheets._info.text.contains("Affinité"),
 		"fiches : identité et présentation, sans les liens hors partie")
+	_ui_check(sheets._info.text.contains("PV ") and sheets._info.text.contains("Vitesse") and sheets._info.text.contains("mana"),
+		"fiches : statistiques et compétences de combat")
+	_ui_check(DialogueScene.choice_feedback(["add align.protect 2", "add aff.seo_yeon 5", "flag x"]) == "Protéger +2   ·   Affinité Seo-Yeon +5",
+		"dialogue : retour sur l'effet d'un choix (alignement, Affinité)")
 	await _press(KEY_ESCAPE)
 	_ui_check(_modals().is_empty(), "fiches : Échap ferme le panneau")
 	var gal = _show_gallery()
@@ -570,7 +609,7 @@ func _ui_test() -> void:
 	_ui_check(pause.size() == 1, "Échap : menu pause ouvert")
 	if pause.size() == 1:
 		var p = pause[0]
-		for b in ["resume", "save", "load", "sheets", "gallery", "options", "title"]:
+		for b in ["resume", "save", "load", "inventory", "sheets", "gallery", "guide", "options", "title"]:
 			_ui_check(p.find_child(b, true, false) != null, "menu pause : bouton %s" % b)
 		_ui_check(p.find_child("save", true, false).disabled, "menu pause : sauvegarde impossible pendant le prologue")
 		p.find_child("sheets", true, false).pressed.emit()
@@ -587,6 +626,25 @@ func _ui_test() -> void:
 	_open_map()
 	await _frames()
 	_ui_check(_map.find_child("Menu", true, false) != null or _map.get_children().size() > 0, "carte : bouton Menu")
+	_ui_check(_map._top.text.contains("/30") and _map._top.text.contains("₩") and _map._top.text.contains("/8 ph."),
+		"carte : jour sur 30, argent en ₩, fatigue en phases")
+	GameState.store.apply_effects(["item sablier 1", "item lame_gu 1"])
+	_map.find_child("Inventaire", true, false).pressed.emit()
+	await _frames()
+	var inv: Array = _modals().filter(func(m): return m is InventoryPanel)
+	_ui_check(inv.size() == 1 and inv[0]._text.text.contains("Sablier de répit") and inv[0]._text.text.contains("Équipement"),
+		"carte → Inventaire : objets par catégorie, avec description")
+	await _press(KEY_ESCAPE)
+	_ui_check(_modals().is_empty(), "inventaire : Échap le ferme")
+	var guide = _show_guide("combat")
+	await _frames()
+	_ui_check(guide._text.text.contains("FRISE") and guide._list.get_child_count() == DataDB.guide["pages"].size(), "guide : %d pages, page Combat" % guide._list.get_child_count())
+	await _press(KEY_ESCAPE)
+	_ui_check(_modals().is_empty(), "guide : Échap le ferme")
+	_map._toggle_registre()
+	await _frames()
+	await _press(KEY_ESCAPE)
+	_ui_check(not _map._registre.visible and _modals().is_empty(), "registre : Échap le ferme sans ouvrir le menu pause")
 	var checkpoint_money: int = GameState.store.money()
 	GameState.mark_checkpoint(GameState.store.to_dict())
 	GameState.store.apply_effects(["money 777"])  # effet appliqué pendant la scène

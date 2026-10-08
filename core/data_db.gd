@@ -19,6 +19,8 @@ var gifts: Dictionary = {}
 var echoes: Dictionary = {}
 var group_scenes: Dictionary = {}
 var gallery: Dictionary = {}
+var items: Dictionary = {}   ## data/world/items.json (écran Inventaire)
+var guide: Dictionary = {}   ## data/world/guide.json (Guide du joueur)
 var gallery_unlocks: Dictionary = {}  ## « dialogue:bloc » → identifiants des entrées de galerie qu'il débloque
 
 
@@ -45,6 +47,8 @@ func reload() -> void:
 	echoes = load_json("res://data/world/echoes.json").get("echoes", {})
 	group_scenes = load_json("res://data/world/group_scenes.json")
 	gallery = load_json("res://data/world/gallery.json")
+	items = load_json("res://data/world/items.json")
+	guide = load_json("res://data/world/guide.json")
 	gallery_unlocks = {}
 	for e in gallery.get("entries", []):
 		for ref in e.get("unlock", []):
@@ -89,6 +93,15 @@ func display_name(id: String) -> String:
 		"registre":
 			return "REGISTRE"
 	return character(id).get("name", id.capitalize())
+
+
+## Prénom d'usage (« seo_yeon » → « Seo-Yeon », « hae_in » → « Hae-in ») pour les messages courts.
+func short_name(id: String) -> String:
+	var parts := id.split("_")
+	var out := parts[0].capitalize()
+	for i in range(1, parts.size()):
+		out += "-" + (parts[i] if id == "hae_in" else parts[i].capitalize())
+	return out
 
 
 ## Couleur d'accent lisible sur fond sombre (les palettes très sombres sont éclaircies).

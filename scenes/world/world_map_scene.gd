@@ -6,6 +6,7 @@ signal dialogue_requested(ref: String)
 signal combat_requested(encounter: String, win_fx: Array)
 signal options_requested
 signal menu_requested
+signal inventory_requested
 
 const UI := preload("res://ui/ui_style.gd")
 const MapView := preload("res://scenes/world/map_view.gd")
@@ -51,26 +52,33 @@ func _ready() -> void:
 	var top := HBoxContainer.new()
 	top.add_theme_constant_override("separation", 18)
 	root.add_child(top)
-	_top = UI.label("", 22, UI.GOLD)
+	_top = UI.label("", 20, UI.GOLD)
 	top.add_child(_top)
 	_phase_bar = HBoxContainer.new()
 	_phase_bar.add_theme_constant_override("separation", 3)
 	top.add_child(_phase_bar)
-	_pressure = UI.label("", 20, UI.MAGENTA)
+	_pressure = UI.label("", 18, UI.MAGENTA)
 	top.add_child(_pressure)
 	var spacer := Control.new()
 	spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	top.add_child(spacer)
-	var reg := UI.button("Registre", 20, UI.GOLD)
+	var reg := UI.button("Registre", 18, UI.GOLD)
+	reg.name = "Registre"
+	reg.tooltip_text = "Fins lues, Souvenirs, Échos, Pression de la Tour (R)"
 	reg.pressed.connect(_toggle_registre)
 	top.add_child(reg)
-	var sv_btn := UI.button("Sauvegarder", 20, UI.GOLD)
+	var inv := UI.button("Inventaire", 18, UI.GOLD)
+	inv.name = "Inventaire"
+	inv.tooltip_text = "Argent, objets, équipement, objets clés (I)"
+	inv.pressed.connect(func(): inventory_requested.emit())
+	top.add_child(inv)
+	var sv_btn := UI.button("Sauver", 18, UI.GOLD)
 	sv_btn.pressed.connect(_open_save)
 	top.add_child(sv_btn)
-	var opt := UI.button("Options", 20)
+	var opt := UI.button("Options", 18)
 	opt.pressed.connect(func(): options_requested.emit())
 	top.add_child(opt)
-	var menu := UI.button("Menu", 20, UI.MAGENTA)
+	var menu := UI.button("Menu", 18, UI.MAGENTA)
 	menu.tooltip_text = "Fiches, galerie, sauvegarde… (Échap)"
 	menu.pressed.connect(func(): menu_requested.emit())
 	top.add_child(menu)
@@ -158,9 +166,13 @@ func refresh() -> void:
 		_log.append_text("• %s\n" % m)
 	model.messages.clear()
 	var st = GameState.store
-	_top.text = "JOUR %d — %s   ·   Boucle %d   ·   Argent %d   ·   Rations %d   ·   Fatigue %d/28" % [
-		st.day(), GameState.phase_name(), st.loop(), st.money(), st.item("ration"), int(st.get_var("fatigue", 0))]
-	_pressure.text = "Pression de la Tour : %d" % int(st.pressure())
+	var awake := int(st.get_var("fatigue", 0)) / 4.0
+	_top.text = "JOUR %d/30 — %s  ·  Boucle %d  ·  %d ₩  ·  Rations %d  ·  Fatigue %s/8 ph." % [
+		st.day(), GameState.phase_name(), st.loop(), st.money(), st.item("ration"), String.num(awake, 2).trim_suffix(".0")]
+	_top.tooltip_text = "Fatigue : phases passées éveillé. À 5, Elias combat à 85 % ; à 6, à 70 % ; à 8, il s'effondre. Dormir dans un Refuge la remet à zéro."
+	_top.add_theme_color_override("font_color", UI.RED if awake >= 6 else (UI.GOLD if awake >= 5 else UI.TEXT))
+	_pressure.text = "Pression %d/100" % int(st.pressure())
+	_pressure.tooltip_text = "Pression de la Tour : monte quand les Ancres tournent mal. Au-delà de 85 au Jour 30 : l'Effacement."
 	for c in _phase_bar.get_children():
 		c.queue_free()
 	for i in 16:
@@ -236,7 +248,7 @@ func _close_refuge(p: Control) -> void:
 
 
 func _cost_text(ticks: int) -> String:
-	return "%d ph." % int(ticks / 4.0) if ticks % 4 == 0 else "%d/4 ph." % ticks
+	return model.cost_label(ticks)
 
 
 func _check_event() -> void:
@@ -352,3 +364,16 @@ func _count_idle(ticks: int) -> void:
 func _wait(ticks: int) -> void:
 	model.advance(ticks)
 	refresh()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if not visible or not (event is InputEventKey and event.pressed and not event.echo):
+		return
+	if not get_tree().get_nodes_in_group("modal").is_empty():
+		return
+	if event.keycode == KEY_I:
+		get_viewport().set_input_as_handled()
+		inventory_requested.emit()
+	elif event.keycode == KEY_R:
+		get_viewport().set_input_as_handled()
+		_toggle_registre()

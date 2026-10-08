@@ -2506,7 +2506,11 @@ manhwa-rpg/                    # le projet Godot est à la racine du dépôt
   - **Masquer** (H) ;
   - **Journal** (L, molette vers le haut) : 300 dernières répliques ;
   - **Menu** (Échap).
-- **Menu pause** (Échap, bouton Menu de la carte et du dialogue) : Reprendre, Sauvegarder, Charger, Fiches, Galerie, Options, Retour au titre.
+- **Menu pause** (Échap, bouton Menu de la carte et du dialogue) : Reprendre, Sauvegarder, Charger, Inventaire, Fiches, Galerie, Guide, Options, Retour au titre.
+- **Inventaire** (carte : bouton ou touche I ; menu pause) : argent (₩), ressources, consommables, équipement, objets clés et cadeaux, avec leur description (`data/world/items.json`).
+- **Fiches** : en plus de l'identité et des liens, la section **Combat** (PV, Attaque, Défense, Vitesse, Mana, rangée de départ, compétences et leur coût).
+- **Guide** (`data/world/guide.json`) : Premiers pas, la Tour, le Registre et les Fins, les Ancres, mourir et recommencer, le temps et la fatigue, le Refuge, argent et objets, héroïnes et liens, alignement et Voies, combat, galerie. Il s'ouvre seul à la première arrivée sur la carte.
+- **Prise en main** : le prologue définit les Fins, les Souvenirs, la régression (ce qui reste, ce qui part), les Ancres, les phases et la fatigue ; les deux premiers combats ajoutent des lignes d'aide au journal ; la Réécriture n'apparaît qu'à partir de la deuxième boucle. Après chaque choix, un court message indique son effet (Protéger, Lien, Affinité…).
 - **Fiches des personnages** (titre et pause) : portrait, identité, présentation sans spoiler (`bio`, `trait`). En partie s'y ajoutent l'Affinité, la Confiance, la Peur, le statut dans la boucle et la Fin lue.
 - **Galerie** (titre et pause), catalogue `data/world/gallery.json` (inventaire généré : `docs/GALERIE.md`) :
   - deux onglets, **Histoire / CG clés** (CG du récit et soirées du Refuge) et **Scènes intimes** (solo, duos, trios, quatuors, constellations de 5 à 9, harem) ;

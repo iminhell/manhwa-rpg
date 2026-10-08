@@ -1,12 +1,12 @@
 extends Control
-## Menu pause (Échap ou bouton « Menu ») : reprendre, sauvegarder, charger, fiches, galerie, options, titre.
+## Menu pause (Échap ou bouton « Menu ») : reprendre, sauvegarder, charger, inventaire, fiches, galerie, guide, options, titre.
 
 signal chosen(action: String)
 
 const UI := preload("res://ui/ui_style.gd")
 const ENTRIES := [
-	["resume", "Reprendre"], ["save", "Sauvegarder"], ["load", "Charger"], ["sheets", "Fiches des personnages"],
-	["gallery", "Galerie"], ["options", "Options"], ["title", "Retour au titre"],
+	["resume", "Reprendre"], ["save", "Sauvegarder"], ["load", "Charger"], ["inventory", "Inventaire"],
+	["sheets", "Fiches des personnages"], ["gallery", "Galerie"], ["guide", "Guide"], ["options", "Options"], ["title", "Retour au titre"],
 ]
 
 var can_save := true

@@ -19,8 +19,8 @@ RPG narratif et tactique inspiré des manhwas/webtoons : régression temporelle,
 | Écran | Commandes |
 |---|---|
 | Dialogue | Clic, Espace ou Entrée pour avancer. Les choix sont des boutons magenta. Barre d'actions au-dessus du texte : **Sauver** (pendant une scène, la sauvegarde reprend sur la carte juste avant elle), **Charger**, **Auto** (A), **Passer** jusqu'au prochain choix (Tab), **Masquer** l'interface (H, clic pour la réafficher), **Journal** (L ou molette vers le haut), **Menu** (Échap) |
-| Menu pause | Échap ou bouton **Menu** (carte, dialogue) : Reprendre, Sauvegarder, Charger, Fiches des personnages, Galerie, Options, Retour au titre |
-| Carte | Clic sur un secteur (gauche) pour voyager. Clic sur une zone voisine (cercle bleu) pour s'y déplacer. Les actions sont listées en bas. Le bouton **Registre** affiche les Fins et les souvenirs |
+| Menu pause | Échap ou bouton **Menu** (carte, dialogue) : Reprendre, Sauvegarder, Charger, **Inventaire**, Fiches des personnages (liens, statistiques et compétences de combat), Galerie, **Guide**, Options, Retour au titre |
+| Carte | Clic sur un secteur (gauche) pour voyager. Clic sur une zone voisine (cercle bleu) pour s'y déplacer. Les actions sont listées en bas, avec leur durée en phases. **Registre** (R) : Fins lues, Souvenirs, Échos, Pression, Voie. **Inventaire** (I) : ₩, ressources, consommables, équipement, objets clés, cadeaux. Barre du haut : jour sur 30, phase, boucle, ₩, rations, fatigue en phases (malaise à 8). Le **Guide** s'ouvre seul à la première arrivée sur la carte |
 | Refuge | Sur un nœud refuge : **Établir le Refuge**, puis **Gérer** (déposer ou retirer des rations, améliorations, vente de Fragments), **Moment de repos** avec chaque héroïne (une fois par héroïne et par jour, dès le crépuscule), **Cadeaux**, **scènes à plusieurs**, **Jour de répit** (à l'aube, avec un Sablier ; illimité en mode Histoire), **Dormir** |
 | Combat | Une compétence, puis une case dorée. **Réécriture** (après la première mort) annule la dernière action |
 

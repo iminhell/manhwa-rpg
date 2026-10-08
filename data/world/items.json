@@ -1,0 +1,52 @@
+{
+ "note": "Catalogue des objets (écran Inventaire). Tout objet obtenu en jeu (« item <id> n ») doit y figurer ; les cadeaux « cadeau_<id> » viennent de gifts.json. Validé par tools/validate_data.py.",
+ "categories": {
+  "ressource": "Ressources",
+  "consommable": "Consommables",
+  "equipement": "Équipement",
+  "cle": "Objets clés",
+  "cadeau": "Cadeaux"
+ },
+ "items": {
+  "ration": {
+   "name": "Ration",
+   "cat": "ressource",
+   "desc": "Nourriture de survie. Le Refuge en consomme chaque jour pour ses résidents ; sur la carte, en manger une réduit la fatigue d'une phase (action « Manger une ration », dès 2 phases éveillé)."
+  },
+  "fragment_strate": {
+   "name": "Fragment de strate",
+   "cat": "ressource",
+   "desc": "Éclat cristallin tombé de la Tour. L'Atelier du Refuge le revend 25 ₩."
+  },
+  "sablier": {
+   "name": "Sablier de répit",
+   "cat": "consommable",
+   "desc": "Récompense du Système. Au Refuge, à l'Aube ou dans la Journée, il permet de déclarer un jour de répit : la Tour retient son souffle, aucune Ancre ni aucun combat, et le temps revient au matin à la nuit tombée. Les liens tissés pendant ce jour restent."
+  },
+  "serum_h07": {
+   "name": "Sérum H-07",
+   "cat": "cle",
+   "desc": "Sérum expérimental de Mirae, trouvé à l'hôpital de Yeouido. Il peut freiner une transformation déjà commencée."
+  },
+  "poison_hote": {
+   "name": "Fiole d'amanite",
+   "cat": "cle",
+   "desc": "Poison volé dans les cuisines de l'Hôte, à l'étage 3 de la Tour. Une seule dose."
+  },
+  "battant": {
+   "name": "Battant de cloche",
+   "cat": "cle",
+   "desc": "Décroché de la dernière cloche du Clocher, à l'étage 2. Son hurlement de bronze assourdit ce qui chante."
+  },
+  "lame_gu": {
+   "name": "Lame forgée dans la Tour",
+   "cat": "equipement",
+   "desc": "Achetée au marché noir. Équipée d'office : Elias gagne +3 en Attaque."
+  },
+  "lame_tour": {
+   "name": "Lame de Tour",
+   "cat": "equipement",
+   "desc": "Remportée aux enchères de l'étage 3 : elle coupe les glyphes. Équipée d'office : Elias gagne +4 en Attaque."
+  }
+ }
+}

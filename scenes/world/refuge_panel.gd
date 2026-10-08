@@ -45,7 +45,7 @@ func refresh() -> void:
 	var d := UI.label(info.get("desc", ""), 16, UI.DIM)
 	d.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_body.add_child(d)
-	_body.add_child(UI.label("Stock : %d rations · Sur toi : %d · Résidents : %d (besoin : %d/jour) · Argent : %d%s" % [
+	_body.add_child(UI.label("Stock : %d rations · Sur toi : %d · Résidents : %d (besoin : %d/jour) · %d ₩%s" % [
 		refuge.rations(), st.item("ration"), refuge.residents(), refuge.daily_need(), st.money(),
 		"   ⚠ FAIM" if int(st.get_var("refuge.faim", 0)) > 0 else ""], 18, UI.GOLD))
 	var row := HBoxContainer.new()
@@ -67,7 +67,7 @@ func refresh() -> void:
 	for id in refuge.data.get("upgrades", {}):
 		var u: Dictionary = refuge.data["upgrades"][id]
 		var cost: Dictionary = u.get("cost", {})
-		var price := "%d ¥" % int(cost.get("argent", 0))
+		var price := "%d ₩" % int(cost.get("argent", 0))
 		if int(cost.get("ration", 0)) > 0:
 			price += " + %d rations" % int(cost["ration"])
 		var label := "%s%s — %s   [%s · %d/4 ph.]" % ["✔ " if refuge.has(id) else "", u["name"], u["desc"], price, int(u.get("ticks", 4))]

@@ -244,8 +244,51 @@ func _show_choices(options: Array) -> void:
 
 func _on_choice(index: int) -> void:
 	_clear_choices()
+	if not auto_advance and not replay and index < runner._pending_choices.size():
+		_feedback(choice_feedback(runner._pending_choices[index]["opt"].get("fx", [])))
 	runner.choose(index)
 	_advance()
+
+
+## Retour discret sur l'effet d'un choix : alignement et jauges des héroïnes (« Protéger +2 · Affinité Seo-Yeon +5 »).
+static func choice_feedback(fx: Array) -> String:
+	var parts := []
+	for e in fx:
+		var p := str(e).split(" ")
+		if p.size() != 3 or p[0] != "add" or not p[2].is_valid_float():
+			continue
+		var n := int(float(p[2]))
+		if n == 0:
+			continue
+		var key := p[1]
+		if key == "align.protect":
+			parts.append(("Protéger +%d" if n > 0 else "Dominer +%d") % absi(n))
+		elif key == "align.bond":
+			parts.append(("Lien +%d" if n > 0 else "Solitude +%d") % absi(n))
+		else:
+			for g in [["aff.", "Affinité"], ["trust.", "Confiance"], ["fear.", "Peur"]]:
+				if key.begins_with(g[0]):
+					parts.append("%s %s %+d" % [g[1], DataDB.short_name(key.substr(g[0].length())), n])
+	return "   ·   ".join(parts)
+
+
+func _feedback(text: String) -> void:
+	if text == "":
+		return
+	var l := UI.label(text, 20, UI.GOLD)
+	l.name = "Feedback"
+	l.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
+	l.grow_horizontal = Control.GROW_DIRECTION_BEGIN
+	l.offset_top = 16
+	l.offset_right = -24
+	l.add_theme_color_override("font_outline_color", Color.BLACK)
+	l.add_theme_constant_override("outline_size", 6)
+	l.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(l)
+	var tw := create_tween()
+	tw.tween_interval(2.6)
+	tw.tween_property(l, "modulate:a", 0.0, 0.6)
+	tw.tween_callback(l.queue_free)
 
 
 func _clear_choices() -> void:

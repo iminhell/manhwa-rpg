@@ -403,7 +403,7 @@ prologue_j1:first_life:4,elias,exhausted,apparition,…Elle est encore là.,…�
 prologue_j1:first_life:5,haneul,sad,apparition,Tu m'as portée jusqu'ici. Sans rien me demander.,날 여기까지 업고 왔어. 아무것도 바라지 않고.,ここまで私を背負ってくれた。何も求めずに。
 prologue_j1:regress_open:4,elias,anger,apparition,…Encore.,…또야.,…また、か。
 prologue_j1:wake:4,elias,surprise,apparition,Mon appart. Ma montre…,내 집. 내 시계…,俺の部屋。俺の時計…
-prologue_j1:wake_first:4,elias,neutral,apparition,« Il y a un bunker sous le parking B6 de la tour IFC. »,「IFC 타워 주차장 B6 아래에 벙커가 있다.」,「IFCタワーの駐車場B6の下に、バンカーがある」
+prologue_j1:wake_first:6,elias,neutral,apparition,« Il y a un bunker sous le parking B6 de la tour IFC. »,「IFC 타워 주차장 B6 아래에 벙커가 있다.」,「IFCタワーの駐車場B6の下に、バンカーがある」
 prologue_j1:wake_loop:1,elias,neutral,apparition,Je connais la suite. Le Rôdeur dans la rue. Puis la première Marée.,다음은 안다. 거리의 배회자. 그리고 첫 번째 범람.,この先は知ってる。通りの徘徊者。それから最初の潮だ。
 prologue_j1:neighbor_help:0,elias,neutral,apparition,Accrochez-vous à mon cou. Et ne regardez pas dehors.,제 목을 꽉 잡으세요. 그리고 밖은 보지 마시고요.,首にしっかり掴まって。外は見ないでください。
 prologue_j1:neighbor_leave:1,elias,neutral,apparition,On meurt toujours seul. Autant ne pas mourir pour quelqu'un d'autre.,어차피 사람은 혼자 죽어. 남 대신 죽을 필요는 없지.,どうせ人は独りで死ぬ。他人のために死ぬことはない。

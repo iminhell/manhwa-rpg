@@ -1,5 +1,5 @@
 extends PanelContainer
-## Registre des Fins : souvenirs, Fins connues, Pression.
+## Registre des Fins : Fins connues, Souvenirs, Échos des boucles passées, Pression, alignement et Voie.
 
 const UI := preload("res://ui/ui_style.gd")
 
@@ -44,7 +44,23 @@ func refresh() -> void:
 	out += "\n[b][color=#e8b23a]Souvenirs[/color][/b]\n"
 	for id in st.souvenirs:
 		out += "• %s\n" % DataDB.souvenirs.get(id, id)
+	var echoes := []
+	for f in st.flags:
+		if str(f).begins_with("echo.") and DataDB.echoes.has(str(f).substr(5)):
+			echoes.append(DataDB.echoes[str(f).substr(5)].get("text", ""))
+	if not echoes.is_empty():
+		out += "\n[b][color=#e8b23a]Échos des boucles passées[/color][/b]\n"
+		for e in echoes:
+			out += "• [i]%s[/i]\n" % e
 	out += "\n[b][color=#e8b23a]Pression de la Tour[/color][/b] : %d / 100   (Effacement au-delà de 85 au Jour 30)\n" % int(st.pressure())
 	out += "[b][color=#e8b23a]Alignement[/color][/b] : Protéger/Dominer %+d · Lien/Solitude %+d\n" % [
 		int(st.get_var("align.protect")), int(st.get_var("align.bond"))]
+	var voie: String = {"heros": "Héros", "tyran": "Tyran", "loup": "Loup", "mercenaire": "Mercenaire"}.get(st.voie(), "indécise")
+	out += "[b][color=#e8b23a]Voie[/color][/b] : %s   [i](Héros : Protéger ≥ 20 · Tyran : ≤ −20 · Loup : Lien ≤ −20 · Mercenaire : 400 ₩)[/i]\n" % voie
 	_text.text = out
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if visible and (event.is_action_pressed("ui_cancel") or (event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_R)):
+		get_viewport().set_input_as_handled()
+		visible = false

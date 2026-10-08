@@ -1,0 +1,65 @@
+{
+ "note": "Pages du Guide (menu pause → Guide ; ouvert automatiquement à la première arrivée sur la carte).",
+ "pages": [
+  {
+   "id": "premiers_pas",
+   "title": "Premiers pas",
+   "text": "Tu es Elias Kang, Porteur de Rang F. Tu as déjà vécu ces trente jours, et tu es mort à la fin.\n\nSur la carte : choisis un lieu, puis une action. Chaque action coûte du temps (indiqué entre crochets). En haut : le jour, la phase, ton argent (₩), tes rations et ta fatigue.\n\n• Registre : les Fins que tu as lues, tes Souvenirs, la Pression de la Tour.\n• Inventaire : tes objets.\n• Menu (Échap) : sauvegarde, fiches des personnages, galerie, ce Guide.\n\nPremier conseil : la nuit venue, rentre dormir dans un Refuge (ton appartement à Yongsan, au début)."
+  },
+  {
+   "id": "tour",
+   "title": "La Tour et les 30 jours",
+   "text": "La Tour est tombée sur Séoul le premier jour : trois kilomètres de nuit plantés à Yongsan. Ses étages s'ouvrent peu à peu ; des créatures en sortent à chaque Marée.\n\nDans trente jours, la Tour descendra : c'est la Nuit du Déversement. Tout ce que tu fais d'ici là prépare cette nuit-là. La Pression de la Tour (Registre) monte quand tu laisses les choses empirer ; au-delà de 85 au Jour 30, c'est l'Effacement."
+  },
+  {
+   "id": "registre",
+   "title": "Le Registre et les Fins",
+   "text": "Le Registre est le pouvoir d'Elias. Quand tu approches quelqu'un, tu peux lire sa Fin : le jour, l'heure et la manière dont cette personne va mourir si rien ne change.\n\nUne Fin n'est pas une fatalité. C'est un rendez-vous. Si tu es là au bon moment, avec ce qu'il faut, tu peux la réécrire.\n\nLes Fins lues restent dans le Registre (bouton « Registre » sur la carte)."
+  },
+  {
+   "id": "ancres",
+   "title": "Les Ancres",
+   "text": "Une Ancre est un événement daté : il arrivera à ce jour et à cette phase, que tu sois là ou non. Le Registre t'annonce les plus importantes (« ANCRE — Dans deux nuits… »).\n\nSi tu es présent, tu peux changer son issue. Si tu es ailleurs, l'Ancre se résout sans toi, souvent mal. Tu ne peux pas être partout : choisir où tu seras est le cœur du jeu."
+  },
+  {
+   "id": "regression",
+   "title": "Mourir et recommencer",
+   "text": "Si Elias meurt (défaite en combat, Effacement), il régresse : il se réveille au matin du Jour 1, dans son appartement. C'est une nouvelle boucle.\n\nCe qui reste : les Souvenirs (connaissances gravées dans le Registre), les Échos (les héroïnes se souviennent vaguement de ce que tu as fait pour elles, ou contre elles), la galerie et les Fins déjà vues.\nCe qui part : l'argent, les objets, le groupe, les liens et l'état du monde.\n\nÀ partir de la deuxième boucle, la Réécriture se débloque en combat."
+  },
+  {
+   "id": "temps",
+   "title": "Le temps, la fatigue, les rations",
+   "text": "Une journée a quatre phases : Aube, Jour, Crépuscule, Nuit. Une phase se divise en quarts : se déplacer entre deux lieux voisins coûte ¼ de phase, une action ½ phase (ou plus), un trajet vers un secteur voisin ¾ de phase, un secteur éloigné 1 ½ phase.\n\nLa fatigue compte les phases passées éveillé. À 5 phases, Elias combat à 85 % ; à 6, à 70 % ; à 8, il s'effondre. Dormir dans un Refuge la remet à zéro ; manger une ration la réduit d'une phase."
+  },
+  {
+   "id": "refuge",
+   "title": "Le Refuge",
+   "text": "Un Refuge est un lieu sûr où dormir. Au début, c'est ton appartement à Yongsan ; tu peux en établir un autre (le camp de Yeouido, par exemple).\n\nAu Refuge : stock de rations, améliorations (Dortoir, Infirmerie, Vigie, Atelier…), moments de repos avec les héroïnes à partir du Crépuscule, scènes à plusieurs, cadeaux. Les résidents mangent chaque jour : garde des rations."
+  },
+  {
+   "id": "argent",
+   "title": "Argent et objets",
+   "text": "L'argent (₩) sert à acheter des cadeaux, de l'équipement, des améliorations du Refuge, et parfois à racheter une vie ou un contrat. On en gagne en mission, en combat, en revendant des fragments de strate.\n\nL'Inventaire (Menu ou bouton de la carte) liste tes objets : ressources, consommables, équipement (actif d'office) et objets clés, qui ouvrent des solutions dans certaines scènes."
+  },
+  {
+   "id": "heroines",
+   "title": "Héroïnes et liens",
+   "text": "Chaque héroïne a trois jauges : Affinité (ce qu'elle ressent pour toi), Confiance (ce qu'elle croit de toi), Peur (ce que tu lui imposes). Tes choix les font bouger ; un petit message te l'indique.\n\nUne héroïne rejoint le groupe quand son histoire le permet. Plus les liens sont forts, plus les combats, les épreuves de la finale et les scènes du Refuge s'ouvrent. Les fiches (Menu → Fiches des personnages) montrent ses jauges et ses compétences."
+  },
+  {
+   "id": "voies",
+   "title": "Alignement et Voies",
+   "text": "Le Registre compte tout. Deux axes :\n• Protéger ↔ Dominer : aider, sauver, défendre, ou imposer, racheter, forcer.\n• Lien ↔ Solitude : t'appuyer sur les autres, ou tout porter seul.\n\nÀ la fin de la boucle, ils décident de ta Voie : Héros (Protéger ≥ 20), Tyran (Protéger ≤ −20), Loup (Lien ≤ −20), Mercenaire (400 ₩ et plus, sans les autres). Chaque Voie a ses fins, ses scènes et ses relations.\n\nLes contrats forcés (Pactes) lient une héroïne par la peur : elle obéit, mais rien n'est consenti. Seule une longue patience peut transformer un Pacte en Dévotion."
+  },
+  {
+   "id": "combat",
+   "title": "Combat",
+   "text": "Le combat se joue sur deux grilles de 3 × 3 (rangée avant, milieu, arrière).\n• La FRISE en haut montre l'ordre des tours : la Vitesse décide qui agit en premier.\n• Choisis une compétence, puis une case cible dorée. Certaines ne se lancent que depuis certaines rangées ; la mêlée ne touche que la rangée avant ennemie.\n• Le chiffre entre parenthèses est le coût en mana.\n• Les cases magenta sont le Pressentiment du Registre : ce que l'ennemi va faire.\n• L'Éveil (barre dorée) se remplit à chaque action ; plein, il libère la technique ultime de l'héroïne (bouton doré).\n• La Réécriture (à partir de la deuxième boucle) rétablit le combat tel qu'il était avant ta dernière action : une seconde chance par combat."
+  },
+  {
+   "id": "galerie",
+   "title": "Galerie",
+   "text": "Chaque CG vue et chaque scène intime commencée s'ajoute à la galerie, pour toutes les boucles. Les emplacements verrouillés ont un bouton « Indice » qui donne la condition exacte. « Revoir » rejoue la scène sans toucher à ta partie."
+  }
+ ]
+}

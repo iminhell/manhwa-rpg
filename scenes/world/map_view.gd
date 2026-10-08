@@ -55,7 +55,7 @@ func _draw() -> void:
 		var sw := font.get_string_size(stars, HORIZONTAL_ALIGNMENT_LEFT, -1, 14).x
 		draw_string(font, p + Vector2(-sw / 2.0, 28), stars, HORIZONTAL_ALIGNMENT_LEFT, -1, 14, UI.MAGENTA)
 		if can and sid != cur:
-			var cost := "%d ph." % int(model.travel_cost(sid) / 4.0)
+			var cost: String = model.cost_label(model.travel_cost(sid))
 			draw_string(font, p + Vector2(-16, -RADIUS - 8), cost, HORIZONTAL_ALIGNMENT_LEFT, -1, 14, UI.GOLD)
 	# La Tour (au-dessus de Yongsan)
 	var tp := _pos("yongsan") + Vector2(RADIUS + 22, 0)

@@ -88,6 +88,15 @@ func can_move(nid: String) -> bool:
 		and node_visible(nid) and node_open(nid)
 
 
+## Durée lisible : 3 ticks → « ¾ ph. », 6 → « 1 ½ ph. », 8 → « 2 ph. ».
+static func cost_label(ticks: int) -> String:
+	var whole := ticks / 4
+	var frac: String = ["", "¼", "½", "¾"][ticks % 4]
+	if whole == 0:
+		return (frac if frac != "" else "0") + " ph."
+	return "%d%s ph." % [whole, (" " + frac) if frac != "" else ""]
+
+
 func travel_cost(sid: String) -> int:
 	return TRAVEL_ADJACENT if sector(sector_id()).get("adjacent", []).has(sid) else TRAVEL_FAR
 
@@ -130,7 +139,7 @@ func travel(sid: String) -> bool:
 		return false
 	var cost := travel_cost(sid)
 	place(str(sector(sid)["entry"]))
-	messages.append("Trajet vers %s (%s)." % [sector(sid)["short"], "%d ticks" % cost])
+	messages.append("Trajet vers %s (%s)." % [sector(sid)["short"], cost_label(cost)])
 	advance(cost)
 	return true
 

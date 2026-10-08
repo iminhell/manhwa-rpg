@@ -43,8 +43,12 @@ func setup(encounter_id: String, party_ids: Array, seed_value: int = 0) -> void:
 	state.logged.connect(_on_log)
 	_build_ui(enc)
 	_on_log("— %s —" % enc.get("name", encounter_id))
+	if TUTORIAL.has(encounter_id) and GameState.store.loop() == 1:
+		for l in TUTORIAL[encounter_id]:
+			_on_log(l)
 	for l in _pending_log:
 		_on_log(l)
+	_rewrite_btn.visible = GameState.store.loop() >= 2  # la Réécriture n'existe qu'après la première régression
 	_next_turn.call_deferred()
 
 
@@ -64,6 +68,19 @@ func _apply_modifiers() -> void:
 
 
 var _pending_log: Array = []
+
+## Premiers combats de la première boucle : quelques lignes d'aide dans le journal (voir aussi Guide → Combat).
+const TUTORIAL := {
+	"tuto_rodeur": [
+		"AIDE — La FRISE, en haut, montre l'ordre des tours : la Vitesse décide qui agit.",
+		"AIDE — À ton tour : choisis une compétence, puis une case cible dorée. « (n) » = coût en mana.",
+		"AIDE — Cases magenta : ce que l'ennemi va faire au prochain tour (Pressentiment). Écarte-toi ou frappe avant.",
+	],
+	"j1_maree": [
+		"AIDE — Deux grilles de 3 × 3 : la mêlée ne touche que la rangée avant ennemie ; certaines compétences ne partent que de certaines rangées.",
+		"AIDE — La barre dorée, l'Éveil, se remplit à chaque action ; pleine, elle libère la technique ultime (bouton doré).",
+	],
+}
 
 
 func _build_ui(enc: Dictionary) -> void:

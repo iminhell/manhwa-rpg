@@ -65,6 +65,8 @@ difficulty = load(DATA / "world/difficulty.json")
 resilience = load(DATA / "world/resilience.json")
 fins = load(DATA / "world/fins.json").get("fins", {})
 gallery = load(DATA / "world/gallery.json")
+items_cat = load(DATA / "world/items.json")
+guide = load(DATA / "world/guide.json")
 prompts = load(DATA / "art/prompts.json")
 manifest = load(DATA / "art/manifest.json").get("assets", [])
 music_path = DATA / "audio/music.json"
@@ -619,6 +621,17 @@ for k, places in sorted(vars_read.items()):
 for k, places in sorted(items_read.items()):
     if k not in items_written:
         err(f"objet lu mais jamais obtenu « {k} » ({', '.join(sorted(places)[:3])})")
+# Inventaire : tout objet obtenu a sa fiche (nom, catégorie, description) ; les cadeaux viennent de gifts.json
+for k, places in sorted(items_written.items()):
+    known = k in items_cat.get("items", {}) or (k.startswith("cadeau_") and k[7:] in gifts)
+    if not known:
+        err(f"objet sans fiche dans data/world/items.json « {k} » ({', '.join(sorted(places)[:3])})")
+for k, it in items_cat.get("items", {}).items():
+    if it.get("cat") not in items_cat.get("categories", {}) or not it.get("name") or not it.get("desc"):
+        err(f"items/{k} : nom, catégorie ou description manquant")
+for i, pg in enumerate(guide.get("pages", [])):
+    if not pg.get("id") or not pg.get("title") or not pg.get("text"):
+        err(f"guide/{i} : page incomplète")
 for s, places in sorted(souv_read.items()):
     if s not in souv_written:
         err(f"souvenir lu mais jamais accordé « {s} » ({', '.join(sorted(places)[:3])})")
