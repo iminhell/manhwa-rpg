@@ -8,3 +8,6 @@ diffusers==0.39.0
 accelerate
 scipy
 coqui-tts[ja,ko,codec]==0.27.5
+# Sprites : LoRA (load_lora_weights) et détourage du fond blanc (modèle isnet-anime, téléchargé au premier usage)
+peft==0.17.1
+rembg[cpu]==2.0.85

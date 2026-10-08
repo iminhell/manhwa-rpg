@@ -104,6 +104,7 @@ def main() -> None:
         if has_cuda():
             run([sys.executable, "-m", "pip", "install", "-q", "-r", "tools/free_assets/requirements.txt"])
             os.environ.setdefault("COQUI_TOS_AGREED", "0")
+            run([sys.executable, str(FREE_GEN), "sprites"])
             run([sys.executable, str(FREE_GEN), "images"])
             run([sys.executable, str(FREE_GEN), "music"])
             if os.environ["COQUI_TOS_AGREED"] == "1":

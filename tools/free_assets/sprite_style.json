@@ -1,0 +1,102 @@
+{
+ "note": "Style des sprites de personnages (portraits en pied et sprites de combat), lu par free_gen.py sprites. Syntaxe A1111 : (mot:1.4) pondère, (mot) = ×1,1. Les LoRA Civitai peuvent exiger un jeton : secret Colab CIVITAI_TOKEN. Mots déclencheurs des LoRA à vérifier sur leur page Civitai.",
+ "checkpoint": {
+  "name": "animagine-xl-3.1",
+  "url": "https://huggingface.co/cagliostrolab/animagine-xl-3.1/resolve/main/animagine-xl-3.1.safetensors"
+ },
+ "loras": [
+  {"name": "takeda_hiromitsu", "url": "https://civitai.com/api/download/models/1746228", "weight": 0.8, "trigger": "takeda hiromitsu"},
+  {"name": "add_detail_xl", "url": "https://civitai.com/api/download/models/135867", "weight": 1.0, "trigger": ""}
+ ],
+ "size": [832, 1216],
+ "steps": 28,
+ "guidance": 6.0,
+ "expression_strength": 0.6,
+ "quality": "masterpiece, best quality, amazing quality, (ultra-detailed), very aesthetic, absurdres, anime style, defined line, sweaty skin",
+ "background": "simple background, white background, cinematic lighting, soft shadows",
+ "negative": "(reality:1.5), lips, worst quality, bad quality, low quality, signature, watermark, bad anatomy, bad proportions, extra limbs, 3d render, plastic skin, photo, realistic, dark square background, nude, nipples, child, loli, childlike, young-looking, cropped, out of frame",
+ "pose_female": "(full body:1.4), standing, contrapposto, weight on one leg, body slightly turned, head tilt, one hand on hip, other hand touching own hair, feet visible, looking at viewer",
+ "pose_male": "(full body:1.4), standing, contrapposto, weight on one leg, body slightly turned, one hand in pocket, confident stance, feet visible, looking at viewer",
+ "pose_combat": "(full body:1.4), fighting stance, dynamic pose, feet visible, looking at viewer",
+ "expressions": {
+  "neutral": "seductive smile, closed mouth, eyes open",
+  "joy": "smile, happy, open mouth, eyes open",
+  "anger": "angry, frown, clenched teeth, glaring",
+  "sad": "sad, frown, teary eyes, looking down",
+  "embarrassed": "blush, embarrassed, looking away, closed mouth",
+  "surprise": "surprised, wide-eyed, open mouth",
+  "fear": "scared, worried, sweatdrop, open mouth",
+  "blink": "closed eyes, closed mouth, calm",
+  "smirk": "smirk, one eyebrow raised, half-closed eyes",
+  "threat": "cold smile, narrowed eyes, one eyebrow raised",
+  "tilt": "head tilt, curious, parted lips",
+  "administrator": "expressionless, glowing eyes, red glowing glyphs",
+  "lie": "adjusting eyewear, nervous smile, looking away",
+  "tsundere": "blush, pout, crossed arms, looking away",
+  "cigar": "holding cigar, tired smile, smoke",
+  "fan": "holding folding fan, covering mouth with fan, narrowed eyes, smug",
+  "stage_smile": "forced smile, empty eyes, idol",
+  "true_smile": "laughing, genuine smile, dimple, blush",
+  "aim": "serious, narrowed eyes, cold stare, closed mouth",
+  "wink": "one eye closed, wink, grin, fang",
+  "red_leds": "blush, flustered, glowing red lights on temple, looking away"
+ },
+ "characters": {
+  "elias": {
+   "male": true,
+   "body": "1boy, solo, mature male, tall, muscular male, broad shoulders, toned, abs, veins",
+   "look": "dark-skinned male, light brown skin, black hair, curly hair, short hair, undercut, stubble, hazel eyes, thick eyebrows, scar across eyebrow, burn scar on forearm, forearm tattoo",
+   "outfit": "black bomber jacket, open jacket, sleeves rolled up, grey t-shirt, tight shirt, black cargo pants, combat boots, wristwatch"
+  },
+  "seo_yeon": {
+   "body": "1girl, solo, mature female, petite, slender, medium breasts, wide hips, soft body",
+   "look": "auburn hair, messy bun, hair stick, loose hair strands, brown eyes, round eyewear, glasses, mole under eye, red bracelet, fair skin",
+   "outfit": "light blue scrubs, open cardigan, beige cardigan, stethoscope around neck, white sneakers, cleavage"
+  },
+  "hae_in": {
+   "body": "1girl, solo, mature female, busty, thick, mature body, plump body, huge breasts, wide hips, thick thighs, curvy, tall",
+   "look": "black hair, low chignon, side part, streaked hair, silver streak, black eyes, eyeliner, red lips, mole under mouth, jade earrings, porcelain skin",
+   "outfit": "white pantsuit, silk blouse, unbuttoned blouse, cleavage, coat on shoulders, camel coat, high heels, watch"
+  },
+  "haneul": {
+   "body": "1girl, solo, mature female, slender, medium breasts, long legs",
+   "look": "very long hair, silver hair, white hair, straight hair, golden eyes, glowing eyes, glowing tattoo, golden glyphs on skin, pale skin, ethereal",
+   "outfit": "oversized black bomber jacket, off shoulder, long sweater, long skirt, boots, mismatched boots, collarbone"
+  },
+  "ryeon": {
+   "body": "1girl, solo, mature female, athletic, toned, slender, small breasts, long legs",
+   "look": "very long hair, black hair, blue-black hair, high ponytail, red hair ribbon, bangs, sidelocks, grey eyes, serious, scar on collarbone, fair skin",
+   "outfit": "black and white hanbok, short jeogori, wide trousers, red sash, katana at hip, sheathed sword, midriff"
+  },
+  "simone": {
+   "body": "1girl, solo, mature female, muscular female, abs, toned, broad shoulders, large breasts, thick thighs, tall",
+   "look": "dark-skinned female, very dark skin, black hair, cornrows, undercut, black eyes, scar on face, dog tags, shoulder tattoo",
+   "outfit": "camouflage pants, military jacket, sleeves rolled up, tank top, cleavage, beret, combat boots"
+  },
+  "xiaoyu": {
+   "body": "1girl, solo, mature female, slender, medium breasts, narrow waist, wide hips, long legs",
+   "look": "red hair, crimson hair, bob cut, blunt bangs, black roots, amber eyes, slit pupils, eyeliner, red lips, mole under eye, hairpin, red nails, dragon tattoo, pale skin",
+   "outfit": "black china dress, qipao, gold dragon embroidery, side slit, thigh slit, black leather jacket, black thighhighs, ankle boots, cleavage"
+  },
+  "aoi": {
+   "body": "1girl, solo, mature female, slender, toned, small breasts, long legs",
+   "look": "two-tone hair, black hair, pink hair, inner hair color, low twintails, hazel eyes, star earring, freckles, bandaid on finger, bracelet, glitter makeup",
+   "outfit": "sequined jacket, torn jacket, ruffled skirt, skort, oversized bomber jacket, boots, bare shoulders"
+  },
+  "nadia": {
+   "body": "1girl, solo, mature female, tall, slender, lean, small breasts, long legs",
+   "look": "short hair, platinum blonde hair, white hair, undercut, asymmetrical bangs, hair over one eye, grey eyes, silver eyes, eye bags, pale skin, cigarette in mouth",
+   "outfit": "long grey military greatcoat, open coat, black turtleneck, tight turtleneck, combat pants, fingerless gloves, red scarf"
+  },
+  "maricel": {
+   "body": "1girl, solo, mature female, petite, curvy, busty, large breasts, wide hips, thick thighs, plump",
+   "look": "wavy hair, medium hair, gradient hair, blonde hair, brown hair, backwards baseball cap, brown eyes, dimples, mole above lip, tan skin, shoulder tattoo, bracelets, fang",
+   "outfit": "yellow cropped hoodie, crop top, midriff, tank top, cleavage, green cargo pants, sneakers, fanny pack"
+  },
+  "minh_anh": {
+   "body": "1girl, solo, mature female, slender, medium breasts, narrow waist",
+   "look": "very long hair, black hair, single braid, black eyes, rectangular eyewear, glasses, eye bags, glowing blue lights on temple, cybernetic implant, olive skin, black nails",
+   "outfit": "open lab coat, white lab coat, black bodysuit, tight bodysuit, boots, holographic display"
+  }
+ }
+}

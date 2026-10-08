@@ -323,6 +323,518 @@
       "size": "portrait_4_3"
     },
     {
+      "id": "portrait_ryeon_neutral",
+      "kind": "portrait",
+      "char": "ryeon",
+      "expression": "neutral",
+      "out": "assets/portraits/ryeon/neutral.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_ryeon_joy",
+      "kind": "portrait",
+      "char": "ryeon",
+      "expression": "joy",
+      "out": "assets/portraits/ryeon/joy.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_ryeon_anger",
+      "kind": "portrait",
+      "char": "ryeon",
+      "expression": "anger",
+      "out": "assets/portraits/ryeon/anger.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_ryeon_sad",
+      "kind": "portrait",
+      "char": "ryeon",
+      "expression": "sad",
+      "out": "assets/portraits/ryeon/sad.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_ryeon_embarrassed",
+      "kind": "portrait",
+      "char": "ryeon",
+      "expression": "embarrassed",
+      "out": "assets/portraits/ryeon/embarrassed.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_ryeon_surprise",
+      "kind": "portrait",
+      "char": "ryeon",
+      "expression": "surprise",
+      "out": "assets/portraits/ryeon/surprise.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_ryeon_fear",
+      "kind": "portrait",
+      "char": "ryeon",
+      "expression": "fear",
+      "out": "assets/portraits/ryeon/fear.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_ryeon_blink",
+      "kind": "portrait",
+      "char": "ryeon",
+      "expression": "blink",
+      "out": "assets/portraits/ryeon/blink.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_ryeon_tsundere",
+      "kind": "portrait",
+      "char": "ryeon",
+      "expression": "tsundere",
+      "out": "assets/portraits/ryeon/tsundere.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_simone_neutral",
+      "kind": "portrait",
+      "char": "simone",
+      "expression": "neutral",
+      "out": "assets/portraits/simone/neutral.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_simone_joy",
+      "kind": "portrait",
+      "char": "simone",
+      "expression": "joy",
+      "out": "assets/portraits/simone/joy.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_simone_anger",
+      "kind": "portrait",
+      "char": "simone",
+      "expression": "anger",
+      "out": "assets/portraits/simone/anger.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_simone_sad",
+      "kind": "portrait",
+      "char": "simone",
+      "expression": "sad",
+      "out": "assets/portraits/simone/sad.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_simone_embarrassed",
+      "kind": "portrait",
+      "char": "simone",
+      "expression": "embarrassed",
+      "out": "assets/portraits/simone/embarrassed.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_simone_surprise",
+      "kind": "portrait",
+      "char": "simone",
+      "expression": "surprise",
+      "out": "assets/portraits/simone/surprise.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_simone_fear",
+      "kind": "portrait",
+      "char": "simone",
+      "expression": "fear",
+      "out": "assets/portraits/simone/fear.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_simone_blink",
+      "kind": "portrait",
+      "char": "simone",
+      "expression": "blink",
+      "out": "assets/portraits/simone/blink.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_simone_cigar",
+      "kind": "portrait",
+      "char": "simone",
+      "expression": "cigar",
+      "out": "assets/portraits/simone/cigar.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_xiaoyu_neutral",
+      "kind": "portrait",
+      "char": "xiaoyu",
+      "expression": "neutral",
+      "out": "assets/portraits/xiaoyu/neutral.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_xiaoyu_joy",
+      "kind": "portrait",
+      "char": "xiaoyu",
+      "expression": "joy",
+      "out": "assets/portraits/xiaoyu/joy.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_xiaoyu_anger",
+      "kind": "portrait",
+      "char": "xiaoyu",
+      "expression": "anger",
+      "out": "assets/portraits/xiaoyu/anger.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_xiaoyu_sad",
+      "kind": "portrait",
+      "char": "xiaoyu",
+      "expression": "sad",
+      "out": "assets/portraits/xiaoyu/sad.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_xiaoyu_embarrassed",
+      "kind": "portrait",
+      "char": "xiaoyu",
+      "expression": "embarrassed",
+      "out": "assets/portraits/xiaoyu/embarrassed.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_xiaoyu_surprise",
+      "kind": "portrait",
+      "char": "xiaoyu",
+      "expression": "surprise",
+      "out": "assets/portraits/xiaoyu/surprise.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_xiaoyu_fear",
+      "kind": "portrait",
+      "char": "xiaoyu",
+      "expression": "fear",
+      "out": "assets/portraits/xiaoyu/fear.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_xiaoyu_blink",
+      "kind": "portrait",
+      "char": "xiaoyu",
+      "expression": "blink",
+      "out": "assets/portraits/xiaoyu/blink.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_xiaoyu_fan",
+      "kind": "portrait",
+      "char": "xiaoyu",
+      "expression": "fan",
+      "out": "assets/portraits/xiaoyu/fan.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_aoi_neutral",
+      "kind": "portrait",
+      "char": "aoi",
+      "expression": "neutral",
+      "out": "assets/portraits/aoi/neutral.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_aoi_joy",
+      "kind": "portrait",
+      "char": "aoi",
+      "expression": "joy",
+      "out": "assets/portraits/aoi/joy.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_aoi_anger",
+      "kind": "portrait",
+      "char": "aoi",
+      "expression": "anger",
+      "out": "assets/portraits/aoi/anger.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_aoi_sad",
+      "kind": "portrait",
+      "char": "aoi",
+      "expression": "sad",
+      "out": "assets/portraits/aoi/sad.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_aoi_embarrassed",
+      "kind": "portrait",
+      "char": "aoi",
+      "expression": "embarrassed",
+      "out": "assets/portraits/aoi/embarrassed.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_aoi_surprise",
+      "kind": "portrait",
+      "char": "aoi",
+      "expression": "surprise",
+      "out": "assets/portraits/aoi/surprise.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_aoi_fear",
+      "kind": "portrait",
+      "char": "aoi",
+      "expression": "fear",
+      "out": "assets/portraits/aoi/fear.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_aoi_blink",
+      "kind": "portrait",
+      "char": "aoi",
+      "expression": "blink",
+      "out": "assets/portraits/aoi/blink.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_aoi_stage_smile",
+      "kind": "portrait",
+      "char": "aoi",
+      "expression": "stage_smile",
+      "out": "assets/portraits/aoi/stage_smile.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_aoi_true_smile",
+      "kind": "portrait",
+      "char": "aoi",
+      "expression": "true_smile",
+      "out": "assets/portraits/aoi/true_smile.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_nadia_neutral",
+      "kind": "portrait",
+      "char": "nadia",
+      "expression": "neutral",
+      "out": "assets/portraits/nadia/neutral.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_nadia_joy",
+      "kind": "portrait",
+      "char": "nadia",
+      "expression": "joy",
+      "out": "assets/portraits/nadia/joy.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_nadia_anger",
+      "kind": "portrait",
+      "char": "nadia",
+      "expression": "anger",
+      "out": "assets/portraits/nadia/anger.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_nadia_sad",
+      "kind": "portrait",
+      "char": "nadia",
+      "expression": "sad",
+      "out": "assets/portraits/nadia/sad.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_nadia_embarrassed",
+      "kind": "portrait",
+      "char": "nadia",
+      "expression": "embarrassed",
+      "out": "assets/portraits/nadia/embarrassed.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_nadia_surprise",
+      "kind": "portrait",
+      "char": "nadia",
+      "expression": "surprise",
+      "out": "assets/portraits/nadia/surprise.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_nadia_fear",
+      "kind": "portrait",
+      "char": "nadia",
+      "expression": "fear",
+      "out": "assets/portraits/nadia/fear.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_nadia_blink",
+      "kind": "portrait",
+      "char": "nadia",
+      "expression": "blink",
+      "out": "assets/portraits/nadia/blink.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_nadia_aim",
+      "kind": "portrait",
+      "char": "nadia",
+      "expression": "aim",
+      "out": "assets/portraits/nadia/aim.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_maricel_neutral",
+      "kind": "portrait",
+      "char": "maricel",
+      "expression": "neutral",
+      "out": "assets/portraits/maricel/neutral.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_maricel_joy",
+      "kind": "portrait",
+      "char": "maricel",
+      "expression": "joy",
+      "out": "assets/portraits/maricel/joy.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_maricel_anger",
+      "kind": "portrait",
+      "char": "maricel",
+      "expression": "anger",
+      "out": "assets/portraits/maricel/anger.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_maricel_sad",
+      "kind": "portrait",
+      "char": "maricel",
+      "expression": "sad",
+      "out": "assets/portraits/maricel/sad.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_maricel_embarrassed",
+      "kind": "portrait",
+      "char": "maricel",
+      "expression": "embarrassed",
+      "out": "assets/portraits/maricel/embarrassed.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_maricel_surprise",
+      "kind": "portrait",
+      "char": "maricel",
+      "expression": "surprise",
+      "out": "assets/portraits/maricel/surprise.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_maricel_fear",
+      "kind": "portrait",
+      "char": "maricel",
+      "expression": "fear",
+      "out": "assets/portraits/maricel/fear.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_maricel_blink",
+      "kind": "portrait",
+      "char": "maricel",
+      "expression": "blink",
+      "out": "assets/portraits/maricel/blink.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_maricel_wink",
+      "kind": "portrait",
+      "char": "maricel",
+      "expression": "wink",
+      "out": "assets/portraits/maricel/wink.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_minh_anh_neutral",
+      "kind": "portrait",
+      "char": "minh_anh",
+      "expression": "neutral",
+      "out": "assets/portraits/minh_anh/neutral.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_minh_anh_joy",
+      "kind": "portrait",
+      "char": "minh_anh",
+      "expression": "joy",
+      "out": "assets/portraits/minh_anh/joy.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_minh_anh_anger",
+      "kind": "portrait",
+      "char": "minh_anh",
+      "expression": "anger",
+      "out": "assets/portraits/minh_anh/anger.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_minh_anh_sad",
+      "kind": "portrait",
+      "char": "minh_anh",
+      "expression": "sad",
+      "out": "assets/portraits/minh_anh/sad.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_minh_anh_embarrassed",
+      "kind": "portrait",
+      "char": "minh_anh",
+      "expression": "embarrassed",
+      "out": "assets/portraits/minh_anh/embarrassed.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_minh_anh_surprise",
+      "kind": "portrait",
+      "char": "minh_anh",
+      "expression": "surprise",
+      "out": "assets/portraits/minh_anh/surprise.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_minh_anh_fear",
+      "kind": "portrait",
+      "char": "minh_anh",
+      "expression": "fear",
+      "out": "assets/portraits/minh_anh/fear.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_minh_anh_blink",
+      "kind": "portrait",
+      "char": "minh_anh",
+      "expression": "blink",
+      "out": "assets/portraits/minh_anh/blink.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_minh_anh_red_leds",
+      "kind": "portrait",
+      "char": "minh_anh",
+      "expression": "red_leds",
+      "out": "assets/portraits/minh_anh/red_leds.png",
+      "size": "portrait_4_3"
+    },
+    {
       "id": "sprite_hae_in",
       "kind": "combat_sprite",
       "char": "hae_in",

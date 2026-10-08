@@ -3,7 +3,10 @@
 Génération GRATUITE des assets du jeu sur GPU (Google Colab T4 gratuit, ou PC local avec carte NVIDIA).
 
   python tools/free_assets/free_gen.py plan                 ce qui reste à produire (aucun téléchargement)
-  python tools/free_assets/free_gen.py images [--limit N]   portraits, sprites, décors, CG  → assets/…/*.png
+  python tools/free_assets/free_gen.py sprites [--limit N]  sprites des personnages en pied (style de tools/free_assets/
+                                                            sprite_style.json, checkpoint + LoRA, fond transparent rembg)
+                                                            → assets/portraits/<perso>/<expression>.png, assets/sprites/
+  python tools/free_assets/free_gen.py images [--limit N]   décors, sprites d'ennemis, CG non nsfw  → assets/…/*.png
   python tools/free_assets/free_gen.py music                pistes de data/audio/music.json  → assets/audio/music/*.ogg
   python tools/free_assets/free_gen.py voices               répliques de tools/voice_pipeline/lines.csv (ko + ja)
                                                             → assets/voice/<langue>/<personnage>/<id>.ogg
@@ -39,6 +42,7 @@ sys.path.insert(0, str(ROOT / "tools/art_pipeline"))
 import generate as art  # noqa: E402  (compose() : mêmes prompts que le pipeline payant)
 
 MANIFEST = ROOT / "data/art/manifest.json"
+PROMPTS = ROOT / "data/art/prompts.json"
 MUSIC = ROOT / "data/audio/music.json"
 LINES = ROOT / "tools/voice_pipeline/lines.csv"
 CHARS = ROOT / "data/characters"
@@ -51,6 +55,10 @@ QUALITY = "masterpiece, best quality, very aesthetic, absurdres, adult"
 SFW_NEGATIVE = "nsfw, nude, naked, nipples, explicit, sex"
 MUSIC_SECONDS = 30
 LANGS = ("ko", "ja")
+SPRITE_STYLE = ROOT / "tools/free_assets/sprite_style.json"
+SPRITE_KINDS = ("portrait", "combat_sprite")
+MODELS_DIR = Path(os.environ.get("FREE_MODELS_DIR", ROOT / "art_work/models"))  # art_work/ est ignoré par git
+SPRITE_BASES = ROOT / "art_work/sprite_bases"  # pose neutre sur fond blanc, base de l'inpainting des expressions
 
 
 def load_json(p: Path):
@@ -82,10 +90,11 @@ def device() -> str:
 # --- Images ---------------------------------------------------------------------------------------------------------
 
 def image_jobs(force: bool, only: list[str] | None) -> list[dict]:
-    """Entrées du manifeste à produire ici (tout sauf « nsfw », réservé à RunPod)."""
+    """Entrées du manifeste à produire ici : tout sauf « nsfw » (RunPod) et sauf les sprites de personnages
+    (portraits et sprites de combat : étape « sprites », style dédié et fond transparent)."""
     jobs = []
     for item in load_json(MANIFEST)["assets"]:
-        if item.get("nsfw") or (only and item["id"] not in only):
+        if item.get("nsfw") or item["kind"] in SPRITE_KINDS or (only and item["id"] not in only):
             continue
         if (ROOT / item["out"]).exists() and not force:
             continue
@@ -121,9 +130,56 @@ def enable_vae_slicing(pipe) -> str:
     return ""  # optionnel : sans tranches, l'image se décode quand même (un peu plus de VRAM)
 
 
-def token_chunks(tokenizer, text: str) -> list[list[int]]:
-    """Jetons du texte (sans BOS/EOS) découpés en tranches de 75 : la fenêtre de 77 de CLIP, moins BOS et EOS."""
-    ids = tokenizer(text, add_special_tokens=False, truncation=False)["input_ids"]
+def parse_weights(text: str) -> list[tuple[str, float]]:
+    """Syntaxe de pondération A1111 : « (mot) » ×1,1, « [mot] » ÷1,1, « (mot:1.4) » poids explicite, imbrications,
+    « \\( » pour une parenthèse littérale. Renvoie des fragments (texte, poids)."""
+    out: list[list] = []
+    stack: list[list] = []  # [multiplicateur, indice du premier fragment dans out]
+    buf = ""
+
+    def flush():
+        nonlocal buf
+        if buf:
+            w = 1.0
+            for m, _ in stack:
+                w *= m
+            out.append([buf, w])
+            buf = ""
+
+    i = 0
+    while i < len(text):
+        ch = text[i]
+        if ch == "\\" and i + 1 < len(text):
+            buf += text[i + 1]
+            i += 2
+            continue
+        if ch in "([":
+            flush()
+            stack.append([1.1 if ch == "(" else 1 / 1.1, len(out)])
+        elif ch == ")" and stack and stack[-1][0] != 1 / 1.1:
+            m = re.search(r":\s*(-?[0-9]*\.?[0-9]+)\s*$", buf)
+            if m:
+                buf = buf[: m.start()]
+            flush()
+            mult, start = stack.pop()
+            if m:  # poids explicite : remplace le ×1,1 implicite de cette parenthèse
+                for frag in out[start:]:
+                    frag[1] = frag[1] / mult * float(m.group(1))
+        elif ch == "]" and stack:
+            flush()
+            stack.pop()
+        else:
+            buf += ch
+        i += 1
+    flush()
+    return [(t, w) for t, w in out if t.strip()] or [("", 1.0)]
+
+
+def token_chunks(tokenizer, text: str) -> list[list[tuple[int, float]]]:
+    """Jetons pondérés du texte (sans BOS/EOS), découpés en tranches de 75 : la fenêtre de 77 de CLIP, moins BOS et EOS."""
+    ids: list[tuple[int, float]] = []
+    for frag, w in parse_weights(text):
+        ids += [(t, w) for t in tokenizer(frag, add_special_tokens=False, truncation=False)["input_ids"]]
     size = tokenizer.model_max_length - 2
     return [ids[i:i + size] for i in range(0, len(ids), size)] or [[]]
 
@@ -132,7 +188,8 @@ def encode_long_prompt(pipe, text: str, n_chunks: int, torch):
     """Encodage SDXL sans limite de 77 jetons (remplace compel, dont l'API a changé) : chaque tranche passe dans les deux
     encodeurs comme dans StableDiffusionXLPipeline.encode_prompt (avant-dernière couche cachée, embedding « pooled » de
     la première tranche du second encodeur), puis les tranches sont mises bout à bout. n_chunks complète avec des tranches
-    vides, pour que le prompt et le négatif aient la même longueur."""
+    vides, pour que le prompt et le négatif aient la même longueur. Les poids « (mot:1.4) » multiplient les états des
+    jetons concernés, puis la moyenne de la tranche est restaurée (comme le fait A1111)."""
     per_encoder, pooled = [], None
     for tok, enc in ((pipe.tokenizer, pipe.text_encoder), (pipe.tokenizer_2, pipe.text_encoder_2)):
         chunks = token_chunks(tok, text)
@@ -141,10 +198,17 @@ def encode_long_prompt(pipe, text: str, n_chunks: int, torch):
         dev = next(enc.parameters()).device
         states = []
         for k, chunk in enumerate(chunks[:n_chunks]):
-            seq = [tok.bos_token_id] + chunk + [tok.eos_token_id]
+            seq = [tok.bos_token_id] + [t for t, _ in chunk] + [tok.eos_token_id]
+            weights = [1.0] + [w for _, w in chunk] + [1.0]
             seq += [pad] * (tok.model_max_length - len(seq))
+            weights += [1.0] * (tok.model_max_length - len(weights))
             out = enc(torch.tensor([seq], device=dev), output_hidden_states=True)
-            states.append(out.hidden_states[-2])
+            z = out.hidden_states[-2]
+            if any(w != 1.0 for w in weights):
+                mean = z.mean()
+                z = z * torch.tensor(weights, device=z.device, dtype=z.dtype)[None, :, None]
+                z = z * (mean / z.mean())
+            states.append(z)
             if enc is pipe.text_encoder_2 and k == 0 and out[0].ndim == 2:
                 pooled = out[0]
         per_encoder.append(torch.cat(states, dim=1))
@@ -194,6 +258,177 @@ def cmd_images(a, backend=None) -> int:
                              seed_of(it["id"]))
         dest.parent.mkdir(parents=True, exist_ok=True)
         img.save(dest, optimize=True)
+        print(f"  [{i}/{len(jobs)}] {it['out']}", flush=True)
+    return len(jobs)
+
+
+# --- Sprites de personnages (portraits en pied et sprites de combat, fond transparent) -------------------------------
+
+def fetch(url: str, dest: Path) -> Path:
+    """Télécharge un modèle une seule fois. Civitai : jeton facultatif CIVITAI_TOKEN (certains modèles l'exigent)."""
+    if dest.exists() and dest.stat().st_size > 0:
+        return dest
+    import urllib.error  # noqa: PLC0415
+    import urllib.request  # noqa: PLC0415
+    token = os.environ.get("CIVITAI_TOKEN", "")
+    full = url + (("&" if "?" in url else "?") + f"token={token}" if token and "civitai.com" in url else "")
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    tmp = dest.with_suffix(dest.suffix + ".part")
+    print(f"  téléchargement : {url} → {dest.name}", flush=True)
+    req = urllib.request.Request(full, headers={"User-Agent": "manhwa-rpg-assets/1.0"})
+    try:
+        with urllib.request.urlopen(req, timeout=600) as r, tmp.open("wb") as f:
+            shutil.copyfileobj(r, f, length=1 << 22)
+    except urllib.error.HTTPError as e:
+        tmp.unlink(missing_ok=True)
+        hint = " (ajouter le secret Colab CIVITAI_TOKEN : civitai.com ▸ Account Settings ▸ API Keys)" if "civitai" in url else ""
+        sys.exit(f"Téléchargement refusé ({e.code}) : {url}{hint}")
+    tmp.rename(dest)
+    return dest
+
+
+def load_style() -> dict:
+    return load_json(SPRITE_STYLE)
+
+
+def sprite_prompt(style: dict, cid: str, expression: str = "neutral", combat: bool = False) -> str:
+    """Prompt de sprite : qualité commune, déclencheurs des LoRA, gabarit et identité du personnage, pose, expression."""
+    c = style["characters"][cid]
+    pose = style["pose_combat"] if combat else style["pose_male" if c.get("male") else "pose_female"]
+    parts = [style["quality"], *(lo["trigger"] for lo in style["loras"] if lo.get("trigger")), c["body"], c["look"],
+             c["outfit"], pose]
+    if combat:
+        weapons = {x["id"]: x.get("weapon", "") for x in load_json(PROMPTS)["characters"]}
+        parts.append(weapons.get(cid, ""))
+    else:
+        parts.append(style["expressions"].get(expression, expression))
+    parts.append(style["background"])
+    return ", ".join(p for p in parts if p)
+
+
+def sprite_jobs(force: bool, only: list[str] | None) -> list[dict]:
+    """Sprites à produire, la pose neutre de chaque personnage en premier (base des autres expressions)."""
+    jobs = []
+    for item in load_json(MANIFEST)["assets"]:
+        if item["kind"] not in SPRITE_KINDS or item.get("nsfw"):
+            continue
+        if only and item["id"] not in only and item.get("char") not in only:
+            continue
+        if (ROOT / item["out"]).exists() and not force:
+            continue
+        jobs.append(item)
+    return sorted(jobs, key=lambda i: (i["kind"], i.get("char", ""), i.get("expression", "neutral") != "neutral"))
+
+
+def head_mask(alpha, margin: float = 0.18):
+    """Masque d'inpainting du visage : bande haute de la silhouette (alpha du sprite neutre), élargie et adoucie."""
+    from PIL import Image, ImageDraw, ImageFilter  # noqa: PLC0415
+    w, h = alpha.size
+    solid = alpha.point(lambda v: 255 if v > 32 else 0)
+    l, t, r, b = solid.getbbox() or (0, 0, w, h)
+    band_bottom = t + int((b - t) * 0.2)
+    hl, _, hr, _ = solid.crop((0, t, w, band_bottom)).getbbox() or (l, 0, r, 0)
+    pad = int((hr - hl) * margin) + 8
+    mask = Image.new("L", (w, h), 0)
+    ImageDraw.Draw(mask).rectangle((max(0, hl - pad), max(0, t - pad), min(w, hr + pad), min(h, band_bottom + pad)), fill=255)
+    return mask.filter(ImageFilter.GaussianBlur(6))
+
+
+class SpriteBackend(SdxlBackend):
+    """Checkpoint SDXL (fichier unique) + LoRA, génération sur fond blanc, inpainting du visage pour les expressions
+    (corps identique au pixel près, clignement compris), détourage rembg (modèle isnet-anime)."""
+
+    def __init__(self, style: dict, pipe=None, remover=None) -> None:
+        import torch  # noqa: PLC0415
+        if pipe is None:
+            from diffusers import EulerAncestralDiscreteScheduler, StableDiffusionXLPipeline  # noqa: PLC0415
+            ck = style["checkpoint"]
+            path = fetch(ck["url"], MODELS_DIR / f"{ck['name']}.safetensors")
+            dtype = torch.float16 if device() == "cuda" else torch.float32
+            pipe = StableDiffusionXLPipeline.from_single_file(str(path), torch_dtype=dtype)
+            pipe.scheduler = EulerAncestralDiscreteScheduler.from_config(pipe.scheduler.config)
+        # LoRA : fichier local (« path ») ou téléchargé une fois (« url »)
+        loras = [(lo["name"], Path(lo["path"]) if lo.get("path") else fetch(lo["url"], MODELS_DIR / "loras" / f"{lo['name']}.safetensors"),
+                  lo["weight"]) for lo in style.get("loras", [])]
+        for name, path, _ in loras:
+            pipe.load_lora_weights(str(path.parent), weight_name=path.name, adapter_name=name)
+        if loras:
+            pipe.set_adapters([n for n, _, _ in loras], adapter_weights=[w for _, _, w in loras])
+        super().__init__(pipe=pipe)
+        from diffusers import StableDiffusionXLInpaintPipeline  # noqa: PLC0415
+        self.inpaint_pipe = StableDiffusionXLInpaintPipeline(**self.pipe.components)
+        self.style = style
+        self.remover = remover
+        self.masks: dict[str, object] = {}
+
+    def face_mask(self, cid: str, base):
+        if cid not in self.masks:
+            self.masks[cid] = head_mask(self.cut(base).getchannel("A"))
+        return self.masks[cid]
+
+    def cut(self, img):
+        """Fond blanc → transparent."""
+        if self.remover is None:
+            from rembg import new_session, remove  # noqa: PLC0415
+            session = new_session(os.environ.get("REMBG_MODEL", "isnet-anime"))
+            self.remover = lambda im: remove(im, session=session)
+        return self.remover(img).convert("RGBA")
+
+    def generate(self, prompt: str, negative: str, seed: int):
+        w, h = self.style["size"]
+        return self.render(prompt, negative, (w, h), seed, steps=self.style["steps"])
+
+    def repaint_face(self, base, mask, prompt: str, negative: str, seed: int):
+        w, h = base.size
+        gen = self.torch.Generator(self.dev).manual_seed(seed)
+        return self.inpaint_pipe(image=base, mask_image=mask, width=w, height=h, strength=self.style["expression_strength"],
+                                 num_inference_steps=self.style["steps"], guidance_scale=self.style["guidance"],
+                                 padding_mask_crop=32, generator=gen, **self.embeddings(prompt, negative)).images[0]
+
+
+def sprite_base(cid: str):
+    """Pose neutre opaque d'un personnage : celle mémorisée, sinon le sprite neutre recomposé sur fond blanc."""
+    from PIL import Image  # noqa: PLC0415
+    saved = SPRITE_BASES / f"{cid}.png"
+    if saved.exists():
+        return Image.open(saved).convert("RGB")
+    neutral = ROOT / "assets/portraits" / cid / "neutral.png"
+    if not neutral.exists():
+        return None
+    rgba = Image.open(neutral).convert("RGBA")
+    white = Image.new("RGBA", rgba.size, (255, 255, 255, 255))
+    return Image.alpha_composite(white, rgba).convert("RGB")
+
+
+def cmd_sprites(a, backend=None) -> int:
+    style = load_style()
+    jobs = sprite_jobs(a.force, a.only)[: a.limit or None]
+    print(f"[sprites] {len(jobs)} sprite(s) à produire ({style['checkpoint']['name']} + "
+          f"{', '.join(lo['name'] for lo in style['loras']) or 'sans LoRA'}, fond transparent)")
+    if a.dry_run or not jobs:
+        for it in jobs:
+            print(f"  {it['id']} → {it['out']} :: {sprite_prompt(style, it['char'], it.get('expression', 'neutral'), it['kind'] == 'combat_sprite')[:200]}…")
+        return len(jobs)
+    backend = backend or SpriteBackend(style)
+    negative = style["negative"]
+    for i, it in enumerate(jobs, 1):
+        cid, expr = it["char"], it.get("expression", "neutral")
+        dest = ROOT / it["out"]
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        if it["kind"] == "combat_sprite":
+            img = backend.generate(sprite_prompt(style, cid, combat=True), negative, seed_of(it["id"]))
+        elif expr == "neutral" or sprite_base(cid) is None:
+            if expr != "neutral":
+                print(f"  ! {cid} : pas de pose neutre, {expr} générée seule (corps différent)")
+            img = backend.generate(sprite_prompt(style, cid, expr), negative, seed_of(cid))
+            if expr == "neutral":
+                SPRITE_BASES.mkdir(parents=True, exist_ok=True)
+                img.save(SPRITE_BASES / f"{cid}.png")
+        else:
+            base = sprite_base(cid)
+            img = backend.repaint_face(base, backend.face_mask(cid, base), sprite_prompt(style, cid, expr), negative,
+                                       seed_of(it["id"]))
+        backend.cut(img).save(dest, optimize=True)
         print(f"  [{i}/{len(jobs)}] {it['out']}", flush=True)
     return len(jobs)
 
@@ -383,29 +618,32 @@ def cmd_voices(a, backend=None) -> int:
 def cmd_plan(a) -> int:
     manifest = load_json(MANIFEST)["assets"]
     nsfw_left = [i for i in manifest if i.get("nsfw") and not (ROOT / i["out"]).exists()]
-    imgs, music, voices = image_jobs(a.force, a.only), music_jobs(a.force, a.only), voice_jobs(a.force, a.only)
-    print(f"Reste à produire : {len(imgs)} images (gratuit), {len(music)} pistes de musique, {len(voices)} voix "
+    sprites, imgs = sprite_jobs(a.force, a.only), image_jobs(a.force, a.only)
+    music, voices = music_jobs(a.force, a.only), voice_jobs(a.force, a.only)
+    print(f"Reste à produire : {len(sprites)} sprites de personnages, {len(imgs)} images (gratuit), "
+          f"{len(music)} pistes de musique, {len(voices)} voix "
           f"(ko + ja), {len(nsfw_left)} CG nsfw (RunPod, payant).")
-    print(f"Modèles : {IMAGE_MODEL} · {MUSIC_MODEL} · XTTS-v2 — appareil : {device()}")
+    print(f"Modèles : sprites {load_style()['checkpoint']['name']} + LoRA · images {IMAGE_MODEL} · {MUSIC_MODEL} · "
+          f"XTTS-v2 — appareil : {device()}")
     missing_prompt = [t for t, p, _ in music if p == load_json(MUSIC)["tracks"][t]["desc"]]
     if missing_prompt:
         print(f"  ! pistes sans « prompt » anglais (la description française sera utilisée) : {missing_prompt}")
-    return len(imgs) + len(music) + len(voices)
+    return len(sprites) + len(imgs) + len(music) + len(voices)
 
 
 def main(argv: list[str] | None = None) -> None:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("stage", choices=["plan", "images", "music", "voices", "all"])
+    p.add_argument("stage", choices=["plan", "sprites", "images", "music", "voices", "all"])
     p.add_argument("--force", action="store_true")
     p.add_argument("--dry-run", action="store_true")
     p.add_argument("--only", nargs="*")
     p.add_argument("--limit", type=int, default=0)
     a = p.parse_args(argv)
-    if a.stage != "plan" and not a.dry_run and not shutil.which("ffmpeg") and a.stage != "images":
+    if a.stage != "plan" and not a.dry_run and not shutil.which("ffmpeg") and a.stage not in ("images", "sprites"):
         sys.exit("ffmpeg introuvable (Colab l'a déjà ; Windows : winget install ffmpeg)")
     if a.stage == "plan":
         cmd_plan(a)
-    for stage, fn in (("images", cmd_images), ("music", cmd_music), ("voices", cmd_voices)):
+    for stage, fn in (("sprites", cmd_sprites), ("images", cmd_images), ("music", cmd_music), ("voices", cmd_voices)):
         if a.stage in (stage, "all"):
             fn(a)
 

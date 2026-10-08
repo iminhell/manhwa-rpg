@@ -139,14 +139,44 @@ def main() -> None:
         check(rate == 24000 and frames == 2400 * n + 3600 * (n - 1), f"voix : {n} morceaux assemblés avec silences ({frames})")
         check(all(c[2] is False for c in fake_tts.calls), "voix : découpage interne de coqui désactivé")
 
-    ctx = fg.art.Ctx(dry_run=True)
+    # Pondération A1111
+    pw = fg.parse_weights
+    check(pw("a, (b:1.4), c") == [("a, ", 1.0), ("b", 1.4), (", c", 1.0)], f"pondération explicite {pw('a, (b:1.4), c')}")
+    check([round(w, 3) for _, w in pw("(a) [b] ((c))")] == [1.1, 0.909, 1.21], f"pondération implicite {pw('(a) [b] ((c))')}")
+    check([round(w, 2) for _, w in pw("((a:1.2) b)")] == [1.32, 1.1], "pondération imbriquée")
+    check(pw(r"\(literal\)") == [("(literal)", 1.0)], "parenthèses échappées")
+    # Style des sprites : chaque personnage et chaque expression du manifeste sont couverts
+    style = fg.load_style()
     manifest = fg.load_json(fg.MANIFEST)["assets"]
+    sprite_items = [a for a in manifest if a["kind"] in fg.SPRITE_KINDS]
+    chars = {a["char"] for a in sprite_items}
+    check(chars == set(fg.load_json(fg.PROMPTS)["characters"][i]["id"] for i in range(11)), f"sprites : les 11 personnages ({sorted(chars)})")
+    check(chars <= set(style["characters"]), f"style : personnages sans tags {sorted(chars - set(style['characters']))}")
+    exprs = {a.get("expression") for a in sprite_items if a["kind"] == "portrait"}
+    check(exprs <= set(style["expressions"]), f"style : expressions sans tags {sorted(exprs - set(style['expressions']))}")
+    for cid in chars:
+        p = fg.sprite_prompt(style, cid, "joy")
+        check(("1boy" in p) == bool(style["characters"][cid].get("male")) and "(full body:1.4)" in p and "white background" in p,
+              f"prompt de sprite {cid}")
+    check("child" in style["negative"] and "loli" in style["negative"], "négatif des sprites : garde-fous d'âge")
+    from PIL import Image, ImageDraw  # noqa: PLC0415
+    alpha = Image.new("L", (200, 400), 0)
+    ImageDraw.Draw(alpha).rectangle((60, 40, 140, 390), fill=255)
+    box = fg.head_mask(alpha).point(lambda v: 255 if v > 128 else 0).getbbox()
+    check(box and box[1] <= 40 and 100 < box[3] < 160 and box[0] < 60 and box[2] > 140, f"masque du visage : haut de la silhouette {box}")
+
+    ctx = fg.art.Ctx(dry_run=True)
     tokens = [c["token"] for c in ctx.chars.values()]
     real_root = fg.ROOT
     with tempfile.TemporaryDirectory() as tmp:
         fg.ROOT = Path(tmp)  # toutes les sorties vont dans le dossier temporaire
         jobs = fg.image_jobs(False, None)
-        check(len(jobs) == sum(1 for a in manifest if not a.get("nsfw")), "images : toutes les entrées non nsfw, aucune nsfw")
+        check(len(jobs) == sum(1 for a in manifest if not a.get("nsfw") and a["kind"] not in fg.SPRITE_KINDS),
+              "images : entrées non nsfw hors sprites de personnages")
+        sprites = fg.sprite_jobs(False, None)
+        check(len(sprites) == sum(1 for a in manifest if a["kind"] in fg.SPRITE_KINDS), "sprites : portraits et sprites de combat")
+        order = [s.get("expression", "") for s in sprites if s.get("char") == "seo_yeon" and s["kind"] == "portrait"]
+        check(order and order[0] == "neutral", "sprites : pose neutre d'abord (base de l'inpainting)")
         check(all(not j.get("nsfw") for j in jobs), "images : aucune CG nsfw générée gratuitement")
         for j in jobs:
             p = fg.sdxl_prompt(ctx, j)
