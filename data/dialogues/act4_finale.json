@@ -230,7 +230,7 @@
   ],
   "trahison_2": [
    {
-    "if": "flag('pacte.hae_in') and v('ambivalence.hae_in') <= -40 and party('hae_in')",
+    "if": "flag('pacte.hae_in') and v('ambivalence.hae_in') <= -40 and party('hae_in') and imposed_pact('hae_in')",
     "then": "haein_couteau"
    },
    {
@@ -265,7 +265,7 @@
   ],
   "trahison_3": [
    {
-    "if": "flag('pacte.xiaoyu') and v('ambivalence.xiaoyu') < 0 and party('xiaoyu')",
+    "if": "flag('pacte.xiaoyu') and v('ambivalence.xiaoyu') < 0 and party('xiaoyu') and imposed_pact('xiaoyu')",
     "then": "xiaoyu_couteau"
    },
    {
@@ -294,7 +294,7 @@
   ],
   "trahison_4": [
    {
-    "if": "flag('nadia_pactisee') and v('ambivalence.nadia') <= -30 and party('nadia')",
+    "if": "flag('nadia_pactisee') and v('ambivalence.nadia') <= -30 and party('nadia') and imposed_pact('nadia')",
     "then": "nadia_couteau"
    },
    {
@@ -325,7 +325,7 @@
   ],
   "trahison_5": [
    {
-    "if": "flag('pacte.seo_yeon') and v('ambivalence.seo_yeon') <= -50 and party('seo_yeon')",
+    "if": "flag('pacte.seo_yeon') and v('ambivalence.seo_yeon') <= -50 and party('seo_yeon') and imposed_pact('seo_yeon')",
     "then": "seo_couteau"
    },
    {
@@ -1065,7 +1065,7 @@
     "then": "epi_seo_pacte"
    },
    {
-    "if": "party('seo_yeon') and aff('seo_yeon') >= 25 and (not flag('pacte.seo_yeon') or flag('seo_devotion') or flag('seo_pacte_accepte'))",
+    "if": "party('seo_yeon') and aff('seo_yeon') >= 25 and (not flag('pacte.seo_yeon') or flag('seo_devotion') or flag('seo_pacte_accepte')) and not flag('seo_rupture')",
     "then": "epi_seo_ok"
    },
    {
@@ -1123,7 +1123,7 @@
     "then": "epi_haein_pacte"
    },
    {
-    "if": "party('hae_in') and aff('hae_in') >= 25 and (not flag('pacte.hae_in') or flag('haein_devotion') or flag('haein_pacte_accepte'))",
+    "if": "party('hae_in') and aff('hae_in') >= 25 and (not flag('pacte.hae_in') or flag('haein_devotion') or flag('haein_pacte_accepte')) and not flag('haein_rupture')",
     "then": "epi_haein_ok"
    },
    {
@@ -1137,7 +1137,13 @@
    },
    {
     "s": "narrator",
-    "t": "Hae-in rend le Sceau de la Balance au conseil de la ville. Elle découvre qu'elle aime perdre aux échecs contre toi, à condition que personne ne regarde, et que la partie se termine dans sa chambre."
+    "t": "Hae-in rend le Sceau de la Balance au conseil de la ville. Elle découvre qu'elle aime perdre aux échecs contre toi, à condition que personne ne regarde, et que la partie se termine dans sa chambre.",
+    "when": "not flag('sceau_balance')"
+   },
+   {
+    "s": "narrator",
+    "t": "Tu rends à Hae-in le Sceau de la Balance que tu lui avais pris ; elle le remet elle-même au conseil de la ville. Elle découvre qu'elle aime perdre aux échecs contre toi, à condition que personne ne regarde, et que la partie se termine dans sa chambre.",
+    "when": "flag('sceau_balance')"
    },
    {
     "fx": [
@@ -1181,7 +1187,7 @@
     "then": "epi_simone_pacte"
    },
    {
-    "if": "party('simone') and aff('simone') >= 25 and (not flag('pacte.simone') or flag('simone_devotion') or flag('simone_pacte_accepte'))",
+    "if": "party('simone') and aff('simone') >= 25 and (not flag('pacte.simone') or flag('simone_devotion') or flag('simone_pacte_accepte')) and not flag('simone_rupture')",
     "then": "epi_simone_ok"
    },
    {
@@ -1212,7 +1218,7 @@
     "then": "epi_xiaoyu_pacte"
    },
    {
-    "if": "party('xiaoyu') and aff('xiaoyu') >= 25 and (not flag('pacte.xiaoyu') or flag('xiaoyu_devotion') or flag('xiaoyu_pacte_accepte'))",
+    "if": "party('xiaoyu') and aff('xiaoyu') >= 25 and (not flag('pacte.xiaoyu') or flag('xiaoyu_devotion') or flag('xiaoyu_pacte_accepte')) and not flag('xiaoyu_rupture')",
     "then": "epi_xiaoyu_ok"
    },
    {
@@ -1274,7 +1280,7 @@
     "then": "epi_nadia_pacte"
    },
    {
-    "if": "party('nadia') and aff('nadia') >= 25 and (not flag('nadia_pactisee') or flag('nadia_devotion') or flag('nadia_pacte_accepte'))",
+    "if": "party('nadia') and aff('nadia') >= 25 and (not flag('nadia_pactisee') or flag('nadia_devotion') or flag('nadia_pacte_accepte')) and not flag('nadia_rupture')",
     "then": "epi_nadia_ok"
    },
    {
@@ -1421,6 +1427,10 @@
     "t": "Dix femmes autour d'une table construite exprès, dans la salle commune du Refuge agrandi. Les disputes, les rires, les jalousies réglées à voix haute, les nuits partagées à plusieurs quand personne ne veut être seule."
    },
    {
+    "if": "bonds_libres() < 10",
+    "then": "harem_maison"
+   },
+   {
     "goto": "aube_dix"
    }
   ],
@@ -1431,7 +1441,13 @@
    },
    {
     "s": "narrator",
-    "t": "Dix femmes autour d'un trône de pierre noire. Certaines par amour, d'autres par Pacte. Toutes à genoux par choix, et toutes debout dès que les portes se ferment."
+    "t": "Dix femmes autour d'un trône de pierre noire. Certaines par amour, d'autres par Pacte. Toutes à genoux par choix, et toutes debout dès que les portes se ferment.",
+    "when": "not ((party('seo_yeon') and imposed_pact('seo_yeon')) or (party('xiaoyu') and imposed_pact('xiaoyu')) or (party('hae_in') and imposed_pact('hae_in')) or (party('simone') and imposed_pact('simone')) or (party('nadia') and imposed_pact('nadia')) or (party('aoi') and imposed_pact('aoi')))"
+   },
+   {
+    "s": "narrator",
+    "t": "Dix femmes autour d'un trône de pierre noire. Certaines par amour, d'autres par Pacte : celles qui portent encore un contrat imposé ne s'agenouillent que parce qu'il l'exige, et personne ne prétend le contraire.",
+    "when": "(party('seo_yeon') and imposed_pact('seo_yeon')) or (party('xiaoyu') and imposed_pact('xiaoyu')) or (party('hae_in') and imposed_pact('hae_in')) or (party('simone') and imposed_pact('simone')) or (party('nadia') and imposed_pact('nadia')) or (party('aoi') and imposed_pact('aoi'))"
    },
    {
     "s": "registre",
@@ -1650,6 +1666,20 @@
    },
    {
     "goto": "epi_nadia"
+   }
+  ],
+  "harem_maison": [
+   {
+    "s": "registre",
+    "t": "Fin du Harem Absolu — LA MAISON DES DIX. La plus lumineuse du jeu. Celui que dix destins ont choisi."
+   },
+   {
+    "fx": [
+     "flag issue.maison_des_dix"
+    ]
+   },
+   {
+    "goto": "fin_boucle"
    }
   ]
  }

@@ -332,7 +332,7 @@
   },
   {
    "if": "flag('aoi_nuit')",
-   "text": "Aoi t'a montré ses cicatrices. Elle a choisi."
+   "text": "Une nuit avec Aoi. Cette fois, elle a choisi."
   },
   {
    "if": "flag('maricel_nuit')",
@@ -490,7 +490,7 @@
   },
   {
    "if": "flag('ryeon_nuit')",
-   "text": "Ryeon a gardé le ruban de sa mère serré dans son poing toute la nuit."
+   "text": "Une nuit avec Ryeon. Elle l'avait décidé, et elle ne le regrette pas."
   },
   {
    "if": "flag('xiaoyu_nuit')",
@@ -502,7 +502,7 @@
   },
   {
    "if": "flag('haein_nuit')",
-   "text": "Pour la première fois, quelqu'un d'autre a décidé, pour Yoon Hae-in."
+   "text": "Une nuit avec Hae-in. Pour une fois, rien n'était à l'ordre du jour."
   },
   {
    "if": "flag('haein_nuit_pacte')",
@@ -816,7 +816,7 @@
   },
   {
    "if": "flag('seo_devotion')",
-   "text": "Seo-Yeon a renouvelé son Pacte librement, sans la clause de Service. Dévotion."
+   "text": "Seo-Yeon a renouvelé son Pacte librement, sans la clause de Service personnel. Dévotion."
   },
   {
    "if": "flag('seo_rupture') and not flag('seo_fuite')",
@@ -824,7 +824,7 @@
   },
   {
    "if": "flag('xiaoyu_devotion')",
-   "text": "Xiaoyu a renouvelé son Pacte librement, sans la clause de Service. Dévotion."
+   "text": "Xiaoyu a renouvelé son Pacte librement, en déchirant la clause trois. Dévotion."
   },
   {
    "if": "flag('xiaoyu_rupture')",
@@ -832,7 +832,7 @@
   },
   {
    "if": "flag('haein_devotion')",
-   "text": "Hae-in a renouvelé son Pacte librement, sans la clause de Service. Dévotion."
+   "text": "Hae-in a renouvelé son Pacte librement, sans la clause sept. Dévotion."
   },
   {
    "if": "flag('haein_rupture')",
@@ -840,7 +840,7 @@
   },
   {
    "if": "flag('simone_devotion')",
-   "text": "Simone a renouvelé son Pacte librement, sans la clause de Service. Dévotion."
+   "text": "Simone a renouvelé son Pacte librement : elle obéit parce qu'elle le décide. Dévotion."
   },
   {
    "if": "flag('simone_rupture')",
@@ -848,7 +848,7 @@
   },
   {
    "if": "flag('nadia_devotion')",
-   "text": "Nadia a renouvelé son Pacte librement, sans la clause de Service. Dévotion."
+   "text": "Nadia a brûlé le Pacte jusqu'à la clause d'Allégeance, et l'a gardée. Dévotion."
   },
   {
    "if": "flag('nadia_rupture')",
@@ -864,7 +864,11 @@
   },
   {
    "if": "flag('seo_pacte_accepte') or flag('xiaoyu_pacte_accepte') or flag('haein_pacte_accepte') or flag('simone_pacte_accepte') or flag('nadia_pacte_accepte') or flag('aoi_pacte_accepte')",
-   "text": "Des contrats imposés ont été réécrits par celles qui les portaient : une Clause du Sceau qu'elles seules peuvent invoquer, le droit de partir, et le choix de rester."
+   "text": "Des contrats imposés ont été réécrits par celles qui les portaient : une Ancre de Sang, une Clause du Sceau ou une Condition du Pacte qu'elles seules peuvent invoquer, le droit de partir, et le choix de rester."
+  },
+  {
+   "if": "flag('aoi_devotion')",
+   "text": "Aoi a déchiré elle-même le contrat de Mirae, puis choisi de chanter pour toi. Dévotion."
   }
  ]
 }

@@ -220,20 +220,20 @@ Par voie : Histoire 17 · Refuge 7 · Affinités (Lien) 22 · Échos 10 · Tyran
 
 | Scène | Voie | Personnages | Statut | Déblocage (indice affiché) |
 |---|---|---|---|---|
-| La Constellation de cinq<br>`refuge_groupe:constellation_cinq` | Groupe | — | amorce | Cinq héroïnes du groupe à Affinité ≥ 50, Dortoir construit. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord. |
-| La Nuit de la Maison (six)<br>`refuge_groupe:nuit_maison` | Groupe | — | écrite | Six héroïnes du groupe à Affinité ≥ 30, Dortoir construit. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord. |
-| La Constellation de sept<br>`refuge_groupe:constellation_sept` | Groupe | — | amorce | Sept héroïnes du groupe à Affinité ≥ 55, Dortoir construit. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord. |
-| La Constellation de huit<br>`refuge_groupe:constellation_huit` | Groupe | — | amorce | Huit héroïnes du groupe à Affinité ≥ 60, Dortoir construit. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord. |
-| La Constellation de neuf<br>`refuge_groupe:constellation_neuf` | Groupe | — | amorce | Neuf héroïnes du groupe à Affinité ≥ 65, Dortoir construit. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord. |
+| La Constellation de cinq<br>`refuge_groupe:constellation_cinq` | Groupe | — | amorce | Cinq héroïnes du groupe à Affinité ≥ 50, Dortoir construit. Les héroïnes sous contrat imposé ne comptent pas (elles ne sont pas là ce soir). |
+| La Nuit de la Maison (six)<br>`refuge_groupe:nuit_maison` | Groupe | — | écrite | Six héroïnes du groupe à Affinité ≥ 30, Dortoir construit. Les héroïnes sous contrat imposé ne comptent pas (elles ne sont pas là ce soir). |
+| La Constellation de sept<br>`refuge_groupe:constellation_sept` | Groupe | — | amorce | Sept héroïnes du groupe à Affinité ≥ 55, Dortoir construit. Les héroïnes sous contrat imposé ne comptent pas (elles ne sont pas là ce soir). |
+| La Constellation de huit<br>`refuge_groupe:constellation_huit` | Groupe | — | amorce | Huit héroïnes du groupe à Affinité ≥ 60, Dortoir construit. Les héroïnes sous contrat imposé ne comptent pas (elles ne sont pas là ce soir). |
+| La Constellation de neuf<br>`refuge_groupe:constellation_neuf` | Groupe | — | amorce | Neuf héroïnes du groupe à Affinité ≥ 65, Dortoir construit. Les héroïnes sous contrat imposé ne comptent pas (elles ne sont pas là ce soir). |
 
 ### Harem (4)
 
 | Scène | Voie | Personnages | Statut | Déblocage (indice affiché) |
 |---|---|---|---|---|
-| Le Portrait des Dix<br>`refuge_groupe:portrait_dix` | Groupe | — | écrite | Les dix héroïnes dans le groupe, toutes à Affinité ≥ 30. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord. |
-| L'Aube des Dix<br>`act4_finale:aube_dix` | Affinités (Lien) | — | amorce | Nuit du Déversement : terminer la boucle avec dix héroïnes dans le groupe à Affinité ≥ 30, sans être Tyran (Fin du Harem Absolu, « La Maison des Dix »). |
-| Le Contrat collectif<br>`refuge_groupe:harem_mercenaire` | Mercenaire | — | amorce | Voie du Mercenaire (400 ₩ en poche) avec six héroïnes du groupe à Affinité ≥ 50, Dortoir construit. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord. |
-| La Cour de l'Ombre<br>`refuge_groupe:harem_ombre` | Tyran (Ombre) | — | amorce | Voie du Tyran (Protéger ≤ −20) sans avoir forcé aucun contrat (ni Pacte, ni rachat), avec six héroïnes du groupe à Affinité ≥ 50, Dortoir construit. |
+| Le Portrait des Dix<br>`refuge_groupe:portrait_dix` | Groupe | — | écrite | Les dix héroïnes dans le groupe, toutes à Affinité ≥ 30. Si l'une porte encore un contrat imposé, seul le portrait est pris, sans la nuit. |
+| L'Aube des Dix<br>`act4_finale:aube_dix` | Affinités (Lien) | — | amorce | Nuit du Déversement : terminer la boucle avec dix héroïnes dans le groupe à Affinité ≥ 30, aucune sous contrat imposé, sans être Tyran (Fin du Harem Absolu, « La Maison des Dix »). |
+| Le Contrat collectif<br>`refuge_groupe:harem_mercenaire` | Mercenaire | — | amorce | Voie du Mercenaire (400 ₩ en poche) avec six héroïnes du groupe à Affinité ≥ 50, Dortoir construit. Les héroïnes sous contrat imposé ne comptent pas (elles ne sont pas là ce soir). |
+| La Cour de l'Ombre<br>`refuge_groupe:harem_ombre` | Tyran (Ombre) | — | amorce | Voie du Tyran (Protéger ≤ −20) avec au moins six héroïnes du groupe à Affinité ≥ 50, libres ou sous contrat renégocié (celles sous contrat imposé n'y sont pas), Dortoir construit. |
 
 ## À mettre en place (0 emplacements prévus)
 

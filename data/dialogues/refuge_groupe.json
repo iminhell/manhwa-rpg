@@ -372,11 +372,11 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')",
+    "if": "imposed_pact('seo_yeon')",
     "then": "pacte_groupe_seo_yeon"
    },
    {
-    "if": "flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte')",
+    "if": "imposed_pact('aoi')",
     "then": "pacte_groupe_aoi"
    },
    {
@@ -432,15 +432,15 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')",
+    "if": "imposed_pact('hae_in')",
     "then": "pacte_groupe_hae_in"
    },
    {
-    "if": "flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')",
+    "if": "imposed_pact('xiaoyu')",
     "then": "pacte_groupe_xiaoyu"
    },
    {
-    "if": "flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')",
+    "if": "imposed_pact('simone')",
     "then": "pacte_groupe_simone"
    },
    {
@@ -493,7 +493,7 @@
    {
     "s": "narrator",
     "t": "Celles qui portent encore un contrat qu'elles n'ont pas choisi ne sont pas là ce soir : personne ne les a convoquées, et personne ne le fera.",
-    "when": "(party('seo_yeon') and flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')) or (party('xiaoyu') and flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')) or (party('hae_in') and flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')) or (party('simone') and flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')) or (party('nadia') and flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')) or (party('aoi') and flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte'))"
+    "when": "(party('seo_yeon') and imposed_pact('seo_yeon')) or (party('xiaoyu') and imposed_pact('xiaoyu')) or (party('hae_in') and imposed_pact('hae_in')) or (party('simone') and imposed_pact('simone')) or (party('nadia') and imposed_pact('nadia')) or (party('aoi') and imposed_pact('aoi'))"
    },
    {
     "cg": "cg_nuit_maison"
@@ -543,9 +543,8 @@
     "music": "intimate"
    },
    {
-    "s": "narrator",
-    "t": "Celles qui portent encore un contrat qu'elles n'ont pas choisi ne sont pas là ce soir : personne ne les a convoquées, et personne ne le fera.",
-    "when": "(party('seo_yeon') and flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')) or (party('xiaoyu') and flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')) or (party('hae_in') and flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')) or (party('simone') and flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')) or (party('nadia') and flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')) or (party('aoi') and flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte'))"
+    "if": "bonds_libres() < 10",
+    "then": "portrait_dix_pacte"
    },
    {
     "cg": "cg_portrait_dix"
@@ -600,7 +599,7 @@
     "music": "intimate"
    },
    {
-    "if": "flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')",
+    "if": "imposed_pact('nadia')",
     "then": "pacte_groupe_nadia"
    },
    {
@@ -645,11 +644,11 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')",
+    "if": "imposed_pact('simone')",
     "then": "pacte_groupe_simone"
    },
    {
-    "if": "flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')",
+    "if": "imposed_pact('nadia')",
     "then": "pacte_groupe_nadia"
    },
    {
@@ -694,11 +693,11 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')",
+    "if": "imposed_pact('hae_in')",
     "then": "pacte_groupe_hae_in"
    },
    {
-    "if": "flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')",
+    "if": "imposed_pact('xiaoyu')",
     "then": "pacte_groupe_xiaoyu"
    },
    {
@@ -743,7 +742,7 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')",
+    "if": "imposed_pact('seo_yeon')",
     "then": "pacte_groupe_seo_yeon"
    },
    {
@@ -788,7 +787,7 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')",
+    "if": "imposed_pact('xiaoyu')",
     "then": "pacte_groupe_xiaoyu"
    },
    {
@@ -874,7 +873,7 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')",
+    "if": "imposed_pact('simone')",
     "then": "pacte_groupe_simone"
    },
    {
@@ -919,7 +918,7 @@
     "music": "intimate"
    },
    {
-    "if": "flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte')",
+    "if": "imposed_pact('aoi')",
     "then": "pacte_groupe_aoi"
    },
    {
@@ -964,11 +963,11 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')",
+    "if": "imposed_pact('hae_in')",
     "then": "pacte_groupe_hae_in"
    },
    {
-    "if": "flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')",
+    "if": "imposed_pact('simone')",
     "then": "pacte_groupe_simone"
    },
    {
@@ -1013,11 +1012,11 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')",
+    "if": "imposed_pact('seo_yeon')",
     "then": "pacte_groupe_seo_yeon"
    },
    {
-    "if": "flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte')",
+    "if": "imposed_pact('aoi')",
     "then": "pacte_groupe_aoi"
    },
    {
@@ -1062,11 +1061,11 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')",
+    "if": "imposed_pact('simone')",
     "then": "pacte_groupe_simone"
    },
    {
-    "if": "flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')",
+    "if": "imposed_pact('nadia')",
     "then": "pacte_groupe_nadia"
    },
    {
@@ -1112,11 +1111,11 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')",
+    "if": "imposed_pact('hae_in')",
     "then": "pacte_groupe_hae_in"
    },
    {
-    "if": "flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')",
+    "if": "imposed_pact('xiaoyu')",
     "then": "pacte_groupe_xiaoyu"
    },
    {
@@ -1162,11 +1161,11 @@
     "music": "intimate"
    },
    {
-    "if": "flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte')",
+    "if": "imposed_pact('aoi')",
     "then": "pacte_groupe_aoi"
    },
    {
-    "if": "flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')",
+    "if": "imposed_pact('nadia')",
     "then": "pacte_groupe_nadia"
    },
    {
@@ -1212,11 +1211,11 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')",
+    "if": "imposed_pact('xiaoyu')",
     "then": "pacte_groupe_xiaoyu"
    },
    {
-    "if": "flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')",
+    "if": "imposed_pact('nadia')",
     "then": "pacte_groupe_nadia"
    },
    {
@@ -1262,7 +1261,7 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')",
+    "if": "imposed_pact('seo_yeon')",
     "then": "pacte_groupe_seo_yeon"
    },
    {
@@ -1308,11 +1307,11 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')",
+    "if": "imposed_pact('hae_in')",
     "then": "pacte_groupe_hae_in"
    },
    {
-    "if": "flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')",
+    "if": "imposed_pact('xiaoyu')",
     "then": "pacte_groupe_xiaoyu"
    },
    {
@@ -1358,7 +1357,7 @@
     "music": "intimate"
    },
    {
-    "if": "flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte')",
+    "if": "imposed_pact('aoi')",
     "then": "pacte_groupe_aoi"
    },
    {
@@ -1404,11 +1403,11 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')",
+    "if": "imposed_pact('simone')",
     "then": "pacte_groupe_simone"
    },
    {
-    "if": "flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')",
+    "if": "imposed_pact('seo_yeon')",
     "then": "pacte_groupe_seo_yeon"
    },
    {
@@ -1454,11 +1453,11 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')",
+    "if": "imposed_pact('seo_yeon')",
     "then": "pacte_groupe_seo_yeon"
    },
    {
-    "if": "flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')",
+    "if": "imposed_pact('hae_in')",
     "then": "pacte_groupe_hae_in"
    },
    {
@@ -1504,11 +1503,11 @@
     "music": "intimate"
    },
    {
-    "if": "flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte')",
+    "if": "imposed_pact('aoi')",
     "then": "pacte_groupe_aoi"
    },
    {
-    "if": "flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')",
+    "if": "imposed_pact('seo_yeon')",
     "then": "pacte_groupe_seo_yeon"
    },
    {
@@ -1555,15 +1554,15 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')",
+    "if": "imposed_pact('simone')",
     "then": "pacte_groupe_simone"
    },
    {
-    "if": "flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')",
+    "if": "imposed_pact('nadia')",
     "then": "pacte_groupe_nadia"
    },
    {
-    "if": "flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte')",
+    "if": "imposed_pact('aoi')",
     "then": "pacte_groupe_aoi"
    },
    {
@@ -1612,7 +1611,7 @@
    {
     "s": "narrator",
     "t": "Celles qui portent encore un contrat qu'elles n'ont pas choisi ne sont pas là ce soir : personne ne les a convoquées, et personne ne le fera.",
-    "when": "(party('seo_yeon') and flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')) or (party('xiaoyu') and flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')) or (party('hae_in') and flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')) or (party('simone') and flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')) or (party('nadia') and flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')) or (party('aoi') and flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte'))"
+    "when": "(party('seo_yeon') and imposed_pact('seo_yeon')) or (party('xiaoyu') and imposed_pact('xiaoyu')) or (party('hae_in') and imposed_pact('hae_in')) or (party('simone') and imposed_pact('simone')) or (party('nadia') and imposed_pact('nadia')) or (party('aoi') and imposed_pact('aoi'))"
    },
    {
     "s": "narrator",
@@ -1644,7 +1643,7 @@
    {
     "s": "narrator",
     "t": "Celles qui portent encore un contrat qu'elles n'ont pas choisi ne sont pas là ce soir : personne ne les a convoquées, et personne ne le fera.",
-    "when": "(party('seo_yeon') and flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')) or (party('xiaoyu') and flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')) or (party('hae_in') and flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')) or (party('simone') and flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')) or (party('nadia') and flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')) or (party('aoi') and flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte'))"
+    "when": "(party('seo_yeon') and imposed_pact('seo_yeon')) or (party('xiaoyu') and imposed_pact('xiaoyu')) or (party('hae_in') and imposed_pact('hae_in')) or (party('simone') and imposed_pact('simone')) or (party('nadia') and imposed_pact('nadia')) or (party('aoi') and imposed_pact('aoi'))"
    },
    {
     "s": "narrator",
@@ -1678,7 +1677,7 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')",
+    "if": "imposed_pact('seo_yeon')",
     "then": "pacte_groupe_seo_yeon"
    },
    {
@@ -1723,7 +1722,7 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')",
+    "if": "imposed_pact('seo_yeon')",
     "then": "pacte_groupe_seo_yeon"
    },
    {
@@ -1768,7 +1767,7 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')",
+    "if": "imposed_pact('seo_yeon')",
     "then": "pacte_groupe_seo_yeon"
    },
    {
@@ -1813,11 +1812,11 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')",
+    "if": "imposed_pact('seo_yeon')",
     "then": "pacte_groupe_seo_yeon"
    },
    {
-    "if": "flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')",
+    "if": "imposed_pact('xiaoyu')",
     "then": "pacte_groupe_xiaoyu"
    },
    {
@@ -1862,11 +1861,11 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')",
+    "if": "imposed_pact('seo_yeon')",
     "then": "pacte_groupe_seo_yeon"
    },
    {
-    "if": "flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')",
+    "if": "imposed_pact('hae_in')",
     "then": "pacte_groupe_hae_in"
    },
    {
@@ -1911,11 +1910,11 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')",
+    "if": "imposed_pact('seo_yeon')",
     "then": "pacte_groupe_seo_yeon"
    },
    {
-    "if": "flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')",
+    "if": "imposed_pact('nadia')",
     "then": "pacte_groupe_nadia"
    },
    {
@@ -1960,11 +1959,11 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')",
+    "if": "imposed_pact('seo_yeon')",
     "then": "pacte_groupe_seo_yeon"
    },
    {
-    "if": "flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')",
+    "if": "imposed_pact('simone')",
     "then": "pacte_groupe_simone"
    },
    {
@@ -2091,7 +2090,7 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')",
+    "if": "imposed_pact('xiaoyu')",
     "then": "pacte_groupe_xiaoyu"
    },
    {
@@ -2136,7 +2135,7 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')",
+    "if": "imposed_pact('hae_in')",
     "then": "pacte_groupe_hae_in"
    },
    {
@@ -2181,7 +2180,7 @@
     "music": "intimate"
    },
    {
-    "if": "flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')",
+    "if": "imposed_pact('nadia')",
     "then": "pacte_groupe_nadia"
    },
    {
@@ -2226,7 +2225,7 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')",
+    "if": "imposed_pact('simone')",
     "then": "pacte_groupe_simone"
    },
    {
@@ -2271,7 +2270,7 @@
     "music": "intimate"
    },
    {
-    "if": "flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte')",
+    "if": "imposed_pact('aoi')",
     "then": "pacte_groupe_aoi"
    },
    {
@@ -2316,7 +2315,7 @@
     "music": "intimate"
    },
    {
-    "if": "flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte')",
+    "if": "imposed_pact('aoi')",
     "then": "pacte_groupe_aoi"
    },
    {
@@ -2361,11 +2360,11 @@
     "music": "intimate"
    },
    {
-    "if": "flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte')",
+    "if": "imposed_pact('aoi')",
     "then": "pacte_groupe_aoi"
    },
    {
-    "if": "flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')",
+    "if": "imposed_pact('xiaoyu')",
     "then": "pacte_groupe_xiaoyu"
    },
    {
@@ -2410,11 +2409,11 @@
     "music": "intimate"
    },
    {
-    "if": "flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte')",
+    "if": "imposed_pact('aoi')",
     "then": "pacte_groupe_aoi"
    },
    {
-    "if": "flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')",
+    "if": "imposed_pact('hae_in')",
     "then": "pacte_groupe_hae_in"
    },
    {
@@ -2459,11 +2458,11 @@
     "music": "intimate"
    },
    {
-    "if": "flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte')",
+    "if": "imposed_pact('aoi')",
     "then": "pacte_groupe_aoi"
    },
    {
-    "if": "flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')",
+    "if": "imposed_pact('nadia')",
     "then": "pacte_groupe_nadia"
    },
    {
@@ -2508,11 +2507,11 @@
     "music": "intimate"
    },
    {
-    "if": "flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte')",
+    "if": "imposed_pact('aoi')",
     "then": "pacte_groupe_aoi"
    },
    {
-    "if": "flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')",
+    "if": "imposed_pact('simone')",
     "then": "pacte_groupe_simone"
    },
    {
@@ -2557,7 +2556,7 @@
     "music": "intimate"
    },
    {
-    "if": "flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte')",
+    "if": "imposed_pact('aoi')",
     "then": "pacte_groupe_aoi"
    },
    {
@@ -2643,7 +2642,7 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')",
+    "if": "imposed_pact('hae_in')",
     "then": "pacte_groupe_hae_in"
    },
    {
@@ -2688,7 +2687,7 @@
     "music": "intimate"
    },
    {
-    "if": "flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')",
+    "if": "imposed_pact('nadia')",
     "then": "pacte_groupe_nadia"
    },
    {
@@ -2733,7 +2732,7 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')",
+    "if": "imposed_pact('simone')",
     "then": "pacte_groupe_simone"
    },
    {
@@ -2819,7 +2818,7 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')",
+    "if": "imposed_pact('xiaoyu')",
     "then": "pacte_groupe_xiaoyu"
    },
    {
@@ -2864,7 +2863,7 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')",
+    "if": "imposed_pact('hae_in')",
     "then": "pacte_groupe_hae_in"
    },
    {
@@ -2950,11 +2949,11 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')",
+    "if": "imposed_pact('xiaoyu')",
     "then": "pacte_groupe_xiaoyu"
    },
    {
-    "if": "flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')",
+    "if": "imposed_pact('nadia')",
     "then": "pacte_groupe_nadia"
    },
    {
@@ -2999,11 +2998,11 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')",
+    "if": "imposed_pact('xiaoyu')",
     "then": "pacte_groupe_xiaoyu"
    },
    {
-    "if": "flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')",
+    "if": "imposed_pact('simone')",
     "then": "pacte_groupe_simone"
    },
    {
@@ -3048,7 +3047,7 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')",
+    "if": "imposed_pact('xiaoyu')",
     "then": "pacte_groupe_xiaoyu"
    },
    {
@@ -3093,11 +3092,11 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')",
+    "if": "imposed_pact('hae_in')",
     "then": "pacte_groupe_hae_in"
    },
    {
-    "if": "flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')",
+    "if": "imposed_pact('nadia')",
     "then": "pacte_groupe_nadia"
    },
    {
@@ -3142,7 +3141,7 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')",
+    "if": "imposed_pact('hae_in')",
     "then": "pacte_groupe_hae_in"
    },
    {
@@ -3187,7 +3186,7 @@
     "music": "intimate"
    },
    {
-    "if": "flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')",
+    "if": "imposed_pact('nadia')",
     "then": "pacte_groupe_nadia"
    },
    {
@@ -3232,7 +3231,7 @@
     "music": "intimate"
    },
    {
-    "if": "flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')",
+    "if": "imposed_pact('simone')",
     "then": "pacte_groupe_simone"
    },
    {
@@ -3279,7 +3278,7 @@
    {
     "s": "narrator",
     "t": "Celles qui portent encore un contrat qu'elles n'ont pas choisi ne sont pas là ce soir : personne ne les a convoquées, et personne ne le fera.",
-    "when": "(party('seo_yeon') and flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')) or (party('xiaoyu') and flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')) or (party('hae_in') and flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')) or (party('simone') and flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')) or (party('nadia') and flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')) or (party('aoi') and flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte'))"
+    "when": "(party('seo_yeon') and imposed_pact('seo_yeon')) or (party('xiaoyu') and imposed_pact('xiaoyu')) or (party('hae_in') and imposed_pact('hae_in')) or (party('simone') and imposed_pact('simone')) or (party('nadia') and imposed_pact('nadia')) or (party('aoi') and imposed_pact('aoi'))"
    },
    {
     "s": "narrator",
@@ -3315,7 +3314,7 @@
    {
     "s": "narrator",
     "t": "Celles qui portent encore un contrat qu'elles n'ont pas choisi ne sont pas là ce soir : personne ne les a convoquées, et personne ne le fera.",
-    "when": "(party('seo_yeon') and flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')) or (party('xiaoyu') and flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')) or (party('hae_in') and flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')) or (party('simone') and flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')) or (party('nadia') and flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')) or (party('aoi') and flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte'))"
+    "when": "(party('seo_yeon') and imposed_pact('seo_yeon')) or (party('xiaoyu') and imposed_pact('xiaoyu')) or (party('hae_in') and imposed_pact('hae_in')) or (party('simone') and imposed_pact('simone')) or (party('nadia') and imposed_pact('nadia')) or (party('aoi') and imposed_pact('aoi'))"
    },
    {
     "s": "narrator",
@@ -3351,11 +3350,11 @@
    {
     "s": "narrator",
     "t": "Celles qui portent encore un contrat qu'elles n'ont pas choisi ne sont pas là ce soir : personne ne les a convoquées, et personne ne le fera.",
-    "when": "(party('seo_yeon') and flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')) or (party('xiaoyu') and flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')) or (party('hae_in') and flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')) or (party('simone') and flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')) or (party('nadia') and flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')) or (party('aoi') and flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte'))"
+    "when": "(party('seo_yeon') and imposed_pact('seo_yeon')) or (party('xiaoyu') and imposed_pact('xiaoyu')) or (party('hae_in') and imposed_pact('hae_in')) or (party('simone') and imposed_pact('simone')) or (party('nadia') and imposed_pact('nadia')) or (party('aoi') and imposed_pact('aoi'))"
    },
    {
     "s": "narrator",
-    "t": "Six contrats soldés, six dettes effacées. Elles ont mis leurs créances en commun, et rédigé un seul contrat, sur une seule page : ce soir, c'est toi qu'on rachète."
+    "t": "Leurs contrats sont soldés, leurs dettes effacées. Elles ont mis leurs créances en commun, et rédigé un seul contrat, sur une seule page : ce soir, c'est toi qu'on rachète."
    },
    {
     "s": "registre",
@@ -3387,7 +3386,7 @@
    {
     "s": "narrator",
     "t": "Celles qui portent encore un contrat qu'elles n'ont pas choisi ne sont pas là ce soir : personne ne les a convoquées, et personne ne le fera.",
-    "when": "(party('seo_yeon') and flag('pacte.seo_yeon') and not flag('seo_devotion') and not flag('seo_pacte_accepte')) or (party('xiaoyu') and flag('pacte.xiaoyu') and not flag('xiaoyu_devotion') and not flag('xiaoyu_pacte_accepte')) or (party('hae_in') and flag('pacte.hae_in') and not flag('haein_devotion') and not flag('haein_pacte_accepte')) or (party('simone') and flag('pacte.simone') and not flag('simone_devotion') and not flag('simone_pacte_accepte')) or (party('nadia') and flag('nadia_pactisee') and not flag('nadia_devotion') and not flag('nadia_pacte_accepte')) or (party('aoi') and flag('aoi_dominee') and not flag('aoi_devotion') and not flag('aoi_pacte_accepte'))"
+    "when": "(party('seo_yeon') and imposed_pact('seo_yeon')) or (party('xiaoyu') and imposed_pact('xiaoyu')) or (party('hae_in') and imposed_pact('hae_in')) or (party('simone') and imposed_pact('simone')) or (party('nadia') and imposed_pact('nadia')) or (party('aoi') and imposed_pact('aoi'))"
    },
    {
     "s": "narrator",
@@ -3395,11 +3394,11 @@
    },
    {
     "s": "registre",
-    "t": "Cour de l'Ombre — six Clauses du Sceau, six couronnes, un seul trône vide."
+    "t": "Cour de l'Ombre — autant de clauses que de couronnes, un seul trône vide."
    },
    {
     "s": "narrator",
-    "t": "Chacune scelle sa Clause avant d'entrer, celle qui fait tout taire d'un geste, et chacune règne à son tour. Tu commandes autant que tu obéis. Personne n'est à genoux sans l'avoir choisi, et tout le monde peut se relever."
+    "t": "Chacune scelle la sienne avant d'entrer, Ancre de Sang, Clause du Sceau, Condition du Pacte ou simple parole donnée : celle qui fait tout taire d'un geste. Puis chacune règne à son tour. Tu commandes autant que tu obéis. Personne n'est à genoux sans l'avoir choisi, et tout le monde peut se relever."
    },
    {
     "text_p3_slot": []
@@ -3447,7 +3446,7 @@
   "pacte_groupe_seo_yeon_libre": [
    {
     "s": "narrator",
-    "t": "Seo-Yeon reste. Pas pour ce que les autres croyaient : pour parler. La nuit tourne à la veillée, puis au fou rire, puis au sommeil, tout le monde habillé, entassé sur les matelas. Pour la première fois, elle rit avec elles."
+    "t": "Seo-Yeon reste. Pas pour ce qu'on aurait pu croire : pour parler. La soirée tourne à la veillée, puis au fou rire, puis au sommeil, tout le monde habillé, entassé sur les matelas. Elle rit, et personne ne le lui a ordonné."
    },
    {
     "s": "registre",
@@ -3465,7 +3464,7 @@
   "pacte_groupe_seo_yeon_ordre": [
    {
     "s": "narrator",
-    "t": "Personne ne bouge. Puis, une à une, les autres se lèvent. « Pas comme ça », dit l'une d'elles. Elles emmènent Seo-Yeon avec elles. La porte se referme sur une chambre vide."
+    "t": "Personne ne bouge. Puis on se lève, sans un mot. « Pas comme ça. » On emmène Seo-Yeon. La porte se referme sur une chambre vide."
    },
    {
     "fx": [
@@ -3510,7 +3509,7 @@
   "pacte_groupe_xiaoyu_libre": [
    {
     "s": "narrator",
-    "t": "Xiaoyu reste. Pas pour ce que les autres croyaient : pour parler. La nuit tourne à la veillée, puis au fou rire, puis au sommeil, tout le monde habillé, entassé sur les matelas. Pour la première fois, elle rit avec elles."
+    "t": "Xiaoyu reste. Pas pour ce qu'on aurait pu croire : pour parler. La soirée tourne à la veillée, puis au fou rire, puis au sommeil, tout le monde habillé, entassé sur les matelas. Elle rit, et personne ne le lui a ordonné."
    },
    {
     "s": "registre",
@@ -3528,7 +3527,7 @@
   "pacte_groupe_xiaoyu_ordre": [
    {
     "s": "narrator",
-    "t": "Personne ne bouge. Puis, une à une, les autres se lèvent. « Pas comme ça », dit l'une d'elles. Elles emmènent Xiaoyu avec elles. La porte se referme sur une chambre vide."
+    "t": "Personne ne bouge. Puis on se lève, sans un mot. « Pas comme ça. » On emmène Xiaoyu. La porte se referme sur une chambre vide."
    },
    {
     "fx": [
@@ -3573,7 +3572,7 @@
   "pacte_groupe_hae_in_libre": [
    {
     "s": "narrator",
-    "t": "Hae-in reste. Pas pour ce que les autres croyaient : pour parler. La nuit tourne à la veillée, puis au fou rire, puis au sommeil, tout le monde habillé, entassé sur les matelas. Pour la première fois, elle rit avec elles."
+    "t": "Hae-in reste. Pas pour ce qu'on aurait pu croire : pour parler. La soirée tourne à la veillée, puis au fou rire, puis au sommeil, tout le monde habillé, entassé sur les matelas. Elle rit, et personne ne le lui a ordonné."
    },
    {
     "s": "registre",
@@ -3591,7 +3590,7 @@
   "pacte_groupe_hae_in_ordre": [
    {
     "s": "narrator",
-    "t": "Personne ne bouge. Puis, une à une, les autres se lèvent. « Pas comme ça », dit l'une d'elles. Elles emmènent Hae-in avec elles. La porte se referme sur une chambre vide."
+    "t": "Personne ne bouge. Puis on se lève, sans un mot. « Pas comme ça. » On emmène Hae-in. La porte se referme sur une chambre vide."
    },
    {
     "fx": [
@@ -3636,7 +3635,7 @@
   "pacte_groupe_simone_libre": [
    {
     "s": "narrator",
-    "t": "Simone reste. Pas pour ce que les autres croyaient : pour parler. La nuit tourne à la veillée, puis au fou rire, puis au sommeil, tout le monde habillé, entassé sur les matelas. Pour la première fois, elle rit avec elles."
+    "t": "Simone reste. Pas pour ce qu'on aurait pu croire : pour parler. La soirée tourne à la veillée, puis au fou rire, puis au sommeil, tout le monde habillé, entassé sur les matelas. Elle rit, et personne ne le lui a ordonné."
    },
    {
     "s": "registre",
@@ -3654,7 +3653,7 @@
   "pacte_groupe_simone_ordre": [
    {
     "s": "narrator",
-    "t": "Personne ne bouge. Puis, une à une, les autres se lèvent. « Pas comme ça », dit l'une d'elles. Elles emmènent Simone avec elles. La porte se referme sur une chambre vide."
+    "t": "Personne ne bouge. Puis on se lève, sans un mot. « Pas comme ça. » On emmène Simone. La porte se referme sur une chambre vide."
    },
    {
     "fx": [
@@ -3699,7 +3698,7 @@
   "pacte_groupe_nadia_libre": [
    {
     "s": "narrator",
-    "t": "Nadia reste. Pas pour ce que les autres croyaient : pour parler. La nuit tourne à la veillée, puis au fou rire, puis au sommeil, tout le monde habillé, entassé sur les matelas. Pour la première fois, elle rit avec elles."
+    "t": "Nadia reste. Pas pour ce qu'on aurait pu croire : pour parler. La soirée tourne à la veillée, puis au fou rire, puis au sommeil, tout le monde habillé, entassé sur les matelas. Elle rit, et personne ne le lui a ordonné."
    },
    {
     "s": "registre",
@@ -3717,7 +3716,7 @@
   "pacte_groupe_nadia_ordre": [
    {
     "s": "narrator",
-    "t": "Personne ne bouge. Puis, une à une, les autres se lèvent. « Pas comme ça », dit l'une d'elles. Elles emmènent Nadia avec elles. La porte se referme sur une chambre vide."
+    "t": "Personne ne bouge. Puis on se lève, sans un mot. « Pas comme ça. » On emmène Nadia. La porte se referme sur une chambre vide."
    },
    {
     "fx": [
@@ -3762,7 +3761,7 @@
   "pacte_groupe_aoi_libre": [
    {
     "s": "narrator",
-    "t": "Aoi reste. Pas pour ce que les autres croyaient : pour parler. La nuit tourne à la veillée, puis au fou rire, puis au sommeil, tout le monde habillé, entassé sur les matelas. Pour la première fois, elle rit avec elles."
+    "t": "Aoi reste. Pas pour ce qu'on aurait pu croire : pour parler. La soirée tourne à la veillée, puis au fou rire, puis au sommeil, tout le monde habillé, entassé sur les matelas. Elle rit, et personne ne le lui a ordonné."
    },
    {
     "s": "registre",
@@ -3780,10 +3779,29 @@
   "pacte_groupe_aoi_ordre": [
    {
     "s": "narrator",
-    "t": "Personne ne bouge. Puis, une à une, les autres se lèvent. « Pas comme ça », dit l'une d'elles. Elles emmènent Aoi avec elles. La porte se referme sur une chambre vide."
+    "t": "Personne ne bouge. Puis on se lève, sans un mot. « Pas comme ça. » On emmène Aoi. La porte se referme sur une chambre vide."
    },
    {
     "fx": [
+     "add fatigue -4"
+    ]
+   },
+   {
+    "end": true
+   }
+  ],
+  "portrait_dix_pacte": [
+   {
+    "s": "narrator",
+    "t": "Minh-Anh a réglé un appareil photo sur un trépied. Le portrait est pris tout habillé : dix femmes et un homme serrés sur un banc trop court. Certaines portent encore un contrat qu'elles n'ont pas choisi, et ce soir, la photo suffit."
+   },
+   {
+    "s": "registre",
+    "t": "Portrait des Dix. Formation des Dix : l'Ultime collective s'éveille."
+   },
+   {
+    "fx": [
+     "flag formation_dix",
      "add fatigue -4"
     ]
    },

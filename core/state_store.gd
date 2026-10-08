@@ -160,6 +160,29 @@ func party_size() -> int:
 
 
 ## Nombre de liens forts : héroïnes du groupe dont l'Affinité atteint le seuil.
+## Pactes : héroïne → [drapeau du contrat, préfixe des drapeaux de renégociation / Dévotion].
+const PACTES := {"seo_yeon": ["pacte.seo_yeon", "seo"], "xiaoyu": ["pacte.xiaoyu", "xiaoyu"], "hae_in": ["pacte.hae_in", "haein"],
+	"simone": ["pacte.simone", "simone"], "nadia": ["nadia_pactisee", "nadia"], "aoi": ["aoi_dominee", "aoi"]}
+
+
+## Contrat imposé : ni renégocié par l'héroïne, ni renouvelé en Dévotion (GDD §11.4.4).
+func imposed_pact(id: String) -> bool:
+	if not PACTES.has(id):
+		return false
+	var p: Array = PACTES[id]
+	return has_flag(p[0]) and not has_flag(p[1] + "_pacte_accepte") and not has_flag(p[1] + "_devotion")
+
+
+## Liens libres : comme bonds(), sans les héroïnes sous contrat imposé (scènes intimes à plusieurs, harem).
+func bonds_libres(threshold: float = 30.0) -> int:
+	var n := 0
+	for f in flags:
+		var id := str(f).substr(6)
+		if str(f).begins_with("party.") and aff(id) >= threshold and not imposed_pact(id):
+			n += 1
+	return n
+
+
 func bonds(threshold: float = 30.0) -> int:
 	var n := 0
 	for f in flags:

@@ -81,7 +81,7 @@ KNOWN_EVENTS = {"combat", "regress", "end_act", "world", "move"}
 EFFECT_TYPES = {"damage", "heal", "status", "fear", "delay", "haste", "revive", "cleanse", "crit_next", "swap", "advance", "awaken", "pull"}
 TARGETS = {"melee", "ranged", "pierce", "row", "all_enemies", "ally", "all_allies", "all_allies_any", "ally_other", "self", "ally_ko"}
 FUNCS = {"v", "flag", "souvenir", "aff", "loop", "day", "phase", "at", "in_sector", "party", "item", "money",
-         "trust", "fear", "done", "knows_fin", "pressure", "ticks", "in_refuge_sector", "mode", "ir", "party_size", "bonds", "in_tower", "voie"}
+         "trust", "fear", "done", "knows_fin", "pressure", "ticks", "in_refuge_sector", "mode", "ir", "party_size", "bonds", "bonds_libres", "imposed_pact", "in_tower", "voie"}
 VOIES = {"heros", "tyran", "loup", "mercenaire", ""}
 KEYWORDS = {"and", "or", "not", "true", "false", "null"}
 FX_OPS = {"set": 2, "add": 2, "flag": 1, "unflag": 1, "souvenir": 1, "item": 2, "money": 1, "fin": 1, "join": 1, "leave": 1, "pressure": 1}

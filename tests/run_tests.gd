@@ -749,6 +749,33 @@ func test_scene_matrix() -> void:
 		sr.apply_effects(["set ambivalence.%s 70" % h, "set aff.%s 75" % h])
 		var seenr3 := _route(sr, dlg, h)
 		check(seenr3.has(p + "_devotion") or seenr3.has(p + "_devotion_nuit"), "Matrice : %s, contrat renégocié → Dévotion %s" % [h, seenr3])
+	# Tyran : la nuit d'Ombre ne se rejoue pas ; entre la première et la seconde nuit, un repos ordinaire
+	for h in H:
+		var p: String = PRE.get(h, h)
+		var st := StateStore.new()
+		st.apply_effects(["set repos.%s 1" % h, "flag refuge.dortoir", "set aff.%s 45" % h, "set align.protect -25"])
+		_route(st, dlg, h)
+		var gap := _route(st, dlg, h)
+		check(gap.size() > 1 and gap[1] == p + "_court" and not _intimate(dlg, gap), "Matrice : %s, Tyran, repos suivant ordinaire %s" % [h, gap])
+		st.apply_effects(["set repos.%s 3" % h])
+		var again := _route(st, dlg, h)
+		check(again.size() > 1 and again[1] == p + "_nuit2", "Matrice : %s, Tyran, seconde nuit (pas d'Ombre rejouée) %s" % [h, again])
+	# Liens libres : une héroïne sous contrat imposé ne compte pas ; contrat renégocié ou Dévotion, si
+	var sb := StateStore.new()
+	for h in H:
+		sb.apply_effects(["join " + h, "set aff.%s 70" % h])
+	sb.apply_effects(["flag pacte.seo_yeon"])
+	check(sb.bonds() == 10 and sb.bonds_libres() == 9 and sb.imposed_pact("seo_yeon"), "Liens libres : contrat imposé exclu")
+	sb.apply_effects(["flag seo_pacte_accepte"])
+	check(sb.bonds_libres() == 10 and not sb.imposed_pact("seo_yeon"), "Liens libres : contrat renégocié compté")
+	# Finale : l'Aube des Dix (palier P3) exige dix liens libres ; sinon la Maison des Dix, sans la nuit
+	var fin: Dictionary = all["act4_finale"]
+	sb.apply_effects(["unflag seo_pacte_accepte", "set align.protect 25"])
+	var hf := _route(sb, fin, "harem")
+	check(hf.has("harem_maison") and not hf.has("aube_dix") and sb.has_flag("issue.maison_des_dix"), "Finale : Maison des Dix sans la nuit si un contrat est imposé %s" % [hf])
+	sb.apply_effects(["flag seo_pacte_accepte"])
+	hf = _route(sb, fin, "harem")
+	check(hf.has("aube_dix") and _intimate(fin, hf), "Finale : Aube des Dix avec dix liens libres %s" % [hf])
 	# Scènes à plusieurs : toutes accessibles sur au moins une voie ; jamais verrouillées par un Pacte imposé
 	var gs: Array = DataDB.load_json("res://data/world/group_scenes.json")["scenes"]
 	for g in gs:
@@ -769,7 +796,13 @@ func test_scene_matrix() -> void:
 			continue
 		var blk: String = str(g["dialogue"]).get_slice(":", 1)
 		var pacted: Array = g.get("members", []).filter(func(m): return PACT.has(m))
-		if pacted.is_empty() and g.get("members", []).is_empty() and _intimate(grp, [blk]) and g["id"] != "harem_ombre":
+		if g["id"] == "portrait_dix":
+			any_store.apply_effects(["flag pacte.seo_yeon"])
+			var seenpd := _route(any_store, grp, blk)
+			check(any_store.check(str(g.get("if", ""))) and seenpd.has("portrait_dix_pacte") and not _intimate(grp, seenpd.slice(1)),
+				"Groupe : Portrait des Dix avec une héroïne sous contrat imposé → portrait seul, sans la nuit %s" % [seenpd])
+			any_store.apply_effects(["unflag pacte.seo_yeon"])
+		elif pacted.is_empty() and g.get("members", []).is_empty() and _intimate(grp, [blk]):
 			any_store.apply_effects(["flag pacte.seo_yeon"])
 			check(any_store.check(str(g.get("if", ""))), "Groupe : « %s » reste accessible avec une héroïne sous Pacte" % g["id"])
 			var r := DialogueRunner.new(any_store)

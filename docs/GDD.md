@@ -970,6 +970,8 @@ Une jauge cachée propre au Pacte, **l'Ambivalence**, va de −100 (Ressentiment
 
 Les **scènes de groupe ne sont jamais verrouillées** par un Pacte : avec une héroïne encore sous contrat imposé, une variante se joue (les autres voient le collier ; rendre sa soirée à l'héroïne fait monter l'ambivalence, imposer le contrat vide la chambre), et l'emplacement de galerie se débloque. Sur l'écran du Refuge, l'Échec ou la rupture restent possibles : Couteau (finale) et Rupture (−60).
 
+Les scènes intimes sans membres fixes (constellations, Contrat collectif, Cour de l'Ombre, Nuit de la Maison) et l'Aube des Dix de la finale ne comptent que les **liens libres** (`bonds_libres()`) : une héroïne sous contrat imposé n'y est pas, et le texte le dit. Le Portrait des Dix se prend quand même, sans la nuit. Chaque « première nuit » ne se joue qu'une fois ; ensuite, repos ordinaires puis seconde nuit (3e repos), quelle que soit la voie.
+
 Morts et retours : un Pacte ne lie que les vivants. Une héroïne ramenée par les fleurs de la Tour (Acte IV) revient **libre**, ambivalence remise à 0.
 
 #### 11.4.5 Règles de lore et garde-fous

@@ -1291,10 +1291,6 @@
   "ko": "아이… 과포… 멈추면 진짜로 네 시계 훔칠 거야.",
   "ja": "アイ…グワポ…止めたら、本当に時計盗むからね。"
  },
- "Ne bouge pas. Pour une fois, c'est moi qui examine.": {
-  "ko": "움직이지 마. 이번엔 내가 진찰할 차례야.",
-  "ja": "動かないで。今回は、私が診る番。"
- },
  "Je ne mangeais pas de bonbons. C'était… un test de vigilance. Tu l'as échoué.": {
   "ko": "사탕 먹던 거 아니야. 그건… 경계 테스트였어. 넌 탈락이야.",
   "ja": "飴を食べていたのではない。あれは…警戒の試験だ。お前は不合格だ。"
@@ -2627,17 +2623,9 @@
   "ko": "혼자인 늑대는 겨울에 죽어, 과포. 세게 무는 녀석들도. 비켜 봐, 네 굴 좀 데워 줄게.",
   "ja": "一匹狼は冬に死ぬんだよ、グワポ。強く噛む奴でもね。どいて、あんたの巣を温めてあげる。"
  },
- "La première fois, c'était une défaite que j'avais choisie. Ce soir, c'est une habitude que je choisis. Ne souris pas comme ça.": {
-  "ko": "처음엔 내가 고른 패배였어. 오늘 밤은 내가 고른 습관이야. 그렇게 웃지 마.",
-  "ja": "最初は、自分で選んだ敗北だった。今夜は、自分で選んだ習慣だ。そんな顔で笑うな。"
- },
  "Tu t'entraînes seul, tu combats seul, tu saignes seul. Mon père appelait ça la voie du sabre. Il est mort seul. Pas toi.": {
   "ko": "혼자 수련하고, 혼자 싸우고, 혼자 피 흘리지. 아버지는 그걸 검의 길이라 불렀어. 그분은 혼자 돌아가셨어. 넌 그러지 마.",
   "ja": "一人で稽古し、一人で戦い、一人で血を流す。父はそれを剣の道と呼んだ。父は一人で死んだ。お前はそうはさせない。"
- },
- "La première nuit était une transaction. Je n'en fais jamais deux identiques. Ce soir, je n'apporte rien. Seulement moi.": {
-  "ko": "첫날 밤은 거래였어. 난 같은 거래를 두 번 하지 않아. 오늘 밤은 아무것도 안 가져왔어. 나 자신만.",
-  "ja": "最初の夜は取引だった。同じ取引は二度しない。今夜は何も持ってこなかった。私だけ。"
  },
  "Je viens te faire une offre que personne d'autre n'oserait, Kang : une nuit sans rien te demander. Pas d'intérêts. Pas d'échéance.": {
   "ko": "아무도 감히 못 할 제안을 하러 왔어, 강. 아무것도 요구하지 않는 하룻밤. 이자도, 기한도 없이.",
@@ -2747,20 +2735,32 @@
   "ko": "빚은 다 갚았어, 영주님. 롱웨이의 인장으로 봉인한 새 게임을 제안할게. 지고 싶을 때 지고, 이기고 싶을 때 이기고, 내가 이 옥패를 뒤집으면 게임은 끝나. 서명할래?",
   "ja": "借りは返したわ、ご主人様。龍威の印章で封じた新しいゲームを提案する。負けたい時に負けて、勝ちたい時に勝つ。私がこの玉牌を裏返せば、勝負は終わり。サインする？"
  },
- "Avenant numéro un, Seigneur Kang, scellé par la Balance : si je pose la main sur le Sceau, le contrat est suspendu, sans délai ni pénalité. Avenant deux : elle choisit de rester. Les autres clauses sont négociables. Ce soir.": {
-  "ko": "첫 번째 부속 조항입니다, 강 영주님. 천칭으로 봉인했죠. 제가 인장에 손을 얹으면 계약은 지체도 위약금도 없이 정지됩니다. 두 번째: 봉신은 남기로 선택한다. 나머지 조항은 협상 가능합니다. 오늘 밤에.",
-  "ja": "追加条項その一、カン卿。天秤で封じました。私が印章に手を置けば、契約は猶予も違約金もなく停止します。その二、家臣は留まることを選ぶ。残りの条項は交渉可能です。今夜。"
- },
  "Nouveau règlement, Rang F. Une Ancre de Sang sur mes plaques : si je les retire, je redeviens commandante, et le Pacte se tait. Je romps les rangs quand je veux. Et j'obéis parce que je l'ai décidé, pas parce que tu as gagné.": {
   "ko": "새 규정이다, F랭크. 내 군번줄에 피의 닻을 새겼다. 내가 그걸 벗으면 난 다시 사령관이 되고, 계약은 침묵한다. 난 원할 때 대열을 이탈한다. 그리고 복종하는 건 내가 그렇게 정했기 때문이지, 네가 이겨서가 아니다.",
   "ja": "新しい規則よ、Fランク。私の認識票に血の錨を刻んだ。これを外せば私は司令官に戻り、契約は黙る。いつでも隊列を離れる。従うのは私がそう決めたから。あなたが勝ったからじゃない。"
  },
- "Le contrat à vie, je le garde. Mais je fixe la Condition. Elle est nouée à l'écharpe de ma grand-mère : si je la dénoue, le Pacte se rompt, sans prix. Je pars quand je veux. Et quand je reste, c'est que je l'ai choisi.": {
-  "ko": "평생 계약은 유지할게. 하지만 조건은 내가 정해. 할머니의 목도리에 묶어 뒀어. 내가 그걸 풀면 계약은 대가 없이 깨져. 난 원할 때 떠나. 그리고 남는다면, 그건 내가 고른 거야.",
-  "ja": "終身契約はそのままでいい。でも条件は私が決める。祖母のスカーフに結んである。私がそれをほどけば、契約は代償なしに切れる。出ていきたい時に出ていく。残るなら、それは私が選んだってこと。"
- },
  "Je veux bien t'appartenir. Mais c'est moi qui choisis comment. J'ai scellé une clause dans ma voix : si je chante la dernière note de ma première chanson, le contrat se tait. Tu signes, Monsieur ?": {
   "ko": "너한테 속해도 좋아. 하지만 어떻게 속할지는 내가 정해. 내 목소리에 조항 하나를 봉인했어. 내가 첫 노래의 마지막 음을 부르면, 계약은 침묵해. 서명할래요, 주인님?",
   "ja": "あなたのものになってもいい。でも、どうなるかは私が決める。私の声に条項をひとつ封じたの。私が最初の歌の最後の音を歌ったら、契約は黙る。サインする、ご主人様？"
+ },
+ "La première fois, je l'avais décidé. Ce soir aussi. Je veux que ça devienne une habitude. Ne souris pas comme ça.": {
+  "ko": "처음에도 내가 정한 거였어. 오늘 밤도 그래. 이게 습관이 됐으면 해. 그렇게 웃지 마.",
+  "ja": "最初の時も、私が決めた。今夜もだ。これを習慣にしたい。そんな顔で笑うな。"
+ },
+ "Ne bouge pas. Ce soir encore, c'est moi qui examine.": {
+  "ko": "움직이지 마. 오늘 밤도 진찰은 내가 해.",
+  "ja": "動かないで。今夜も、診察するのは私。"
+ },
+ "Je ne fais jamais deux fois la même affaire. Ce soir, je n'apporte rien : ni contrat, ni éventail. Seulement moi.": {
+  "ko": "같은 거래는 두 번 하지 않아. 오늘 밤엔 아무것도 안 가져왔어. 계약도, 부채도. 나 자신만.",
+  "ja": "同じ取引は二度しない。今夜は何も持ってこなかった。契約も、扇子も。私だけ。"
+ },
+ "Avenant numéro un, Seigneur Kang, scellé par la Balance : si je pose la main sur le Sceau, le contrat est suspendu, sans délai ni pénalité. Avenant deux : le droit de partir. Et je choisis de rester. Les autres clauses sont négociables. Ce soir.": {
+  "ko": "첫 번째 부속 조항입니다, 강 영주님. 천칭으로 봉인했죠. 제가 인장에 손을 얹으면 계약은 지체도 위약금도 없이 정지됩니다. 두 번째: 떠날 권리. 그리고 저는 남기로 선택합니다. 나머지 조항은 협상 가능합니다. 오늘 밤에.",
+  "ja": "追加条項その一、カン卿。天秤で封じました。私が印章に手を置けば、契約は猶予も違約金もなく停止します。その二、出ていく権利。そして私は留まることを選びます。残りの条項は交渉可能です。今夜。"
+ },
+ "Le contrat à vie, je le garde. Mais je fixe la Condition. Elle est nouée à l'écharpe de ma grand-mère : si je la dénoue, le Pacte se tait, sans prix. Je pars quand je veux. Et quand je reste, c'est que je l'ai choisi.": {
+  "ko": "평생 계약은 유지할게. 하지만 조건은 내가 정해. 할머니의 목도리에 묶어 뒀어. 내가 그걸 풀면 계약은 대가 없이 침묵해. 난 원할 때 떠나. 그리고 남는다면, 그건 내가 고른 거야.",
+  "ja": "終身契約はそのままでいい。でも条件は私が決める。祖母のスカーフに結んである。私がそれをほどけば、契約は代償なしに黙る。出ていきたい時に出ていく。残るなら、それは私が選んだってこと。"
  }
 }

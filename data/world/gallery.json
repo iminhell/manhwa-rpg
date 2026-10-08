@@ -2373,7 +2373,7 @@
     "refuge_groupe:constellation_cinq"
    ],
    "status": "amorce",
-   "hint": "Cinq héroïnes du groupe à Affinité ≥ 50, Dortoir construit. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord."
+   "hint": "Cinq héroïnes du groupe à Affinité ≥ 50, Dortoir construit. Les héroïnes sous contrat imposé ne comptent pas (elles ne sont pas là ce soir)."
   },
   {
    "id": "nuit_maison",
@@ -2387,7 +2387,7 @@
     "refuge_groupe:nuit_maison"
    ],
    "status": "ecrite",
-   "hint": "Six héroïnes du groupe à Affinité ≥ 30, Dortoir construit. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
+   "hint": "Six héroïnes du groupe à Affinité ≥ 30, Dortoir construit. Les héroïnes sous contrat imposé ne comptent pas (elles ne sont pas là ce soir).",
    "cg": "cg_nuit_maison"
   },
   {
@@ -2397,7 +2397,7 @@
    "route": "groupe",
    "title": "La Constellation de sept",
    "status": "amorce",
-   "hint": "Sept héroïnes du groupe à Affinité ≥ 55, Dortoir construit. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
+   "hint": "Sept héroïnes du groupe à Affinité ≥ 55, Dortoir construit. Les héroïnes sous contrat imposé ne comptent pas (elles ne sont pas là ce soir).",
    "members": [],
    "scene": "refuge_groupe:constellation_sept",
    "unlock": [
@@ -2416,7 +2416,7 @@
     "refuge_groupe:constellation_huit"
    ],
    "status": "amorce",
-   "hint": "Huit héroïnes du groupe à Affinité ≥ 60, Dortoir construit. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord."
+   "hint": "Huit héroïnes du groupe à Affinité ≥ 60, Dortoir construit. Les héroïnes sous contrat imposé ne comptent pas (elles ne sont pas là ce soir)."
   },
   {
    "id": "constellation_neuf",
@@ -2425,7 +2425,7 @@
    "route": "groupe",
    "title": "La Constellation de neuf",
    "status": "amorce",
-   "hint": "Neuf héroïnes du groupe à Affinité ≥ 65, Dortoir construit. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
+   "hint": "Neuf héroïnes du groupe à Affinité ≥ 65, Dortoir construit. Les héroïnes sous contrat imposé ne comptent pas (elles ne sont pas là ce soir).",
    "members": [],
    "scene": "refuge_groupe:constellation_neuf",
    "unlock": [
@@ -2444,7 +2444,7 @@
     "refuge_groupe:portrait_dix"
    ],
    "status": "ecrite",
-   "hint": "Les dix héroïnes dans le groupe, toutes à Affinité ≥ 30. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
+   "hint": "Les dix héroïnes dans le groupe, toutes à Affinité ≥ 30. Si l'une porte encore un contrat imposé, seul le portrait est pris, sans la nuit.",
    "cg": "cg_portrait_dix"
   },
   {
@@ -2454,7 +2454,7 @@
    "route": "lien",
    "title": "L'Aube des Dix",
    "status": "amorce",
-   "hint": "Nuit du Déversement : terminer la boucle avec dix héroïnes dans le groupe à Affinité ≥ 30, sans être Tyran (Fin du Harem Absolu, « La Maison des Dix »).",
+   "hint": "Nuit du Déversement : terminer la boucle avec dix héroïnes dans le groupe à Affinité ≥ 30, aucune sous contrat imposé, sans être Tyran (Fin du Harem Absolu, « La Maison des Dix »).",
    "members": [],
    "scene": "act4_finale:aube_dix",
    "unlock": [
@@ -2468,7 +2468,7 @@
    "route": "mercenaire",
    "title": "Le Contrat collectif",
    "status": "amorce",
-   "hint": "Voie du Mercenaire (400 ₩ en poche) avec six héroïnes du groupe à Affinité ≥ 50, Dortoir construit. Une héroïne encore sous contrat imposé joue une variante sans intimité : qu'elle le renégocie d'abord.",
+   "hint": "Voie du Mercenaire (400 ₩ en poche) avec six héroïnes du groupe à Affinité ≥ 50, Dortoir construit. Les héroïnes sous contrat imposé ne comptent pas (elles ne sont pas là ce soir).",
    "members": [],
    "scene": "refuge_groupe:harem_mercenaire",
    "unlock": [
@@ -2482,7 +2482,7 @@
    "route": "ombre",
    "title": "La Cour de l'Ombre",
    "status": "amorce",
-   "hint": "Voie du Tyran (Protéger ≤ −20) sans avoir forcé aucun contrat (ni Pacte, ni rachat), avec six héroïnes du groupe à Affinité ≥ 50, Dortoir construit.",
+   "hint": "Voie du Tyran (Protéger ≤ −20) avec au moins six héroïnes du groupe à Affinité ≥ 50, libres ou sous contrat renégocié (celles sous contrat imposé n'y sont pas), Dortoir construit.",
    "members": [],
    "scene": "refuge_groupe:harem_ombre",
    "unlock": [

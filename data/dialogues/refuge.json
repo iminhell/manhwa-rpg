@@ -33,7 +33,7 @@
     "then": "seo_pacte"
    },
    {
-    "if": "v('repos.seo_yeon') >= 1 and flag('refuge.dortoir') and aff('seo_yeon') >= 20 and v('align.protect') <= -15",
+    "if": "v('repos.seo_yeon') >= 1 and flag('refuge.dortoir') and aff('seo_yeon') >= 20 and voie() == 'tyran' and not flag('seo_nuit')",
     "then": "seo_ombre"
    },
    {
@@ -45,15 +45,15 @@
     "then": "seo_nuit2"
    },
    {
-    "if": "voie() == 'mercenaire' and v('repos.seo_yeon') >= 1 and flag('refuge.dortoir') and aff('seo_yeon') >= 25",
+    "if": "voie() == 'mercenaire' and v('repos.seo_yeon') >= 1 and flag('refuge.dortoir') and aff('seo_yeon') >= 25 and not flag('seo_nuit')",
     "then": "seo_merc"
    },
    {
-    "if": "voie() == 'loup' and v('repos.seo_yeon') >= 1 and flag('refuge.dortoir') and aff('seo_yeon') >= 25",
+    "if": "voie() == 'loup' and v('repos.seo_yeon') >= 1 and flag('refuge.dortoir') and aff('seo_yeon') >= 25 and not flag('seo_nuit')",
     "then": "seo_loup"
    },
    {
-    "if": "v('repos.seo_yeon') >= 1 and flag('refuge.dortoir') and aff('seo_yeon') >= 25",
+    "if": "v('repos.seo_yeon') >= 1 and flag('refuge.dortoir') and aff('seo_yeon') >= 25 and not flag('seo_nuit')",
     "then": "seo_intime"
    },
    {
@@ -257,10 +257,6 @@
     "then": "seo_devotion"
    },
    {
-    "if": "v('ambivalence.seo_yeon') >= 60 and aff('seo_yeon') >= 70 and flag('seo_devotion')",
-    "then": "seo_devotion_nuit"
-   },
-   {
     "if": "v('ambivalence.seo_yeon') >= 30 and aff('seo_yeon') >= 40",
     "then": "seo_pacte_renegocie"
    },
@@ -359,7 +355,7 @@
     "music": "registre"
    },
    {
-    "if": "v('repos.haneul') >= 1 and flag('refuge.dortoir') and aff('haneul') >= 20 and v('align.protect') <= -15",
+    "if": "v('repos.haneul') >= 1 and flag('refuge.dortoir') and aff('haneul') >= 20 and voie() == 'tyran' and not flag('haneul_nuit')",
     "then": "haneul_ombre"
    },
    {
@@ -371,15 +367,15 @@
     "then": "haneul_nuit2"
    },
    {
-    "if": "voie() == 'mercenaire' and v('repos.haneul') >= 1 and flag('refuge.dortoir') and aff('haneul') >= 20",
+    "if": "voie() == 'mercenaire' and v('repos.haneul') >= 1 and flag('refuge.dortoir') and aff('haneul') >= 20 and not flag('haneul_nuit')",
     "then": "haneul_merc"
    },
    {
-    "if": "voie() == 'loup' and v('repos.haneul') >= 1 and flag('refuge.dortoir') and aff('haneul') >= 20",
+    "if": "voie() == 'loup' and v('repos.haneul') >= 1 and flag('refuge.dortoir') and aff('haneul') >= 20 and not flag('haneul_nuit')",
     "then": "haneul_loup"
    },
    {
-    "if": "v('repos.haneul') >= 1 and flag('refuge.dortoir') and aff('haneul') >= 20",
+    "if": "v('repos.haneul') >= 1 and flag('refuge.dortoir') and aff('haneul') >= 20 and not flag('haneul_nuit')",
     "then": "haneul_intime"
    },
    {
@@ -575,7 +571,7 @@
     "then": "aoi_dominee"
    },
    {
-    "if": "v('repos.aoi') >= 1 and flag('refuge.dortoir') and aff('aoi') >= 20 and v('align.protect') <= -15",
+    "if": "v('repos.aoi') >= 1 and flag('refuge.dortoir') and aff('aoi') >= 20 and voie() == 'tyran' and not flag('aoi_nuit')",
     "then": "aoi_ombre"
    },
    {
@@ -587,15 +583,15 @@
     "then": "aoi_nuit2"
    },
    {
-    "if": "voie() == 'mercenaire' and v('repos.aoi') >= 1 and flag('refuge.dortoir') and aff('aoi') >= 20",
+    "if": "voie() == 'mercenaire' and v('repos.aoi') >= 1 and flag('refuge.dortoir') and aff('aoi') >= 20 and not flag('aoi_nuit')",
     "then": "aoi_merc"
    },
    {
-    "if": "voie() == 'loup' and v('repos.aoi') >= 1 and flag('refuge.dortoir') and aff('aoi') >= 20",
+    "if": "voie() == 'loup' and v('repos.aoi') >= 1 and flag('refuge.dortoir') and aff('aoi') >= 20 and not flag('aoi_nuit')",
     "then": "aoi_loup"
    },
    {
-    "if": "v('repos.aoi') >= 1 and flag('refuge.dortoir') and aff('aoi') >= 20",
+    "if": "v('repos.aoi') >= 1 and flag('refuge.dortoir') and aff('aoi') >= 20 and not flag('aoi_nuit')",
     "then": "aoi_intime"
    },
    {
@@ -656,10 +652,6 @@
    {
     "if": "v('ambivalence.aoi') >= 60 and aff('aoi') >= 70 and not flag('aoi_devotion')",
     "then": "aoi_devotion"
-   },
-   {
-    "if": "v('ambivalence.aoi') >= 60 and aff('aoi') >= 70 and flag('aoi_devotion')",
-    "then": "aoi_devotion_nuit"
    },
    {
     "if": "v('ambivalence.aoi') >= 30 and aff('aoi') >= 40",
@@ -837,7 +829,7 @@
     "music": "intimate"
    },
    {
-    "if": "v('repos.maricel') >= 1 and flag('refuge.dortoir') and aff('maricel') >= 20 and v('align.protect') <= -15",
+    "if": "v('repos.maricel') >= 1 and flag('refuge.dortoir') and aff('maricel') >= 20 and voie() == 'tyran' and not flag('maricel_nuit')",
     "then": "maricel_ombre"
    },
    {
@@ -849,15 +841,15 @@
     "then": "maricel_nuit2"
    },
    {
-    "if": "voie() == 'mercenaire' and v('repos.maricel') >= 1 and flag('refuge.dortoir') and aff('maricel') >= 20",
+    "if": "voie() == 'mercenaire' and v('repos.maricel') >= 1 and flag('refuge.dortoir') and aff('maricel') >= 20 and not flag('maricel_nuit')",
     "then": "maricel_merc"
    },
    {
-    "if": "voie() == 'loup' and v('repos.maricel') >= 1 and flag('refuge.dortoir') and aff('maricel') >= 20",
+    "if": "voie() == 'loup' and v('repos.maricel') >= 1 and flag('refuge.dortoir') and aff('maricel') >= 20 and not flag('maricel_nuit')",
     "then": "maricel_loup"
    },
    {
-    "if": "v('repos.maricel') >= 1 and flag('refuge.dortoir') and aff('maricel') >= 20",
+    "if": "v('repos.maricel') >= 1 and flag('refuge.dortoir') and aff('maricel') >= 20 and not flag('maricel_nuit')",
     "then": "maricel_intime"
    },
    {
@@ -1020,7 +1012,7 @@
    },
    {
     "s": "seo_yeon",
-    "t": "Ne bouge pas. Pour une fois, c'est moi qui examine.",
+    "t": "Ne bouge pas. Ce soir encore, c'est moi qui examine.",
     "e": "desire",
     "v": true
    },
@@ -1080,7 +1072,7 @@
     "music": "intimate"
    },
    {
-    "if": "v('repos.ryeon') >= 1 and flag('refuge.dortoir') and aff('ryeon') >= 20 and v('align.protect') <= -15",
+    "if": "v('repos.ryeon') >= 1 and flag('refuge.dortoir') and aff('ryeon') >= 20 and voie() == 'tyran' and not flag('ryeon_nuit')",
     "then": "ryeon_ombre"
    },
    {
@@ -1092,15 +1084,15 @@
     "then": "ryeon_nuit2"
    },
    {
-    "if": "voie() == 'mercenaire' and v('repos.ryeon') >= 1 and flag('refuge.dortoir') and aff('ryeon') >= 20",
+    "if": "voie() == 'mercenaire' and v('repos.ryeon') >= 1 and flag('refuge.dortoir') and aff('ryeon') >= 20 and not flag('ryeon_nuit')",
     "then": "ryeon_merc"
    },
    {
-    "if": "voie() == 'loup' and v('repos.ryeon') >= 1 and flag('refuge.dortoir') and aff('ryeon') >= 20",
+    "if": "voie() == 'loup' and v('repos.ryeon') >= 1 and flag('refuge.dortoir') and aff('ryeon') >= 20 and not flag('ryeon_nuit')",
     "then": "ryeon_loup"
    },
    {
-    "if": "v('repos.ryeon') >= 1 and flag('refuge.dortoir') and aff('ryeon') >= 20",
+    "if": "v('repos.ryeon') >= 1 and flag('refuge.dortoir') and aff('ryeon') >= 20 and not flag('ryeon_nuit')",
     "then": "ryeon_intime"
    },
    {
@@ -1289,7 +1281,7 @@
     "then": "xiaoyu_pacte"
    },
    {
-    "if": "v('repos.xiaoyu') >= 1 and flag('refuge.dortoir') and aff('xiaoyu') >= 20 and v('align.protect') <= -15",
+    "if": "v('repos.xiaoyu') >= 1 and flag('refuge.dortoir') and aff('xiaoyu') >= 20 and voie() == 'tyran' and not flag('xiaoyu_nuit')",
     "then": "xiaoyu_ombre"
    },
    {
@@ -1301,15 +1293,15 @@
     "then": "xiaoyu_nuit2"
    },
    {
-    "if": "voie() == 'mercenaire' and v('repos.xiaoyu') >= 1 and flag('refuge.dortoir') and aff('xiaoyu') >= 20",
+    "if": "voie() == 'mercenaire' and v('repos.xiaoyu') >= 1 and flag('refuge.dortoir') and aff('xiaoyu') >= 20 and not flag('xiaoyu_nuit')",
     "then": "xiaoyu_merc"
    },
    {
-    "if": "voie() == 'loup' and v('repos.xiaoyu') >= 1 and flag('refuge.dortoir') and aff('xiaoyu') >= 20",
+    "if": "voie() == 'loup' and v('repos.xiaoyu') >= 1 and flag('refuge.dortoir') and aff('xiaoyu') >= 20 and not flag('xiaoyu_nuit')",
     "then": "xiaoyu_loup"
    },
    {
-    "if": "v('repos.xiaoyu') >= 1 and flag('refuge.dortoir') and aff('xiaoyu') >= 20",
+    "if": "v('repos.xiaoyu') >= 1 and flag('refuge.dortoir') and aff('xiaoyu') >= 20 and not flag('xiaoyu_nuit')",
     "then": "xiaoyu_intime"
    },
    {
@@ -1498,10 +1490,6 @@
     "then": "xiaoyu_devotion"
    },
    {
-    "if": "v('ambivalence.xiaoyu') >= 60 and aff('xiaoyu') >= 70 and flag('xiaoyu_devotion')",
-    "then": "xiaoyu_devotion_nuit"
-   },
-   {
     "if": "v('ambivalence.xiaoyu') >= 30 and aff('xiaoyu') >= 40",
     "then": "xiaoyu_pacte_renegocie"
    },
@@ -1602,7 +1590,7 @@
     "then": "haein_pacte"
    },
    {
-    "if": "v('repos.hae_in') >= 1 and flag('refuge.dortoir') and aff('hae_in') >= 20 and v('align.protect') <= -15",
+    "if": "v('repos.hae_in') >= 1 and flag('refuge.dortoir') and aff('hae_in') >= 20 and voie() == 'tyran' and not flag('haein_nuit')",
     "then": "haein_ombre"
    },
    {
@@ -1614,15 +1602,15 @@
     "then": "haein_nuit2"
    },
    {
-    "if": "voie() == 'mercenaire' and v('repos.hae_in') >= 1 and flag('refuge.dortoir') and aff('hae_in') >= 20",
+    "if": "voie() == 'mercenaire' and v('repos.hae_in') >= 1 and flag('refuge.dortoir') and aff('hae_in') >= 20 and not flag('haein_nuit')",
     "then": "haein_merc"
    },
    {
-    "if": "voie() == 'loup' and v('repos.hae_in') >= 1 and flag('refuge.dortoir') and aff('hae_in') >= 20",
+    "if": "voie() == 'loup' and v('repos.hae_in') >= 1 and flag('refuge.dortoir') and aff('hae_in') >= 20 and not flag('haein_nuit')",
     "then": "haein_loup"
    },
    {
-    "if": "v('repos.hae_in') >= 1 and flag('refuge.dortoir') and aff('hae_in') >= 20",
+    "if": "v('repos.hae_in') >= 1 and flag('refuge.dortoir') and aff('hae_in') >= 20 and not flag('haein_nuit')",
     "then": "haein_intime"
    },
    {
@@ -1778,10 +1766,6 @@
     "then": "haein_devotion"
    },
    {
-    "if": "v('ambivalence.hae_in') >= 60 and aff('hae_in') >= 70 and flag('haein_devotion')",
-    "then": "haein_devotion_nuit"
-   },
-   {
     "if": "v('ambivalence.hae_in') >= 30 and aff('hae_in') >= 40",
     "then": "haein_pacte_renegocie"
    },
@@ -1876,7 +1860,7 @@
    },
    {
     "s": "narrator",
-    "t": "Seo-Yeon se réveille en sursaut, à minuit pile, la main sur son avant-bras. « J'ai rêvé que je me transformais. Que tu restais avec moi jusqu'au bout. C'est idiot. » Elle se rendort contre toi, et tu ne dors plus."
+    "t": "Seo-Yeon se réveille en sursaut, à minuit pile, la main sur son avant-bras. « J'ai rêvé que je me transformais. Que tu restais avec moi jusqu'au bout. C'est idiot. » Elle se rendort sur la chaise près de ton lit, la main sur ton bras, et tu ne dors plus."
    },
    {
     "fx": [
@@ -2603,7 +2587,7 @@
     "then": "nadia_pacte"
    },
    {
-    "if": "v('repos.nadia') >= 1 and flag('refuge.dortoir') and aff('nadia') >= 20 and v('align.protect') <= -15",
+    "if": "v('repos.nadia') >= 1 and flag('refuge.dortoir') and aff('nadia') >= 20 and voie() == 'tyran' and not flag('nadia_nuit')",
     "then": "nadia_ombre"
    },
    {
@@ -2615,15 +2599,15 @@
     "then": "nadia_nuit2"
    },
    {
-    "if": "voie() == 'mercenaire' and v('repos.nadia') >= 1 and flag('refuge.dortoir') and aff('nadia') >= 20",
+    "if": "voie() == 'mercenaire' and v('repos.nadia') >= 1 and flag('refuge.dortoir') and aff('nadia') >= 20 and not flag('nadia_nuit')",
     "then": "nadia_merc"
    },
    {
-    "if": "voie() == 'loup' and v('repos.nadia') >= 1 and flag('refuge.dortoir') and aff('nadia') >= 20",
+    "if": "voie() == 'loup' and v('repos.nadia') >= 1 and flag('refuge.dortoir') and aff('nadia') >= 20 and not flag('nadia_nuit')",
     "then": "nadia_loup"
    },
    {
-    "if": "v('repos.nadia') >= 1 and flag('refuge.dortoir') and aff('nadia') >= 20",
+    "if": "v('repos.nadia') >= 1 and flag('refuge.dortoir') and aff('nadia') >= 20 and not flag('nadia_nuit')",
     "then": "nadia_intime"
    },
    {
@@ -2797,10 +2781,6 @@
     "then": "nadia_devotion"
    },
    {
-    "if": "v('ambivalence.nadia') >= 60 and aff('nadia') >= 70 and flag('nadia_devotion')",
-    "then": "nadia_devotion_nuit"
-   },
-   {
     "if": "v('ambivalence.nadia') >= 30 and aff('nadia') >= 40",
     "then": "nadia_pacte_renegocie"
    },
@@ -2895,7 +2875,7 @@
     "then": "simone_pacte"
    },
    {
-    "if": "v('repos.simone') >= 1 and flag('refuge.dortoir') and aff('simone') >= 20 and v('align.protect') <= -15",
+    "if": "v('repos.simone') >= 1 and flag('refuge.dortoir') and aff('simone') >= 20 and voie() == 'tyran' and not flag('simone_nuit')",
     "then": "simone_ombre"
    },
    {
@@ -2907,15 +2887,15 @@
     "then": "simone_nuit2"
    },
    {
-    "if": "voie() == 'mercenaire' and v('repos.simone') >= 1 and flag('refuge.dortoir') and aff('simone') >= 20",
+    "if": "voie() == 'mercenaire' and v('repos.simone') >= 1 and flag('refuge.dortoir') and aff('simone') >= 20 and not flag('simone_nuit')",
     "then": "simone_merc"
    },
    {
-    "if": "voie() == 'loup' and v('repos.simone') >= 1 and flag('refuge.dortoir') and aff('simone') >= 20",
+    "if": "voie() == 'loup' and v('repos.simone') >= 1 and flag('refuge.dortoir') and aff('simone') >= 20 and not flag('simone_nuit')",
     "then": "simone_loup"
    },
    {
-    "if": "v('repos.simone') >= 1 and flag('refuge.dortoir') and aff('simone') >= 20",
+    "if": "v('repos.simone') >= 1 and flag('refuge.dortoir') and aff('simone') >= 20 and not flag('simone_nuit')",
     "then": "simone_intime"
    },
    {
@@ -3086,10 +3066,6 @@
     "then": "simone_devotion"
    },
    {
-    "if": "v('ambivalence.simone') >= 60 and aff('simone') >= 70 and flag('simone_devotion')",
-    "then": "simone_devotion_nuit"
-   },
-   {
     "if": "v('ambivalence.simone') >= 30 and aff('simone') >= 40",
     "then": "simone_pacte_renegocie"
    },
@@ -3172,7 +3148,7 @@
     "music": "intimate"
    },
    {
-    "if": "v('repos.minh_anh') >= 1 and flag('refuge.dortoir') and aff('minh_anh') >= 20 and v('align.protect') <= -15",
+    "if": "v('repos.minh_anh') >= 1 and flag('refuge.dortoir') and aff('minh_anh') >= 20 and voie() == 'tyran' and not flag('minh_anh_nuit')",
     "then": "minh_anh_ombre"
    },
    {
@@ -3184,15 +3160,15 @@
     "then": "minh_anh_nuit2"
    },
    {
-    "if": "voie() == 'mercenaire' and v('repos.minh_anh') >= 1 and flag('refuge.dortoir') and aff('minh_anh') >= 20",
+    "if": "voie() == 'mercenaire' and v('repos.minh_anh') >= 1 and flag('refuge.dortoir') and aff('minh_anh') >= 20 and not flag('minh_anh_nuit')",
     "then": "minh_anh_merc"
    },
    {
-    "if": "voie() == 'loup' and v('repos.minh_anh') >= 1 and flag('refuge.dortoir') and aff('minh_anh') >= 20",
+    "if": "voie() == 'loup' and v('repos.minh_anh') >= 1 and flag('refuge.dortoir') and aff('minh_anh') >= 20 and not flag('minh_anh_nuit')",
     "then": "minh_anh_loup"
    },
    {
-    "if": "v('repos.minh_anh') >= 1 and flag('refuge.dortoir') and aff('minh_anh') >= 20",
+    "if": "v('repos.minh_anh') >= 1 and flag('refuge.dortoir') and aff('minh_anh') >= 20 and not flag('minh_anh_nuit')",
     "then": "minh_anh_intime"
    },
    {
@@ -4316,7 +4292,8 @@
      "add trust.xiaoyu -10",
      "add fear.xiaoyu -10",
      "add repos.xiaoyu 1",
-     "add fatigue -4"
+     "add fatigue -4",
+     "leave xiaoyu"
     ]
    },
    {
@@ -4392,7 +4369,7 @@
    },
    {
     "s": "narrator",
-    "t": "Elle garde l'habitude de t'appeler « Seigneur Kang ». Elle en a fait un jeu, une pièce à deux voix dont elle écrit les répliques, et qu'elle interrompt d'un seul mot quand elle veut que tu redeviennes simplement Elias."
+    "t": "Elle garde l'habitude de t'appeler « Seigneur Kang ». Elle en a fait un jeu, une pièce à deux voix dont elle écrit les répliques, et qu'elle suspend d'un geste, la main sur le Sceau, quand elle veut que tu redeviennes simplement Elias."
    },
    {
     "text_p3_slot": []
@@ -4435,7 +4412,8 @@
      "add trust.hae_in -10",
      "add fear.hae_in -10",
      "add repos.hae_in 1",
-     "add fatigue -4"
+     "add fatigue -4",
+     "leave hae_in"
     ]
    },
    {
@@ -4555,7 +4533,8 @@
      "add trust.simone -10",
      "add fear.simone -10",
      "add repos.simone 1",
-     "add fatigue -4"
+     "add fatigue -4",
+     "leave simone"
     ]
    },
    {
@@ -4670,7 +4649,8 @@
      "add trust.nadia -10",
      "add fear.nadia -10",
      "add repos.nadia 1",
-     "add fatigue -4"
+     "add fatigue -4",
+     "leave nadia"
     ]
    },
    {
@@ -4858,7 +4838,7 @@
    },
    {
     "s": "narrator",
-    "t": "Minh-Anh t'attend dans ton bureau, sa tablette serrée contre la poitrine. Sur l'écran, un seul titre : « Protocole d'abandon du contrôle ». Ses LEDs clignotent au blanc."
+    "t": "Minh-Anh t'attend dans ton bureau, sa tablette serrée contre la poitrine. Sur l'écran, un seul titre : « Protocole d'abandon du contrôle ». Ses LEDs clignotent au bleu."
    },
    {
     "s": "minh_anh",
@@ -5224,17 +5204,17 @@
    },
    {
     "s": "narrator",
-    "t": "Ryeon frappe trois coups, comme la première fois. Puis elle entre sans attendre, contrairement à la première fois."
+    "t": "Ryeon entre sans frapper. Elle referme la porte derrière elle et pose son sabre contre le mur, à portée de main, comme on pose une habitude."
    },
    {
     "s": "ryeon",
-    "t": "La première fois, c'était une défaite que j'avais choisie. Ce soir, c'est une habitude que je choisis. Ne souris pas comme ça.",
+    "t": "La première fois, je l'avais décidé. Ce soir aussi. Je veux que ça devienne une habitude. Ne souris pas comme ça.",
     "e": "tsundere",
     "v": true
    },
    {
     "s": "narrator",
-    "t": "Elle défait son ruban sans trembler, cette fois, et c'est elle qui demande, à voix basse, ce que tu veux. Puis elle le dit, elle aussi."
+    "t": "Elle dénoue son ruban rouge d'un geste sûr, et c'est elle qui demande, à voix basse, ce que tu veux. Puis elle le dit, elle aussi."
    },
    {
     "text_p3_slot": []
@@ -5307,11 +5287,11 @@
    },
    {
     "s": "narrator",
-    "t": "Xiaoyu arrive sans éventail, sans bijoux et sans contrat. Elle a l'air presque nue sans ses armes habituelles."
+    "t": "Xiaoyu arrive sans éventail, sans bijoux et sans le moindre papier. Elle a l'air presque nue sans ses armes habituelles."
    },
    {
     "s": "xiaoyu",
-    "t": "La première nuit était une transaction. Je n'en fais jamais deux identiques. Ce soir, je n'apporte rien. Seulement moi.",
+    "t": "Je ne fais jamais deux fois la même affaire. Ce soir, je n'apporte rien : ni contrat, ni éventail. Seulement moi.",
     "e": "neutral",
     "v": true
    },
@@ -5914,8 +5894,7 @@
    {
     "fx": [
      "flag seo_devotion",
-     "add ambivalence.seo_yeon 10",
-     "unflag pacte.seo_yeon"
+     "add ambivalence.seo_yeon 10"
     ]
    },
    {
@@ -5978,7 +5957,7 @@
   "seo_pacte_refus": [
    {
     "s": "narrator",
-    "t": "Elle replie la feuille, très lentement. Quelque chose se referme derrière ses yeux, et elle reprend sa place près de la porte."
+    "t": "Elle replie le parchemin, très lentement. Quelque chose se referme derrière ses yeux, et elle reprend sa place près de la porte."
    },
    {
     "fx": [
@@ -6071,7 +6050,7 @@
   "xiaoyu_pacte_refus": [
    {
     "s": "narrator",
-    "t": "Elle replie la feuille, très lentement. Quelque chose se referme derrière ses yeux, et elle reprend sa place près de la porte."
+    "t": "Elle reprend le jeton de jade sans un mot et retourne s'asseoir à la table de mahjong. Elle distribue les tuiles comme on ferme un registre."
    },
    {
     "fx": [
@@ -6130,7 +6109,7 @@
    },
    {
     "s": "hae_in",
-    "t": "Avenant numéro un, Seigneur Kang, scellé par la Balance : si je pose la main sur le Sceau, le contrat est suspendu, sans délai ni pénalité. Avenant deux : elle choisit de rester. Les autres clauses sont négociables. Ce soir.",
+    "t": "Avenant numéro un, Seigneur Kang, scellé par la Balance : si je pose la main sur le Sceau, le contrat est suspendu, sans délai ni pénalité. Avenant deux : le droit de partir. Et je choisis de rester. Les autres clauses sont négociables. Ce soir.",
     "e": "desire",
     "v": true
    },
@@ -6164,7 +6143,7 @@
   "haein_pacte_refus": [
    {
     "s": "narrator",
-    "t": "Elle replie la feuille, très lentement. Quelque chose se referme derrière ses yeux, et elle reprend sa place près de la porte."
+    "t": "Elle range l'avenant dans son dossier, ferme la pochette d'un geste net, et se rassoit dans le fauteuil, droite. Le rapport du jour reprend là où il s'était arrêté."
    },
    {
     "fx": [
@@ -6257,7 +6236,7 @@
   "simone_pacte_refus": [
    {
     "s": "narrator",
-    "t": "Elle replie la feuille, très lentement. Quelque chose se referme derrière ses yeux, et elle reprend sa place près de la porte."
+    "t": "Elle replie le règlement en quatre, le glisse dans sa poche de poitrine, et reprend le garde-à-vous. Le regard au-dessus de ton épaule, de nouveau."
    },
    {
     "fx": [
@@ -6316,7 +6295,7 @@
    },
    {
     "s": "nadia",
-    "t": "Le contrat à vie, je le garde. Mais je fixe la Condition. Elle est nouée à l'écharpe de ma grand-mère : si je la dénoue, le Pacte se rompt, sans prix. Je pars quand je veux. Et quand je reste, c'est que je l'ai choisi.",
+    "t": "Le contrat à vie, je le garde. Mais je fixe la Condition. Elle est nouée à l'écharpe de ma grand-mère : si je la dénoue, le Pacte se tait, sans prix. Je pars quand je veux. Et quand je reste, c'est que je l'ai choisi.",
     "e": "neutral",
     "v": true
    },
@@ -6350,7 +6329,7 @@
   "nadia_pacte_refus": [
    {
     "s": "narrator",
-    "t": "Elle replie la feuille, très lentement. Quelque chose se referme derrière ses yeux, et elle reprend sa place près de la porte."
+    "t": "Elle remonte le fusil pièce par pièce, sans te regarder, et s'allonge de son côté du lit, le canon de nouveau vers le plafond."
    },
    {
     "fx": [
@@ -6443,7 +6422,7 @@
   "aoi_pacte_refus": [
    {
     "s": "narrator",
-    "t": "Elle replie la feuille, très lentement. Quelque chose se referme derrière ses yeux, et elle reprend sa place près de la porte."
+    "t": "Elle rebouche le feutre rose. Le sourire de scène revient d'un coup, impeccable, comme un rideau qui retombe."
    },
    {
     "fx": [

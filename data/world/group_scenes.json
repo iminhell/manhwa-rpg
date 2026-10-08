@@ -107,7 +107,7 @@
    "id": "nuit_maison",
    "label": "La Nuit de la Maison",
    "members": [],
-   "if": "bonds() >= 6 and flag('refuge.dortoir')",
+   "if": "bonds_libres() >= 6 and flag('refuge.dortoir')",
    "once": false,
    "dialogue": "refuge_groupe:nuit_maison"
   },
@@ -367,7 +367,7 @@
    "id": "constellation_cinq",
    "label": "La Constellation de cinq",
    "members": [],
-   "if": "bonds(50) >= 5 and flag('refuge.dortoir')",
+   "if": "bonds_libres(50) >= 5 and flag('refuge.dortoir')",
    "once": false,
    "dialogue": "refuge_groupe:constellation_cinq"
   },
@@ -375,7 +375,7 @@
    "id": "constellation_huit",
    "label": "La Constellation de huit",
    "members": [],
-   "if": "bonds(60) >= 8 and flag('refuge.dortoir')",
+   "if": "bonds_libres(60) >= 8 and flag('refuge.dortoir')",
    "once": false,
    "dialogue": "refuge_groupe:constellation_huit"
   },
@@ -768,7 +768,7 @@
    "id": "constellation_sept",
    "label": "La Constellation de sept",
    "members": [],
-   "if": "bonds(55) >= 7 and flag('refuge.dortoir')",
+   "if": "bonds_libres(55) >= 7 and flag('refuge.dortoir')",
    "once": false,
    "dialogue": "refuge_groupe:constellation_sept"
   },
@@ -776,7 +776,7 @@
    "id": "constellation_neuf",
    "label": "La Constellation de neuf",
    "members": [],
-   "if": "bonds(65) >= 9 and flag('refuge.dortoir')",
+   "if": "bonds_libres(65) >= 9 and flag('refuge.dortoir')",
    "once": false,
    "dialogue": "refuge_groupe:constellation_neuf"
   },
@@ -784,7 +784,7 @@
    "id": "harem_mercenaire",
    "label": "Le Contrat collectif",
    "members": [],
-   "if": "voie() == 'mercenaire' and bonds(50) >= 6 and flag('refuge.dortoir')",
+   "if": "voie() == 'mercenaire' and bonds_libres(50) >= 6 and flag('refuge.dortoir')",
    "once": false,
    "dialogue": "refuge_groupe:harem_mercenaire"
   },
@@ -792,7 +792,7 @@
    "id": "harem_ombre",
    "label": "La Cour de l'Ombre",
    "members": [],
-   "if": "voie() == 'tyran' and bonds(50) >= 6 and flag('refuge.dortoir')",
+   "if": "voie() == 'tyran' and bonds_libres(50) >= 6 and flag('refuge.dortoir')",
    "once": false,
    "dialogue": "refuge_groupe:harem_ombre"
   }
