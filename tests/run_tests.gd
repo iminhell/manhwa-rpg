@@ -749,6 +749,36 @@ func test_scene_matrix() -> void:
 		sr.apply_effects(["set ambivalence.%s 70" % h, "set aff.%s 75" % h])
 		var seenr3 := _route(sr, dlg, h)
 		check(seenr3.has(p + "_devotion") or seenr3.has(p + "_devotion_nuit"), "Matrice : %s, contrat renégocié → Dévotion %s" % [h, seenr3])
+	# Pacte embrassé : elle re-signe tel quel, lucide et libre → Dévotion directe (nuit de Dévotion)
+	for h in PACT:
+		var p: String = PRE.get(h, h)
+		var se := StateStore.new()
+		se.apply_effects(["set repos.%s 1" % h, "flag refuge.dortoir", "set aff.%s 45" % h, "set trust.%s 40" % h,
+			"flag " + PACT[h], "set ambivalence.%s 35" % h])
+		var seene := _route(se, dlg, h)
+		check(seene.has(p + "_pacte_embrasse") and seene.has(p + "_devotion_nuit") and se.has_flag(p + "_devotion")
+			and se.has_flag(p + "_nuit") and not se.imposed_pact(h), "Matrice : %s, Pacte embrassé → Dévotion %s" % [h, seene])
+	# Scènes à plusieurs : regard (expression) et mise en scène selon l'état de l'héroïne
+	var looks: Array = []
+	for state in [["libre", [], "", ""], ["renégocié", ["flag pacte.seo_yeon", "flag seo_pacte_accepte"], "", "Ancre de Sang"],
+			["embrassé", ["flag pacte.seo_yeon", "flag seo_devotion", "flag seo_pacte_embrasse"], "", "Seigneur Kang"]]:
+		var sg := StateStore.new()
+		sg.apply_effects(["join seo_yeon", "join aoi"] + state[1])
+		var rg := DialogueRunner.new(sg)
+		rg.start(grp, "paire_seo_yeon_aoi")
+		var exprs: Array = []
+		var texts: Array = []
+		for i in 60:
+			var st := rg.next()
+			if st["kind"] == "line":
+				texts.append(st["text"])
+				if st["speaker"] == "seo_yeon":
+					exprs.append(st["expr"])
+			elif st["kind"] == "end" or st["kind"] == "choice":
+				break
+		var staged: bool = state[3] == "" or texts.any(func(t): return t.contains(state[3]) and t.begins_with("Seo-Yeon"))
+		check(exprs.size() == 1 and not looks.has(exprs[0]) and staged, "Groupe : Seo-Yeon %s → regard propre à l'état, mise en scène adaptée %s" % [state[0], exprs])
+		looks += exprs
 	# Tyran : la nuit d'Ombre ne se rejoue pas ; entre la première et la seconde nuit, un repos ordinaire
 	for h in H:
 		var p: String = PRE.get(h, h)

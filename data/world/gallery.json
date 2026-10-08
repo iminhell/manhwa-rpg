@@ -1098,6 +1098,22 @@
    "hint": "Sous Pacte avec Seo-Yeon, la traiter avec respect jusqu'à ce que l'ambivalence atteigne +60 et l'Affinité 70 : elle choisit de rester, librement."
   },
   {
+   "id": "seo_pacte_embrasse",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "devotion",
+   "members": [
+    "seo_yeon"
+   ],
+   "title": "Pacte embrassé — Seo-Yeon",
+   "scene": "refuge:seo_pacte_embrasse",
+   "unlock": [
+    "refuge:seo_pacte_embrasse"
+   ],
+   "status": "ecrite",
+   "hint": "Sous contrat avec Seo-Yeon, lui laisser sa liberté soir après soir jusqu'à l'ambivalence +30, l'Affinité 40 et la Confiance 35 : elle re-signe le contrat tel quel, lucide et libre. L'accepter ouvre directement la Dévotion."
+  },
+  {
    "id": "xiaoyu_devotion",
    "tab": "intime",
    "cat": "solo",
@@ -1114,6 +1130,22 @@
    "cg": "cg_xiaoyu_devotion",
    "status": "ecrite",
    "hint": "Sous Pacte avec Xiaoyu, la traiter avec respect jusqu'à ce que l'ambivalence atteigne +60 et l'Affinité 70 : elle choisit de rester, librement."
+  },
+  {
+   "id": "xiaoyu_pacte_embrasse",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "devotion",
+   "members": [
+    "xiaoyu"
+   ],
+   "title": "Pacte embrassé — Xiaoyu",
+   "scene": "refuge:xiaoyu_pacte_embrasse",
+   "unlock": [
+    "refuge:xiaoyu_pacte_embrasse"
+   ],
+   "status": "ecrite",
+   "hint": "Sous contrat avec Xiaoyu, lui laisser sa liberté soir après soir jusqu'à l'ambivalence +30, l'Affinité 40 et la Confiance 35 : elle re-signe le contrat tel quel, lucide et libre. L'accepter ouvre directement la Dévotion."
   },
   {
    "id": "haein_devotion",
@@ -1134,6 +1166,22 @@
    "hint": "Sous Pacte avec Hae-in, la traiter avec respect jusqu'à ce que l'ambivalence atteigne +60 et l'Affinité 70 : elle choisit de rester, librement."
   },
   {
+   "id": "haein_pacte_embrasse",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "devotion",
+   "members": [
+    "hae_in"
+   ],
+   "title": "Pacte embrassé — Hae-in",
+   "scene": "refuge:haein_pacte_embrasse",
+   "unlock": [
+    "refuge:haein_pacte_embrasse"
+   ],
+   "status": "ecrite",
+   "hint": "Sous contrat avec Hae-in, lui laisser sa liberté soir après soir jusqu'à l'ambivalence +30, l'Affinité 40 et la Confiance 35 : elle re-signe le contrat tel quel, lucide et libre. L'accepter ouvre directement la Dévotion."
+  },
+  {
    "id": "simone_devotion",
    "tab": "intime",
    "cat": "solo",
@@ -1150,6 +1198,22 @@
    "cg": "cg_simone_devotion",
    "status": "ecrite",
    "hint": "Sous Pacte avec Simone, la traiter avec respect jusqu'à ce que l'ambivalence atteigne +60 et l'Affinité 70 : elle choisit de rester, librement."
+  },
+  {
+   "id": "simone_pacte_embrasse",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "devotion",
+   "members": [
+    "simone"
+   ],
+   "title": "Pacte embrassé — Simone",
+   "scene": "refuge:simone_pacte_embrasse",
+   "unlock": [
+    "refuge:simone_pacte_embrasse"
+   ],
+   "status": "ecrite",
+   "hint": "Sous contrat avec Simone, lui laisser sa liberté soir après soir jusqu'à l'ambivalence +30, l'Affinité 40 et la Confiance 35 : elle re-signe le contrat tel quel, lucide et libre. L'accepter ouvre directement la Dévotion."
   },
   {
    "id": "nadia_devotion",
@@ -1170,6 +1234,22 @@
    "hint": "Sous Pacte avec Nadia, la traiter avec respect jusqu'à ce que l'ambivalence atteigne +60 et l'Affinité 70 : elle choisit de rester, librement."
   },
   {
+   "id": "nadia_pacte_embrasse",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "devotion",
+   "members": [
+    "nadia"
+   ],
+   "title": "Pacte embrassé — Nadia",
+   "scene": "refuge:nadia_pacte_embrasse",
+   "unlock": [
+    "refuge:nadia_pacte_embrasse"
+   ],
+   "status": "ecrite",
+   "hint": "Sous contrat avec Nadia, lui laisser sa liberté soir après soir jusqu'à l'ambivalence +30, l'Affinité 40 et la Confiance 35 : elle re-signe le contrat tel quel, lucide et libre. L'accepter ouvre directement la Dévotion."
+  },
+  {
    "id": "aoi_devotion",
    "tab": "intime",
    "cat": "solo",
@@ -1186,6 +1266,22 @@
     "refuge:aoi_devotion_nuit"
    ],
    "cg": "cg_aoi_devotion"
+  },
+  {
+   "id": "aoi_pacte_embrasse",
+   "tab": "intime",
+   "cat": "solo",
+   "route": "devotion",
+   "members": [
+    "aoi"
+   ],
+   "title": "Pacte embrassé — Aoi",
+   "scene": "refuge:aoi_pacte_embrasse",
+   "unlock": [
+    "refuge:aoi_pacte_embrasse"
+   ],
+   "status": "ecrite",
+   "hint": "Sous contrat avec Aoi, lui laisser sa liberté soir après soir jusqu'à l'ambivalence +30, l'Affinité 40 et la Confiance 35 : elle re-signe le contrat tel quel, lucide et libre. L'accepter ouvre directement la Dévotion."
   },
   {
    "id": "seo_loup",

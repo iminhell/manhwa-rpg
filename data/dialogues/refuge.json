@@ -257,6 +257,10 @@
     "then": "seo_devotion"
    },
    {
+    "if": "v('ambivalence.seo_yeon') >= 30 and aff('seo_yeon') >= 40 and trust('seo_yeon') >= 35",
+    "then": "seo_pacte_embrasse"
+   },
+   {
     "if": "v('ambivalence.seo_yeon') >= 30 and aff('seo_yeon') >= 40",
     "then": "seo_pacte_renegocie"
    },
@@ -277,7 +281,7 @@
    },
    {
     "s": "registre",
-    "t": "Pacte de Vassalité — Ambivalence : elle ne sait plus si elle te hait. Elle reste un peu plus longtemps à la porte, chaque soir.",
+    "t": "Pacte de Vassalité — Ambivalence : elle ne sait plus si elle te hait. Elle reste un peu plus longtemps à la porte, chaque soir. Le Pacte n'a rien fait naître en elle : il lui a seulement montré ce qu'elle désirait déjà.",
     "when": "v('ambivalence.seo_yeon') >= 0"
    },
    {
@@ -654,6 +658,10 @@
     "then": "aoi_devotion"
    },
    {
+    "if": "v('ambivalence.aoi') >= 30 and aff('aoi') >= 40 and trust('aoi') >= 35",
+    "then": "aoi_pacte_embrasse"
+   },
+   {
     "if": "v('ambivalence.aoi') >= 30 and aff('aoi') >= 40",
     "then": "aoi_pacte_renegocie"
    },
@@ -669,7 +677,7 @@
    },
    {
     "s": "registre",
-    "t": "Contrat de rachat — Aoi Tsukishiro. Ambivalence : le sourire de scène tombe parfois, quand elle croit que tu ne regardes pas.",
+    "t": "Contrat de rachat — Aoi Tsukishiro. Ambivalence : le sourire de scène tombe parfois, quand elle croit que tu ne regardes pas. Le Pacte n'a rien fait naître en elle : il lui a seulement montré ce qu'elle désirait déjà.",
     "when": "v('ambivalence.aoi') >= 0"
    },
    {
@@ -1490,6 +1498,10 @@
     "then": "xiaoyu_devotion"
    },
    {
+    "if": "v('ambivalence.xiaoyu') >= 30 and aff('xiaoyu') >= 40 and trust('xiaoyu') >= 35",
+    "then": "xiaoyu_pacte_embrasse"
+   },
+   {
     "if": "v('ambivalence.xiaoyu') >= 30 and aff('xiaoyu') >= 40",
     "then": "xiaoyu_pacte_renegocie"
    },
@@ -1510,7 +1522,7 @@
    },
    {
     "s": "registre",
-    "t": "Pacte — Long Xiaoyu. Ambivalence : la dette devient un jeu, et le jeu lui plaît plus qu'elle ne l'avoue.",
+    "t": "Pacte — Long Xiaoyu. Ambivalence : la dette devient un jeu, et le jeu lui plaît plus qu'elle ne l'avoue. Le Pacte n'a rien fait naître en elle : il lui a seulement montré ce qu'elle désirait déjà.",
     "when": "v('ambivalence.xiaoyu') >= 0"
    },
    {
@@ -1766,6 +1778,10 @@
     "then": "haein_devotion"
    },
    {
+    "if": "v('ambivalence.hae_in') >= 30 and aff('hae_in') >= 40 and trust('hae_in') >= 35",
+    "then": "haein_pacte_embrasse"
+   },
+   {
     "if": "v('ambivalence.hae_in') >= 30 and aff('hae_in') >= 40",
     "then": "haein_pacte_renegocie"
    },
@@ -1786,7 +1802,7 @@
    },
    {
     "s": "registre",
-    "t": "Pacte de Vassalité — Yoon Hae-in. Ambivalence : ses rapports ont commencé à contenir des remarques qui ne sont pas comptables.",
+    "t": "Pacte de Vassalité — Yoon Hae-in. Ambivalence : ses rapports ont commencé à contenir des remarques qui ne sont pas comptables. Le Pacte n'a rien fait naître en elle : il lui a seulement montré ce qu'elle désirait déjà.",
     "when": "v('ambivalence.hae_in') >= 0"
    },
    {
@@ -2781,6 +2797,10 @@
     "then": "nadia_devotion"
    },
    {
+    "if": "v('ambivalence.nadia') >= 30 and aff('nadia') >= 40 and trust('nadia') >= 35",
+    "then": "nadia_pacte_embrasse"
+   },
+   {
     "if": "v('ambivalence.nadia') >= 30 and aff('nadia') >= 40",
     "then": "nadia_pacte_renegocie"
    },
@@ -2801,7 +2821,7 @@
    },
    {
     "s": "registre",
-    "t": "Pacte de Vassalité — Nadia Tsoi. Ambivalence : le canon de son fusil ne vise plus la porte. Il ne vise plus rien.",
+    "t": "Pacte de Vassalité — Nadia Tsoi. Ambivalence : le canon de son fusil ne vise plus la porte. Il ne vise plus rien. Le Pacte n'a rien fait naître en elle : il lui a seulement montré ce qu'elle désirait déjà.",
     "when": "v('ambivalence.nadia') >= 0"
    },
    {
@@ -3066,6 +3086,10 @@
     "then": "simone_devotion"
    },
    {
+    "if": "v('ambivalence.simone') >= 30 and aff('simone') >= 40 and trust('simone') >= 35",
+    "then": "simone_pacte_embrasse"
+   },
+   {
     "if": "v('ambivalence.simone') >= 30 and aff('simone') >= 40",
     "then": "simone_pacte_renegocie"
    },
@@ -3086,7 +3110,7 @@
    },
    {
     "s": "registre",
-    "t": "Pacte de Vassalité — Simone Hayes. Ambivalence : elle regarde ton visage, maintenant, et plus au-dessus de ton épaule.",
+    "t": "Pacte de Vassalité — Simone Hayes. Ambivalence : elle regarde ton visage, maintenant, et plus au-dessus de ton épaule. Le Pacte n'a rien fait naître en elle : il lui a seulement montré ce qu'elle désirait déjà.",
     "when": "v('ambivalence.simone') >= 0"
    },
    {
@@ -4376,7 +4400,13 @@
    },
    {
     "s": "narrator",
-    "t": "Au matin, le contrat raturé est encadré au-dessus de son bureau. En dessous, une note à l'encre bordeaux : « Meilleur investissement de ma carrière. »"
+    "t": "Au matin, le contrat raturé est encadré au-dessus de son bureau. En dessous, une note à l'encre bordeaux : « Meilleur investissement de ma carrière. »",
+    "when": "not flag('haein_pacte_embrasse')"
+   },
+   {
+    "s": "narrator",
+    "t": "Au matin, le contrat original est encadré au-dessus de son bureau, intact, avec ses deux signatures. En dessous, à l'encre bordeaux : « Signé deux fois. La seconde compte. »",
+    "when": "flag('haein_pacte_embrasse')"
    },
    {
     "fx": [
@@ -4602,7 +4632,8 @@
    {
     "s": "nadia",
     "t": "Je sais. C'est pour ça.",
-    "e": "neutral"
+    "e": "neutral",
+    "when": "not flag('nadia_pacte_embrasse')"
    },
    {
     "s": "narrator",
@@ -5828,7 +5859,13 @@
    },
    {
     "s": "narrator",
-    "t": "Au matin, il reste des confettis de contrat dans ses cheveux. Elle refuse qu'on les enlève."
+    "t": "Au matin, il reste des confettis de contrat dans ses cheveux. Elle refuse qu'on les enlève.",
+    "when": "not flag('aoi_pacte_embrasse')"
+   },
+   {
+    "s": "narrator",
+    "t": "Au matin, le contrat de Mirae est punaisé au mur, intact, avec ses deux signatures, comme une affiche de concert. Elle refuse qu'on le décroche.",
+    "when": "flag('aoi_pacte_embrasse')"
    },
    {
     "fx": [
@@ -6472,6 +6509,228 @@
    },
    {
     "end": true
+   }
+  ],
+  "seo_pacte_embrasse": [
+   {
+    "s": "narrator",
+    "t": "Elle entre à l'heure de la clause. Pas de parchemin raturé, cette fois : le collier seulement, qu'elle porte haut, comme un bijou."
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Je pourrais écrire mes conditions. Je n'en ai pas envie. Ce que je ressens sous ce collier, personne ne me l'a imposé : il m'a seulement appris à le voir. Je le garde. Je vous garde.",
+    "e": "desire",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "PACTE — Seo-Yeon re-signe le contrat tel quel, lucide et libre. Le Système l'accepte : la clause de rupture demeure, et elle choisit de ne pas l'invoquer. Le Pacte est embrassé."
+   },
+   {
+    "choice": [
+     {
+      "t": "« J'accepte. »",
+      "goto": "seo_devotion_nuit",
+      "fx": [
+       "flag seo_pacte_embrasse",
+       "flag seo_devotion",
+       "add ambivalence.seo_yeon 10",
+       "add aff.seo_yeon 5"
+      ]
+     },
+     {
+      "t": "« Pas comme ça. Écris tes conditions. »",
+      "goto": "seo_pacte_renegocie",
+      "fx": [
+       "add trust.seo_yeon 3"
+      ]
+     }
+    ]
+   }
+  ],
+  "xiaoyu_pacte_embrasse": [
+   {
+    "s": "narrator",
+    "t": "Elle pose le jeton de jade gravé de ton nom sur la table, côté face, et ne le retourne pas."
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Une Long ne mise jamais sans lire le contrat. Je l'ai relu cent fois. Je n'en change pas une virgule, Seigneur. Je le signe une seconde fois, et cette fois, c'est moi qui choisis de perdre.",
+    "e": "desire",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "PACTE — Xiaoyu re-signe le contrat tel quel, lucide et libre. Le Système l'accepte : la clause de rupture demeure, et elle choisit de ne pas l'invoquer. Le Pacte est embrassé."
+   },
+   {
+    "choice": [
+     {
+      "t": "« J'accepte. »",
+      "goto": "xiaoyu_devotion_nuit",
+      "fx": [
+       "flag xiaoyu_pacte_embrasse",
+       "flag xiaoyu_devotion",
+       "add ambivalence.xiaoyu 10",
+       "add aff.xiaoyu 5"
+      ]
+     },
+     {
+      "t": "« Pas comme ça. Écris tes conditions. »",
+      "goto": "xiaoyu_pacte_renegocie",
+      "fx": [
+       "add trust.xiaoyu 3"
+      ]
+     }
+    ]
+   }
+  ],
+  "haein_pacte_embrasse": [
+   {
+    "s": "narrator",
+    "t": "Le dossier qu'elle pose sur ta table ne contient que le contrat original, et sa signature, encore fraîche à côté de l'ancienne."
+   },
+   {
+    "s": "hae_in",
+    "t": "Pas d'avenant, Seigneur Kang. Je connais chaque clause, et je les veux toutes. C'est la première décision de ma vie que je ne calcule pas.",
+    "e": "desire",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "PACTE — Hae-in re-signe le contrat tel quel, lucide et libre. Le Système l'accepte : la clause de rupture demeure, et elle choisit de ne pas l'invoquer. Le Pacte est embrassé."
+   },
+   {
+    "choice": [
+     {
+      "t": "« J'accepte. »",
+      "goto": "haein_devotion_nuit",
+      "fx": [
+       "flag haein_pacte_embrasse",
+       "flag haein_devotion",
+       "add ambivalence.hae_in 10",
+       "add aff.hae_in 5"
+      ]
+     },
+     {
+      "t": "« Pas comme ça. Écris tes conditions. »",
+      "goto": "haein_pacte_renegocie",
+      "fx": [
+       "add trust.hae_in 3"
+      ]
+     }
+    ]
+   }
+  ],
+  "simone_pacte_embrasse": [
+   {
+    "s": "narrator",
+    "t": "Elle se présente au rapport, au garde-à-vous, et pour la première fois elle sourit en le faisant."
+   },
+   {
+    "s": "simone",
+    "t": "J'ai obéi toute ma vie à des gens qui ne le méritaient pas. Toi, si. Pas de nouveau règlement : celui-là me va. Je le choisis, Rang F. En pleine conscience.",
+    "e": "desire",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "PACTE — Simone re-signe le contrat tel quel, lucide et libre. Le Système l'accepte : la clause de rupture demeure, et elle choisit de ne pas l'invoquer. Le Pacte est embrassé."
+   },
+   {
+    "choice": [
+     {
+      "t": "« J'accepte. »",
+      "goto": "simone_devotion_nuit",
+      "fx": [
+       "flag simone_pacte_embrasse",
+       "flag simone_devotion",
+       "add ambivalence.simone 10",
+       "add aff.simone 5"
+      ]
+     },
+     {
+      "t": "« Pas comme ça. Écris tes conditions. »",
+      "goto": "simone_pacte_renegocie",
+      "fx": [
+       "add trust.simone 3"
+      ]
+     }
+    ]
+   }
+  ],
+  "nadia_pacte_embrasse": [
+   {
+    "s": "narrator",
+    "t": "Elle pose le fusil contre le mur, canon vers le sol, et s'agenouille au bord du lit, de son plein gré, l'écharpe rouge autour du cou."
+   },
+   {
+    "s": "nadia",
+    "t": "Je n'ai pas besoin de clause. Je sais ce que je veux, et je sais où est la porte. Je reste. À vie. Cette fois, c'est moi qui signe.",
+    "e": "desire",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "PACTE — Nadia re-signe le contrat tel quel, lucide et libre. Le Système l'accepte : la clause de rupture demeure, et elle choisit de ne pas l'invoquer. Le Pacte est embrassé."
+   },
+   {
+    "choice": [
+     {
+      "t": "« J'accepte. »",
+      "goto": "nadia_devotion_nuit",
+      "fx": [
+       "flag nadia_pacte_embrasse",
+       "flag nadia_devotion",
+       "add ambivalence.nadia 10",
+       "add aff.nadia 5"
+      ]
+     },
+     {
+      "t": "« Pas comme ça. Écris tes conditions. »",
+      "goto": "nadia_pacte_renegocie",
+      "fx": [
+       "add trust.nadia 3"
+      ]
+     }
+    ]
+   }
+  ],
+  "aoi_pacte_embrasse": [
+   {
+    "s": "narrator",
+    "t": "Aoi arrive sans le feutre rose. Elle tend le contrat de Mirae tel quel, intact, avec un stylo."
+   },
+   {
+    "s": "aoi",
+    "t": "Je croyais aimer qu'on décide pour moi parce qu'on m'avait dressée comme ça. Ce n'est pas ça. C'est toi. Je signe une deuxième fois, sans rien rayer.",
+    "e": "desire",
+    "v": true
+   },
+   {
+    "s": "registre",
+    "t": "PACTE — Aoi re-signe le contrat tel quel, lucide et libre. Le Système l'accepte : la clause de rupture demeure, et elle choisit de ne pas l'invoquer. Le Pacte est embrassé."
+   },
+   {
+    "choice": [
+     {
+      "t": "« J'accepte. »",
+      "goto": "aoi_devotion_nuit",
+      "fx": [
+       "flag aoi_pacte_embrasse",
+       "flag aoi_devotion",
+       "add ambivalence.aoi 10",
+       "add aff.aoi 5"
+      ]
+     },
+     {
+      "t": "« Pas comme ça. Écris tes conditions. »",
+      "goto": "aoi_pacte_renegocie",
+      "fx": [
+       "add trust.aoi 3"
+      ]
+     }
+    ]
    }
   ]
  }

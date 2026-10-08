@@ -1545,6 +1545,66 @@
     "t": "Chacune le redit, une par une, à voix haute, comme un serment prêté à l'aube. Puis le soleil passe la ligne des ruines, et plus personne ne parle."
    },
    {
+    "s": "narrator",
+    "t": "Avant de s'approcher, Seo-Yeon effleure le collier du bout des doigts, comme on vérifie un pouls. Puis elle oublie qu'elle l'a fait.",
+    "when": "party('seo_yeon') and flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Le collier luit d'or pâle sur la gorge de Seo-Yeon. Elle s'agenouille la première, de son plein gré, et lève vers toi un regard qui ne doute plus.",
+    "when": "party('seo_yeon') and flag('pacte.seo_yeon') and flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu fixe les enjeux à voix haute, puis cède exactement quand elle l'avait annoncé, avec le sourire d'une joueuse qui tient la table.",
+    "when": "party('xiaoyu') and flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu ne négocie plus. Elle attend tes ordres, l'éventail fermé sur les genoux, avec une impatience qu'elle ne cache pas.",
+    "when": "party('xiaoyu') and flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in énonce ses conditions d'une voix de conseil d'administration, puis se tait, et les applique avec une docilité qu'elle a votée elle-même.",
+    "when": "party('hae_in') and flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "« Seigneur Kang », dit Hae-in, sans le moindre calcul dans la voix. Elle s'agenouille sur le tapis de soie, de son plein gré, et sourit.",
+    "when": "party('hae_in') and flag('pacte.hae_in') and flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone donne d'abord ses règles, sèches et précises, puis se met au repos devant toi, et attend tes ordres avec un plaisir qu'elle ne cache pas.",
+    "when": "party('simone') and flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone, la plus grande de la pièce, s'agenouille la première. Elle n'a jamais obéi aussi volontiers, et elle le dit à voix haute.",
+    "when": "party('simone') and flag('pacte.simone') and flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia a vérifié la porte, puis l'écharpe, puis toi. Elle ne parle presque pas : elle hoche la tête, et cela suffit.",
+    "when": "party('nadia') and flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia te tend l'écharpe rouge de sa grand-mère, sans condition, sans un mot. Elle a choisi, et ses yeux le disent.",
+    "when": "party('nadia') and flag('nadia_pactisee') and flag('nadia_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi dit ce qu'elle veut en riant, et ce qu'elle ne veut pas sans rire ; puis elle se laisse guider, ravie d'avoir eu le choix.",
+    "when": "party('aoi') and flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi s'agenouille, le menton levé, et te regarde comme on regarde le seul spectateur qui compte.",
+    "when": "party('aoi') and flag('aoi_dominee') and flag('aoi_devotion')"
+   },
+   {
     "text_p3_slot": []
    },
    {

@@ -396,17 +396,67 @@
     "s": "aoi",
     "t": "Je… je n'ai jamais… avec plusieurs… Dites-moi si je fais mal quelque chose.",
     "e": "embarrassed",
-    "v": true
+    "v": true,
+    "when": "not flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "aoi",
+    "t": "Je… je n'ai jamais… avec plusieurs… Dites-moi si je fais mal quelque chose.",
+    "e": "true_smile",
+    "v": true,
+    "when": "flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "aoi",
+    "t": "Je… je n'ai jamais… avec plusieurs… Dites-moi si je fais mal quelque chose.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('aoi_dominee') and flag('aoi_devotion')"
    },
    {
     "s": "seo_yeon",
     "t": "Personne ne fait rien de mal ici. Je suis médecin. Je vérifie.",
     "e": "desire",
-    "v": true
+    "v": true,
+    "when": "not flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Personne ne fait rien de mal ici. Je suis médecin. Je vérifie.",
+    "e": "embarrassed",
+    "v": true,
+    "when": "flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Personne ne fait rien de mal ici. Je suis médecin. Je vérifie.",
+    "e": "tears",
+    "v": true,
+    "when": "flag('pacte.seo_yeon') and flag('seo_devotion')"
    },
    {
     "s": "narrator",
     "t": "Trois femmes et un seul homme dans un lit trop petit, et une règle simple qu'elles se rappellent en riant : chacune dit ce qu'elle veut, à voix haute. Les vêtements s'empilent par terre au fil des aveux. Maricel mène, Aoi chante tout bas contre une épaule, Seo-Yeon compte des battements de cœur et perd le compte. La porte est restée ouverte. Personne ne s'en soucie."
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon garde une main près du collier, sans jamais le toucher : l'Ancre de Sang est là, et le savoir lui suffit pour s'abandonner au reste.",
+    "when": "flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon attend ton signe avant chaque geste, et le savoure ; elle murmure « Seigneur Kang » comme un secret qu'elle a choisi de garder.",
+    "when": "flag('pacte.seo_yeon') and flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi fredonne les premières mesures de sa première chanson, sans jamais aller jusqu'à la dernière note. Elle sourit : ce soir, c'est elle qui tient le micro.",
+    "when": "flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi chante tout bas pour toi, rien que pour toi, et attend ton signe à la fin de chaque couplet. Le sourire de scène n'existe plus.",
+    "when": "flag('aoi_dominee') and flag('aoi_devotion')"
    },
    {
     "text_p3_slot": []
@@ -454,7 +504,22 @@
     "s": "simone",
     "t": "Ordre du jour, point deux : le Rang F a l'air trop sûr de lui. Proposition : on règle ça.",
     "e": "cigar",
-    "v": true
+    "v": true,
+    "when": "not flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "simone",
+    "t": "Ordre du jour, point deux : le Rang F a l'air trop sûr de lui. Proposition : on règle ça.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "simone",
+    "t": "Ordre du jour, point deux : le Rang F a l'air trop sûr de lui. Proposition : on règle ça.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.simone') and flag('simone_devotion')"
    },
    {
     "s": "ryeon",
@@ -465,6 +530,36 @@
    {
     "s": "narrator",
     "t": "Hae-in tient les comptes, Xiaoyu tient les paris, Simone donne les ordres et Ryeon les conteste par principe. Les chemisiers, les qipao, les jeogori et les débardeurs s'empilent sur le bureau comme des dossiers traités. C'est la réunion la plus longue de l'histoire de la Maison. Personne ne prend de notes, sauf Hae-in, qui finit par abandonner son stylo."
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in garde l'ordre du jour jusqu'à la dernière minute, puis te le tend, avec un soulagement qu'elle n'avouera jamais.",
+    "when": "flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in ne lit plus aucune clause. Elle ferme les yeux et laisse quelqu'un d'autre décider, pour la première fois de sa vie, parce qu'elle l'a choisi.",
+    "when": "flag('pacte.hae_in') and flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Le Sceau de Longwei brille à son poignet. Xiaoyu s'en sert comme d'un éventail : pour cacher qu'elle rougit.",
+    "when": "flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Le jeton de jade gravé de ton nom pend au cou de Xiaoyu. Elle le porte comme une parure, et te laisse mener la partie jusqu'au bout.",
+    "when": "flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone exécute chaque ordre comme sur un terrain d'entraînement, et ses yeux disent qu'elle pourrait tout arrêter d'un geste. Elle ne le fait pas.",
+    "when": "flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone attend tes ordres sans un mot, les mains derrière le dos, et chaque ordre exécuté la fait sourire un peu plus.",
+    "when": "flag('pacte.simone') and flag('simone_devotion')"
    },
    {
     "text_p3_slot": []
@@ -507,6 +602,66 @@
     "t": "Quand on est tous ensemble, le Registre se tait. Je ne l'avais jamais entendu se taire.",
     "e": "tilt",
     "v": true
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon garde une main près du collier, sans jamais le toucher : l'Ancre de Sang est là, et le savoir lui suffit pour s'abandonner au reste.",
+    "when": "party('seo_yeon') and flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon attend ton signe avant chaque geste, et le savoure ; elle murmure « Seigneur Kang » comme un secret qu'elle a choisi de garder.",
+    "when": "party('seo_yeon') and flag('pacte.seo_yeon') and flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu fait tourner le jeton de jade entre ses doigts sans jamais le retourner. Elle mise tout ce soir, et elle le sait.",
+    "when": "party('xiaoyu') and flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu t'appelle « Seigneur » sans une once d'ironie, et s'incline la première ; pour une fois, elle n'a rien misé du tout.",
+    "when": "party('xiaoyu') and flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in pose la main à plat près du Sceau de la Balance, sans le toucher : elle a tout prévu, et c'est pour cela qu'elle peut tout lâcher.",
+    "when": "party('hae_in') and flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in attend tes instructions comme d'autres attendent un verdict, et les suit à la lettre : cette nuit, la présidente a délégué tous ses pouvoirs.",
+    "when": "party('hae_in') and flag('pacte.hae_in') and flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone garde ses plaques au cou, contre la peau : l'Ancre de Sang à portée de main. Elle obéit, discute, désobéit une fois en riant, puis obéit encore.",
+    "when": "party('simone') and flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone se met au garde-à-vous devant toi, un sourire au coin des lèvres. « À vos ordres. » Pour une fois, ce n'est pas une formule.",
+    "when": "party('simone') and flag('pacte.simone') and flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia garde l'écharpe rouge nouée lâchement à son poignet ; un geste suffirait. Elle ne le fait pas, et te regarde comme à travers une lunette.",
+    "when": "party('nadia') and flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia s'allonge dos à la porte, sans même vérifier l'angle mort : elle te le confie entièrement, et attend ton signe.",
+    "when": "party('nadia') and flag('nadia_pactisee') and flag('nadia_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi fredonne les premières mesures de sa première chanson, sans jamais aller jusqu'à la dernière note. Elle sourit : ce soir, c'est elle qui tient le micro.",
+    "when": "party('aoi') and flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi chante tout bas pour toi, rien que pour toi, et attend ton signe à la fin de chaque couplet. Le sourire de scène n'existe plus.",
+    "when": "party('aoi') and flag('aoi_dominee') and flag('aoi_devotion')"
    },
    {
     "text_p3_slot": []
@@ -563,7 +718,22 @@
     "s": "aoi",
     "t": "Souriez ! Pas le sourire de scène. Le vrai.",
     "e": "true_smile",
-    "v": true
+    "v": true,
+    "when": "not flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "aoi",
+    "t": "Souriez ! Pas le sourire de scène. Le vrai.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "aoi",
+    "t": "Souriez ! Pas le sourire de scène. Le vrai.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('aoi_dominee') and flag('aoi_devotion')"
    },
    {
     "s": "narrator",
@@ -572,6 +742,66 @@
    {
     "s": "narrator",
     "t": "Ensuite, plus personne ne pose. La nuit des Dix appartient aux Dix, et à celui qu'elles ont choisi."
+   },
+   {
+    "s": "narrator",
+    "t": "Avant de s'approcher, Seo-Yeon effleure le collier du bout des doigts, comme on vérifie un pouls. Puis elle oublie qu'elle l'a fait.",
+    "when": "party('seo_yeon') and flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Le collier luit d'or pâle sur la gorge de Seo-Yeon. Elle s'agenouille la première, de son plein gré, et lève vers toi un regard qui ne doute plus.",
+    "when": "party('seo_yeon') and flag('pacte.seo_yeon') and flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu fixe les enjeux à voix haute, puis cède exactement quand elle l'avait annoncé, avec le sourire d'une joueuse qui tient la table.",
+    "when": "party('xiaoyu') and flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu ne négocie plus. Elle attend tes ordres, l'éventail fermé sur les genoux, avec une impatience qu'elle ne cache pas.",
+    "when": "party('xiaoyu') and flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in énonce ses conditions d'une voix de conseil d'administration, puis se tait, et les applique avec une docilité qu'elle a votée elle-même.",
+    "when": "party('hae_in') and flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "« Seigneur Kang », dit Hae-in, sans le moindre calcul dans la voix. Elle s'agenouille sur le tapis de soie, de son plein gré, et sourit.",
+    "when": "party('hae_in') and flag('pacte.hae_in') and flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone donne d'abord ses règles, sèches et précises, puis se met au repos devant toi, et attend tes ordres avec un plaisir qu'elle ne cache pas.",
+    "when": "party('simone') and flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone, la plus grande de la pièce, s'agenouille la première. Elle n'a jamais obéi aussi volontiers, et elle le dit à voix haute.",
+    "when": "party('simone') and flag('pacte.simone') and flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia a vérifié la porte, puis l'écharpe, puis toi. Elle ne parle presque pas : elle hoche la tête, et cela suffit.",
+    "when": "party('nadia') and flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia te tend l'écharpe rouge de sa grand-mère, sans condition, sans un mot. Elle a choisi, et ses yeux le disent.",
+    "when": "party('nadia') and flag('nadia_pactisee') and flag('nadia_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi dit ce qu'elle veut en riant, et ce qu'elle ne veut pas sans rire ; puis elle se laisse guider, ravie d'avoir eu le choix.",
+    "when": "party('aoi') and flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi s'agenouille, le menton levé, et te regarde comme on regarde le seul spectateur qui compte.",
+    "when": "party('aoi') and flag('aoi_dominee') and flag('aoi_devotion')"
    },
    {
     "text_p3_slot": []
@@ -616,11 +846,36 @@
     "s": "nadia",
     "t": "Elle vise mal quand elle rougit. Laisse-la viser.",
     "e": "neutral",
-    "v": true
+    "v": true,
+    "when": "not flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "nadia",
+    "t": "Elle vise mal quand elle rougit. Laisse-la viser.",
+    "e": "aim",
+    "v": true,
+    "when": "flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "nadia",
+    "t": "Elle vise mal quand elle rougit. Laisse-la viser.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('nadia_pactisee') and flag('nadia_devotion')"
    },
    {
     "s": "narrator",
     "t": "Le ruban rouge de Ryeon et l'écharpe rouge de Nadia finissent noués ensemble au pied du matelas. Chacune dit ce qu'elle veut, à voix basse, et l'autre l'entend aussi. Personne ne gagne. Personne ne compte les touches."
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia se laisse guider sans lâcher ton regard ; la Condition est nouée à son écharpe, et cette certitude la rend étonnamment douce.",
+    "when": "flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia, qui ne cède jamais rien, cède tout, et ne détourne pas une seule fois le regard.",
+    "when": "flag('nadia_pactisee') and flag('nadia_devotion')"
    },
    {
     "text_p3_slot": []
@@ -659,17 +914,67 @@
     "s": "simone",
     "t": "Feu croisé, Rang F. Tu es à découvert. On te propose une reddition honorable.",
     "e": "cigar",
-    "v": true
+    "v": true,
+    "when": "not flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "simone",
+    "t": "Feu croisé, Rang F. Tu es à découvert. On te propose une reddition honorable.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "simone",
+    "t": "Feu croisé, Rang F. Tu es à découvert. On te propose une reddition honorable.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.simone') and flag('simone_devotion')"
    },
    {
     "s": "nadia",
     "t": "Ou pas honorable. On a voté. Deux contre un.",
     "e": "neutral",
-    "v": true
+    "v": true,
+    "when": "not flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "nadia",
+    "t": "Ou pas honorable. On a voté. Deux contre un.",
+    "e": "aim",
+    "v": true,
+    "when": "flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "nadia",
+    "t": "Ou pas honorable. On a voté. Deux contre un.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('nadia_pactisee') and flag('nadia_devotion')"
    },
    {
     "s": "narrator",
     "t": "Elles se déshabillent comme on dépose l'équipement après une mission : méthodiquement, en riant de leurs cicatrices, en comparant les impacts. Puis elles cessent de comparer, et chacune réclame sa part de la nuit, à voix haute."
+   },
+   {
+    "s": "narrator",
+    "t": "Simone exécute chaque ordre comme sur un terrain d'entraînement, et ses yeux disent qu'elle pourrait tout arrêter d'un geste. Elle ne le fait pas.",
+    "when": "flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone attend tes ordres sans un mot, les mains derrière le dos, et chaque ordre exécuté la fait sourire un peu plus.",
+    "when": "flag('pacte.simone') and flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia se laisse guider sans lâcher ton regard ; la Condition est nouée à son écharpe, et cette certitude la rend étonnamment douce.",
+    "when": "flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia, qui ne cède jamais rien, cède tout, et ne détourne pas une seule fois le regard.",
+    "when": "flag('nadia_pactisee') and flag('nadia_devotion')"
    },
    {
     "text_p3_slot": []
@@ -708,17 +1013,67 @@
     "s": "hae_in",
     "t": "Proposition de fusion, Monsieur Kang. Deux actionnaires majoritaires, un seul actif. Vous.",
     "e": "neutral",
-    "v": true
+    "v": true,
+    "when": "not flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "hae_in",
+    "t": "Proposition de fusion, Monsieur Kang. Deux actionnaires majoritaires, un seul actif. Vous.",
+    "e": "embarrassed",
+    "v": true,
+    "when": "flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "hae_in",
+    "t": "Proposition de fusion, Monsieur Kang. Deux actionnaires majoritaires, un seul actif. Vous.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.hae_in') and flag('haein_devotion')"
    },
    {
     "s": "xiaoyu",
     "t": "Et chacune garde un droit de veto. Si l'une dit non, on arrête. Une Long respecte les contrats.",
     "e": "fan",
-    "v": true
+    "v": true,
+    "when": "not flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Et chacune garde un droit de veto. Si l'une dit non, on arrête. Une Long respecte les contrats.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Et chacune garde un droit de veto. Si l'une dit non, on arrête. Une Long respecte les contrats.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
    },
    {
     "s": "narrator",
     "t": "La soie bordeaux et le qipao noir glissent sur la table de jeu, parmi les tuiles. Elles négocient chaque geste à voix basse, chaque concession, chaque victoire, et finissent par oublier qui tient la banque."
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in garde l'ordre du jour jusqu'à la dernière minute, puis te le tend, avec un soulagement qu'elle n'avouera jamais.",
+    "when": "flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in ne lit plus aucune clause. Elle ferme les yeux et laisse quelqu'un d'autre décider, pour la première fois de sa vie, parce qu'elle l'a choisi.",
+    "when": "flag('pacte.hae_in') and flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Le Sceau de Longwei brille à son poignet. Xiaoyu s'en sert comme d'un éventail : pour cacher qu'elle rougit.",
+    "when": "flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Le jeton de jade gravé de ton nom pend au cou de Xiaoyu. Elle le porte comme une parure, et te laisse mener la partie jusqu'au bout.",
+    "when": "flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
    },
    {
     "text_p3_slot": []
@@ -753,7 +1108,22 @@
     "s": "seo_yeon",
     "t": "On a travaillé toute la nuit pour les autres. Je voudrais… faire quelque chose qui n'a rien à voir avec ça. Avec vous deux.",
     "e": "desire",
-    "v": true
+    "v": true,
+    "when": "not flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "On a travaillé toute la nuit pour les autres. Je voudrais… faire quelque chose qui n'a rien à voir avec ça. Avec vous deux.",
+    "e": "embarrassed",
+    "v": true,
+    "when": "flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "On a travaillé toute la nuit pour les autres. Je voudrais… faire quelque chose qui n'a rien à voir avec ça. Avec vous deux.",
+    "e": "tears",
+    "v": true,
+    "when": "flag('pacte.seo_yeon') and flag('seo_devotion')"
    },
    {
     "s": "minh_anh",
@@ -764,6 +1134,16 @@
    {
     "s": "narrator",
     "t": "Elles se découvrent comme on relit un protocole : Seo-Yeon avec ses mains de médecin, Minh-Anh avec une précision qui s'effondre à la troisième étape. Les blouses s'empilent sur la paillasse. Les LEDs virent au rouge, et Seo-Yeon en tient le compte, puis ne le tient plus."
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon garde une main près du collier, sans jamais le toucher : l'Ancre de Sang est là, et le savoir lui suffit pour s'abandonner au reste.",
+    "when": "flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon attend ton signe avant chaque geste, et le savoure ; elle murmure « Seigneur Kang » comme un secret qu'elle a choisi de garder.",
+    "when": "flag('pacte.seo_yeon') and flag('seo_devotion')"
    },
    {
     "text_p3_slot": []
@@ -804,11 +1184,36 @@
     "s": "xiaoyu",
     "t": "Tu as déjà volé mon éventail. Rends-le, ou paie-le. J'accepte les deux devises.",
     "e": "fan",
-    "v": true
+    "v": true,
+    "when": "not flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Tu as déjà volé mon éventail. Rends-le, ou paie-le. J'accepte les deux devises.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Tu as déjà volé mon éventail. Rends-le, ou paie-le. J'accepte les deux devises.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
    },
    {
     "s": "narrator",
     "t": "Maricel paie, et Xiaoyu rend la monnaie. Le qipao et le maillot de basket finissent par terre, le dragon noir et or à côté du soleil à huit rayons. Elles rient beaucoup, se volent des baisers, et te volent tout le reste."
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu fixe les enjeux à voix haute, puis cède exactement quand elle l'avait annoncé, avec le sourire d'une joueuse qui tient la table.",
+    "when": "flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu ne négocie plus. Elle attend tes ordres, l'éventail fermé sur les genoux, avec une impatience qu'elle ne cache pas.",
+    "when": "flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
    },
    {
     "text_p3_slot": []
@@ -890,11 +1295,36 @@
     "s": "simone",
     "t": "Règles simples, soldate : tout le monde dit oui à voix haute, et personne ne joue au plus fort. Ce soir, on se couvre.",
     "e": "neutral",
-    "v": true
+    "v": true,
+    "when": "not flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "simone",
+    "t": "Règles simples, soldate : tout le monde dit oui à voix haute, et personne ne joue au plus fort. Ce soir, on se couvre.",
+    "e": "cigar",
+    "v": true,
+    "when": "flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "simone",
+    "t": "Règles simples, soldate : tout le monde dit oui à voix haute, et personne ne joue au plus fort. Ce soir, on se couvre.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.simone') and flag('simone_devotion')"
    },
    {
     "s": "narrator",
     "t": "Le hanbok et le treillis tombent sur le tatami. Elles se protègent l'une l'autre comme sur un champ de bataille, et elles t'apprennent, entre deux rires, que la meilleure défense est de ne jamais laisser l'autre seule."
+   },
+   {
+    "s": "narrator",
+    "t": "Simone garde ses plaques au cou, contre la peau : l'Ancre de Sang à portée de main. Elle obéit, discute, désobéit une fois en riant, puis obéit encore.",
+    "when": "flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone se met au garde-à-vous devant toi, un sourire au coin des lèvres. « À vos ordres. » Pour une fois, ce n'est pas une formule.",
+    "when": "flag('pacte.simone') and flag('simone_devotion')"
    },
    {
     "text_p3_slot": []
@@ -929,7 +1359,22 @@
     "s": "aoi",
     "t": "C'est la première chanson que je chante pour moi. Pour nous. Je veux que tu restes jusqu'à la fin. Et après aussi.",
     "e": "true_smile",
-    "v": true
+    "v": true,
+    "when": "not flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "aoi",
+    "t": "C'est la première chanson que je chante pour moi. Pour nous. Je veux que tu restes jusqu'à la fin. Et après aussi.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "aoi",
+    "t": "C'est la première chanson que je chante pour moi. Pour nous. Je veux que tu restes jusqu'à la fin. Et après aussi.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('aoi_dominee') and flag('aoi_devotion')"
    },
    {
     "s": "haneul",
@@ -940,6 +1385,16 @@
    {
     "s": "narrator",
     "t": "La chanson se défait en souffles et en rires. Aoi décide de chaque geste à voix haute, en japonais puis en coréen, et Haneul répète chaque mot comme une incantation, ses glyphes allumés jusqu'aux hanches."
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi dit ce qu'elle veut en riant, et ce qu'elle ne veut pas sans rire ; puis elle se laisse guider, ravie d'avoir eu le choix.",
+    "when": "flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi s'agenouille, le menton levé, et te regarde comme on regarde le seul spectateur qui compte.",
+    "when": "flag('aoi_dominee') and flag('aoi_devotion')"
    },
    {
     "text_p3_slot": []
@@ -978,17 +1433,67 @@
     "s": "hae_in",
     "t": "La commandante pense que je calcule tout. Ce soir, je propose de ne rien calculer. Une seule condition : on se dit tout à voix haute.",
     "e": "neutral",
-    "v": true
+    "v": true,
+    "when": "not flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "hae_in",
+    "t": "La commandante pense que je calcule tout. Ce soir, je propose de ne rien calculer. Une seule condition : on se dit tout à voix haute.",
+    "e": "embarrassed",
+    "v": true,
+    "when": "flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "hae_in",
+    "t": "La commandante pense que je calcule tout. Ce soir, je propose de ne rien calculer. Une seule condition : on se dit tout à voix haute.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.hae_in') and flag('haein_devotion')"
    },
    {
     "s": "simone",
     "t": "Noté. Et tu ne gardes pas ton chignon. Ordre de sécurité.",
     "e": "cigar",
-    "v": true
+    "v": true,
+    "when": "not flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "simone",
+    "t": "Noté. Et tu ne gardes pas ton chignon. Ordre de sécurité.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "simone",
+    "t": "Noté. Et tu ne gardes pas ton chignon. Ordre de sécurité.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.simone') and flag('simone_devotion')"
    },
    {
     "s": "narrator",
     "t": "Le chignon tombe, les plaques tintent sur la table, le tailleur blanc rejoint le treillis. La présidente et la commandante découvrent qu'elles se ressemblent : deux femmes qui ne lâchent jamais rien, et qui, ce soir, choisissent de tout lâcher."
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in énonce ses conditions d'une voix de conseil d'administration, puis se tait, et les applique avec une docilité qu'elle a votée elle-même.",
+    "when": "flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "« Seigneur Kang », dit Hae-in, sans le moindre calcul dans la voix. Elle s'agenouille sur le tapis de soie, de son plein gré, et sourit.",
+    "when": "flag('pacte.hae_in') and flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone donne d'abord ses règles, sèches et précises, puis se met au repos devant toi, et attend tes ordres avec un plaisir qu'elle ne cache pas.",
+    "when": "flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone, la plus grande de la pièce, s'agenouille la première. Elle n'a jamais obéi aussi volontiers, et elle le dit à voix haute.",
+    "when": "flag('pacte.simone') and flag('simone_devotion')"
    },
    {
     "text_p3_slot": []
@@ -1027,17 +1532,67 @@
     "s": "aoi",
     "t": "Elle soigne tout le monde. Personne ne la soigne, elle. Ce soir, on s'occupe d'elle. D'accord, Seo-Yeon ?",
     "e": "true_smile",
-    "v": true
+    "v": true,
+    "when": "not flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "aoi",
+    "t": "Elle soigne tout le monde. Personne ne la soigne, elle. Ce soir, on s'occupe d'elle. D'accord, Seo-Yeon ?",
+    "e": "joy",
+    "v": true,
+    "when": "flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "aoi",
+    "t": "Elle soigne tout le monde. Personne ne la soigne, elle. Ce soir, on s'occupe d'elle. D'accord, Seo-Yeon ?",
+    "e": "desire",
+    "v": true,
+    "when": "flag('aoi_dominee') and flag('aoi_devotion')"
    },
    {
     "s": "seo_yeon",
     "t": "…D'accord. Mais doucement. Et vous me dites tout ce que vous faites. Je suis médecin, j'ai besoin de savoir.",
     "e": "embarrassed",
-    "v": true
+    "v": true,
+    "when": "not flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "…D'accord. Mais doucement. Et vous me dites tout ce que vous faites. Je suis médecin, j'ai besoin de savoir.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "…D'accord. Mais doucement. Et vous me dites tout ce que vous faites. Je suis médecin, j'ai besoin de savoir.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.seo_yeon') and flag('seo_devotion')"
    },
    {
     "s": "narrator",
     "t": "Elles s'occupent d'elle, puis Seo-Yeon s'occupe d'elles, parce qu'elle ne sait pas faire autrement. Les lunettes rondes sur la table de chevet, le sweat gris par terre, une chanson fredonnée contre une épaule, et des battements de cœur que plus personne ne compte."
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon garde une main près du collier, sans jamais le toucher : l'Ancre de Sang est là, et le savoir lui suffit pour s'abandonner au reste.",
+    "when": "flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon attend ton signe avant chaque geste, et le savoure ; elle murmure « Seigneur Kang » comme un secret qu'elle a choisi de garder.",
+    "when": "flag('pacte.seo_yeon') and flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi fredonne les premières mesures de sa première chanson, sans jamais aller jusqu'à la dernière note. Elle sourit : ce soir, c'est elle qui tient le micro.",
+    "when": "flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi chante tout bas pour toi, rien que pour toi, et attend ton signe à la fin de chaque couplet. Le sourire de scène n'existe plus.",
+    "when": "flag('aoi_dominee') and flag('aoi_devotion')"
    },
    {
     "text_p3_slot": []
@@ -1076,7 +1631,22 @@
     "s": "simone",
     "t": "Vote clos, trois voix pour. Le Rang F est réquisitionné jusqu'à l'aube.",
     "e": "neutral",
-    "v": true
+    "v": true,
+    "when": "not flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "simone",
+    "t": "Vote clos, trois voix pour. Le Rang F est réquisitionné jusqu'à l'aube.",
+    "e": "cigar",
+    "v": true,
+    "when": "flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "simone",
+    "t": "Vote clos, trois voix pour. Le Rang F est réquisitionné jusqu'à l'aube.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.simone') and flag('simone_devotion')"
    },
    {
     "s": "ryeon",
@@ -1087,6 +1657,26 @@
    {
     "s": "narrator",
     "t": "Sabre, fusil, baïonnette restent hors de portée, par prudence et par respect. Elles se déshabillent comme après une victoire, cicatrices exposées et comparées, et chacune dit à voix haute ce qu'elle veut des deux autres, et de toi."
+   },
+   {
+    "s": "narrator",
+    "t": "Simone garde ses plaques au cou, contre la peau : l'Ancre de Sang à portée de main. Elle obéit, discute, désobéit une fois en riant, puis obéit encore.",
+    "when": "flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone se met au garde-à-vous devant toi, un sourire au coin des lèvres. « À vos ordres. » Pour une fois, ce n'est pas une formule.",
+    "when": "flag('pacte.simone') and flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia garde l'écharpe rouge nouée lâchement à son poignet ; un geste suffirait. Elle ne le fait pas, et te regarde comme à travers une lunette.",
+    "when": "flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia s'allonge dos à la porte, sans même vérifier l'angle mort : elle te le confie entièrement, et attend ton signe.",
+    "when": "flag('nadia_pactisee') and flag('nadia_devotion')"
    },
    {
     "text_p3_slot": []
@@ -1126,17 +1716,67 @@
     "s": "hae_in",
     "t": "Chacune garde son Sceau, son veto et sa voix. Et nous partageons le reste.",
     "e": "neutral",
-    "v": true
+    "v": true,
+    "when": "not flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "hae_in",
+    "t": "Chacune garde son Sceau, son veto et sa voix. Et nous partageons le reste.",
+    "e": "embarrassed",
+    "v": true,
+    "when": "flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "hae_in",
+    "t": "Chacune garde son Sceau, son veto et sa voix. Et nous partageons le reste.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.hae_in') and flag('haein_devotion')"
    },
    {
     "s": "xiaoyu",
     "t": "Le reste, c'est lui. Ryeon, tu rougis. Tu peux encore te retirer, rien n'est signé.",
     "e": "fan",
-    "v": true
+    "v": true,
+    "when": "not flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Le reste, c'est lui. Ryeon, tu rougis. Tu peux encore te retirer, rien n'est signé.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Le reste, c'est lui. Ryeon, tu rougis. Tu peux encore te retirer, rien n'est signé.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
    },
    {
     "s": "narrator",
     "t": "Ryeon ne se retire pas. Elle le dit clairement, en relevant le menton comme devant un tribunal. Les trois reines défont leurs parures de soie et de jade, et la nuit se règle à l'unanimité."
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in pose la main à plat près du Sceau de la Balance, sans le toucher : elle a tout prévu, et c'est pour cela qu'elle peut tout lâcher.",
+    "when": "flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in attend tes instructions comme d'autres attendent un verdict, et les suit à la lettre : cette nuit, la présidente a délégué tous ses pouvoirs.",
+    "when": "flag('pacte.hae_in') and flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu fait tourner le jeton de jade entre ses doigts sans jamais le retourner. Elle mise tout ce soir, et elle le sait.",
+    "when": "flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu t'appelle « Seigneur » sans une once d'ironie, et s'incline la première ; pour une fois, elle n'a rien misé du tout.",
+    "when": "flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
    },
    {
     "text_p3_slot": []
@@ -1182,11 +1822,46 @@
     "s": "nadia",
     "t": "Ensuite moi. Aoi en dernier : c'est elle qui décide quand on s'arrête.",
     "e": "neutral",
-    "v": true
+    "v": true,
+    "when": "not flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "nadia",
+    "t": "Ensuite moi. Aoi en dernier : c'est elle qui décide quand on s'arrête.",
+    "e": "aim",
+    "v": true,
+    "when": "flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "nadia",
+    "t": "Ensuite moi. Aoi en dernier : c'est elle qui décide quand on s'arrête.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('nadia_pactisee') and flag('nadia_devotion')"
    },
    {
     "s": "narrator",
     "t": "Aoi décide. Elle prend son temps. Pour la première fois de leur vie, trois femmes qu'on a achetées, vendues, effacées sont exactement là où elles ont choisi d'être, et elles ne laissent personne en douter."
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi fredonne les premières mesures de sa première chanson, sans jamais aller jusqu'à la dernière note. Elle sourit : ce soir, c'est elle qui tient le micro.",
+    "when": "flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi chante tout bas pour toi, rien que pour toi, et attend ton signe à la fin de chaque couplet. Le sourire de scène n'existe plus.",
+    "when": "flag('aoi_dominee') and flag('aoi_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia garde l'écharpe rouge nouée lâchement à son poignet ; un geste suffirait. Elle ne le fait pas, et te regarde comme à travers une lunette.",
+    "when": "flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia s'allonge dos à la porte, sans même vérifier l'angle mort : elle te le confie entièrement, et attend ton signe.",
+    "when": "flag('nadia_pactisee') and flag('nadia_devotion')"
    },
    {
     "text_p3_slot": []
@@ -1226,7 +1901,22 @@
     "s": "xiaoyu",
     "t": "Contrebande et silence, Kang. Ce qui se passe sur ma barge reste sur ma barge.",
     "e": "fan",
-    "v": true
+    "v": true,
+    "when": "not flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Contrebande et silence, Kang. Ce qui se passe sur ma barge reste sur ma barge.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Contrebande et silence, Kang. Ce qui se passe sur ma barge reste sur ma barge.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
    },
    {
     "s": "maricel",
@@ -1237,6 +1927,26 @@
    {
     "s": "narrator",
     "t": "Le qipao, la chemise d'homme, le maillot de basket. Elles se volent, se cachent et se retrouvent, comme sur le fleuve, au rythme des lanternes qui tanguent. Nadia ne dit rien ; elle n'a pas besoin."
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu fait tourner le jeton de jade entre ses doigts sans jamais le retourner. Elle mise tout ce soir, et elle le sait.",
+    "when": "flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu t'appelle « Seigneur » sans une once d'ironie, et s'incline la première ; pour une fois, elle n'a rien misé du tout.",
+    "when": "flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia garde l'écharpe rouge nouée lâchement à son poignet ; un geste suffirait. Elle ne le fait pas, et te regarde comme à travers une lunette.",
+    "when": "flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia s'allonge dos à la porte, sans même vérifier l'angle mort : elle te le confie entièrement, et attend ton signe.",
+    "when": "flag('nadia_pactisee') and flag('nadia_devotion')"
    },
    {
     "text_p3_slot": []
@@ -1278,11 +1988,36 @@
     "s": "seo_yeon",
     "t": "Trois fois. Je suis médecin.",
     "e": "laugh",
-    "v": true
+    "v": true,
+    "when": "not flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Trois fois. Je suis médecin.",
+    "e": "embarrassed",
+    "v": true,
+    "when": "flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Trois fois. Je suis médecin.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.seo_yeon') and flag('seo_devotion')"
    },
    {
     "s": "narrator",
     "t": "Haneul rit de leurs protocoles et les défait un à un. Les blouses s'empilent, les LEDs rougissent, les glyphes dorent la pénombre, et la science, pour une nuit, se contente d'observer."
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon garde une main près du collier, sans jamais le toucher : l'Ancre de Sang est là, et le savoir lui suffit pour s'abandonner au reste.",
+    "when": "flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon attend ton signe avant chaque geste, et le savoure ; elle murmure « Seigneur Kang » comme un secret qu'elle a choisi de garder.",
+    "when": "flag('pacte.seo_yeon') and flag('seo_devotion')"
    },
    {
     "text_p3_slot": []
@@ -1322,17 +2057,67 @@
     "s": "xiaoyu",
     "t": "Le capital, la technologie et le crime organisé, Kang. On n'a jamais été aussi bien assorties.",
     "e": "fan",
-    "v": true
+    "v": true,
+    "when": "not flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Le capital, la technologie et le crime organisé, Kang. On n'a jamais été aussi bien assorties.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Le capital, la technologie et le crime organisé, Kang. On n'a jamais été aussi bien assorties.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
    },
    {
     "s": "hae_in",
     "t": "Chaque clause se discute. Chaque clause se refuse. C'est notre seule règle, Monsieur Kang.",
     "e": "neutral",
-    "v": true
+    "v": true,
+    "when": "not flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "hae_in",
+    "t": "Chaque clause se discute. Chaque clause se refuse. C'est notre seule règle, Monsieur Kang.",
+    "e": "embarrassed",
+    "v": true,
+    "when": "flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "hae_in",
+    "t": "Chaque clause se discute. Chaque clause se refuse. C'est notre seule règle, Monsieur Kang.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.hae_in') and flag('haein_devotion')"
    },
    {
     "s": "narrator",
     "t": "Elles négocient chaque geste comme un contrat, et elles en signent beaucoup. Minh-Anh prend des notes jusqu'à la troisième clause, puis abandonne sa tablette, comme toujours."
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in énonce ses conditions d'une voix de conseil d'administration, puis se tait, et les applique avec une docilité qu'elle a votée elle-même.",
+    "when": "flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "« Seigneur Kang », dit Hae-in, sans le moindre calcul dans la voix. Elle s'agenouille sur le tapis de soie, de son plein gré, et sourit.",
+    "when": "flag('pacte.hae_in') and flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu fixe les enjeux à voix haute, puis cède exactement quand elle l'avait annoncé, avec le sourire d'une joueuse qui tient la table.",
+    "when": "flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu ne négocie plus. Elle attend tes ordres, l'éventail fermé sur les genoux, avec une impatience qu'elle ne cache pas.",
+    "when": "flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
    },
    {
     "text_p3_slot": []
@@ -1368,7 +2153,22 @@
     "s": "aoi",
     "t": "On a parlé de fins du monde toute la journée. Ce soir, je veux qu'on parle d'autre chose. Juste nous.",
     "e": "true_smile",
-    "v": true
+    "v": true,
+    "when": "not flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "aoi",
+    "t": "On a parlé de fins du monde toute la journée. Ce soir, je veux qu'on parle d'autre chose. Juste nous.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "aoi",
+    "t": "On a parlé de fins du monde toute la journée. Ce soir, je veux qu'on parle d'autre chose. Juste nous.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('aoi_dominee') and flag('aoi_devotion')"
    },
    {
     "s": "haneul",
@@ -1379,6 +2179,16 @@
    {
     "s": "narrator",
     "t": "Ryeon garde son ruban rouge au poignet. Aoi chante à voix basse. Haneul s'allume de partout. Chacune dit oui, à son tour, et la nuit se referme sur eux quatre comme un sceau."
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi fredonne les premières mesures de sa première chanson, sans jamais aller jusqu'à la dernière note. Elle sourit : ce soir, c'est elle qui tient le micro.",
+    "when": "flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi chante tout bas pour toi, rien que pour toi, et attend ton signe à la fin de chaque couplet. Le sourire de scène n'existe plus.",
+    "when": "flag('aoi_dominee') and flag('aoi_devotion')"
    },
    {
     "text_p3_slot": []
@@ -1418,17 +2228,67 @@
     "s": "seo_yeon",
     "t": "Trois jours sans dormir. Je prescris une nuit. Avec toi. Avec elles. C'est un ordre médical.",
     "e": "desire",
-    "v": true
+    "v": true,
+    "when": "not flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Trois jours sans dormir. Je prescris une nuit. Avec toi. Avec elles. C'est un ordre médical.",
+    "e": "embarrassed",
+    "v": true,
+    "when": "flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Trois jours sans dormir. Je prescris une nuit. Avec toi. Avec elles. C'est un ordre médical.",
+    "e": "tears",
+    "v": true,
+    "when": "flag('pacte.seo_yeon') and flag('seo_devotion')"
    },
    {
     "s": "simone",
     "t": "Ordre confirmé. Et personne ne monte la garde ce soir. Ni toi, ni nous.",
     "e": "neutral",
-    "v": true
+    "v": true,
+    "when": "not flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "simone",
+    "t": "Ordre confirmé. Et personne ne monte la garde ce soir. Ni toi, ni nous.",
+    "e": "cigar",
+    "v": true,
+    "when": "flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "simone",
+    "t": "Ordre confirmé. Et personne ne monte la garde ce soir. Ni toi, ni nous.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.simone') and flag('simone_devotion')"
    },
    {
     "s": "narrator",
     "t": "Le treillis, le hanbok, la blouse. Elles se laissent enfin porter, une à une, puis toutes ensemble, et c'est toi qui veilles sur elles, pour une fois, jusqu'à ce qu'elles oublient de veiller sur qui que ce soit."
+   },
+   {
+    "s": "narrator",
+    "t": "Simone donne d'abord ses règles, sèches et précises, puis se met au repos devant toi, et attend tes ordres avec un plaisir qu'elle ne cache pas.",
+    "when": "flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone, la plus grande de la pièce, s'agenouille la première. Elle n'a jamais obéi aussi volontiers, et elle le dit à voix haute.",
+    "when": "flag('pacte.simone') and flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Avant de s'approcher, Seo-Yeon effleure le collier du bout des doigts, comme on vérifie un pouls. Puis elle oublie qu'elle l'a fait.",
+    "when": "flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Le collier luit d'or pâle sur la gorge de Seo-Yeon. Elle s'agenouille la première, de son plein gré, et lève vers toi un regard qui ne doute plus.",
+    "when": "flag('pacte.seo_yeon') and flag('seo_devotion')"
    },
    {
     "text_p3_slot": []
@@ -1468,7 +2328,22 @@
     "s": "hae_in",
     "t": "Nous mentons à toute la ville pour la sauver. Pas entre nous. Disons-la, maintenant. Chacune la sienne.",
     "e": "neutral",
-    "v": true
+    "v": true,
+    "when": "not flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "hae_in",
+    "t": "Nous mentons à toute la ville pour la sauver. Pas entre nous. Disons-la, maintenant. Chacune la sienne.",
+    "e": "embarrassed",
+    "v": true,
+    "when": "flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "hae_in",
+    "t": "Nous mentons à toute la ville pour la sauver. Pas entre nous. Disons-la, maintenant. Chacune la sienne.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.hae_in') and flag('haein_devotion')"
    },
    {
     "s": "haneul",
@@ -1479,6 +2354,26 @@
    {
     "s": "narrator",
     "t": "Elles se disent tout : les peurs, les envies, les limites. Puis elles cessent de parler. Les lunettes, le chignon, le bomber trop grand. La vérité, cette nuit-là, se dit sans mots, et personne ne ment."
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon garde une main près du collier, sans jamais le toucher : l'Ancre de Sang est là, et le savoir lui suffit pour s'abandonner au reste.",
+    "when": "flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon attend ton signe avant chaque geste, et le savoure ; elle murmure « Seigneur Kang » comme un secret qu'elle a choisi de garder.",
+    "when": "flag('pacte.seo_yeon') and flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in pose la main à plat près du Sceau de la Balance, sans le toucher : elle a tout prévu, et c'est pour cela qu'elle peut tout lâcher.",
+    "when": "flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in attend tes instructions comme d'autres attendent un verdict, et les suit à la lettre : cette nuit, la présidente a délégué tous ses pouvoirs.",
+    "when": "flag('pacte.hae_in') and flag('haein_devotion')"
    },
    {
     "text_p3_slot": []
@@ -1531,6 +2426,26 @@
     "t": "Chacune demande. Chacune est entendue. Le dortoir est trop petit, les rires trop forts, et la nuit trop courte pour quatre aubes ; elles s'en moquent."
    },
    {
+    "s": "narrator",
+    "t": "Aoi a gardé le feutre rose dans sa poche. Elle obéit en improvisant, et ne proteste que pour jouer.",
+    "when": "flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi ne demande plus quoi faire : elle le devine, et rougit de bonheur quand elle a vu juste.",
+    "when": "flag('aoi_dominee') and flag('aoi_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon fixe elle-même le rythme, et rougit de s'entendre le dire à voix haute : la clause qu'elle a écrite la rend plus audacieuse, pas plus prudente.",
+    "when": "flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon ne demande plus rien : elle offre. Ses yeux ne quittent les tiens que pour se fermer, lentement, quand tu le décides.",
+    "when": "flag('pacte.seo_yeon') and flag('seo_devotion')"
+   },
+   {
     "text_p3_slot": []
    },
    {
@@ -1573,17 +2488,77 @@
     "s": "simone",
     "t": "Personne ici n'est né à Séoul. Ce soir, on décide que c'est chez nous.",
     "e": "neutral",
-    "v": true
+    "v": true,
+    "when": "not flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "simone",
+    "t": "Personne ici n'est né à Séoul. Ce soir, on décide que c'est chez nous.",
+    "e": "cigar",
+    "v": true,
+    "when": "flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "simone",
+    "t": "Personne ici n'est né à Séoul. Ce soir, on décide que c'est chez nous.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.simone') and flag('simone_devotion')"
    },
    {
     "s": "aoi",
     "t": "Chez nous. J'aime bien quand tu le dis comme ça.",
     "e": "true_smile",
-    "v": true
+    "v": true,
+    "when": "not flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "aoi",
+    "t": "Chez nous. J'aime bien quand tu le dis comme ça.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "aoi",
+    "t": "Chez nous. J'aime bien quand tu le dis comme ça.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('aoi_dominee') and flag('aoi_devotion')"
    },
    {
     "s": "narrator",
     "t": "Elles parlent chacune leur langue, puis plus aucune. Quatre femmes qui ont tout quitté choisissent, ce soir, de ne plus rien quitter du tout."
+   },
+   {
+    "s": "narrator",
+    "t": "Simone garde ses plaques au cou, contre la peau : l'Ancre de Sang à portée de main. Elle obéit, discute, désobéit une fois en riant, puis obéit encore.",
+    "when": "flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone se met au garde-à-vous devant toi, un sourire au coin des lèvres. « À vos ordres. » Pour une fois, ce n'est pas une formule.",
+    "when": "flag('pacte.simone') and flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia garde l'écharpe rouge nouée lâchement à son poignet ; un geste suffirait. Elle ne le fait pas, et te regarde comme à travers une lunette.",
+    "when": "flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia s'allonge dos à la porte, sans même vérifier l'angle mort : elle te le confie entièrement, et attend ton signe.",
+    "when": "flag('nadia_pactisee') and flag('nadia_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi fredonne les premières mesures de sa première chanson, sans jamais aller jusqu'à la dernière note. Elle sourit : ce soir, c'est elle qui tient le micro.",
+    "when": "flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi chante tout bas pour toi, rien que pour toi, et attend ton signe à la fin de chaque couplet. Le sourire de scène n'existe plus.",
+    "when": "flag('aoi_dominee') and flag('aoi_devotion')"
    },
    {
     "text_p3_slot": []
@@ -1622,6 +2597,66 @@
     "t": "Elles posent une seule règle, à voix haute : chacune choisit, chacune peut tout suspendre d'un geste, et personne n'est laissée au bord du lit. La règle tient toute la nuit."
    },
    {
+    "s": "narrator",
+    "t": "Seo-Yeon garde une main près du collier, sans jamais le toucher : l'Ancre de Sang est là, et le savoir lui suffit pour s'abandonner au reste.",
+    "when": "party('seo_yeon') and flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon attend ton signe avant chaque geste, et le savoure ; elle murmure « Seigneur Kang » comme un secret qu'elle a choisi de garder.",
+    "when": "party('seo_yeon') and flag('pacte.seo_yeon') and flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu fait tourner le jeton de jade entre ses doigts sans jamais le retourner. Elle mise tout ce soir, et elle le sait.",
+    "when": "party('xiaoyu') and flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu t'appelle « Seigneur » sans une once d'ironie, et s'incline la première ; pour une fois, elle n'a rien misé du tout.",
+    "when": "party('xiaoyu') and flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in pose la main à plat près du Sceau de la Balance, sans le toucher : elle a tout prévu, et c'est pour cela qu'elle peut tout lâcher.",
+    "when": "party('hae_in') and flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in attend tes instructions comme d'autres attendent un verdict, et les suit à la lettre : cette nuit, la présidente a délégué tous ses pouvoirs.",
+    "when": "party('hae_in') and flag('pacte.hae_in') and flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone garde ses plaques au cou, contre la peau : l'Ancre de Sang à portée de main. Elle obéit, discute, désobéit une fois en riant, puis obéit encore.",
+    "when": "party('simone') and flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone se met au garde-à-vous devant toi, un sourire au coin des lèvres. « À vos ordres. » Pour une fois, ce n'est pas une formule.",
+    "when": "party('simone') and flag('pacte.simone') and flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia garde l'écharpe rouge nouée lâchement à son poignet ; un geste suffirait. Elle ne le fait pas, et te regarde comme à travers une lunette.",
+    "when": "party('nadia') and flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia s'allonge dos à la porte, sans même vérifier l'angle mort : elle te le confie entièrement, et attend ton signe.",
+    "when": "party('nadia') and flag('nadia_pactisee') and flag('nadia_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi fredonne les premières mesures de sa première chanson, sans jamais aller jusqu'à la dernière note. Elle sourit : ce soir, c'est elle qui tient le micro.",
+    "when": "party('aoi') and flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi chante tout bas pour toi, rien que pour toi, et attend ton signe à la fin de chaque couplet. Le sourire de scène n'existe plus.",
+    "when": "party('aoi') and flag('aoi_dominee') and flag('aoi_devotion')"
+   },
+   {
     "text_p3_slot": []
    },
    {
@@ -1658,6 +2693,66 @@
     "t": "La nuit se fait par vagues, au gré de chacune ; quelqu'un chante, quelqu'un rit, quelqu'un s'endort la première et se réveille la dernière. Personne ne compte. Personne n'est oubliée."
    },
    {
+    "s": "narrator",
+    "t": "Avant de s'approcher, Seo-Yeon effleure le collier du bout des doigts, comme on vérifie un pouls. Puis elle oublie qu'elle l'a fait.",
+    "when": "party('seo_yeon') and flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Le collier luit d'or pâle sur la gorge de Seo-Yeon. Elle s'agenouille la première, de son plein gré, et lève vers toi un regard qui ne doute plus.",
+    "when": "party('seo_yeon') and flag('pacte.seo_yeon') and flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu fixe les enjeux à voix haute, puis cède exactement quand elle l'avait annoncé, avec le sourire d'une joueuse qui tient la table.",
+    "when": "party('xiaoyu') and flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu ne négocie plus. Elle attend tes ordres, l'éventail fermé sur les genoux, avec une impatience qu'elle ne cache pas.",
+    "when": "party('xiaoyu') and flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in énonce ses conditions d'une voix de conseil d'administration, puis se tait, et les applique avec une docilité qu'elle a votée elle-même.",
+    "when": "party('hae_in') and flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "« Seigneur Kang », dit Hae-in, sans le moindre calcul dans la voix. Elle s'agenouille sur le tapis de soie, de son plein gré, et sourit.",
+    "when": "party('hae_in') and flag('pacte.hae_in') and flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone donne d'abord ses règles, sèches et précises, puis se met au repos devant toi, et attend tes ordres avec un plaisir qu'elle ne cache pas.",
+    "when": "party('simone') and flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone, la plus grande de la pièce, s'agenouille la première. Elle n'a jamais obéi aussi volontiers, et elle le dit à voix haute.",
+    "when": "party('simone') and flag('pacte.simone') and flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia a vérifié la porte, puis l'écharpe, puis toi. Elle ne parle presque pas : elle hoche la tête, et cela suffit.",
+    "when": "party('nadia') and flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia te tend l'écharpe rouge de sa grand-mère, sans condition, sans un mot. Elle a choisi, et ses yeux le disent.",
+    "when": "party('nadia') and flag('nadia_pactisee') and flag('nadia_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi dit ce qu'elle veut en riant, et ce qu'elle ne veut pas sans rire ; puis elle se laisse guider, ravie d'avoir eu le choix.",
+    "when": "party('aoi') and flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi s'agenouille, le menton levé, et te regarde comme on regarde le seul spectateur qui compte.",
+    "when": "party('aoi') and flag('aoi_dominee') and flag('aoi_devotion')"
+   },
+   {
     "text_p3_slot": []
    },
    {
@@ -1688,7 +2783,22 @@
     "s": "seo_yeon",
     "t": "La dernière fois, j'ai appris à Haneul le nom des os. Ce soir, elle veut savoir à quoi ils servent. Je n'ai… pas de réponse médicale à ça.",
     "e": "embarrassed",
-    "v": true
+    "v": true,
+    "when": "not flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "La dernière fois, j'ai appris à Haneul le nom des os. Ce soir, elle veut savoir à quoi ils servent. Je n'ai… pas de réponse médicale à ça.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "La dernière fois, j'ai appris à Haneul le nom des os. Ce soir, elle veut savoir à quoi ils servent. Je n'ai… pas de réponse médicale à ça.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.seo_yeon') and flag('seo_devotion')"
    },
    {
     "s": "haneul",
@@ -1699,6 +2809,16 @@
    {
     "s": "narrator",
     "t": "Seo-Yeon referme le cahier. Elle demande à Haneul si elle est sûre ; Haneul répond oui, puis te le demande à toi. Le docteur éteint la lampe la dernière."
+   },
+   {
+    "s": "narrator",
+    "t": "Avant de s'approcher, Seo-Yeon effleure le collier du bout des doigts, comme on vérifie un pouls. Puis elle oublie qu'elle l'a fait.",
+    "when": "flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Le collier luit d'or pâle sur la gorge de Seo-Yeon. Elle s'agenouille la première, de son plein gré, et lève vers toi un regard qui ne doute plus.",
+    "when": "flag('pacte.seo_yeon') and flag('seo_devotion')"
    },
    {
     "text_p3_slot": []
@@ -1739,11 +2859,36 @@
     "s": "seo_yeon",
     "t": "Vous êtes impossible. Kang-ssi, fermez la porte. Elle ne repartira pas avant d'avoir tout rendu.",
     "e": "embarrassed",
-    "v": true
+    "v": true,
+    "when": "not flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Vous êtes impossible. Kang-ssi, fermez la porte. Elle ne repartira pas avant d'avoir tout rendu.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Vous êtes impossible. Kang-ssi, fermez la porte. Elle ne repartira pas avant d'avoir tout rendu.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.seo_yeon') and flag('seo_devotion')"
    },
    {
     "s": "narrator",
     "t": "Les intérêts se négocient longtemps, à voix basse, et chacune fixe ses conditions avant de rire. Les boîtes de gaze finissent rangées. Pas tout de suite."
+   },
+   {
+    "s": "narrator",
+    "t": "Avant de s'approcher, Seo-Yeon effleure le collier du bout des doigts, comme on vérifie un pouls. Puis elle oublie qu'elle l'a fait.",
+    "when": "flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Le collier luit d'or pâle sur la gorge de Seo-Yeon. Elle s'agenouille la première, de son plein gré, et lève vers toi un regard qui ne doute plus.",
+    "when": "flag('pacte.seo_yeon') and flag('seo_devotion')"
    },
    {
     "text_p3_slot": []
@@ -1784,11 +2929,36 @@
     "s": "seo_yeon",
     "t": "Trois entailles cette semaine, Ryeon. Je commence à croire que vous le faites exprès. …Restez. Tous les deux.",
     "e": "lie",
-    "v": true
+    "v": true,
+    "when": "not flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Trois entailles cette semaine, Ryeon. Je commence à croire que vous le faites exprès. …Restez. Tous les deux.",
+    "e": "embarrassed",
+    "v": true,
+    "when": "flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Trois entailles cette semaine, Ryeon. Je commence à croire que vous le faites exprès. …Restez. Tous les deux.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.seo_yeon') and flag('seo_devotion')"
    },
    {
     "s": "narrator",
     "t": "Ryeon défait son ruban elle-même. Seo-Yeon enlève ses lunettes et les pose sur la trousse. Elles se demandent, chacune à son tour, si l'autre veut bien. Elles veulent bien."
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon fixe elle-même le rythme, et rougit de s'entendre le dire à voix haute : la clause qu'elle a écrite la rend plus audacieuse, pas plus prudente.",
+    "when": "flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon ne demande plus rien : elle offre. Ses yeux ne quittent les tiens que pour se fermer, lentement, quand tu le décides.",
+    "when": "flag('pacte.seo_yeon') and flag('seo_devotion')"
    },
    {
     "text_p3_slot": []
@@ -1827,17 +2997,67 @@
     "s": "xiaoyu",
     "t": "Docteur, je n'ai rien. C'est bien le problème. Prescrivez-moi quelque chose. Kang paiera la consultation.",
     "e": "fan",
-    "v": true
+    "v": true,
+    "when": "not flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Docteur, je n'ai rien. C'est bien le problème. Prescrivez-moi quelque chose. Kang paiera la consultation.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Docteur, je n'ai rien. C'est bien le problème. Prescrivez-moi quelque chose. Kang paiera la consultation.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
    },
    {
     "s": "seo_yeon",
     "t": "Repos. Et lui. C'est tout ce que j'ai en stock, Madame Long. Posologie : jusqu'à l'aube.",
     "e": "lie",
-    "v": true
+    "v": true,
+    "when": "not flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Repos. Et lui. C'est tout ce que j'ai en stock, Madame Long. Posologie : jusqu'à l'aube.",
+    "e": "embarrassed",
+    "v": true,
+    "when": "flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Repos. Et lui. C'est tout ce que j'ai en stock, Madame Long. Posologie : jusqu'à l'aube.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.seo_yeon') and flag('seo_devotion')"
    },
    {
     "s": "narrator",
     "t": "Les draps de soie finissent sur le lit de camp de l'infirmerie, ridicules et parfaits. Le thé refroidit. Personne ne le remarque."
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon fixe elle-même le rythme, et rougit de s'entendre le dire à voix haute : la clause qu'elle a écrite la rend plus audacieuse, pas plus prudente.",
+    "when": "flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon ne demande plus rien : elle offre. Ses yeux ne quittent les tiens que pour se fermer, lentement, quand tu le décides.",
+    "when": "flag('pacte.seo_yeon') and flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Le Sceau de Longwei brille à son poignet. Xiaoyu s'en sert comme d'un éventail : pour cacher qu'elle rougit.",
+    "when": "flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Le jeton de jade gravé de ton nom pend au cou de Xiaoyu. Elle le porte comme une parure, et te laisse mener la partie jusqu'au bout.",
+    "when": "flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
    },
    {
     "text_p3_slot": []
@@ -1876,17 +3096,67 @@
     "s": "hae_in",
     "t": "J'ai demandé que vous assistiez à mon bilan, Monsieur Kang. Je ne délègue jamais ce qui me concerne.",
     "e": "neutral",
-    "v": true
+    "v": true,
+    "when": "not flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "hae_in",
+    "t": "J'ai demandé que vous assistiez à mon bilan, Monsieur Kang. Je ne délègue jamais ce qui me concerne.",
+    "e": "embarrassed",
+    "v": true,
+    "when": "flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "hae_in",
+    "t": "J'ai demandé que vous assistiez à mon bilan, Monsieur Kang. Je ne délègue jamais ce qui me concerne.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.hae_in') and flag('haein_devotion')"
    },
    {
     "s": "seo_yeon",
     "t": "Pour la science. Uniquement pour la science. …Enlevez votre veste de tailleur, Présidente.",
     "e": "embarrassed",
-    "v": true
+    "v": true,
+    "when": "not flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Pour la science. Uniquement pour la science. …Enlevez votre veste de tailleur, Présidente.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Pour la science. Uniquement pour la science. …Enlevez votre veste de tailleur, Présidente.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.seo_yeon') and flag('seo_devotion')"
    },
    {
     "s": "narrator",
     "t": "Le stéthoscope passe de l'une à l'autre, puis à toi. Le bilan n'a plus grand-chose de médical quand Hae-in, d'une voix parfaitement calme, demande la suite. Seo-Yeon dit oui."
+   },
+   {
+    "s": "narrator",
+    "t": "Avant de s'approcher, Seo-Yeon effleure le collier du bout des doigts, comme on vérifie un pouls. Puis elle oublie qu'elle l'a fait.",
+    "when": "flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Le collier luit d'or pâle sur la gorge de Seo-Yeon. Elle s'agenouille la première, de son plein gré, et lève vers toi un regard qui ne doute plus.",
+    "when": "flag('pacte.seo_yeon') and flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in énonce ses conditions d'une voix de conseil d'administration, puis se tait, et les applique avec une docilité qu'elle a votée elle-même.",
+    "when": "flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "« Seigneur Kang », dit Hae-in, sans le moindre calcul dans la voix. Elle s'agenouille sur le tapis de soie, de son plein gré, et sourit.",
+    "when": "flag('pacte.hae_in') and flag('haein_devotion')"
    },
    {
     "text_p3_slot": []
@@ -1925,17 +3195,67 @@
     "s": "nadia",
     "t": "Elle trouve triste que je ne sente rien. Moi, je trouve jolies ses mains. Restez. Tous les deux.",
     "e": "neutral",
-    "v": true
+    "v": true,
+    "when": "not flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "nadia",
+    "t": "Elle trouve triste que je ne sente rien. Moi, je trouve jolies ses mains. Restez. Tous les deux.",
+    "e": "aim",
+    "v": true,
+    "when": "flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "nadia",
+    "t": "Elle trouve triste que je ne sente rien. Moi, je trouve jolies ses mains. Restez. Tous les deux.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('nadia_pactisee') and flag('nadia_devotion')"
    },
    {
     "s": "seo_yeon",
     "t": "Ne bougez pas. Et vous, Kang-ssi, tenez-lui la main. Non, pas comme ça. Comme ça.",
     "e": "neutral",
-    "v": true
+    "v": true,
+    "when": "not flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Ne bougez pas. Et vous, Kang-ssi, tenez-lui la main. Non, pas comme ça. Comme ça.",
+    "e": "embarrassed",
+    "v": true,
+    "when": "flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Ne bougez pas. Et vous, Kang-ssi, tenez-lui la main. Non, pas comme ça. Comme ça.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.seo_yeon') and flag('seo_devotion')"
    },
    {
     "s": "narrator",
     "t": "Le dernier point posé, Seo-Yeon ne lâche pas l'épaule. Nadia ne lâche pas ta main. Elles se regardent longtemps, puis l'une demande et l'autre répond oui. Toi aussi."
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon garde une main près du collier, sans jamais le toucher : l'Ancre de Sang est là, et le savoir lui suffit pour s'abandonner au reste.",
+    "when": "flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon attend ton signe avant chaque geste, et le savoure ; elle murmure « Seigneur Kang » comme un secret qu'elle a choisi de garder.",
+    "when": "flag('pacte.seo_yeon') and flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia garde l'écharpe rouge nouée lâchement à son poignet ; un geste suffirait. Elle ne le fait pas, et te regarde comme à travers une lunette.",
+    "when": "flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia s'allonge dos à la porte, sans même vérifier l'angle mort : elle te le confie entièrement, et attend ton signe.",
+    "when": "flag('nadia_pactisee') and flag('nadia_devotion')"
    },
    {
     "text_p3_slot": []
@@ -1974,17 +3294,67 @@
     "s": "simone",
     "t": "Déshabillez-vous, Rang F. C'est le règlement. Le docteur aussi, elle n'a pas passé sa visite depuis le premier jour.",
     "e": "cigar",
-    "v": true
+    "v": true,
+    "when": "not flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "simone",
+    "t": "Déshabillez-vous, Rang F. C'est le règlement. Le docteur aussi, elle n'a pas passé sa visite depuis le premier jour.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "simone",
+    "t": "Déshabillez-vous, Rang F. C'est le règlement. Le docteur aussi, elle n'a pas passé sa visite depuis le premier jour.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.simone') and flag('simone_devotion')"
    },
    {
     "s": "seo_yeon",
     "t": "Dans mon infirmerie, c'est moi qui donne les ordres, Commandante. …Mais je retiens l'idée.",
     "e": "lie",
-    "v": true
+    "v": true,
+    "when": "not flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Dans mon infirmerie, c'est moi qui donne les ordres, Commandante. …Mais je retiens l'idée.",
+    "e": "embarrassed",
+    "v": true,
+    "when": "flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "seo_yeon",
+    "t": "Dans mon infirmerie, c'est moi qui donne les ordres, Commandante. …Mais je retiens l'idée.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.seo_yeon') and flag('seo_devotion')"
    },
    {
     "s": "narrator",
     "t": "Elles se disputent le commandement pendant trois minutes, puis le partagent. Chacune dit à voix haute ce qu'elle veut. La liste réglementaire finit sous le lit."
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon fixe elle-même le rythme, et rougit de s'entendre le dire à voix haute : la clause qu'elle a écrite la rend plus audacieuse, pas plus prudente.",
+    "when": "flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon ne demande plus rien : elle offre. Ses yeux ne quittent les tiens que pour se fermer, lentement, quand tu le décides.",
+    "when": "flag('pacte.seo_yeon') and flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone exécute chaque ordre comme sur un terrain d'entraînement, et ses yeux disent qu'elle pourrait tout arrêter d'un geste. Elle ne le fait pas.",
+    "when": "flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone attend tes ordres sans un mot, les mains derrière le dos, et chaque ordre exécuté la fait sourire un peu plus.",
+    "when": "flag('pacte.simone') and flag('simone_devotion')"
    },
    {
     "text_p3_slot": []
@@ -2101,7 +3471,22 @@
     "s": "xiaoyu",
     "t": "Si je gagne, elle me dit ma Fin. Si elle gagne… je ne parle plus de contrats jusqu'à l'aube. Kang distribue.",
     "e": "fan",
-    "v": true
+    "v": true,
+    "when": "not flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Si je gagne, elle me dit ma Fin. Si elle gagne… je ne parle plus de contrats jusqu'à l'aube. Kang distribue.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Si je gagne, elle me dit ma Fin. Si elle gagne… je ne parle plus de contrats jusqu'à l'aube. Kang distribue.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
    },
    {
     "s": "haneul",
@@ -2112,6 +3497,16 @@
    {
     "s": "narrator",
     "t": "Xiaoyu referme son éventail. Pour une fois, elle ne négocie rien : elle dit oui, simplement, et c'est elle qui rougit la première."
+   },
+   {
+    "s": "narrator",
+    "t": "Le Sceau de Longwei brille à son poignet. Xiaoyu s'en sert comme d'un éventail : pour cacher qu'elle rougit.",
+    "when": "flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Le jeton de jade gravé de ton nom pend au cou de Xiaoyu. Elle le porte comme une parure, et te laisse mener la partie jusqu'au bout.",
+    "when": "flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
    },
    {
     "text_p3_slot": []
@@ -2146,7 +3541,22 @@
     "s": "hae_in",
     "t": "Je fais auditer tout ce que je ne comprends pas, Monsieur Kang. Elle est la première chose que je ne comprends pas. L'audit sera… approfondi.",
     "e": "neutral",
-    "v": true
+    "v": true,
+    "when": "not flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "hae_in",
+    "t": "Je fais auditer tout ce que je ne comprends pas, Monsieur Kang. Elle est la première chose que je ne comprends pas. L'audit sera… approfondi.",
+    "e": "embarrassed",
+    "v": true,
+    "when": "flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "hae_in",
+    "t": "Je fais auditer tout ce que je ne comprends pas, Monsieur Kang. Elle est la première chose que je ne comprends pas. L'audit sera… approfondi.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.hae_in') and flag('haein_devotion')"
    },
    {
     "s": "haneul",
@@ -2157,6 +3567,16 @@
    {
     "s": "narrator",
     "t": "Le stylo à plume tombe sur le tapis au bout de dix minutes. Hae-in ne le ramasse pas. Elle pose ses conditions à voix haute ; Haneul les accepte toutes, et ajoute les siennes."
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in garde l'ordre du jour jusqu'à la dernière minute, puis te le tend, avec un soulagement qu'elle n'avouera jamais.",
+    "when": "flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in ne lit plus aucune clause. Elle ferme les yeux et laisse quelqu'un d'autre décider, pour la première fois de sa vie, parce qu'elle l'a choisi.",
+    "when": "flag('pacte.hae_in') and flag('haein_devotion')"
    },
    {
     "text_p3_slot": []
@@ -2191,7 +3611,22 @@
     "s": "nadia",
     "t": "Je l'ai vue dans ma lunette, une fois. Dans une autre vie. Elle m'a souri à huit cents mètres. Ça ne s'oublie pas.",
     "e": "aim",
-    "v": true
+    "v": true,
+    "when": "not flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "nadia",
+    "t": "Je l'ai vue dans ma lunette, une fois. Dans une autre vie. Elle m'a souri à huit cents mètres. Ça ne s'oublie pas.",
+    "e": "embarrassed",
+    "v": true,
+    "when": "flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "nadia",
+    "t": "Je l'ai vue dans ma lunette, une fois. Dans une autre vie. Elle m'a souri à huit cents mètres. Ça ne s'oublie pas.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('nadia_pactisee') and flag('nadia_devotion')"
    },
    {
     "s": "haneul",
@@ -2202,6 +3637,16 @@
    {
     "s": "narrator",
     "t": "Nadia démonte la lunette et la range. Elle n'a plus besoin de regarder de loin. Elles disent oui toutes les deux, Haneul la première, Nadia d'un signe de tête, puis à voix haute parce que tu le demandes."
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia a vérifié la porte, puis l'écharpe, puis toi. Elle ne parle presque pas : elle hoche la tête, et cela suffit.",
+    "when": "flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia te tend l'écharpe rouge de sa grand-mère, sans condition, sans un mot. Elle a choisi, et ses yeux le disent.",
+    "when": "flag('nadia_pactisee') and flag('nadia_devotion')"
    },
    {
     "text_p3_slot": []
@@ -2236,7 +3681,22 @@
     "s": "simone",
     "t": "Briefing, soldat. L'Héritière ne connaît pas nos règles. Je vais les lui apprendre. Toi, tu sers d'exemple pratique.",
     "e": "cigar",
-    "v": true
+    "v": true,
+    "when": "not flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "simone",
+    "t": "Briefing, soldat. L'Héritière ne connaît pas nos règles. Je vais les lui apprendre. Toi, tu sers d'exemple pratique.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "simone",
+    "t": "Briefing, soldat. L'Héritière ne connaît pas nos règles. Je vais les lui apprendre. Toi, tu sers d'exemple pratique.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.simone') and flag('simone_devotion')"
    },
    {
     "s": "haneul",
@@ -2247,6 +3707,16 @@
    {
     "s": "narrator",
     "t": "La première règle de Simone : tout le monde dit oui à voix haute. Haneul la répète, puis l'applique. La carte de Séoul glisse de la table."
+   },
+   {
+    "s": "narrator",
+    "t": "Simone exécute chaque ordre comme sur un terrain d'entraînement, et ses yeux disent qu'elle pourrait tout arrêter d'un geste. Elle ne le fait pas.",
+    "when": "flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone attend tes ordres sans un mot, les mains derrière le dos, et chaque ordre exécuté la fait sourire un peu plus.",
+    "when": "flag('pacte.simone') and flag('simone_devotion')"
    },
    {
     "text_p3_slot": []
@@ -2287,11 +3757,36 @@
     "s": "aoi",
     "t": "Moi, j'en ai une. Mais elle se chante à trois. Et sans micro.",
     "e": "true_smile",
-    "v": true
+    "v": true,
+    "when": "not flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "aoi",
+    "t": "Moi, j'en ai une. Mais elle se chante à trois. Et sans micro.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "aoi",
+    "t": "Moi, j'en ai une. Mais elle se chante à trois. Et sans micro.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('aoi_dominee') and flag('aoi_devotion')"
    },
    {
     "s": "narrator",
     "t": "Elles décident ensemble, à voix haute, entre deux fous rires. Aoi fredonne le premier couplet contre ton cou, Maricel le deuxième contre le sien."
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi a gardé le feutre rose dans sa poche. Elle obéit en improvisant, et ne proteste que pour jouer.",
+    "when": "flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi ne demande plus quoi faire : elle le devine, et rougit de bonheur quand elle a vu juste.",
+    "when": "flag('aoi_dominee') and flag('aoi_devotion')"
    },
    {
     "text_p3_slot": []
@@ -2326,7 +3821,22 @@
     "s": "aoi",
     "t": "Ryeon ne m'a jamais applaudie. Ce soir, elle a dénoué son ruban pour m'attacher les cheveux. C'est mieux qu'une ovation.",
     "e": "true_smile",
-    "v": true
+    "v": true,
+    "when": "not flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "aoi",
+    "t": "Ryeon ne m'a jamais applaudie. Ce soir, elle a dénoué son ruban pour m'attacher les cheveux. C'est mieux qu'une ovation.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "aoi",
+    "t": "Ryeon ne m'a jamais applaudie. Ce soir, elle a dénoué son ruban pour m'attacher les cheveux. C'est mieux qu'une ovation.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('aoi_dominee') and flag('aoi_devotion')"
    },
    {
     "s": "ryeon",
@@ -2337,6 +3847,16 @@
    {
     "s": "narrator",
     "t": "Ryeon défait le ruban des cheveux d'Aoi, lentement, et le garde au poignet. Elles se demandent la permission sans se regarder, puis en se regardant. Oui, deux fois."
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi fredonne les premières mesures de sa première chanson, sans jamais aller jusqu'à la dernière note. Elle sourit : ce soir, c'est elle qui tient le micro.",
+    "when": "flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi chante tout bas pour toi, rien que pour toi, et attend ton signe à la fin de chaque couplet. Le sourire de scène n'existe plus.",
+    "when": "flag('aoi_dominee') and flag('aoi_devotion')"
    },
    {
     "text_p3_slot": []
@@ -2375,17 +3895,67 @@
     "s": "xiaoyu",
     "t": "Mirae t'a achetée trois cents millions. Moi, je t'offre un contrat d'une nuit, sans aucune clause. C'est toi qui fixes le cachet.",
     "e": "fan",
-    "v": true
+    "v": true,
+    "when": "not flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Mirae t'a achetée trois cents millions. Moi, je t'offre un contrat d'une nuit, sans aucune clause. C'est toi qui fixes le cachet.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Mirae t'a achetée trois cents millions. Moi, je t'offre un contrat d'une nuit, sans aucune clause. C'est toi qui fixes le cachet.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
    },
    {
     "s": "aoi",
     "t": "Mon cachet, c'est que personne ne me dise de sourire. Tu signes, Xiaoyu ? Toi aussi, Elias.",
     "e": "true_smile",
-    "v": true
+    "v": true,
+    "when": "not flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "aoi",
+    "t": "Mon cachet, c'est que personne ne me dise de sourire. Tu signes, Xiaoyu ? Toi aussi, Elias.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "aoi",
+    "t": "Mon cachet, c'est que personne ne me dise de sourire. Tu signes, Xiaoyu ? Toi aussi, Elias.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('aoi_dominee') and flag('aoi_devotion')"
    },
    {
     "s": "narrator",
     "t": "Xiaoyu signe. Tu signes. Aoi déchire le contrat avant d'avoir signé, et dit oui à voix haute à la place. C'est plus valable, dit-elle."
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi a gardé le feutre rose dans sa poche. Elle obéit en improvisant, et ne proteste que pour jouer.",
+    "when": "flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi ne demande plus quoi faire : elle le devine, et rougit de bonheur quand elle a vu juste.",
+    "when": "flag('aoi_dominee') and flag('aoi_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Le Sceau de Longwei brille à son poignet. Xiaoyu s'en sert comme d'un éventail : pour cacher qu'elle rougit.",
+    "when": "flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Le jeton de jade gravé de ton nom pend au cou de Xiaoyu. Elle le porte comme une parure, et te laisse mener la partie jusqu'au bout.",
+    "when": "flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
    },
    {
     "text_p3_slot": []
@@ -2424,17 +3994,67 @@
     "s": "hae_in",
     "t": "Ce soir, aucune caméra, aucun communiqué. Je ne sais pas faire, Monsieur Kang. Elle a promis de m'apprendre.",
     "e": "embarrassed",
-    "v": true
+    "v": true,
+    "when": "not flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "hae_in",
+    "t": "Ce soir, aucune caméra, aucun communiqué. Je ne sais pas faire, Monsieur Kang. Elle a promis de m'apprendre.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "hae_in",
+    "t": "Ce soir, aucune caméra, aucun communiqué. Je ne sais pas faire, Monsieur Kang. Elle a promis de m'apprendre.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.hae_in') and flag('haein_devotion')"
    },
    {
     "s": "aoi",
     "t": "C'est facile, Présidente. On enlève le maquillage, on éteint la dernière lumière, et on ne joue plus aucun rôle.",
     "e": "true_smile",
-    "v": true
+    "v": true,
+    "when": "not flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "aoi",
+    "t": "C'est facile, Présidente. On enlève le maquillage, on éteint la dernière lumière, et on ne joue plus aucun rôle.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "aoi",
+    "t": "C'est facile, Présidente. On enlève le maquillage, on éteint la dernière lumière, et on ne joue plus aucun rôle.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('aoi_dominee') and flag('aoi_devotion')"
    },
    {
     "s": "narrator",
     "t": "Hae-in enlève ses boucles d'oreilles, une à une, comme on signe un document important. Elles disent oui dans le noir. Personne ne prend de photo."
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi dit ce qu'elle veut en riant, et ce qu'elle ne veut pas sans rire ; puis elle se laisse guider, ravie d'avoir eu le choix.",
+    "when": "flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi s'agenouille, le menton levé, et te regarde comme on regarde le seul spectateur qui compte.",
+    "when": "flag('aoi_dominee') and flag('aoi_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in énonce ses conditions d'une voix de conseil d'administration, puis se tait, et les applique avec une docilité qu'elle a votée elle-même.",
+    "when": "flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "« Seigneur Kang », dit Hae-in, sans le moindre calcul dans la voix. Elle s'agenouille sur le tapis de soie, de son plein gré, et sourit.",
+    "when": "flag('pacte.hae_in') and flag('haein_devotion')"
    },
    {
     "text_p3_slot": []
@@ -2473,17 +4093,67 @@
     "s": "nadia",
     "t": "Elle m'a demandé de lui apprendre le silence. Je lui ai appris à retenir son souffle avant le tir.",
     "e": "neutral",
-    "v": true
+    "v": true,
+    "when": "not flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "nadia",
+    "t": "Elle m'a demandé de lui apprendre le silence. Je lui ai appris à retenir son souffle avant le tir.",
+    "e": "aim",
+    "v": true,
+    "when": "flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "nadia",
+    "t": "Elle m'a demandé de lui apprendre le silence. Je lui ai appris à retenir son souffle avant le tir.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('nadia_pactisee') and flag('nadia_devotion')"
    },
    {
     "s": "aoi",
     "t": "Ce soir, je le retiens pour autre chose. Et toi, Nadia, tu as le droit de parler. Dis-nous ce que tu veux.",
     "e": "desire",
-    "v": true
+    "v": true,
+    "when": "not flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "aoi",
+    "t": "Ce soir, je le retiens pour autre chose. Et toi, Nadia, tu as le droit de parler. Dis-nous ce que tu veux.",
+    "e": "true_smile",
+    "v": true,
+    "when": "flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "aoi",
+    "t": "Ce soir, je le retiens pour autre chose. Et toi, Nadia, tu as le droit de parler. Dis-nous ce que tu veux.",
+    "e": "embarrassed",
+    "v": true,
+    "when": "flag('aoi_dominee') and flag('aoi_devotion')"
    },
    {
     "s": "narrator",
     "t": "Nadia le dit. Trois mots, à voix basse, et c'est la plus longue phrase qu'elle ait prononcée de la journée. Aoi répond oui en chantant."
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi fredonne les premières mesures de sa première chanson, sans jamais aller jusqu'à la dernière note. Elle sourit : ce soir, c'est elle qui tient le micro.",
+    "when": "flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi chante tout bas pour toi, rien que pour toi, et attend ton signe à la fin de chaque couplet. Le sourire de scène n'existe plus.",
+    "when": "flag('aoi_dominee') and flag('aoi_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia garde l'écharpe rouge nouée lâchement à son poignet ; un geste suffirait. Elle ne le fait pas, et te regarde comme à travers une lunette.",
+    "when": "flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia s'allonge dos à la porte, sans même vérifier l'angle mort : elle te le confie entièrement, et attend ton signe.",
+    "when": "flag('nadia_pactisee') and flag('nadia_devotion')"
    },
    {
     "text_p3_slot": []
@@ -2522,17 +4192,67 @@
     "s": "simone",
     "t": "Ma petite sœur chantait cette chanson dans le Humvee. Je ne l'ai jamais dit à personne. Chante-la-moi, soldate. Doucement.",
     "e": "sad",
-    "v": true
+    "v": true,
+    "when": "not flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "simone",
+    "t": "Ma petite sœur chantait cette chanson dans le Humvee. Je ne l'ai jamais dit à personne. Chante-la-moi, soldate. Doucement.",
+    "e": "cigar",
+    "v": true,
+    "when": "flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "simone",
+    "t": "Ma petite sœur chantait cette chanson dans le Humvee. Je ne l'ai jamais dit à personne. Chante-la-moi, soldate. Doucement.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.simone') and flag('simone_devotion')"
    },
    {
     "s": "aoi",
     "t": "Pour toi, Commandante, je chante doucement. Et après, c'est toi qui chantes. Elias, tu tiens le rythme.",
     "e": "true_smile",
-    "v": true
+    "v": true,
+    "when": "not flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "aoi",
+    "t": "Pour toi, Commandante, je chante doucement. Et après, c'est toi qui chantes. Elias, tu tiens le rythme.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "aoi",
+    "t": "Pour toi, Commandante, je chante doucement. Et après, c'est toi qui chantes. Elias, tu tiens le rythme.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('aoi_dominee') and flag('aoi_devotion')"
    },
    {
     "s": "narrator",
     "t": "Simone chante faux, et ne s'excuse pas. À la fin de la chanson, elle pose son béret sur la chaise et dit oui, comme on accepte une permission longtemps refusée."
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi a gardé le feutre rose dans sa poche. Elle obéit en improvisant, et ne proteste que pour jouer.",
+    "when": "flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi ne demande plus quoi faire : elle le devine, et rougit de bonheur quand elle a vu juste.",
+    "when": "flag('aoi_dominee') and flag('aoi_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone exécute chaque ordre comme sur un terrain d'entraînement, et ses yeux disent qu'elle pourrait tout arrêter d'un geste. Elle ne le fait pas.",
+    "when": "flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone attend tes ordres sans un mot, les mains derrière le dos, et chaque ordre exécuté la fait sourire un peu plus.",
+    "when": "flag('pacte.simone') and flag('simone_devotion')"
    },
    {
     "text_p3_slot": []
@@ -2573,11 +4293,36 @@
     "s": "aoi",
     "t": "Elles virent au rouge à chaque note. Tu vois, docteure ? Même ta science chante faux pour moi.",
     "e": "laugh",
-    "v": true
+    "v": true,
+    "when": "not flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "aoi",
+    "t": "Elles virent au rouge à chaque note. Tu vois, docteure ? Même ta science chante faux pour moi.",
+    "e": "true_smile",
+    "v": true,
+    "when": "flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "aoi",
+    "t": "Elles virent au rouge à chaque note. Tu vois, docteure ? Même ta science chante faux pour moi.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('aoi_dominee') and flag('aoi_devotion')"
    },
    {
     "s": "narrator",
     "t": "Minh-Anh débranche les capteurs. Elle demande, protocole oblige, le consentement de chacun ; Aoi répond en chantant, toi en riant. Les LEDs restent rouges."
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi a gardé le feutre rose dans sa poche. Elle obéit en improvisant, et ne proteste que pour jouer.",
+    "when": "flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi ne demande plus quoi faire : elle le devine, et rougit de bonheur quand elle a vu juste.",
+    "when": "flag('aoi_dominee') and flag('aoi_devotion')"
    },
    {
     "text_p3_slot": []
@@ -2659,11 +4404,36 @@
     "s": "hae_in",
     "t": "J'ai fait évaluer votre proposition, Mademoiselle Dizon. Elle est absurde. J'accepte. Monsieur Kang servira de garantie.",
     "e": "neutral",
-    "v": true
+    "v": true,
+    "when": "not flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "hae_in",
+    "t": "J'ai fait évaluer votre proposition, Mademoiselle Dizon. Elle est absurde. J'accepte. Monsieur Kang servira de garantie.",
+    "e": "embarrassed",
+    "v": true,
+    "when": "flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "hae_in",
+    "t": "J'ai fait évaluer votre proposition, Mademoiselle Dizon. Elle est absurde. J'accepte. Monsieur Kang servira de garantie.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.hae_in') and flag('haein_devotion')"
    },
    {
     "s": "narrator",
     "t": "Le stylo est rendu. Puis la veste, la montre, les boucles d'oreilles, une à une, chaque objet contre un oui prononcé à voix haute. La redistribution dure jusqu'à l'aube."
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in pose la main à plat près du Sceau de la Balance, sans le toucher : elle a tout prévu, et c'est pour cela qu'elle peut tout lâcher.",
+    "when": "flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in attend tes instructions comme d'autres attendent un verdict, et les suit à la lettre : cette nuit, la présidente a délégué tous ses pouvoirs.",
+    "when": "flag('pacte.hae_in') and flag('haein_devotion')"
    },
    {
     "text_p3_slot": []
@@ -2698,7 +4468,22 @@
     "s": "nadia",
     "t": "Elle connaît mon vrai nom. Elle ne le dit qu'à moi. Je crois que c'est ça, avoir une amie.",
     "e": "neutral",
-    "v": true
+    "v": true,
+    "when": "not flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "nadia",
+    "t": "Elle connaît mon vrai nom. Elle ne le dit qu'à moi. Je crois que c'est ça, avoir une amie.",
+    "e": "aim",
+    "v": true,
+    "when": "flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "nadia",
+    "t": "Elle connaît mon vrai nom. Elle ne le dit qu'à moi. Je crois que c'est ça, avoir une amie.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('nadia_pactisee') and flag('nadia_devotion')"
    },
    {
     "s": "maricel",
@@ -2709,6 +4494,16 @@
    {
     "s": "narrator",
     "t": "Maricel murmure le vrai nom de Nadia. Nadia répond oui à ce nom-là, pour la première fois depuis des années. L'écharpe rouge finit sur les épaules de Maricel."
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia garde l'écharpe rouge nouée lâchement à son poignet ; un geste suffirait. Elle ne le fait pas, et te regarde comme à travers une lunette.",
+    "when": "flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia s'allonge dos à la porte, sans même vérifier l'angle mort : elle te le confie entièrement, et attend ton signe.",
+    "when": "flag('nadia_pactisee') and flag('nadia_devotion')"
    },
    {
     "text_p3_slot": []
@@ -2743,7 +4538,22 @@
     "s": "simone",
     "t": "Je suis venue négocier la reddition de la reine des Rats. Conditions honorables, Rang F en otage.",
     "e": "cigar",
-    "v": true
+    "v": true,
+    "when": "not flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "simone",
+    "t": "Je suis venue négocier la reddition de la reine des Rats. Conditions honorables, Rang F en otage.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "simone",
+    "t": "Je suis venue négocier la reddition de la reine des Rats. Conditions honorables, Rang F en otage.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.simone') and flag('simone_devotion')"
    },
    {
     "s": "maricel",
@@ -2754,6 +4564,16 @@
    {
     "s": "narrator",
     "t": "Les conditions sont lues à voix haute, discutées, acceptées. Simone note que c'est la première reddition de sa carrière où tout le monde gagne."
+   },
+   {
+    "s": "narrator",
+    "t": "Simone garde ses plaques au cou, contre la peau : l'Ancre de Sang à portée de main. Elle obéit, discute, désobéit une fois en riant, puis obéit encore.",
+    "when": "flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone se met au garde-à-vous devant toi, un sourire au coin des lèvres. « À vos ordres. » Pour une fois, ce n'est pas une formule.",
+    "when": "flag('pacte.simone') and flag('simone_devotion')"
    },
    {
     "text_p3_slot": []
@@ -2829,7 +4649,22 @@
     "s": "xiaoyu",
     "t": "Je propose de sceller une alliance ici, entre nos deux Maisons. Sans notaire. Kang sera le témoin.",
     "e": "fan",
-    "v": true
+    "v": true,
+    "when": "not flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Je propose de sceller une alliance ici, entre nos deux Maisons. Sans notaire. Kang sera le témoin.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Je propose de sceller une alliance ici, entre nos deux Maisons. Sans notaire. Kang sera le témoin.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
    },
    {
     "s": "ryeon",
@@ -2840,6 +4675,16 @@
    {
     "s": "narrator",
     "t": "L'encre sèche sur un papier où il n'y a qu'une ligne : « Les deux parties consentent. » Elles signent. Tu signes. L'éventail et le ruban rouge restent sur le traité."
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu fait tourner le jeton de jade entre ses doigts sans jamais le retourner. Elle mise tout ce soir, et elle le sait.",
+    "when": "flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu t'appelle « Seigneur » sans une once d'ironie, et s'incline la première ; pour une fois, elle n'a rien misé du tout.",
+    "when": "flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
    },
    {
     "text_p3_slot": []
@@ -2874,7 +4719,22 @@
     "s": "hae_in",
     "t": "Mademoiselle Baek réclame une revanche, Monsieur Kang. J'ai accepté, à une condition : vous arbitrez.",
     "e": "neutral",
-    "v": true
+    "v": true,
+    "when": "not flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "hae_in",
+    "t": "Mademoiselle Baek réclame une revanche, Monsieur Kang. J'ai accepté, à une condition : vous arbitrez.",
+    "e": "embarrassed",
+    "v": true,
+    "when": "flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "hae_in",
+    "t": "Mademoiselle Baek réclame une revanche, Monsieur Kang. J'ai accepté, à une condition : vous arbitrez.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.hae_in') and flag('haein_devotion')"
    },
    {
     "s": "ryeon",
@@ -2885,6 +4745,16 @@
    {
     "s": "narrator",
     "t": "Les règles de la revanche sont énoncées à voix haute, longuement. La première est qu'on peut arrêter quand on veut. Personne ne gagne. Elles le savaient en entrant."
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in énonce ses conditions d'une voix de conseil d'administration, puis se tait, et les applique avec une docilité qu'elle a votée elle-même.",
+    "when": "flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "« Seigneur Kang », dit Hae-in, sans le moindre calcul dans la voix. Elle s'agenouille sur le tapis de soie, de son plein gré, et sourit.",
+    "when": "flag('pacte.hae_in') and flag('haein_devotion')"
    },
    {
     "text_p3_slot": []
@@ -2964,17 +4834,67 @@
     "s": "nadia",
     "t": "Elle ne m'a jamais demandé pourquoi je n'ai pas tiré. C'est pour ça que je suis là.",
     "e": "neutral",
-    "v": true
+    "v": true,
+    "when": "not flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "nadia",
+    "t": "Elle ne m'a jamais demandé pourquoi je n'ai pas tiré. C'est pour ça que je suis là.",
+    "e": "aim",
+    "v": true,
+    "when": "flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "nadia",
+    "t": "Elle ne m'a jamais demandé pourquoi je n'ai pas tiré. C'est pour ça que je suis là.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('nadia_pactisee') and flag('nadia_devotion')"
    },
    {
     "s": "xiaoyu",
     "t": "Je n'ai pas besoin de savoir pourquoi. Je paie ma dette, Nadia. En nature. Kang, tu es l'intérêt.",
     "e": "fan",
-    "v": true
+    "v": true,
+    "when": "not flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Je n'ai pas besoin de savoir pourquoi. Je paie ma dette, Nadia. En nature. Kang, tu es l'intérêt.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Je n'ai pas besoin de savoir pourquoi. Je paie ma dette, Nadia. En nature. Kang, tu es l'intérêt.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
    },
    {
     "s": "narrator",
     "t": "Nadia pose son fusil contre le mur, crosse en bas, comme on rend les armes. Elles conviennent de tout à voix basse. La dette est soldée avant l'aube."
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu fixe les enjeux à voix haute, puis cède exactement quand elle l'avait annoncé, avec le sourire d'une joueuse qui tient la table.",
+    "when": "flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu ne négocie plus. Elle attend tes ordres, l'éventail fermé sur les genoux, avec une impatience qu'elle ne cache pas.",
+    "when": "flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia a vérifié la porte, puis l'écharpe, puis toi. Elle ne parle presque pas : elle hoche la tête, et cela suffit.",
+    "when": "flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia te tend l'écharpe rouge de sa grand-mère, sans condition, sans un mot. Elle a choisi, et ses yeux le disent.",
+    "when": "flag('nadia_pactisee') and flag('nadia_devotion')"
    },
    {
     "text_p3_slot": []
@@ -3013,17 +4933,67 @@
     "s": "simone",
     "t": "Je propose un cessez-le-feu. Clause unique : on ne parle pas affaires. Le Rang F surveille l'application.",
     "e": "cigar",
-    "v": true
+    "v": true,
+    "when": "not flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "simone",
+    "t": "Je propose un cessez-le-feu. Clause unique : on ne parle pas affaires. Le Rang F surveille l'application.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "simone",
+    "t": "Je propose un cessez-le-feu. Clause unique : on ne parle pas affaires. Le Rang F surveille l'application.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.simone') and flag('simone_devotion')"
    },
    {
     "s": "xiaoyu",
     "t": "Accepté, Commandante. Mais je garde mon éventail. Il me sert à cacher quand je souris.",
     "e": "fan",
-    "v": true
+    "v": true,
+    "when": "not flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Accepté, Commandante. Mais je garde mon éventail. Il me sert à cacher quand je souris.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "xiaoyu",
+    "t": "Accepté, Commandante. Mais je garde mon éventail. Il me sert à cacher quand je souris.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
    },
    {
     "s": "narrator",
     "t": "Le cessez-le-feu est respecté à la lettre. L'éventail tombe vers une heure du matin, et Xiaoyu ne cache plus rien."
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu fait tourner le jeton de jade entre ses doigts sans jamais le retourner. Elle mise tout ce soir, et elle le sait.",
+    "when": "flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu t'appelle « Seigneur » sans une once d'ironie, et s'incline la première ; pour une fois, elle n'a rien misé du tout.",
+    "when": "flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone garde ses plaques au cou, contre la peau : l'Ancre de Sang à portée de main. Elle obéit, discute, désobéit une fois en riant, puis obéit encore.",
+    "when": "flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone se met au garde-à-vous devant toi, un sourire au coin des lèvres. « À vos ordres. » Pour une fois, ce n'est pas une formule.",
+    "when": "flag('pacte.simone') and flag('simone_devotion')"
    },
    {
     "text_p3_slot": []
@@ -3058,7 +5028,22 @@
     "s": "xiaoyu",
     "t": "J'inspecte l'investissement, docteure. Kang, tu tiens la lampe.",
     "e": "fan",
-    "v": true
+    "v": true,
+    "when": "not flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "xiaoyu",
+    "t": "J'inspecte l'investissement, docteure. Kang, tu tiens la lampe.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "xiaoyu",
+    "t": "J'inspecte l'investissement, docteure. Kang, tu tiens la lampe.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
    },
    {
     "s": "minh_anh",
@@ -3069,6 +5054,16 @@
    {
     "s": "narrator",
     "t": "Le protocole est respecté. Il rend l'inspection très longue, et très bavarde. La lampe finit par terre, toujours allumée."
+   },
+   {
+    "s": "narrator",
+    "t": "Le Sceau de Longwei brille à son poignet. Xiaoyu s'en sert comme d'un éventail : pour cacher qu'elle rougit.",
+    "when": "flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Le jeton de jade gravé de ton nom pend au cou de Xiaoyu. Elle le porte comme une parure, et te laisse mener la partie jusqu'au bout.",
+    "when": "flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
    },
    {
     "text_p3_slot": []
@@ -3107,17 +5102,67 @@
     "s": "hae_in",
     "t": "Elle a fixé son tarif sans me le dire, Monsieur Kang. C'est la première fois que je signe sans lire.",
     "e": "embarrassed",
-    "v": true
+    "v": true,
+    "when": "not flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "hae_in",
+    "t": "Elle a fixé son tarif sans me le dire, Monsieur Kang. C'est la première fois que je signe sans lire.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "hae_in",
+    "t": "Elle a fixé son tarif sans me le dire, Monsieur Kang. C'est la première fois que je signe sans lire.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.hae_in') and flag('haein_devotion')"
    },
    {
     "s": "nadia",
     "t": "Mon tarif : elle enlève son tailleur, toi ton manteau. Je protège mieux ce que je vois.",
     "e": "aim",
-    "v": true
+    "v": true,
+    "when": "not flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "nadia",
+    "t": "Mon tarif : elle enlève son tailleur, toi ton manteau. Je protège mieux ce que je vois.",
+    "e": "embarrassed",
+    "v": true,
+    "when": "flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "nadia",
+    "t": "Mon tarif : elle enlève son tailleur, toi ton manteau. Je protège mieux ce que je vois.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('nadia_pactisee') and flag('nadia_devotion')"
    },
    {
     "s": "narrator",
     "t": "Nadia vérifie la porte, les fenêtres, puis vous deux, et demande à chacun s'il est d'accord. Oui. Elle pose le fusil. La mission dure jusqu'au matin."
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in garde l'ordre du jour jusqu'à la dernière minute, puis te le tend, avec un soulagement qu'elle n'avouera jamais.",
+    "when": "flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in ne lit plus aucune clause. Elle ferme les yeux et laisse quelqu'un d'autre décider, pour la première fois de sa vie, parce qu'elle l'a choisi.",
+    "when": "flag('pacte.hae_in') and flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia se laisse guider sans lâcher ton regard ; la Condition est nouée à son écharpe, et cette certitude la rend étonnamment douce.",
+    "when": "flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia, qui ne cède jamais rien, cède tout, et ne détourne pas une seule fois le regard.",
+    "when": "flag('nadia_pactisee') and flag('nadia_devotion')"
    },
    {
     "text_p3_slot": []
@@ -3152,7 +5197,22 @@
     "s": "hae_in",
     "t": "Le docteur Tran a préparé ses propres articles, Monsieur Kang. Je n'ai jamais négocié avec quelqu'un d'aussi bien préparé.",
     "e": "neutral",
-    "v": true
+    "v": true,
+    "when": "not flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "hae_in",
+    "t": "Le docteur Tran a préparé ses propres articles, Monsieur Kang. Je n'ai jamais négocié avec quelqu'un d'aussi bien préparé.",
+    "e": "embarrassed",
+    "v": true,
+    "when": "flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "hae_in",
+    "t": "Le docteur Tran a préparé ses propres articles, Monsieur Kang. Je n'ai jamais négocié avec quelqu'un d'aussi bien préparé.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.hae_in') and flag('haein_devotion')"
    },
    {
     "s": "minh_anh",
@@ -3163,6 +5223,16 @@
    {
     "s": "narrator",
     "t": "Hae-in relit les articles deux fois, par habitude, puis signe. Chaque clause est dite à voix haute avant d'être appliquée. C'est la négociation la plus courte de sa carrière."
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in garde l'ordre du jour jusqu'à la dernière minute, puis te le tend, avec un soulagement qu'elle n'avouera jamais.",
+    "when": "flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in ne lit plus aucune clause. Elle ferme les yeux et laisse quelqu'un d'autre décider, pour la première fois de sa vie, parce qu'elle l'a choisi.",
+    "when": "flag('pacte.hae_in') and flag('haein_devotion')"
    },
    {
     "text_p3_slot": []
@@ -3203,11 +5273,36 @@
     "s": "nadia",
     "t": "J'ai déjà gagné. Mais elle veut revérifier. Toute la nuit. Oui.",
     "e": "aim",
-    "v": true
+    "v": true,
+    "when": "not flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "nadia",
+    "t": "J'ai déjà gagné. Mais elle veut revérifier. Toute la nuit. Oui.",
+    "e": "embarrassed",
+    "v": true,
+    "when": "flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "nadia",
+    "t": "J'ai déjà gagné. Mais elle veut revérifier. Toute la nuit. Oui.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('nadia_pactisee') and flag('nadia_devotion')"
    },
    {
     "s": "narrator",
     "t": "Le pari n'est jamais tranché. Minh-Anh refait ses calculs à voix haute ; Nadia lui ferme doucement la bouche, et elles recommencent."
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia garde l'écharpe rouge nouée lâchement à son poignet ; un geste suffirait. Elle ne le fait pas, et te regarde comme à travers une lunette.",
+    "when": "flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia s'allonge dos à la porte, sans même vérifier l'angle mort : elle te le confie entièrement, et attend ton signe.",
+    "when": "flag('nadia_pactisee') and flag('nadia_devotion')"
    },
    {
     "text_p3_slot": []
@@ -3242,7 +5337,22 @@
     "s": "simone",
     "t": "Mission accomplie. Maintenant je prends ma permission, soldat. La docteure a donné son accord écrit.",
     "e": "cigar",
-    "v": true
+    "v": true,
+    "when": "not flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "simone",
+    "t": "Mission accomplie. Maintenant je prends ma permission, soldat. La docteure a donné son accord écrit.",
+    "e": "joy",
+    "v": true,
+    "when": "flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "simone",
+    "t": "Mission accomplie. Maintenant je prends ma permission, soldat. La docteure a donné son accord écrit.",
+    "e": "desire",
+    "v": true,
+    "when": "flag('pacte.simone') and flag('simone_devotion')"
    },
    {
     "s": "minh_anh",
@@ -3253,6 +5363,16 @@
    {
     "s": "narrator",
     "t": "Le silo, qui a été une prison, devient pour une nuit l'endroit le plus calme de Séoul. Simone ne monte pas la garde. Personne ne la lui demande."
+   },
+   {
+    "s": "narrator",
+    "t": "Simone exécute chaque ordre comme sur un terrain d'entraînement, et ses yeux disent qu'elle pourrait tout arrêter d'un geste. Elle ne le fait pas.",
+    "when": "flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone attend tes ordres sans un mot, les mains derrière le dos, et chaque ordre exécuté la fait sourire un peu plus.",
+    "when": "flag('pacte.simone') and flag('simone_devotion')"
    },
    {
     "text_p3_slot": []
@@ -3293,6 +5413,66 @@
     "t": "Chacune dit oui à son tour, à voix haute, en riant de s'entendre. Il n'y a ni ordre ni préséance : il y a ce que chacune demande, et tu écoutes."
    },
    {
+    "s": "narrator",
+    "t": "Avant de s'approcher, Seo-Yeon effleure le collier du bout des doigts, comme on vérifie un pouls. Puis elle oublie qu'elle l'a fait.",
+    "when": "party('seo_yeon') and flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Le collier luit d'or pâle sur la gorge de Seo-Yeon. Elle s'agenouille la première, de son plein gré, et lève vers toi un regard qui ne doute plus.",
+    "when": "party('seo_yeon') and flag('pacte.seo_yeon') and flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu fixe les enjeux à voix haute, puis cède exactement quand elle l'avait annoncé, avec le sourire d'une joueuse qui tient la table.",
+    "when": "party('xiaoyu') and flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu ne négocie plus. Elle attend tes ordres, l'éventail fermé sur les genoux, avec une impatience qu'elle ne cache pas.",
+    "when": "party('xiaoyu') and flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in énonce ses conditions d'une voix de conseil d'administration, puis se tait, et les applique avec une docilité qu'elle a votée elle-même.",
+    "when": "party('hae_in') and flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "« Seigneur Kang », dit Hae-in, sans le moindre calcul dans la voix. Elle s'agenouille sur le tapis de soie, de son plein gré, et sourit.",
+    "when": "party('hae_in') and flag('pacte.hae_in') and flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone donne d'abord ses règles, sèches et précises, puis se met au repos devant toi, et attend tes ordres avec un plaisir qu'elle ne cache pas.",
+    "when": "party('simone') and flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone, la plus grande de la pièce, s'agenouille la première. Elle n'a jamais obéi aussi volontiers, et elle le dit à voix haute.",
+    "when": "party('simone') and flag('pacte.simone') and flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia a vérifié la porte, puis l'écharpe, puis toi. Elle ne parle presque pas : elle hoche la tête, et cela suffit.",
+    "when": "party('nadia') and flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia te tend l'écharpe rouge de sa grand-mère, sans condition, sans un mot. Elle a choisi, et ses yeux le disent.",
+    "when": "party('nadia') and flag('nadia_pactisee') and flag('nadia_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi dit ce qu'elle veut en riant, et ce qu'elle ne veut pas sans rire ; puis elle se laisse guider, ravie d'avoir eu le choix.",
+    "when": "party('aoi') and flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi s'agenouille, le menton levé, et te regarde comme on regarde le seul spectateur qui compte.",
+    "when": "party('aoi') and flag('aoi_dominee') and flag('aoi_devotion')"
+   },
+   {
     "text_p3_slot": []
    },
    {
@@ -3327,6 +5507,66 @@
    {
     "s": "narrator",
     "t": "Elles ont fixé leurs règles l'après-midi, sur une feuille punaisée à la porte : on demande, on écoute, on s'arrête dès qu'une seule lève la main. La feuille reste punaisée toute la nuit."
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon garde une main près du collier, sans jamais le toucher : l'Ancre de Sang est là, et le savoir lui suffit pour s'abandonner au reste.",
+    "when": "party('seo_yeon') and flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon attend ton signe avant chaque geste, et le savoure ; elle murmure « Seigneur Kang » comme un secret qu'elle a choisi de garder.",
+    "when": "party('seo_yeon') and flag('pacte.seo_yeon') and flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu fait tourner le jeton de jade entre ses doigts sans jamais le retourner. Elle mise tout ce soir, et elle le sait.",
+    "when": "party('xiaoyu') and flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu t'appelle « Seigneur » sans une once d'ironie, et s'incline la première ; pour une fois, elle n'a rien misé du tout.",
+    "when": "party('xiaoyu') and flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in pose la main à plat près du Sceau de la Balance, sans le toucher : elle a tout prévu, et c'est pour cela qu'elle peut tout lâcher.",
+    "when": "party('hae_in') and flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in attend tes instructions comme d'autres attendent un verdict, et les suit à la lettre : cette nuit, la présidente a délégué tous ses pouvoirs.",
+    "when": "party('hae_in') and flag('pacte.hae_in') and flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone garde ses plaques au cou, contre la peau : l'Ancre de Sang à portée de main. Elle obéit, discute, désobéit une fois en riant, puis obéit encore.",
+    "when": "party('simone') and flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone se met au garde-à-vous devant toi, un sourire au coin des lèvres. « À vos ordres. » Pour une fois, ce n'est pas une formule.",
+    "when": "party('simone') and flag('pacte.simone') and flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia garde l'écharpe rouge nouée lâchement à son poignet ; un geste suffirait. Elle ne le fait pas, et te regarde comme à travers une lunette.",
+    "when": "party('nadia') and flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia s'allonge dos à la porte, sans même vérifier l'angle mort : elle te le confie entièrement, et attend ton signe.",
+    "when": "party('nadia') and flag('nadia_pactisee') and flag('nadia_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi fredonne les premières mesures de sa première chanson, sans jamais aller jusqu'à la dernière note. Elle sourit : ce soir, c'est elle qui tient le micro.",
+    "when": "party('aoi') and flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi chante tout bas pour toi, rien que pour toi, et attend ton signe à la fin de chaque couplet. Le sourire de scène n'existe plus.",
+    "when": "party('aoi') and flag('aoi_dominee') and flag('aoi_devotion')"
    },
    {
     "text_p3_slot": []
@@ -3365,6 +5605,66 @@
     "t": "Chacune lit sa clause à voix haute avant de signer. Certaines sont tendres, d'autres très précises, une est franchement indécente. Toutes sont acceptées."
    },
    {
+    "s": "narrator",
+    "t": "Avant de s'approcher, Seo-Yeon effleure le collier du bout des doigts, comme on vérifie un pouls. Puis elle oublie qu'elle l'a fait.",
+    "when": "party('seo_yeon') and flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Le collier luit d'or pâle sur la gorge de Seo-Yeon. Elle s'agenouille la première, de son plein gré, et lève vers toi un regard qui ne doute plus.",
+    "when": "party('seo_yeon') and flag('pacte.seo_yeon') and flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu fixe les enjeux à voix haute, puis cède exactement quand elle l'avait annoncé, avec le sourire d'une joueuse qui tient la table.",
+    "when": "party('xiaoyu') and flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Xiaoyu ne négocie plus. Elle attend tes ordres, l'éventail fermé sur les genoux, avec une impatience qu'elle ne cache pas.",
+    "when": "party('xiaoyu') and flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in énonce ses conditions d'une voix de conseil d'administration, puis se tait, et les applique avec une docilité qu'elle a votée elle-même.",
+    "when": "party('hae_in') and flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "« Seigneur Kang », dit Hae-in, sans le moindre calcul dans la voix. Elle s'agenouille sur le tapis de soie, de son plein gré, et sourit.",
+    "when": "party('hae_in') and flag('pacte.hae_in') and flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone donne d'abord ses règles, sèches et précises, puis se met au repos devant toi, et attend tes ordres avec un plaisir qu'elle ne cache pas.",
+    "when": "party('simone') and flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone, la plus grande de la pièce, s'agenouille la première. Elle n'a jamais obéi aussi volontiers, et elle le dit à voix haute.",
+    "when": "party('simone') and flag('pacte.simone') and flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia a vérifié la porte, puis l'écharpe, puis toi. Elle ne parle presque pas : elle hoche la tête, et cela suffit.",
+    "when": "party('nadia') and flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia te tend l'écharpe rouge de sa grand-mère, sans condition, sans un mot. Elle a choisi, et ses yeux le disent.",
+    "when": "party('nadia') and flag('nadia_pactisee') and flag('nadia_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi dit ce qu'elle veut en riant, et ce qu'elle ne veut pas sans rire ; puis elle se laisse guider, ravie d'avoir eu le choix.",
+    "when": "party('aoi') and flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi s'agenouille, le menton levé, et te regarde comme on regarde le seul spectateur qui compte.",
+    "when": "party('aoi') and flag('aoi_dominee') and flag('aoi_devotion')"
+   },
+   {
     "text_p3_slot": []
    },
    {
@@ -3399,6 +5699,66 @@
    {
     "s": "narrator",
     "t": "Chacune scelle la sienne avant d'entrer, Ancre de Sang, Clause du Sceau, Condition du Pacte ou simple parole donnée : celle qui fait tout taire d'un geste. Puis chacune règne à son tour. Tu commandes autant que tu obéis. Personne n'est à genoux sans l'avoir choisi, et tout le monde peut se relever."
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon fixe elle-même le rythme, et rougit de s'entendre le dire à voix haute : la clause qu'elle a écrite la rend plus audacieuse, pas plus prudente.",
+    "when": "party('seo_yeon') and flag('seo_pacte_accepte') and not flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Seo-Yeon ne demande plus rien : elle offre. Ses yeux ne quittent les tiens que pour se fermer, lentement, quand tu le décides.",
+    "when": "party('seo_yeon') and flag('pacte.seo_yeon') and flag('seo_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Le Sceau de Longwei brille à son poignet. Xiaoyu s'en sert comme d'un éventail : pour cacher qu'elle rougit.",
+    "when": "party('xiaoyu') and flag('xiaoyu_pacte_accepte') and not flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Le jeton de jade gravé de ton nom pend au cou de Xiaoyu. Elle le porte comme une parure, et te laisse mener la partie jusqu'au bout.",
+    "when": "party('xiaoyu') and flag('pacte.xiaoyu') and flag('xiaoyu_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in garde l'ordre du jour jusqu'à la dernière minute, puis te le tend, avec un soulagement qu'elle n'avouera jamais.",
+    "when": "party('hae_in') and flag('haein_pacte_accepte') and not flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Hae-in ne lit plus aucune clause. Elle ferme les yeux et laisse quelqu'un d'autre décider, pour la première fois de sa vie, parce qu'elle l'a choisi.",
+    "when": "party('hae_in') and flag('pacte.hae_in') and flag('haein_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone exécute chaque ordre comme sur un terrain d'entraînement, et ses yeux disent qu'elle pourrait tout arrêter d'un geste. Elle ne le fait pas.",
+    "when": "party('simone') and flag('simone_pacte_accepte') and not flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Simone attend tes ordres sans un mot, les mains derrière le dos, et chaque ordre exécuté la fait sourire un peu plus.",
+    "when": "party('simone') and flag('pacte.simone') and flag('simone_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia se laisse guider sans lâcher ton regard ; la Condition est nouée à son écharpe, et cette certitude la rend étonnamment douce.",
+    "when": "party('nadia') and flag('nadia_pacte_accepte') and not flag('nadia_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Nadia, qui ne cède jamais rien, cède tout, et ne détourne pas une seule fois le regard.",
+    "when": "party('nadia') and flag('nadia_pactisee') and flag('nadia_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi a gardé le feutre rose dans sa poche. Elle obéit en improvisant, et ne proteste que pour jouer.",
+    "when": "party('aoi') and flag('aoi_pacte_accepte') and not flag('aoi_devotion')"
+   },
+   {
+    "s": "narrator",
+    "t": "Aoi ne demande plus quoi faire : elle le devine, et rougit de bonheur quand elle a vu juste.",
+    "when": "party('aoi') and flag('aoi_dominee') and flag('aoi_devotion')"
    },
    {
     "text_p3_slot": []

@@ -869,6 +869,10 @@
   {
    "if": "flag('aoi_devotion')",
    "text": "Aoi a déchiré elle-même le contrat de Mirae, puis choisi de chanter pour toi. Dévotion."
+  },
+  {
+   "if": "flag('seo_pacte_embrasse') or flag('xiaoyu_pacte_embrasse') or flag('haein_pacte_embrasse') or flag('simone_pacte_embrasse') or flag('nadia_pacte_embrasse') or flag('aoi_pacte_embrasse')",
+   "text": "Certaines ont re-signé leur Pacte tel quel, lucides et libres : elles l'ont embrassé. Le Pacte n'avait rien fait naître ; il avait révélé."
   }
  ]
 }

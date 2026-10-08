@@ -11,15 +11,15 @@ Catalogue de la galerie. Onglets « histoire » (CG clés) et « intime » (scè
 |---|---|---|---|---|
 | Histoire / CG clés | CG clés | 17 | 0 | 0 |
 | Histoire / CG clés | Soirées au Refuge | 7 | 0 | 0 |
-| Scènes intimes | Solo | 49 | 30 | 0 |
+| Scènes intimes | Solo | 55 | 30 | 0 |
 | Scènes intimes | Duos | 0 | 45 | 0 |
 | Scènes intimes | Trios | 1 | 9 | 0 |
 | Scènes intimes | Quatuors | 1 | 2 | 0 |
 | Scènes intimes | Constellations (5 à 9) | 1 | 4 | 0 |
 | Scènes intimes | Harem | 1 | 3 | 0 |
-| **Total** | | **77** | **93** | **0** |
+| **Total** | | **83** | **93** | **0** |
 
-Par voie : Histoire 17 · Refuge 7 · Affinités (Lien) 22 · Échos 10 · Tyran (Ombre) 11 · Tyran (Pacte) 6 · Tyran (Contrat renégocié) 6 · Dévotion 6 · Mercenaire 11 · Loup 10 · Groupe 64
+Par voie : Histoire 17 · Refuge 7 · Affinités (Lien) 22 · Échos 10 · Tyran (Ombre) 11 · Tyran (Pacte) 6 · Tyran (Contrat renégocié) 6 · Dévotion 12 · Mercenaire 11 · Loup 10 · Groupe 64
 
 ## Histoire / CG clés
 
@@ -59,7 +59,7 @@ Par voie : Histoire 17 · Refuge 7 · Affinités (Lien) 22 · Échos 10 · Tyran
 
 ## Scènes intimes
 
-### Solo (79)
+### Solo (85)
 
 | Scène | Voie | Personnages | Statut | Déblocage (indice affiché) |
 |---|---|---|---|---|
@@ -127,11 +127,17 @@ Par voie : Histoire 17 · Refuge 7 · Affinités (Lien) 22 · Échos 10 · Tyran
 | Nuit de Pacte — Aoi<br>`refuge:aoi_dominee` | Tyran (Pacte) | Aoi Tsukishiro | écrite | Forcer le contrat avec Aoi — Acte II, au studio : la racheter à Mirae pour qu'elle chante pour toi. Puis l'appeler au Refuge. Rapport de force, sans intimité ; le Pacte évolue ensuite selon tes choix (ambivalence, renégociation, Dévotion). |
 | Contrat renégocié — Aoi<br>`refuge:aoi_pacte_renegocie` | Tyran (Contrat renégocié) | Aoi Tsukishiro | écrite | Sous contrat avec Aoi, lui laisser sa liberté soir après soir jusqu'à ce que l'ambivalence atteigne +30 et l'Affinité 40 : elle réécrit elle-même le contrat (une Clause du Sceau ou une Ancre de Sang qu'elle seule peut invoquer, le droit de partir). Signer ses conditions. |
 | Dévotion — Seo-Yeon<br>`refuge:seo_devotion` | Dévotion | Park Seo-Yeon | écrite | Sous Pacte avec Seo-Yeon, la traiter avec respect jusqu'à ce que l'ambivalence atteigne +60 et l'Affinité 70 : elle choisit de rester, librement. |
+| Pacte embrassé — Seo-Yeon<br>`refuge:seo_pacte_embrasse` | Dévotion | Park Seo-Yeon | écrite | Sous contrat avec Seo-Yeon, lui laisser sa liberté soir après soir jusqu'à l'ambivalence +30, l'Affinité 40 et la Confiance 35 : elle re-signe le contrat tel quel, lucide et libre. L'accepter ouvre directement la Dévotion. |
 | Dévotion — Xiaoyu<br>`refuge:xiaoyu_devotion` | Dévotion | Long Xiaoyu | écrite | Sous Pacte avec Xiaoyu, la traiter avec respect jusqu'à ce que l'ambivalence atteigne +60 et l'Affinité 70 : elle choisit de rester, librement. |
+| Pacte embrassé — Xiaoyu<br>`refuge:xiaoyu_pacte_embrasse` | Dévotion | Long Xiaoyu | écrite | Sous contrat avec Xiaoyu, lui laisser sa liberté soir après soir jusqu'à l'ambivalence +30, l'Affinité 40 et la Confiance 35 : elle re-signe le contrat tel quel, lucide et libre. L'accepter ouvre directement la Dévotion. |
 | Dévotion — Hae-in<br>`refuge:haein_devotion` | Dévotion | Yoon Hae-in | écrite | Sous Pacte avec Hae-in, la traiter avec respect jusqu'à ce que l'ambivalence atteigne +60 et l'Affinité 70 : elle choisit de rester, librement. |
+| Pacte embrassé — Hae-in<br>`refuge:haein_pacte_embrasse` | Dévotion | Yoon Hae-in | écrite | Sous contrat avec Hae-in, lui laisser sa liberté soir après soir jusqu'à l'ambivalence +30, l'Affinité 40 et la Confiance 35 : elle re-signe le contrat tel quel, lucide et libre. L'accepter ouvre directement la Dévotion. |
 | Dévotion — Simone<br>`refuge:simone_devotion` | Dévotion | Simone Hayes | écrite | Sous Pacte avec Simone, la traiter avec respect jusqu'à ce que l'ambivalence atteigne +60 et l'Affinité 70 : elle choisit de rester, librement. |
+| Pacte embrassé — Simone<br>`refuge:simone_pacte_embrasse` | Dévotion | Simone Hayes | écrite | Sous contrat avec Simone, lui laisser sa liberté soir après soir jusqu'à l'ambivalence +30, l'Affinité 40 et la Confiance 35 : elle re-signe le contrat tel quel, lucide et libre. L'accepter ouvre directement la Dévotion. |
 | Dévotion — Nadia<br>`refuge:nadia_devotion` | Dévotion | Nadia Tsoi | écrite | Sous Pacte avec Nadia, la traiter avec respect jusqu'à ce que l'ambivalence atteigne +60 et l'Affinité 70 : elle choisit de rester, librement. |
+| Pacte embrassé — Nadia<br>`refuge:nadia_pacte_embrasse` | Dévotion | Nadia Tsoi | écrite | Sous contrat avec Nadia, lui laisser sa liberté soir après soir jusqu'à l'ambivalence +30, l'Affinité 40 et la Confiance 35 : elle re-signe le contrat tel quel, lucide et libre. L'accepter ouvre directement la Dévotion. |
 | Dévotion — Aoi<br>`refuge:aoi_devotion` | Dévotion | Aoi Tsukishiro | écrite | Racheter Aoi à Mirae (Acte II), puis, soir après soir au Refuge, lui répondre « Fais ce que tu veux » jusqu'à ce que l'ambivalence atteigne +60 et l'Affinité 70 : elle déchire le contrat elle-même. |
+| Pacte embrassé — Aoi<br>`refuge:aoi_pacte_embrasse` | Dévotion | Aoi Tsukishiro | écrite | Sous contrat avec Aoi, lui laisser sa liberté soir après soir jusqu'à l'ambivalence +30, l'Affinité 40 et la Confiance 35 : elle re-signe le contrat tel quel, lucide et libre. L'accepter ouvre directement la Dévotion. |
 | Nuit du Loup — Seo-Yeon<br>`refuge:seo_loup` | Loup | Park Seo-Yeon | amorce | Voie du Loup (Lien ≤ −20 : s'isoler, refuser l'aide ; ni Héros ni Tyran) : Affinité de Seo-Yeon ≥ 25, s'être déjà reposé au Refuge avec elle, Dortoir construit. |
 | Nuit du Loup — Haneul<br>`refuge:haneul_loup` | Loup | Haneul (l'Héritière) | amorce | Voie du Loup (Lien ≤ −20 : s'isoler, refuser l'aide ; ni Héros ni Tyran) : Affinité de Haneul ≥ 20, s'être déjà reposé au Refuge avec elle, Dortoir construit. |
 | Nuit du Loup — Aoi<br>`refuge:aoi_loup` | Loup | Aoi Tsukishiro | amorce | Voie du Loup (Lien ≤ −20 : s'isoler, refuser l'aide ; ni Héros ni Tyran) : Affinité de Aoi ≥ 20, s'être déjà reposé au Refuge avec elle, Dortoir construit. |
