@@ -216,6 +216,23 @@ def test_sprites(tmp: Path) -> None:
         n = fg.cmd_sprites(argparse_ns(only=["portrait_elias_neutral"], force=True), backend=backend)
         check(n == 1 and not (fg.ROOT / "assets/portraits/elias/neutral.png").exists(),
               "sprites : détourage vide refusé après plusieurs graines (aucune image transparente enregistrée)")
+        # plusieurs personnages (affiche, jumelle, planche) : nouvelles graines, puis le seul personnage principal
+        backend.remover = silhouette
+        twins = FakeYolo([(5, 5, 30, 35), (45, 5, 70, 35)])
+        real_face = detector["face"]
+        detector["face"] = backend.detailer.models["face"] = twins
+        prompts = []
+        real_inpaint = backend._inpaint
+        backend._inpaint = lambda base, mask, text, *a, **k: (prompts.append(text), real_inpaint(base, mask, text, *a, **k))[1]
+        try:
+            n = fg.cmd_sprites(argparse_ns(only=["portrait_elias_neutral"], force=True), backend=backend)
+        finally:
+            backend._inpaint = real_inpaint
+            detector["face"] = backend.detailer.models["face"] = real_face
+        check(n == 1 and (fg.ROOT / "assets/portraits/elias/neutral.png").exists() and twins.calls >= int(style.get("retries", 3)),
+              f"sprites : plusieurs visages → nouvelles graines, puis personnage principal seul ({twins.calls} détections)")
+        check(prompts and not any("full body" in p for p in prompts) and any("face focus" in p for p in prompts),
+              "retouche : visages et mains repeints sans prompt de corps entier")
         # inpainting du visage sur une grande base : le bas du corps doit rester identique au pixel près
         import numpy as np
         rng = np.random.default_rng(0)

@@ -167,7 +167,7 @@ def main() -> None:
           "prompt d'Elias : manteau, peau caramel, imberbe, cheveux mi-longs, visage calme")
     ne = fg.sprite_negative(style, "elias")
     check("beard" in ne and "stubble" in ne and ne.startswith(style["negative"]), "négatif d'Elias : barbe et air renfrogné exclus")
-    check(fg.sprite_negative(style, "nadia") == style["negative"], "négatif commun pour les autres personnages")
+    check(fg.sprite_negative(style, "maricel") == style["negative"], "négatif commun pour les autres personnages")
     pa, na = fg.sprite_prompt(style, "aoi"), fg.sprite_negative(style, "aoi")
     check(all(t in pa for t in ("pink inner hair", "low twintails", "white sleeveless top", "high collar", "black bomber jacket",
                                 "pink pleated miniskirt", "black and pink striped socks", "black combat boots", "pink laces"))
@@ -190,6 +190,27 @@ def main() -> None:
           and int(h * style["hires"]["scale"]) >= style["final_height"] and style["vae"].endswith("fp16-fix")
           and fg.effective_steps(style["hires"]["steps"], style["hires"]["strength"]) * style["hires"]["strength"] >= 12,
           "netteté : agrandisseur anime avant l'img2img, ≥ 12 étapes réelles, 2048 px de haut sans réduction, VAE fp16 corrigé")
+    # Audit visuel : un seul personnage (Elias, Nadia, Simone), Ryeon adulte en mini-short, retouches sans pose
+    neg = style["negative"]
+    check(all(x in neg for x in ("multiple views", "character sheet", "expression chart", "floating heads", "2girls", "clone"))
+          and "(solo:1.3)" in fg.sprite_prompt(style, "nadia") and "(solo:1.4)" in fg.sprite_prompt(style, "elias")
+          and "poster" in fg.sprite_negative(style, "elias") and "twins" in fg.sprite_negative(style, "nadia")
+          and "floating heads" in fg.sprite_negative(style, "simone"),
+          "composition : sprite solo et centré (pas d'affiche, de jumelle ni de planche d'expressions)")
+    pr, nr = fg.sprite_prompt(style, "ryeon"), fg.sprite_negative(style, "ryeon")
+    check("mature face" in pr and "badass" in pr and "black leather micro shorts" in pr and "knee-high boots" in pr
+          and "fundoshi" in nr and "chibi" in nr and "wide trousers" not in pr,
+          "Ryeon : visage adulte et affirmé, mini-short d'épéiste en cuir, bottes")
+    for cid in style["characters"]:
+        fp, hp = fg.detail_prompts(style, cid, "joy")
+        check("full body" not in fp and "full body" not in hp and "standing" not in fp and "face focus" in fp
+              and "five fingers" in hp, f"retouche de {cid} : prompts sans pose (pas de têtes miniatures)")
+    fp, hp = fg.detail_prompts(style, "minh_anh")
+    check("tablet" in hp and "glasses" in fp and style["detailer"]["face_passes"] >= 2 and style["detailer"]["hand_strength"] > style["detailer"]["strength"],
+          "piqué : deux passes sur le visage, mains (tablette de Minh-Anh) retouchées plus fort")
+    big = [(10, 10, 60, 70), (120, 12, 168, 70)]
+    check(fg.extra_faces(big) == 1 and fg.extra_faces([(10, 10, 60, 70), (0, 0, 8, 8)]) == 0 and fg.extra_faces([]) == 0,
+          "garde : second visage de taille comparable détecté, petites détections ignorées")
     reqs = (HERE / "requirements.txt").read_text()
     check("spandrel==" in reqs, "requirements : spandrel (agrandisseur) figé")
     from PIL import Image as _I2  # noqa: PLC0415
@@ -200,6 +221,8 @@ def main() -> None:
     empty = _I2.new("RGBA", (100, 200), (0, 0, 0, 0))
     head_only = _I2.new("RGBA", (100, 200), (255, 255, 255, 0))
     head_only.paste((10, 10, 10, 255), (30, 10, 70, 80))
+    check("plusieurs" in fg.sprite_problem(fig.convert("RGB"), fig, big) and fg.sprite_problem(fig.convert("RGB"), fig, big[:1]) == "",
+          "garde : plusieurs personnages refusés")
     check("vide" in fg.sprite_problem(fig.convert("RGB"), empty) and "uniforme" in fg.sprite_problem(_I2.new("RGB", (100, 200)), fig)
           and "tronquée" in fg.sprite_problem(fig.convert("RGB"), head_only),
           "garde : image noire (VAE en NaN), détourage vide et silhouette tronquée refusés")
@@ -231,6 +254,20 @@ def main() -> None:
     except ImportError:
         print("  (scipy absent : suppression des îlots non vérifiée ici)")
     check(out[35, 100, 3] == 0, "détourage : voile blanc supprimé")
+    planche = np.zeros((300, 300, 4), np.uint8)
+    planche[..., :3] = 255
+    planche[20:290, 120:180] = (40, 40, 45, 255)        # personnage (vêtements sombres)
+    planche[30:70, 20:60] = (230, 200, 180, 255)        # tête volante (planche d'expressions)
+    planche[100:200, 0:12] = (200, 160, 40, 255)        # décor doré collé au bord gauche
+    planche[262:290, 118:120] = (20, 20, 22, 170)       # liseré semi-transparent d'une botte noire, contre le corps
+    try:
+        import scipy  # noqa: F401, PLC0415
+        po = np.asarray(fg.clean_alpha(Image.fromarray(planche, "RGBA")))
+        check(po[50, 40, 3] == 0 and po[150, 5, 3] == 0 and po[150, 150, 3] == 255,
+              "détourage : têtes volantes et élément du bord supprimés, personnage gardé")
+        check(po[275, 119, 3] > 100, f"détourage : bord des bottes conservé (alpha {po[275, 119, 3]})")
+    except ImportError:
+        print("  (scipy absent : têtes volantes non vérifiées ici)")
     check(out[150, 100, 3] == 255 and tuple(out[150, 100, :3]) == (230, 180, 150), "détourage : silhouette et couleurs intactes")
     check(out[150, 68, 3] > 200 and out[150, 68, :3].max() < 40, f"détourage : trait de contour conservé ({out[150, 68]})")
     near = out[150, 60]

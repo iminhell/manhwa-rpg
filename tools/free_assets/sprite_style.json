@@ -27,7 +27,7 @@
  "expression_strength": 0.6,
  "quality": "masterpiece, best quality, amazing quality, (ultra-detailed), very aesthetic, absurdres, highres, anime style, anime coloring, cel shading, (sharp lineart:1.2), clean lineart, crisp details, high definition, (high resolution:1.1), detailed hair, detailed clothes, detailed face, detailed eyes, perfect hands, defined line",
  "background": "simple background, white background, flat lighting, (no shadow:1.2)",
- "negative": "(reality:1.5), lips, worst quality, bad quality, low quality, lowres, (blurry:1.2), soft focus, out of focus, jpeg artifacts, sketch, smudge, signature, watermark, bad anatomy, bad proportions, extra limbs, malformed limbs, bad hands, extra fingers, fused fingers, missing fingers, too many fingers, deformed hands, mutated hands, bad face, deformed face, asymmetrical eyes, 3d render, plastic skin, photo, realistic, dark square background, nude, nipples, child, loli, childlike, young-looking, cropped, out of frame, shadow, drop shadow, cast shadow, ground shadow, floor, ground, reflection, motion blur, speed lines, aura, particles, smoke, energy aura, lens flare, gradient background",
+ "negative": "(reality:1.5), lips, worst quality, bad quality, low quality, lowres, (blurry:1.2), soft focus, out of focus, jpeg artifacts, sketch, smudge, signature, watermark, bad anatomy, bad proportions, extra limbs, malformed limbs, bad hands, extra fingers, fused fingers, missing fingers, too many fingers, deformed hands, mutated hands, bad face, deformed face, asymmetrical eyes, 3d render, plastic skin, photo, realistic, dark square background, nude, nipples, child, loli, childlike, young-looking, cropped, out of frame, shadow, drop shadow, cast shadow, ground shadow, floor, ground, reflection, motion blur, speed lines, aura, particles, smoke, energy aura, lens flare, gradient background, (multiple views:1.4), (character sheet:1.3), (reference sheet:1.3), (expression chart:1.3), turnaround, (multiple girls:1.3), (multiple boys:1.3), 2girls, 2boys, group, crowd, (clone:1.2), twins, duplicate, poster, cover art, collage, comic, panels, split screen, inset, floating heads, disembodied head, chibi, frame, border, ornament, background elements",
  "pose_female": "(full body:1.4), standing, contrapposto, weight on one leg, body slightly turned, head tilt, one hand on hip, other hand touching own hair, feet visible, looking at viewer",
  "pose_male": "(full body:1.4), standing tall, imposing stance, feet apart, body slightly turned, one hand resting on sword hilt, coat tails flowing, feet visible, looking at viewer",
  "pose_combat": "(full body:1.4), fighting stance, dynamic pose, feet visible, looking at viewer",
@@ -62,7 +62,7 @@
  "characters": {
   "elias": {
    "male": true,
-   "body": "1boy, solo, handsome, beautiful man, young adult male, adult, tall, muscular male, broad shoulders, imposing, charismatic",
+   "body": "1boy, (solo:1.4), (single male:1.2), handsome, beautiful man, young adult male, adult, tall, muscular male, broad shoulders, imposing, charismatic",
    "look": "mixed-race, tan skin, caramel skin, light brown skin, (clean-shaven:1.2), handsome face, beautiful face, sharp jawline, calm eyes, black hair, (medium-length hair:1.1), messy hair, spiky hair, tousled hair, hair reaching the nape, strands over forehead, hazel eyes, scar across eyebrow",
    "outfit": "long black coat, black trench coat, (high collar:1.1), tactical military greatcoat, leather belts, buckles, black tactical vest underneath, black gloves, black cargo pants, combat boots, sheathed sword at hip",
    "expressions": {
@@ -81,33 +81,38 @@
    "drop_tags": [
     "sweaty skin"
    ],
-   "negative": "(beard:1.3), (stubble:1.3), facial hair, mustache, goatee, scowl, glaring, very long hair, ponytail, feminine"
+   "negative": "(beard:1.3), (stubble:1.3), facial hair, mustache, goatee, scowl, glaring, very long hair, ponytail, feminine, (multiple boys:1.4), 2boys, 3boys, (group:1.3), crew, team, ensemble cast, (poster:1.3), movie poster, (dark background:1.2), smoke, fog"
   },
   "seo_yeon": {
    "body": "1girl, solo, mature female, petite, slender, large breasts, wide hips, soft body",
    "look": "auburn hair, messy bun, hair stick, loose hair strands, brown eyes, round eyewear, glasses, mole under eye, red bracelet, fair skin",
-   "outfit": "light blue scrubs, unbuttoned scrub top, open beige cardigan, stethoscope around neck, hospital id badge, medical tape on fingers, white sneakers, (cleavage:1.1), scrub top slipping off shoulder, tight scrub pants"
+   "outfit": "light blue scrubs, unbuttoned scrub top, open beige cardigan, stethoscope around neck, hospital id badge, medical tape on fingers, white sneakers, (cleavage:1.1), scrub top slipping off shoulder, tight scrub pants",
+   "face_extra": "(sharp focus on eyes:1.2), clear glasses lenses, detailed eyes behind glasses"
   },
   "hae_in": {
    "body": "1girl, solo, mature female, busty, thick, mature body, plump body, huge breasts, wide hips, thick thighs, curvy, tall",
    "look": "black hair, low chignon, side part, streaked hair, silver streak, black eyes, eyeliner, red lips, mole under mouth, jade earrings, porcelain skin",
-   "outfit": "white pantsuit, silk blouse, unbuttoned blouse, (deep cleavage:1.1), black lace bra peeking out, tight trousers, coat on shoulders, camel coat, high heels, watch"
+   "outfit": "white pantsuit, silk blouse, unbuttoned blouse, (deep cleavage:1.1), black lace bra peeking out, tight trousers, coat on shoulders, camel coat, high heels, watch",
+   "face_extra": "(sharp focus on eyes:1.2), defined eyeliner"
   },
   "haneul": {
    "body": "1girl, solo, mature female, slender, medium breasts, long legs",
    "look": "very long hair, silver hair, white hair, straight hair, golden eyes, glowing eyes, glowing tattoo, golden glyphs on skin, pale skin, ethereal",
-   "outfit": "oversized black bomber jacket, off shoulder, long sweater, long skirt, (high side slit:1.1), bare thigh, boots, mismatched boots, collarbone, bare shoulders"
+   "outfit": "oversized black bomber jacket, off shoulder, long sweater, long skirt, (high side slit:1.1), bare thigh, boots, mismatched boots, collarbone, bare shoulders",
+   "negative": "gold frame, golden ornaments, background pattern, border, side decoration, wall, pillar"
   },
   "ryeon": {
-   "body": "1girl, solo, mature female, athletic, toned, slender, small breasts, long legs",
-   "look": "very long hair, black hair, blue-black hair, high ponytail, red hair ribbon, bangs, sidelocks, grey eyes, serious, scar on collarbone, fair skin",
-   "outfit": "black and white hanbok, short jeogori, wide trousers, red sash, katana at hip, sheathed sword, midriff, toned stomach, navel, sarashi"
+   "body": "1girl, solo, mature female, adult woman, (mature face:1.3), athletic, toned, slender, small breasts, long legs, muscular thighs",
+   "look": "very long hair, black hair, blue-black hair, high ponytail, red hair ribbon, bangs, sidelocks, (sharp eyes:1.2), grey eyes, narrowed eyes, (cool beauty:1.1), (badass:1.2), confident, serious, sharp facial features, defined jawline, scar on collarbone, fair skin",
+   "outfit": "black and white cropped hanbok jacket, short jeogori, open jacket, sarashi, chest wrap, midriff, toned stomach, navel, red sash belt, (black leather micro shorts:1.3), swordswoman shorts, thigh straps, fingerless gloves, (black knee-high boots:1.2), katana at hip, sheathed sword",
+   "negative": "(fundoshi:1.4), (loincloth:1.4), panties, bikini bottom, thong, (child:1.3), (chibi:1.3), (loli:1.3), round face, big head, baby face, barefoot, wide trousers"
   },
   "simone": {
    "body": "1girl, solo, mature female, milf, (tall female:1.2), very tall, long legs, busty, (huge breasts:1.2), curvy, thick, wide hips, thick thighs, muscular female, toned, (abs:1.2), broad shoulders",
    "look": "dark-skinned female, very dark skin, black hair, cornrows, undercut, black eyes, mature face, confident expression, (small scar on cheek:1.1), small scar on stomach, dog tags, shoulder tattoo",
    "outfit": "military commander, officer uniform, open military jacket, epaulettes, rank insignia, (plunging neckline:1.2), cropped tactical top, cleavage, midriff, navel, (visible abs:1.2), utility belt, thigh holster, fingerless gloves, camouflage cargo pants, combat boots, red beret",
-   "pose": "(full body:1.4), standing straight, tall posture, chin up, feet apart, one hand on hip, other hand resting on thigh holster, feet visible, looking at viewer"
+   "pose": "(full body:1.4), standing straight, tall posture, chin up, feet apart, one hand on hip, other hand resting on thigh holster, feet visible, looking at viewer",
+   "negative": "(floating heads:1.4), (expression chart:1.4), (character sheet:1.4), sketches, multiple heads, portrait insets, monochrome"
   },
   "xiaoyu": {
    "body": "1girl, solo, mature female, milf, (mature woman:1.1), busty, large breasts, curvy, narrow waist, wide hips, thick thighs, long legs, tall",
@@ -123,7 +128,8 @@
   "nadia": {
    "body": "1girl, solo, mature female, tall, slender, lean, small breasts, long legs",
    "look": "short hair, platinum blonde hair, white hair, undercut, asymmetrical bangs, hair over one eye, grey eyes, silver eyes, eye bags, pale skin, cigarette in mouth",
-   "outfit": "long grey military greatcoat, open coat, black turtleneck, (skin tight turtleneck:1.1), curvy hips, tight combat pants, fingerless gloves, red scarf"
+   "outfit": "long grey military greatcoat, open coat, black turtleneck, (skin tight turtleneck:1.1), curvy hips, tight combat pants, fingerless gloves, red scarf",
+   "negative": "(2girls:1.4), (twins:1.4), (clone:1.3), multiple views, side-by-side, mirror image"
   },
   "maricel": {
    "body": "1girl, solo, mature female, petite, curvy, busty, large breasts, wide hips, thick thighs, plump",
@@ -133,7 +139,10 @@
   "minh_anh": {
    "body": "1girl, solo, mature female, slender, curvy, large breasts, narrow waist, wide hips, long legs, tall",
    "look": "very long hair, black hair, thick single braid over shoulder, black eyes, rectangular eyewear, glasses, slight eye bags, glowing blue led implants on temples, cybernetic implant, olive skin, beauty mark, black nails, intelligent gaze",
-   "outfit": "open white lab coat, black high-collar bodysuit, tight bodysuit, (cleavage cutout:1.1), glowing cyan circuit lines, utility belt with test tubes, id badge, thigh-high boots, holding holographic tablet"
+   "outfit": "open white lab coat, black high-collar bodysuit, tight bodysuit, (cleavage cutout:1.1), glowing cyan circuit lines, utility belt with test tubes, id badge, thigh-high boots, (holding a holographic tablet with both hands:1.1), clear fingers",
+   "hand_extra": "holding a tablet, fingers on the tablet edge, black nails",
+   "negative": "(bad hands:1.3), (fused fingers:1.3), (blurry hands:1.3), deformed tablet",
+   "face_extra": "(sharp focus on eyes:1.2), clear glasses lenses, detailed eyes behind glasses"
   }
  },
  "sampler_note": "DPM++ 2M Karras, 30 étapes, CFG 6 : trait plus net qu'Euler a ; LoRA Takeda à 0,6 contre les déformations",
@@ -144,8 +153,8 @@
   "white": 210,
   "white_alpha": 0.6,
   "choke": [
-   0.12,
-   0.85
+   0.08,
+   0.8
   ]
  },
  "sampler": "dpmpp_2m_karras",
@@ -167,10 +176,12 @@
   "face_model": "face_yolov8n.pt",
   "hand_model": "hand_yolov8n.pt",
   "confidence": 0.35,
-  "strength": 0.4,
+  "strength": 0.42,
   "max_per_kind": 4,
-  "face_prompt": "detailed face, beautiful detailed eyes, detailed iris, eyelashes, sharp lineart, high resolution",
-  "hand_prompt": "detailed hands, perfect hands, five fingers, sharp lineart"
+  "face_prompt": "detailed face, (beautiful detailed eyes:1.2), detailed iris, eyelashes, (sharp focus:1.2), (sharp lineart:1.2), high resolution, crisp",
+  "hand_prompt": "(detailed hands:1.2), (perfect hands:1.2), five fingers, detailed fingers, defined knuckles, sharp lineart",
+  "face_passes": 2,
+  "hand_strength": 0.5
  },
  "sharpen": {
   "radius": 1.6,
@@ -182,5 +193,6 @@
  "note_allure": "Traits ecchi communes aux héroïnes (jamais de nudité : « nude, nipples » restent dans le négatif).",
  "vae": "madebyollin/sdxl-vae-fp16-fix",
  "trim_margin": 0.03,
- "retries": 3
+ "retries": 4,
+ "composition": "(solo:1.3), (single character:1.2), (one person:1.1), centered, standing alone"
 }

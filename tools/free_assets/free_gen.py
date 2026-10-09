@@ -296,7 +296,8 @@ def sprite_prompt(style: dict, cid: str, expression: str = "neutral", combat: bo
     c = style["characters"][cid]
     pose = style["pose_combat"] if combat else (c.get("pose") or style["pose_male" if c.get("male") else "pose_female"])
     allure = "" if c.get("male") else style.get("allure_female", "")  # traits ecchi des héroïnes (sans nudité)
-    parts = [style["quality"], *(lo["trigger"] for lo in style["loras"] if lo.get("trigger")), c["body"], allure, c["look"],
+    parts = [style["quality"], style.get("composition", ""), *(lo["trigger"] for lo in style["loras"] if lo.get("trigger")),
+             c["body"], allure, c["look"],
              c["outfit"], pose]
     if combat:
         weapons = {x["id"]: x.get("weapon", "") for x in load_json(PROMPTS)["characters"]}
@@ -307,6 +308,23 @@ def sprite_prompt(style: dict, cid: str, expression: str = "neutral", combat: bo
     drop = set(c.get("drop_tags", []))  # étiquettes communes qui ne conviennent pas à ce personnage
     tags = [t.strip() for p in parts if p for t in p.split(",")]
     return ", ".join(t for t in tags if t and t not in drop)
+
+
+def detail_prompts(style: dict, cid: str, expression: str = "neutral") -> tuple[str, str]:
+    """Prompts de retouche du visage et des mains : sans pose ni « full body » (repeindre un visage de 1024 px avec un
+    prompt de corps entier y fait apparaître des têtes ou des silhouettes miniatures, les « croquis volants »)."""
+    c = style["characters"][cid]
+    cfg = style.get("detailer", {})
+    who = "1boy, solo" if c.get("male") else "1girl, solo"
+    expr = c.get("expressions", {}).get(expression) or style["expressions"].get(expression, expression)
+    drop = set(c.get("drop_tags", []))
+
+    def join(*parts):
+        tags = [t.strip() for p in parts if p for t in p.split(",")]
+        return ", ".join(t for t in tags if t and t not in drop)
+    face = join(style["quality"], who, "(face focus:1.2), close-up", c["look"], expr, cfg.get("face_prompt", ""), c.get("face_extra", ""))
+    hand = join(style["quality"], who, "(hands focus:1.1)", c["outfit"], cfg.get("hand_prompt", ""), c.get("hand_extra", ""))
+    return face, hand
 
 
 def sprite_jobs(force: bool, only: list[str] | None) -> list[dict]:
@@ -345,12 +363,21 @@ def coverage(rgba) -> float:
     return sum(hist[129:]) / max(1, a.width * a.height)
 
 
-def sprite_problem(img, cut) -> str:
-    """Défaut bloquant d'un sprite, ou "" : image uniforme (VAE en NaN → image noire), détourage vide ou presque
-    (personnage effacé avec le fond), ou silhouette tronquée (le sprite est en pied)."""
+def extra_faces(faces) -> int:
+    """Visages de taille comparable au plus grand, en plus de lui (seconde héroïne, affiche de groupe, planche
+    d'expressions) ; les petites détections parasites sont ignorées."""
+    areas = sorted(((b[2] - b[0]) * (b[3] - b[1]) for b in faces or []), reverse=True)
+    return sum(1 for a in areas[1:] if a >= 0.15 * areas[0]) if areas else 0
+
+
+def sprite_problem(img, cut, faces=None) -> str:
+    """Défaut d'un sprite, ou "" : image uniforme (VAE en NaN → image noire), plusieurs personnages (visages détectés),
+    détourage vide ou presque (personnage effacé avec le fond), ou silhouette tronquée (le sprite est en pied)."""
     from PIL import ImageStat  # noqa: PLC0415
     if ImageStat.Stat(img.convert("L")).stddev[0] < 3:
         return "image uniforme (rendu raté)"
+    if extra_faces(faces):
+        return f"plusieurs personnages ({extra_faces(faces) + 1} visages)"
     cov = coverage(cut)
     if cov < 0.03:
         return f"détourage presque vide ({cov:.1%} de l'image)"
@@ -446,6 +473,32 @@ ALPHA_DEFAULTS = {"min_alpha": 24, "shadow_band": 0.1, "min_island": 0.002, "whi
                   "choke": [0.12, 0.85]}
 
 
+def stray_components(labels, n: int, min_island: float) -> list[int]:
+    """Composantes à effacer autour du personnage (la plus grande) : poussières, éléments collés au bord gauche ou
+    droit de l'image (décor découpé), et morceaux détachés dont le centre est hors de la silhouette (têtes et croquis
+    d'une planche, second personnage)."""
+    import numpy as np  # noqa: PLC0415
+    from scipy import ndimage  # noqa: PLC0415
+    idx = np.arange(1, n + 1)
+    sizes = ndimage.sum(np.ones(labels.shape), labels, index=idx)
+    main = int(idx[np.argmax(sizes)])
+    boxes = ndimage.find_objects(labels)
+    ms = boxes[main - 1]
+    y0, y1, x0, x1 = ms[0].start, ms[0].stop, ms[1].start, ms[1].stop
+    w = labels.shape[1]
+    out = []
+    for k, sl in zip(idx, boxes):
+        if k == main or sl is None:
+            continue
+        cy, cx = (sl[0].start + sl[0].stop) / 2, (sl[1].start + sl[1].stop) / 2
+        tiny = sizes[k - 1] < min_island * sizes.max()
+        edge = sl[1].start == 0 or sl[1].stop >= w
+        outside = not (x0 <= cx <= x1 and y0 <= cy <= y1)
+        if tiny or edge or outside:
+            out.append(int(k))
+    return out
+
+
 def clean_alpha(rgba, opts: dict | None = None):
     """Nettoie un détourage rembg fait sur fond blanc (sprites d'anime), sans toucher aux couleurs visibles : le trait de
     contour (lineart), souvent semi-transparent au bord, doit rester intact.
@@ -453,7 +506,8 @@ def clean_alpha(rgba, opts: dict | None = None):
        entre deux éléments) → transparents ;
     2. ombre portée sous les pieds : dans la bande basse de la silhouette, gris neutre semi-transparent (sa couleur,
        une fois le blanc du fond retiré, est sombre et sans saturation) → transparent ;
-    3. îlots détachés plus petits qu'une fraction de la silhouette → transparents ;
+    3. hors du personnage (la plus grande composante) : îlots minuscules, éléments collés au bord gauche ou droit,
+       morceaux détachés hors de la silhouette (têtes volantes, second personnage) → transparents ;
     4. « resserrement » de l'alpha (niveaux bas/haut) : le voile qui bave autour du contour disparaît, le trait reste ;
     5. « alpha bleeding » : les pixels transparents prennent la couleur du bord visible voisin, pour que le filtrage
        bilinéaire de Godot ne fasse pas apparaître de halo blanc ou noir autour du sprite."""
@@ -473,13 +527,14 @@ def clean_alpha(rgba, opts: dict | None = None):
         band[int(bottom - (bottom - top) * o["shadow_band"]):, :] = True
         true = np.clip((rgb - (1.0 - a[..., None]) * 255.0) / np.maximum(a[..., None], 0.05), 0, 255)
         true_sat = true.max(axis=2) - true.min(axis=2)
-        a[band & (a < 0.85) & (true_sat < 30) & (true.mean(axis=2) < 150)] = 0.0
+        # le bord semi-transparent des bottes (au contact du corps opaque) n'est pas une ombre : on le garde
+        near = np.asarray(Image.fromarray(((a > 0.85) * 255).astype(np.uint8)).filter(ImageFilter.MaxFilter(5))) > 0
+        a[band & ~near & (a < 0.85) & (true_sat < 30) & (true.mean(axis=2) < 150)] = 0.0
         try:
             from scipy import ndimage  # noqa: PLC0415
             labels, n = ndimage.label(a > 0.1)
             if n > 1:
-                sizes = ndimage.sum(np.ones_like(a), labels, index=np.arange(1, n + 1))
-                a[np.isin(labels, np.where(sizes < o["min_island"] * sizes.max())[0] + 1)] = 0.0
+                a[np.isin(labels, stray_components(labels, n, o["min_island"]))] = 0.0
         except ImportError:
             pass
     lo, hi = o["choke"]
@@ -613,7 +668,7 @@ class SpriteBackend(SdxlBackend):
             return raw
         return cleaned
 
-    def generate(self, prompt: str, negative: str, seed: int):
+    def generate(self, prompt: str, negative: str, seed: int, detail: tuple[str, str] | None = None):
         """Génération complète d'une pose : base, hires fix (agrandissement anime ESRGAN + img2img), retouche
         visage/mains, taille finale."""
         w, h = self.style["size"]
@@ -623,7 +678,7 @@ class SpriteBackend(SdxlBackend):
             size = (int(w * hires["scale"]) // 8 * 8, int(h * hires["scale"]) // 8 * 8)
             img = self._img2img(self.upscaler.resize(img, size), prompt, negative, seed, hires.get("strength", 0.4),
                                 hires.get("steps", 30))
-        img = self.detail(img, prompt, negative, seed)
+        img = self.detail(img, prompt, negative, seed, detail)
         return self.final_size(img)
 
     def final_size(self, img):
@@ -633,13 +688,17 @@ class SpriteBackend(SdxlBackend):
             img = img.resize((round(img.width * fh / img.height), fh), Image.LANCZOS)
         return img
 
-    def detail(self, img, prompt: str, negative: str, seed: int):
-        """Repeint chaque visage et chaque main détectés (comme ADetailer)."""
+    def detail(self, img, prompt: str, negative: str, seed: int, detail: tuple[str, str] | None = None):
+        """Repeint chaque visage et chaque main détectés (comme ADetailer), avec des prompts sans pose (detail_prompts) :
+        visage en plusieurs passes (piqué des yeux), mains plus fortement (doigts nets)."""
         cfg = self.style.get("detailer", {})
-        for kind, extra in (("face", cfg.get("face_prompt", "")), ("hand", cfg.get("hand_prompt", ""))):
+        face_p, hand_p = detail or (f"{prompt}, {cfg.get('face_prompt', '')}", f"{prompt}, {cfg.get('hand_prompt', '')}")
+        strength = float(cfg.get("strength", 0.35))
+        passes = [("face", face_p, strength)] + [("face", face_p, strength * 0.6)] * (int(cfg.get("face_passes", 1)) - 1)
+        passes.append(("hand", hand_p, float(cfg.get("hand_strength", strength))))
+        for n, (kind, text, st) in enumerate(passes):
             for k, box in enumerate(self.detailer.boxes(img, kind)):
-                img = self._inpaint(img, box_mask(img.size, box), f"{prompt}, {extra}" if extra else prompt, negative,
-                                    seed + 17 * (k + 1), float(cfg.get("strength", 0.35)))
+                img = self._inpaint(img, box_mask(img.size, box), text, negative, seed + 17 * (k + 1) + 101 * n, st)
         return img
 
     def _img2img(self, img, prompt: str, negative: str, seed: int, strength: float, steps: int):
@@ -710,21 +769,27 @@ def cmd_sprites(a, backend=None) -> int:
         fresh = combat or expr == "neutral" or sprite_base(cid) is None
         if fresh and not combat and expr != "neutral":
             print(f"  ! {cid} : pas de pose neutre, {expr} générée seule (corps différent)")
-        problem = ""
-        for k in range(tries):  # nouvel essai (autre graine) si l'image est uniforme ou le détourage vide
+        problem, fallback = "", None
+        face_p, hand_p = detail_prompts(style, cid, expr)
+        for k in range(tries):  # nouvel essai (autre graine) : image uniforme, plusieurs personnages, détourage vide
             if fresh:
                 prompt = sprite_prompt(style, cid, combat=True) if combat else sprite_prompt(style, cid, expr)
-                img = backend.generate(prompt, negative, seed_of(it["id"] if combat else cid) + 7919 * k)
+                img = backend.generate(prompt, negative, seed_of(it["id"] if combat else cid) + 7919 * k, (face_p, hand_p))
             else:
                 base = sprite_base(cid)
-                img = backend.repaint_face(base, backend.face_mask(cid, base), sprite_prompt(style, cid, expr), negative,
-                                           seed_of(it["id"]) + 7919 * k)
+                img = backend.repaint_face(base, backend.face_mask(cid, base), face_p, negative, seed_of(it["id"]) + 7919 * k)
             cut = backend.cut(sharpen(img, style.get("sharpen")))
-            problem = sprite_problem(img, cut)
+            faces = backend.detailer.boxes(img, "face") if fresh and hasattr(backend, "detailer") else None
+            problem = sprite_problem(img, cut, faces)
             if not problem:
                 break
+            if problem.startswith("plusieurs") and not sprite_problem(img, cut):
+                fallback = (img, cut)  # le détourage n'a gardé que le personnage principal : utilisable en dernier recours
             print(f"  ! {it['id']} : {problem} — essai {k + 1}/{tries}", flush=True)
-        if problem:
+        if problem and fallback:
+            img, cut = fallback
+            print(f"  ! {it['id']} : gardé avec le seul personnage principal (détourage) — à vérifier dans l'aperçu")
+        elif problem:
             failed.append(it["id"])
             continue
         if fresh:  # cadre serré ; les expressions repeignent la base déjà recadrée (même cadre pour tout le personnage)
