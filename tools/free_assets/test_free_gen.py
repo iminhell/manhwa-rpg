@@ -183,24 +183,25 @@ def main() -> None:
           "Simone : tenue de commandante, pose propre au personnage")
     check(style["hires"]["scale"] >= 1.5 and style["detailer"]["face_model"] and style["detailer"]["hand_model"]
           and "sharp lineart" in style["quality"] and "soft shadows" not in style["background"] and "drop shadow" in style["negative"],
-          "netteté : seconde passe ×1,6, retouche du visage, sans ombre portée")
+          "netteté : agrandissement ×1,5, retouche du visage, sans ombre portée")
     up = style["hires"]["upscaler"]
     w, h = style["size"]
-    check("anime" in up["name"].lower() and up["url"].endswith(".pth") and int(h * style["hires"]["scale"]) >= 1900
-          and style["vae"].endswith("fp16-fix")
-          and fg.sampler_steps(style["hires"]["steps"], style["hires"]["strength"]) * style["hires"]["strength"] >= 30,
-          "netteté : repli agrandisseur anime + img2img en 30 étapes réelles, près de 2000 px de haut, VAE fp16 corrigé")
-    # Réglages techniques de netteté (sans toucher au style) : étapes, CFG, denoise, prompts de netteté pure
-    cn = style["controlnet"]
-    check(30 <= style["steps"] <= 35 and 6.5 <= style["guidance"] <= 8.0 and style["refine_guidance"] < style["guidance"]
-          and 0.35 <= style["hires"]["strength"] <= 0.40 and style["detail_steps"] >= 30 and "tile" in cn["repo"]
-          and 0.45 <= cn["strength"] <= 0.55 and cn["refine_strength"] < cn["strength"] and 0.5 <= cn["conditioning_scale"] <= 0.9,
-          "netteté : 35 étapes, CFG 7 (raffinement 6), seconde passe guidée par ControlNet Tile à 0,5, repli img2img à 0,38")
+    hires = style["hires"]
+    check(hires["mode"] == "upscale" and "anime" in up["name"].lower() and up["url"].endswith(".pth")
+          and int(h * hires["scale"]) >= 1800 and style["final_height"] <= int(h * hires["scale"]) and style["vae"].endswith("fp16-fix"),
+          "netteté : agrandissement pur (sans diffusion) à ~1800 px, rien ne redessine le corps, VAE fp16 corrigé")
+    # Pose de base aux réglages des designs validés (Animagine XL 3.1 : CFG 5 à 7), retouche du visage seule
+    check(style["steps"] == 30 and 5.0 <= style["guidance"] <= 7.0 and style["sampler"] == "dpmpp_2m_karras"
+          and not style["controlnet"]["repo"] and style["detail_steps"] >= 20
+          and fg.sampler_steps(style["detail_steps"], style["detailer"]["strength"]) * style["detailer"]["strength"] >= 20,
+          "base : DPM++ 2M Karras, 30 étapes, CFG 6 ; pas de ControlNet ; visage retouché en 20 étapes réelles")
+    weights = [float(x) for x in __import__("re").findall(r":([0-9.]+)\)", style["quality"] + style["composition"] + style["negative"])]
+    check(not weights, f"prompt commun et négatif sans pondération (des poids forts déforment le dessin) {weights}")
     check(style["detailer"]["strength"] <= 0.35 and style["detailer"]["face_passes"] == 1 and not style["detailer"]["hands"],
           "retouche : visage en une passe légère, mains non repeintes (pas de griffes)")
     check(fg.sampler_steps(30, 0.38) * 0.38 >= 30 and fg.sampler_steps(30, 0.6) * 0.6 >= 30 and fg.sampler_steps(1, 0.05) >= 40,
           "étapes réelles : diffusers exécute bien 30 étapes à denoise 0,38 (comme un KSampler)")
-    check(all(t in style["quality"] for t in ("sharp focus", "crisp details", "clear lineart", "high resolution"))
+    check(all(t in style["quality"] for t in ("sharp focus", "crisp details", "clean lineart", "thin lineart"))
           and all(t in style["negative"] for t in ("blurry", "soft focus", "smudged", "out of focus", "lowres"))
           and not any(t in style["quality"] for t in ("webtoon", "illustration")),
           "netteté : prompts de netteté pure, sans mot-clé de style")
@@ -210,7 +211,8 @@ def main() -> None:
     # Audit visuel : un seul personnage (Elias, Nadia, Simone), Ryeon adulte en mini-short, retouches sans pose
     neg = style["negative"]
     check(all(x in neg for x in ("multiple views", "character sheet", "expression chart", "floating heads", "2girls", "clone"))
-          and "(solo:1.3)" in fg.sprite_prompt(style, "nadia") and "(solo:1.4)" in fg.sprite_prompt(style, "elias")
+          and "solo, centered" in fg.sprite_prompt(style, "nadia") and "(solo:1.4)" in fg.sprite_prompt(style, "elias")
+          and fg.sprite_prompt(style, "nadia").count("solo,") == 1
           and "poster" in fg.sprite_negative(style, "elias") and "twins" in fg.sprite_negative(style, "nadia")
           and "floating heads" in fg.sprite_negative(style, "simone"),
           "composition : sprite solo et centré (pas d'affiche, de jumelle ni de planche d'expressions)")

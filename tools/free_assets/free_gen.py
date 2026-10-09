@@ -308,7 +308,7 @@ def sprite_prompt(style: dict, cid: str, expression: str = "neutral", combat: bo
     parts.append(style["background"])
     drop = set(c.get("drop_tags", []))  # étiquettes communes qui ne conviennent pas à ce personnage
     tags = [t.strip() for p in parts if p for t in p.split(",")]
-    return ", ".join(t for t in tags if t and t not in drop)
+    return ", ".join(dict.fromkeys(t for t in tags if t and t not in drop))  # sans doublon (un tag répété pèse plus)
 
 
 def detail_prompts(style: dict, cid: str, expression: str = "neutral") -> tuple[str, str]:
@@ -681,7 +681,7 @@ class SpriteBackend(SdxlBackend):
         return cleaned
 
     def generate(self, prompt: str, negative: str, seed: int, detail: tuple[str, str] | None = None):
-        """Génération complète d'une pose : base, seconde passe HD guidée (refine), retouche du visage, taille finale."""
+        """Génération complète d'une pose : base, agrandissement (refine), retouche du visage, taille finale."""
         w, h = self.style["size"]
         img = self.render(prompt, negative, (w, h), seed, steps=self.style["steps"], guidance=self.style["guidance"])
         self.last_base = img
@@ -691,22 +691,29 @@ class SpriteBackend(SdxlBackend):
         return self.final_size(self.detail(img, prompt, negative, seed, detail))
 
     def refine(self, img, prompt: str, negative: str, seed: int, hd: bool = False):
-        """Seconde passe HD. Avec ControlNet Tile : agrandissement Lanczos (sans épaississement du trait), puis img2img
-        guidé par l'image elle-même (structure, pose et expression verrouillées), ce qui permet un débruitage assez fort
-        pour que le modèle redessine un trait fin à pleine résolution. Sans ControlNet (ou si la mémoire manque) :
-        agrandisseur anime puis img2img léger. hd=True : l'image est déjà en haute définition (affinage d'un sprite
-        existant), on la repasse à sa taille avec un débruitage plus faible."""
+        """Seconde passe HD, selon hires.mode :
+          - « upscale » (défaut) : agrandissement pur, sans diffusion (agrandisseur anime ×4 réduit à l'échelle voulue) ;
+            aucune passe ne redessine le corps, donc ni pose, ni anatomie, ni visage ne peuvent être déformés. Le piqué
+            du visage vient de sa retouche (detail), faite sur l'image agrandie ;
+          - « img2img » : agrandissement puis img2img léger (redessine tout le personnage : à réserver aux essais) ;
+          - « controlnet » : img2img guidé par ControlNet Tile (si chargé), repli img2img si la mémoire manque.
+        hd=True : image déjà en haute définition (affinage d'un sprite existant)."""
         from PIL import Image  # noqa: PLC0415
         hires = self.style.get("hires", {})
+        mode = hires.get("mode", "upscale")
         w, h = self.style["size"]
         if hd:
+            if mode == "upscale":
+                return img
             size = (img.width // 8 * 8, img.height // 8 * 8)
         elif hires.get("scale", 1.0) > 1.0:
             size = (int(w * hires["scale"]) // 8 * 8, int(h * hires["scale"]) // 8 * 8)
         else:
             return img
+        if mode == "upscale":
+            return self.upscaler.resize(img, size)
         steps = int(hires.get("steps", 30))
-        if self.cn_img2img is not None:
+        if mode == "controlnet" and self.cn_img2img is not None:
             cn = self.style.get("controlnet", {})
             strength = float(cn.get("refine_strength" if hd else "strength", 0.5))
             try:

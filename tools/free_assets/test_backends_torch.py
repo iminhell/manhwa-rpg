@@ -169,12 +169,16 @@ def test_sprites(tmp: Path) -> None:
     check(set(pipe.get_active_adapters()) == {"test_style"}, f"LoRA chargé et actif ({pipe.get_active_adapters()})")
     check(type(pipe.scheduler).__name__ == "DPMSolverMultistepScheduler" and pipe.scheduler.config.use_karras_sigmas,
           "échantillonneur DPM++ 2M Karras")
-    cfgs = []
-    real_render = backend.render
+    cfgs, redraws = [], []
+    real_render, real_i2i = backend.render, backend._img2img
     backend.render = lambda *a, **k: (cfgs.append(k.get("guidance")), real_render(*a, **k))[1]
+    backend._img2img = lambda *a, **k: (redraws.append(1), real_i2i(*a, **k))[1]
     pose = backend.generate(fg.sprite_prompt(style, "elias"), style["negative"], 3)
-    backend.render = real_render
+    backend.render, backend._img2img = real_render, real_i2i
     check(cfgs == [style["guidance"]], f"génération de base au CFG du style ({cfgs})")
+    check(not redraws, "mode « upscale » : aucune passe ne redessine le corps (agrandissement pur)")
+    hd = Image.new("RGB", (80, 120), "white")
+    check(backend.refine(hd, "x", "y", 1, hd=True) is hd, "affinage en mode « upscale » : le sprite existant n'est pas redessiné")
     check(pose.size == (round(96 * 120 / 144), 120), f"hires fix ×1,5 puis taille finale ({pose.size})")
     check(detector["face"].calls >= 1 and detector["hand"].calls == 0, "détailleur : visage retouché, mains laissées à la seconde passe")
     check(backend.upscaler.model is not None and backend.upscaler.model.scale == 4,
@@ -289,7 +293,7 @@ def test_controlnet(tmp: Path) -> None:
     from diffusers import ControlNetModel
     from PIL import Image
     style = fg.load_style()
-    style.update(size=[64, 96], steps=2, loras=[], hires={"scale": 1.5, "strength": 0.4, "steps": 2}, final_height=120,
+    style.update(size=[64, 96], steps=2, loras=[], hires={"mode": "controlnet", "scale": 1.5, "strength": 0.4, "steps": 2}, final_height=120,
                  detail_resolution=64, detail_steps=2)
     style["controlnet"] = {**style["controlnet"], "repo": "test"}
     pipe = tiny_sdxl(tmp)
