@@ -25,7 +25,7 @@
  "steps": 30,
  "guidance": 6.0,
  "expression_strength": 0.6,
- "quality": "masterpiece, best quality, amazing quality, (ultra-detailed), very aesthetic, absurdres, highres, anime style, anime coloring, cel shading, (sharp lineart:1.2), clean lineart, crisp details, high definition, detailed face, detailed eyes, perfect hands, defined line, sweaty skin",
+ "quality": "masterpiece, best quality, amazing quality, (ultra-detailed), very aesthetic, absurdres, highres, anime style, anime coloring, cel shading, (sharp lineart:1.2), clean lineart, crisp details, high definition, (high resolution:1.1), detailed hair, detailed clothes, detailed face, detailed eyes, perfect hands, defined line",
  "background": "simple background, white background, flat lighting, (no shadow:1.2)",
  "negative": "(reality:1.5), lips, worst quality, bad quality, low quality, lowres, (blurry:1.2), soft focus, out of focus, jpeg artifacts, sketch, smudge, signature, watermark, bad anatomy, bad proportions, extra limbs, malformed limbs, bad hands, extra fingers, fused fingers, missing fingers, too many fingers, deformed hands, mutated hands, bad face, deformed face, asymmetrical eyes, 3d render, plastic skin, photo, realistic, dark square background, nude, nipples, child, loli, childlike, young-looking, cropped, out of frame, shadow, drop shadow, cast shadow, ground shadow, floor, ground, reflection, motion blur, speed lines, aura, particles, smoke, energy aura, lens flare, gradient background",
  "pose_female": "(full body:1.4), standing, contrapposto, weight on one leg, body slightly turned, head tilt, one hand on hip, other hand touching own hair, feet visible, looking at viewer",
@@ -52,7 +52,12 @@
   "true_smile": "laughing, genuine smile, dimple, blush",
   "aim": "serious, narrowed eyes, cold stare, closed mouth",
   "wink": "one eye closed, wink, grin, fang",
-  "red_leds": "blush, flustered, glowing red lights on temple, looking away"
+  "red_leds": "blush, flustered, glowing red lights on temple, looking away",
+  "desire": "(half-closed eyes:1.1), bedroom eyes, blush, parted lips, longing gaze, seductive smile",
+  "tears": "tears, streaming tears, teary eyes, trembling lips, sad",
+  "contempt": "contemptuous look, narrowed eyes, cold stare, frown, looking down at viewer",
+  "laugh": "laughing, open mouth, closed eyes, happy, big smile",
+  "exhausted": "exhausted, tired eyes, dark circles under eyes, half-closed eyes, messy hair"
  },
  "characters": {
   "elias": {
@@ -69,7 +74,9 @@
     "embarrassed": "light blush, looking away, awkward smile",
     "surprise": "surprised, eyes widened, slightly open mouth",
     "fear": "worried expression, tense, slightly open mouth",
-    "blink": "closed eyes, calm expression, closed mouth"
+    "blink": "closed eyes, calm expression, closed mouth",
+    "exhausted": "tired expression, dark circles under eyes, half-closed eyes, closed mouth",
+    "tears": "teary eyes, tears, sad expression, closed mouth"
    },
    "drop_tags": [
     "sweaty skin"
@@ -79,22 +86,22 @@
   "seo_yeon": {
    "body": "1girl, solo, mature female, petite, slender, large breasts, wide hips, soft body",
    "look": "auburn hair, messy bun, hair stick, loose hair strands, brown eyes, round eyewear, glasses, mole under eye, red bracelet, fair skin",
-   "outfit": "light blue scrubs, unbuttoned scrub top, open beige cardigan, stethoscope around neck, hospital id badge, medical tape on fingers, white sneakers, cleavage"
+   "outfit": "light blue scrubs, unbuttoned scrub top, open beige cardigan, stethoscope around neck, hospital id badge, medical tape on fingers, white sneakers, (cleavage:1.1), scrub top slipping off shoulder, tight scrub pants"
   },
   "hae_in": {
    "body": "1girl, solo, mature female, busty, thick, mature body, plump body, huge breasts, wide hips, thick thighs, curvy, tall",
    "look": "black hair, low chignon, side part, streaked hair, silver streak, black eyes, eyeliner, red lips, mole under mouth, jade earrings, porcelain skin",
-   "outfit": "white pantsuit, silk blouse, unbuttoned blouse, cleavage, coat on shoulders, camel coat, high heels, watch"
+   "outfit": "white pantsuit, silk blouse, unbuttoned blouse, (deep cleavage:1.1), black lace bra peeking out, tight trousers, coat on shoulders, camel coat, high heels, watch"
   },
   "haneul": {
    "body": "1girl, solo, mature female, slender, medium breasts, long legs",
    "look": "very long hair, silver hair, white hair, straight hair, golden eyes, glowing eyes, glowing tattoo, golden glyphs on skin, pale skin, ethereal",
-   "outfit": "oversized black bomber jacket, off shoulder, long sweater, long skirt, boots, mismatched boots, collarbone"
+   "outfit": "oversized black bomber jacket, off shoulder, long sweater, long skirt, (high side slit:1.1), bare thigh, boots, mismatched boots, collarbone, bare shoulders"
   },
   "ryeon": {
    "body": "1girl, solo, mature female, athletic, toned, slender, small breasts, long legs",
    "look": "very long hair, black hair, blue-black hair, high ponytail, red hair ribbon, bangs, sidelocks, grey eyes, serious, scar on collarbone, fair skin",
-   "outfit": "black and white hanbok, short jeogori, wide trousers, red sash, katana at hip, sheathed sword, midriff"
+   "outfit": "black and white hanbok, short jeogori, wide trousers, red sash, katana at hip, sheathed sword, midriff, toned stomach, navel, sarashi"
   },
   "simone": {
    "body": "1girl, solo, mature female, milf, (tall female:1.2), very tall, long legs, busty, (huge breasts:1.2), curvy, thick, wide hips, thick thighs, muscular female, toned, (abs:1.2), broad shoulders",
@@ -105,27 +112,28 @@
   "xiaoyu": {
    "body": "1girl, solo, mature female, milf, (mature woman:1.1), busty, large breasts, curvy, narrow waist, wide hips, thick thighs, long legs, tall",
    "look": "red hair, crimson hair, bob cut, blunt bangs, black roots, amber eyes, slit pupils, sharp eyeliner, red lips, mature face, sultry gaze, mole under eye, hairpin, red nails, dragon tattoo, pale skin",
-   "outfit": "black china dress, qipao, gold dragon embroidery, side slit, thigh slit, black leather jacket, black thighhighs, ankle boots, cleavage"
+   "outfit": "black china dress, qipao, gold dragon embroidery, side slit, (thigh slit:1.2), black leather jacket, black thighhighs, ankle boots, (cleavage cutout:1.1), cleavage"
   },
   "aoi": {
-   "body": "1girl, solo, mature female, slender, toned, small breasts, long legs",
-   "look": "two-tone hair, black hair, pink hair, inner hair color, low twintails, hazel eyes, star earring, freckles, bandaid on finger, bracelet, glitter makeup",
-   "outfit": "sequined jacket, torn jacket, ruffled skirt, skort, oversized bomber jacket, boots, bare shoulders"
+   "body": "1girl, solo, mature female, slender, toned, small breasts, narrow waist, (long legs:1.1), bare thighs",
+   "look": "two-tone hair, black hair, (pink inner hair:1.2), colored inner hair, long hair, (low twintails:1.1), twintails reaching the chest, hazel eyes, star earring, freckles, bandaid on finger, (bracelets on left wrist:1.1), glitter makeup, pink eyeshadow",
+   "outfit": "(white sleeveless top:1.2), (high collar:1.1), zipper, half-zipped top, (black bomber jacket:1.2), pink stripes on sleeves, jacket off shoulders, bare shoulders, (pink pleated miniskirt:1.2), glitter skirt, sparkling skirt, (black and pink striped socks:1.2), over-the-knee socks, zettai ryouiki, (black combat boots:1.1), pink laces",
+   "negative": "fur boots, fur trim, short hair, bob cut, skort, sequins jacket, long skirt, pants"
   },
   "nadia": {
    "body": "1girl, solo, mature female, tall, slender, lean, small breasts, long legs",
    "look": "short hair, platinum blonde hair, white hair, undercut, asymmetrical bangs, hair over one eye, grey eyes, silver eyes, eye bags, pale skin, cigarette in mouth",
-   "outfit": "long grey military greatcoat, open coat, black turtleneck, tight turtleneck, combat pants, fingerless gloves, red scarf"
+   "outfit": "long grey military greatcoat, open coat, black turtleneck, (skin tight turtleneck:1.1), curvy hips, tight combat pants, fingerless gloves, red scarf"
   },
   "maricel": {
    "body": "1girl, solo, mature female, petite, curvy, busty, large breasts, wide hips, thick thighs, plump",
    "look": "wavy hair, medium hair, gradient hair, blonde hair, brown hair, backwards baseball cap, brown eyes, dimples, mole above lip, tan skin, shoulder tattoo, bracelets, fang",
-   "outfit": "yellow cropped hoodie, crop top, midriff, tank top, cleavage, green cargo pants, sneakers, fanny pack"
+   "outfit": "yellow cropped hoodie, crop top, midriff, tank top, cleavage, low-rise green cargo pants, hip bones, sneakers, fanny pack"
   },
   "minh_anh": {
    "body": "1girl, solo, mature female, slender, curvy, large breasts, narrow waist, wide hips, long legs, tall",
    "look": "very long hair, black hair, thick single braid over shoulder, black eyes, rectangular eyewear, glasses, slight eye bags, glowing blue led implants on temples, cybernetic implant, olive skin, beauty mark, black nails, intelligent gaze",
-   "outfit": "open white lab coat, black high-collar bodysuit, tight bodysuit, glowing cyan circuit lines, utility belt with test tubes, id badge, thigh-high boots, holding holographic tablet"
+   "outfit": "open white lab coat, black high-collar bodysuit, tight bodysuit, (cleavage cutout:1.1), glowing cyan circuit lines, utility belt with test tubes, id badge, thigh-high boots, holding holographic tablet"
   }
  },
  "sampler_note": "DPM++ 2M Karras, 30 étapes, CFG 6 : trait plus net qu'Euler a ; LoRA Takeda à 0,6 contre les déformations",
@@ -142,27 +150,37 @@
  },
  "sampler": "dpmpp_2m_karras",
  "hires": {
-  "scale": 1.5,
-  "strength": 0.38,
-  "steps": 20,
-  "note": "hires fix : 832×1216 → 1248×1824 puis img2img léger, qui recrée les détails au lieu d'étirer les pixels"
+  "scale": 1.75,
+  "strength": 0.42,
+  "steps": 30,
+  "upscaler": {
+   "name": "RealESRGAN_x4plus_anime_6B",
+   "tile": 512,
+   "url": "https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.2.4/RealESRGAN_x4plus_anime_6B.pth"
+  },
+  "note": "hires fix : 832×1216 → ×4 par Real-ESRGAN anime (trait net) → réduit à 1456×2128, puis img2img (≈13 étapes réelles) qui recrée les détails. Sans le réseau d'anime (repli Lanczos), l'image restait floue."
  },
- "final_height": 1600,
+ "final_height": 2048,
  "detail_resolution": 1024,
  "detailer": {
   "repo": "Bingsu/adetailer",
   "face_model": "face_yolov8n.pt",
   "hand_model": "hand_yolov8n.pt",
   "confidence": 0.35,
-  "strength": 0.35,
+  "strength": 0.4,
   "max_per_kind": 4,
-  "face_prompt": "detailed face, detailed eyes, sharp lineart",
+  "face_prompt": "detailed face, beautiful detailed eyes, detailed iris, eyelashes, sharp lineart, high resolution",
   "hand_prompt": "detailed hands, perfect hands, five fingers, sharp lineart"
  },
  "sharpen": {
-  "radius": 1.3,
-  "percent": 75,
+  "radius": 1.6,
+  "percent": 70,
   "threshold": 3,
   "note": "accentuation finale (UnsharpMask) avant le détourage : trait plus net, sans halo"
- }
+ },
+ "allure_female": "(alluring:1.1), sexy, seductive body, curvy silhouette, (shiny skin:1.1), glossy skin, (thighs:1.1), skindentation, collarbone",
+ "note_allure": "Traits ecchi communes aux héroïnes (jamais de nudité : « nude, nipples » restent dans le négatif).",
+ "vae": "madebyollin/sdxl-vae-fp16-fix",
+ "trim_margin": 0.03,
+ "retries": 3
 }

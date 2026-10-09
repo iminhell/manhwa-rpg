@@ -38,12 +38,15 @@ Sur le PC, double-cliquer `GENERER_ASSETS.bat` (ou `./generer_assets.sh`) : il f
   Les pixels transparents reçoivent la couleur du bord voisin, pour éviter tout halo blanc ou noir au filtrage dans Godot. Testé sur l'image de référence de Gaïa : ombre 51 038 → 11 pixels, contour conservé. Réglages : `alpha_cleanup` dans `sprite_style.json`.
 - **Netteté** :
   - échantillonneur DPM++ 2M Karras, 30 étapes, CFG 6 ;
-  - **hires fix** : 832×1216 → ×1,5, puis img2img à 0,38 ;
+  - VAE corrigé pour le fp16 (`madebyollin/sdxl-vae-fp16-fix`) : sans lui, une grande image peut sortir noire ;
+  - **hires fix** : 832×1216 → ×4 par **Real-ESRGAN x4plus anime 6B** (chargé par `spandrel`, trait net), réduit à 1456×2128, puis img2img à 0,42 (≈ 13 étapes réelles). L'ancien agrandissement Lanczos laissait une image floue (rendu « 120p ») ;
   - **retouche des visages et des mains** : détectés par les modèles YOLO d'ADetailer (`Bingsu/adetailer`), puis repeints en 1024 px ;
-  - taille finale 1600 px de haut ;
+  - taille finale **2048 px** de haut, image **recadrée sur la silhouette** (même cadre pour toutes les expressions d'un personnage) ;
   - tags de netteté et négatifs anti-flou et anti-mains déformées ; LoRA Takeda à 0,6.
 
-  Sans modèle de détection, la génération continue sans retouche, avec un avertissement.
+  Sans modèle de détection ou d'agrandissement, la génération continue (retouche sautée, Lanczos), avec un avertissement.
+- **Garde anti-sprite vide** : une image uniforme (rendu raté), un détourage presque vide (personnage effacé avec le fond) ou une silhouette tronquée déclenchent un nouvel essai avec une autre graine (`retries`, 3 par défaut) ; après le dernier, rien n'est enregistré (le jeu garde son placeholder) et un « ÉCHEC » est affiché. Si le nettoyage du détourage efface trop de pixels (vêtements sombres), le détourage rembg brut est gardé.
+- **Traits ecchi** des héroïnes : `allure_female` (courbes, peau brillante, cuisses), ajouté à toutes les héroïnes, jamais à Elias ; aucune nudité (voir Garde-fous).
 - **Refaire un personnage** : réglage `REGENERER` du notebook (ex. `elias`), ou `free_gen.py sprites --force --only elias`.
 - **Garde-fous** : le négatif garde `nude, nipples` (sprites habillés) et les tags anti-juvénilité (`child, loli, childlike, young-looking`), et tous les profils portent `mature female` / `mature male`.
 - **LoRA Civitai** : certains exigent un jeton (secret Colab `CIVITAI_TOKEN`). Les mots déclencheurs indiqués sont à vérifier sur la page de chaque LoRA. Un LoRA entraîné sur Illustrious fonctionne avec un checkpoint SDXL comme Animagine, mais son effet peut varier.

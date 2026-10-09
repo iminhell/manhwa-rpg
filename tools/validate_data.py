@@ -69,6 +69,10 @@ items_cat = load(DATA / "world/items.json")
 guide = load(DATA / "world/guide.json")
 prompts = load(DATA / "art/prompts.json")
 manifest = load(DATA / "art/manifest.json").get("assets", [])
+portrait_expr: dict[str, set] = {}  # personnage → expressions dont le sprite est produit (sinon repli sur neutral)
+for _a in manifest:
+    if _a.get("kind") == "portrait":
+        portrait_expr.setdefault(_a.get("char"), set()).add(_a.get("expression", "neutral"))
 music_path = DATA / "audio/music.json"
 music = load(music_path) if music_path.exists() else {}
 
@@ -81,7 +85,7 @@ KNOWN_EVENTS = {"combat", "regress", "end_act", "world", "move"}
 EFFECT_TYPES = {"damage", "heal", "status", "fear", "delay", "haste", "revive", "cleanse", "crit_next", "swap", "advance", "awaken", "pull"}
 TARGETS = {"melee", "ranged", "pierce", "row", "all_enemies", "ally", "all_allies", "all_allies_any", "ally_other", "self", "ally_ko"}
 FUNCS = {"v", "flag", "souvenir", "aff", "loop", "day", "phase", "at", "in_sector", "party", "item", "money",
-         "trust", "fear", "done", "knows_fin", "pressure", "ticks", "in_refuge_sector", "mode", "ir", "party_size", "bonds", "bonds_libres", "imposed_pact", "in_tower", "voie"}
+         "trust", "fear", "done", "knows_fin", "pressure", "ticks", "in_refuge_sector", "mode", "ir", "party_size", "bonds", "bonds_libres", "imposed_pact", "pact_state", "in_tower", "voie"}
 VOIES = {"heros", "tyran", "loup", "mercenaire", ""}
 KEYWORDS = {"and", "or", "not", "true", "false", "null"}
 FX_OPS = {"set": 2, "add": 2, "flag": 1, "unflag": 1, "souvenir": 1, "item": 2, "money": 1, "fin": 1, "join": 1, "leave": 1, "pressure": 1}
@@ -420,6 +424,8 @@ for did, dlg in dialogues.items():
                     allowed = COMMON_EXPR | set(art_chars.get(s, {}).get("signature_expressions", {}).keys())
                     if e not in allowed:
                         err(f"{w} : expression « {e} » inconnue pour {s}")
+                    elif s in portrait_expr and e not in portrait_expr[s]:
+                        err(f"{w} : pas de sprite « {e} » pour {s} dans data/art/manifest.json (le jeu afficherait neutral)")
             if "event" in st:
                 ev = st["event"]
                 if ev not in KNOWN_EVENTS:
@@ -463,6 +469,8 @@ for did, dlg in dialogues.items():
                     ex = line.get("e")
                     if ex and sp in characters and ex not in COMMON_EXPR | set(art_chars.get(sp, {}).get("signature_expressions", {}).keys()):
                         err(f"{w}/p3:{k} : expression « {ex} » inconnue pour {sp}")
+                    elif ex and sp in portrait_expr and ex not in portrait_expr[sp]:
+                        err(f"{w}/p3:{k} : pas de sprite « {ex} » pour {sp} dans data/art/manifest.json")
             if "music" in st and music and st["music"] not in music.get("contexts", {}):
                 err(f"{w} : contexte musical inconnu « {st['music']} »")
     # blocs inatteignables

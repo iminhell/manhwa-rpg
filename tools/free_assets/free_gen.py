@@ -295,7 +295,8 @@ def sprite_prompt(style: dict, cid: str, expression: str = "neutral", combat: bo
     """Prompt de sprite : qualité commune, déclencheurs des LoRA, gabarit et identité du personnage, pose, expression."""
     c = style["characters"][cid]
     pose = style["pose_combat"] if combat else (c.get("pose") or style["pose_male" if c.get("male") else "pose_female"])
-    parts = [style["quality"], *(lo["trigger"] for lo in style["loras"] if lo.get("trigger")), c["body"], c["look"],
+    allure = "" if c.get("male") else style.get("allure_female", "")  # traits ecchi des héroïnes (sans nudité)
+    parts = [style["quality"], *(lo["trigger"] for lo in style["loras"] if lo.get("trigger")), c["body"], allure, c["look"],
              c["outfit"], pose]
     if combat:
         weapons = {x["id"]: x.get("weapon", "") for x in load_json(PROMPTS)["characters"]}
@@ -335,6 +336,96 @@ def sharpen(img, cfg: dict | None):
     from PIL import ImageFilter  # noqa: PLC0415
     return img.filter(ImageFilter.UnsharpMask(radius=float(cfg.get("radius", 1.3)), percent=int(cfg.get("percent", 75)),
                                               threshold=int(cfg.get("threshold", 3))))
+
+
+def coverage(rgba) -> float:
+    """Part de l'image couverte par la silhouette (alpha > 128)."""
+    a = rgba.getchannel("A")
+    hist = a.histogram()
+    return sum(hist[129:]) / max(1, a.width * a.height)
+
+
+def sprite_problem(img, cut) -> str:
+    """Défaut bloquant d'un sprite, ou "" : image uniforme (VAE en NaN → image noire), détourage vide ou presque
+    (personnage effacé avec le fond), ou silhouette tronquée (le sprite est en pied)."""
+    from PIL import ImageStat  # noqa: PLC0415
+    if ImageStat.Stat(img.convert("L")).stddev[0] < 3:
+        return "image uniforme (rendu raté)"
+    cov = coverage(cut)
+    if cov < 0.03:
+        return f"détourage presque vide ({cov:.1%} de l'image)"
+    if cov > 0.9:
+        return f"fond non détouré ({cov:.0%} de l'image)"
+    box = cut.getchannel("A").point(lambda v: 255 if v > 128 else 0).getbbox()
+    if not box or (box[3] - box[1]) < 0.5 * cut.height:
+        return "silhouette tronquée (moins de la moitié de la hauteur)"
+    return ""
+
+
+def trim_box(alpha, margin: float = 0.03) -> tuple[int, int, int, int]:
+    """Cadre serré autour de la silhouette (+ marge) : l'image finale ne garde pas les grandes marges vides
+    (moins de mémoire vidéo en jeu, la mise en scène se cale sur la silhouette)."""
+    w, h = alpha.size
+    l, t, r, b = alpha.point(lambda v: 255 if v > 16 else 0).getbbox() or (0, 0, w, h)
+    m = int(h * margin)
+    return max(0, l - m), max(0, t - m), min(w, r + m), min(h, b + m)
+
+
+def upscale_tiled(model, x, scale: int, tile: int = 512, pad: int = 16):
+    """Applique un modèle d'agrandissement (tenseur 1×C×H×W → ×scale) par tuiles chevauchantes : mémoire bornée sur T4,
+    seul le centre de chaque tuile est gardé (pas de couture)."""
+    _, c, h, w = x.shape
+    out = x.new_zeros((1, c, h * scale, w * scale))
+    for y0 in range(0, h, tile):
+        for x0 in range(0, w, tile):
+            y1, x1 = min(y0 + tile, h), min(x0 + tile, w)
+            py0, px0, py1, px1 = max(y0 - pad, 0), max(x0 - pad, 0), min(y1 + pad, h), min(x1 + pad, w)
+            res = model(x[:, :, py0:py1, px0:px1])
+            oy, ox = (y0 - py0) * scale, (x0 - px0) * scale
+            out[:, :, y0 * scale:y1 * scale, x0 * scale:x1 * scale] = \
+                res[:, :, oy:oy + (y1 - y0) * scale, ox:ox + (x1 - x0) * scale]
+    return out
+
+
+class Upscaler:
+    """Agrandissement du hires fix par un réseau entraîné sur l'anime (Real-ESRGAN x4plus anime 6B, chargé par spandrel) :
+    trait net et aplats propres, là où un agrandissement Lanczos donne une image floue que l'img2img ne rattrape qu'à
+    moitié (rendu « 120p »). Facultatif : si le modèle ne se charge pas, repli sur Lanczos (avertissement)."""
+
+    def __init__(self, cfg: dict | None, model=None) -> None:
+        self.cfg = cfg or {}
+        self.model = model
+        self.failed = model is None and not (self.cfg.get("url") or self.cfg.get("path"))
+
+    def _load(self) -> None:
+        if self.model is not None or self.failed:
+            return
+        try:
+            from spandrel import ModelLoader  # noqa: PLC0415
+            path = Path(self.cfg["path"]) if self.cfg.get("path") else \
+                fetch(self.cfg["url"], MODELS_DIR / "upscalers" / f"{self.cfg.get('name', 'upscaler')}.pth")
+            desc = ModelLoader().load_from_file(str(path))
+            desc.to(device()).eval()
+            if device() == "cuda" and desc.supports_half:
+                desc.half()
+            self.model = desc
+        except (Exception, SystemExit) as e:  # noqa: BLE001
+            print(f"  ! agrandisseur {self.cfg.get('name', '')} indisponible ({e.__class__.__name__}: {e}) : Lanczos")
+            self.failed = True
+
+    def resize(self, img, size: tuple[int, int]):
+        from PIL import Image  # noqa: PLC0415
+        self._load()
+        if self.model is None:
+            return img.resize(size, Image.LANCZOS)
+        import numpy as np  # noqa: PLC0415
+        import torch  # noqa: PLC0415
+        dtype, dev = getattr(self.model, "dtype", torch.float32), getattr(self.model, "device", "cpu")
+        x = torch.from_numpy(np.asarray(img.convert("RGB"), np.float32) / 255.0).permute(2, 0, 1)[None]
+        with torch.no_grad():
+            y = upscale_tiled(self.model, x.to(dev, dtype), int(getattr(self.model, "scale", 4)), int(self.cfg.get("tile", 512)))
+        arr = (y[0].float().clamp(0, 1).permute(1, 2, 0).cpu().numpy() * 255.0).round().astype(np.uint8)
+        return Image.fromarray(arr, "RGB").resize(size, Image.LANCZOS)
 
 
 def head_mask(alpha, margin: float = 0.18):
@@ -468,14 +559,21 @@ class SpriteBackend(SdxlBackend):
     (inpainting en 1024 px), expressions par inpainting du visage (corps identique au pixel près, clignement compris),
     détourage rembg (isnet-anime) et nettoyage du masque."""
 
-    def __init__(self, style: dict, pipe=None, remover=None, detector_models: dict | None = None) -> None:
+    def __init__(self, style: dict, pipe=None, remover=None, detector_models: dict | None = None, upscaler=None) -> None:
         import torch  # noqa: PLC0415
         if pipe is None:
             from diffusers import StableDiffusionXLPipeline  # noqa: PLC0415
             ck = style["checkpoint"]
             path = fetch(ck["url"], MODELS_DIR / f"{ck['name']}.safetensors")
             dtype = torch.float16 if device() == "cuda" else torch.float32
-            pipe = StableDiffusionXLPipeline.from_single_file(str(path), torch_dtype=dtype)
+            extra = {}
+            if style.get("vae"):  # VAE corrigé pour le fp16 : sans lui, les grandes images peuvent sortir noires (NaN)
+                try:
+                    from diffusers import AutoencoderKL  # noqa: PLC0415
+                    extra["vae"] = AutoencoderKL.from_pretrained(style["vae"], torch_dtype=dtype)
+                except Exception as e:  # noqa: BLE001
+                    print(f"  ! VAE {style['vae']} indisponible ({e.__class__.__name__}) : VAE du checkpoint")
+            pipe = StableDiffusionXLPipeline.from_single_file(str(path), torch_dtype=dtype, **extra)
         pipe.scheduler = make_scheduler(style.get("sampler", "euler_a"), pipe.scheduler.config)
         # LoRA : fichier local (« path ») ou téléchargé une fois (« url »)
         loras = [(lo["name"], Path(lo["path"]) if lo.get("path") else fetch(lo["url"], MODELS_DIR / "loras" / f"{lo['name']}.safetensors"),
@@ -492,6 +590,7 @@ class SpriteBackend(SdxlBackend):
         self.style = style
         self.remover = remover
         self.detailer = Detailer(style.get("detailer", {}), detector_models)
+        self.upscaler = Upscaler(style.get("hires", {}).get("upscaler"), upscaler)
         self.masks: dict[str, object] = {}
 
     def face_mask(self, cid: str, base):
@@ -507,18 +606,23 @@ class SpriteBackend(SdxlBackend):
             from rembg import new_session, remove  # noqa: PLC0415
             session = new_session(os.environ.get("REMBG_MODEL", "isnet-anime"))
             self.remover = lambda im: remove(im, session=session)
-        return clean_alpha(self.remover(img).convert("RGBA"), self.style.get("alpha_cleanup"))
+        raw = self.remover(img).convert("RGBA")
+        cleaned = clean_alpha(raw, self.style.get("alpha_cleanup"))
+        if coverage(cleaned) < 0.6 * coverage(raw):  # le nettoyage a mangé le personnage (vêtements sombres…)
+            print("  ! nettoyage du détourage trop agressif : détourage rembg brut conservé")
+            return raw
+        return cleaned
 
     def generate(self, prompt: str, negative: str, seed: int):
-        """Génération complète d'une pose : base, hires fix, retouche visage/mains, taille finale."""
-        from PIL import Image  # noqa: PLC0415
+        """Génération complète d'une pose : base, hires fix (agrandissement anime ESRGAN + img2img), retouche
+        visage/mains, taille finale."""
         w, h = self.style["size"]
         img = self.render(prompt, negative, (w, h), seed, steps=self.style["steps"])
         hires = self.style.get("hires", {})
         if hires.get("scale", 1.0) > 1.0:
             size = (int(w * hires["scale"]) // 8 * 8, int(h * hires["scale"]) // 8 * 8)
-            img = self._img2img(img.resize(size, Image.LANCZOS), prompt, negative, seed, hires.get("strength", 0.38),
-                                hires.get("steps", 20))
+            img = self._img2img(self.upscaler.resize(img, size), prompt, negative, seed, hires.get("strength", 0.4),
+                                hires.get("steps", 30))
         img = self.detail(img, prompt, negative, seed)
         return self.final_size(img)
 
@@ -595,26 +699,46 @@ def cmd_sprites(a, backend=None) -> int:
             print(f"  {it['id']} → {it['out']} :: {sprite_prompt(style, it['char'], it.get('expression', 'neutral'), it['kind'] == 'combat_sprite')[:200]}…")
         return len(jobs)
     backend = backend or SpriteBackend(style)
+    tries = max(1, int(style.get("retries", 3)))
+    failed: list[str] = []
     for i, it in enumerate(jobs, 1):
         cid, expr = it["char"], it.get("expression", "neutral")
         negative = sprite_negative(style, cid)
         dest = ROOT / it["out"]
         dest.parent.mkdir(parents=True, exist_ok=True)
-        if it["kind"] == "combat_sprite":
-            img = backend.generate(sprite_prompt(style, cid, combat=True), negative, seed_of(it["id"]))
-        elif expr == "neutral" or sprite_base(cid) is None:
-            if expr != "neutral":
-                print(f"  ! {cid} : pas de pose neutre, {expr} générée seule (corps différent)")
-            img = backend.generate(sprite_prompt(style, cid, expr), negative, seed_of(cid))
-            if expr == "neutral":
+        combat = it["kind"] == "combat_sprite"
+        fresh = combat or expr == "neutral" or sprite_base(cid) is None
+        if fresh and not combat and expr != "neutral":
+            print(f"  ! {cid} : pas de pose neutre, {expr} générée seule (corps différent)")
+        problem = ""
+        for k in range(tries):  # nouvel essai (autre graine) si l'image est uniforme ou le détourage vide
+            if fresh:
+                prompt = sprite_prompt(style, cid, combat=True) if combat else sprite_prompt(style, cid, expr)
+                img = backend.generate(prompt, negative, seed_of(it["id"] if combat else cid) + 7919 * k)
+            else:
+                base = sprite_base(cid)
+                img = backend.repaint_face(base, backend.face_mask(cid, base), sprite_prompt(style, cid, expr), negative,
+                                           seed_of(it["id"]) + 7919 * k)
+            cut = backend.cut(sharpen(img, style.get("sharpen")))
+            problem = sprite_problem(img, cut)
+            if not problem:
+                break
+            print(f"  ! {it['id']} : {problem} — essai {k + 1}/{tries}", flush=True)
+        if problem:
+            failed.append(it["id"])
+            continue
+        if fresh:  # cadre serré ; les expressions repeignent la base déjà recadrée (même cadre pour tout le personnage)
+            box = trim_box(cut.getchannel("A"), float(style.get("trim_margin", 0.03)))
+            img, cut = img.crop(box), cut.crop(box)
+            if expr == "neutral" and not combat:
                 SPRITE_BASES.mkdir(parents=True, exist_ok=True)
                 img.save(SPRITE_BASES / f"{cid}.png")
-        else:
-            base = sprite_base(cid)
-            img = backend.repaint_face(base, backend.face_mask(cid, base), sprite_prompt(style, cid, expr), negative,
-                                       seed_of(it["id"]))
-        backend.cut(sharpen(img, style.get("sharpen"))).save(dest, optimize=True)
-        print(f"  [{i}/{len(jobs)}] {it['out']}", flush=True)
+                if hasattr(backend, "masks"):
+                    backend.masks.pop(cid, None)  # masque du visage recalculé sur la nouvelle base
+        cut.save(dest, optimize=True)
+        print(f"  [{i}/{len(jobs)}] {it['out']} ({cut.width}×{cut.height})", flush=True)
+    if failed:
+        print(f"  ! ÉCHEC ({len(failed)}) : {', '.join(failed)} — non enregistrés (le jeu garde le placeholder) : augmenter « retries » ou ajuster sprite_style.json")
     return len(jobs)
 
 

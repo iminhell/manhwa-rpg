@@ -90,6 +90,16 @@
    "file": "res://assets/audio/music/concert_aoi.ogg",
    "desc": "« Chanson pour Séoul » — la chanson d'Aoi, version scène",
    "prompt": "J-pop idol ballad instrumental, bright piano and strings, emotional chorus melody, stage concert, 90 bpm"
+  },
+  "contrat_theme": {
+   "file": "res://assets/audio/music/contrat_theme.ogg",
+   "desc": "Contrat renégocié — harpe rituelle, cordes graves, sceau qui tinte (une héroïne mène la scène)",
+   "prompt": "slow ritual harp arpeggios, low warm strings, soft chime like a wax seal, solemn yet playful, candlelit, 62 bpm, loopable"
+  },
+  "devotion_theme": {
+   "file": "res://assets/audio/music/devotion_theme.ogg",
+   "desc": "Dévotion — chœur feutré, violoncelle, pulsation lente (Pacte embrassé)",
+   "prompt": "hushed ethereal choir pads, warm cello melody, slow heartbeat pulse, sacred and intimate devotion, 56 bpm, loopable"
   }
  },
  "contexts": {
@@ -111,6 +121,8 @@
   "intimate": "intimate",
   "haein": "haein_theme",
   "sector.silence": "silence",
-  "concert": "concert_aoi"
+  "concert": "concert_aoi",
+  "intimate.contrat": "contrat_theme",
+  "intimate.devotion": "devotion_theme"
  }
 }

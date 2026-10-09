@@ -75,6 +75,22 @@
       "size": "portrait_4_3"
     },
     {
+      "id": "portrait_elias_exhausted",
+      "kind": "portrait",
+      "char": "elias",
+      "expression": "exhausted",
+      "out": "assets/portraits/elias/exhausted.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_elias_tears",
+      "kind": "portrait",
+      "char": "elias",
+      "expression": "tears",
+      "out": "assets/portraits/elias/tears.png",
+      "size": "portrait_4_3"
+    },
+    {
       "id": "sprite_elias",
       "kind": "combat_sprite",
       "char": "elias",
@@ -152,6 +168,38 @@
       "char": "seo_yeon",
       "expression": "lie",
       "out": "assets/portraits/seo_yeon/lie.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_seo_yeon_contempt",
+      "kind": "portrait",
+      "char": "seo_yeon",
+      "expression": "contempt",
+      "out": "assets/portraits/seo_yeon/contempt.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_seo_yeon_desire",
+      "kind": "portrait",
+      "char": "seo_yeon",
+      "expression": "desire",
+      "out": "assets/portraits/seo_yeon/desire.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_seo_yeon_laugh",
+      "kind": "portrait",
+      "char": "seo_yeon",
+      "expression": "laugh",
+      "out": "assets/portraits/seo_yeon/laugh.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_seo_yeon_tears",
+      "kind": "portrait",
+      "char": "seo_yeon",
+      "expression": "tears",
+      "out": "assets/portraits/seo_yeon/tears.png",
       "size": "portrait_4_3"
     },
     {
@@ -243,6 +291,22 @@
       "size": "portrait_4_3"
     },
     {
+      "id": "portrait_haneul_desire",
+      "kind": "portrait",
+      "char": "haneul",
+      "expression": "desire",
+      "out": "assets/portraits/haneul/desire.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_haneul_tears",
+      "kind": "portrait",
+      "char": "haneul",
+      "expression": "tears",
+      "out": "assets/portraits/haneul/tears.png",
+      "size": "portrait_4_3"
+    },
+    {
       "id": "sprite_haneul",
       "kind": "combat_sprite",
       "char": "haneul",
@@ -323,6 +387,22 @@
       "size": "portrait_4_3"
     },
     {
+      "id": "portrait_hae_in_contempt",
+      "kind": "portrait",
+      "char": "hae_in",
+      "expression": "contempt",
+      "out": "assets/portraits/hae_in/contempt.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_hae_in_desire",
+      "kind": "portrait",
+      "char": "hae_in",
+      "expression": "desire",
+      "out": "assets/portraits/hae_in/desire.png",
+      "size": "portrait_4_3"
+    },
+    {
       "id": "portrait_ryeon_neutral",
       "kind": "portrait",
       "char": "ryeon",
@@ -392,6 +472,14 @@
       "char": "ryeon",
       "expression": "tsundere",
       "out": "assets/portraits/ryeon/tsundere.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_ryeon_tears",
+      "kind": "portrait",
+      "char": "ryeon",
+      "expression": "tears",
+      "out": "assets/portraits/ryeon/tears.png",
       "size": "portrait_4_3"
     },
     {
@@ -467,6 +555,38 @@
       "size": "portrait_4_3"
     },
     {
+      "id": "portrait_simone_contempt",
+      "kind": "portrait",
+      "char": "simone",
+      "expression": "contempt",
+      "out": "assets/portraits/simone/contempt.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_simone_desire",
+      "kind": "portrait",
+      "char": "simone",
+      "expression": "desire",
+      "out": "assets/portraits/simone/desire.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_simone_laugh",
+      "kind": "portrait",
+      "char": "simone",
+      "expression": "laugh",
+      "out": "assets/portraits/simone/laugh.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_simone_tears",
+      "kind": "portrait",
+      "char": "simone",
+      "expression": "tears",
+      "out": "assets/portraits/simone/tears.png",
+      "size": "portrait_4_3"
+    },
+    {
       "id": "portrait_xiaoyu_neutral",
       "kind": "portrait",
       "char": "xiaoyu",
@@ -536,6 +656,38 @@
       "char": "xiaoyu",
       "expression": "fan",
       "out": "assets/portraits/xiaoyu/fan.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_xiaoyu_contempt",
+      "kind": "portrait",
+      "char": "xiaoyu",
+      "expression": "contempt",
+      "out": "assets/portraits/xiaoyu/contempt.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_xiaoyu_desire",
+      "kind": "portrait",
+      "char": "xiaoyu",
+      "expression": "desire",
+      "out": "assets/portraits/xiaoyu/desire.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_xiaoyu_laugh",
+      "kind": "portrait",
+      "char": "xiaoyu",
+      "expression": "laugh",
+      "out": "assets/portraits/xiaoyu/laugh.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_xiaoyu_tears",
+      "kind": "portrait",
+      "char": "xiaoyu",
+      "expression": "tears",
+      "out": "assets/portraits/xiaoyu/tears.png",
       "size": "portrait_4_3"
     },
     {
@@ -619,6 +771,30 @@
       "size": "portrait_4_3"
     },
     {
+      "id": "portrait_aoi_desire",
+      "kind": "portrait",
+      "char": "aoi",
+      "expression": "desire",
+      "out": "assets/portraits/aoi/desire.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_aoi_laugh",
+      "kind": "portrait",
+      "char": "aoi",
+      "expression": "laugh",
+      "out": "assets/portraits/aoi/laugh.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_aoi_tears",
+      "kind": "portrait",
+      "char": "aoi",
+      "expression": "tears",
+      "out": "assets/portraits/aoi/tears.png",
+      "size": "portrait_4_3"
+    },
+    {
       "id": "portrait_nadia_neutral",
       "kind": "portrait",
       "char": "nadia",
@@ -688,6 +864,30 @@
       "char": "nadia",
       "expression": "aim",
       "out": "assets/portraits/nadia/aim.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_nadia_desire",
+      "kind": "portrait",
+      "char": "nadia",
+      "expression": "desire",
+      "out": "assets/portraits/nadia/desire.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_nadia_exhausted",
+      "kind": "portrait",
+      "char": "nadia",
+      "expression": "exhausted",
+      "out": "assets/portraits/nadia/exhausted.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_nadia_tears",
+      "kind": "portrait",
+      "char": "nadia",
+      "expression": "tears",
+      "out": "assets/portraits/nadia/tears.png",
       "size": "portrait_4_3"
     },
     {
@@ -763,6 +963,38 @@
       "size": "portrait_4_3"
     },
     {
+      "id": "portrait_maricel_contempt",
+      "kind": "portrait",
+      "char": "maricel",
+      "expression": "contempt",
+      "out": "assets/portraits/maricel/contempt.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_maricel_desire",
+      "kind": "portrait",
+      "char": "maricel",
+      "expression": "desire",
+      "out": "assets/portraits/maricel/desire.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_maricel_laugh",
+      "kind": "portrait",
+      "char": "maricel",
+      "expression": "laugh",
+      "out": "assets/portraits/maricel/laugh.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_maricel_tears",
+      "kind": "portrait",
+      "char": "maricel",
+      "expression": "tears",
+      "out": "assets/portraits/maricel/tears.png",
+      "size": "portrait_4_3"
+    },
+    {
       "id": "portrait_minh_anh_neutral",
       "kind": "portrait",
       "char": "minh_anh",
@@ -832,6 +1064,14 @@
       "char": "minh_anh",
       "expression": "red_leds",
       "out": "assets/portraits/minh_anh/red_leds.png",
+      "size": "portrait_4_3"
+    },
+    {
+      "id": "portrait_minh_anh_tears",
+      "kind": "portrait",
+      "char": "minh_anh",
+      "expression": "tears",
+      "out": "assets/portraits/minh_anh/tears.png",
       "size": "portrait_4_3"
     },
     {

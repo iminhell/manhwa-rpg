@@ -173,6 +173,22 @@ func imposed_pact(id: String) -> bool:
 	return has_flag(p[0]) and not has_flag(p[1] + "_pacte_accepte") and not has_flag(p[1] + "_devotion")
 
 
+## État du Pacte d'une héroïne (scènes à plusieurs, GDD §11.4.4) — partition exacte :
+##   "aucun" (jamais pactisée, ou Pacte rompu / consumé), "impose" (contrat subi), "renegocie" (Clause du Sceau,
+##   Ancre de Sang ou Condition du Pacte), "devotion" (Pacte embrassé ou Dévotion).
+func pact_state(id: String) -> String:
+	if not PACTES.has(id):
+		return "aucun"
+	var p: Array = PACTES[id]
+	if not has_flag(p[0]):
+		return "aucun"
+	if has_flag(p[1] + "_devotion"):
+		return "devotion"
+	if has_flag(p[1] + "_pacte_accepte"):
+		return "renegocie"
+	return "impose"
+
+
 ## Liens libres : comme bonds(), sans les héroïnes sous contrat imposé (scènes intimes à plusieurs, harem).
 func bonds_libres(threshold: float = 30.0) -> int:
 	var n := 0

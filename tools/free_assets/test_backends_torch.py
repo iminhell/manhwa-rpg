@@ -152,7 +152,8 @@ def test_sprites(tmp: Path) -> None:
     lora = make_lora(tmp)
     style = fg.load_style()
     style.update(size=[64, 96], steps=2, loras=[{"name": "test_style", "path": str(lora), "weight": 0.8, "trigger": "test"}],
-                 hires={"scale": 1.5, "strength": 0.4, "steps": 2}, final_height=120, detail_resolution=64)
+                 hires={"scale": 1.5, "strength": 0.4, "steps": 2, "upscaler": {"name": "tiny", "path": str(tiny_esrgan(tmp)), "tile": 32}},
+                 final_height=120, detail_resolution=64)
     pipe = tiny_sdxl(tmp)
     detector = {"face": FakeYolo([(30, 8, 60, 40)]), "hand": FakeYolo([(10, 70, 26, 90), (70, 72, 90, 92)])}
     try:
@@ -171,6 +172,8 @@ def test_sprites(tmp: Path) -> None:
     pose = backend.generate(fg.sprite_prompt(style, "elias"), style["negative"], 3)
     check(pose.size == (round(96 * 120 / 144), 120), f"hires fix ×1,5 puis taille finale ({pose.size})")
     check(detector["face"].calls >= 1 and detector["hand"].calls >= 1, "détailleur : visages et mains recherchés sur l'image agrandie")
+    check(backend.upscaler.model is not None and backend.upscaler.model.scale == 4,
+          "hires fix : agrandissement par le réseau ESRGAN (spandrel), pas par Lanczos")
     ref = os.environ.get("SPRITE_REF_IMAGE", "")  # un vrai sprite d'anime sur fond blanc (non versionné)
     if real_rembg and ref and Path(ref).exists():
         img = Image.open(ref).convert("RGB")
@@ -188,12 +191,31 @@ def test_sprites(tmp: Path) -> None:
     # étape complète sur un personnage : sprite de combat, pose neutre, puis expressions par inpainting du visage
     real_root, real_bases = fg.ROOT, fg.SPRITE_BASES
     fg.ROOT, fg.SPRITE_BASES = tmp / "proj", tmp / "proj/art_work/sprite_bases"
+    real_remover = backend.remover
+
+    def silhouette(im):  # détourage factice prévisible : personnage au centre (le modèle minuscule ne dessine rien)
+        a = Image.new("L", im.size, 0)
+        w, h = im.size
+        a.paste(255, (int(w * 0.3), int(h * 0.05), int(w * 0.7), int(h * 0.97)))
+        out = im.convert("RGBA")
+        out.putalpha(a)
+        return out
+    backend.remover = silhouette
     try:
         n = fg.cmd_sprites(argparse_ns(only=["seo_yeon"], limit=4), backend=backend)
         outs = [fg.ROOT / "assets/sprites/seo_yeon.png"] + [fg.ROOT / f"assets/portraits/seo_yeon/{e}.png" for e in ("neutral", "joy", "anger")]
         check(n == 4 and all(p.exists() for p in outs), "sprites : combat, neutre, joie, colère écrits aux chemins du manifeste")
         check(all(Image.open(p).mode == "RGBA" for p in outs), "sprites : PNG avec canal alpha")
         check((fg.SPRITE_BASES / "seo_yeon.png").exists(), "sprites : pose neutre mémorisée pour l'inpainting")
+        sizes = {Image.open(p).size for p in outs[1:]}
+        neutral = Image.open(outs[1])
+        check(len(sizes) == 1 and neutral.width < 80 and Image.open(fg.SPRITE_BASES / "seo_yeon.png").size == neutral.size,
+              f"sprites : recadrés sur la silhouette, même cadre pour toutes les expressions ({sizes})")
+        # garde : détourage vide (personnage effacé) → nouveaux essais, puis rien d'enregistré (placeholder en jeu)
+        backend.remover = lambda im: Image.new("RGBA", im.size, (0, 0, 0, 0))
+        n = fg.cmd_sprites(argparse_ns(only=["portrait_elias_neutral"], force=True), backend=backend)
+        check(n == 1 and not (fg.ROOT / "assets/portraits/elias/neutral.png").exists(),
+              "sprites : détourage vide refusé après plusieurs graines (aucune image transparente enregistrée)")
         # inpainting du visage sur une grande base : le bas du corps doit rester identique au pixel près
         import numpy as np
         rng = np.random.default_rng(0)
@@ -207,6 +229,36 @@ def test_sprites(tmp: Path) -> None:
               f"inpainting : visage repeint, bas du corps identique au pixel près (visage modifié {changed_top}, corps intact {same_bottom})")
     finally:
         fg.ROOT, fg.SPRITE_BASES = real_root, real_bases
+        backend.remover = real_remover
+
+
+def tiny_esrgan(tmp: Path) -> Path:
+    """Petit réseau ESRGAN (même architecture que RealESRGAN_x4plus_anime_6B), poids aléatoires, sauvé en .pth."""
+    from spandrel.architectures.ESRGAN.__arch.RRDB import RRDBNet
+    torch.manual_seed(0)
+    path = tmp / "tiny_esrgan.pth"
+    torch.save(RRDBNet(num_filters=8, num_blocks=1, scale=4).state_dict(), path)
+    return path
+
+
+def test_upscaler(tmp: Path) -> None:
+    from PIL import Image
+    up = fg.Upscaler({"name": "tiny", "path": str(tiny_esrgan(tmp)), "tile": 16})
+    img = Image.new("RGB", (40, 24), (200, 120, 90))
+    out = up.resize(img, (100, 60))
+    check(up.model is not None and not up.failed and out.size == (100, 60) and out.mode == "RGB",
+          f"agrandisseur : modèle ESRGAN chargé par spandrel, image à la taille demandée ({out.size})")
+    lanczos = fg.Upscaler({})
+    check(lanczos.failed and lanczos.resize(img, (100, 60)).size == (100, 60), "agrandisseur : repli Lanczos sans modèle")
+    # tuiles : même résultat que l'image entière pour un modèle local (voisinage 3×3)
+    conv = torch.nn.Conv2d(3, 3, 3, padding=1, padding_mode="replicate")
+
+    def model(x):
+        return torch.nn.functional.interpolate(conv(x), scale_factor=2, mode="nearest")
+    x = torch.rand(1, 3, 37, 53)
+    with torch.no_grad():
+        whole, tiled = model(x), fg.upscale_tiled(model, x, 2, tile=16, pad=2)
+    check(torch.allclose(whole, tiled, atol=1e-6), "agrandisseur : traitement par tuiles sans couture")
 
 
 class FakeYolo:
@@ -250,7 +302,7 @@ def argparse_ns(**kw):
 def main() -> None:
     print(f"Moteurs réels : torch {torch.__version__}, diffusers {diffusers.__version__}, transformers {transformers.__version__}")
     with tempfile.TemporaryDirectory() as tmp:
-        for test in (test_sdxl, test_weights, test_sprites, test_yolo_api, test_musicgen):
+        for test in (test_sdxl, test_weights, test_upscaler, test_sprites, test_yolo_api, test_musicgen):
             try:
                 test(Path(tmp))
             except Exception as e:  # noqa: BLE001

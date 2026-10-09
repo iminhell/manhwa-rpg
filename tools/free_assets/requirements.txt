@@ -13,3 +13,5 @@ peft==0.17.1
 rembg[cpu]==2.0.85
 # Sprites : détection des visages et des mains à retoucher (modèles YOLO d'ADetailer, Bingsu/adetailer)
 ultralytics==8.3.170
+# Sprites : agrandissement anime du hires fix (Real-ESRGAN x4plus anime 6B, chargé sans basicsr)
+spandrel==0.4.1

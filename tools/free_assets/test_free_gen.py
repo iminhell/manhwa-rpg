@@ -167,14 +167,42 @@ def main() -> None:
           "prompt d'Elias : manteau, peau caramel, imberbe, cheveux mi-longs, visage calme")
     ne = fg.sprite_negative(style, "elias")
     check("beard" in ne and "stubble" in ne and ne.startswith(style["negative"]), "négatif d'Elias : barbe et air renfrogné exclus")
-    check(fg.sprite_negative(style, "aoi") == style["negative"], "négatif commun pour les autres personnages")
+    check(fg.sprite_negative(style, "nadia") == style["negative"], "négatif commun pour les autres personnages")
+    pa, na = fg.sprite_prompt(style, "aoi"), fg.sprite_negative(style, "aoi")
+    check(all(t in pa for t in ("pink inner hair", "low twintails", "white sleeveless top", "high collar", "black bomber jacket",
+                                "pink pleated miniskirt", "black and pink striped socks", "black combat boots", "pink laces"))
+          and "fur boots" in na and "short hair" in na and "skort" not in pa,
+          "Aoi : charadesign d'origine (mèches roses, haut blanc à col montant, bomber, mini-jupe plissée rose, chaussettes rayées)")
+    allure = style["allure_female"]
+    check(allure in fg.sprite_prompt(style, "seo_yeon") and allure not in pe
+          and all(t in style["negative"] for t in ("nude", "nipples")) and "mature female" in pa,
+          "traits ecchi pour les héroïnes seulement, sans nudité, personnages adultes")
     check("seductive smile" in fg.sprite_prompt(style, "seo_yeon"), "expressions communes inchangées pour les héroïnes")
     ps = fg.sprite_prompt(style, "simone")
     check("thigh holster" in ps and "plunging neckline" in ps and "visible abs" in ps and "standing straight" in ps,
           "Simone : tenue de commandante, pose propre au personnage")
-    check(style["hires"]["scale"] == 1.5 and style["detailer"]["face_model"] and style["detailer"]["hand_model"]
+    check(style["hires"]["scale"] >= 1.75 and style["detailer"]["face_model"] and style["detailer"]["hand_model"]
           and "sharp lineart" in style["quality"] and "soft shadows" not in style["background"] and "drop shadow" in style["negative"],
-          "netteté : seconde passe ×1,5, retouche visages et mains, sans ombre portée")
+          "netteté : seconde passe ×1,75, retouche visages et mains, sans ombre portée")
+    up = style["hires"]["upscaler"]
+    w, h = style["size"]
+    check("anime" in up["name"].lower() and up["url"].endswith(".pth") and style["final_height"] >= 2048
+          and int(h * style["hires"]["scale"]) >= style["final_height"] and style["vae"].endswith("fp16-fix")
+          and fg.effective_steps(style["hires"]["steps"], style["hires"]["strength"]) * style["hires"]["strength"] >= 12,
+          "netteté : agrandisseur anime avant l'img2img, ≥ 12 étapes réelles, 2048 px de haut sans réduction, VAE fp16 corrigé")
+    reqs = (HERE / "requirements.txt").read_text()
+    check("spandrel==" in reqs, "requirements : spandrel (agrandisseur) figé")
+    from PIL import Image as _I2  # noqa: PLC0415
+    fig = _I2.new("RGBA", (100, 200), (255, 255, 255, 0))
+    fig.paste((10, 10, 10, 255), (30, 10, 70, 190))
+    check(fg.sprite_problem(fig.convert("RGB"), fig) == "" and fg.trim_box(fig.getchannel("A"), 0.03) == (24, 4, 76, 196),
+          "garde : silhouette valide acceptée, cadre serré avec marge")
+    empty = _I2.new("RGBA", (100, 200), (0, 0, 0, 0))
+    head_only = _I2.new("RGBA", (100, 200), (255, 255, 255, 0))
+    head_only.paste((10, 10, 10, 255), (30, 10, 70, 80))
+    check("vide" in fg.sprite_problem(fig.convert("RGB"), empty) and "uniforme" in fg.sprite_problem(_I2.new("RGB", (100, 200)), fig)
+          and "tronquée" in fg.sprite_problem(fig.convert("RGB"), head_only),
+          "garde : image noire (VAE en NaN), détourage vide et silhouette tronquée refusés")
     from PIL import Image as _Im, ImageDraw as _Dr  # noqa: PLC0415
     _im = _Im.new("RGB", (64, 64), "white")
     _Dr.Draw(_im).rectangle((20, 20, 44, 44), fill=(120, 120, 120))

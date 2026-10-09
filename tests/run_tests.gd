@@ -33,6 +33,9 @@ func _init() -> void:
 	test_systems_v09()
 	test_refuge_voies()
 	test_scene_matrix()
+	test_pact_state()
+	test_group_variants()
+	test_gallery_devotion()
 	print("\n%d réussis, %d échoués" % [_passed, _failed])
 	quit(1 if _failed > 0 else 0)
 
@@ -687,6 +690,11 @@ func _route(s, dlg: Dictionary, block: String) -> Array:
 	return seen
 
 
+## Scène à plusieurs : le bloc d'entrée et sa suite (après le choix de la meneuse).
+func _scene_intimate(dlg: Dictionary, blk: String) -> bool:
+	return _intimate(dlg, [blk, blk + "__suite"])
+
+
 func _intimate(dlg: Dictionary, blocks: Array) -> bool:
 	for b in blocks:
 		for st in dlg["blocks"].get(b, []):
@@ -760,7 +768,7 @@ func test_scene_matrix() -> void:
 			and se.has_flag(p + "_nuit") and not se.imposed_pact(h), "Matrice : %s, Pacte embrassé → Dévotion %s" % [h, seene])
 	# Scènes à plusieurs : regard (expression) et mise en scène selon l'état de l'héroïne
 	var looks: Array = []
-	for state in [["libre", [], "", ""], ["renégocié", ["flag pacte.seo_yeon", "flag seo_pacte_accepte"], "", "Ancre de Sang"],
+	for state in [["libre", [], "", ""], ["renégocié", ["flag pacte.seo_yeon", "flag seo_pacte_accepte"], "", "collier"],
 			["embrassé", ["flag pacte.seo_yeon", "flag seo_devotion", "flag seo_pacte_embrasse"], "", "Seigneur Kang"]]:
 		var sg := StateStore.new()
 		sg.apply_effects(["join seo_yeon", "join aoi"] + state[1])
@@ -768,17 +776,20 @@ func test_scene_matrix() -> void:
 		rg.start(grp, "paire_seo_yeon_aoi")
 		var exprs: Array = []
 		var texts: Array = []
-		for i in 60:
+		for i in 120:
 			var st := rg.next()
 			if st["kind"] == "line":
 				texts.append(st["text"])
 				if st["speaker"] == "seo_yeon":
 					exprs.append(st["expr"])
-			elif st["kind"] == "end" or st["kind"] == "choice":
+			elif st["kind"] == "choice":
+				rg.choose(0)
+			elif st["kind"] == "end":
 				break
-		var staged: bool = state[3] == "" or texts.any(func(t): return t.contains(state[3]) and t.begins_with("Seo-Yeon"))
-		check(exprs.size() == 1 and not looks.has(exprs[0]) and staged, "Groupe : Seo-Yeon %s → regard propre à l'état, mise en scène adaptée %s" % [state[0], exprs])
-		looks += exprs
+		var staged: bool = state[3] == "" or texts.any(func(t): return t.contains(state[3]))
+		var look: String = exprs[-1] if not exprs.is_empty() else ""
+		check(look != "" and not looks.has(look) and staged, "Groupe : Seo-Yeon %s → regard propre à l'état, mise en scène adaptée %s" % [state[0], exprs])
+		looks.append(look)
 	# Tyran : la nuit d'Ombre ne se rejoue pas ; entre la première et la seconde nuit, un repos ordinaire
 	for h in H:
 		var p: String = PRE.get(h, h)
@@ -832,7 +843,7 @@ func test_scene_matrix() -> void:
 			check(any_store.check(str(g.get("if", ""))) and seenpd.has("portrait_dix_pacte") and not _intimate(grp, seenpd.slice(1)),
 				"Groupe : Portrait des Dix avec une héroïne sous contrat imposé → portrait seul, sans la nuit %s" % [seenpd])
 			any_store.apply_effects(["unflag pacte.seo_yeon"])
-		elif pacted.is_empty() and g.get("members", []).is_empty() and _intimate(grp, [blk]):
+		elif pacted.is_empty() and g.get("members", []).is_empty() and _scene_intimate(grp, blk):
 			any_store.apply_effects(["flag pacte.seo_yeon"])
 			check(any_store.check(str(g.get("if", ""))), "Groupe : « %s » reste accessible avec une héroïne sous Pacte" % g["id"])
 			var r := DialogueRunner.new(any_store)
@@ -849,10 +860,197 @@ func test_scene_matrix() -> void:
 			any_store.apply_effects(["flag " + PACT[m]])
 			check(any_store.check(str(g.get("if", ""))), "Groupe : « %s » non verrouillée par le Pacte de %s" % [g["id"], m])
 			var seen := _route(any_store, grp, blk)
-			if _intimate(grp, [blk]):
+			if _scene_intimate(grp, blk):
 				check(seen.size() > 1 and seen[1] == "pacte_groupe_" + m and not _intimate(grp, seen.slice(1)),
 					"Groupe : « %s » avec %s sous contrat imposé → variante sans intimité %s" % [g["id"], m, seen])
 			else:
 				check(not _intimate(grp, seen), "Groupe : soirée « %s » jouable avec %s sous Pacte, sans intimité" % [g["id"], m])
 			any_store.apply_effects(["unflag " + PACT[m]])
 
+
+
+# --- État du Pacte et variantes profondes des scènes à plusieurs ----------------------------------------------------
+
+const PACT_FLAGS := {"seo_yeon": ["pacte.seo_yeon", "seo"], "xiaoyu": ["pacte.xiaoyu", "xiaoyu"], "hae_in": ["pacte.hae_in", "haein"],
+	"simone": ["pacte.simone", "simone"], "nadia": ["nadia_pactisee", "nadia"], "aoi": ["aoi_dominee", "aoi"]}
+const TEN := ["seo_yeon", "haneul", "aoi", "maricel", "ryeon", "xiaoyu", "hae_in", "nadia", "simone", "minh_anh"]
+
+
+## Effets qui placent une héroïne dans un état de Pacte.
+func _pact_fx(h: String, state: String) -> Array:
+	var p: Array = PACT_FLAGS[h]
+	match state:
+		"impose":
+			return ["flag " + p[0]]
+		"renegocie":
+			return ["flag " + p[0], "flag %s_pacte_accepte" % p[1]]
+		"devotion":
+			return ["flag " + p[0], "flag %s_devotion" % p[1], "flag %s_pacte_embrasse" % p[1]]
+	return []
+
+
+func test_pact_state() -> void:
+	for h in PACT_FLAGS:
+		var p: Array = PACT_FLAGS[h]
+		for state in ["aucun", "impose", "renegocie", "devotion"]:
+			var s := StateStore.new()
+			s.apply_effects(_pact_fx(h, state))
+			check(s.pact_state(h) == state and s.imposed_pact(h) == (state == "impose"), "État du Pacte : %s %s" % [h, state])
+		var freed := StateStore.new()  # Pacte consumé (fleur de la Tour) ou rompu : libre, même après Dévotion
+		freed.apply_effects(["flag %s_devotion" % p[1], "flag %s_pacte_accepte" % p[1]])
+		check(freed.pact_state(h) == "aucun", "État du Pacte : %s, Pacte consumé → libre" % h)
+	check(StateStore.new().pact_state("haneul") == "aucun", "État du Pacte : héroïne sans Pacte")
+
+
+## Joue une scène à plusieurs (choix « pick » à chaque fois) et relève répliques, musiques, choix et blocs.
+func _play_group(grp: Dictionary, blk: String, fx: Array, pick: int) -> Dictionary:
+	var s := StateStore.new()
+	s.apply_effects(fx)
+	var r := DialogueRunner.new(s)
+	var out := {"lines": [], "music": [], "choices": 0, "blocks": [], "ended": false}
+	r.on_enter = func(ref): out["blocks"].append(str(ref).get_slice(":", 1))
+	r.start(grp, blk)
+	for i in 600:
+		var st := r.next()
+		match st["kind"]:
+			"line":
+				out["lines"].append(st)
+			"music":
+				out["music"].append(st["context"])
+			"choice":
+				out["choices"] += 1
+				r.choose(mini(pick, st["options"].size() - 1))
+			"end":
+				out["ended"] = true
+				break
+	return out
+
+
+func _texts(run: Dictionary, speaker: String = "") -> Array:
+	return run["lines"].filter(func(l): return speaker == "" or l["speaker"] == speaker).map(func(l): return l["text"])
+
+
+func test_group_variants() -> void:
+	var grp: Dictionary = DataDB.load_dir("res://data/dialogues")["refuge_groupe"]
+	var manifest: Array = DataDB.load_json("res://data/art/manifest.json")["assets"]
+	var sprites := {}
+	for a in manifest:
+		if a["kind"] == "portrait":
+			sprites["%s/%s" % [a["char"], a.get("expression", "neutral")]] = true
+	var variants := 0
+	var scenes := 0
+	for g in DataDB.load_json("res://data/world/group_scenes.json")["scenes"]:
+		var blk: String = str(g["dialogue"]).get_slice(":", 1)
+		if not grp["blocks"].has(blk + "__suite"):
+			continue
+		scenes += 1
+		var members: Array = g.get("members", [])
+		var cast: Array = members if not members.is_empty() else TEN
+		var base := []
+		for m in cast:
+			base += ["join " + m, "set aff.%s 70" % m]
+		for h in cast.filter(func(m): return PACT_FLAGS.has(m)):
+			var runs := {}
+			for state in ["libre", "renegocie", "devotion"]:
+				for pick in [0, 1]:
+					runs[state + str(pick)] = _play_group(grp, blk, base + _pact_fx(h, state), pick)
+			var L: Dictionary = runs["libre0"]
+			var R: Dictionary = runs["renegocie0"]
+			var D: Dictionary = runs["devotion0"]
+			var tag := "%s / %s" % [blk, h]
+			var ok_end := true
+			var sprite_ok := true
+			for k in runs:
+				ok_end = ok_end and runs[k]["ended"] and runs[k]["blocks"].has(blk + "__suite")
+				for l in runs[k]["lines"]:
+					if l["speaker"] in TEN or l["speaker"] == "elias":
+						sprite_ok = sprite_ok and sprites.has("%s/%s" % [l["speaker"], l["expr"]])
+			check(ok_end, "Variantes : %s, chaque état va au bout de la scène" % tag)
+			check(sprite_ok, "Variantes : %s, chaque regard a son sprite" % tag)
+			# Ambiance : musique propre à l'état dominant
+			check(not L["music"].has("intimate.contrat") and not L["music"].has("intimate.devotion")
+				and R["music"].has("intimate.contrat") and D["music"].has("intimate.devotion"), "Variantes : %s, ambiance musicale selon l'état" % tag)
+			# Déroulé : la meneuse prend la parole (Clause ou offrande) et le joueur choisit ; l'issue suit le choix
+			check(R["choices"] == L["choices"] + 1 and D["choices"] == L["choices"] + 1, "Variantes : %s, choix de la meneuse (renégocié, Dévotion)" % tag)
+			check(_texts(runs["renegocie0"]) != _texts(runs["renegocie1"]) and _texts(runs["devotion0"]) != _texts(runs["devotion1"]),
+				"Variantes : %s, l'issue change avec le choix" % tag)
+			# Attitude et réplique : trois versions distinctes, aucune ligne en double
+			var lt := _texts(L, h)
+			var rt := _texts(R, h)
+			var dt := _texts(D, h)
+			check(not rt.is_empty() and not dt.is_empty() and rt != lt and dt != lt and rt != dt, "Variantes : %s, répliques propres à chaque état" % tag)
+			var le: Array = L["lines"].filter(func(l): return l["speaker"] == h).map(func(l): return l["expr"])
+			var re: Array = R["lines"].filter(func(l): return l["speaker"] == h).map(func(l): return l["expr"])
+			var de: Array = D["lines"].filter(func(l): return l["speaker"] == h).map(func(l): return l["expr"])
+			check(re != le and de != le and re != de, "Variantes : %s, regards distincts %s / %s / %s" % [tag, le, re, de])
+			var narr_l := _texts(L, "narrator")
+			check(_texts(R, "narrator") != narr_l and _texts(D, "narrator") != narr_l, "Variantes : %s, mise en scène propre à l'état" % tag)
+			for k in runs:
+				var all_t := _texts(runs[k])
+				var uniq := {}
+				for t in all_t:
+					uniq[t] = true
+				check(uniq.size() == all_t.size(), "Variantes : %s (%s), aucune ligne affichée deux fois" % [tag, k])
+			# Contrat imposé : jamais la scène, la variante sans intimité (ou l'absence mentionnée)
+			var I := _play_group(grp, blk, base + _pact_fx(h, "impose"), 0)
+			check(not I["blocks"].has(blk + "__suite") or members.is_empty(), "Variantes : %s, contrat imposé écarté" % tag)
+			variants += 3
+	print("Variantes de groupe vérifiées : %d (scène × héroïne × état), %d scènes" % [variants, scenes])
+	check(variants >= 300 and scenes >= 50, "Variantes : couverture (%d variantes, %d scènes)" % [variants, scenes])
+
+
+## Galerie : l'Embrassement du Pacte et la Dévotion se débloquent ensemble, sans entrée d'un autre état (Pacte imposé,
+## contrat renégocié), et « Revoir » rejoue chaque entrée dans un état vierge.
+func test_gallery_devotion() -> void:
+	var all: Dictionary = DataDB.load_dir("res://data/dialogues")
+	var gal: Dictionary = DataDB.load_json("res://data/world/gallery.json")
+	var unlocks := {}
+	var by_id := {}
+	for e in gal["entries"]:
+		by_id[e["id"]] = e
+		for ref in e.get("unlock", []):
+			if not unlocks.has(ref):
+				unlocks[ref] = []
+			unlocks[ref].append(e["id"])
+	for h in PACT_FLAGS:
+		var p: String = PACT_FLAGS[h][1]
+		for path in [["embrasse", ["set trust.%s 40" % h], [p + "_pacte_embrasse", p + "_devotion"]],
+				["renegocie", ["set trust.%s 0" % h], [p + "_pacte_consentie"]]]:
+			var s := StateStore.new()
+			s.apply_effects(["set repos.%s 1" % h, "flag refuge.dortoir", "set aff.%s 45" % h, "flag " + PACT_FLAGS[h][0],
+				"set ambivalence.%s 35" % h] + path[1])
+			var got := {}
+			var r := DialogueRunner.new(s)
+			r.on_enter = func(ref):
+				for id in unlocks.get(str(ref), []):
+					got[id] = true
+			r.start(all["refuge"], h)
+			for i in 300:
+				var st := r.next()
+				if st["kind"] == "choice":
+					r.choose(0)
+				elif st["kind"] == "end":
+					break
+			var ids: Array = got.keys()
+			ids.sort()
+			var want: Array = path[2].duplicate()
+			want.sort()
+			check(ids == want, "Galerie : %s, %s → %s débloqué(s), rien d'autre %s" % [h, path[0], want, ids])
+		for id in [p + "_pacte_embrasse", p + "_devotion"]:
+			var e: Dictionary = by_id[id]
+			check(e["tab"] == "intime" and e["route"] == "devotion" and e["status"] != "prevue", "Galerie : %s, onglet et voie" % id)
+			var ref: String = e["scene"]
+			var rr := DialogueRunner.new(StateStore.new())  # Revoir : état vierge (bac à sable)
+			rr.start(all[ref.get_slice(":", 0)], ref.get_slice(":", 1))
+			var lines := 0
+			var ended := false
+			for i in 300:
+				var st := rr.next()
+				if st["kind"] == "line":
+					lines += 1
+				elif st["kind"] == "choice":
+					rr.choose(0)
+				elif st["kind"] == "end":
+					ended = true
+					break
+			check(ended and lines > 0, "Galerie : « Revoir » %s se joue jusqu'au bout (%d répliques)" % [id, lines])
