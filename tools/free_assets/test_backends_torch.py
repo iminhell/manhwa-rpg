@@ -153,7 +153,7 @@ def test_sprites(tmp: Path) -> None:
     style = fg.load_style()
     style.update(size=[64, 96], steps=2, loras=[{"name": "test_style", "path": str(lora), "weight": 0.8, "trigger": "test"}],
                  hires={"scale": 1.5, "strength": 0.4, "steps": 2, "upscaler": {"name": "tiny", "path": str(tiny_esrgan(tmp)), "tile": 32}},
-                 final_height=120, detail_resolution=64, detail_steps=2)
+                 final_height=120, detail_resolution=64, detail_steps=2, controlnet={})  # sans ControlNet : chemin de repli
     pipe = tiny_sdxl(tmp)
     detector = {"face": FakeYolo([(30, 8, 60, 40)]), "hand": FakeYolo([(10, 70, 26, 90), (70, 72, 90, 92)])}
     try:
@@ -176,7 +176,7 @@ def test_sprites(tmp: Path) -> None:
     backend.render = real_render
     check(cfgs == [style["guidance"]], f"génération de base au CFG du style ({cfgs})")
     check(pose.size == (round(96 * 120 / 144), 120), f"hires fix ×1,5 puis taille finale ({pose.size})")
-    check(detector["face"].calls >= 1 and detector["hand"].calls >= 1, "détailleur : visages et mains recherchés sur l'image agrandie")
+    check(detector["face"].calls >= 1 and detector["hand"].calls == 0, "détailleur : visage retouché, mains laissées à la seconde passe")
     check(backend.upscaler.model is not None and backend.upscaler.model.scale == 4,
           "hires fix : agrandissement par le réseau ESRGAN (spandrel), pas par Lanczos")
     ref = os.environ.get("SPRITE_REF_IMAGE", "")  # un vrai sprite d'anime sur fond blanc (non versionné)
@@ -283,6 +283,75 @@ def test_upscaler(tmp: Path) -> None:
     check(torch.allclose(whole, tiled, atol=1e-6), "agrandisseur : traitement par tuiles sans couture")
 
 
+def test_controlnet(tmp: Path) -> None:
+    """Seconde passe guidée par ControlNet Tile (vrai StableDiffusionXLControlNetImg2ImgPipeline / InpaintPipeline sur un
+    ControlNet minuscule construit depuis le UNet de test), repli si la mémoire manque, affinage sans régénérer la pose."""
+    from diffusers import ControlNetModel
+    from PIL import Image
+    style = fg.load_style()
+    style.update(size=[64, 96], steps=2, loras=[], hires={"scale": 1.5, "strength": 0.4, "steps": 2}, final_height=120,
+                 detail_resolution=64, detail_steps=2)
+    style["controlnet"] = {**style["controlnet"], "repo": "test"}
+    pipe = tiny_sdxl(tmp)
+    torch.manual_seed(1)
+    cn = ControlNetModel.from_unet(pipe.unet, conditioning_embedding_out_channels=(8, 16))
+    detector = {"face": FakeYolo([(30, 8, 60, 40)]), "hand": FakeYolo([(10, 70, 26, 90)])}
+    backend = fg.SpriteBackend(style, pipe=pipe, remover=lambda im: im.convert("RGBA"), detector_models=detector, controlnet=cn)
+    calls = {"cn": 0, "cn_inpaint": 0, "plain": 0}
+    real_cn, real_plain, real_inp = backend._cn_img2img, backend._img2img, backend.cn_inpaint.__call__
+
+    def spy_cn(*a, **k):
+        calls["cn"] += 1
+        return real_cn(*a, **k)
+
+    def spy_plain(*a, **k):
+        calls["plain"] += 1
+        return real_plain(*a, **k)
+    backend._cn_img2img, backend._img2img = spy_cn, spy_plain
+    inpaint = backend.cn_inpaint
+    backend.cn_inpaint = lambda **k: (calls.__setitem__("cn_inpaint", calls["cn_inpaint"] + 1), inpaint(**k))[1]
+    pose = backend.generate(fg.sprite_prompt(style, "hae_in"), style["negative"], 5, fg.detail_prompts(style, "hae_in"))
+    check(pose.size == (80, 120) and calls == {"cn": 1, "cn_inpaint": 1, "plain": 0} and detector["hand"].calls == 0,
+          f"ControlNet Tile : seconde passe et retouche du visage guidées, mains non repeintes ({calls})")
+    check(backend.last_base is not None and backend.last_base.size == (64, 96), "pose de base mémorisée (basse résolution)")
+
+    def oom(*a, **k):
+        raise torch.cuda.OutOfMemoryError("test")
+    backend._cn_img2img = oom
+    calls["plain"] = 0
+    out = backend.refine(backend.last_base, "x", style["negative"], 1)
+    check(out.size == (96, 144) and calls["plain"] == 1, "mémoire GPU insuffisante : repli sur l'img2img simple")
+    backend._cn_img2img = spy_cn
+    # affinage : la pose mémorisée (ou le sprite existant) est repassée en HD, sans nouvelle génération
+    real_root, real_bases = fg.ROOT, fg.SPRITE_BASES
+    fg.ROOT, fg.SPRITE_BASES = tmp / "proj_cn", tmp / "proj_cn/art_work/sprite_bases"
+
+    def silhouette(im):
+        a = Image.new("L", im.size, 0)
+        a.paste(255, (int(im.width * 0.3), int(im.height * 0.05), int(im.width * 0.7), int(im.height * 0.97)))
+        o = im.convert("RGBA")
+        o.putalpha(a)
+        return o
+    backend.remover = silhouette
+    renders = []
+    real_render = backend.render
+    backend.render = lambda *a, **k: (renders.append(1), real_render(*a, **k))[1]
+    try:
+        fg.cmd_sprites(argparse_ns(only=["portrait_nadia_neutral"]), backend=backend)
+        low = fg.lowres_path("portrait_nadia_neutral")
+        check(low.exists() and len(renders) == 1, "génération : pose de base enregistrée pour un affinage ultérieur")
+        renders.clear()
+        n = fg.cmd_sprites(argparse_ns(only=["portrait_nadia_neutral"], refine=True), backend=backend)
+        check(n == 1 and not renders and (fg.ROOT / "assets/portraits/nadia/neutral.png").exists(),
+              "affinage depuis la pose mémorisée : aucune nouvelle génération")
+        low.unlink()
+        calls["cn"] = 0
+        n = fg.cmd_sprites(argparse_ns(only=["portrait_nadia_neutral"], refine=True), backend=backend)
+        check(n == 1 and not renders and calls["cn"] == 1, "affinage d'un sprite existant (déjà en HD) : aucune nouvelle génération")
+    finally:
+        fg.ROOT, fg.SPRITE_BASES = real_root, real_bases
+
+
 class FakeYolo:
     """Même interface que ultralytics.YOLO.predict (résultat → boxes.xyxy.cpu().numpy().tolist())."""
 
@@ -316,7 +385,7 @@ def test_yolo_api(tmp: Path) -> None:
 
 def argparse_ns(**kw):
     import argparse
-    base = {"force": False, "dry_run": False, "only": None, "limit": 0}
+    base = {"force": False, "dry_run": False, "only": None, "limit": 0, "refine": False}
     base.update(kw)
     return argparse.Namespace(**base)
 
@@ -324,7 +393,7 @@ def argparse_ns(**kw):
 def main() -> None:
     print(f"Moteurs réels : torch {torch.__version__}, diffusers {diffusers.__version__}, transformers {transformers.__version__}")
     with tempfile.TemporaryDirectory() as tmp:
-        for test in (test_sdxl, test_weights, test_upscaler, test_sprites, test_yolo_api, test_musicgen):
+        for test in (test_sdxl, test_weights, test_upscaler, test_sprites, test_controlnet, test_yolo_api, test_musicgen):
             try:
                 test(Path(tmp))
             except Exception as e:  # noqa: BLE001

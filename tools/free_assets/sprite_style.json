@@ -23,7 +23,7 @@
   1216
  ],
  "steps": 35,
- "guidance": 7.5,
+ "guidance": 7.0,
  "expression_strength": 0.6,
  "quality": "masterpiece, best quality, amazing quality, (ultra-detailed), very aesthetic, absurdres, highres, anime style, anime coloring, cel shading, (sharp lineart:1.2), clean lineart, crisp details, (sharp focus:1.2), clear lineart, high definition, (high resolution:1.1), detailed hair, detailed clothes, detailed face, detailed eyes, perfect hands, defined line",
  "background": "simple background, white background, flat lighting, (no shadow:1.2)",
@@ -145,7 +145,7 @@
    "face_extra": "(sharp focus on eyes:1.2), clear glasses lenses, detailed eyes behind glasses"
   }
  },
- "sampler_note": "DPM++ 2M Karras, 35 étapes, CFG 7,5 ; raffinement et retouches : 30 étapes réelles (detail_steps), denoise 0,38",
+ "sampler_note": "DPM++ 2M Karras, 35 étapes, CFG 7 pour la pose ; raffinement et retouches : 30 étapes réelles, CFG 6",
  "alpha_cleanup": {
   "min_alpha": 24,
   "shadow_band": 0.1,
@@ -159,7 +159,7 @@
  },
  "sampler": "dpmpp_2m_karras",
  "hires": {
-  "scale": 1.75,
+  "scale": 1.6,
   "strength": 0.38,
   "steps": 30,
   "upscaler": {
@@ -167,7 +167,7 @@
    "tile": 512,
    "url": "https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.2.4/RealESRGAN_x4plus_anime_6B.pth"
   },
-  "note": "hires fix : 832×1216 → ×4 par Real-ESRGAN anime → réduit à 1456×2128, puis img2img à 0,38 avec 30 étapes réelles (comme un KSampler à denoise 0,38). Avec 0,38 et seulement ~11 étapes réelles, le raffinement restait inachevé."
+  "note": "832×1216 → Lanczos ×1,6 (1328×1944) → img2img guidé par ControlNet Tile (débruitage 0,5, 30 étapes réelles, CFG 6). Repli sans ControlNet : Real-ESRGAN anime puis img2img à 0,38."
  },
  "final_height": 2048,
  "detail_resolution": 1024,
@@ -176,24 +176,31 @@
   "face_model": "face_yolov8n.pt",
   "hand_model": "hand_yolov8n.pt",
   "confidence": 0.35,
-  "strength": 0.38,
+  "strength": 0.3,
   "max_per_kind": 4,
   "face_prompt": "detailed face, (detailed eyes:1.2), detailed iris, eyelashes, (sharp focus:1.2), clear lineart, high resolution",
   "hand_prompt": "(detailed hands:1.2), (clean fingers:1.2), five fingers, detailed fingers, clear lineart, sharp focus",
-  "face_passes": 2,
-  "hand_strength": 0.5
+  "face_passes": 1,
+  "hands": false,
+  "note": "visage : une passe guidée à 0,3 ; mains : non retouchées (une boîte de main repeinte isolément réinvente les doigts)"
  },
- "sharpen": {
-  "radius": 1.0,
-  "percent": 55,
-  "threshold": 2,
-  "note": "accentuation finale légère (UnsharpMask) : un rayon trop grand épaissit le trait d'un halo (contours « baveux »)"
- },
+ "sharpen": null,
  "allure_female": "(alluring:1.1), sexy, seductive body, curvy silhouette, (shiny skin:1.1), glossy skin, (thighs:1.1), skindentation, collarbone",
  "note_allure": "Traits ecchi communes aux héroïnes (jamais de nudité : « nude, nipples » restent dans le négatif).",
  "vae": "madebyollin/sdxl-vae-fp16-fix",
  "trim_margin": 0.03,
  "retries": 4,
  "composition": "(solo:1.3), (single character:1.2), (one person:1.1), centered, standing alone",
- "detail_steps": 30
+ "detail_steps": 30,
+ "refine_guidance": 6.0,
+ "controlnet": {
+  "repo": "xinsir/controlnet-tile-sdxl-1.0",
+  "strength": 0.5,
+  "refine_strength": 0.3,
+  "conditioning_scale": 0.7,
+  "guidance_end": 1.0,
+  "detail_conditioning_scale": 0.8,
+  "note": "ControlNet Tile SDXL : la seconde passe est guidée par l'image elle-même (pose, expression, composition verrouillées), ce qui autorise un débruitage de 0,5 : le modèle redessine un trait fin à pleine résolution au lieu de garder le trait épaissi d'un agrandisseur. refine_strength : affinage d'un sprite déjà en HD."
+ },
+ "sharpen_note": "pas d'accentuation finale : le trait net vient de la seconde passe ; un UnsharpMask fait des halos et des pâtés sur l'encrage"
 }

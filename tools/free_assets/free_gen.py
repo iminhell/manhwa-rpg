@@ -11,6 +11,7 @@ Génération GRATUITE des assets du jeu sur GPU (Google Colab T4 gratuit, ou PC 
   python tools/free_assets/free_gen.py voices               répliques de tools/voice_pipeline/lines.csv (ko + ja)
                                                             → assets/voice/<langue>/<personnage>/<id>.ogg
 Options : --force (refaire les fichiers existants), --only <id…> (restreindre), --dry-run (plan détaillé, sans modèle).
+         sprites --refine : rejouer la seconde passe HD sur les poses existantes (pose et charadesign conservés).
 
 Sources de vérité : data/art/manifest.json + data/art/prompts.json (images), data/audio/music.json (« prompt » en anglais),
 data/characters/*.json → voice.xtts (voix XTTS de chaque personnage).
@@ -614,7 +615,8 @@ class SpriteBackend(SdxlBackend):
     (inpainting en 1024 px), expressions par inpainting du visage (corps identique au pixel près, clignement compris),
     détourage rembg (isnet-anime) et nettoyage du masque."""
 
-    def __init__(self, style: dict, pipe=None, remover=None, detector_models: dict | None = None, upscaler=None) -> None:
+    def __init__(self, style: dict, pipe=None, remover=None, detector_models: dict | None = None, upscaler=None,
+                 controlnet=None) -> None:
         import torch  # noqa: PLC0415
         if pipe is None:
             from diffusers import StableDiffusionXLPipeline  # noqa: PLC0415
@@ -640,13 +642,23 @@ class SpriteBackend(SdxlBackend):
         super().__init__(pipe=pipe)
         enable_vae_tiling(self.pipe)
         from diffusers import StableDiffusionXLImg2ImgPipeline, StableDiffusionXLInpaintPipeline  # noqa: PLC0415
-        self.inpaint_pipe = StableDiffusionXLInpaintPipeline(**self.pipe.components)
-        self.img2img_pipe = StableDiffusionXLImg2ImgPipeline(**self.pipe.components)
+        self.inpaint_pipe = StableDiffusionXLInpaintPipeline(**self.pipe.components, add_watermarker=False)
+        self.img2img_pipe = StableDiffusionXLImg2ImgPipeline(**self.pipe.components, add_watermarker=False)
         self.style = style
         self.remover = remover
         self.detailer = Detailer(style.get("detailer", {}), detector_models)
         self.upscaler = Upscaler(style.get("hires", {}).get("upscaler"), upscaler)
         self.masks: dict[str, object] = {}
+        self.last_base = None  # pose de base (basse résolution) de la dernière génération, pour l'affiner plus tard
+        self.cn_img2img = self.cn_inpaint = None
+        cn = controlnet if controlnet is not None else load_controlnet(style.get("controlnet"), self.pipe.unet.dtype)
+        if cn is not None:
+            from diffusers import (StableDiffusionXLControlNetImg2ImgPipeline,  # noqa: PLC0415
+                                   StableDiffusionXLControlNetInpaintPipeline)
+            comps = {k: v for k, v in self.pipe.components.items() if k not in ("image_encoder", "feature_extractor")}
+            cn = cn.to(self.dev)
+            self.cn_img2img = StableDiffusionXLControlNetImg2ImgPipeline(**comps, controlnet=cn, add_watermarker=False)
+            self.cn_inpaint = StableDiffusionXLControlNetInpaintPipeline(**comps, controlnet=cn, add_watermarker=False)
 
     def face_mask(self, cid: str, base):
         """Masque du visage : boîte détectée par le détailleur, sinon le haut de la silhouette."""
@@ -669,17 +681,41 @@ class SpriteBackend(SdxlBackend):
         return cleaned
 
     def generate(self, prompt: str, negative: str, seed: int, detail: tuple[str, str] | None = None):
-        """Génération complète d'une pose : base, hires fix (agrandissement anime ESRGAN + img2img), retouche
-        visage/mains, taille finale."""
+        """Génération complète d'une pose : base, seconde passe HD guidée (refine), retouche du visage, taille finale."""
         w, h = self.style["size"]
         img = self.render(prompt, negative, (w, h), seed, steps=self.style["steps"], guidance=self.style["guidance"])
+        self.last_base = img
+        return self.finish(self.refine(img, prompt, negative, seed), prompt, negative, seed, detail)
+
+    def finish(self, img, prompt: str, negative: str, seed: int, detail: tuple[str, str] | None = None):
+        return self.final_size(self.detail(img, prompt, negative, seed, detail))
+
+    def refine(self, img, prompt: str, negative: str, seed: int, hd: bool = False):
+        """Seconde passe HD. Avec ControlNet Tile : agrandissement Lanczos (sans épaississement du trait), puis img2img
+        guidé par l'image elle-même (structure, pose et expression verrouillées), ce qui permet un débruitage assez fort
+        pour que le modèle redessine un trait fin à pleine résolution. Sans ControlNet (ou si la mémoire manque) :
+        agrandisseur anime puis img2img léger. hd=True : l'image est déjà en haute définition (affinage d'un sprite
+        existant), on la repasse à sa taille avec un débruitage plus faible."""
+        from PIL import Image  # noqa: PLC0415
         hires = self.style.get("hires", {})
-        if hires.get("scale", 1.0) > 1.0:
+        w, h = self.style["size"]
+        if hd:
+            size = (img.width // 8 * 8, img.height // 8 * 8)
+        elif hires.get("scale", 1.0) > 1.0:
             size = (int(w * hires["scale"]) // 8 * 8, int(h * hires["scale"]) // 8 * 8)
-            img = self._img2img(self.upscaler.resize(img, size), prompt, negative, seed, hires.get("strength", 0.4),
-                                hires.get("steps", 30))
-        img = self.detail(img, prompt, negative, seed, detail)
-        return self.final_size(img)
+        else:
+            return img
+        steps = int(hires.get("steps", 30))
+        if self.cn_img2img is not None:
+            cn = self.style.get("controlnet", {})
+            strength = float(cn.get("refine_strength" if hd else "strength", 0.5))
+            try:
+                return self._cn_img2img(img.resize(size, Image.LANCZOS), prompt, negative, seed, strength, steps)
+            except self.torch.cuda.OutOfMemoryError:
+                print("  ! mémoire GPU insuffisante pour la passe guidée : passe img2img simple")
+                self.torch.cuda.empty_cache()
+        base = img.resize(size, Image.LANCZOS) if hd else self.upscaler.resize(img, size)
+        return self._img2img(base, prompt, negative, seed, float(hires.get("strength", 0.38)) * (0.7 if hd else 1.0), steps)
 
     def final_size(self, img):
         from PIL import Image  # noqa: PLC0415
@@ -689,35 +725,70 @@ class SpriteBackend(SdxlBackend):
         return img
 
     def detail(self, img, prompt: str, negative: str, seed: int, detail: tuple[str, str] | None = None):
-        """Repeint chaque visage et chaque main détectés (comme ADetailer), avec des prompts sans pose (detail_prompts) :
-        visage en plusieurs passes (piqué des yeux), mains plus fortement (doigts nets)."""
+        """Retouche locale (comme ADetailer), prompts sans pose (detail_prompts). Visage : une passe à débruitage bas,
+        guidée par ControlNet Tile quand il est chargé (piqué des yeux sans changer l'expression ni les traits).
+        Mains : désactivées par défaut (« hands ») : repeindre une boîte de main isolée réinvente les doigts (griffes,
+        doigts en trop) et la seconde passe guidée les traite déjà avec le reste du corps."""
         cfg = self.style.get("detailer", {})
         face_p, hand_p = detail or (f"{prompt}, {cfg.get('face_prompt', '')}", f"{prompt}, {cfg.get('hand_prompt', '')}")
-        strength = float(cfg.get("strength", 0.35))
-        passes = [("face", face_p, strength)] + [("face", face_p, strength * 0.6)] * (int(cfg.get("face_passes", 1)) - 1)
-        passes.append(("hand", hand_p, float(cfg.get("hand_strength", strength))))
+        strength = float(cfg.get("strength", 0.3))
+        passes = [("face", face_p, strength)] * max(1, int(cfg.get("face_passes", 1)))
+        if cfg.get("hands", False):
+            passes.append(("hand", hand_p, float(cfg.get("hand_strength", strength))))
         for n, (kind, text, st) in enumerate(passes):
             for k, box in enumerate(self.detailer.boxes(img, kind)):
-                img = self._inpaint(img, box_mask(img.size, box), text, negative, seed + 17 * (k + 1) + 101 * n, st)
+                img = self._inpaint(img, box_mask(img.size, box), text, negative, seed + 17 * (k + 1) + 101 * n, st, guided=True)
         return img
 
     def _img2img(self, img, prompt: str, negative: str, seed: int, strength: float, steps: int):
         gen = self.torch.Generator(self.dev).manual_seed(seed)
-        return self.img2img_pipe(image=img, strength=strength, num_inference_steps=sampler_steps(steps, strength), guidance_scale=self.style["guidance"],
-                                 generator=gen, **self.embeddings(prompt, negative)).images[0]
+        return self.img2img_pipe(image=img, strength=strength, num_inference_steps=sampler_steps(steps, strength),
+                                 guidance_scale=self.refine_cfg(), generator=gen, **self.embeddings(prompt, negative)).images[0]
 
-    def _inpaint(self, base, mask, prompt: str, negative: str, seed: int, strength: float):
-        """Inpainting d'une zone, recadrée et générée en haute résolution (padding_mask_crop) puis recollée."""
+    def _cn_img2img(self, img, prompt: str, negative: str, seed: int, strength: float, steps: int):
+        cn = self.style.get("controlnet", {})
+        gen = self.torch.Generator(self.dev).manual_seed(seed)
+        return self.cn_img2img(image=img, control_image=img, strength=strength, num_inference_steps=sampler_steps(steps, strength),
+                               controlnet_conditioning_scale=float(cn.get("conditioning_scale", 0.7)),
+                               control_guidance_end=float(cn.get("guidance_end", 1.0)), guidance_scale=self.refine_cfg(),
+                               generator=gen, **self.embeddings(prompt, negative)).images[0]
+
+    def refine_cfg(self) -> float:
+        """CFG des passes de raffinement : plus bas que la génération (un CFG fort noircit et épaissit l'encrage)."""
+        return float(self.style.get("refine_guidance", self.style["guidance"]))
+
+    def _inpaint(self, base, mask, prompt: str, negative: str, seed: int, strength: float, guided: bool = False):
+        """Inpainting d'une zone, recadrée et générée en haute résolution (padding_mask_crop) puis recollée.
+        guided : ControlNet Tile sur l'image d'origine (retouche de piqué) ; jamais pour les expressions, qui doivent
+        changer le visage."""
         crop = int(self.style.get("detail_resolution", 1024))
         gen = self.torch.Generator(self.dev).manual_seed(seed)
-        out = self.inpaint_pipe(image=base, mask_image=mask, width=crop, height=crop, strength=strength,
-                                num_inference_steps=sampler_steps(int(self.style.get("detail_steps", self.style["steps"])), strength),
-                                guidance_scale=self.style["guidance"],
-                                padding_mask_crop=32, generator=gen, **self.embeddings(prompt, negative)).images[0]
+        args = dict(image=base, mask_image=mask, width=crop, height=crop, strength=strength, padding_mask_crop=32,
+                    num_inference_steps=sampler_steps(int(self.style.get("detail_steps", self.style["steps"])), strength),
+                    guidance_scale=self.refine_cfg(), generator=gen, **self.embeddings(prompt, negative))
+        if guided and self.cn_inpaint is not None:
+            cn = self.style.get("controlnet", {})
+            out = self.cn_inpaint(control_image=base, controlnet_conditioning_scale=float(cn.get("detail_conditioning_scale", 0.8)),
+                                  **args).images[0]
+        else:
+            out = self.inpaint_pipe(**args).images[0]
         return out.resize(base.size) if out.size != base.size else out
 
     def repaint_face(self, base, mask, prompt: str, negative: str, seed: int):
         return self._inpaint(base, mask, prompt, negative, seed, self.style["expression_strength"])
+
+
+def load_controlnet(cfg: dict | None, dtype):
+    """ControlNet Tile SDXL (verrouille la structure pendant la seconde passe). Facultatif : sans lui, repli sur
+    l'agrandisseur et un img2img léger (avertissement)."""
+    if not cfg or not cfg.get("repo"):
+        return None
+    try:
+        from diffusers import ControlNetModel  # noqa: PLC0415
+        return ControlNetModel.from_pretrained(cfg["repo"], torch_dtype=dtype, **({"variant": cfg["variant"]} if cfg.get("variant") else {}))
+    except Exception as e:  # noqa: BLE001
+        print(f"  ! ControlNet {cfg.get('repo')} indisponible ({e.__class__.__name__}: {e}) : seconde passe sans guidage")
+        return None
 
 
 def sampler_steps(real: int, strength: float) -> int:
@@ -751,9 +822,30 @@ def sprite_base(cid: str):
     return Image.alpha_composite(white, rgba).convert("RGB")
 
 
+def lowres_path(job_id: str) -> Path:
+    """Pose de base (basse résolution, avant la seconde passe) d'un sprite : point de départ d'un affinage."""
+    return SPRITE_BASES / "lowres" / f"{job_id}.png"
+
+
+def refine_source(it: dict):
+    """Image à affiner sans régénérer la pose : la pose de base mémorisée (basse résolution), sinon le sprite existant
+    recomposé sur fond blanc (déjà en haute définition). (image, hd) ou None."""
+    from PIL import Image  # noqa: PLC0415
+    low = lowres_path(it["id"])
+    if low.exists():
+        return Image.open(low).convert("RGB"), False
+    out = ROOT / it["out"]
+    if not out.exists():
+        return None
+    rgba = Image.open(out).convert("RGBA")
+    white = Image.new("RGBA", rgba.size, (255, 255, 255, 255))
+    return Image.alpha_composite(white, rgba).convert("RGB"), True
+
+
 def cmd_sprites(a, backend=None) -> int:
     style = load_style()
-    jobs = sprite_jobs(a.force, a.only)[: a.limit or None]
+    refine = bool(getattr(a, "refine", False))
+    jobs = sprite_jobs(a.force or refine, a.only)[: a.limit or None]
     print(f"[sprites] {len(jobs)} sprite(s) à produire ({style['checkpoint']['name']} + "
           f"{', '.join(lo['name'] for lo in style['loras']) or 'sans LoRA'}, fond transparent)")
     if a.dry_run or not jobs:
@@ -774,10 +866,21 @@ def cmd_sprites(a, backend=None) -> int:
             print(f"  ! {cid} : pas de pose neutre, {expr} générée seule (corps différent)")
         problem, fallback = "", None
         face_p, hand_p = detail_prompts(style, cid, expr)
+        src = refine_source(it) if refine and fresh else None
+        if refine and fresh and src is None:
+            print(f"  ! {it['id']} : rien à affiner (ni pose mémorisée, ni sprite existant) : génération complète")
         for k in range(tries):  # nouvel essai (autre graine) : image uniforme, plusieurs personnages, détourage vide
             if fresh:
                 prompt = sprite_prompt(style, cid, combat=True) if combat else sprite_prompt(style, cid, expr)
-                img = backend.generate(prompt, negative, seed_of(it["id"] if combat else cid) + 7919 * k, (face_p, hand_p))
+                seed = seed_of(it["id"] if combat else cid) + 7919 * k
+                if src is not None:  # affinage : la pose validée est conservée, seule la chaîne HD est rejouée
+                    img = backend.finish(backend.refine(src[0], prompt, negative, seed, hd=src[1]), prompt, negative, seed,
+                                         (face_p, hand_p))
+                else:
+                    img = backend.generate(prompt, negative, seed, (face_p, hand_p))
+                    if getattr(backend, "last_base", None) is not None:
+                        lowres_path(it["id"]).parent.mkdir(parents=True, exist_ok=True)
+                        backend.last_base.save(lowres_path(it["id"]))
             else:
                 base = sprite_base(cid)
                 img = backend.repaint_face(base, backend.face_mask(cid, base), face_p, negative, seed_of(it["id"]) + 7919 * k)
@@ -1015,6 +1118,8 @@ def main(argv: list[str] | None = None) -> None:
     p.add_argument("--dry-run", action="store_true")
     p.add_argument("--only", nargs="*")
     p.add_argument("--limit", type=int, default=0)
+    p.add_argument("--refine", action="store_true",
+                   help="sprites : rejouer la seconde passe HD sur les poses existantes (pose et charadesign conservés)")
     a = p.parse_args(argv)
     if a.stage != "plan" and not a.dry_run and not shutil.which("ffmpeg") and a.stage not in ("images", "sprites"):
         sys.exit("ffmpeg introuvable (Colab l'a déjà ; Windows : winget install ffmpeg)")

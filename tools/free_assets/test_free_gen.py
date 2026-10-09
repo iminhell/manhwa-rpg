@@ -181,19 +181,23 @@ def main() -> None:
     ps = fg.sprite_prompt(style, "simone")
     check("thigh holster" in ps and "plunging neckline" in ps and "visible abs" in ps and "standing straight" in ps,
           "Simone : tenue de commandante, pose propre au personnage")
-    check(style["hires"]["scale"] >= 1.75 and style["detailer"]["face_model"] and style["detailer"]["hand_model"]
+    check(style["hires"]["scale"] >= 1.5 and style["detailer"]["face_model"] and style["detailer"]["hand_model"]
           and "sharp lineart" in style["quality"] and "soft shadows" not in style["background"] and "drop shadow" in style["negative"],
-          "netteté : seconde passe ×1,75, retouche visages et mains, sans ombre portée")
+          "netteté : seconde passe ×1,6, retouche du visage, sans ombre portée")
     up = style["hires"]["upscaler"]
     w, h = style["size"]
-    check("anime" in up["name"].lower() and up["url"].endswith(".pth") and style["final_height"] >= 2048
-          and int(h * style["hires"]["scale"]) >= style["final_height"] and style["vae"].endswith("fp16-fix")
+    check("anime" in up["name"].lower() and up["url"].endswith(".pth") and int(h * style["hires"]["scale"]) >= 1900
+          and style["vae"].endswith("fp16-fix")
           and fg.sampler_steps(style["hires"]["steps"], style["hires"]["strength"]) * style["hires"]["strength"] >= 30,
-          "netteté : agrandisseur anime avant l'img2img, 30 étapes réelles, 2048 px de haut sans réduction, VAE fp16 corrigé")
+          "netteté : repli agrandisseur anime + img2img en 30 étapes réelles, près de 2000 px de haut, VAE fp16 corrigé")
     # Réglages techniques de netteté (sans toucher au style) : étapes, CFG, denoise, prompts de netteté pure
-    check(30 <= style["steps"] <= 35 and 7.0 <= style["guidance"] <= 8.0 and 0.35 <= style["hires"]["strength"] <= 0.40
-          and 0.35 <= style["detailer"]["strength"] <= 0.40 and style["detail_steps"] >= 30,
-          "netteté : 30–35 étapes, CFG 7–8, denoise 0,35–0,40, retouches en 30 étapes")
+    cn = style["controlnet"]
+    check(30 <= style["steps"] <= 35 and 6.5 <= style["guidance"] <= 8.0 and style["refine_guidance"] < style["guidance"]
+          and 0.35 <= style["hires"]["strength"] <= 0.40 and style["detail_steps"] >= 30 and "tile" in cn["repo"]
+          and 0.45 <= cn["strength"] <= 0.55 and cn["refine_strength"] < cn["strength"] and 0.5 <= cn["conditioning_scale"] <= 0.9,
+          "netteté : 35 étapes, CFG 7 (raffinement 6), seconde passe guidée par ControlNet Tile à 0,5, repli img2img à 0,38")
+    check(style["detailer"]["strength"] <= 0.35 and style["detailer"]["face_passes"] == 1 and not style["detailer"]["hands"],
+          "retouche : visage en une passe légère, mains non repeintes (pas de griffes)")
     check(fg.sampler_steps(30, 0.38) * 0.38 >= 30 and fg.sampler_steps(30, 0.6) * 0.6 >= 30 and fg.sampler_steps(1, 0.05) >= 40,
           "étapes réelles : diffusers exécute bien 30 étapes à denoise 0,38 (comme un KSampler)")
     check(all(t in style["quality"] for t in ("sharp focus", "crisp details", "clear lineart", "high resolution"))
@@ -202,7 +206,7 @@ def main() -> None:
           "netteté : prompts de netteté pure, sans mot-clé de style")
     fpe, hpe = fg.detail_prompts(style, "elias")
     check("detailed eyes" in fpe and "clean fingers" in hpe, "retouches : yeux détaillés, doigts propres")
-    check(style["sharpen"]["radius"] <= 1.2, "accentuation finale légère (pas de halo autour du trait)")
+    check(not style["sharpen"], "pas d'accentuation finale (ni halo ni pâtés sur l'encrage)")
     # Audit visuel : un seul personnage (Elias, Nadia, Simone), Ryeon adulte en mini-short, retouches sans pose
     neg = style["negative"]
     check(all(x in neg for x in ("multiple views", "character sheet", "expression chart", "floating heads", "2girls", "clone"))
@@ -219,8 +223,7 @@ def main() -> None:
         check("full body" not in fp and "full body" not in hp and "standing" not in fp and "face focus" in fp
               and "five fingers" in hp, f"retouche de {cid} : prompts sans pose (pas de têtes miniatures)")
     fp, hp = fg.detail_prompts(style, "minh_anh")
-    check("tablet" in hp and "glasses" in fp and style["detailer"]["face_passes"] >= 2 and style["detailer"]["hand_strength"] > style["detailer"]["strength"],
-          "piqué : deux passes sur le visage, mains (tablette de Minh-Anh) retouchées plus fort")
+    check("tablet" in hp and "glasses" in fp, "retouches : lunettes de Seo-Yeon et Minh-Anh, tablette de Minh-Anh")
     big = [(10, 10, 60, 70), (120, 12, 168, 70)]
     check(fg.extra_faces(big) == 1 and fg.extra_faces([(10, 10, 60, 70), (0, 0, 8, 8)]) == 0 and fg.extra_faces([]) == 0,
           "garde : second visage de taille comparable détecté, petites détections ignorées")
@@ -242,8 +245,9 @@ def main() -> None:
     from PIL import Image as _Im, ImageDraw as _Dr  # noqa: PLC0415
     _im = _Im.new("RGB", (64, 64), "white")
     _Dr.Draw(_im).rectangle((20, 20, 44, 44), fill=(120, 120, 120))
-    _sh = fg.sharpen(_im, style["sharpen"])
-    check(_sh.size == _im.size and _sh.getpixel((21, 32))[0] < 120 and fg.sharpen(_im, None) is _im, "accentuation finale du trait")
+    _sh = fg.sharpen(_im, {"radius": 1.0, "percent": 60, "threshold": 2})
+    check(_sh.size == _im.size and _sh.getpixel((21, 32))[0] < 120 and fg.sharpen(_im, style["sharpen"]) is _im,
+          "accentuation finale : disponible, désactivée par défaut")
     from PIL import Image, ImageDraw  # noqa: PLC0415
     alpha = Image.new("L", (200, 400), 0)
     ImageDraw.Draw(alpha).rectangle((60, 40, 140, 390), fill=255)

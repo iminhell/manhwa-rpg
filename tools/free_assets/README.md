@@ -36,15 +36,14 @@ Sur le PC, double-cliquer `GENERER_ASSETS.bat` (ou `./generer_assets.sh`) : il f
   - les îlots isolés et le voile qui bave autour du contour (resserrement de l'alpha).
 
   Les pixels transparents reçoivent la couleur du bord voisin, pour éviter tout halo blanc ou noir au filtrage dans Godot. Testé sur l'image de référence de Gaïa : ombre 51 038 → 11 pixels, contour conservé. Réglages : `alpha_cleanup` dans `sprite_style.json`.
-- **Netteté** :
-  - échantillonneur DPM++ 2M Karras, 35 étapes, CFG 7,5 ; raffinement et retouches en **30 étapes réelles** (`sampler_steps` : diffusers n'exécute que étapes × denoise, contrairement à un KSampler de ComfyUI) ;
-  - VAE corrigé pour le fp16 (`madebyollin/sdxl-vae-fp16-fix`) : sans lui, une grande image peut sortir noire ;
-  - **hires fix** : 832×1216 → ×4 par **Real-ESRGAN x4plus anime 6B** (chargé par `spandrel`, trait net), réduit à 1456×2128, puis img2img à 0,38 (30 étapes réelles). L'ancien agrandissement Lanczos laissait une image floue (rendu « 120p ») ;
-  - **retouche des visages et des mains** : détectés par les modèles YOLO d'ADetailer (`Bingsu/adetailer`), puis repeints en 1024 px ;
-  - taille finale **2048 px** de haut, image **recadrée sur la silhouette** (même cadre pour toutes les expressions d'un personnage) ;
-  - tags de netteté et négatifs anti-flou et anti-mains déformées ; LoRA Takeda à 0,6.
+- **Netteté** (chaîne de traitement) :
+  1. pose de base 832×1216 (DPM++ 2M Karras, 35 étapes, CFG 7), mémorisée dans `art_work/sprite_bases/lowres/` ;
+  2. **seconde passe HD guidée par ControlNet Tile SDXL** (`xinsir/controlnet-tile-sdxl-1.0`) : agrandissement Lanczos ×1,6 puis img2img à 0,5 en 30 étapes réelles, CFG 6. Le ControlNet verrouille pose, expression et composition, ce qui autorise un débruitage assez fort pour que le modèle **redessine un trait fin à pleine résolution**. Un agrandisseur anime (Real-ESRGAN) épaissit au contraire le trait, et la passe img2img en hérite (« encrage lourd ») ;
+  3. retouche du **visage seul**, une passe guidée à 0,3 (piqué des yeux sans changer l'expression). Les **mains ne sont pas repeintes** (`detailer.hands`) : une boîte de main repeinte isolément réinvente les doigts (griffes, doigts en trop), et la passe guidée les traite déjà avec le reste du corps ;
+  4. **pas d'accentuation finale** : un UnsharpMask fait des halos et des pâtés sur l'encrage.
 
-  Sans modèle de détection ou d'agrandissement, la génération continue (retouche sautée, Lanczos), avec un avertissement.
+  Repli automatique (avertissement) : sans ControlNet ou si la mémoire GPU manque, agrandissement Real-ESRGAN anime puis img2img à 0,38. diffusers n'exécute que « étapes × débruitage » en img2img : `sampler_steps` demande ce qu'il faut pour 30 étapes réelles, comme un KSampler de ComfyUI.
+- **Affiner sans changer la pose** : `free_gen.py sprites --refine --only hae_in` (notebook : `AFFINER`) rejoue la chaîne HD sur la pose mémorisée de la session, ou sur le sprite présent dans `assets/`, puis refait les expressions à partir de ce sprite affiné.
 - **Un seul personnage** : `composition` (solo, centré) en tête du prompt, négatif anti-planche (vues multiples, fiche de personnage, planche d'expressions, têtes volantes, affiche, jumelles). Si le détecteur de visages voit plusieurs visages de taille comparable, nouvel essai avec une autre graine. En dernier recours, le sprite est gardé avec le seul personnage principal. Au détourage, seule la plus grande silhouette est conservée : les morceaux détachés hors de la silhouette et les éléments collés au bord de l'image sont effacés, mais pas le liseré des bottes au contact du corps.
 - **Retouche sans pose** : visages et mains sont repeints avec un prompt dédié (`detail_prompts` : traits du visage + expression, ou tenue + mains), jamais avec « full body » (sinon des têtes miniatures apparaissent dans la zone repeinte). Deux passes sur le visage (`face_passes`), mains plus fortes (`hand_strength`), consignes par personnage (`face_extra`, `hand_extra` : lunettes de Seo-Yeon et Minh-Anh, tablette de Minh-Anh).
 - **Garde anti-sprite vide** : une image uniforme (rendu raté), un détourage presque vide (personnage effacé avec le fond) ou une silhouette tronquée déclenchent un nouvel essai avec une autre graine (`retries`, 3 par défaut) ; après le dernier, rien n'est enregistré (le jeu garde son placeholder) et un « ÉCHEC » est affiché. Si le nettoyage du détourage efface trop de pixels (vêtements sombres), le détourage rembg brut est gardé.
