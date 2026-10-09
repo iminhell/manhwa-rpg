@@ -22,12 +22,12 @@
   832,
   1216
  ],
- "steps": 30,
- "guidance": 6.0,
+ "steps": 35,
+ "guidance": 7.5,
  "expression_strength": 0.6,
- "quality": "masterpiece, best quality, amazing quality, (ultra-detailed), very aesthetic, absurdres, highres, anime style, anime coloring, cel shading, (sharp lineart:1.2), clean lineart, crisp details, high definition, (high resolution:1.1), detailed hair, detailed clothes, detailed face, detailed eyes, perfect hands, defined line",
+ "quality": "masterpiece, best quality, amazing quality, (ultra-detailed), very aesthetic, absurdres, highres, anime style, anime coloring, cel shading, (sharp lineart:1.2), clean lineart, crisp details, (sharp focus:1.2), clear lineart, high definition, (high resolution:1.1), detailed hair, detailed clothes, detailed face, detailed eyes, perfect hands, defined line",
  "background": "simple background, white background, flat lighting, (no shadow:1.2)",
- "negative": "(reality:1.5), lips, worst quality, bad quality, low quality, lowres, (blurry:1.2), soft focus, out of focus, jpeg artifacts, sketch, smudge, signature, watermark, bad anatomy, bad proportions, extra limbs, malformed limbs, bad hands, extra fingers, fused fingers, missing fingers, too many fingers, deformed hands, mutated hands, bad face, deformed face, asymmetrical eyes, 3d render, plastic skin, photo, realistic, dark square background, nude, nipples, child, loli, childlike, young-looking, cropped, out of frame, shadow, drop shadow, cast shadow, ground shadow, floor, ground, reflection, motion blur, speed lines, aura, particles, smoke, energy aura, lens flare, gradient background, (multiple views:1.4), (character sheet:1.3), (reference sheet:1.3), (expression chart:1.3), turnaround, (multiple girls:1.3), (multiple boys:1.3), 2girls, 2boys, group, crowd, (clone:1.2), twins, duplicate, poster, cover art, collage, comic, panels, split screen, inset, floating heads, disembodied head, chibi, frame, border, ornament, background elements",
+ "negative": "(reality:1.5), lips, worst quality, bad quality, low quality, lowres, (blurry:1.2), soft focus, out of focus, smudged, blurred lineart, jpeg artifacts, sketch, smudge, signature, watermark, bad anatomy, bad proportions, extra limbs, malformed limbs, bad hands, extra fingers, fused fingers, missing fingers, too many fingers, deformed hands, mutated hands, bad face, deformed face, asymmetrical eyes, 3d render, plastic skin, photo, realistic, dark square background, nude, nipples, child, loli, childlike, young-looking, cropped, out of frame, shadow, drop shadow, cast shadow, ground shadow, floor, ground, reflection, motion blur, speed lines, aura, particles, smoke, energy aura, lens flare, gradient background, (multiple views:1.4), (character sheet:1.3), (reference sheet:1.3), (expression chart:1.3), turnaround, (multiple girls:1.3), (multiple boys:1.3), 2girls, 2boys, group, crowd, (clone:1.2), twins, duplicate, poster, cover art, collage, comic, panels, split screen, inset, floating heads, disembodied head, chibi, frame, border, ornament, background elements",
  "pose_female": "(full body:1.4), standing, contrapposto, weight on one leg, body slightly turned, head tilt, one hand on hip, other hand touching own hair, feet visible, looking at viewer",
  "pose_male": "(full body:1.4), standing tall, imposing stance, feet apart, body slightly turned, one hand resting on sword hilt, coat tails flowing, feet visible, looking at viewer",
  "pose_combat": "(full body:1.4), fighting stance, dynamic pose, feet visible, looking at viewer",
@@ -145,7 +145,7 @@
    "face_extra": "(sharp focus on eyes:1.2), clear glasses lenses, detailed eyes behind glasses"
   }
  },
- "sampler_note": "DPM++ 2M Karras, 30 étapes, CFG 6 : trait plus net qu'Euler a ; LoRA Takeda à 0,6 contre les déformations",
+ "sampler_note": "DPM++ 2M Karras, 35 étapes, CFG 7,5 ; raffinement et retouches : 30 étapes réelles (detail_steps), denoise 0,38",
  "alpha_cleanup": {
   "min_alpha": 24,
   "shadow_band": 0.1,
@@ -160,14 +160,14 @@
  "sampler": "dpmpp_2m_karras",
  "hires": {
   "scale": 1.75,
-  "strength": 0.42,
+  "strength": 0.38,
   "steps": 30,
   "upscaler": {
    "name": "RealESRGAN_x4plus_anime_6B",
    "tile": 512,
    "url": "https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.2.4/RealESRGAN_x4plus_anime_6B.pth"
   },
-  "note": "hires fix : 832×1216 → ×4 par Real-ESRGAN anime (trait net) → réduit à 1456×2128, puis img2img (≈13 étapes réelles) qui recrée les détails. Sans le réseau d'anime (repli Lanczos), l'image restait floue."
+  "note": "hires fix : 832×1216 → ×4 par Real-ESRGAN anime → réduit à 1456×2128, puis img2img à 0,38 avec 30 étapes réelles (comme un KSampler à denoise 0,38). Avec 0,38 et seulement ~11 étapes réelles, le raffinement restait inachevé."
  },
  "final_height": 2048,
  "detail_resolution": 1024,
@@ -176,23 +176,24 @@
   "face_model": "face_yolov8n.pt",
   "hand_model": "hand_yolov8n.pt",
   "confidence": 0.35,
-  "strength": 0.42,
+  "strength": 0.38,
   "max_per_kind": 4,
-  "face_prompt": "detailed face, (beautiful detailed eyes:1.2), detailed iris, eyelashes, (sharp focus:1.2), (sharp lineart:1.2), high resolution, crisp",
-  "hand_prompt": "(detailed hands:1.2), (perfect hands:1.2), five fingers, detailed fingers, defined knuckles, sharp lineart",
+  "face_prompt": "detailed face, (detailed eyes:1.2), detailed iris, eyelashes, (sharp focus:1.2), clear lineart, high resolution",
+  "hand_prompt": "(detailed hands:1.2), (clean fingers:1.2), five fingers, detailed fingers, clear lineart, sharp focus",
   "face_passes": 2,
   "hand_strength": 0.5
  },
  "sharpen": {
-  "radius": 1.6,
-  "percent": 70,
-  "threshold": 3,
-  "note": "accentuation finale (UnsharpMask) avant le détourage : trait plus net, sans halo"
+  "radius": 1.0,
+  "percent": 55,
+  "threshold": 2,
+  "note": "accentuation finale légère (UnsharpMask) : un rayon trop grand épaissit le trait d'un halo (contours « baveux »)"
  },
  "allure_female": "(alluring:1.1), sexy, seductive body, curvy silhouette, (shiny skin:1.1), glossy skin, (thighs:1.1), skindentation, collarbone",
  "note_allure": "Traits ecchi communes aux héroïnes (jamais de nudité : « nude, nipples » restent dans le négatif).",
  "vae": "madebyollin/sdxl-vae-fp16-fix",
  "trim_margin": 0.03,
  "retries": 4,
- "composition": "(solo:1.3), (single character:1.2), (one person:1.1), centered, standing alone"
+ "composition": "(solo:1.3), (single character:1.2), (one person:1.1), centered, standing alone",
+ "detail_steps": 30
 }

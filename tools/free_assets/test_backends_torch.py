@@ -153,7 +153,7 @@ def test_sprites(tmp: Path) -> None:
     style = fg.load_style()
     style.update(size=[64, 96], steps=2, loras=[{"name": "test_style", "path": str(lora), "weight": 0.8, "trigger": "test"}],
                  hires={"scale": 1.5, "strength": 0.4, "steps": 2, "upscaler": {"name": "tiny", "path": str(tiny_esrgan(tmp)), "tile": 32}},
-                 final_height=120, detail_resolution=64)
+                 final_height=120, detail_resolution=64, detail_steps=2)
     pipe = tiny_sdxl(tmp)
     detector = {"face": FakeYolo([(30, 8, 60, 40)]), "hand": FakeYolo([(10, 70, 26, 90), (70, 72, 90, 92)])}
     try:
@@ -169,7 +169,12 @@ def test_sprites(tmp: Path) -> None:
     check(set(pipe.get_active_adapters()) == {"test_style"}, f"LoRA chargé et actif ({pipe.get_active_adapters()})")
     check(type(pipe.scheduler).__name__ == "DPMSolverMultistepScheduler" and pipe.scheduler.config.use_karras_sigmas,
           "échantillonneur DPM++ 2M Karras")
+    cfgs = []
+    real_render = backend.render
+    backend.render = lambda *a, **k: (cfgs.append(k.get("guidance")), real_render(*a, **k))[1]
     pose = backend.generate(fg.sprite_prompt(style, "elias"), style["negative"], 3)
+    backend.render = real_render
+    check(cfgs == [style["guidance"]], f"génération de base au CFG du style ({cfgs})")
     check(pose.size == (round(96 * 120 / 144), 120), f"hires fix ×1,5 puis taille finale ({pose.size})")
     check(detector["face"].calls >= 1 and detector["hand"].calls >= 1, "détailleur : visages et mains recherchés sur l'image agrandie")
     check(backend.upscaler.model is not None and backend.upscaler.model.scale == 4,

@@ -37,9 +37,9 @@ Sur le PC, double-cliquer `GENERER_ASSETS.bat` (ou `./generer_assets.sh`) : il f
 
   Les pixels transparents reçoivent la couleur du bord voisin, pour éviter tout halo blanc ou noir au filtrage dans Godot. Testé sur l'image de référence de Gaïa : ombre 51 038 → 11 pixels, contour conservé. Réglages : `alpha_cleanup` dans `sprite_style.json`.
 - **Netteté** :
-  - échantillonneur DPM++ 2M Karras, 30 étapes, CFG 6 ;
+  - échantillonneur DPM++ 2M Karras, 35 étapes, CFG 7,5 ; raffinement et retouches en **30 étapes réelles** (`sampler_steps` : diffusers n'exécute que étapes × denoise, contrairement à un KSampler de ComfyUI) ;
   - VAE corrigé pour le fp16 (`madebyollin/sdxl-vae-fp16-fix`) : sans lui, une grande image peut sortir noire ;
-  - **hires fix** : 832×1216 → ×4 par **Real-ESRGAN x4plus anime 6B** (chargé par `spandrel`, trait net), réduit à 1456×2128, puis img2img à 0,42 (≈ 13 étapes réelles). L'ancien agrandissement Lanczos laissait une image floue (rendu « 120p ») ;
+  - **hires fix** : 832×1216 → ×4 par **Real-ESRGAN x4plus anime 6B** (chargé par `spandrel`, trait net), réduit à 1456×2128, puis img2img à 0,38 (30 étapes réelles). L'ancien agrandissement Lanczos laissait une image floue (rendu « 120p ») ;
   - **retouche des visages et des mains** : détectés par les modèles YOLO d'ADetailer (`Bingsu/adetailer`), puis repeints en 1024 px ;
   - taille finale **2048 px** de haut, image **recadrée sur la silhouette** (même cadre pour toutes les expressions d'un personnage) ;
   - tags de netteté et négatifs anti-flou et anti-mains déformées ; LoRA Takeda à 0,6.

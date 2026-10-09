@@ -188,8 +188,21 @@ def main() -> None:
     w, h = style["size"]
     check("anime" in up["name"].lower() and up["url"].endswith(".pth") and style["final_height"] >= 2048
           and int(h * style["hires"]["scale"]) >= style["final_height"] and style["vae"].endswith("fp16-fix")
-          and fg.effective_steps(style["hires"]["steps"], style["hires"]["strength"]) * style["hires"]["strength"] >= 12,
-          "netteté : agrandisseur anime avant l'img2img, ≥ 12 étapes réelles, 2048 px de haut sans réduction, VAE fp16 corrigé")
+          and fg.sampler_steps(style["hires"]["steps"], style["hires"]["strength"]) * style["hires"]["strength"] >= 30,
+          "netteté : agrandisseur anime avant l'img2img, 30 étapes réelles, 2048 px de haut sans réduction, VAE fp16 corrigé")
+    # Réglages techniques de netteté (sans toucher au style) : étapes, CFG, denoise, prompts de netteté pure
+    check(30 <= style["steps"] <= 35 and 7.0 <= style["guidance"] <= 8.0 and 0.35 <= style["hires"]["strength"] <= 0.40
+          and 0.35 <= style["detailer"]["strength"] <= 0.40 and style["detail_steps"] >= 30,
+          "netteté : 30–35 étapes, CFG 7–8, denoise 0,35–0,40, retouches en 30 étapes")
+    check(fg.sampler_steps(30, 0.38) * 0.38 >= 30 and fg.sampler_steps(30, 0.6) * 0.6 >= 30 and fg.sampler_steps(1, 0.05) >= 40,
+          "étapes réelles : diffusers exécute bien 30 étapes à denoise 0,38 (comme un KSampler)")
+    check(all(t in style["quality"] for t in ("sharp focus", "crisp details", "clear lineart", "high resolution"))
+          and all(t in style["negative"] for t in ("blurry", "soft focus", "smudged", "out of focus", "lowres"))
+          and not any(t in style["quality"] for t in ("webtoon", "illustration")),
+          "netteté : prompts de netteté pure, sans mot-clé de style")
+    fpe, hpe = fg.detail_prompts(style, "elias")
+    check("detailed eyes" in fpe and "clean fingers" in hpe, "retouches : yeux détaillés, doigts propres")
+    check(style["sharpen"]["radius"] <= 1.2, "accentuation finale légère (pas de halo autour du trait)")
     # Audit visuel : un seul personnage (Elias, Nadia, Simone), Ryeon adulte en mini-short, retouches sans pose
     neg = style["negative"]
     check(all(x in neg for x in ("multiple views", "character sheet", "expression chart", "floating heads", "2girls", "clone"))

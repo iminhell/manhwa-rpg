@@ -236,9 +236,9 @@ class SdxlBackend:
         return {"prompt_embeds": cond, "pooled_prompt_embeds": pooled,
                 "negative_prompt_embeds": ncond, "negative_pooled_prompt_embeds": npooled}
 
-    def render(self, prompt: str, negative: str, size: tuple[int, int], seed: int, steps: int = 28):
+    def render(self, prompt: str, negative: str, size: tuple[int, int], seed: int, steps: int = 28, guidance: float = 6.5):
         gen = self.torch.Generator(self.dev).manual_seed(seed)
-        return self.pipe(width=size[0], height=size[1], num_inference_steps=steps, guidance_scale=6.5, generator=gen,
+        return self.pipe(width=size[0], height=size[1], num_inference_steps=steps, guidance_scale=guidance, generator=gen,
                          **self.embeddings(prompt, negative)).images[0]
 
 
@@ -672,7 +672,7 @@ class SpriteBackend(SdxlBackend):
         """Génération complète d'une pose : base, hires fix (agrandissement anime ESRGAN + img2img), retouche
         visage/mains, taille finale."""
         w, h = self.style["size"]
-        img = self.render(prompt, negative, (w, h), seed, steps=self.style["steps"])
+        img = self.render(prompt, negative, (w, h), seed, steps=self.style["steps"], guidance=self.style["guidance"])
         hires = self.style.get("hires", {})
         if hires.get("scale", 1.0) > 1.0:
             size = (int(w * hires["scale"]) // 8 * 8, int(h * hires["scale"]) // 8 * 8)
@@ -703,7 +703,7 @@ class SpriteBackend(SdxlBackend):
 
     def _img2img(self, img, prompt: str, negative: str, seed: int, strength: float, steps: int):
         gen = self.torch.Generator(self.dev).manual_seed(seed)
-        return self.img2img_pipe(image=img, strength=strength, num_inference_steps=effective_steps(steps, strength), guidance_scale=self.style["guidance"],
+        return self.img2img_pipe(image=img, strength=strength, num_inference_steps=sampler_steps(steps, strength), guidance_scale=self.style["guidance"],
                                  generator=gen, **self.embeddings(prompt, negative)).images[0]
 
     def _inpaint(self, base, mask, prompt: str, negative: str, seed: int, strength: float):
@@ -711,7 +711,8 @@ class SpriteBackend(SdxlBackend):
         crop = int(self.style.get("detail_resolution", 1024))
         gen = self.torch.Generator(self.dev).manual_seed(seed)
         out = self.inpaint_pipe(image=base, mask_image=mask, width=crop, height=crop, strength=strength,
-                                num_inference_steps=effective_steps(self.style["steps"], strength), guidance_scale=self.style["guidance"],
+                                num_inference_steps=sampler_steps(int(self.style.get("detail_steps", self.style["steps"])), strength),
+                                guidance_scale=self.style["guidance"],
                                 padding_mask_crop=32, generator=gen, **self.embeddings(prompt, negative)).images[0]
         return out.resize(base.size) if out.size != base.size else out
 
@@ -719,11 +720,13 @@ class SpriteBackend(SdxlBackend):
         return self._inpaint(base, mask, prompt, negative, seed, self.style["expression_strength"])
 
 
-def effective_steps(steps: int, strength: float) -> int:
-    """img2img et inpainting n'exécutent que steps × strength étapes : on en garantit au moins 2 (sinon diffusers
-    reçoit zéro étape et échoue sur un tenseur vide)."""
+def sampler_steps(real: int, strength: float) -> int:
+    """Nombre d'étapes à demander à diffusers pour que « real » étapes de débruitage soient vraiment exécutées.
+    img2img et inpainting n'exécutent que num_inference_steps × strength étapes (30 étapes à 0,38 → 11 seulement,
+    d'où un raffinement inachevé et des traits flous) ; un KSampler de ComfyUI à denoise 0,38 en fait bien 30."""
     import math  # noqa: PLC0415
-    return max(int(steps), math.ceil(2 / max(strength, 0.05)))
+    st = max(strength, 0.05)
+    return max(math.ceil(int(real) / st), math.ceil(2 / st))
 
 
 def make_scheduler(name: str, config):
