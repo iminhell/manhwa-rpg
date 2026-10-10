@@ -178,13 +178,15 @@
   "face_model": "face_yolov8n.pt",
   "hand_model": "hand_yolov8n.pt",
   "confidence": 0.35,
-  "strength": 0.35,
+  "strength": 0.45,
   "max_per_kind": 4,
   "face_prompt": "detailed face, detailed eyes, detailed iris, eyelashes, sharp focus, thin lineart",
   "hand_prompt": "detailed hands, clean fingers, five fingers",
   "face_passes": 1,
   "hands": false,
-  "note": "comme ADetailer : visage recadré, repeint en 1024 px à 0,35 (20 étapes réelles), recollé ; mains non retouchées"
+  "note": "comme ADetailer : visage recadré, repeint en 1024 px à 0,45 (20 étapes réelles), recollé ; annulé s'il rend la zone moins nette ; mains non retouchées",
+  "face": true,
+  "sharpness_guard": true
  },
  "sharpen": null,
  "allure_female": "(alluring:1.1), sexy, seductive body, curvy silhouette, (shiny skin:1.1), glossy skin, (thighs:1.1), skindentation, collarbone",
@@ -204,5 +206,52 @@
   "detail_conditioning_scale": 0.8,
   "note": "désactivé (repo vide) : la passe guidée à 0,5 défigurait visages et anatomie. Pour un essai : xinsir/controlnet-tile-sdxl-1.0 et hires.mode = controlnet"
  },
- "sharpen_note": "pas d'accentuation finale : le trait net vient de la seconde passe ; un UnsharpMask fait des halos et des pâtés sur l'encrage"
+ "sharpen_note": "pas d'accentuation finale : le trait net vient de la seconde passe ; un UnsharpMask fait des halos et des pâtés sur l'encrage",
+ "profile": "visage",
+ "profiles": {
+  "natif": {
+   "hires": {
+    "mode": "upscale"
+   },
+   "detailer": {
+    "face": false
+   },
+   "note": "pose de base + agrandissement pur, aucune retouche : le dessin d'origine tel quel"
+  },
+  "visage": {
+   "hires": {
+    "mode": "upscale"
+   },
+   "detailer": {
+    "face": true,
+    "strength": 0.45
+   },
+   "note": "agrandissement pur + visage seul repeint en 1024 px (annulé s'il floute) : le corps n'est jamais redessiné"
+  },
+  "hiresfix": {
+   "hires": {
+    "mode": "img2img",
+    "strength": 0.5,
+    "steps": 20
+   },
+   "detailer": {
+    "face": true,
+    "strength": 0.4
+   },
+   "note": "« Hires fix » classique d'A1111 : agrandissement anime puis img2img à 0,5 (20 étapes réelles, CFG 6), puis visage"
+  },
+  "hiresfix_doux": {
+   "hires": {
+    "mode": "img2img",
+    "strength": 0.4,
+    "steps": 20
+   },
+   "detailer": {
+    "face": true,
+    "strength": 0.4
+   },
+   "note": "comme hiresfix, débruitage 0,4 : plus fidèle à la pose, un peu moins de détails neufs"
+  }
+ },
+ "profiles_note": "Profils de netteté comparés par l'essai du notebook (même pose, cellule 1 bis) ; « profile » = profil par défaut, surchargé par free_gen.py --profile ou la variable SPRITE_PROFILE."
 }

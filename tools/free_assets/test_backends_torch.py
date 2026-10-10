@@ -177,6 +177,33 @@ def test_sprites(tmp: Path) -> None:
     backend.render, backend._img2img = real_render, real_i2i
     check(cfgs == [style["guidance"]], f"génération de base au CFG du style ({cfgs})")
     check(not redraws, "mode « upscale » : aucune passe ne redessine le corps (agrandissement pur)")
+    # garde de netteté : une retouche qui floute la zone du visage est annulée ; détecteur muet → tête d'après la silhouette
+    from PIL import ImageDraw, ImageFilter
+    crisp = Image.new("RGB", (80, 120), "white")
+    ImageDraw.Draw(crisp).line((30, 20, 60, 20), fill="black", width=2)
+    real_inp = backend._inpaint
+    backend._inpaint = lambda base, *a, **k: base.filter(ImageFilter.GaussianBlur(3))
+    check(backend.detail(crisp, "x", "y", 1) is crisp, "retouche du visage qui floute : annulée, image d'origine gardée")
+    sharper = crisp.copy()
+    ImageDraw.Draw(sharper).line((30, 26, 60, 26), fill="black", width=1)
+    backend._inpaint = lambda base, *a, **k: sharper
+    check(backend.detail(crisp, "x", "y", 1) is sharper, "retouche du visage plus nette : gardée")
+    real_face = detector["face"]
+    detector["face"] = backend.detailer.models["face"] = FakeYolo([])
+    seen_boxes = []
+    backend._inpaint = lambda base, mask, *a, **k: (seen_boxes.append(mask.getbbox()), base)[1]
+    real_remover = backend.remover
+    def column(im):
+        a = Image.new("L", im.size, 0)
+        a.paste(255, (30, 10, 50, 115))
+        o = im.convert("RGBA")
+        o.putalpha(a)
+        return o
+    backend.remover = column
+    backend.detail(crisp, "x", "y", 1)
+    backend.remover, backend._inpaint = real_remover, real_inp
+    detector["face"] = backend.detailer.models["face"] = real_face
+    check(len(seen_boxes) == 1 and seen_boxes[0][1] < 30, f"visage non détecté : tête retouchée d'après la silhouette {seen_boxes}")
     hd = Image.new("RGB", (80, 120), "white")
     check(backend.refine(hd, "x", "y", 1, hd=True) is hd, "affinage en mode « upscale » : le sprite existant n'est pas redessiné")
     check(pose.size == (round(96 * 120 / 144), 120), f"hires fix ×1,5 puis taille finale ({pose.size})")

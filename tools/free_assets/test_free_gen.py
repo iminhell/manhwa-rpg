@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import shutil
 import sys
 import tempfile
@@ -197,8 +198,40 @@ def main() -> None:
           "base : DPM++ 2M Karras, 30 étapes, CFG 6 ; pas de ControlNet ; visage retouché en 20 étapes réelles")
     weights = [float(x) for x in __import__("re").findall(r":([0-9.]+)\)", style["quality"] + style["composition"] + style["negative"])]
     check(not weights, f"prompt commun et négatif sans pondération (des poids forts déforment le dessin) {weights}")
-    check(style["detailer"]["strength"] <= 0.35 and style["detailer"]["face_passes"] == 1 and not style["detailer"]["hands"],
-          "retouche : visage en une passe légère, mains non repeintes (pas de griffes)")
+    check(0.35 <= style["detailer"]["strength"] <= 0.5 and style["detailer"]["face_passes"] == 1 and not style["detailer"]["hands"]
+          and style["detailer"]["sharpness_guard"],
+          "retouche : visage en une passe, annulée si elle floute ; mains non repeintes (pas de griffes)")
+    # Profils de netteté comparés par l'essai du notebook (même pose)
+    profs = {p: fg.load_style(p) for p in ("natif", "visage", "hiresfix", "hiresfix_doux")}
+    check(profs["natif"]["hires"]["mode"] == "upscale" and not profs["natif"]["detailer"]["face"]
+          and profs["visage"]["hires"]["mode"] == "upscale" and profs["visage"]["detailer"]["face"]
+          and profs["hiresfix"]["hires"]["mode"] == "img2img" and profs["hiresfix"]["hires"]["strength"] == 0.5
+          and profs["hiresfix_doux"]["hires"]["strength"] < 0.5 and style["profile"] == "visage"
+          and profs["hiresfix"]["checkpoint"] == style["checkpoint"] and profs["hiresfix"]["characters"] == style["characters"],
+          "profils : natif / visage / hiresfix / hiresfix_doux ne changent que la seconde passe et la retouche")
+    old_env = os.environ.get("SPRITE_PROFILE")
+    os.environ["SPRITE_PROFILE"] = "hiresfix"
+    check(fg.load_style()["hires"]["mode"] == "img2img", "profil choisi par la variable SPRITE_PROFILE (notebook : PROFIL)")
+    if old_env is None:
+        os.environ.pop("SPRITE_PROFILE")
+    else:
+        os.environ["SPRITE_PROFILE"] = old_env
+    try:
+        fg.load_style("inconnu")
+        check(False, "profil inconnu refusé")
+    except SystemExit:
+        check(True, "profil inconnu refusé")
+    from PIL import Image as _Ims, ImageDraw as _Ds  # noqa: PLC0415
+    _crisp = _Ims.new("RGB", (80, 80), "white")
+    _Ds.Draw(_crisp).line((10, 40, 70, 40), fill="black", width=2)
+    from PIL import ImageFilter as _Fs  # noqa: PLC0415
+    _soft = _crisp.filter(_Fs.GaussianBlur(2))
+    check(fg.sharpness(_crisp) > 3 * fg.sharpness(_soft) and fg.sharpness(_crisp, (0, 0, 80, 20)) == 0.0,
+          "mesure de netteté : un trait net l'emporte sur le même trait flouté")
+    _al = _Ims.new("L", (100, 300), 0)
+    _Ds.Draw(_al).rectangle((30, 20, 70, 290), fill=255)
+    hb = fg.head_box(_al)
+    check(hb[1] <= 20 and hb[3] < 120 and hb[0] < 30 and hb[2] > 70, f"visage non détecté : tête d'après la silhouette {hb}")
     check(fg.sampler_steps(30, 0.38) * 0.38 >= 30 and fg.sampler_steps(30, 0.6) * 0.6 >= 30 and fg.sampler_steps(1, 0.05) >= 40,
           "étapes réelles : diffusers exécute bien 30 étapes à denoise 0,38 (comme un KSampler)")
     check(all(t in style["quality"] for t in ("sharp focus", "crisp details", "clean lineart", "thin lineart"))

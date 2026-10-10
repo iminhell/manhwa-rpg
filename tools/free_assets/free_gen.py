@@ -288,8 +288,36 @@ def fetch(url: str, dest: Path) -> Path:
     return dest
 
 
-def load_style() -> dict:
-    return load_json(SPRITE_STYLE)
+def deep_merge(base: dict, over: dict) -> dict:
+    out = dict(base)
+    for k, v in over.items():
+        out[k] = deep_merge(out[k], v) if isinstance(v, dict) and isinstance(out.get(k), dict) else v
+    return out
+
+
+def load_style(profile: str | None = None) -> dict:
+    """Style des sprites, avec le profil de netteté choisi (argument, sinon variable SPRITE_PROFILE, sinon « profile »
+    du fichier) : un profil ne fait que surcharger quelques réglages (seconde passe, retouche du visage)."""
+    style = load_json(SPRITE_STYLE)
+    name = profile or os.environ.get("SPRITE_PROFILE") or style.get("profile", "")
+    if name:
+        if name not in style.get("profiles", {}):
+            sys.exit(f"Profil de sprites inconnu « {name} » ({', '.join(style.get('profiles', {}))})")
+        style = deep_merge(style, style["profiles"][name])
+        style["profile"] = name
+    return style
+
+
+def sharpness(img, box=None) -> float:
+    """Netteté du trait dans une zone : 99e centile du laplacien absolu, c'est-à-dire la franchise des arêtes les plus
+    marquées (contours, yeux). Une peau lissée par la retouche ne la fait pas baisser, un trait flouté si."""
+    import numpy as np  # noqa: PLC0415
+    region = img.crop(tuple(int(v) for v in box)) if box else img
+    a = np.asarray(region.convert("L"), np.float32)
+    if a.shape[0] < 3 or a.shape[1] < 3:
+        return 0.0
+    lap = np.abs(a[1:-1, 1:-1] * 4 - a[:-2, 1:-1] - a[2:, 1:-1] - a[1:-1, :-2] - a[1:-1, 2:])
+    return float(np.percentile(lap, 99))
 
 
 def sprite_prompt(style: dict, cid: str, expression: str = "neutral", combat: bool = False) -> str:
@@ -454,6 +482,12 @@ class Upscaler:
             y = upscale_tiled(self.model, x.to(dev, dtype), int(getattr(self.model, "scale", 4)), int(self.cfg.get("tile", 512)))
         arr = (y[0].float().clamp(0, 1).permute(1, 2, 0).cpu().numpy() * 255.0).round().astype(np.uint8)
         return Image.fromarray(arr, "RGB").resize(size, Image.LANCZOS)
+
+
+def head_box(alpha, margin: float = 0.12) -> tuple[int, int, int, int]:
+    """Boîte de la tête : haut de la silhouette (alpha), utilisée quand le détecteur de visages ne trouve rien."""
+    m = head_mask(alpha, margin).point(lambda v: 255 if v > 128 else 0)
+    return m.getbbox() or (0, 0, alpha.width, alpha.height // 5)
 
 
 def head_mask(alpha, margin: float = 0.18):
@@ -739,12 +773,22 @@ class SpriteBackend(SdxlBackend):
         cfg = self.style.get("detailer", {})
         face_p, hand_p = detail or (f"{prompt}, {cfg.get('face_prompt', '')}", f"{prompt}, {cfg.get('hand_prompt', '')}")
         strength = float(cfg.get("strength", 0.3))
-        passes = [("face", face_p, strength)] * max(1, int(cfg.get("face_passes", 1)))
+        passes = [("face", face_p, strength)] * max(1, int(cfg.get("face_passes", 1))) if cfg.get("face", True) else []
         if cfg.get("hands", False):
             passes.append(("hand", hand_p, float(cfg.get("hand_strength", strength))))
         for n, (kind, text, st) in enumerate(passes):
-            for k, box in enumerate(self.detailer.boxes(img, kind)):
-                img = self._inpaint(img, box_mask(img.size, box), text, negative, seed + 17 * (k + 1) + 101 * n, st, guided=True)
+            boxes = self.detailer.boxes(img, kind)
+            if kind == "face" and not boxes:  # détecteur muet (visage sombre, de profil…) : la tête d'après la silhouette
+                boxes = [head_box(self.cut(img).getchannel("A"))]
+                print("  ! visage non détecté : zone de la tête d'après la silhouette")
+            for k, box in enumerate(boxes):
+                before = sharpness(img, box)
+                out = self._inpaint(img, box_mask(img.size, box), text, negative, seed + 17 * (k + 1) + 101 * n, st, guided=True)
+                after = sharpness(out, box)
+                if cfg.get("sharpness_guard", True) and after < before:  # la retouche floute : on garde l'original
+                    print(f"  ! retouche {kind} annulée : elle rendait la zone moins nette ({after:.0f} < {before:.0f})")
+                    continue
+                img = out
         return img
 
     def _img2img(self, img, prompt: str, negative: str, seed: int, strength: float, steps: int):
@@ -851,6 +895,8 @@ def refine_source(it: dict):
 
 def cmd_sprites(a, backend=None) -> int:
     style = load_style()
+    if style.get("profile"):
+        print(f"[sprites] profil de netteté : {style['profile']}")
     refine = bool(getattr(a, "refine", False))
     jobs = sprite_jobs(a.force or refine, a.only)[: a.limit or None]
     print(f"[sprites] {len(jobs)} sprite(s) à produire ({style['checkpoint']['name']} + "
@@ -1125,9 +1171,12 @@ def main(argv: list[str] | None = None) -> None:
     p.add_argument("--dry-run", action="store_true")
     p.add_argument("--only", nargs="*")
     p.add_argument("--limit", type=int, default=0)
+    p.add_argument("--profile", default="", help="sprites : profil de netteté de sprite_style.json → profiles")
     p.add_argument("--refine", action="store_true",
                    help="sprites : rejouer la seconde passe HD sur les poses existantes (pose et charadesign conservés)")
     a = p.parse_args(argv)
+    if a.profile:
+        os.environ["SPRITE_PROFILE"] = a.profile  # lu par load_style()
     if a.stage != "plan" and not a.dry_run and not shutil.which("ffmpeg") and a.stage not in ("images", "sprites"):
         sys.exit("ffmpeg introuvable (Colab l'a déjà ; Windows : winget install ffmpeg)")
     if a.stage == "plan":
